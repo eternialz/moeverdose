@@ -1,0 +1,151 @@
+/* Screen Sizes */
+$device-xsmall: 640px;
+$device-small: 1024px;
+$device-medium: 1280px;
+$device-large: 1600px;
+
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+/* Titles */
+h1,h2,h3,h4,h5,h6,p {
+  margin: 0 0 10px;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  color: $pink;
+  font-size: 1.45em;
+}
+
+h3 {
+  color: $blue;
+  font-size: 1.3em;
+}
+
+h4 {
+  color: $orange;
+  font-size: 1.15em;
+}
+
+h5 {
+  color: $green;
+  font-size: 1em;
+}
+
+h6 {
+  color: $yellow;
+  font-size: 0.8em;
+}
+
+/*Responsives Columns*/
+.row {
+  display: block;
+  clear: both;
+
+  .content {
+    width: 1200px;
+    text-align: justify;
+  }
+
+  .column {
+    display: inline-block;
+    text-align: justify;
+    padding: 0.5%;
+  }
+
+  .f12 {
+    width: 99.7%;
+  }
+
+  .f6 {
+    width: 49.7%;
+  }
+
+  .f4 {
+    width: 33%;
+  }
+
+  .f3 {
+    width: 24.7%;
+  }
+
+  @media (max-width: $device-small) {
+    .f3 {
+      width: 49.7%;
+    }
+
+    .f4 {
+      width: 49.7%;
+    }
+
+    .f6 {
+      width: 99.7%;
+    }
+  }
+
+  @media (max-width: $device-xsmall) {
+    .f3 {
+      width: 99.7%;
+    }
+
+    .f4 {
+      width: 99.7%;
+    }
+
+    .f6 {
+      width: 99.7%;
+    }
+  }
+}
+
+/* Global Elements */
+.zone {
+  background: #FFF;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0,0,0,.25);
+  margin: 5px 10px 15px 10px;
+  padding: 10px;
+}
+
+.btn {
+  color:#FFF;
+	background:$default_light;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 900;
+	display:inline-block;
+  min-width: 150px;
+	margin:5px;
+	margin-bottom:20px;
+	padding:10px 15px;
+	border-radius:3px;
+	border-bottom: 1px solid $default_light;
+	box-shadow:0 10px $default,0 7px 10px rgba(0,0,0,.8);
+  text-shadow: 0 1px 1px #000;
+	-webkit-transition:all 250ms linear;
+	-moz-transition:all 250ms linear;
+	-o-transition:all 250ms linear;
+	transition:all 250ms linear;
+}
+.btn:hover {
+	cursor:pointer;
+	background:$default;
+	box-shadow:0 10px $default_dark,0 7px 10px rgba(0,0,0,.8);
+}
+.btn:active {
+	-webkit-transform:translateY(5px);
+	-moz-transform:translateY(5px);
+  -o-transform:translateY(5px);
+  transform:translateY(5px);
+	box-shadow:0 5px $default_dark,0 5px 5px rgba(0,0,0,.8);
+}
