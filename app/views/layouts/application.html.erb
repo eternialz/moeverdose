@@ -9,6 +9,18 @@
   </head>
 
   <body>
+
+    <nav class="menu">
+      <h1>moeverdose.moe</h1>
+      <ul>
+        <% if content_for?(:menu) %>
+          <%= yield(:menu) %>
+        <% else %>
+          <%= render "layouts/default_menu" %>
+        <% end %>
+      </ul>
+    </nav>
+
     <%= yield %>
   </body>
 </html>
