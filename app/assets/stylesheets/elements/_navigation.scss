@@ -1,0 +1,50 @@
+nav.menu {
+  background: $default;
+  height: 108px;
+  box-shadow: 0 -4px 5px 6px rgba(0,0,0,.55);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  color: #FFF;
+  text-shadow: 0 1px 2px #000;
+
+  .container {
+    padding: 10px;
+
+    h1 {
+      padding-left: 10px;
+    }
+  }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+
+    li {
+      display: inline-block;
+
+      a {
+        padding: 5px 10px;
+        text-align: center;
+        border-radius: 3px;
+      	-webkit-transition:all 100ms linear;
+      	-moz-transition:all 100ms linear;
+      	-o-transition:all 100ms linear;
+      	transition:all 100ms linear;
+
+        &:hover {
+          background: rgba(0,0,0,.25);
+        }
+
+        &:active {
+          background: rgba(0,0,0,.55);
+        }
+      }
+    }
+  }
+}
+
+body {
+  padding-top: 110px;
+}

@@ -1,5 +1,19 @@
 @font-face {
   font-family: "Exo 2";
+  src: url('/assets/Exo2-Light.otf') format("opentype");
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Exo 2";
+  src: url('/assets/Exo2-LightItalic.otf') format("opentype");
+  font-weight: 200;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Exo 2";
   src: url('/assets/Exo2-Regular.otf') format("opentype");
   font-weight: normal;
   font-style: normal;
