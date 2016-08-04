@@ -1,0 +1,19 @@
+$default: #50C;
+$default_light: lighten($default, 15%);
+$default_dark: darken($default, 15%);
+
+$pink: #B17;
+$pink_light: lighten($pink, 15%);
+$pink_dark: darken($pink, 15%);
+
+$blue: #1AB;
+$blue_light: lighten($blue, 15%);
+$blue_dark: darken($blue, 15%);
+
+$green: #093;
+$green_light: lighten($green, 15%);
+$green_dark: darken($green, 15%);
+
+$yellow: #DB4;
+$yellow_light: lighten($yellow, 15%);
+$yellow_dark: darken($yellow, 15%);
