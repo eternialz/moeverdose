@@ -1,0 +1,16 @@
+$header-image: "header-img/"+random(35)+".jpg";
+
+.header-img {
+  height: 400px;
+  position:absolute;
+  top: 0;
+  z-index: 0;
+  box-shadow: 0 0 0 200px rgba($default, 0.8) inset;
+  background: image_url($header-image) no-repeat center center;
+  background-size: cover;
+  text-align: center;
+  color: #FFF;
+  width: 100%;
+  padding: 100px;
+  text-shadow: 0 2px 2px #000;
+}

@@ -1,17 +1,15 @@
 nav.menu {
-  background: $default;
-  height: 108px;
-  box-shadow: 0 -4px 5px 6px rgba(0,0,0,.55);
+  background-image: linear-gradient(rgba($default, 0), rgba($default, 0.85)), image_url("header.png");
+  box-shadow: 0 0 0 200px rgba($default, 0.75) inset, 0 -4px 5px 6px rgba(0,0,0,.55);
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   color: #FFF;
+  z-index: 100;
   text-shadow: 0 1px 2px #000;
 
   .container {
-    padding: 10px;
-
     h1 {
       padding-left: 10px;
     }
