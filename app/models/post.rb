@@ -9,6 +9,8 @@ class Post
 
   has_many :comments, class_name: "Comment", inverse_of: :post
 
+  has_and_belongs_to_many :tags, class_name: "Tag", inverse_of: :posts
+
   field :report, type: Boolean, default: false
   alias_method :report?, :report
 end
