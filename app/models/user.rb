@@ -12,4 +12,9 @@ class User
   has_many :posts, class_name: "Post", inverse_of: :user
   #Favorite posts of the user
   has_many :favorites, class_name: "Post"
+
+  has_many :comments, class_name: "Comment", inverse_of: :user
+
+  field :report, type: Boolean, default: false
+  alias_method :report?, :report
 end
