@@ -17,4 +17,7 @@ class User
 
   field :report, type: Boolean, default: false
   alias_method :report?, :report
+
+  field :role, type: Symbol
+  validates :role, inclusion: {in: :user, :administrator, :contributor}
 end
