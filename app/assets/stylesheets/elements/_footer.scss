@@ -1,12 +1,47 @@
 footer {
-  background: #456;
+  background: #213;
   position: absolute;
-  color: #FFF;
+  color: #AAA;
   padding: 50px;
+  text-align: center;
 
-  .row {}
+  a:hover {
+    color: #FFF;
+  }
+
+  .row {
+    max-width: 1600px;
+    margin: auto;
+  }
 
   & > p {
     text-align: center;
+  }
+
+  .footer-title {
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 10px 10px -15px #000;
+    padding: 10px;
+    font-size: 1em;
+  }
+
+  .footer-links {
+    width: 50%;
+    display: inline-block;
+    float: left;
+    margin-top: 0;
+    list-style: none;
+
+
+    li a {
+      display: block;
+      font-style: italic;
+      font-weight: bold;
+      padding: 5px;
+    }
+
+    li a:hover {
+      background: rgba(0,0,0,.25);
+    }
   }
 }
