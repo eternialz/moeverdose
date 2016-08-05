@@ -5,7 +5,7 @@ class Comment
   belongs_to :post, class_name: "Post", inverse_of: :comments
   field :text, type: String
   
-  field :score, type: Integer
+  field :score, type: Integer, default: 0
 
   field :report, type: Boolean, default: false
   alias_method :report?, :report
