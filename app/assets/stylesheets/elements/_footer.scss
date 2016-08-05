@@ -4,6 +4,40 @@ footer {
   color: #AAA;
   padding: 50px;
   text-align: center;
+  width: 100%;
+
+  .footer-nav {
+    margin: 0 0 25px 0;
+
+    li {
+      margin: 0 25px;
+      display: inline-block;
+    }
+
+    a {
+      font-style: italic;
+      color: #FFF;
+      font-weight: 900;
+    }
+  }
+
+  dl {
+    padding: 5px;
+    margin: 5px 3px 12px;
+    border-radius: 3px;
+    background: rgba(0,0,0,.25);
+  }
+
+  dt {
+    border-bottom: 1px solid rgba(255,255,255,.1);
+    padding: 3px;
+    font-weight: bold;
+    font-style: italic;
+  }
+
+  dd {
+    padding: 5px;
+  }
 
   a:hover {
     color: #FFF;
@@ -23,6 +57,12 @@ footer {
     box-shadow: 0 10px 10px -15px #000;
     padding: 10px;
     font-size: 1em;
+
+    a {
+      color: #AAA;
+      float: right;
+      text-decoration: none;
+    }
   }
 
   .footer-links {
