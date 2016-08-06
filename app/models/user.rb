@@ -10,14 +10,28 @@ class User
   validates :encrypted_password, presence: true, confirmation: true
 
   has_many :posts, class_name: "Post", inverse_of: :user
-  #Favorite posts of the user
+  #Posts marked as favorite of the user
   has_many :favorites, class_name: "Post"
+  has_many :liked_posts, class_name: "Post"
+  has_many :disliked_posts, class_name: "Post"
 
   has_many :comments, class_name: "Comment", inverse_of: :user
 
   field :report, type: Boolean, default: false
   alias_method :report?, :report
 
-  field :role, type: Symbol
-  validates :role, inclusion: {in: :user, :administrator, :contributor}
+  field :role, type: Symbol, default: :user
+
+  module Role
+    def self.all
+      [:user, :administrator, :contributor, :moderator, :developper]
+    end
+
+    self.all.each do |role|
+      define_method("#{role}?") do
+        self.role == role
+      end
+    end
+  end
+  validates :role, inclusion: {in: User::Role.all}
 end
