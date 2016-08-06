@@ -1,6 +1,8 @@
 class Post
   field :title, type: String
 
+  field :source, type: String
+
   field :image, type: String
 
   field :overdose, type: Integer, default: 0
