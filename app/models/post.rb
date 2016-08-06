@@ -11,6 +11,8 @@ class Post
 
   belongs_to :user, class_name: "User", inverse_of: :posts
 
+  belongs_to :author, class_name: "Author", inverse_of: :posts
+
   has_many :comments, class_name: "Comment", inverse_of: :post
 
   has_and_belongs_to_many :tags, class_name: "Tag", inverse_of: :posts
