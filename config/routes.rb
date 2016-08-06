@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get "/pages/help/:page" => "static_pages#help"
 
   # Posts
-  resources :posts
+  resources :posts do
+    resources :comments
+  end
 
 end
