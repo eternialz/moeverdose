@@ -70,7 +70,6 @@ Then, in the post, there is a need to display that we need more informations abo
 * Git/open source page
 * Licence page
 * Changelog page
-* Download page
 * About page
 * Legal things page ?
 * Chat / discord page with api integration
@@ -94,9 +93,9 @@ Then, in the post, there is a need to display that we need more informations abo
 * Discord bot
   * Repost every posts
   * Find posts by id (!post id)
-  * ...
 * Random link to a post
 * Random message on the homepage
+* Custom error pages
 
 # Branches
 
