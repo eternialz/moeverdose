@@ -1,6 +1,8 @@
 class Post
   field :title, type: String
 
+  field :source, type: String
+
   field :image, type: String
 
   field :overdose, type: Integer, default: 0
@@ -15,6 +17,8 @@ class Post
 
   field :report, type: Boolean, default: false
   alias_method :report?, :report
+  field :report_user, class_name: "User"
+  field :report_reason, type: String
 
   def calculate_score
     self.score = self.overdose - self.moe_shortage

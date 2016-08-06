@@ -9,4 +9,6 @@ class Comment
 
   field :report, type: Boolean, default: false
   alias_method :report?, :report
+  field :report_user, class_name: "User"
+  field :report_reason, type: String
 end
