@@ -9,4 +9,7 @@ Rails.application.routes.draw do
   get "/pages/:page" => "static_pages#show"
   get "/pages/help/:page" => "static_pages#help"
 
+  # Posts
+  resources :posts
+
 end

@@ -7,7 +7,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Posts.all
+    #@posts = Posts.all
   end
 
   def new
