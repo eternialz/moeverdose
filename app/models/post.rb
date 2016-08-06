@@ -3,7 +3,7 @@ class Post
 
   field :source, type: String
 
-  field :image, type: String
+  hes_one :image, class_name: "Image"
 
   field :overdose, type: Integer, default: 0
   field :moe_shortage, type: Integer, default: 0
