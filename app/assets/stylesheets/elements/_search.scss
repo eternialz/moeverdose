@@ -23,6 +23,16 @@
     padding: 20px;
     border-top: 1px solid #333;
     border-right: 1px solid #333;
+    -webkit-transition: all 70ms linear;
+    -moz-transition: all 70ms linear;
+    -o-transition: all 70ms linear;
+    transition: all 70ms linear;
+  }
+
+  input[type="text"]:focus {
+    background: #333;
+    border-left: 1px solid #333;
+    border-bottom: 1px solid #333;
   }
 
   input[type="text"]:last-child {
@@ -33,7 +43,7 @@
     padding-top: 39px;
     background: #000;
     position: absolute;
-    top: -300px;
+    top: 0;
     z-index: -1;
     max-width: 1600px;
     width: 100%;
@@ -71,7 +81,7 @@
     }
 
     .content {
-      padding-top: 10px; 
+      padding-top: 10px;
       height: 100%;
       overflow-y: auto
     }
@@ -149,8 +159,7 @@
     }
   }
 
-  input[type="text"]:focus + .tags-panel, input[type="text"]:focus + input + .tags-panel, input[type="text"]:focus + input + input + .tags-panel {
+  .showed {
     top: -300px;
-    bottom: 0px;
   }
 }

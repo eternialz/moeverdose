@@ -16,3 +16,9 @@ $header-image: "header-img/"+random(34)+".jpg";
   }
 
 }
+
+nav.menu {
+  background: image_url($header-image) no-repeat center center fixed;
+  background-attachment: local;
+  background-size: cover;
+}
