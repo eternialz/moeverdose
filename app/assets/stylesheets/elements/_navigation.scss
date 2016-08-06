@@ -1,6 +1,6 @@
 nav.menu {
   background-color: $default;
-  box-shadow: 0 0 0 200px rgba($default, 0.75) inset;
+  box-shadow: 0 0 0 200px rgba($default, 0.75) inset, 0 -2px 5px 5px rgba(0,0,0,.25);
   color: #FFF;
   text-shadow: 0 1px 2px #000;
   position: fixed;
@@ -25,18 +25,37 @@ nav.menu {
     }
     span {
       margin-left: 20px;
+      font-style: italic;
+      font-weight: bold;
+      padding: 10px;
+    }
+
+    .user {
+      float: right;
+      text-align: right;
+      padding: 5px 10px;
+
+      span {
+        float: right;
+      }
+
+      img {
+        float: right;
+        border-radius: 3px;
+        border: 1px solid #666;
+      }
     }
   }
 
   ul {
     display: block;
-    padding-left: 10px;
     margin-bottom: 10px;
 
     li {
       display: inline-block;
 
       a {
+        font-weight: bold;
         padding: 5px 10px;
         text-align: center;
       	-webkit-transition:all 100ms linear;
@@ -50,9 +69,8 @@ nav.menu {
   .submenu {
     padding-left: 25px;
     background: rgba(0,0,0,.0);
-    box-shadow: 0 1px 3px rgba(0,0,0,.25);
     height: 0px;
-    top: 80px;
+    top: 90px;
     -webkit-transition:all 100ms linear;
     -moz-transition:all 100ms linear;
     -o-transition:all 100ms linear;
@@ -64,9 +82,10 @@ nav.menu {
     border-bottom-color: rgba($pink,0);
     border-bottom-width: 10px;
     border-bottom-style: solid;
+    text-shadow: none;
 
     ul {
-      width: 200px;
+      width: 140px;
       height: 100%;
       margin-right: 25px;
       float: left;
@@ -126,9 +145,10 @@ nav.menu {
 nav.menu:hover {
 
   .submenu {
-    height: 200px;
+    height: 240px;
     border-bottom-color: $blue;
     background: #000;
+    box-shadow: 0 1px 3px 1px rgba(0,0,0,0.25), 0 10px 10px -10px rgba(0,0,0,0.45);
   }
 
 }
