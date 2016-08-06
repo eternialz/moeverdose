@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-  before_action :set_question, only: [:edit, :update, :show, :destroy]
+  before_action :set_post, only: [:edit, :update, :show, :destroy]
 
   def show
 
@@ -33,7 +33,7 @@ class PostsController < ApplicationController
   private
   def set_post
     if params[:id]
-      @question = FrequentlyAskedQuestion::Root.find(params[:id])
+      #@question = FrequentlyAskedQuestion::Root.find(params[:id])
     end
   end
 
