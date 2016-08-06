@@ -3,6 +3,8 @@ class Post
 
   field :image, type: String
 
+  field :overdose, type: Integer, default: 0
+  field :moe_shortage, type: Integer, default: 0
   field :score, type: Integer, default: 0
 
   belongs_to :user, class_name: "User", inverse_of: :posts
@@ -13,4 +15,8 @@ class Post
 
   field :report, type: Boolean, default: false
   alias_method :report?, :report
+
+  def calculate_score
+    self.score = self.overdose - self.moe_shortage
+  end
 end
