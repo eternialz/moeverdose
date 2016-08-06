@@ -3,9 +3,10 @@ Rails.application.routes.draw do
   get 'home/show'
 
   # Homepage
-  root 'static#home'
+  root 'static_pages#home'
 
   # Static contents
-  get "/pages/:page" => "static#show"
-  get "/pages/help/:page" => "static#help"
+  get "/pages/:page" => "static_pages#show"
+  get "/pages/help/:page" => "static_pages#help"
+
 end
