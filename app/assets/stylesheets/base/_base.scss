@@ -19,7 +19,7 @@ input:focus, textarea:focus {
   outline: none;
 }
 
-/* */
+/* Global default custom styles */
 html {
   box-sizing: border-box;
 }
@@ -30,9 +30,13 @@ html {
 
 ul {
   padding-left: 0;
+  list-style: none;
+  margin-top: 0;
 }
 
 a {
+  cursor: pointer;
+  text-decoration: none;
   -webkit-transition: all 70ms linear;
   -moz-transition: all 70ms linear;
   -o-transition: all 70ms linear;
@@ -165,7 +169,6 @@ h6 {
   color:#FFF;
 	background:$default_light;
   text-align: center;
-  text-decoration: none;
   font-weight: 900;
 	display:inline-block;
   min-width: 150px;

@@ -60,6 +60,21 @@ Authors page must display: Name/pseudo, link to website(s), list of posts, stats
 If the author name doen't exist when uploading an image, an author page is automatically generated with the name only.
 Then, in the post, there is a need to display that we need more informations about the autor.
 
+### Cache and optimisation
+
+### Other
+* Team page
+* Help page
+* Home page
+* Stats page
+* Git/open source page
+* Licence page
+* Changelog page
+* Download page
+* About page
+* Legal things page ?
+* Chat / discord page with api integration
+
 ##**IDEAs:**
 
 ### MANY THINGS! Yay!
@@ -75,6 +90,13 @@ Then, in the post, there is a need to display that we need more informations abo
 * Posts page can be filtered by: overdose, moe shortages, popularity, recent posts
 * Changelog system ?
 * News system on the homepage ?
+* Discord Api integration. Registered users can request an invite wich expire on use or 30 min?
+* Discord bot
+  * Repost every posts
+  * Find posts by id (!post id)
+  * ...
+* Random link to a post
+* Random message on the homepage
 
 # Branches
 
@@ -88,10 +110,11 @@ feature/* and fix/* are always branches of develop
 
 Use feature/nameoffeature to commit new features
 
-Use bug/nameofbug to commit fixes
+Use fix/nameoffix to commit fixes
 
 
 ##**PROBLEMs:**
 
+* *Wich girl should we use as a logo for moeverdose?!!!*
 * Contributors and Regular users can edit posts/authors or only contributors?
 * Contributors and Regular users can report posts/authors or only contributors?
