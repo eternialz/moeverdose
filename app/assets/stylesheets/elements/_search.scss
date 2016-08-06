@@ -38,7 +38,6 @@
     max-width: 1600px;
     width: 100%;
     height: 300px;
-    border-top: 10px solid $default;
     -webkit-transition:all 200ms ease-in-out;
     -moz-transition:all 200ms ease-in-out;
     -o-transition:all 200ms ease-in-out;
@@ -60,7 +59,19 @@
       margin: 0;
     }
 
+    header h3:last-child {
+    }
+
+    #close {
+      float: right;
+      color: #FFF;
+      padding: 0;
+      padding-right: 10px;
+      margin: 0;
+    }
+
     .content {
+      padding-top: 10px; 
       height: 100%;
       overflow-y: auto
     }
