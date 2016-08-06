@@ -9,6 +9,8 @@ class User
   field :encrypted_password
   validates :encrypted_password, presence: true, confirmation: true
 
+  has_one :avatar, class_name: "Image"
+
   has_many :posts, class_name: "Post", inverse_of: :user
   #Posts marked as favorite of the user
   has_many :favorites, class_name: "Post"
