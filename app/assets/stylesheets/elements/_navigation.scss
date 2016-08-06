@@ -21,10 +21,15 @@ nav.menu {
     h1 {
       padding-left: 10px;
       color: #FFF;
+      display: inline-block;
+    }
+    span {
+      margin-left: 20px;
     }
   }
 
   ul {
+    display: block;
     padding-left: 10px;
     margin-bottom: 10px;
 
@@ -45,7 +50,7 @@ nav.menu {
   .submenu {
     padding-left: 25px;
     background: rgba(0,0,0,.0);
-    box-shadow: 0 1px 3px rgba(0,0,0,.0);
+    box-shadow: 0 1px 3px rgba(0,0,0,.25);
     height: 0px;
     top: 80px;
     -webkit-transition:all 100ms linear;

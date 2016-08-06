@@ -1,4 +1,4 @@
-class HomeController < ApplicationController
+class PostsController < ApplicationController
 
   before_action :set_question, only: [:edit, :update, :show, :destroy]
 
@@ -11,7 +11,7 @@ class HomeController < ApplicationController
   end
 
   def new
-    @post ||= Posts.new    
+    @post ||= Posts.new
   end
 
   def create

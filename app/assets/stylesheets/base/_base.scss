@@ -171,22 +171,22 @@ h6 {
 
 .btn {
   color: #FFF;
-	background: $default_light;
+  background: $default_light;
   text-align: center;
   font-weight: 900;
-	display:inline-block;
+  display:inline-block;
   min-width: 150px;
-	margin: 5px;
-	margin-bottom: 20px;
-	padding: 10px 15px;
-	border-radius: 5px;
-	border-bottom: 1px solid $default_light;
-	box-shadow: 0 10px $default,0 7px 10px rgba(0,0,0,.8);
+  margin: 5px;
+  margin-bottom: 20px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border-bottom: 1px solid $default_light;
+  box-shadow: 0 10px $default,0 7px 10px rgba(0,0,0,.8);
   text-shadow: 0 1px 1px #000;
-	-webkit-transition: all 250ms linear;
-	-moz-transition: all 250ms linear;
-	-o-transition: all 250ms linear;
-	transition: all 250ms linear;
+  -webkit-transition: all 250ms linear;
+  -moz-transition: all 250ms linear;
+  -o-transition: all 250ms linear;
+  transition: all 250ms linear;
 }
 
 .btn:hover {
