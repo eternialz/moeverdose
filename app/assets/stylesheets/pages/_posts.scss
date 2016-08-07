@@ -62,6 +62,16 @@
   padding: 10px;
   text-align: center;
 
+  .next, .previous {
+    float: left;
+    width: 49%;
+  }
+
+  .next {
+    margin-left: 2%;
+    text-align: right;
+  }
+
   .column {
     padding-left: 20px;
     display: inline-block;
