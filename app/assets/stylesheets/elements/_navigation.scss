@@ -115,7 +115,7 @@ nav.menu {
       }
 
       h3 a {
-        color: $blue;
+        color: $pink;
         font-weight: 900;
 
         &:before {
@@ -125,24 +125,24 @@ nav.menu {
     }
 
     ul.my-account {
-      box-shadow: 0 10px 0 $pink;
+      box-shadow: 0 10px 0 $blue;
       float: right;
       background: #333;
       margin-right: 0;
       padding-left: 10px;
 
       h3, h3 a, a:hover, a:hover:before {
-        color: $pink,
+        color: $blue,
       }
 
       &:hover {
-        border-top: 5px solid $pink;
+        border-top: 5px solid $blue;
       }
 
     }
 
     ul:hover {
-      border-top: 5px solid $blue;
+      border-top: 5px solid $pink;
     }
     li {
       display: block;
@@ -165,7 +165,7 @@ nav.menu {
     }
 
     a:hover, a:hover:before {
-      color: $blue;
+      color: $pink;
     }
   }
 
@@ -176,7 +176,7 @@ nav.menu:hover {
   .submenu {
     opacity: 1;
     height: 240px;
-    border-bottom-color: $blue;
+    border-bottom-color: $pink;
     box-shadow: 0 10px 10px -10px rgba(0,0,0,0.45), 0 0 0 120px rgba(0,0,0,.8) inset;
   }
 }

@@ -37,8 +37,21 @@
     background: rgba(0,0,0,1);
   }
 
+  span {
+    font-size: 0.8em;
+    font-weight: 900;
+    margin: 20px 0 0 20px;
+    color: #FFF;
+    display: inline-block;
+  }
+
+  a:hover {
+    color: $pink;
+  }
+
   img {
     margin: 10px 0 20px;
+    height: 100%;
     max-width: 100%;
   }
 
@@ -47,6 +60,30 @@
 .post-details {
   background: #FFF;
   padding: 10px;
+  text-align: center;
+
+  .column {
+    padding-left: 20px;
+    display: inline-block;
+    text-align: left;
+    color: #333;
+  }
+
+  h3 {
+    font-size: 1em;
+  }
+
+  .author {
+    display: block;
+  }
+
+  a.tag {
+    border: 2px solid;
+    display: inline-block;
+    border-radius: 3px;
+    margin: 3px;
+    padding: 6px;
+  }
 }
 
 .posts-index {

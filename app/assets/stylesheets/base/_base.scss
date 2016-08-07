@@ -175,6 +175,13 @@ h6 {
 }
 
 /* Global Elements */
+.clearfix:after {
+  display: block;
+  height: 0;
+  content: " ";
+  clear: both;
+}
+
 .zone {
   background: #FFF;
   border-radius: 3px;
@@ -218,4 +225,37 @@ h6 {
   -o-transform:translateY(5px);
   transform:translateY(5px);
 	box-shadow:0 5px $default_dark,0 5px 5px rgba(0,0,0,.8);
+}
+
+.tags {
+  h3, a:hover, a.highlight, a.highlight:before {
+    color: $pink;
+  }
+}
+h3.tags {
+  color: $pink;
+}
+
+.characters {
+  h3, a:hover, a.highlight, a.highlight:before {
+    color: $blue;
+  }
+}
+h3.characters {
+  color: $blue;
+}
+
+.authors {
+  h3, a:hover, a.highlight, a.highlight:before {
+    color: $orange;
+  }
+}
+h3.authors {
+  color: $orange;
+}
+
+.actions {
+  h3 {
+    color: $green;
+  }
 }

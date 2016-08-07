@@ -3,20 +3,45 @@
     <div class="post" style="background-image: url(<%= image_url('post.jpg') %>)">
       <h2>Titre du post</h2>
       <img src="<%= image_url('post.jpg') %>" border="0" height="720px" width="1280px"/>
-      <div class="post-info">
+      <div class="post-info clearfix">
         <label id="id">ID:666</label>
         <label id="width-height">SIZE:1280x720</label>
         <label id="type">TYPE:.JPG</label>
         <label id="size">SIZE:203KO</label>
+        <div class="source">
+          <span><%= fa_icon "upload" %> Uploaded by: <a>Eternialz</a></span>
+          <span><%= fa_icon "file" %> Source: Gj-Bu</span>
+        </div>
       </div>
     </div>
     <div class="post-details row">
-      <div class="author">
+      <div class="f3 column tags">
+        <h3><%= fa_icon "list" %> Tags</h3>
+        <a class="tag">1girl</a>
+        <a class="tag">Eating</a>
+        <a class="tag">Loli</a>
+        <a class="tag">Purple hair</a>
+        <a class="tag">Purple eyes</a>
+        <a class="tag">School uniform</a>
+      </div>
+      <div class="f3 column characters">
+        <h3><%= fa_icon "group" %> Characters</h3>
+        <a class="tag">Shion Sumeragi</a>
+      </div>
+      <div class="f3 column authors">
+        <a class="author">
+          <h3><%= fa_icon "user" %> Author</h3>
+          <p>Studio: Doga Kobo</p>
+        </a>
+      </div>
+      <div class="f3 column actions">
+        <h3><%= fa_icon "flash" %> Actions</h3>
         <p>auteur</p>
       </div>
     </div>
   </div>
   <div class="comments">
+    <h2><%= fa_icon "comments-o" %> Commentaires</h2>
     <div class="comments-zone">
       <% @comments.each do |comment| %>
         <div class="comment">

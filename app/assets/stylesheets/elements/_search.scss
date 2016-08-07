@@ -146,34 +146,6 @@
     h3 {
       font-size: 1em;
     }
-
-    .tags {
-      a:hover, a.highlight, a.highlight:before {
-        color: $pink;
-      }
-    }
-    h3.tags {
-      color: $pink;
-    }
-
-
-    .characters {
-      a:hover, a.highlight, a.highlight:before {
-        color: $blue;
-      }
-    }
-    h3.characters {
-      color: $blue;
-    }
-
-    .authors {
-      a:hover, a.highlight, a.highlight:before {
-        color: $orange;
-      }
-    }
-    h3.authors {
-      color: $orange;
-    }
   }
 
   .showed {
