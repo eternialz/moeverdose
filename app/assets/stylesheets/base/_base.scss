@@ -4,6 +4,9 @@ $device-small: 1024px;
 $device-medium: 1280px;
 $device-large: 1600px;
 
+/* Header Image */
+$header-image: "header-img/"+random(33)+".jpg";
+
 /* Browser Styling */
 ::selection {
   background: rgb(242,115,191);

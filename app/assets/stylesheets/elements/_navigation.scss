@@ -1,4 +1,7 @@
 nav.menu {
+  background: image_url($header-image) no-repeat center center fixed;
+  background-attachment: local;
+  background-size: cover;
   box-shadow: 0 0 0 200px rgba($default, 0.85) inset, 0 -2px 5px 5px rgba(0,0,0,.25), 0 -50px 50px $default inset;
   color: #FFF;
   text-shadow: 0 1px 2px #000;
@@ -54,6 +57,7 @@ nav.menu {
       display: inline-block;
 
       a {
+        color: #FFF;
         font-weight: bold;
         padding: 5px 10px;
         text-align: center;
@@ -66,8 +70,10 @@ nav.menu {
   }
 
   .submenu {
+    background: image_url($header-image) no-repeat center center fixed;
+    background-size: cover;
+    background-position: 0 -240px;
     padding-left: 25px;
-    background: rgba(0,0,0,.0);
     height: 0px;
     top: 90px;
     -webkit-transition:all 200ms linear;
@@ -78,15 +84,21 @@ nav.menu {
     width: 100%;
     z-index: 100;
     opacity: 0;
+    box-shadow: 0 10px 10px -10px rgba(0,0,0,0), 0 0 0 120px rgba(0,0,0,0) inset;
     border-bottom-color: rgba($pink,0);
     border-bottom-width: 10px;
     border-bottom-style: solid;
     text-shadow: none;
 
+    a {
+      color: #FFF;
+    }
+
     ul {
-      width: 140px;
+      min-width: 140px;
       height: 100%;
       margin-right: 25px;
+      padding-right: 20px;
       float: left;
       border-top: 5px solid rgba(0,0,0,.0);
       padding-top: 10px;
@@ -103,6 +115,7 @@ nav.menu {
       }
 
       h3 a {
+        color: $blue;
         font-weight: 900;
 
         &:before {
@@ -118,7 +131,7 @@ nav.menu {
       margin-right: 0;
       padding-left: 10px;
 
-      h3, a:hover, a:hover:before {
+      h3, h3 a, a:hover, a:hover:before {
         color: $pink,
       }
 
@@ -164,8 +177,6 @@ nav.menu:hover {
     opacity: 1;
     height: 240px;
     border-bottom-color: $blue;
-    background: #000;
-    box-shadow: 0 1px 3px 1px rgba(0,0,0,0.25), 0 10px 10px -10px rgba(0,0,0,0.45);
+    box-shadow: 0 10px 10px -10px rgba(0,0,0,0.45), 0 0 0 120px rgba(0,0,0,.8) inset;
   }
-
 }

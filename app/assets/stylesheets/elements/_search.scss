@@ -1,6 +1,15 @@
+.stick {
+  position: fixed;
+}
+
+.space {
+  content: " ";
+  display: block;
+  height: 0px;
+}
+
 .search {
   width: 100%;
-  position: fixed;
   z-index: 150;
   bottom: 0;
   height: 60px;
@@ -43,7 +52,7 @@
     padding-top: 39px;
     background: #000;
     position: absolute;
-    top: 0;
+    top: -36px;
     z-index: -1;
     max-width: 1600px;
     width: 100%;
@@ -74,8 +83,16 @@
 
     #close {
       float: right;
-      color: #FFF;
       padding: 0;
+      padding-right: 10px;
+      margin: 0;
+      opacity: 0;
+    }
+
+    #help {
+      float: right;
+      padding: 0;
+      display: inline-block;
       padding-right: 10px;
       margin: 0;
     }
@@ -161,5 +178,9 @@
 
   .showed {
     top: -300px;
+
+    #close {
+      opacity: 1;
+    }
   }
 }

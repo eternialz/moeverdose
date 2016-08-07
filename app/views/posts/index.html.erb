@@ -3,7 +3,7 @@
     <% 64.times do %>
       <div class="post-thumbnail">
         <img src="<%= image_url('post-default.jpg') %>" border="0" height="200px" width="200px"/>
-        <a class="informations">
+        <a  href="<%= post_path(1) %>" class="informations">
           <h3>Titresssssssssssssssssssssssssssssssssssssssssssssss</h3>
           <span class="post-stats">
             <span>666 <%= fa_icon "heart" %></span>
@@ -14,8 +14,11 @@
     <% end %>
   </div>
 </div>
+<div class="space">
+</div>
 
-<form class="search">
+
+<form class="search stick">
   <div class="search-container">
     <input type="text" name="tags" class="search-post" placeholder='Search by tags ("1girl glasses")'>
     <input type="text" name="characters" class="search-post" placeholder='Search by characters ("illyasviel_von_einzbern")'>
@@ -29,6 +32,7 @@
         <h3 class="characters">Characters</h3>
         <h3 class="authors" style="width: 20%;">Authors</h3>
         <a id="close" title="close"><%= fa_icon "times" %></a>
+        <a id="help" title="Need help?">help</a>
       </header>
       <div class="content">
         <ul class="tags">
