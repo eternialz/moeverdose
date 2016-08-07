@@ -81,14 +81,18 @@
 
   h3 {
     font-size: 1em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
 
-  .author {
-    display: block;
+  .author > a {
+    padding: 10px;
   }
 
   a.tag {
     border: 2px solid;
+    font-weight: bold;
     display: inline-block;
     border-radius: 3px;
     margin: 3px;
