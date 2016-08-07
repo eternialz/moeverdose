@@ -49,3 +49,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Font-awesome
 gem "font-awesome-rails"
+
+# PRY
+gem "pry"
