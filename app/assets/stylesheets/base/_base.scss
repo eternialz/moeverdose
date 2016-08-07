@@ -9,12 +9,12 @@ $header-image: "header-img/"+random(33)+".jpg";
 
 /* Browser Styling */
 ::selection {
-  background: rgb(242,115,191);
+  background: $pink_light;
   color: #FFF
 }
 
 ::-moz-selection {
-  background: rgb(242,115,191);
+  background: $pink_light;
   color: #FFF
 }
 
@@ -52,6 +52,18 @@ dd {
 
 body {
   padding-top: 110px;
+}
+
+/* Inputs */
+
+textarea {
+  border: 0;
+  border-radius: 3px;
+  min-height: 200px;
+  width: 100%;
+  box-shadow: 0 1px 3px rgba(0,0,0,.25) inset;
+  padding: 10px;
+  resize: vertical;
 }
 
 /* Titles */
@@ -183,6 +195,7 @@ h6 {
   margin-bottom: 20px;
   padding: 10px 15px;
   border-radius: 5px;
+  border: 0;
   border-bottom: 1px solid $default_light;
   box-shadow: 0 10px $default,0 7px 10px rgba(0,0,0,.8);
   text-shadow: 0 1px 1px #000;

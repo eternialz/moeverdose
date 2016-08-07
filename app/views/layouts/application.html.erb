@@ -30,11 +30,11 @@
     <footer class="footer">
       <div class="row">
         <ul class="footer-nav">
-          <li><a>home</a></li>
-          <li><a>posts</a></li>
+          <li><a href="<%= root_path %>">home</a></li>
+          <li><a href="<%= posts_path %>">posts</a></li>
           <li><a>users</a></li>
-          <li><a>help</a></li>
-          <li><a>team</a></li>
+          <li><%= link_to 'help', '/pages/help/index' %></li>
+          <li><%= link_to 'team', '/pages/team' %></li>
           <li><a>authors</a></li>
           <li><a>join discord chat</a></li>
           <li style="float:right;position:absolute;right:0;"><a title="Scroll to top" href="#">▴</a></li>

@@ -3,5 +3,30 @@
   <div class="post-info">
   </div>
   <div class="comments">
+    <div class="comments-zone">
+      <% @comments.each do |comment| %>
+        <div class="comment">
+          <img class="avatar" src="<%= image_url('default_user.png') %>" title="" alt="" height="60" width="60"/>
+          <div class="comment-content">
+            <h5>Pseudonyme</h5><span class="space"></span>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+          </div>
+          <div class="comment">
+            <img class="avatar" src="<%= image_url('default_user.png') %>" title="" alt="" height="60" width="60"/>
+            <div class="comment-content">
+              <h5>Pseudonyme</h5><span class="space"></span>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <form class="comment-form">
+      <h3>Add a comment</h3>
+      <textarea name="" placeholder="Write your message here"></textarea>
+      <div class="button-zone">
+        <input class="btn" type="submit" value="Send">
+      </div>
+    </form>
   </div>
 </div>

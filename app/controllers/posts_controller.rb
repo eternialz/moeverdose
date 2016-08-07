@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:edit, :update, :show, :destroy]
 
   def show
-
+    @comments = [1,2,3]
   end
 
   def index
