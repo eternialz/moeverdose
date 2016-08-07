@@ -1,6 +1,20 @@
-<div class="row post">
-  <img src="<%= image_url('post.jpg') %>" border="0" height="720px" width="1280px"/>
-  <div class="post-info">
+<div class="row posts">
+  <div class="post-container">
+    <div class="post" style="background-image: url(<%= image_url('post.jpg') %>)">
+      <h2>Titre du post</h2>
+      <img src="<%= image_url('post.jpg') %>" border="0" height="720px" width="1280px"/>
+      <div class="post-info">
+        <label id="id">ID:666</label>
+        <label id="width-height">SIZE:1280x720</label>
+        <label id="type">TYPE:.JPG</label>
+        <label id="size">SIZE:203KO</label>
+      </div>
+    </div>
+    <div class="post-details row">
+      <div class="author">
+        <p>auteur</p>
+      </div>
+    </div>
   </div>
   <div class="comments">
     <div class="comments-zone">
@@ -21,7 +35,7 @@
         </div>
       <% end %>
     </div>
-    <form class="comment-form">
+    <form class="comment-form zone">
       <h3>Add a comment</h3>
       <textarea name="" placeholder="Write your message here"></textarea>
       <div class="button-zone">
