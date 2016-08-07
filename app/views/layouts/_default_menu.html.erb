@@ -6,10 +6,10 @@
   </a>
   <span>All lolis</span>
   <ul>
-    <li><a>posts</a></li>
+    <li><a href="<%= posts_path %>">Posts</a></li>
     <li><a>authors</a></li>
     <li><a>users</a></li>
-    <li><a>help</a></li>
-    <li><a>moeverdose</a></li>
+    <li><%= link_to 'Help', '/pages/help/index' %></li>
+    <li><%= link_to 'Moeverdose', '/pages/about' %></li>
   </ul>
 </div>
