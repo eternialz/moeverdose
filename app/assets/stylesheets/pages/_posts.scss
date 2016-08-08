@@ -158,3 +158,59 @@
     }
   }
 }
+
+.upload {
+  width: 1200px;
+  max-width: 100%;
+  margin: 20px auto;
+  background: #FFF;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0,0,0,.25);
+
+  h3 {
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    padding: 10px;
+    font-size: 1em;
+
+    span {
+      padding-left: 20px;
+      font-size: 0.8em;
+      color: #999;
+    }
+  }
+
+  #file_upload {
+    border-bottom: 10px solid $pink;
+    -webkit-transition:all 100ms linear;
+    -moz-transition:all 100ms linear;
+    -o-transition:all 100ms linear;
+    transition:all 100ms linear;
+    height: auto;
+
+    #post_image {
+      background: #000;
+      padding: 20px;
+    }
+
+    p {
+      color: #FFF;
+      text-align: center;
+      margin: 0;
+    }
+
+    & > #label_file_input {
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px;
+      display: block;
+      padding: 20px;
+      text-align: center;
+      background: #333;
+      color: #FFF;
+      width: 100%;
+    }
+  }
+
+  #info_upload {
+    padding: 10px;
+  }
+}

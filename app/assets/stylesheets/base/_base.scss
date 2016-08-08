@@ -84,14 +84,17 @@ body {
 
 /* Inputs */
 
-textarea {
+textarea, input[type="text"] {
   border: 0;
   border-radius: 3px;
-  min-height: 200px;
   width: 100%;
   box-shadow: 0 1px 3px rgba(0,0,0,.25) inset;
   padding: 10px;
+}
+
+textarea {
   resize: vertical;
+  min-height: 200px;
 }
 
 /* Titles */
@@ -209,6 +212,10 @@ h6 {
   clear: both;
 }
 
+.hide {
+  display: none;
+}
+
 .zone {
   background: #FFF;
   border-radius: 3px;
@@ -307,7 +314,6 @@ h6 {
 .action:active {
   box-shadow: 0 3px 6px rgba(0,0,0,.45) inset;
 }
-
 
 .tags {
   h3, a:hover, a.highlight, a.highlight:before {
