@@ -18,8 +18,12 @@
       <div class="f3 column tags">
         <h3><%= fa_icon "list" %> Tags</h3>
         <a class="tag">1girl</a>
+        <a class="tag">Blush</a>
         <a class="tag">Eating</a>
+        <a class="tag">Gj-Bu</a>
+        <a class="tag">Intruder</a>
         <a class="tag">Loli</a>
+        <a class="tag">Ponytail</a>
         <a class="tag">Purple hair</a>
         <a class="tag">Purple eyes</a>
         <a class="tag">School uniform</a>
@@ -41,6 +45,7 @@
         <a class="action action-green"><%= fa_icon "heart" %> Add To Favorites</a>
         <a class="action action-green"><%= fa_icon "search" %> More from the same author</a>
         <a class="action action-green"><%= fa_icon "google" %> Search image on google</a>
+        <a class="action action-green"><%= fa_icon "close" %> Report post</a>
         <a class="action action-pink previous"><%= fa_icon "arrow-circle-left" %> Previous</a>
         <a class="action action-pink next">Next <%= fa_icon "arrow-circle-right" %> </a>
       </div>
@@ -51,15 +56,43 @@
     <div class="comments-zone">
       <% @comments.each do |comment| %>
         <div class="comment">
-          <img class="avatar" src="<%= image_url('default_user.png') %>" title="" alt="" height="60" width="60"/>
+          <a><img class="avatar" src="<%= image_url('default_user.png') %>" title="" alt="" height="60" width="60"/></a>
           <div class="comment-content">
-            <h5>Pseudonyme</h5><span class="space"></span>
+            <a><h5>Pseudonyme</h5></a><span>score: 10</span>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
           </div>
           <div class="comment">
-            <img class="avatar" src="<%= image_url('default_user.png') %>" title="" alt="" height="60" width="60"/>
+            <a><img class="avatar" src="<%= image_url('default_user.png') %>" title="" alt="" height="60" width="60"/></a>
             <div class="comment-content">
-              <h5 class="contributor">Pseudonyme</h5><span class="space"></span>
+              <a><h5 class="contributor">Pseudonyme</h5></a><span>score: 10</span>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+          </div>
+          <div class="comment">
+            <a><img class="avatar" src="<%= image_url('default_user.png') %>" title="" alt="" height="60" width="60"/></a>
+            <div class="comment-content">
+              <a><h5 class="administrator">Pseudonyme</h5></a><span>score: 10</span>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+          </div>
+          <div class="comment">
+            <a><img class="avatar" src="<%= image_url('default_user.png') %>" title="" alt="" height="60" width="60"/></a>
+            <div class="comment-content">
+              <a><h5 class="moderator">Pseudonyme</h5></a><span>score: 10</span>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+          </div>
+          <div class="comment">
+            <a><img class="avatar" src="<%= image_url('default_user.png') %>" title="" alt="" height="60" width="60"/></a>
+            <div class="comment-content">
+              <a><h5 class="developper">Pseudonyme</h5></a><span>score: 10</span>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+          </div>
+          <div class="comment">
+            <a><img class="avatar" src="<%= image_url('default_user.png') %>" title="" alt="" height="60" width="60"/></a>
+            <div class="comment-content">
+              <a><h5 class="banned">Pseudonyme</h5></a><span class="space"></span>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
             </div>
           </div>

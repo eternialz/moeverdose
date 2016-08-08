@@ -7,11 +7,13 @@
   clear: both;
   position: relative;
   border-bottom: 1px solid rgba(0,0,0,.1);
+  max-width: 1000px;
 
   .comment {
     margin-left: 20px;
     box-shadow: none;
     border-bottom: none;
+    border-left: 4px solid #DDD;
 
     .avatar {
       margin: 0 10px 0 0;
@@ -44,15 +46,21 @@
       margin-bottom: 5px;
     }
 
-    .space {
-      display: block;
-      content: " ";
-      height: 1.5em;
+    h5:after {
+      font-size: 0.8em;
+      color: #AAA;
+    }
+
+    span {
+      margin-left: 20px;
+      color: rgba(0,0,0,.5);
+      font-style: italic;
     }
 
     p {
       float: left;
       display: block;
+      width: 100%;
     }
   }
 }
@@ -61,7 +69,7 @@ h5.administrator {
   color: $default !important;
 
   &:after {
-    content: "★"
+    content: " (administrator)"
   }
 }
 
@@ -69,7 +77,7 @@ h5.moderator {
   color: $blue !important;
 
   &:after {
-    content: "★"
+    content: " (moderator)"
   }
 }
 
@@ -77,16 +85,24 @@ h5.banned {
   color: #999 !important;
 
   &:after {
-    content: "✖"
+    content: " (banned)"
   }
 }
 
 h5.contributor {
   color: $pink_light !important;
+
+  &:after {
+    content: " (contributor)"
+  }
 }
 
 h5.developper {
   color: $yellow_dark !important;
+
+  &:after {
+    content: " (developper)"
+  }
 }
 
 .comment-form {
@@ -95,7 +111,7 @@ h5.developper {
 
   h3 {
     border-bottom: 1px solid rgba(0,0,0,.1);
-    padding-bottom: 10px;
+    padding: 10px 0 20px 15px;
   }
 
   textarea {
