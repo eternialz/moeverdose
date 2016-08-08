@@ -138,18 +138,12 @@ h6 {
 /*Responsives Columns*/
 .row {
   display: block;
-  clear: both;
 
   &:after {
     content: " ";
     height: 0;
     display: block;
     clear: both;
-  }
-
-  .content {
-    width: 1200px;
-    text-align: justify;
   }
 
   .column {

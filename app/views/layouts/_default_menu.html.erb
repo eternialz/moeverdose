@@ -6,10 +6,11 @@
   </a>
   <span>All lolis</span>
   <ul>
-    <li><a href="<%= posts_path %>">Posts</a></li>
-    <li><a>authors</a></li>
-    <li><a>users</a></li>
-    <li><%= link_to 'Help', '/pages/help/index' %></li>
-    <li><%= link_to 'Moeverdose', '/pages/about' %></li>
+    <li><%= link_to 'Posts', '/posts', title: "Post listing" %></li>
+    <li><%= link_to 'Authors', '/authors', title: "Author listing" %></li>
+    <li><%= link_to 'User', '/users', title: "User listing" %></li>
+    <li><%= link_to 'Help', '/pages/help/index', title: "Help pages with FAQ" %></li>
+    <li><%= link_to 'Moeverdose', '/pages/about', title: "About Moeverdose" %></li>
+    <li><a href="https://twitter.com/moeverdose" title="Moeverdoe Twitter"><%= fa_icon "twitter"%> Twitter</a></li>
   </ul>
 </div>
