@@ -1,20 +1,23 @@
 <form class="upload clearfix">
   <div id="file_upload">
-    <label for="file_input" id="label_file_input">Click here to upload image</label>
-    <input id="file_input" class="hide" type="file" name="image" accept="image/*">
-    <div id="post_image"><p>waiting for image...</p></div>
+    <input type="file" name="files" id="files" required="required" accept="image/*" />
+    <div class="file-dummy">
+      <span class="success">Nice! <br /><span id="message">Please respect the rules for posts while uploading</span></span>
+      <span class="default">Click to select the image or drop it here<br /><span id="message">waiting for image...</span></span>
+    </div>
+    <img id="file"/>
   </div>
   <div id="info_upload">
     <div class="tags">
-      <h3>Tags<span>required (at least three)</span></h3>
+      <h3><%= fa_icon "list" %> Tags<span>required (at least three)</span></h3>
       <textarea placeholder='Tags ("1girl glasses")'></textarea>
     </div>
     <div class="characters">
-      <h3>Character(s)</h3>
+      <h3><%= fa_icon "group" %> Character(s)</h3>
       <textarea placeholder='Characters ("illyasviel_von_einzbern")'></textarea>
     </div>
     <div class="authors">
-      <h3>Author<span>required</span></h3>
+      <h3><%= fa_icon "user" %> Author<span>required</span></h3>
       <input type="text" name="author" placeholder='Author ("hayao_miyazaki")'></textarea>
     </div>
   </div>
@@ -22,3 +25,22 @@
     <input type="submit" class="btn" value="Upload">
   </div>
 </form>
+
+<script>
+function readURL(input) {
+
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#file').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+$("#files").change(function(){
+    readURL(this);
+});
+</script>

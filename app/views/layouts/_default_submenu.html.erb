@@ -1,8 +1,8 @@
 <div class="submenu">
   <ul>
-    <h3><a href="<%= posts_path %>">Posts</a></h3>
-    <li><a href="<%= posts_path %>">All Posts</a></li>
-    <li><a>Upload</a></li>
+    <h3><a href="<%= posts_path %>" title="Posts">Posts</a></h3>
+    <li><a href="<%= posts_path %>" title="All Posts">All Posts</a></li>
+    <li><a href="<%= new_post_path %>" title="Upload">Upload</a></li>
     <li><a>Best Posts</a></li>
     <li><a>Tags</a></li>
   </ul>
@@ -32,8 +32,8 @@
     <li><%= link_to 'Team', '/pages/team' %></li>
     <li><%= link_to 'Source', '/pages/source' %></li>
     <li><%= link_to 'Licence', '/pages/licence' %></li>
-    <li><%= link_to 'Changelog', '/changelog' %></li>
-    <li><%= link_to 'Stats', '/stats' %></li>
+    <li><a>Changelog</a></li>
+    <li><a>Stats</a></li>
   </ul>
   <ul class="my-account">
     <h3><a><%= fa_icon "user" %> My Account</a></h3>

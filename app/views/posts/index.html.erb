@@ -3,11 +3,11 @@
     <% 64.times do %>
       <div class="post-thumbnail">
         <img src="<%= image_url('post-default.jpg') %>" border="0" height="200px" width="200px"/>
-        <a  href="<%= post_path(1) %>" class="informations">
-          <h3>Titresssssssssssssssssssssssssssssssssssssssssssssss</h3>
+        <a title="Titre" href="<%= post_path(1) %>" class="informations">
+          <h3>Titre</h3>
           <span class="post-stats">
-            <span>666 <%= fa_icon "heart" %></span>
-            <span>404 <%= fa_icon "eye" %></span>
+            <span title="overdoses">666 <%= fa_icon "heart" %></span>
+            <span title="comments">35 <%= fa_icon "comment" %></span>
           </span>
         </a>
       </div>
