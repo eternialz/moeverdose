@@ -20,8 +20,8 @@
     float: left;
     position: relative;
     height: 62px;
-    max-width: 80%;
-    min-width: 20%;
+    max-width: 75%;
+    min-width: 25%;
   }
 
   a, span {
@@ -59,12 +59,12 @@
 
   .overdose_bar {
     background: $pink;
-    width: 90%;
+    width: 50%;
   }
 
   .shortage_bar {
     background: $blue;
-    width: 10%;
+    width: 50%;
   }
 
 }
