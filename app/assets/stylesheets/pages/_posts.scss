@@ -11,24 +11,62 @@
   margin-bottom: 20px;
 }
 
-#post-banner {
-  position: fixed;
-  width: 100%;
-  z-index: 50;
+#post-score {
+  position: relative;
 
-  .row {
-    width: 100%;
-    max-width: 1600px;
-    background: #000;
-    margin: auto;
+  .overdose_bar, .shortage_bar {
     padding: 10px;
-    color: #FFF;
-    text-align: center;
+    display: inline-block;
+    float: left;
+    position: relative;
+    height: 62px;
+    max-width: 80%;
+    min-width: 20%;
   }
 
-  h2 {
-    display: inline;
+  a, span {
+    position: absolute;
+    display: inline-block;
+    border-radius: 3px;
+    font-weight: 900;
+    border: 3px solid;
+    color: #FFF;
+    padding: 8px;
+    top:10px;
   }
+
+  .overdose, .shortage_score {
+    left: 10px;
+  }
+  .shortage, .overdose_score {
+    right:10px;
+  }
+
+  .shortage {
+    background: $blue;
+  }
+  .shortage:hover {
+    background: $blue-light;
+  }
+
+  .overdose {
+    background: $pink;
+  }
+
+  .overdose:hover {
+    background: $pink-light;
+  }
+
+  .overdose_bar {
+    background: $pink;
+    width: 90%;
+  }
+
+  .shortage_bar {
+    background: $blue;
+    width: 10%;
+  }
+
 }
 
 .post {
@@ -36,7 +74,7 @@
   background-size: cover;
   box-shadow: 0 0 0 10000px rgba(0,0,0,.75) inset;
   text-align: center;
-  padding: 60px 20px 20px 20px;
+  padding: 20px;
 
   label {
     color: $pink;

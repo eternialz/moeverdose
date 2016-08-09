@@ -1,13 +1,7 @@
-<div id="post-banner">
-  <div class="row">
-    <h2>Titre du post ou ID</h2>
-    <span class="score"><span id="overdoses">20</span><span class="shortage">6</span></span>
-  </div>
-</div>
-
 <div class="row posts">
   <div class="post-container">
     <div class="post" style="background-image: url(<%= image_url('post.jpg') %>)">
+      <h2>Titre du post ou ID</h2>
       <img src="<%= image_url('post.jpg') %>" border="0" height="720px" width="1280px"/>
       <div class="post-info clearfix">
         <label id="id">ID:666</label>
@@ -19,6 +13,16 @@
           <span><%= fa_icon "file" %> Source: Gj-Bu</span>
         </div>
       </div>
+    </div>
+    <div id="post-score" class="clearfix">
+      <div class="overdose_bar clearfix">
+        <span class="overdose_score">33</span>
+      </div>
+      <a class="overdose"><%= fa_icon "plus-circle" %> MOE OVERDOSE</a>
+      <div class="shortage_bar clearfix">
+        <span class="shortage_score">17</span>
+      </div>
+      <a class="shortage">MOE SHORTAGE <%= fa_icon "minus-circle" %></a>
     </div>
     <div class="post-details row">
       <div class="f3 column tags">
