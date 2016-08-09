@@ -11,12 +11,32 @@
   margin-bottom: 20px;
 }
 
+#post-banner {
+  position: fixed;
+  width: 100%;
+  z-index: 50;
+
+  .row {
+    width: 100%;
+    max-width: 1600px;
+    background: #000;
+    margin: auto;
+    padding: 10px;
+    color: #FFF;
+    text-align: center;
+  }
+
+  h2 {
+    display: inline;
+  }
+}
+
 .post {
   background-repeat: no-repeat;
   background-size: cover;
   box-shadow: 0 0 0 10000px rgba(0,0,0,.75) inset;
   text-align: center;
-  padding: 20px;
+  padding: 60px 20px 20px 20px;
 
   label {
     color: $pink;

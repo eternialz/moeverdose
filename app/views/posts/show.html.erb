@@ -1,7 +1,13 @@
+<div id="post-banner">
+  <div class="row">
+    <h2>Titre du post ou ID</h2>
+    <span class="score"><span id="overdoses">20</span><span class="shortage">6</span></span>
+  </div>
+</div>
+
 <div class="row posts">
   <div class="post-container">
     <div class="post" style="background-image: url(<%= image_url('post.jpg') %>)">
-      <h2>Titre du post</h2>
       <img src="<%= image_url('post.jpg') %>" border="0" height="720px" width="1280px"/>
       <div class="post-info clearfix">
         <label id="id">ID:666</label>
@@ -16,7 +22,7 @@
     </div>
     <div class="post-details row">
       <div class="f3 column tags">
-        <h3><%= fa_icon "list" %> Tags</h3>
+        <h3><%= fa_icon "tag" %> Tags</h3>
         <a class="tag">1girl</a>
         <a class="tag">Blush</a>
         <a class="tag">Eating</a>
