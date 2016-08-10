@@ -11,6 +11,64 @@
   margin-bottom: 20px;
 }
 
+#post-score {
+  position: relative;
+
+  .overdose_bar, .shortage_bar {
+    padding: 10px;
+    display: inline-block;
+    float: left;
+    position: relative;
+    height: 62px;
+    max-width: 80%;
+    min-width: 20%;
+  }
+
+  a, span {
+    position: absolute;
+    display: inline-block;
+    border-radius: 3px;
+    font-weight: 900;
+    border: 3px solid;
+    color: #FFF;
+    padding: 8px;
+    top:10px;
+  }
+
+  .overdose, .shortage_score {
+    left: 10px;
+  }
+  .shortage, .overdose_score {
+    right:10px;
+  }
+
+  .shortage {
+    background: $blue;
+  }
+  .shortage:hover {
+    background: $blue-light;
+  }
+
+  .overdose {
+    background: $pink;
+  }
+
+  .overdose:hover {
+    background: $pink-light;
+  }
+
+  .overdose_bar {
+    background: $pink;
+    width: 90%;
+  }
+
+  .shortage_bar {
+    background: $blue;
+    width: 10%;
+  }
+
+}
+
 .post {
   background-repeat: no-repeat;
   background-size: cover;
