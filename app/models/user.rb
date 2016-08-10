@@ -1,7 +1,10 @@
 class User
+  include Mongoid::Document
+  include Mongoid::Timestamps
+
   field :name, type: String
-  validates :name, uniqueness: true, message: "already taken"
-  validates :name, presence: true, message: "can't be blank"
+  validates :name, uniqueness: true
+  validates :name, presence: true
 
   field :email, type: String
   validates :email, presence: true
