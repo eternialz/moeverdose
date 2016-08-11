@@ -1,10 +1,10 @@
 <div class="container">
   <a href="<%= root_path %>"><h1>moeverdose.moe</h1></a>
+  <span><%= cell(:random_message).(:show) %></span>
   <a class="user">
     <img src="<%= image_url('default_user.png') %>" />
     <span>Eternialz<br />666 uploads</span>
   </a>
-  <span>All lolis</span>
   <ul>
     <li><a href="<%= posts_path %>" title="Posts">Posts</a></li>
     <li><a href="<%= new_post_path %>" title="Upload">Upload</a></li>

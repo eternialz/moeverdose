@@ -42,6 +42,12 @@ GEM
     bson (4.1.1)
     builder (3.2.2)
     byebug (9.0.5)
+    cells (4.1.2)
+      tilt (>= 1.4, < 3)
+      uber (>= 0.0.9)
+    cells-rails (0.0.6)
+      actionpack (>= 3.0)
+      cells (>= 4.1)
     coderay (1.1.1)
     coffee-rails (4.2.1)
       coffee-script (>= 2.2.0)
@@ -153,6 +159,7 @@ GEM
     turbolinks-source (5.0.0)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    uber (0.0.15)
     uglifier (3.0.1)
       execjs (>= 0.3.0, < 3)
     web-console (3.3.1)
@@ -169,6 +176,7 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
+  cells-rails
   coffee-rails (~> 4.2)
   font-awesome-rails
   jbuilder (~> 2.5)
