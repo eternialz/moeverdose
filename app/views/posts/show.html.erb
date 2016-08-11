@@ -1,14 +1,14 @@
 <div class="row posts">
   <div class="post-container">
     <div class="post" style="background-image: url(<%= image_url('post.jpg') %>)">
-      <h2>Titre du post ou ID</h2>
+      <h2><%= @post.title %></h2>
       <img src="<%= image_url('post.jpg') %>" border="0" height="720px" width="1280px"/>
       <div class="post-info clearfix">
       <div class="infos">
-        <span id="id">ID:666</span>
-        <span id="width-height">SIZE:1280x720</span>
-        <span id="type">TYPE:.JPG</span>
-        <span id="size">SIZE:203KO</span>
+        <span id="id">ID:<%= @post.id %></span>
+        <span id="width-height"><%= @post.id %>px</span>
+        <span id="type"><%= @post.id %></span>
+        <span id="size"><%= @post.id %></span>
       </div>
       <span><%= fa_icon "upload" %> Uploaded by: <a>Eternialz</a></span>
       <span><%= fa_icon "file" %> Source: Gj-Bu</span>
@@ -74,6 +74,7 @@
       <textarea name="tags" placeholder='Tags ("1girl glasses")'><%= @tags_normal %></textarea>
       <h3><%= fa_icon "group" %> Character(s)</h3>
       <textarea name="characters" placeholder='Characters ("illyasviel_von_einzbern")'><%= @tags_character %></textarea>
+      <div style="text-align:center;"><input class="btn" type="submit" value="Modifier le Post"></div>
     <% end %>
   </div>
   <div class="comments">
