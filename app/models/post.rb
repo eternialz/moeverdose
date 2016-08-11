@@ -1,9 +1,12 @@
 class Post
+  include Mongoid::Document
+  include Mongoid::Timestamps
+
   field :title, type: String
 
   field :source, type: String
 
-  hes_one :image, class_name: "Image"
+  has_one :image, class_name: "Image"
 
   field :overdose, type: Integer, default: 0
   field :moe_shortage, type: Integer, default: 0
@@ -19,7 +22,7 @@ class Post
 
   field :report, type: Boolean, default: false
   alias_method :report?, :report
-  field :report_user, class_name: "User"
+  has_one :report_user, class_name: "User"
   field :report_reason, type: String
 
   def calculate_score
