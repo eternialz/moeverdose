@@ -3,21 +3,21 @@
     <input type="file" name="files" id="files" required="required" accept="image/*" />
     <div class="file-dummy">
       <span class="success">Nice! <br /><span id="message">Please respect the rules for posts while uploading</span></span>
-      <span class="default"><%= fa_icon "image" %> Click to select the image or drop it here<br /><span id="message">waiting for image...</span></span>
+      <span class="normal"><%= fa_icon "image" %> Click to select the image or drop it here<br /><span id="message">waiting for image...</span></span>
     </div>
     <img id="file"/>
   </div>
   <div id="info_upload" class="row">
     <div class="header column f6">
-      <h3><%= fa_icon "header" %> Title<span>required</span></h3>
+      <h3><%= fa_icon "header" %> Title<span class="required">required</span></h3>
       <input type="text" name="title" placeholder='Title'></textarea>
     </div>
     <div class="authors column f6">
-      <h3><%= fa_icon "user" %> Author<span>required</span></h3>
+      <h3><%= fa_icon "user" %> Author<span class="required">required</span></h3>
       <input type="text" name="author" placeholder='Author ("hayao_miyazaki")'></textarea>
     </div>
     <div class="tags column f6">
-      <h3><%= fa_icon "tag" %> Tags<span>required (at least three)</span></h3>
+      <h3><%= fa_icon "tag" %> Tags<span class="required">required (at least three)</span></h3>
       <textarea placeholder='Tags ("1girl glasses")'></textarea>
     </div>
     <div class="characters column f6">
