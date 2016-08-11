@@ -11,9 +11,5 @@ class Author
 
   field :overdose, type: Integer, default: 0
   field :moe_shortage, type: Integer, default: 0
-  field :score, type: Integer, default: 0
 
-  def calculate_score
-    self.score = self.overdose - self.moe_shortage
-  end
 end

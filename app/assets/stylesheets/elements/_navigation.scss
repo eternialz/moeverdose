@@ -43,9 +43,18 @@ nav.menu {
 
       img {
         float: right;
-        border-radius: 3px;
-        border: 1px solid #666;
+        border-radius: 6px;
+        border: 3px solid rgba(0,0,0,0);
+      	-webkit-transition:all 100ms linear;
+      	-moz-transition:all 100ms linear;
+      	-o-transition:all 100ms linear;
+      	transition:all 100ms linear;
       }
+    }
+
+    .user:hover img {
+      border-color: $blue;
+      border-radius: 3px;
     }
   }
 
