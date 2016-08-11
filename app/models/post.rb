@@ -10,7 +10,6 @@ class Post
 
   field :overdose, type: Integer, default: 0
   field :moe_shortage, type: Integer, default: 0
-  field :score, type: Integer, default: 0
 
   belongs_to :user, class_name: "User", inverse_of: :posts
 
@@ -25,7 +24,4 @@ class Post
   has_one :report_user, class_name: "User"
   field :report_reason, type: String
 
-  def calculate_score
-    self.score = self.overdose - self.moe_shortage
-  end
 end
