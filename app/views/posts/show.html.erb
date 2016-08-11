@@ -51,6 +51,7 @@
       </div>
       <div class="f3 column actions">
         <h3><%= fa_icon "bolt" %> Actions</h3>
+        <label class="action action-green" for="post_edit"><%= fa_icon "edit" %> Edit post</label>
         <a class="action action-green"><%= fa_icon "download" %> Download</a>
         <a class="action action-green"><%= fa_icon "heart" %> Add To Favorites</a>
         <a class="action action-green"><%= fa_icon "search" %> More from the same author</a>
@@ -60,6 +61,19 @@
         <a class="action action-pink next">Next <%= fa_icon "arrow-circle-right" %> </a>
       </div>
     </div>
+    <input type="checkbox" id="post_edit">
+    <%= form_for @post, url: post_path(@post.id) do |post| %>
+      <h3 class="green"><%= fa_icon "header" %> Title</h3>
+      <%= post.text_field :title, placeholder: "Title" %>
+      <h3 class="pink"><%= fa_icon "rss" %> Source</h3>
+      <%= post.text_field :source, placeholder: "Source" %>
+      <h3 class="orange"><%= fa_icon "user" %> Author</h3>
+      <%= post.text_field :author, placeholder: "Author" %>
+      <h3 class="pink"><%= fa_icon "tag" %> Tags <span class="required">required (at least three)</h3>
+      <textarea name="tags" placeholder='Tags ("1girl glasses")' value="<%= @post.tags_normal %>"></textarea>
+      <h3 class="blue"><%= fa_icon "group" %> Character(s)</h3>
+      <textarea name="characters" placeholder='Characters ("illyasviel_von_einzbern")' value="<%= @post.tags_character"></textarea>
+    <% end %>
   </div>
   <div class="comments">
     <h2><%= fa_icon "comments-o" %> Commentaires</h2>

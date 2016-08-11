@@ -4,6 +4,9 @@ class PostsController < ApplicationController
 
   def show
     @comments = [1]
+    @post = Post.new
+    @post.title="Titre du post"
+    @post.author="Pochi nanodesu"
   end
 
   def index
