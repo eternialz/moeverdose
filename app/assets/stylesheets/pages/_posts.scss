@@ -235,6 +235,10 @@
     width: 250px;
   }
 
+  .header h3 {
+    color: $green;
+  }
+
   #file_upload {
     position: relative;
     height: auto;
@@ -264,7 +268,6 @@
       height: 100px;
       font-weight: 900;
       background: rgba(255,255,255,0.2);
-      border: 3px dashed rgba(255,255,255,0.2);
       -webkit-transition:all 100ms linear;
       -moz-transition:all 100ms linear;
       -o-transition:all 100ms linear;
@@ -292,11 +295,6 @@
 
     &:hover .file-dummy {
       background: rgba(255,255,255,0.1);
-    }
-
-    input[type=file]:focus + .file-dummy {
-      outline: 2px solid rgba(255,255,255,0.5);
-      outline: -webkit-focus-ring-color auto 5px;
     }
 
     input[type=file]:valid + .file-dummy {
