@@ -73,6 +73,10 @@ a {
   transition: all 70ms linear;
 }
 
+label {
+  cursor: pointer;
+}
+
 dd {
   margin: 0;
 }
@@ -95,6 +99,12 @@ textarea, input[type="text"] {
 textarea {
   resize: vertical;
   min-height: 200px;
+}
+
+.required {
+  padding-left: 20px;
+  font-size: 0.8em;
+  color: #999;
 }
 
 /* Titles */

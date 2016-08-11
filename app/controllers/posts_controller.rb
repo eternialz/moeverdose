@@ -6,7 +6,10 @@ class PostsController < ApplicationController
     @comments = [1]
     @post = Post.new
     @post.title="Titre du post"
-    @post.author="Pochi nanodesu"
+    @post.source="Gj-Bu"
+    @tags_normal = "1girl Blush_Eating Intruder Loli Ponytail Purple_hair Purple_eyes School_uniform"
+    @tags_character = "Pochi nanodesu"
+    @tag_author = "troll"
   end
 
   def index
@@ -42,7 +45,7 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(
-      :name
+      :title, :source, :tags_normal, :tags_normal, :tag_author,
     )
   end
 

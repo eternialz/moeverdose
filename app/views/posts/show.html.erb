@@ -4,14 +4,14 @@
       <h2>Titre du post ou ID</h2>
       <img src="<%= image_url('post.jpg') %>" border="0" height="720px" width="1280px"/>
       <div class="post-info clearfix">
-        <label id="id">ID:666</label>
-        <label id="width-height">SIZE:1280x720</label>
-        <label id="type">TYPE:.JPG</label>
-        <label id="size">SIZE:203KO</label>
-        <div class="source">
-          <span><%= fa_icon "upload" %> Uploaded by: <a>Eternialz</a></span>
-          <span><%= fa_icon "file" %> Source: Gj-Bu</span>
-        </div>
+      <div class="infos">
+        <span id="id">ID:666</span>
+        <span id="width-height">SIZE:1280x720</span>
+        <span id="type">TYPE:.JPG</span>
+        <span id="size">SIZE:203KO</span>
+      </div>
+      <span><%= fa_icon "upload" %> Uploaded by: <a>Eternialz</a></span>
+      <span><%= fa_icon "file" %> Source: Gj-Bu</span>
       </div>
     </div>
     <div id="post-score" class="clearfix">
@@ -62,17 +62,18 @@
       </div>
     </div>
     <input type="checkbox" id="post_edit">
-    <%= form_for @post, url: post_path(@post.id) do |post| %>
-      <h3 class="green"><%= fa_icon "header" %> Title</h3>
+    <%= form_for @post, as: "edit_post", url: post_path(@post.id) do |post| %>
+      <h2>Edit Post</h2>
+      <h3><%= fa_icon "header" %> Title<span class="required">required</span></h3>
       <%= post.text_field :title, placeholder: "Title" %>
-      <h3 class="pink"><%= fa_icon "rss" %> Source</h3>
+      <h3><%= fa_icon "rss" %> Source</h3>
       <%= post.text_field :source, placeholder: "Source" %>
-      <h3 class="orange"><%= fa_icon "user" %> Author</h3>
-      <%= post.text_field :author, placeholder: "Author" %>
-      <h3 class="pink"><%= fa_icon "tag" %> Tags <span class="required">required (at least three)</h3>
-      <textarea name="tags" placeholder='Tags ("1girl glasses")' value="<%= @post.tags_normal %>"></textarea>
-      <h3 class="blue"><%= fa_icon "group" %> Character(s)</h3>
-      <textarea name="characters" placeholder='Characters ("illyasviel_von_einzbern")' value="<%= @post.tags_character"></textarea>
+      <h3><%= fa_icon "user" %> Author<span class="required">required</span></h3>
+      <input name="author_tag" type="text" value="<%= @tag_author %>">
+      <h3><%= fa_icon "tag" %> Tags<span class="required">required (at least three)</span></h3>
+      <textarea name="tags" placeholder='Tags ("1girl glasses")'><%= @tags_normal %></textarea>
+      <h3><%= fa_icon "group" %> Character(s)</h3>
+      <textarea name="characters" placeholder='Characters ("illyasviel_von_einzbern")'><%= @tags_character %></textarea>
     <% end %>
   </div>
   <div class="comments">
