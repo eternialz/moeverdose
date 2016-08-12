@@ -17,11 +17,16 @@ class PostsController < ApplicationController
   end
 
   def new
-    #@post ||= Posts.new
+    @post ||= Post.new
   end
 
   def create
-
+    @post = Post.new(post_params)
+    if @post.save
+      redirect_to post_path(@post)
+    else
+      new
+    end
   end
 
   def destroy
@@ -45,7 +50,7 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(
-      :title, :source, :tags_normal, :tags_normal, :tag_author,
+      :title, :source, :post_image
     )
   end
 

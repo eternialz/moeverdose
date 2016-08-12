@@ -1,6 +1,7 @@
 class Post
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Paperclip
 
   field :title, type: String
 
@@ -9,7 +10,7 @@ class Post
   field :height, type: Integer
   field :width, type: Integer
 
-  has_attached_file :post_image, styles: { thumb: "200x200>" }
+  has_mongoid_attached_file :post_image, styles: { thumb: "200x200>" }
   validates_attachment_content_type :post_image, content_type: /\Aimage\/.*\Z/
 
   field :overdose, type: Integer, default: 0

@@ -12,7 +12,7 @@ class User
   field :encrypted_password
   validates :encrypted_password, presence: true, confirmation: true
 
-  has_attached_file :avatar, styles: { thumb: "200x200>", tiny: "60x60" }, default_url: "/images/:style/missing.png"
+  has_mongoid_attached_file :avatar, styles: { thumb: "200x200>", tiny: "60x60" }, default_url: "/images/:style/missing.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
   has_many :posts, class_name: "Post", inverse_of: :user
