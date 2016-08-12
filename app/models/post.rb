@@ -6,7 +6,11 @@ class Post
 
   field :source, type: String
 
-  has_one :image, class_name: "Image"
+  field :height, type: Integer
+  field :width, type: Integer
+
+  has_attached_file :post_image, styles: { thumb: "200x200>" }
+  validates_attachment_content_type :post_image, content_type: /\Aimage\/.*\Z/
 
   field :overdose, type: Integer, default: 0
   field :moe_shortage, type: Integer, default: 0
