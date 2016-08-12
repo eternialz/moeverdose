@@ -2,7 +2,7 @@
   <div class="post-container">
     <div class="post" style="background-image: url(<%= image_url('post.jpg') %>)">
       <h2><%= @post.title %></h2>
-      <img src="<%= image_url('post.jpg') %>" border="0" height="720px" width="1280px"/>
+      <%= image_tag @post.post_image.url %>
       <div class="post-info clearfix">
       <div class="infos">
         <span id="id">ID:<%= @post.id %></span>

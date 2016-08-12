@@ -4,16 +4,10 @@ class PostsController < ApplicationController
 
   def show
     @comments = [1]
-    @post = Post.new
-    @post.title="Titre du post"
-    @post.source="Gj-Bu"
-    @tags_normal = "1girl Blush_Eating Intruder Loli Ponytail Purple_hair Purple_eyes School_uniform"
-    @tags_character = "Pochi nanodesu"
-    @tag_author = "troll"
   end
 
   def index
-    #@posts = Posts.all
+    @posts = Post.all
   end
 
   def new
@@ -44,7 +38,7 @@ class PostsController < ApplicationController
   private
   def set_post
     if params[:id]
-      #@question = FrequentlyAskedQuestion::Root.find(params[:id])
+      @post = Post.find(params[:id])
     end
   end
 

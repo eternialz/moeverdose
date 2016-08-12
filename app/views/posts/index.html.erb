@@ -1,10 +1,10 @@
 <div class="row posts-index">
   <div class="post-container">
-    <% 64.times do %>
+    <%= @posts.each do |post| %>
       <div class="post-thumbnail">
-        <img src="<%= image_url('post-default.jpg') %>" border="0" height="200px" width="200px"/>
-        <a title="Titre" href="<%= post_path(1) %>" class="informations">
-          <h3>Titre</h3>
+        <%= image_tag post.post_image.url(:thumb) %>
+        <a title="<%= post.title %>" href="<%= post_path(post) %>" class="informations">
+          <h3><%= post.title %></h3>
           <span class="post-stats">
             <span title="overdoses">666 <%= fa_icon "heart" %></span>
             <span title="comments">35 <%= fa_icon "comment" %></span>
