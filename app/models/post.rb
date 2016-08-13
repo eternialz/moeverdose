@@ -13,14 +13,14 @@ class Post
   field :height, type: Integer
   field :width, type: Integer
 
-  validate :image_dimensions
+  validate :image_dimensions, :on => :create
 
   field :overdose, type: Integer, default: 0
   field :moe_shortage, type: Integer, default: 0
 
   field :report, type: Boolean, default: false
   alias_method :report?, :report
-  has_one :report_user, class_name: "User"
+  has_one :report_user, class_name: "User", inverse_of: :post
   field :report_reason, type: String
 
   private

@@ -23,7 +23,7 @@ class PostsController < ApplicationController
     @post.height = dimensions.height
 
     binding.pry
-    
+
     if @post.save
       redirect_to post_path(@post)
     else
@@ -40,7 +40,11 @@ class PostsController < ApplicationController
   end
 
   def update
-
+    if @post.save
+      redirect_to post_path(@post)
+    else
+      new
+    end
   end
 
   private

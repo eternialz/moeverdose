@@ -1,6 +1,6 @@
 <div class="row posts">
-  <div class="post-container">
-    <div class="post" style="background-image: url(<%= image_url('post.jpg') %>)">
+  <div class="post-container" style="background-image: url(<%= image_url(@post.post_image.url)%>)">
+    <div class="post">
       <h2><%= @post.title %></h2>
       <%= image_tag @post.post_image.url %>
       <div class="post-info clearfix">
@@ -19,11 +19,11 @@
       <div class="overdose_bar clearfix">
         <span class="overdose_score">0</span>
       </div>
-      <a class="overdose"><%= fa_icon "plus-circle" %> MOE OVERDOSE</a>
+      <a class="overdose"><%= fa_icon "heartbeat" %> MOE OVERDOSE</a>
       <div class="shortage_bar clearfix">
         <span class="shortage_score">0</span>
       </div>
-      <a class="shortage">MOE SHORTAGE <%= fa_icon "minus-circle" %></a>
+      <a class="shortage">MOE SHORTAGE <%= fa_icon "thumbs-down" %></a>
     </div>
     <div class="post-details row">
       <div class="f3 column tags">
@@ -63,7 +63,7 @@
       </div>
     </div>
     <input type="checkbox" id="post_edit">
-    <%= form_for @post, as: "edit_post", url: post_path(@post.id) do |post| %>
+    <%= form_for @post, as: "post", url: post_path(@post) do |post| %>
       <h2>Edit Post</h2>
       <h3><%= fa_icon "header" %> Title<span class="required">required</span></h3>
       <%= post.text_field :title, placeholder: "Title" %>
