@@ -6,8 +6,9 @@
         <a title="<%= post.title %>" href="<%= post_path(post) %>" class="informations">
           <h3><%= post.title %></h3>
           <span class="post-stats">
-            <span title="overdoses">666 <%= fa_icon "heart" %></span>
-            <span title="comments">35 <%= fa_icon "comment" %></span>
+            <span title="overdoses"><%= post.overdose %> <%= fa_icon "heartbeat" %></span>
+            <span title="overdoses"><%= post.moe_shortage %> <%= fa_icon "thumbs-down" %></span>
+            <span title="comments"><%= 0 %> <%= fa_icon "comment" %></span>
           </span>
         </a>
       </div>
