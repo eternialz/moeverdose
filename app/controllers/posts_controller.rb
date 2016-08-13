@@ -4,6 +4,15 @@ class PostsController < ApplicationController
 
   def show
     @comments = [1]
+    @tags = []
+    @characters = []
+    @post.tags.each do |tag|
+      if tag.content?
+        @tags << tag.name
+      elsif tag.character?
+        @characters << tag.name
+      end
+    end
   end
 
   def index
@@ -20,12 +29,35 @@ class PostsController < ApplicationController
     tags = params[:tags].downcase.split(" ")
 
     tags.each do |tag|
-      tag = Tag.where(name: tag)
-      if tag.empty?
-        tag = Tag.create({"name"=>tag,"type"=>"content"})
+      t = Tag.where(name: tag, type: "content")
+      if t.empty?
+        t = Tag.create({"name"=>tag,"type"=>"content"})
       end
-      @post.tags << tag
+      @post.tags << t
     end
+
+    characters = params[:characters].downcase.split(" ")
+
+    characters.each do |character|
+      c = Tag.where(name: character, type: "character")
+      if c.empty?
+        c = Tag.create({"name"=>character,"type"=>"character"})
+      end
+      @post.tags << c
+    end
+
+    author_name = params[:author]
+    author = Tag.where(name: author_name.downcase.tr(" ", "_"), type: "author")
+
+    if author.empty?
+      author = Tag.create({"name"=>author_name.downcase.tr(" ", "_"),"type"=>"author"})
+      author_profile = Author.new({"name"=>author_name,"posts"=>@post})
+    else
+      author_profile = Author.find_by(name: author_name)
+    end
+
+    @post.tags << author
+    @post.author = author_profile
 
     dimensions = Paperclip::Geometry.from_file(@post.post_image.queued_for_write[:original].path)
 

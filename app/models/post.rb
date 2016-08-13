@@ -18,7 +18,7 @@ class Post
   field :overdose, type: Integer, default: 0
   field :moe_shortage, type: Integer, default: 0
 
-  belongs_to :user, class_name: "User", inverse_of: :posts
+  #belongs_to :user, class_name: "User", inverse_of: :posts
 
   belongs_to :author, class_name: "Author", inverse_of: :posts
 

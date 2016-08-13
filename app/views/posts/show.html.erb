@@ -30,24 +30,19 @@
     <div class="post-details row">
       <div class="f3 column tags">
         <h3><%= fa_icon "tag" %> Tags</h3>
-        <a class="tag">1girl</a>
-        <a class="tag">Blush</a>
-        <a class="tag">Eating</a>
-        <a class="tag">Gj-Bu</a>
-        <a class="tag">Intruder</a>
-        <a class="tag">Loli</a>
-        <a class="tag">Ponytail</a>
-        <a class="tag">Purple hair</a>
-        <a class="tag">Purple eyes</a>
-        <a class="tag">School uniform</a>
+        <% @tags.each do |tag| %>
+          <a class="tag"><%= tag %></a>
+        <% end %>
       </div>
       <div class="f3 column characters">
         <h3><%= fa_icon "group" %> Character(s)</h3>
-        <a class="tag">Shion Sumeragi</a>
+        <% @characters.each do |character| %>
+          <a class="tag"><%= character %></a>
+        <% end %>
       </div>
       <div class="f3 column authors">
         <div class="author">
-          <h3><a><%= fa_icon "user" %> Author: Doga Kobo</a></h3>
+          <h3><a><%= fa_icon "user" %> Author: <%= @post.author.name %></a></h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
           <a><%= fa_icon "link" %> website</a><a><%= fa_icon "user-plus" %> profile</a>
         </div>
