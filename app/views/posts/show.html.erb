@@ -12,7 +12,9 @@
         <span id="date"><%= @post.post_image_updated_at %></span>
       </div>
       <span><%= fa_icon "upload" %> Uploaded by: <a>Eternialz</a></span>
-      <span><%= fa_icon "file" %> Source: Gj-Bu</span>
+      <% if @post.source != "" %>
+        <span><%= fa_icon "file" %> Source: <%= @post.source %></span>
+      <% end %>
       </div>
     </div>
     <div id="post-score" class="clearfix">
