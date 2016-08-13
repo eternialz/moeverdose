@@ -17,6 +17,16 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
 
+    tags = params[:tags].downcase.split(" ")
+
+    tags.each do |tag|
+      tag = Tag.where(name: tag)
+      if tag.empty?
+        tag = Tag.create({"name"=>tag,"type"=>"content"})
+      end
+      @post.tags << tag
+    end
+
     dimensions = Paperclip::Geometry.from_file(@post.post_image.queued_for_write[:original].path)
 
     @post.width = dimensions.width
