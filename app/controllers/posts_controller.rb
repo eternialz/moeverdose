@@ -32,19 +32,13 @@ class PostsController < ApplicationController
   end
 
   def destroy
-
-  end
-
-  def edit
-
+    @post.destroy
   end
 
   def update
-    if @post.save
-      redirect_to post_path(@post)
-    else
-      new
-    end
+    @post.assign_attributes(edit_post_params)
+    @post.save
+    redirect_to post_path(@post)
   end
 
   private
@@ -60,4 +54,9 @@ class PostsController < ApplicationController
     )
   end
 
+  def edit_post_params
+    params.require(:post).permit(
+      :title, :source
+    )
+  end
 end
