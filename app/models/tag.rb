@@ -21,6 +21,6 @@ class Tag
     end
   end
   include Tag::Type
-  validates :type, {in: Tag::Type.all}
+  validates :type, inclusion: {in: Tag::Type.all}
 
 end
