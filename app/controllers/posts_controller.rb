@@ -16,6 +16,14 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
+
+    dimensions = Paperclip::Geometry.from_file(@post.post_image.queued_for_write[:original].path)
+
+    @post.width = dimensions.width
+    @post.height = dimensions.height
+
+    binding.pry
+    
     if @post.save
       redirect_to post_path(@post)
     else

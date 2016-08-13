@@ -6,9 +6,10 @@
       <div class="post-info clearfix">
       <div class="infos">
         <span id="id">ID:<%= @post.id %></span>
-        <span id="width-height"><%= @post.id %>px</span>
-        <span id="type"><%= @post.id %></span>
-        <span id="size"><%= @post.id %></span>
+        <span id="width-height"><%= "#{@post.width}x#{@post.height}" %>px</span>
+        <span id="type"><%= @post.post_image_content_type %></span>
+        <span id="size"><%= @post.post_image_file_size %></span>
+        <span id="date"><%= @post.post_image_updated_at %></span>
       </div>
       <span><%= fa_icon "upload" %> Uploaded by: <a>Eternialz</a></span>
       <span><%= fa_icon "file" %> Source: Gj-Bu</span>
