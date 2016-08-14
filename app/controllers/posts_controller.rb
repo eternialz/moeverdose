@@ -31,7 +31,7 @@ class PostsController < ApplicationController
     tags.each do |tag|
       t = Tag.where(name: tag, type: :content)
       if t.empty?
-        t = Tag.create({name: tag, type: :content})
+        t = Tag.new({name: tag, type: :content})
       end
       @post.tags << t
     end
@@ -41,19 +41,19 @@ class PostsController < ApplicationController
     characters.each do |character|
       c = Tag.where(name: character, type: :character)
       if c.empty?
-        c = Tag.create({name: character, type: :character})
+        c = Tag.new({name: character, type: :character})
       end
       @post.tags << c
     end
 
     author_name = params[:author]
-    author = Tag.where(name: author_name.downcase.tr(" ", "_"), type: "author")
+    author = Tag.where(name: author_name.downcase.tr(" ", "_"), type: :author)
 
     if author.empty?
-      author = Tag.create({name: author_name.downcase.tr(" ", "_"),type: :author})
-      author_profile = Author.create({name: author_name, posts: [@post]})
+      author = Tag.new({name: author_name.downcase.tr(" ", "_"),type: :author})
+      author_profile = Author.new({name: author_name, posts: [@post]})
     else
-      author_profile = Author.find_by({name: author_name.downcase.tr(" ", "_")})
+      author_profile = Author.find_by({name: author_name})
       author_profile.posts << @post
     end
 
@@ -68,6 +68,13 @@ class PostsController < ApplicationController
     binding.pry
 
     if @post.save
+      author_profile.save
+      t.posts_count += 1
+      t.save
+      c.posts_count += 1
+      c.save
+      author.posts_count += 1
+      author.save
       redirect_to post_path(@post)
     else
       new
