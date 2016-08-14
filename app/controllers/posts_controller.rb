@@ -69,12 +69,10 @@ class PostsController < ApplicationController
 
     if @post.save
       author_profile.save
-      t.posts_count += 1
-      t.save
-      c.posts_count += 1
-      c.save
-      author.posts_count += 1
-      author.save
+      @post.tags.each do |t|
+        t.posts_count += 1
+        t.save
+      end
       redirect_to post_path(@post)
     else
       new
