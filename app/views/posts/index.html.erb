@@ -15,9 +15,11 @@
       </div>
     <% end %>
   </div>
-  <form class="search_form">
-    <button name="submit" value="value" type="submit"><%= fa_icon "search"%> search</button>
+  <%= form_tag("/posts",{:class => "search_form"}) do%>
+    <input type="checkbox" id="search_form">
+    <label for="search_form" id="search_form_label"><%= fa_icon "search" %> search</label>
     <div>
+      <button name="submit" value="value" type="submit"><%= fa_icon "search"%> search</button>
       <div class="tag_search row">
         <div class="f6 column tag clearfix">
           <h3 class="pink">Tags:</h3>
@@ -46,7 +48,7 @@
       <input type="checkbox" id="advanced_search">
       <label for="advanced_search" id="advanced_search_label">more search options<br /><%= fa_icon "angle-down" %></label>
       <div class="advanced_search row">
-        <div class="column f4">
+        <div class="column f3">
           <div class="advanced_field" title="Name of the author">
             <p>Author:</p>
             <input name="author" type="text" placeholder="author name">
@@ -56,28 +58,38 @@
             <input name="uploader" type="text" placeholder="user name">
           </div>
         </div>
-        <div class="column f4">
+        <div class="column f3">
+          <div class="advanced_field" title="Minimum number of overdoses">
+            <p>Moe overdoses:</p>
+            <input name="overdoses" type="number" min="0" placeholder="min">
+          </div>
+          <div class="advanced_field" title="Maximum number of shortage">
+            <p>Moe shortage:</p>
+            <input name="shortages" type="number" min="0" placeholder="max">
+          </div>
+        </div>
+        <div class="column f3">
           <div class="advanced_field" title="Minimum width of posts in pixels">
             <p>Mininmum width:</p>
-            <input name="min-width" type="number" placeholder="200" min="200" max="10000">
+            <input name="min-width" type="number" min="200" max="10000" value="200" step="25">
           </div>
           <div class="advanced_field" title="Maximum width of posts in pixels">
             <p>Maximum width:</p>
-            <input name="max-width" type="number" placeholder="10000"  min="200" max="10000">
+            <input name="max-width" type="number" min="200" max="10000" value="10000" step="25">
           </div>
         </div>
-        <div class="column f4">
+        <div class="column f3">
           <div class="advanced_field" title="Mininmum height of posts in pixels">
             <p>Mininmum height:</p>
-            <input name="min-height" type="number" placeholder="200" min="200" max="10000">
+            <input name="min-height" type="number" min="200" max="10000" value="200" step="25">
           </div>
           <div class="advanced_field" title="Maximum height of posts in pixels">
             <p>Maximum height:</p>
-            <input name="max-height" type="number" placeholder="10000" min="200" max="10000">
+            <input name="max-height" type="number" min="200" max="10000" value="10000" step="25">
           </div>
         </div>
-        <label for="advanced_search" id="advanced_search_label"><%= fa_icon "angle-up" %><br />less search options</label>
       </div>
+      <label for="advanced_search" id="advanced_search_label"><%= fa_icon "angle-up" %><br />less search options</label>
     </div>
-  </form>
+  <% end %>
 </div>

@@ -7,20 +7,51 @@ form.search_form {
   color: #FFF;
   margin-bottom: -1px;
 
-  button[type="submit"] {
+  #advanced_search + label + div {
+    display: none;
+    padding: 0 20px;
+
+    & + label {
+      display: none;
+    }
+  }
+
+  #search_form + label + div {
+    display: none;
+  }
+
+  #advanced_search, #search_form {
+    display: none;
+
+    &:checked + label {
+      display: none;
+    }
+
+    &:checked + label + div {
+      display: block;
+
+      & + label {
+        display: block;
+      }
+    }
+  }
+
+  #advanced_search_label, #search_form_label, button[type="submit"] {
+    display: block;
     width: 100%;
-    text-align: right;
-    margin-bottom: 10px;
-    cursor: pointer;
-    outline: 0;
+    padding: 20px;
     border:0;
-    padding: 10px;
+    outline: 0;
+    cursor: pointer;
     background: none;
+    text-align: center;
+    font-weight: 900;
     color: #FFF;
-    -webkit-transition: all 70ms linear;
-    -moz-transition: all 70ms linear;
-    -o-transition: all 70ms linear;
-    transition: all 70ms linear;
+    -webkit-transition: all 150ms linear;
+    -moz-transition: all 150ms linear;
+    -o-transition: all 150ms linear;
+    transition: all 150ms linear;
+    display: block;
 
     &:hover {
       background: rgba(255,255,255,.15);
@@ -29,31 +60,6 @@ form.search_form {
     &:active {
       background: rgba(255,255,255,.3);
     }
-  }
-
-  #advanced_search + label + div {
-    display: none;
-    padding: 0 20px
-  }
-
-  #advanced_search {
-    display: none;
-
-    &:checked + label {
-      display: none;
-    }
-
-    &:checked + label + div {
-      display: block
-    }
-  }
-
-  #advanced_search_label {
-    text-align: center;
-    width: 100%;
-    display: block;
-    padding: 20px;
-    font-weight: bolder;
   }
 
   #advanced_search_label:hover {
@@ -68,6 +74,8 @@ form.search_form {
   }
 
   .tag_search {
+    padding-top: 10px;
+
     h3 {
       font-size: 1em;
       padding-left: 10px;

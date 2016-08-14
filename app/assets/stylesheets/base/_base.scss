@@ -51,6 +51,7 @@ input:focus, textarea:focus {
 /* Global default custom styles */
 html {
   box-sizing: border-box;
+  overflow-y: scroll;
 }
 
 *, *:before, *:after {
