@@ -1,7 +1,7 @@
 <div class="row posts-index">
-  <div class="post-container">
+  <div class="post-container clearfix">
     <%= @posts.each do |post| %>
-      <div class="post-thumbnail">
+      <div class="post-thumbnail  clearfix">
         <%= image_tag post.post_image.url(:thumb) %>
         <a title="<%= post.title %>" href="<%= post_path(post) %>" class="informations">
           <h3><%= post.title %></h3>
@@ -15,59 +15,69 @@
       </div>
     <% end %>
   </div>
-</div>
-
-<form class="search stick">
-  <div class="search-container">
-    <input type="text" name="tags" class="search-post" placeholder='Search by tags ("1girl glasses")'>
-    <input type="text" name="characters" class="search-post" placeholder='Search by characters ("illyasviel_von_einzbern")'>
-    <input type="text" name="authors" class="search-post" placeholder='Search by author ("hayao_miyazaki")'>
-    <div class="tags-panel">
-      <div class="advanced-search">
-        <!-- Search by size and post type -->
+  <form class="search_form">
+    <button name="submit" value="value" type="submit"><%= fa_icon "search"%> search</button>
+    <div>
+      <div class="tag_search row">
+        <div class="f6 column tag clearfix">
+          <h3 class="pink">Tags:</h3>
+          <input type="text">
+          <ul class="tags">
+            <li><a>tag</a></li>
+            <li><a>tag</a></li>
+            <li><a>tag</a></li>
+            <li><a>tag</a></li>
+            <li><a>tag</a></li>
+            <li><a>tag</a></li>
+          </ul>
+        </div>
+        <div class="f6 column character">
+          <h3 class="blue">Characters:</h3>
+          <input type="text">
+          <ul class="characters">
+            <li><a>chara</a></li>
+            <li><a>chara</a></li>
+            <li><a>chara</a></li>
+            <li><a>chara</a></li>
+            <li><a>chara</a></li>
+          </ul>
+        </div>
       </div>
-      <header>
-        <h3 class="tags">Contents</h3>
-        <h3 class="characters">Characters</h3>
-        <h3 class="authors" style="width: 20%;">Authors</h3>
-        <a id="close" title="close"><%= fa_icon "times" %></a>
-        <a id="help" title="Need help?">help</a>
-      </header>
-      <div class="content">
-        <ul class="tags">
-          <li><a>Loli</a></li>
-          <li><a>Lolis</a></li>
-          <li><a>3 Lolis</a></li>
-          <li><a>4 Lolis</a></li>
-          <li><a>5 Lolis</a></li>
-          <li><a class="highlight">6 Lolis</a></li>
-          <li><a>7 Lolis</a></li>
-          <li><a>7 Lolis</a></li>
-          <li><a>7 Lolis</a></li>
-          <li><a>7 Lolis</a></li>
-          <li><a>7 Lolis</a></li>
-          <li><a>7 Lolis</a></li>
-          <li><a>7 Lolis</a></li>
-        </ul>
-        <ul class="characters">
-          <li><a class="highlight">Mira</a></li>
-          <li><a>Mira</a></li>
-          <li><a>Mira</a></li>
-          <li><a>Mira</a></li>
-          <li><a>Mira</a></li>
-          <li><a>Mira</a></li>
-          <li><a>Mira</a></li>
-        </ul>
-        <ul class="authors">
-          <li><a>Hayao Miyazaki</a></li>
-          <li><a>Hayao Miyazaki</a></li>
-          <li><a class="highlight">Hayao Miyazaki</a></li>
-          <li><a>Hayao Miyazaki</a></li>
-          <li><a>Hayao Miyazaki</a></li>
-          <li><a>Hayao Miyazaki</a></li>
-          <li><a>Hayao Miyazaki</a></li>
-        </ul>
+      <input type="checkbox" id="advanced_search">
+      <label for="advanced_search" id="advanced_search_label">more search options<br /><%= fa_icon "angle-down" %></label>
+      <div class="advanced_search row">
+        <div class="column f4">
+          <div class="advanced_field" title="Name of the author">
+            <p>Author:</p>
+            <input name="author" type="text" placeholder="author name">
+          </div>
+          <div class="advanced_field" title="Name of the user">
+            <p>Uploaded by:</p>
+            <input name="uploader" type="text" placeholder="user name">
+          </div>
+        </div>
+        <div class="column f4">
+          <div class="advanced_field" title="Minimum width of posts in pixels">
+            <p>Mininmum width:</p>
+            <input name="min-width" type="number" placeholder="200" min="200" max="10000">
+          </div>
+          <div class="advanced_field" title="Maximum width of posts in pixels">
+            <p>Maximum width:</p>
+            <input name="max-width" type="number" placeholder="10000"  min="200" max="10000">
+          </div>
+        </div>
+        <div class="column f4">
+          <div class="advanced_field" title="Mininmum height of posts in pixels">
+            <p>Mininmum height:</p>
+            <input name="min-height" type="number" placeholder="200" min="200" max="10000">
+          </div>
+          <div class="advanced_field" title="Maximum height of posts in pixels">
+            <p>Maximum height:</p>
+            <input name="max-height" type="number" placeholder="10000" min="200" max="10000">
+          </div>
+        </div>
+        <label for="advanced_search" id="advanced_search_label"><%= fa_icon "angle-up" %><br />less search options</label>
       </div>
     </div>
-  </div>
-</form>
+  </form>
+</div>

@@ -6,8 +6,8 @@
       <div class="post-info clearfix">
       <div class="infos">
         <span id="id">ID:<%= @post.id %></span>
-        <span id="width-height"><%= "#{@post.width}x#{@post.height}" %>px</span>
-        <span id="type"><%= @post.post_image_content_type %></span>
+        <span id="width-height"><%= @post.width.to_s + " x " + @post.height.to_s %>px</span>
+        <span id="type"><%= @post.post_image_content_type.split("/")[-1].upcase %></span>
         <span id="size"><%= '%.3f' % (@post.post_image_file_size.to_f / 1048576).to_s + ' MB' %></span>
         <span id="date"><%= @post.post_image_updated_at %></span>
       </div>

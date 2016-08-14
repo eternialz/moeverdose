@@ -17,6 +17,20 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all
+    @tags = []
+    @characters = []
+    @authors = []
+    @posts.each do |post|
+      post.tags.each do |tag|
+        if tag.content?
+          @tags << tag
+        elsif tag.character?
+          @characters << tag
+        elsif tag.author?
+          @authors << tag
+        end
+      end
+    end
   end
 
   def new
