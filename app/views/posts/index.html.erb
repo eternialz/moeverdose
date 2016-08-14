@@ -6,18 +6,16 @@
         <a title="<%= post.title %>" href="<%= post_path(post) %>" class="informations">
           <h3><%= post.title %></h3>
           <span class="post-stats">
-            <span title="overdoses"><%= post.overdose %> <%= fa_icon "heartbeat" %></span>
-            <span title="overdoses"><%= post.moe_shortage %> <%= fa_icon "thumbs-down" %></span>
-            <span title="comments"><%= 0 %> <%= fa_icon "comment" %></span>
+            <span title="overdose(s)"><%= post.overdose %> <%= fa_icon "heartbeat" %> </span>
+            <span title="shortage(s)"><%= post.moe_shortage %> <%= fa_icon "thumbs-down" %> </span>
+            <!-- TODO integrate post comment count -->
+            <span title="comment(s)"><%= 0 %> <%= fa_icon "comment" %></span>
           </span>
         </a>
       </div>
     <% end %>
   </div>
 </div>
-<div class="space">
-</div>
-
 
 <form class="search stick">
   <div class="search-container">
