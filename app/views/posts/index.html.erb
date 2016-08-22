@@ -1,6 +1,6 @@
 <div class="row posts-index">
   <div class="post-container clearfix">
-    <%= @posts.each do |post| %>
+    <% @posts.each do |post| %>
       <div class="post-thumbnail  clearfix">
         <%= image_tag post.post_image.url(:thumb) %>
         <a title="<%= post.title %>" href="<%= post_path(post) %>" class="informations">
