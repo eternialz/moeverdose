@@ -48,6 +48,10 @@ input:focus, textarea:focus {
   }
 }
 
+input {
+  outline: 0 !important;
+}
+
 /* Global default custom styles */
 html {
   box-sizing: border-box;

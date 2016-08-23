@@ -22,12 +22,12 @@ class PostsController < ApplicationController
     @authors = []
     @posts.each do |post|
       post.tags.each do |tag|
-        if tag.content?
-          @tags << tag
-        elsif tag.character?
-          @characters << tag
-        elsif tag.author?
-          @authors << tag
+        if tag.content? && !(@tags.include?(tag.name))
+          @tags << tag.name
+        elsif tag.character? && !(@characters.include?(tag.name))
+          @characters << tag.name
+        elsif tag.author? && !(@authors.include?(tag.name))
+          @authors << tag.name
         end
       end
     end
@@ -97,7 +97,52 @@ class PostsController < ApplicationController
 
   def update
     @post.assign_attributes(edit_post_params)
-    @post.save
+
+    @post.tags = []
+    tags = params[:tags].downcase.split(" ")
+
+    tags.each do |tag|
+      t = Tag.where(name: tag, type: :content)
+      if t.empty?
+        t = Tag.new({name: tag, type: :content})
+      end
+      @post.tags << t
+    end
+
+    characters = params[:characters].downcase.split(" ")
+
+    characters.each do |character|
+      c = Tag.where(name: character, type: :character)
+      if c.empty?
+        c = Tag.new({name: character, type: :character})
+      end
+      @post.tags << c
+    end
+
+    author_name = params[:author]
+
+    if author_name != "" && author_name != nil
+      author = Tag.where(name: author_name.downcase.tr(" ", "_"), type: :author)
+
+      if author.empty?
+        author = Tag.new({name: author_name.downcase.tr(" ", "_"),type: :author})
+        author_profile = Author.new({name: author_name, posts: [@post]})
+      else
+        author_profile = Author.find_by({name: author_name})
+        author_profile.posts << @post
+      end
+    end
+
+    @post.tags << author
+    @post.author = author_profile
+
+    if @post.save
+      author_profile.save
+      @post.tags.each do |t|
+        #t.posts_count =
+        t.save
+      end
+    end
     redirect_to post_path(@post)
   end
 

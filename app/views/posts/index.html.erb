@@ -15,77 +15,72 @@
       </div>
     <% end %>
   </div>
-  <%= form_tag("/posts",{:class => "search_form"}) do%>
-    <input type="checkbox" id="search_form">
+  <%= form_tag(posts_path, {:method => "get", :class => "search_form"}) do%>
+    <input type="checkbox" name="search_on" id="search_form">
     <label for="search_form" id="search_form_label"><%= fa_icon "search" %> search</label>
     <div>
-      <button name="submit" value="value" type="submit"><%= fa_icon "search"%> search</button>
+      <button value="value" type="submit"><%= fa_icon "search"%> send search</button>
       <div class="tag_search row">
         <div class="f6 column tag clearfix">
           <h3 class="pink">Tags:</h3>
-          <input type="text">
+          <input type="text" name="search[tags]">
           <ul class="tags">
-            <li><a>tag</a></li>
-            <li><a>tag</a></li>
-            <li><a>tag</a></li>
-            <li><a>tag</a></li>
-            <li><a>tag</a></li>
-            <li><a>tag</a></li>
+            <% @tags.each do |tag| %>
+              <li><a><%= tag %></a></li>
+            <% end %>
           </ul>
         </div>
         <div class="f6 column character">
           <h3 class="blue">Characters:</h3>
-          <input type="text">
+          <input type="text" name="search[characters]">
           <ul class="characters">
-            <li><a>chara</a></li>
-            <li><a>chara</a></li>
-            <li><a>chara</a></li>
-            <li><a>chara</a></li>
-            <li><a>chara</a></li>
+            <% @characters.each do |character| %>
+              <li><a><%= character %></a></li>
+            <% end %>
           </ul>
         </div>
       </div>
-      <input type="checkbox" id="advanced_search">
+      <input type="checkbox" name="advanced_on" id="advanced_search">
       <label for="advanced_search" id="advanced_search_label">more search options<br /><%= fa_icon "angle-down" %></label>
       <div class="advanced_search row">
         <div class="column f3">
           <div class="advanced_field" title="Name of the author">
             <p>Author:</p>
-            <input name="author" type="text" placeholder="author name">
+            <input name="search[author]" type="text" placeholder="author name">
           </div>
           <div class="advanced_field" title="Name of the user">
             <p>Uploaded by:</p>
-            <input name="uploader" type="text" placeholder="user name">
+            <input name="search[uploader]" type="text" placeholder="user name">
           </div>
         </div>
         <div class="column f3">
           <div class="advanced_field" title="Minimum number of overdoses">
             <p>Moe overdoses:</p>
-            <input name="overdoses" type="number" min="0" placeholder="min">
+            <input name="search[overdoses]" type="number" min="0" placeholder="min">
           </div>
           <div class="advanced_field" title="Maximum number of shortage">
             <p>Moe shortage:</p>
-            <input name="shortages" type="number" min="0" placeholder="max">
+            <input name="search[shortages]" type="number" min="0" placeholder="max">
           </div>
         </div>
         <div class="column f3">
           <div class="advanced_field" title="Minimum width of posts in pixels">
             <p>Mininmum width:</p>
-            <input name="min-width" type="number" min="200" max="10000" value="200" step="25">
+            <input name="search[min-width]" type="number" min="200" max="10000" value="200" step="25">
           </div>
           <div class="advanced_field" title="Maximum width of posts in pixels">
             <p>Maximum width:</p>
-            <input name="max-width" type="number" min="200" max="10000" value="10000" step="25">
+            <input name="search[max-width]" type="number" min="200" max="10000" value="10000" step="25">
           </div>
         </div>
         <div class="column f3">
           <div class="advanced_field" title="Mininmum height of posts in pixels">
             <p>Mininmum height:</p>
-            <input name="min-height" type="number" min="200" max="10000" value="200" step="25">
+            <input name="search[min-height]" type="number" min="200" max="10000" value="200" step="25">
           </div>
           <div class="advanced_field" title="Maximum height of posts in pixels">
             <p>Maximum height:</p>
-            <input name="max-height" type="number" min="200" max="10000" value="10000" step="25">
+            <input name="search[max-height]" type="number" min="200" max="10000" value="10000" step="25">
           </div>
         </div>
       </div>
