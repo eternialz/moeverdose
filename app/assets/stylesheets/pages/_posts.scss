@@ -157,14 +157,10 @@
   }
 }
 
-.posts-index {
+.posts {
   max-width: 1600px;
   width: 100%;
   margin: auto;
-
-  img {
-    float: left;
-  }
 
   .post-container {
     box-shadow: 0 -2px 0 0 $pink inset;
@@ -175,12 +171,16 @@
     position: relative;
     float: left;
 
+    img {
+      float: left;
+    }
+
     .informations {
       position: absolute;
       top: 0;
       left: 0;
       opacity: 0;
-      background-image: linear-gradient(rgba(0,0,0,.25) 50%, #000 100%);
+      background-image: linear-gradient(rgba(0,0,0,.25) 0%, #000 130%);
       width: 100%;
       height: 100%;
       padding: 140px 0 10px 10px;
