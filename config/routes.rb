@@ -14,7 +14,6 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  resources :users do
-  end
+  devise_for :users, :controllers => { registrations: 'registrations' }
 
 end
