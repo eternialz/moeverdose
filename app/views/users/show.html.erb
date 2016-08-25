@@ -1,18 +1,14 @@
 <div class="page">
   <div class="userprofile">
     <div class="user_header clearfix">
-      <img class="avatar" src="<%= image_url('default_user.png') %>" width="120" height="120" />
+      <img class="avatar" src="<%= current_user.avatar %>" width="120" height="120" />
       <div class="user_banner">
-        <h3>Eternialz</h3>
-        <ul class="profile_links">
-          <li><a class="tooltip"><%= fa_icon "link"%> website <span class="tip">http://moeverdose.moe</span></a></li>
-          <li><a class="tooltip"><%= fa_icon "twitter" %> @eternialz <span class="tip">twitter</span></a></li>
-          <li><a class="tooltip"><%= fa_icon "facebook" %> moeverdose <span class="tip">facebook</span></a></li>
-        </ul>
+        <a class="btn2"><%= fa_icon "edit" %> edit profile</a>
+        <h3><%= @user.name %></h3><br />
+        <p><%= @user.role %></p>
       </div>
     </div>
     <div class="normal_informations zone clearfix">
-      <p class="role">Moeverdose Grandmaster</p>
       <p class="bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone.</p>
       <div class="advanced_informations row">
         <div class="stats column f4">

@@ -6,7 +6,7 @@
     box-shadow: 0 1px 3px rgba(0,0,0,.25);
     position: relative;
     height: 260px;
-    background: url(/assets/header-img/1-91b54ad50778bbfd91497cd6274dd789c254534abd8f726ce4950e7fe9c29199.jpg) no-repeat center center;
+    background: url($header-image) no-repeat center center;
     border-bottom: 10px solid $blue;
 
     .avatar {
@@ -14,7 +14,7 @@
       position: absolute;
       float: left;
       z-index: 100;
-      top: 190px;
+      top: 115px;
       border-radius: 3px;
     }
 
@@ -24,12 +24,12 @@
       bottom: 0;
       width: 100%;
       margin: 0;
-      background: rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.8);
       padding: 0 0 0 160px;
 
       h3 {
         color: #555;
-        padding: 10px 0;
+        padding: 10px 0 0 0;
         display: inline-block;
         margin: 0;
         font-size: 1.5em;
@@ -37,26 +37,13 @@
         font-style: normal;
       }
 
-      .profile_links {
-        color: #FFF;
-        background: rgba(0,0,0,.8);
-        display: inline;
+      p {
+        display: inline-block;
+      }
+
+      .btn2 {
         float: right;
-        margin: 0;
-      }
-
-      ul li {
-        display: inline-block;
-      }
-
-      ul a {
-        padding: 15px 12px;
-        display: inline-block;
-        font-weight: bold;
-      }
-
-      ul a:hover {
-        color: $blue;
+        margin: 11px;
       }
     }
   }
@@ -64,14 +51,8 @@
   .normal_informations {
     position: relative;
     text-align: left;
-    padding: 10px 40px;
+    padding: 40px;
     font-weight: bold;
-
-    .role {
-      padding-left: 120px;
-      font-size: 0.9em;
-      margin-bottom: 20px;
-    }
 
     .bio {
       font-weight: normal;

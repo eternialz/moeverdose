@@ -14,6 +14,9 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  devise_for :users, :controllers => { registrations: 'registrations' }
+
+  devise_for :users, path: 'account', :controllers => { registrations: 'registrations' }
+
+  resources :users
 
 end

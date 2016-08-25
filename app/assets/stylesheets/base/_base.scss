@@ -275,6 +275,22 @@ h6 {
 	box-shadow:0 5px $default_dark,0 5px 5px rgba(0,0,0,.8);
 }
 
+.btn2 {
+  background: #FFF;
+  padding: 13px;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0,0,0,.25);
+}
+
+.btn2:hover {
+  background: #EEE;
+}
+
+.btn2:active {
+  background: #DDD;
+  box-shadow: 0 1px 1px rgba(0,0,0,.25);
+}
+
 .tooltip {
   position: relative;
 

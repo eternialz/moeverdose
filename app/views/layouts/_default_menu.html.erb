@@ -7,7 +7,6 @@
       <span><%= link_to current_user.name %><br />
        <%= link_to 'logout', destroy_user_session_path %></span>
     <% else %>
-      <img src="<%= image_url('default_user.png') %>" />
       <span>
         <%= link_to "login", new_user_session_path %><br />
         <%= link_to "sign up", new_user_registration_path %>

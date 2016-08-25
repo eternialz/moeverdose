@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user
 
   def show
+    @user = User.find_by(name: params[:id])
     @posts = Post.all
   end
 
