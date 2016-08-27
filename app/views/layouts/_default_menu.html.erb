@@ -3,8 +3,8 @@
   <span><%= cell(:random_message).(:show) %></span>
   <div class="user">
     <% if user_signed_in? %>
-      <%= image_tag current_user.avatar(:thumb) %>
-      <span><%= link_to current_user.name %><br />
+      <a class="avatar" href="<%= user_path(current_user.name) %>"><%= image_tag current_user.avatar(:thumb) %></a>
+      <span><%= link_to current_user.name, user_path(current_user.name) %><br />
        <%= link_to 'logout', destroy_user_session_path %></span>
     <% else %>
       <span>
