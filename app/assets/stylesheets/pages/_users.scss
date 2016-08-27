@@ -1,0 +1,88 @@
+.userprofile {
+  color: #555;
+
+  .user_header {
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.25);
+    position: relative;
+    height: 260px;
+    background: url($header-image) no-repeat center center;
+    border-bottom: 10px solid $blue;
+
+    .avatar {
+      box-shadow: 0 1px 3px rgba(0,0,0,.25);
+      position: absolute;
+      float: left;
+      z-index: 100;
+      top: 115px;
+      border-radius: 3px;
+    }
+
+    .user_banner {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      margin: 0;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 0 0 0 160px;
+
+      h3 {
+        color: #555;
+        padding: 10px 0 0 0;
+        display: inline-block;
+        margin: 0;
+        font-size: 1.5em;
+        font-weight: 400;
+        font-style: normal;
+      }
+
+      p {
+        display: inline-block;
+      }
+
+      .btn2 {
+        float: right;
+        margin: 11px;
+      }
+    }
+  }
+
+  .normal_informations {
+    position: relative;
+    text-align: left;
+    padding: 40px;
+    font-weight: bold;
+
+    .bio {
+      font-weight: normal;
+    }
+
+    .user_stats {
+      margin-bottom: 10px;
+
+      span {
+        margin-right: 20px;
+      }
+    }
+
+    .advanced_informations {
+      h4 {
+        color: #555;
+      }
+
+      p {
+        text-align: center;
+        font-weight: normal;
+      }
+    }
+  }
+}
+
+.user_posts, .user_favs {
+  margin-bottom: 15px;
+
+  h2 {
+    margin-left: 10px;
+  }
+}

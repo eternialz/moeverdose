@@ -1,0 +1,69 @@
+<div class="userprofile">
+  <div class="user_header clearfix">
+    <img class="avatar" src="<%= current_user.avatar %>" width="120" height="120" />
+    <div class="user_banner">
+      <a class="btn2"><%= fa_icon "edit" %> edit profile</a>
+      <h3><%= @user.name %></h3><br />
+      <p><%= @user.role %></p>
+    </div>
+  </div>
+  <div class="normal_informations zone clearfix">
+    <p class="bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone.</p>
+    <div class="advanced_informations row">
+      <div class="stats column f4">
+        <h4>Stats</h4>
+        <ul class="user_stats">
+          <li>126039 uploads</li>
+          <li>666 comments</li>
+          <li>126039 uploads</li>
+        </ul>
+      </div>
+      <div class="column f4">
+        <h4>Favorites Tags</h4>
+        <p>Nothing here</p>
+      </div>
+      <div class="column f4">
+        <h4>Blacklisted Tags</h4>
+        <p>Nothing here</p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="user_posts posts">
+  <h2>Uploads</h2>
+  <div class="clearfix">
+    <% @posts.each do |post| %>
+      <div class="post-thumbnail  clearfix">
+        <%= image_tag post.post_image.url(:thumb) %>
+        <a title="<%= post.title %>" href="<%= post_path(post) %>" class="informations">
+          <h3><%= post.title %></h3>
+          <span class="post-stats">
+            <span title="overdose(s)"><%= post.overdose %> <%= fa_icon "heartbeat" %> </span>
+            <span title="shortage(s)"><%= post.moe_shortage %> <%= fa_icon "thumbs-down" %> </span>
+            <!-- TODO integrate post comment count -->
+            <span title="comment(s)"><%= 0 %> <%= fa_icon "comment" %></span>
+          </span>
+        </a>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="user_favs posts">
+  <h2>Favorites</h2>
+  <div class="clearfix">
+    <% @posts.each do |post| %>
+      <div class="post-thumbnail  clearfix">
+        <%= image_tag post.post_image.url(:thumb) %>
+        <a title="<%= post.title %>" href="<%= post_path(post) %>" class="informations">
+          <h3><%= post.title %></h3>
+          <span class="post-stats">
+            <span title="overdose(s)"><%= post.overdose %> <%= fa_icon "heartbeat" %> </span>
+            <span title="shortage(s)"><%= post.moe_shortage %> <%= fa_icon "thumbs-down" %> </span>
+            <!-- TODO integrate post comment count -->
+            <span title="comment(s)"><%= 0 %> <%= fa_icon "comment" %></span>
+          </span>
+        </a>
+      </div>
+    <% end %>
+  </div>
+</div>
