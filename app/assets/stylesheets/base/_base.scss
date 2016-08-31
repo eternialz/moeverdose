@@ -228,7 +228,6 @@ h6 {
   margin: auto;
   width: 100%;
   max-width: 1600px;
-  border-bottom: 10px solid $pink;
 }
 
 .zone {
@@ -313,6 +312,7 @@ h6 {
 
 .action {
   position: relative;
+  width: 100%;
   max-width: 400px;
   display: block;
   padding: 10px;

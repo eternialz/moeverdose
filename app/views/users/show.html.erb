@@ -1,10 +1,10 @@
 <div class="userprofile">
   <div class="user_header clearfix">
-    <img class="avatar" src="<%= current_user.avatar %>" width="120" height="120" />
+    <img class="avatar" src="<%= @user.avatar %>" width="120" height="120" />
     <div class="user_banner">
-      <a class="btn2"><%= fa_icon "edit" %> edit profile</a>
+      <a class="action action-blue" href="<%=  edit_user_registration_path %>"><%= fa_icon "edit" %> edit profile</a>
       <h3><%= @user.name %></h3><br />
-      <p><%= @user.role %></p>
+      <p><%= @user.role %> | Last seen: <%= @user.current_sign_in_at.to_time.strftime('%B %e at %l:%M %p') %></p>
     </div>
   </div>
   <div class="normal_informations zone clearfix">

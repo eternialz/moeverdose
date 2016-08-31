@@ -36,11 +36,10 @@
     <li><a>Stats</a></li>
   </ul>
   <ul class="my-account">
-
     <% if user_signed_in? %>
       <h3><a href="<%= user_path(current_user.name) %>"><%= fa_icon "user" %> My Account</a></h3>
       <li><%= link_to "Profile", user_path(current_user.name) %></li>
-      <li><%= link_to "Options" %></li>
+      <li><%= link_to "Options", edit_user_path(current_user.name) %></li>
       <li><%= link_to 'Logout', destroy_user_session_path %></span></li>
     <% else %>
       <h3><%= link_to "My Account", new_user_session_path %></h3>
