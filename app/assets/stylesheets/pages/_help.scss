@@ -1,6 +1,6 @@
 .help {
   min-height: 300px;
-  
+
   h2 {
     border-bottom: 1px solid rgba(0,0,0,.1);
     padding: 5px;
@@ -24,5 +24,38 @@
       color: $pink;
       background: rgba(0,0,0,.1);
     }
+  }
+}
+
+.help_nav {
+  color: #FFF;
+  background: $pink;
+  box-shadow: 0 1px 3px rgba(0,0,0,.25);
+
+  h3, h2 {
+    color:#FFF;
+    font-size: 1.2em;
+    display: inline-block;
+    margin: 20px;
+  }
+
+  a {
+    color: #DDD;
+  }
+
+  a:hover {
+    color: #FFF;
+  }
+}
+
+.help_page {
+  .key {
+    display: inline-block;
+    padding: 2px 8px;
+    margin: 5px;
+    background: #EEE;
+    border: 1px solid #CCC;
+    box-shadow: 0 1px #CCC;
+    border-radius: 3px;
   }
 }
