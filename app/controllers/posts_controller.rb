@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-  before_action :set_post, only: [:edit, :update, :show, :destroy]
+  before_action :set_post, only: [:edit, :update, :show, :destroy, :overdose, :shortage]
 
   def show
     @comments = [1]
@@ -13,6 +13,16 @@ class PostsController < ApplicationController
         @characters << tag.name
       end
     end
+  end
+
+  def overdose
+    @post.overdose += 1
+    @post.save
+  end
+
+  def shortage
+    @post.moe_shortage += 1
+    @post.save
   end
 
   def index
