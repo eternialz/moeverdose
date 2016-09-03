@@ -79,6 +79,8 @@ class PostsController < ApplicationController
     @post.width = dimensions.width
     @post.height = dimensions.height
 
+    @post.user = current_user
+
     if @post.save
       author_profile.save
       @post.tags.each do |t|
