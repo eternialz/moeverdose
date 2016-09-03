@@ -1,5 +1,6 @@
 .help {
   min-height: 350px;
+  margin: 0;
 
   h2 {
     border-bottom: 1px solid rgba(0,0,0,.1);
@@ -48,14 +49,13 @@
   }
 }
 
-.help_page {
-  .key {
-    display: inline-block;
-    padding: 2px 8px;
-    margin: 5px;
-    background: #EEE;
-    border: 1px solid #CCC;
-    box-shadow: 0 1px #CCC;
-    border-radius: 3px;
-  }
+.key {
+  display: inline-block;
+  padding: 2px 8px;
+  margin: 5px;
+  color: #222;
+  background: #EEE;
+  border: 1px solid #CCC;
+  box-shadow: 0 1px #CCC;
+  border-radius: 3px;
 }
