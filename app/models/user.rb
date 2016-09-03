@@ -60,9 +60,9 @@ class User
 
   has_many :posts, class_name: "Post", inverse_of: :user
   #Posts marked as favorite of the user
-  has_many :favorites, class_name: "Post"
-  has_many :liked_posts, class_name: "Post"
-  has_many :disliked_posts, class_name: "Post"
+  has_many :favorites, class_name: "Post", inverse_of: nil
+  has_many :liked_posts, class_name: "Post", inverse_of: nil
+  has_many :disliked_posts, class_name: "Post", inverse_of: nil
 
   has_many :comments, class_name: "Comment", inverse_of: :user
 
