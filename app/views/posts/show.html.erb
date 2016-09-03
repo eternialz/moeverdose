@@ -22,11 +22,11 @@
       </div>
     </div>
     <div id="post-score" class="clearfix">
-      <div class="overdose_bar clearfix">
+      <div class="overdose_bar clearfix" style="width: <%= @overdose %>%">
         <span class="overdose_score"><%= @post.overdose %></span>
       </div>
       <a class="overdose"><%= fa_icon "heartbeat" %> MOE OVERDOSE</a>
-      <div class="shortage_bar clearfix">
+      <div class="shortage_bar clearfix" style="width: <%= @shortage %>%">
         <span class="shortage_score"><%= @post.moe_shortage %></span>
       </div>
       <a class="shortage">MOE SHORTAGE <%= fa_icon "thumbs-down" %></a>

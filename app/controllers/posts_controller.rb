@@ -13,6 +13,8 @@ class PostsController < ApplicationController
         @characters << tag.name
       end
     end
+    @overdose = @post.overdose / (@post.overdose + @post.moe_shortage).to_f * 100
+    @shortage = 100 - @overdose
   end
 
   def overdose
