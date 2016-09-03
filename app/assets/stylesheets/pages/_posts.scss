@@ -115,12 +115,12 @@
 
 .post-details {
   background: #FFF;
-  padding: 10px;
   text-align: center;
 
   .next, .previous {
     float: left;
     width: 49%;
+    max-width: 195.5px;
   }
 
   .next {
