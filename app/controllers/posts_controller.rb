@@ -13,18 +13,43 @@ class PostsController < ApplicationController
         @characters << tag.name
       end
     end
-    @overdose = @post.overdose / (@post.overdose + @post.moe_shortage).to_f * 100
-    @shortage = 100 - @overdose
+    if @post.overdose == 0 && @post.moe_shortage == 0
+      @overdose = 50
+      @shortage = 50
+    else
+      @overdose = @post.overdose / (@post.overdose + @post.moe_shortage).to_f * 100
+      @shortage = 100 - @overdose
+    end
   end
 
   def overdose
-    @post.overdose += 1
-    @post.save
+    if user_signed_in?
+      if current_user.liked_posts.exclude?(@post)
+        @post.overdose += 1
+        @post.save
+        current_user.liked_posts << @post
+        head 200
+      else
+        head 403
+      end
+    else
+      head 403
+    end
   end
 
   def shortage
-    @post.moe_shortage += 1
-    @post.save
+    if user_signed_in?
+      if current_user.disliked_posts.exclude?(@post)
+        @post.moe_shortage += 1
+        @post.save
+        current_user.disliked_posts << @post
+        head 200
+      else
+        head 403
+      end
+    else
+      head 403
+    end
   end
 
   def index

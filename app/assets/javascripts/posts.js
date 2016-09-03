@@ -11,7 +11,6 @@ Post = {
     $.ajax({
       url : window.location.pathname + '/overdose',
       type : 'PATCH',
-      data : '&username=' + Post.user,
       success : function() {
         Post.overdose.html(parseInt(Post.overdose.html()) +1);
         Post.percentage();
@@ -25,7 +24,6 @@ Post = {
     $.ajax({
       url : window.location.pathname + '/shortage',
       type : 'PATCH',
-      data : '&username=' + Post.user,
       success : function() {
         Post.shortage.html(parseInt(Post.shortage.html()) +1);
         Post.percentage();
