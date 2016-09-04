@@ -7,7 +7,6 @@
 
 .post-container {
   box-shadow: 0 1px 3px rgba(0,0,0,.25);
-  border-bottom: 10px solid $pink;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
@@ -126,7 +125,6 @@
 
   .next {
     margin-left: 2%;
-    text-align: right;
   }
 
   .column {
@@ -163,7 +161,6 @@
   margin: auto;
 
   .post-container {
-    box-shadow: 0 -2px 0 0 $pink inset;
   }
 
   .post-thumbnail {

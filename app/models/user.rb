@@ -11,6 +11,7 @@ class User
   ## Database authenticatable
   field :email,              type: String, default: ""
   field :encrypted_password, type: String, default: ""
+  validates :email, presence: true
 
   ## Recoverable
   field :reset_password_token,   type: String
@@ -38,17 +39,24 @@ class User
   # field :locked_at,       type: Time
 
   field :name, type: String
-  validates :name, uniqueness: true
-  validates :name, presence: true
+  validates :name,  uniqueness: true
+  validates :name,  presence: true
 
-  field :email, type: String
+  field :website,   type: String, default: ""
+
+  field :twitter,   type: String, default: ""
+  field :facebook,  type: String, default: ""
+
   validates :email, presence: true
 
   field :encrypted_password
   validates :encrypted_password, presence: true, confirmation: true
 
-  has_mongoid_attached_file :avatar, styles: { thumb: "120x120>", tiny: "60x60" }, default_url: "/images/default_user.png"
+  has_mongoid_attached_file :avatar, styles: { thumb: "120x120#", tiny: "60x60#" }, default_url: "/images/default_user.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+
+  has_mongoid_attached_file :banner, styles: { thumb: "1600x240#" }, default_url: "/images/default_banner.png"
+  validates_attachment_content_type :banner, content_type: /\Aimage\/.*\Z/
 
   has_many :posts, class_name: "Post", inverse_of: :user
   #Posts marked as favorite of the user
