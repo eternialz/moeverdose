@@ -163,51 +163,87 @@ h6 {
   .column {
     display: inline-block;
     text-align: justify;
-    padding: 0.5%;
+    padding: 15px;
     float: left;
   }
 
   .f12 {
-    width: 99.7%;
+    width: 100%;
+  }
+
+  .f10 {
+    width: 83.33%;
+  }
+
+  .f8 {
+    width: 66.66%;
   }
 
   .f6 {
-    width: 49.7%;
+    width: 50%;
   }
 
   .f4 {
-    width: 33%;
+    width: 33.33%;
   }
 
   .f3 {
-    width: 24.7%;
+    width: 25%;
+  }
+
+  .f2 {
+    width: 16.66%;
   }
 
   @media (max-width: $device-small) {
+    .f2 {
+      width: 33.33%;
+    }
+
     .f3 {
-      width: 49.7%;
+      width: 50%;
     }
 
     .f4 {
-      width: 49.7%;
+      width: 50%;
     }
 
     .f6 {
-      width: 99.7%;
+      width: 100%;
+    }
+
+    .f8 {
+      width: 100%;
+    }
+
+    .f10 {
+      width: 100%;
     }
   }
 
   @media (max-width: $device-xsmall) {
+    .f2 {
+      width: 50%;
+    }
+
     .f3 {
-      width: 99.7%;
+      width: 100%;
     }
 
     .f4 {
-      width: 99.7%;
+      width: 100%;
     }
 
     .f6 {
-      width: 99.7%;
+      width: 100%;
+    }
+
+    .f8 {
+      width: 100%;
+    }
+
+    .f10 {
+      width: 100%;
     }
   }
 }
@@ -283,26 +319,32 @@ h6 {
   position: relative;
 
   .tip {
-    -webkit-transition: all 250ms linear;
+    --webkit-transition: all 250ms linear;
     -moz-transition: all 250ms linear;
     -o-transition: all 250ms linear;
     transition: all 250ms linear;
     pointer-events: none;
     position: absolute;
-    bottom: 100%;
+    bottom: calc(100% + 10px);
     left: calc(50% - 125px);
     width: 250px;
-    box-shadow: 0 1px 3px rgba(0,0,0,.25);
-    background: rgba(0,0,0,.9);
-    border-top: 1px solid #666;
-    border-left: 1px solid #666;
-    border-right: 1px solid #666;
+    background: rgba(0,0,0,.75);
     border-radius: 3px;
     color: #FFF;
-    font-weight: 900;
     text-align: center;
     padding: 7px 7px 9px 7px;
     opacity: 0;
+    font-weight: normal;
+
+    &::after {
+      position: absolute;
+      top: 100%;
+      left: calc(50% - 10px);
+      content: "";
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 10px solid rgba(0,0,0,.75);
+    }
   }
 
   &:hover .tip {
