@@ -32,7 +32,7 @@
 <div class="user_posts posts">
   <h2>Uploads</h2>
   <div class="clearfix">
-    <% @posts.each do |post| %>
+    <% @user.posts.each do |post| %>
       <div class="post-thumbnail  clearfix">
         <%= image_tag post.post_image.url(:thumb) %>
         <a title="<%= post.title %>" href="<%= post_path(post) %>" class="informations">
@@ -51,7 +51,7 @@
 <div class="user_favs posts">
   <h2>Favorites</h2>
   <div class="clearfix">
-    <% @posts.each do |post| %>
+    <% @user.favorites.each do |post| %>
       <div class="post-thumbnail  clearfix">
         <%= image_tag post.post_image.url(:thumb) %>
         <a title="<%= post.title %>" href="<%= post_path(post) %>" class="informations">
