@@ -17,6 +17,13 @@ Rails.application.routes.draw do
   patch "/posts/:id/overdose" => "posts#overdose"
   patch "/posts/:id/shortage" => "posts#shortage"
 
+  #Admin Section
+  scope :admin, as: :admin do
+    root 'admin/dashboard#index'
+
+    resources :users, controller: "admin/users", except: [:new, :create]
+  end
+
   devise_for :users, path: 'account', :controllers => { registrations: 'user_registrations' }
 
   resources :users, only: [:show, :edit, :update]
