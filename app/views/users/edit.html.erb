@@ -2,8 +2,7 @@
   <div class="user_header clearfix">
     <img class="avatar" src="<%= @user.avatar %>" width="120" height="120" />
     <div class="user_banner">
-      <button for="submit" class="action action-green tooltip"><%= fa_icon "save" %> Save profile<span class="tip">before saving, please fill your current password</span></button>
-      <%= f.password_field :current_password, placeholder: "current password", autocomplete: "off" %>
+      <button for="submit" class="action action-green"><%= fa_icon "save" %> Save profile</button>
       <h3><%= @user.name %></h3><br />
       <p><%= @user.role %> | Last seen: <%= @user.current_sign_in_at.to_time.strftime('%B %e at %l:%M %p') %></p>
     </div>

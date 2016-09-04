@@ -2,7 +2,7 @@
   <div class="user_header clearfix">
     <img class="avatar" src="<%= @user.avatar %>" width="120" height="120" />
     <div class="user_banner">
-      <a class="action action-blue" href="<%=  edit_user_registration_path %>"><%= fa_icon "edit" %> edit profile</a>
+      <a class="action action-blue" href="<%= edit_user_path %>"><%= fa_icon "edit" %> edit profile</a>
       <h3><%= @user.name %></h3><br />
       <p><%= @user.role %> | Last seen: <%= @user.current_sign_in_at.to_time.strftime('%B %e at %l:%M %p') %></p>
     </div>
@@ -20,11 +20,23 @@
       </div>
       <div class="column f4">
         <h4>Favorites Tags</h4>
-        <p>Nothing here</p>
+        <% if @favorites_tags.empty? %>
+          <p>Nothing here</p>
+        <% else %>
+          <% @favorites_tags.each do |tag| %>
+            <a class="tag"><%= tag %></a>
+          <% end %>
+        <% end %>
       </div>
       <div class="column f4">
         <h4>Blacklisted Tags</h4>
-        <p>Nothing here</p>
+        <% if @blacklisted_tags.empty? %>
+          <p>Nothing here</p>
+        <% else %>
+          <% @blacklisted_tags.each do |tag| %>
+            <a class="tag"><%= tag %></a>
+          <% end %>
+        <% end %>
       </div>
     </div>
   </div>

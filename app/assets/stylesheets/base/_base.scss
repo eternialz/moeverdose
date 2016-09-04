@@ -446,7 +446,7 @@ h6 {
 
 .tags {
   h3, a:hover, a.highlight, a.highlight:before {
-    color: $pink;
+    color: $pink !important;
   }
 }
 h3.tags {
@@ -455,7 +455,7 @@ h3.tags {
 
 .characters {
   h3, a:hover, a.highlight, a.highlight:before {
-    color: $blue;
+    color: $blue !important;
   }
 }
 h3.characters {
@@ -464,7 +464,7 @@ h3.characters {
 
 .authors {
   h3, a:hover, a.highlight, a.highlight:before {
-    color: $orange;
+    color: $orange !important;
   }
 }
 h3.authors {
@@ -475,4 +475,17 @@ h3.authors {
   h3 {
     color: $green;
   }
+}
+
+a.tag {
+  border: 2px solid;
+  font-weight: bold;
+  display: inline-block;
+  border-radius: 3px;
+  margin: 3px;
+  padding: 6px;
+}
+
+a.tag:hover {
+  color: $pink;
 }

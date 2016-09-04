@@ -3,6 +3,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(name: params[:id])
+    @favorites_tags = @user.favorites_tags.split(" ")
+    @blacklisted_tags = @user.blacklisted_tags.split(" ")
   end
 
   def create
