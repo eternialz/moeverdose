@@ -65,7 +65,7 @@ class PostsController < ApplicationController
 
     if author.empty?
       author = Tag.new({name: author_name.downcase.tr(" ", "_"),type: :author})
-      author_profile = Author.new({name: author_name.capitalize.tr(" ", "_"), posts: [@post]})
+      author_profile = Author.new({name: author_name, posts: [@post]})
     else
       author_profile = Author.find_by({name: author_name})
       author_profile.posts << @post
@@ -78,6 +78,8 @@ class PostsController < ApplicationController
 
     @post.width = dimensions.width
     @post.height = dimensions.height
+
+    @post.user = current_user
 
     if @post.save
       author_profile.save

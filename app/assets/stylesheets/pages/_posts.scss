@@ -74,6 +74,12 @@
   text-align: center;
   padding: 20px;
 
+  .post-info {
+    span a {
+      color: #FFF;
+    }
+  }
+
   .infos span {
     color: $pink;
     border-radius: 3px;
