@@ -1,3 +1,53 @@
+// LOGIN & SIGNUPS
+
+.user_form {
+  width: 100%;
+  padding: 25px;
+  margin: 25px auto;
+  max-width: 800px;
+  background: linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)), url($header-image);
+  background-position: center center;
+  background-size: cover;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+
+  h3 {
+    text-shadow: 0 1px 1px #000;
+  }
+
+  p {
+    color: #FFF;
+    text-align: center;
+  }
+
+  .links {
+    text-align: center;
+
+    a {
+      margin: 0 5px;
+      color: #CCC;
+      outline: none;
+      font-weight: 900;
+    }
+
+    a:hover {
+      color: #FFF;
+    }
+  }
+
+  label {
+    font-weight: 900;
+    padding: 10px;
+    color: #FFF;
+    background: rgba(0,0,0,.5);
+    border-radius: 3px;
+    display: inline-block;
+  }
+
+  label:hover {
+    background: rgba(0,0,0,.75);
+  }
+}
+
 // PROFILE
 
 .userprofile {
@@ -206,54 +256,6 @@
       color: #FFF;
       padding: 0 5px;
       font-weight: 900;
-    }
-
-    .field {
-      position: relative;
-      height: 45px;
-    }
-
-    .field , .field_area {
-      margin-bottom: 15px;
-      min-width: 300px;
-
-      input[type="text"], input[type="email"], input[type="password"], textarea {
-        background: none;
-        box-shadow: none;
-        color: #FFF;
-        background: rgba(0,0,0,.7);
-        border-radius: 3px;
-        border: 3px solid transparent;
-        padding: 10px;
-        width: 100%;
-      }
-
-      input[type="text"], input[type="email"], input[type="password"] {
-        padding-left: 160px;
-        position: absolute;
-        top: 0;
-        left: 0;
-      }
-
-      input[type="text"]:focus, input[type="email"]:focus,, input[type="password"]:focus textarea:focus {
-        border: 3px solid $blue;
-      }
-
-      span {
-        position: absolute;
-        z-index: 1;
-        padding: 12px 0;
-        display: inline-block;
-        width: 150px;
-        font-weight: 900;
-        text-align: right;
-        color: #FFF;
-
-        i {
-          float: left;
-          padding: 3px 0 0 10px;
-        }
-      }
     }
   }
 
