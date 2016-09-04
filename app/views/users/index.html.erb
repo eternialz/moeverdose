@@ -1,0 +1,13 @@
+<div class="user_list">
+  <div class="user_entry zone top">
+    <h3>TOP UPLOADER</h3>
+  </div>
+  <% @users.each do |user| %>
+    <a class="user_entry zone clearfix" href="<%= user_path(user.name) %>">
+      <%= image_tag user.avatar(:tiny), class: "avatar" %>
+      <h3><%= user.name %></h3>
+      <span class="upload_count"><%= user.upload_count %> post(s) uploaded</span>
+      <p><%= user.biography %></p>
+    </a>
+  <% end %>
+</div>

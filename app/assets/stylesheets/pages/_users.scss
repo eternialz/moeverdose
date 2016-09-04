@@ -1,3 +1,112 @@
+// LOGIN & SIGNUPS
+
+.user_form {
+  width: 100%;
+  padding: 25px;
+  margin: 25px auto;
+  max-width: 800px;
+  background: linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)), url($header-image);
+  background-position: center center;
+  background-size: cover;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+
+  h3 {
+    text-shadow: 0 1px 1px #000;
+  }
+
+  p {
+    color: #FFF;
+    text-align: center;
+  }
+
+  .links {
+    text-align: center;
+
+    a {
+      margin: 0 5px;
+      color: #CCC;
+      outline: none;
+      font-weight: 900;
+    }
+
+    a:hover {
+      color: #FFF;
+    }
+  }
+
+  label {
+    font-weight: 900;
+    padding: 10px;
+    color: #FFF;
+    background: rgba(0,0,0,.5);
+    border-radius: 3px;
+    display: inline-block;
+  }
+
+  label:hover {
+    background: rgba(0,0,0,.75);
+  }
+}
+
+// INDEX
+
+.user_list {
+  margin: 25px auto;
+  width: 100%;
+  max-width: 800px;
+
+  .user_entry {
+    display: block;
+    background: #FFF;
+    position: relative;
+    margin: 5px 0;
+    border-radius: 3px;
+    border: 2px solid transparent;
+    color: #555;
+    outline: none;
+
+    .avatar {
+      float: left;
+      border-radius: 3px;
+    }
+
+    h3 {
+      position: absolute;
+      top: 15px;
+      left: 85px;
+    }
+
+    &.top h3 {
+      margin: 10px;
+      text-align: center;
+      font-size: 1.56em;
+      position: static;
+    }
+
+    p {
+      position: absolute;
+      top: 40px;
+      left: 85px;
+
+    }
+
+    .upload_count {
+      float: right;
+      background: $blue;
+      color: #FFF;
+      font-weight: 900;
+      padding: 5px 8px;
+      border-radius: 3px;
+    }
+  }
+
+  a.user_entry:hover {
+    border-color: $blue;
+    .avatar {
+    }
+  }
+}
+
 // PROFILE
 
 .userprofile {
@@ -5,9 +114,9 @@
 
   .user_header {
     padding: 20px;
-    box-shadow: 0 1px 3px rgba(0,0,0,.25);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -200px 100px -100px rgba(0,0,0,.75);
     position: relative;
-    height: 240px;
+    height: 440px;
     background: url($header-image) no-repeat center center;
     background-size: cover;
 
@@ -16,8 +125,30 @@
       position: absolute;
       float: left;
       z-index: 100;
-      top: 100px;
+      top: 299px;
       border-radius: 3px;
+    }
+
+    .username {
+      position: absolute;
+      left: 160px;
+      bottom: 70px;
+      color: #FFF;
+      text-shadow: 0 1px 3px #000;
+      font-size: 2em;
+    }
+
+    .role {
+      position: absolute;
+      right: 20px;
+      bottom: 85px;
+      background: #FFF;
+      border-radius: 3px;
+      padding: 4px 15px 8px;
+      color: #555;
+      font-size: 1.2em;
+      font-weight: 900;
+      box-shadow: 0 1px 3px rgba(0,0,0,.25);
     }
 
     .user_banner {
@@ -102,6 +233,33 @@
     }
   }
 
+  #avatar_img {
+    margin: auto;
+    display: block;
+  }
+
+  #banners, #avatars {
+
+    input[type="file"] {
+      text-align: center;
+      margin-top: 15px;
+      text-align: center;
+      color: #FFF;
+      width: 100%;
+      padding: 25px;
+      background: rgba(0,0,0,.5);
+    }
+
+    p {
+      text-align: center;
+      margin-top: 15px;
+    }
+  }
+
+  #banner_img {
+    max-width: 100%;
+  }
+
   .user_header {
     border-color: $blue;
   }
@@ -146,53 +304,17 @@
     background-size: cover;
     background-attachment: fixed;
 
+    .column {
+      float: none;
+      display: block;
+      margin: auto;
+      width: 800px;
+    }
+
     p {
       color: #FFF;
       padding: 0 5px;
       font-weight: 900;
-    }
-
-    .field {
-      position: relative;
-      height: 45px;
-    }
-
-    .field , .field_area {
-      margin-bottom: 15px;
-      min-width: 300px;
-
-      input[type="text"], input[type="email"], input[type="password"], textarea {
-        background: none;
-        box-shadow: none;
-        color: #FFF;
-        background: rgba(0,0,0,.7);
-        border-radius: 3px;
-        border: 3px solid transparent;
-        padding: 10px;
-        width: 100%;
-      }
-
-      input[type="text"], input[type="email"], input[type="password"] {
-        padding-left: 160px;
-        position: absolute;
-        top: 0;
-        left: 0;
-      }
-
-      input[type="text"]:focus, input[type="email"]:focus,, input[type="password"]:focus textarea:focus {
-        border: 3px solid $blue;
-      }
-
-      span {
-        position: absolute;
-        z-index: 1;
-        padding: 12px 0;
-        display: inline-block;
-        width: 150px;
-        font-weight: 900;
-        text-align: right;
-        color: #FFF;
-      }
     }
   }
 
@@ -227,7 +349,4 @@
       }
     }
   }
-
-
-
 }

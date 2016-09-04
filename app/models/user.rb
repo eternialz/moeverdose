@@ -42,6 +42,8 @@ class User
   validates :name,  uniqueness: true
   validates :name,  presence: true
 
+  field :biography, type: String, default: ""
+
   field :website,   type: String, default: ""
 
   field :twitter,   type: String, default: ""
@@ -52,19 +54,24 @@ class User
   field :encrypted_password
   validates :encrypted_password, presence: true, confirmation: true
 
-  has_mongoid_attached_file :avatar, styles: { thumb: "120x120#", tiny: "60x60#" }, default_url: "/images/default_user.png"
+  has_mongoid_attached_file :avatar, styles: { :thumb => {:geometry => "120x120#"}, :tiny => {:geometry => "60x60#"}}, default_url: "/images/default_user.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
-  has_mongoid_attached_file :banner, styles: { thumb: "1600x240#" }, default_url: "/images/default_banner.png"
+  has_mongoid_attached_file :banner, styles: { :normal => {:geometry => "1600x440#"}}, default_url: "/images/default_banner.png"
   validates_attachment_content_type :banner, content_type: /\Aimage\/.*\Z/
 
   has_many :posts, class_name: "Post", inverse_of: :user
+  field :upload_count, type: Integer, default: 0
+
   #Posts marked as favorite of the user
   has_many :favorites, class_name: "Post", inverse_of: nil
   has_many :liked_posts, class_name: "Post", inverse_of: nil
   has_many :disliked_posts, class_name: "Post", inverse_of: nil
 
   has_many :comments, class_name: "Comment", inverse_of: :user
+
+  field :favorites_tags, type: String, default: ""
+  field :blacklisted_tags, type: String, default: ""
 
   field :report, type: Boolean, default: false
   alias_method :report?, :report

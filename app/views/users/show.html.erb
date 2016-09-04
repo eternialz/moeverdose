@@ -1,11 +1,12 @@
 <div class="userprofile">
-  <div class="user_header clearfix">
-    <img class="avatar" src="<%= @user.avatar %>" width="120" height="120" />
-    <div class="user_banner">
-      <a class="action action-blue" href="<%=  edit_user_registration_path %>"><%= fa_icon "edit" %> edit profile</a>
-      <h3><%= @user.name %></h3><br />
-      <p><%= @user.role %> | Last seen: <%= @user.current_sign_in_at.to_time.strftime('%B %e at %l:%M %p') %></p>
-    </div>
+  <div class="user_header clearfix" style="background-image: url(<%= @user.banner(:normal) %>)">
+    <img class="avatar" src="<%= @user.avatar(:thumb) %>" width="120" height="120" />
+      <h3 class="username"><%= @user.name %></h3><span class="role"><%= @user.role %></span>
+      <div class="user_banner">
+        <a class="action action-blue" href="<%= edit_user_path %>"><%= fa_icon "edit" %> edit profile</a>
+        <h3><%= @user.biography %></h3><br />
+        <p> Last seen: <%= @user.current_sign_in_at.to_time.strftime('%B %e at %l:%M %p') %></p>
+      </div>
   </div>
   <div class="normal_informations zone clearfix">
     <p class="bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone.</p>
@@ -13,18 +14,30 @@
       <div class="stats column f4">
         <h4>Stats</h4>
         <ul class="user_stats">
-          <li>126039 uploads</li>
+          <li><%= @user.upload_count %> upload(s)</li>
           <li>666 comments</li>
           <li>126039 uploads</li>
         </ul>
       </div>
       <div class="column f4">
         <h4>Favorites Tags</h4>
-        <p>Nothing here</p>
+        <% if @favorites_tags.empty? %>
+          <p>Nothing here</p>
+        <% else %>
+          <% @favorites_tags.each do |tag| %>
+            <a class="tag"><%= tag %></a>
+          <% end %>
+        <% end %>
       </div>
       <div class="column f4">
         <h4>Blacklisted Tags</h4>
-        <p>Nothing here</p>
+        <% if @blacklisted_tags.empty? %>
+          <p>Nothing here</p>
+        <% else %>
+          <% @blacklisted_tags.each do |tag| %>
+            <a class="tag"><%= tag %></a>
+          <% end %>
+        <% end %>
       </div>
     </div>
   </div>
@@ -32,7 +45,7 @@
 <div class="user_posts posts">
   <h2>Uploads</h2>
   <div class="clearfix">
-    <% @posts.each do |post| %>
+    <% @user.posts.each do |post| %>
       <div class="post-thumbnail  clearfix">
         <%= image_tag post.post_image.url(:thumb) %>
         <a title="<%= post.title %>" href="<%= post_path(post) %>" class="informations">
@@ -51,7 +64,7 @@
 <div class="user_favs posts">
   <h2>Favorites</h2>
   <div class="clearfix">
-    <% @posts.each do |post| %>
+    <% @user.favorites.each do |post| %>
       <div class="post-thumbnail  clearfix">
         <%= image_tag post.post_image.url(:thumb) %>
         <a title="<%= post.title %>" href="<%= post_path(post) %>" class="informations">
