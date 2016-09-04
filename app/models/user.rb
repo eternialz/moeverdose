@@ -42,6 +42,8 @@ class User
   validates :name,  uniqueness: true
   validates :name,  presence: true
 
+  field :bio, type: String, default: ""
+
   field :website,   type: String, default: ""
 
   field :twitter,   type: String, default: ""
@@ -65,6 +67,9 @@ class User
   has_many :disliked_posts, class_name: "Post", inverse_of: nil
 
   has_many :comments, class_name: "Comment", inverse_of: :user
+
+  field :favorites_tags, type: String, default: ""
+  field :blacklisted_tags, type: String, default: ""
 
   field :report, type: Boolean, default: false
   alias_method :report?, :report

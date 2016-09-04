@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   patch "/posts/:id/overdose" => "posts#overdose"
   patch "/posts/:id/shortage" => "posts#shortage"
 
-  devise_for :users, path: 'account', :controllers => { registrations: 'registrations' }
+  devise_for :users, path: 'account', :controllers => { registrations: 'users' }
 
   resources :users
 

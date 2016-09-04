@@ -3,11 +3,14 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(name: params[:id])
-    @posts = Post.all
   end
 
   def create
     redirect_to post_path(@user)
+  end
+
+  def edit
+
   end
 
   def new
@@ -15,15 +18,34 @@ class UsersController < ApplicationController
   end
 
   def update
+    @user.update_attributes(account_update_params)
+    tags = params[:tags]
 
+    @user.favorites_tags = tags[:favorites]
+    @user.blacklisted_tags = tags[:blacklisted]
+
+    if @user.save
+      redirect_to(user_path(@user.name))
+    else
+      redirect_to(edit_user_path(@user.name))
+    end
   end
 
   def destroy
 
   end
-  private
 
+  private
   def set_user
     @user = User.find_by(name: params[:id])
+  end
+
+  def sign_up_params
+    binding.pry
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def account_update_params
+    params.require(:user).permit(:email, :password, :password_confirmation, :avatar, :banner, :website, :facebook, :twitter)
   end
 end

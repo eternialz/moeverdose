@@ -1,4 +1,4 @@
-<%= form_for @user, as: @user, url: user_path(current_user.name), html: {class: "userprofile edit", method: :patch } do |f| %>
+<%= form_for current_user, url: user_path(current_user.name), html: {class: "userprofile edit", method: :patch } do |f| %>
   <div class="user_header clearfix">
     <img class="avatar" src="<%= @user.avatar %>" width="120" height="120" />
     <div class="user_banner">
@@ -8,9 +8,6 @@
       <p><%= @user.role %> | Last seen: <%= @user.current_sign_in_at.to_time.strftime('%B %e at %l:%M %p') %></p>
     </div>
   </div>
-
-  <%= devise_error_messages! %>
-
   <input type="radio" name="tabs" class="hide" id="profile" checked>
   <div class="user_option" id="profiles">
     <ul class="user_edit_nav">
@@ -29,36 +26,26 @@
     </div>
     <div class="row clearfix">
       <div class="column">
-        <div class="field_area">
-          <p><%= fa_icon "user" %> About me:</p>
-          <%= f.text_area :name, placeholder: "1boy" %>
+        <div class="field tooltip">
+          <%= f.text_field :bio, placeholder: "Master of daruma otoshi" %>
+          <span><%= fa_icon "user" %> About me:</span>
+          <div class="tip">Displayed near your username max 200 characters</div>
         </div>
-        <div class="field">
+        <div class="field tooltip">
           <%= f.text_field :website, placeholder: "https://mywebsite.me" %>
-          <span><%= fa_icon "link" %> website url:</span>
+          <span><%= fa_icon "link" %> Website url:</span>
+          <div class="tip">The link to your website with http(s)://</div>
         </div>
-        <div class="field">
-          <%= f.text_field :twitter, placeholder: "@twitter" %>
-          <span><%= fa_icon "twitter" %> twitter profile:</span>
+        <div class="field tooltip">
+          <%= f.text_field :twitter, placeholder: "@twitter or https://twitter.com/moeverdose" %>
+          <span><%= fa_icon "twitter" %> Twitter profile:</span>
+          <div class="tip">Your twitter username without the "@" or twitter profile url</div>
         </div>
-        <div class="field">
+        <div class="field tooltip">
           <%= f.text_field :facebook, placeholder: "https://www.facebook.com/my.profile" %>
           <span><%= fa_icon "facebook" %> Facebook url:</span>
+          <div class="tip">The full url to your facebook profile/page</div>
         </div>
-      </div>
-      <div class="column">
-        <div class="field_area">
-          <p><%= fa_icon "tag" %> favorite tags:</p>
-          <%= f.text_area :name, placeholder: "1girl brown_hair" %>
-        </div>
-        <p>Favorites tags are displayed as buttons to you when uploading a post to quickly add tags to the post. Replace spaces by underscores and use spaces to separate tags.</p>
-      </div>
-      <div class="column">
-        <div class="field_area">
-          <p><%= fa_icon "tag" %> blacklisted tags:</p>
-          <%= f.text_area :name, placeholder: "1boy" %>
-        </div>
-        <p>Posts with a blacklisted tag won't be displayed in the post list if you are logged-in. Replace spaces by underscores and use spaces to separate tags.</p>
       </div>
     </div>
   </div>
@@ -85,10 +72,21 @@
       <li><label for="tag" class="active">Tag options</label></li>
       <li><label for="security">Security</label></li>
     </ul>
-    <div class="field">
-      <!-- Fav tags -->
-      <!-- Blacklisted tags -->
-      <!-- Fav tags -->
+    <div class="row clearfix">
+      <div class="column">
+        <div class="field_area">
+          <p><%= fa_icon "tag" %> Favorites tags:</p>
+          <%= text_area :tags, :favorites, placeholder: "1girl brown_hair", value: @user.favorites_tags  %>
+        </div>
+        <p>Favorites tags are displayed as buttons to you when uploading a post to quickly add tags to the post. Replace spaces by underscores and use spaces to separate tags.</p>
+      </div>
+      <div class="column">
+        <div class="field_area">
+          <p><%= fa_icon "tag" %> Blacklisted tags:</p>
+          <%= text_area :tags, :blacklisted, placeholder: "1boy", value: @user.blacklisted_tags %>
+        </div>
+        <p>Posts with a blacklisted tag won't be displayed in the post list if you are logged-in. Replace spaces by underscores and use spaces to separate tags.</p>
+      </div>
     </div>
   </div>
 
@@ -102,18 +100,5 @@
     </ul>
     <!-- Display fav tags on profile -->
     <!-- Display blacklisted tags on profile -->
-    <p>If you want to change your password, fill the followings fields. Your password need to be at leat <%= @minimum_password_length %> characters long.
-    <div class="field">
-      <span>New password:</span>
-      <%= f.password_field :password, autocomplete: "off" %>
-      <% if @minimum_password_length %>
-        <br />
-      <% end %>
-    </div>
-
-    <div class="field">
-      <span>Confirmation:</span>
-      <%= f.password_field :password_confirmation, autocomplete: "off" %>
-    </div>
   </div>
 <% end %>

@@ -146,6 +146,13 @@
     background-size: cover;
     background-attachment: fixed;
 
+    .column {
+      float: none;
+      display: block;
+      margin: auto;
+      width: 800px;
+    }
+
     p {
       color: #FFF;
       padding: 0 5px;
@@ -192,6 +199,11 @@
         font-weight: 900;
         text-align: right;
         color: #FFF;
+
+        i {
+          float: left;
+          padding: 3px 0 0 10px;
+        }
       }
     }
   }
@@ -227,7 +239,4 @@
       }
     }
   }
-
-
-
 }
