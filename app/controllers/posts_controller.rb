@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-  before_action :set_post, only: [:edit, :update, :show, :destroy]
+  before_action :set_post, only: [:edit, :update, :show, :destroy, :overdose, :shortage]
 
   def show
     @comments = [1]
@@ -12,6 +12,43 @@ class PostsController < ApplicationController
       elsif tag.character?
         @characters << tag.name
       end
+    end
+    if @post.overdose == 0 && @post.moe_shortage == 0
+      @overdose = 50
+      @shortage = 50
+    else
+      @overdose = @post.overdose / (@post.overdose + @post.moe_shortage).to_f * 100
+      @shortage = 100 - @overdose
+    end
+  end
+
+  def overdose
+    if user_signed_in?
+      if current_user.liked_posts.exclude?(@post)
+        @post.overdose += 1
+        @post.save
+        current_user.liked_posts << @post
+        head 200
+      else
+        head 403
+      end
+    else
+      head 403
+    end
+  end
+
+  def shortage
+    if user_signed_in?
+      if current_user.disliked_posts.exclude?(@post)
+        @post.moe_shortage += 1
+        @post.save
+        current_user.disliked_posts << @post
+        head 200
+      else
+        head 403
+      end
+    else
+      head 403
     end
   end
 

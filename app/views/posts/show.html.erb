@@ -1,5 +1,9 @@
 <div class="row posts">
+  <% if user_signed_in? %>
+  <div class="post-container" style="background-image: url(<%= image_url(@post.post_image.url)%>)" data-username="<%= current_user.name %>">
+  <% else %>
   <div class="post-container" style="background-image: url(<%= image_url(@post.post_image.url)%>)">
+  <% end %>
     <div class="post">
       <h2><%= @post.title %></h2>
       <%= image_tag @post.post_image.url %>
@@ -18,12 +22,12 @@
       </div>
     </div>
     <div id="post-score" class="clearfix">
-      <div class="overdose_bar clearfix">
-        <span class="overdose_score">0</span>
+      <div class="overdose_bar clearfix" style="width: <%= @overdose %>%">
+        <span class="overdose_score"><%= @post.overdose %></span>
       </div>
       <a class="overdose"><%= fa_icon "heartbeat" %> MOE OVERDOSE</a>
-      <div class="shortage_bar clearfix">
-        <span class="shortage_score">0</span>
+      <div class="shortage_bar clearfix" style="width: <%= @shortage %>%">
+        <span class="shortage_score"><%= @post.moe_shortage %></span>
       </div>
       <a class="shortage">MOE SHORTAGE <%= fa_icon "thumbs-down" %></a>
     </div>
