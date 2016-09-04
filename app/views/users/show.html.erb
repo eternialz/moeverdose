@@ -1,6 +1,6 @@
 <div class="userprofile">
-  <div class="user_header clearfix">
-    <img class="avatar" src="<%= @user.avatar %>" width="120" height="120" />
+  <div class="user_header clearfix" style="background-image: url(<%= @user.banner(:normal) %>)">
+    <img class="avatar" src="<%= @user.avatar(:thumb) %>" width="120" height="120" />
     <div class="user_banner">
       <a class="action action-blue" href="<%= edit_user_path %>"><%= fa_icon "edit" %> edit profile</a>
       <h3><%= @user.name %></h3><br />

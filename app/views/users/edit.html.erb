@@ -1,6 +1,6 @@
 <%= form_for current_user, url: user_path(current_user.name), html: {class: "userprofile edit", method: :patch } do |f| %>
-  <div class="user_header clearfix">
-    <img class="avatar" src="<%= @user.avatar %>" width="120" height="120" />
+  <div class="user_header clearfix" style="background-image: url(<%= @user.banner(:normal) %>)">
+    <img class="avatar" src="<%= @user.avatar(:thumb) %>" width="120" height="120" />
     <div class="user_banner">
       <button for="submit" class="action action-green"><%= fa_icon "save" %> Save profile</button>
       <h3><%= @user.name %></h3><br />
@@ -11,18 +11,11 @@
   <div class="user_option" id="profiles">
     <ul class="user_edit_nav">
       <li><label for="profile" class="active">Public Profile</label></li>
-      <li><label for="account">Account</label></li>
+      <li><label for="avatar">Avatar</label></li>
+      <li><label for="banner">Banner</label></li>
       <li><label for="tag">Tag options</label></li>
       <li><label for="security">Security</label></li>
     </ul>
-    <div class="row">
-      <%= image_tag @user.avatar, id: "avatar" %>
-      <%= f.file_field :avatar %>
-    </div>
-    <div class="row">
-      <%= image_tag @user.banner, id: "banner" %>
-      <%= f.file_field :banner %>
-    </div>
     <div class="row clearfix">
       <div class="column">
         <div class="field tooltip">
@@ -49,17 +42,37 @@
     </div>
   </div>
 
-  <input type="radio" name="tabs" class="hide" id="account">
-  <div class="user_option" id="accounts">
+  <input type="radio" name="tabs" class="hide" id="avatar">
+  <div class="user_option" id="avatars">
     <ul class="user_edit_nav">
       <li><label for="profile">Public Profile</label></li>
-      <li><label for="account" class="active">Account</label></li>
+      <li><label for="avatar" class="active">Avatar</label></li>
+      <li><label for="banner">Banner</label></li>
       <li><label for="tag">Tag options</label></li>
       <li><label for="security">Security</label></li>
     </ul>
-    <div class="field">
-      <span>Email:</span>
-      <%= f.email_field :email, autofocus: true %>
+    <div class="row image">
+      <div class="banner_upload">
+        <%= f.file_field :avatar %>
+      </div>
+      <%= image_tag @user.avatar, id: "avatar_img" %>
+      <p>Files are resized and cropped to 120x120px</p>
+    </div>
+  </div>
+
+  <input type="radio" name="tabs" class="hide" id="banner">
+  <div class="user_option" id="banners">
+    <ul class="user_edit_nav">
+      <li><label for="profile">Public Profile</label></li>
+      <li><label for="avatar">Avatar</label></li>
+      <li><label for="banner" class="active">Banner</label></li>
+      <li><label for="tag">Tag options</label></li>
+      <li><label for="security">Security</label></li>
+    </ul>
+    <div class="row image">
+      <%= f.file_field :banner %>
+      <%= image_tag @user.banner(:normal), id: "banner_img", width: 1600, height: 440  %>
+      <p>Files are resized and cropped to 1600x440px</p>
     </div>
   </div>
 
@@ -67,7 +80,8 @@
   <div class="user_option" id="tags">
     <ul class="user_edit_nav">
       <li><label for="profile">Public Profile</label></li>
-      <li><label for="account">Account</label></li>
+      <li><label for="avatar">Avatar</label></li>
+      <li><label for="banner">Banner</label></li>
       <li><label for="tag" class="active">Tag options</label></li>
       <li><label for="security">Security</label></li>
     </ul>
@@ -93,7 +107,8 @@
   <div class="user_option" id="securitys">
     <ul class="user_edit_nav">
       <li><label for="profile">Public Profile</label></li>
-      <li><label for="account">Account</label></li>
+      <li><label for="avatar">Avatar</label></li>
+      <li><label for="banner">Banner</label></li>
       <li><label for="tag">Tag options</label></li>
       <li><label for="security" class="active">Security</label></li>
     </ul>
