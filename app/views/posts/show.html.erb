@@ -9,9 +9,9 @@
         <span id="width-height"><%= @post.width.to_s + " x " + @post.height.to_s %>px</span>
         <span id="type"><%= @post.post_image_content_type.split("/")[-1].upcase %></span>
         <span id="size"><%= '%.3f' % (@post.post_image_file_size.to_f / 1048576).to_s + ' MB' %></span>
-        <span id="date"><%= @post.post_image_updated_at %></span>
+        <span id="date"><%= @post.post_image_updated_at.to_time.strftime('%B %e at %l:%M %p') %></span>
       </div>
-      <span><%= fa_icon "upload" %> Uploaded by: <a>Eternialz</a></span>
+      <span><%= fa_icon "upload" %> Uploaded by: <%= link_to @post.user.name, user_path(@post.user.name) %></span>
       <% if @post.source != "" %>
         <span><%= fa_icon "file" %> Source: <%= @post.source %></span>
       <% end %>
