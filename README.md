@@ -20,56 +20,56 @@ Admin can edit user Roles
 
 ### Posts system
 
-* Title
-* Source
+* ~~Index~~
+* ~~Show~~
+* ~~Update~~
+* ~~Upload~~
+* ~~Title~~
+* ~~Source~~
 * Author
 * Tags
-* Image
+* ~~Image~~
 * Comments
   * Replies
 * Overdoses
 * Moe shortage
-* Score
-* Uploader
+* ~~Uploader~~
 * Report
-* Add/remove tags and users.
-* Contributor can edit author field
+* ~~Add/remove tags and chara.~~
+
+Post system id working
 
 ### Tag and alias system
 
-
-* name
-* types
-  * Characters
-  * Author
-  * Content
+* ~~name~~
+* ~~types~~
+  * ~~Characters~~
+  * ~~Author~~
+  * ~~Content~~
 * post count
-* downcased name with underscores? or we redo it each time?
-
-Aliases are tags but in the posts pages, they are replaced by their parent.
-Aliases can't have aliases in order to prevent aliases linking to themselves.
+* ~~downcased name with underscores~~
+* aliases creation
+* aliases list
 
 ### Users system
 
 * favorites
 * blacklist tags
-* blacklist users
-* blacklist authors
-* follow tags
+* favorites tags
 * notifications
 * page for notification or search of followed tags
 * stats
-  * post count
+  * ~~post count~~
   * favorites count
   * author count
   * overdoses count
   * moe shortage count
-  * join date
+  * ~~join date~~
   * comment count
-* roles
-* post navigation
+* ~~roles~~
+* ~~post navigation~~
 
-I suggest the use of Devise to créate the authentication system
+* Authentication system is working
 
 ### Comment system
 
@@ -91,7 +91,6 @@ Then, in the post, there is a need to display that we need more informations abo
 ### Other
 * ~~Static pages~~
 * Prevent user deletion if they are not regular users
-* "Overdose" as post like and "Moe Shortage" as post dislike
 * Users page can be filtered with: best uploader
 * Posts page can be filtered by: overdose, moe shortages, popularity, recent posts, tags, characters, authors
 * Random link to a post
@@ -101,13 +100,13 @@ Then, in the post, there is a need to display that we need more informations abo
 
 ### **Priorities**
 
-* 1 Posts system
-* 2 User system
-* 3 Comments system
-* 4 Author system
-* 5 Tag system
-* 6 Filter posts
-* 7 Alias system
+* 1 Posts system 80%
+* 2 User system 60%
+* 3 Comments system 5%
+* 4 Author system 5%
+* 5 Tag system 10%
+* 6 Filter posts 0%
+* 7 Alias system 0%
 
 # Branches
 
