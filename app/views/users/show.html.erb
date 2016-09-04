@@ -1,0 +1,82 @@
+<div class="userprofile">
+  <div class="user_header clearfix" style="background-image: url(<%= @user.banner(:normal) %>)">
+    <img class="avatar" src="<%= @user.avatar(:thumb) %>" width="120" height="120" />
+      <h3 class="username"><%= @user.name %></h3><span class="role"><%= @user.role %></span>
+      <div class="user_banner">
+        <a class="action action-blue" href="<%= edit_user_path %>"><%= fa_icon "edit" %> edit profile</a>
+        <h3><%= @user.biography %></h3><br />
+        <p> Last seen: <%= @user.current_sign_in_at.to_time.strftime('%B %e at %l:%M %p') %></p>
+      </div>
+  </div>
+  <div class="normal_informations zone clearfix">
+    <p class="bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone.</p>
+    <div class="advanced_informations row">
+      <div class="stats column f4">
+        <h4>Stats</h4>
+        <ul class="user_stats">
+          <li><%= @user.upload_count %> upload(s)</li>
+          <li>666 comments</li>
+          <li>126039 uploads</li>
+        </ul>
+      </div>
+      <div class="column f4">
+        <h4>Favorites Tags</h4>
+        <% if @favorites_tags.empty? %>
+          <p>Nothing here</p>
+        <% else %>
+          <% @favorites_tags.each do |tag| %>
+            <a class="tag"><%= tag %></a>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="column f4">
+        <h4>Blacklisted Tags</h4>
+        <% if @blacklisted_tags.empty? %>
+          <p>Nothing here</p>
+        <% else %>
+          <% @blacklisted_tags.each do |tag| %>
+            <a class="tag"><%= tag %></a>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="user_posts posts">
+  <h2>Uploads</h2>
+  <div class="clearfix">
+    <% @user.posts.each do |post| %>
+      <div class="post-thumbnail  clearfix">
+        <%= image_tag post.post_image.url(:thumb) %>
+        <a title="<%= post.title %>" href="<%= post_path(post) %>" class="informations">
+          <h3><%= post.title %></h3>
+          <span class="post-stats">
+            <span title="overdose(s)"><%= post.overdose %> <%= fa_icon "heartbeat" %> </span>
+            <span title="shortage(s)"><%= post.moe_shortage %> <%= fa_icon "thumbs-down" %> </span>
+            <!-- TODO integrate post comment count -->
+            <span title="comment(s)"><%= 0 %> <%= fa_icon "comment" %></span>
+          </span>
+        </a>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="user_favs posts">
+  <h2>Favorites</h2>
+  <div class="clearfix">
+    <% @user.favorites.each do |post| %>
+      <div class="post-thumbnail  clearfix">
+        <%= image_tag post.post_image.url(:thumb) %>
+        <a title="<%= post.title %>" href="<%= post_path(post) %>" class="informations">
+          <h3><%= post.title %></h3>
+          <span class="post-stats">
+            <span title="overdose(s)"><%= post.overdose %> <%= fa_icon "heartbeat" %> </span>
+            <span title="shortage(s)"><%= post.moe_shortage %> <%= fa_icon "thumbs-down" %> </span>
+            <!-- TODO integrate post comment count -->
+            <span title="comment(s)"><%= 0 %> <%= fa_icon "comment" %></span>
+          </span>
+        </a>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -37,14 +37,33 @@ nav.menu {
       text-align: right;
       padding: 5px 10px;
 
+      a {
+        display: inline-block;
+        color: #EEE;
+        margin: 0 0 8px 0;
+      }
+
       span {
         float: right;
       }
 
       img {
+      }
+
+      a.avatar {
+        padding: 0;
         float: right;
+        border-radius: 6px;
+        border: 3px solid rgba(0,0,0,0);
+        overflow: hidden;
+         img {
+           float: left;
+         }
+      }
+
+      a.avatar:hover {
+        border-color: $blue;
         border-radius: 3px;
-        border: 1px solid #666;
       }
     }
   }
@@ -57,7 +76,7 @@ nav.menu {
       display: inline-block;
 
       a {
-        color: #FFF;
+        color: #EEE;
         font-weight: bold;
         padding: 5px 10px;
         text-align: center;
@@ -67,6 +86,11 @@ nav.menu {
       	transition:all 100ms linear;
       }
     }
+  }
+
+  a:hover {
+    color: #FFF;
+    text-shadow: 0 0 2px rgba(255,255,255,0.7);
   }
 
   .submenu {
@@ -166,6 +190,7 @@ nav.menu {
 
     a:hover, a:hover:before {
       color: $pink;
+      text-shadow: none;
     }
   }
 

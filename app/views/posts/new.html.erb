@@ -1,32 +1,38 @@
-<form class="upload clearfix">
+<%= form_for @post, url: posts_path, html: {class: "upload clearfix"} do |f| %>
   <div id="file_upload">
-    <input type="file" name="files" id="files" required="required" accept="image/*" />
+    <%= f.file_field :post_image, required: "required" %>
     <div class="file-dummy">
       <span class="success">Nice! <br /><span id="message">Please respect the rules for posts while uploading</span></span>
-      <span class="default">Click to select the image or drop it here<br /><span id="message">waiting for image...</span></span>
+      <span class="normal"><%= fa_icon "image" %> Click to select the image or drop it here<br /><span id="message">waiting for image...</span></span>
     </div>
     <img id="file"/>
   </div>
-  <div id="info_upload">
-    <div class="tags">
-      <h3><%= fa_icon "tag" %> Tags<span>required (at least three)</span></h3>
-      <textarea placeholder='Tags ("1girl glasses")'></textarea>
+  <div id="info_upload" class="row">
+    <div class="header column f4">
+      <h3><%= fa_icon "header" %> Title<span class="required">required</span></h3>
+      <input type="text" name="post[title]" placeholder='Title'></textarea>
     </div>
-    <div class="characters">
-      <h3><%= fa_icon "group" %> Character(s)</h3>
-      <textarea placeholder='Characters ("illyasviel_von_einzbern")'></textarea>
-    </div>
-    <div class="authors">
-      <h3><%= fa_icon "user" %> Author<span>required</span></h3>
+    <div class="authors column f4">
+      <h3><%= fa_icon "user" %> Author<span class="required">required</span></h3>
       <input type="text" name="author" placeholder='Author ("hayao_miyazaki")'></textarea>
     </div>
-    <h3><%= fa_icon "header" %> Title<span>required</span></h3>
-    <input type="text" name="title" placeholder='Title'></textarea>
+    <div class="source column f4">
+      <h3 class="yellow"><%= fa_icon "rss" %> Source</h3>
+      <input type="text" name="post[source]" placeholder='Source'></textarea>
+    </div>
+    <div class="tags column f6">
+      <h3><%= fa_icon "tag" %> Tags<span class="required">required (at least three)</span></h3>
+      <textarea name="tags" placeholder='Tags ("1girl glasses")'></textarea>
+    </div>
+    <div class="characters column f6">
+      <h3><%= fa_icon "group" %> Character(s)</h3>
+      <textarea name="characters" placeholder='Character(s) ("illyasviel_von_einzbern")'></textarea>
+    </div>
   </div>
   <div style="text-align:center;">
     <input type="submit" class="btn" value="Upload">
   </div>
-</form>
+<% end %>
 
 <script>
 function readURL(input) {
@@ -42,7 +48,7 @@ function readURL(input) {
     }
 }
 
-$("#files").change(function(){
+$("#post_post_image").change(function(){
     readURL(this);
 });
 </script>

@@ -14,4 +14,11 @@ Rails.application.routes.draw do
     resources :comments
   end
 
+  patch "/posts/:id/overdose" => "posts#overdose"
+  patch "/posts/:id/shortage" => "posts#shortage"
+
+  devise_for :users, path: 'account', :controllers => { registrations: 'user_registrations' }
+
+  resources :users, only: [:show, :edit, :update, :index]
+
 end

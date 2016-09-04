@@ -7,8 +7,9 @@
 
 .post-container {
   box-shadow: 0 1px 3px rgba(0,0,0,.25);
-  border-bottom: 10px solid $pink;
-  margin-bottom: 20px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 #post-score {
@@ -20,8 +21,12 @@
     float: left;
     position: relative;
     height: 62px;
-    max-width: 80%;
-    min-width: 20%;
+    max-width: 75%;
+    min-width: 25%;
+    -webkit-transition:all 500ms ease-in-out;
+    -moz-transition:all 500ms ease-in-out;
+    -o-transition:all 500ms ease-in-out;
+    transition:all 500ms ease-in-out;
   }
 
   a, span {
@@ -59,24 +64,27 @@
 
   .overdose_bar {
     background: $pink;
-    width: 90%;
+    width: 50%;
   }
 
   .shortage_bar {
     background: $blue;
-    width: 10%;
+    width: 50%;
   }
-
 }
 
 .post {
-  background-repeat: no-repeat;
-  background-size: cover;
   box-shadow: 0 0 0 10000px rgba(0,0,0,.75) inset;
   text-align: center;
   padding: 20px;
 
-  label {
+  .post-info {
+    span a {
+      color: #FFF;
+    }
+  }
+
+  .infos span {
     color: $pink;
     border-radius: 3px;
     padding: 8px;
@@ -91,7 +99,7 @@
     transition:all 100ms linear;
   }
 
-  label:hover {
+  .infos span:hover {
     background: rgba(0,0,0,1);
   }
 
@@ -117,17 +125,16 @@
 
 .post-details {
   background: #FFF;
-  padding: 10px;
   text-align: center;
 
   .next, .previous {
     float: left;
     width: 49%;
+    max-width: 195.5px;
   }
 
   .next {
     margin-left: 2%;
-    text-align: right;
   }
 
   .column {
@@ -147,43 +154,31 @@
   .author > a {
     padding: 10px;
   }
-
-  a.tag {
-    border: 2px solid;
-    font-weight: bold;
-    display: inline-block;
-    border-radius: 3px;
-    margin: 3px;
-    padding: 6px;
-  }
 }
 
-.posts-index {
+.posts {
   max-width: 1600px;
   width: 100%;
   margin: auto;
-  margin-top: -12px;
-  text-align: center;
-
-  img {
-    float: left;
-  }
 
   .post-container {
-    box-shadow: 0 -2px 0 0 $pink inset;
   }
 
   .post-thumbnail {
     display: inline-block;
     position: relative;
-    margin: -2px;
+    float: left;
+
+    img {
+      float: left;
+    }
 
     .informations {
       position: absolute;
       top: 0;
       left: 0;
       opacity: 0;
-      background-image: linear-gradient(rgba(0,0,0,.25) 50%, #000 100%);
+      background-image: linear-gradient(rgba(0,0,0,.25) 0%, #000 130%);
       width: 100%;
       height: 100%;
       padding: 140px 0 10px 10px;
@@ -229,12 +224,6 @@
     border-bottom: 1px solid rgba(0,0,0,.1);
     padding: 10px;
     font-size: 1em;
-
-    span {
-      padding-left: 20px;
-      font-size: 0.8em;
-      color: #999;
-    }
   }
 
   input[type="submit"] {
@@ -271,7 +260,6 @@
       height: 100px;
       font-weight: 900;
       background: rgba(255,255,255,0.2);
-      border: 3px dashed rgba(255,255,255,0.2);
       -webkit-transition:all 100ms linear;
       -moz-transition:all 100ms linear;
       -o-transition:all 100ms linear;
@@ -301,11 +289,6 @@
       background: rgba(255,255,255,0.1);
     }
 
-    input[type=file]:focus + .file-dummy {
-      outline: 2px solid rgba(255,255,255,0.5);
-      outline: -webkit-focus-ring-color auto 5px;
-    }
-
     input[type=file]:valid + .file-dummy {
       border-color: $green;
       background-color: $green;
@@ -313,7 +296,7 @@
       .success {
         display: inline;
       }
-      .default {
+      .normal {
         display: none;
       }
     }
@@ -325,5 +308,33 @@
 
   #info_upload {
     padding: 10px;
+  }
+}
+
+// Post Editing
+
+#post_edit {
+  display: none;
+
+  &:checked + form {
+    display: block;
+  }
+}
+
+#edit_post {
+  display: none;
+  padding: 50px;
+  box-shadow: 0 0 0 10000px rgba(0, 0, 0, 0.75) inset;
+
+  input, textarea {
+    margin-bottom: 20px;
+  }
+
+  textarea:last-child {
+    margin: 0;
+  }
+
+  h3 {
+    color: #FFF;
   }
 }

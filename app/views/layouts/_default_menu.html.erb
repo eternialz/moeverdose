@@ -1,10 +1,18 @@
 <div class="container">
   <a href="<%= root_path %>"><h1>moeverdose.moe</h1></a>
-  <a class="user">
-    <img src="<%= image_url('default_user.png') %>" />
-    <span>Eternialz<br />666 uploads</span>
-  </a>
-  <span>All lolis</span>
+  <span><%= cell(:random_message).(:show) %></span>
+  <div class="user">
+    <% if user_signed_in? %>
+      <a class="avatar" href="<%= user_path(current_user.name) %>"><%= image_tag current_user.avatar(:tiny) %></a>
+      <span><%= link_to current_user.name, user_path(current_user.name) %><br />
+       <%= link_to 'logout', destroy_user_session_path %></span>
+    <% else %>
+      <span>
+        <%= link_to "login", new_user_session_path %><br />
+        <%= link_to "sign up", new_user_registration_path %>
+      </span>
+    <% end %>
+  </div>
   <ul>
     <li><a href="<%= posts_path %>" title="Posts">Posts</a></li>
     <li><a href="<%= new_post_path %>" title="Upload">Upload</a></li>
@@ -12,6 +20,6 @@
     <li><a>Users</a></li>
     <li><%= link_to 'Help', '/pages/help/index', title: "Help pages with FAQ" %></li>
     <li><%= link_to 'Moeverdose', '/pages/about', title: "About Moeverdose" %></li>
-    <li><a href="https://twitter.com/moeverdose" title="Moeverdoe Twitter"><%= fa_icon "twitter"%> Twitter</a></li>
+    <li><a href="https://twitter.com/moeverdose" target="_blank" title="Moeverdoe Twitter"><%= fa_icon "twitter"%> Twitter</a></li>
   </ul>
 </div>
