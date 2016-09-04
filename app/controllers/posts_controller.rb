@@ -117,6 +117,7 @@ class PostsController < ApplicationController
     @post.height = dimensions.height
 
     @post.user = current_user
+    @post.user.upload_count += 1
 
     if @post.save
       author_profile.save

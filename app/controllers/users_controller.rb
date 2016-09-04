@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
-  before_action :set_user
+  before_action :set_user, except: [:index]
+
+  def index
+    @users = User.all.order(upload_count: :desc)
+  end
 
   def show
     @user = User.find_by(name: params[:id])

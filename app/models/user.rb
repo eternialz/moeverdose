@@ -61,6 +61,8 @@ class User
   validates_attachment_content_type :banner, content_type: /\Aimage\/.*\Z/
 
   has_many :posts, class_name: "Post", inverse_of: :user
+  field :upload_count, type: Integer, default: 0
+
   #Posts marked as favorite of the user
   has_many :favorites, class_name: "Post", inverse_of: nil
   has_many :liked_posts, class_name: "Post", inverse_of: nil
