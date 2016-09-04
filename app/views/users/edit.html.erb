@@ -1,10 +1,11 @@
 <%= form_for current_user, url: user_path(current_user.name), html: {class: "userprofile edit", method: :patch } do |f| %>
   <div class="user_header clearfix" style="background-image: url(<%= @user.banner(:normal) %>)">
     <img class="avatar" src="<%= @user.avatar(:thumb) %>" width="120" height="120" />
+    <h3 class="username"><%= @user.name %></h3><span class="role"><%= @user.role %></span>
     <div class="user_banner">
       <button for="submit" class="action action-green"><%= fa_icon "save" %> Save profile</button>
-      <h3><%= @user.name %></h3><br />
-      <p><%= @user.role %> | Last seen: <%= @user.current_sign_in_at.to_time.strftime('%B %e at %l:%M %p') %></p>
+      <h3><%= @user.biography %></h3><br />
+      <p>Last seen: <%= @user.current_sign_in_at.to_time.strftime('%B %e at %l:%M %p') %></p>
     </div>
   </div>
   <input type="radio" name="tabs" class="hide" id="profile" checked>
@@ -19,7 +20,7 @@
     <div class="row clearfix">
       <div class="column">
         <div class="field tooltip">
-          <%= f.text_field :bio, placeholder: "Master of daruma otoshi" %>
+          <%= f.text_field :biography, placeholder: "Master of daruma otoshi" %>
           <span><%= fa_icon "user" %> About me:</span>
           <div class="tip">Displayed near your username max 200 characters</div>
         </div>

@@ -5,7 +5,7 @@
 
   .user_header {
     padding: 20px;
-    box-shadow: 0 1px 3px rgba(0,0,0,.25);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -200px 100px -100px rgba(0,0,0,.75);
     position: relative;
     height: 440px;
     background: url($header-image) no-repeat center center;
@@ -18,6 +18,28 @@
       z-index: 100;
       top: 299px;
       border-radius: 3px;
+    }
+
+    .username {
+      position: absolute;
+      left: 160px;
+      bottom: 70px;
+      color: #FFF;
+      text-shadow: 0 1px 3px #000;
+      font-size: 2em;
+    }
+
+    .role {
+      position: absolute;
+      right: 20px;
+      bottom: 85px;
+      background: #FFF;
+      border-radius: 3px;
+      padding: 4px 15px 8px;
+      color: #555;
+      font-size: 1.2em;
+      font-weight: 900;
+      box-shadow: 0 1px 3px rgba(0,0,0,.25);
     }
 
     .user_banner {

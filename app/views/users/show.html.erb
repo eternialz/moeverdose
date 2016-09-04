@@ -1,11 +1,12 @@
 <div class="userprofile">
   <div class="user_header clearfix" style="background-image: url(<%= @user.banner(:normal) %>)">
     <img class="avatar" src="<%= @user.avatar(:thumb) %>" width="120" height="120" />
-    <div class="user_banner">
-      <a class="action action-blue" href="<%= edit_user_path %>"><%= fa_icon "edit" %> edit profile</a>
-      <h3><%= @user.name %></h3><br />
-      <p><%= @user.role %> | Last seen: <%= @user.current_sign_in_at.to_time.strftime('%B %e at %l:%M %p') %></p>
-    </div>
+      <h3 class="username"><%= @user.name %></h3><span class="role"><%= @user.role %></span>
+      <div class="user_banner">
+        <a class="action action-blue" href="<%= edit_user_path %>"><%= fa_icon "edit" %> edit profile</a>
+        <h3><%= @user.biography %></h3><br />
+        <p> Last seen: <%= @user.current_sign_in_at.to_time.strftime('%B %e at %l:%M %p') %></p>
+      </div>
   </div>
   <div class="normal_informations zone clearfix">
     <p class="bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone.</p>

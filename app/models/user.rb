@@ -42,7 +42,7 @@ class User
   validates :name,  uniqueness: true
   validates :name,  presence: true
 
-  field :bio, type: String, default: ""
+  field :biography, type: String, default: ""
 
   field :website,   type: String, default: ""
 
