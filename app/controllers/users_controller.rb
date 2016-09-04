@@ -7,18 +7,6 @@ class UsersController < ApplicationController
     @blacklisted_tags = @user.blacklisted_tags.split(" ")
   end
 
-  def create
-    redirect_to post_path(@user)
-  end
-
-  def edit
-
-  end
-
-  def new
-
-  end
-
   def update
     @user.update_attributes(account_update_params)
     tags = params[:tags]
