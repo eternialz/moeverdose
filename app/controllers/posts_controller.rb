@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-
+  before_action :authenticate_user!, only: [:update, :destroy, :overdose, :shortage]
+  before_action :set_user, only: [:overdose, :shortage]
   before_action :set_post, only: [:edit, :update, :show, :destroy, :overdose, :shortage]
 
   def show
@@ -27,7 +28,8 @@ class PostsController < ApplicationController
       if current_user.liked_posts.exclude?(@post)
         @post.overdose += 1
         @post.save
-        current_user.liked_posts << @post
+        binding.pry
+        @user.liked_posts << @post
         head 200
       else
         head 403
@@ -203,5 +205,9 @@ class PostsController < ApplicationController
     params.require(:post).permit(
       :title, :source
     )
+  end
+
+  def set_user
+    @user = User.find(current_user.id)
   end
 end
