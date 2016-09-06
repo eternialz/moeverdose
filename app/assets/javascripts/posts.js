@@ -11,9 +11,15 @@ Post = {
     $.ajax({
       url : window.location.pathname + '/overdose',
       type : 'PATCH',
-      success : function() {
-        Post.overdose.html(parseInt(Post.overdose.html()) +1);
-        Post.percentage();
+      statusCode: {
+        200: function() {
+          Post.overdose.html(parseInt(Post.overdose.html()) +1);
+          Post.percentage();
+        },
+        202: function() {
+          Post.overdose.html(parseInt(Post.overdose.html()) -1);
+          Post.percentage();
+        }
       },
       error : function() {
         console.log("error");
@@ -24,9 +30,15 @@ Post = {
     $.ajax({
       url : window.location.pathname + '/shortage',
       type : 'PATCH',
-      success : function() {
-        Post.shortage.html(parseInt(Post.shortage.html()) +1);
-        Post.percentage();
+      statusCode: {
+        200: function() {
+          Post.shortage.html(parseInt(Post.shortage.html()) +1);
+          Post.percentage();
+        },
+        202: function() {
+          Post.shortage.html(parseInt(Post.shortage.html()) -1);
+          Post.percentage();
+        }
       },
       error : function() {
         console.log("error");
