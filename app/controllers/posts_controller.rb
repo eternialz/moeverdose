@@ -26,7 +26,6 @@ class PostsController < ApplicationController
     if user_signed_in?
       if current_user.favorites.exclude?(@post)
         current_user.favorites << @post
-        binding.pry
         head 200
       else
         current_user.favorites.delete(@post)
