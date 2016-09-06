@@ -1,6 +1,5 @@
 class PostsController < ApplicationController
-
-  before_action :set_post, only: [:edit, :update, :show, :destroy, :overdose, :shortage]
+  before_action :set_post, only: [:edit, :update, :show, :destroy, :overdose, :shortage, :favorites]
 
   def show
     @comments = [1]
@@ -19,6 +18,21 @@ class PostsController < ApplicationController
     else
       @overdose = @post.overdose / (@post.overdose + @post.moe_shortage).to_f * 100
       @shortage = 100 - @overdose
+    end
+  end
+
+  def favorite
+    if user_signed_in?
+      if current_user.favorites.exclude?(@post)
+        current_user.favorites << @post
+        binding.pry
+        head 200
+      else
+        current_user.favorites.delete(@post)
+        head 202
+      end
+    else
+      head 403
     end
   end
 

@@ -1,11 +1,21 @@
 Post = {
   init: function(root) {
-    Post.root = root
+    Post.root = root;
     Post.root.find('.overdose').click(Post.overdose);
     Post.root.find('.shortage').click(Post.shortage);
+    Post.root.find('#add_to_favorites').click(Post.favorite);
     Post.user = Post.root.data("username");
-    Post.overdose = Post.root.find('.overdose_score')
-    Post.shortage = Post.root.find('.shortage_score')
+    Post.overdose = Post.root.find('.overdose_score');
+    Post.shortage = Post.root.find('.shortage_score');
+  },
+  favorite: function() {
+    $.ajax({
+      url : window.location.pathname + '/favorite',
+      type : 'PATCH',
+      error : function() {
+        console.log("error");
+      }
+    });
   },
   overdose: function() {
     $.ajax({
