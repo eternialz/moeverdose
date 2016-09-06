@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:edit, :update, :show, :destroy, :overdose, :shortage, :favorites]
+  before_action :authenticate_user!, only: [:update, :overdose, :shortage]
+  before_action :set_post, only: [:edit, :update, :show, :overdose, :shortage, :favorite]
 
   def show
     @comments = [1]
@@ -39,12 +40,19 @@ class PostsController < ApplicationController
   def overdose
     if user_signed_in?
       if current_user.liked_posts.exclude?(@post)
-        @post.overdose += 1
-        @post.save
-        current_user.liked_posts << @post
-        head 200
+        if current_user.disliked_posts.exclude?(@post)
+          @post.overdose += 1
+          @post.save
+          current_user.liked_posts << @post
+          head 200
+        else
+          head 403
+        end
       else
-        head 403
+        @post.overdose -= 1
+        @post.save
+        current_user.liked_posts.delete(@post)
+        head 202
       end
     else
       head 403
@@ -54,12 +62,19 @@ class PostsController < ApplicationController
   def shortage
     if user_signed_in?
       if current_user.disliked_posts.exclude?(@post)
-        @post.moe_shortage += 1
-        @post.save
-        current_user.disliked_posts << @post
-        head 200
+        if current_user.liked_posts.exclude?(@post)
+          @post.moe_shortage += 1
+          @post.save
+          current_user.disliked_posts << @post
+          head 200
+        else
+          head 403
+        end
       else
-        head 403
+        @post.moe_shortage -= 1
+        @post.save
+        current_user.disliked_posts.delete(@post)
+        head 202
       end
     else
       head 403
@@ -145,10 +160,6 @@ class PostsController < ApplicationController
     end
   end
 
-  def destroy
-    @post.destroy
-  end
-
   def update
     @post.assign_attributes(edit_post_params)
 
@@ -217,5 +228,9 @@ class PostsController < ApplicationController
     params.require(:post).permit(
       :title, :source
     )
+  end
+
+  def set_user
+    @user = User.find(current_user.id)
   end
 end
