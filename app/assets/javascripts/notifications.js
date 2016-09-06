@@ -14,7 +14,7 @@ Notification = {
 
     var notification = $("<div id='" + id + "' class='notification " + type + "'><i class='fa fa-close'></i>" + title + message + "</div>");
 
-    Notification.root.append( $(notification) );
+    Notification.root.prepend( $(notification) );
 
     notification.find(".fa-close").click( function() {
       notification.remove();
@@ -22,7 +22,7 @@ Notification = {
 
     setTimeout(function() {
       notification.remove();
-    }, 7000);
+    }, 10000);
   }
 };
 
