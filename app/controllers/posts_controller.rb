@@ -3,7 +3,6 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:edit, :update, :show, :overdose, :shortage, :favorite]
 
   def show
-    @comments = [1]
     @tags = []
     @characters = []
     @post.tags.each do |tag|

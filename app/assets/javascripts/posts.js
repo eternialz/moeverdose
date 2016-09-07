@@ -6,6 +6,7 @@ Post = {
     Post.root.find('#add_to_favorites').click(Post.favorite);
     Post.overdose = Post.root.find('.overdose_score');
     Post.shortage = Post.root.find('.shortage_score');
+    $('#add_comment').bind('input propertychange', Post.comment_char);
   },
   favorite: function() {
     $.ajax({
@@ -68,6 +69,15 @@ Post = {
     var shortage_percentage = 100 - overdose_percentage;
     Post.root.find('.overdose_bar').css("width", overdose_percentage + "%");
     Post.root.find('.shortage_bar').css("width", shortage_percentage + "%");
+  },
+  comment_char: function() {
+    var length = $(this).val().length;
+    console.log(length);
+    if (length > 500) {
+      $('#char_count').text("The comment is too long! Please remove " + ( length - 500 ) + " character(s)")
+    } else {
+      $('#char_count').text(500 - length + " character(s) left");
+    }
   }
 };
 

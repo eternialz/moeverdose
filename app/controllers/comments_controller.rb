@@ -1,22 +1,19 @@
-class CommentsController
+class CommentsController < ApplicationController
   before_action :set_post
 
   def create
-    @comment = @post.comments.create(params.require(:comment).permit(:text, :user))
+    length = params[:comment][:text].length
+    if length >= 2 && length <= 500
+      @comment = Comment.create(params.require(:comment).permit(:text))
+      @comment.user = current_user
+      @post.comments << @comment
+      @comment.post = @post
+      @post.save
+      @comment.save
+    end
     redirect_to post_path(@post)
   end
 
-  def update
-    @comment = @post.comments.find(params[:id])
-    @comment.update_attributes(text: params[:text])
-    redirect_to post_path(@post)
-  end
-
-  def destroy
-    @comment = @post.comments.find(params[:id])
-    @comment.destroy
-    redirect_to post_path(@post)
-  end
   private
 
   def set_post
