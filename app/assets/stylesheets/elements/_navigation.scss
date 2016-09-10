@@ -2,7 +2,7 @@ nav.menu {
   background: image_url($header-image) no-repeat center center fixed;
   background-attachment: local;
   background-size: cover;
-  box-shadow: 0 0 0 200px rgba($default, 0.85) inset, 0 -2px 5px 5px rgba(0,0,0,.25), 0 -50px 50px $default inset;
+  box-shadow: 0 0 0 200px rgba($default, 0.85) inset, 0 -50px 50px $default inset;
   color: #FFF;
   text-shadow: 0 1px 2px #000;
   position: fixed;
@@ -105,7 +105,8 @@ nav.menu {
     width: 100%;
     z-index: 100;
     visibility: hidden;
-    box-shadow: 0 0 0 120px rgba(0,0,0,.9) inset;
+    background-image: linear-gradient(rgba(0,0,0,.9),rgba(0,0,0,.9));
+    box-shadow: 0 1px 3px rgba(0,0,0,.25);
     text-shadow: none;
 
     a {
@@ -194,7 +195,7 @@ nav.menu:hover {
     visibility: visible;
     height: 240px;
     border-bottom-color: $pink;
-    box-shadow: 0 0 0 120px rgba(0,0,0,.90) inset, 0 10px 0 $pink;
+    box-shadow: 0 10px 0 $pink, 0 11px 3px rgba(0,0,0,.25);
 
     ul.my-account {
       box-shadow: 0 10px 0 $blue;
