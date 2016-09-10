@@ -68,7 +68,7 @@
 }
 
 h5.administrator {
-  color: $default !important;
+  color: $blue !important;
 
   &:after {
     content: " (administrator)"
@@ -83,16 +83,8 @@ h5.moderator {
   }
 }
 
-h5.banned {
-  color: #999 !important;
-
-  &:after {
-    content: " (banned)"
-  }
-}
-
 h5.contributor {
-  color: $pink_light !important;
+  color: $yellow !important;
 
   &:after {
     content: " (contributor)"
@@ -100,10 +92,18 @@ h5.contributor {
 }
 
 h5.developper {
-  color: $yellow_dark !important;
+  color: $orange !important;
 
   &:after {
     content: " (developper)"
+  }
+}
+
+h5.banned {
+  color: #999 !important;
+
+  &:after {
+    content: " (banned)"
   }
 }
 
