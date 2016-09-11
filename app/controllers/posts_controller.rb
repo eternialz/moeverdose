@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: [:update, :overdose, :shortage]
-  before_action :set_post, only: [:edit, :update, :show, :overdose, :shortage, :favorite]
+  before_action :authenticate_user!, only: [:update, :overdose, :shortage, :report]
+  before_action :set_post, only: [:edit, :update, :show, :overdose, :shortage, :favorite, :report]
 
   def show
     @tags = []
@@ -19,6 +19,14 @@ class PostsController < ApplicationController
       @overdose = @post.overdose / (@post.overdose + @post.moe_shortage).to_f * 100
       @shortage = 100 - @overdose
     end
+  end
+
+  def report
+    @post.assign_attributes(params.require(:post).permit(:report_reason))
+    @post.report = true
+    @post.report_user = current_user
+    @post.save
+    redirect_to post_path(@post)
   end
 
   def favorite
