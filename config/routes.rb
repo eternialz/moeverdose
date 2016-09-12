@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     root 'admin/dashboard#index'
 
     resources :users, controller: "admin/users", except: [:new, :create]
+    resources :news, controller: "admin/news"
   end
 
   devise_for :users, path: 'account', :controllers => { registrations: 'user_registrations' }
