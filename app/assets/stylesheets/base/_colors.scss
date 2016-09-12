@@ -39,3 +39,7 @@ $orange_dark: darken($orange, 9%);
 .orange {
   color: $orange;
 }
+
+$red: #F33;
+$red_light: lighten($red, 7%);
+$red_dark: darken($red, 9%);

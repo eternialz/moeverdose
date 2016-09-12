@@ -1,0 +1,50 @@
+.notifications {
+  position: fixed;
+  top: 96px;
+  width: 100%;
+  z-index: 150;
+  background: rgba(0,0,0,.8);
+
+  .notification {
+    max-width: 600px;
+    padding: 10px;
+    border-radius: 3px;
+    margin: 10px auto;
+    background: #FFF;
+
+    h5, p {
+      margin: 0;
+    }
+
+    i {
+      float: right;
+      cursor: pointer;
+    }
+
+    & {
+      h5 {
+        color: $blue;
+      }
+    }
+
+    &.success {
+      h5 {
+        color: $green;
+      }
+    }
+
+    &.warning {
+
+      h5 {
+        color: $orange;
+      }
+    }
+
+    &.error {
+
+      h5 {
+        color: $red;
+      }
+    }
+  }
+}

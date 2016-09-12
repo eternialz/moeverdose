@@ -2,7 +2,7 @@ nav.menu {
   background: image_url($header-image) no-repeat center center fixed;
   background-attachment: local;
   background-size: cover;
-  box-shadow: 0 0 0 200px rgba($default, 0.85) inset, 0 -2px 5px 5px rgba(0,0,0,.25), 0 -50px 50px $default inset;
+  box-shadow: 0 0 0 200px rgba($default, 0.85) inset, 0 -50px 50px $default inset;
   color: #FFF;
   text-shadow: 0 1px 2px #000;
   position: fixed;
@@ -94,24 +94,19 @@ nav.menu {
   }
 
   .submenu {
-    background: image_url($header-image) no-repeat center center fixed;
-    background-size: cover;
-    background-position: 0 -240px;
     padding-left: 25px;
     height: 0px;
     top: 90px;
-    -webkit-transition:all 200ms linear;
-    -moz-transition:all 200ms linear;
-    -o-transition:all 200ms linear;
-    transition:all 200ms linear;
+    -webkit-transition:all 200ms ease-in-out;
+    -moz-transition:all 200ms ease-in-out;
+    -o-transition:all 200ms ease-in-out;
+    transition:all 200ms ease-in-out;
     position: absolute;
     width: 100%;
     z-index: 100;
-    opacity: 0;
-    box-shadow: 0 10px 10px -10px rgba(0,0,0,0), 0 0 0 120px rgba(0,0,0,0) inset;
-    border-bottom-color: rgba($pink,0);
-    border-bottom-width: 10px;
-    border-bottom-style: solid;
+    visibility: hidden;
+    background-image: linear-gradient(rgba(0,0,0,.9),rgba(0,0,0,.9));
+    box-shadow: 0 1px 3px rgba(0,0,0,.25);
     text-shadow: none;
 
     a {
@@ -149,9 +144,7 @@ nav.menu {
     }
 
     ul.my-account {
-      box-shadow: 0 10px 0 $blue;
       float: right;
-      background: #333;
       margin-right: 0;
       padding-left: 10px;
 
@@ -199,9 +192,13 @@ nav.menu {
 nav.menu:hover {
 
   .submenu {
-    opacity: 1;
+    visibility: visible;
     height: 240px;
     border-bottom-color: $pink;
-    box-shadow: 0 5px 10px 0px rgba(0,0,0,0.55), 0 0 0 120px rgba(0,0,0,.8) inset;
+    box-shadow: 0 10px 0 $pink, 0 11px 3px rgba(0,0,0,.25);
+
+    ul.my-account {
+      box-shadow: 0 10px 0 $blue;
+    }
   }
 }

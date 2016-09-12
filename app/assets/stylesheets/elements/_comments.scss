@@ -1,20 +1,15 @@
+
+.comments {
+  padding: 20px;
+}
+
 .comment {
-  padding: 10px 10px 10px 10px;
+  padding: 10px;
   clear: both;
   position: relative;
-  border-bottom: 1px solid rgba(0,0,0,.1);
   text-align: justify;
-
-  .comment {
-    margin-left: 20px;
-    box-shadow: none;
-    border-bottom: none;
-    border-left: 4px solid #DDD;
-
-    .avatar {
-      margin: 0 10px 0 0;
-    }
-  }
+  min-height: 80px;
+  border-bottom: 1px solid #EEE;
 
   &:after {
     display: block;
@@ -45,11 +40,14 @@
     h5:after {
       font-size: 0.8em;
       color: #AAA;
+      font-weight: 900;
     }
 
     span {
+      font-size: 0.8em;
       margin-left: 20px;
-      color: rgba(0,0,0,.5);
+      color: #AAA;
+      float: right;
       font-style: italic;
     }
 
@@ -57,12 +55,20 @@
       float: left;
       display: block;
       width: 100%;
+      margin: 0;
+      word-wrap: break-word;
+      -webkit-hyphens: auto;
+      -moz-hyphens: auto;
+      -ms-hyphens: auto;
+      -o-hyphens: auto;
+      hyphens: auto;
+      max-width: 100%;
     }
   }
 }
 
 h5.administrator {
-  color: $default !important;
+  color: $blue !important;
 
   &:after {
     content: " (administrator)"
@@ -77,6 +83,22 @@ h5.moderator {
   }
 }
 
+h5.contributor {
+  color: $yellow !important;
+
+  &:after {
+    content: " (contributor)"
+  }
+}
+
+h5.developper {
+  color: $orange !important;
+
+  &:after {
+    content: " (developper)"
+  }
+}
+
 h5.banned {
   color: #999 !important;
 
@@ -85,29 +107,18 @@ h5.banned {
   }
 }
 
-h5.contributor {
-  color: $pink_light !important;
-
-  &:after {
-    content: " (contributor)"
-  }
-}
-
-h5.developper {
-  color: $yellow_dark !important;
-
-  &:after {
-    content: " (developper)"
-  }
-}
-
 .comment-form {
-  margin: 10px;
-  margin-bottom: 50px;
-
   h3 {
-    border-bottom: 1px solid rgba(0,0,0,.1);
-    padding: 10px 0 20px 15px;
+    padding: 10px;
+    margin: 0;
+    display: inline-block;
+  }
+
+  #char_count {
+    margin-left: 20px;
+    font-size: 0.7em;
+    color: #AAA;
+    font-weight: 900;
   }
 
   textarea {
@@ -116,10 +127,10 @@ h5.developper {
 
   .button-zone {
     border-top: 1px solid rgba(0,0,0,.1);
-    text-align: right;
+    text-align: center;
   }
 
   input[type="submit"] {
-    margin: 20px 10px
+    margin: 5px;
   }
 }
