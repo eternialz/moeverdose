@@ -1,6 +1,7 @@
 class StaticPagesController < ApplicationController
 
   def home
+    @news = New.limit(2).order(created_at: :desc)
     render "static/home"
   end
 
