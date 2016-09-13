@@ -154,6 +154,12 @@ class PostsController < ApplicationController
     @post.user = current_user
     @post.user.upload_count += 1
 
+    if @post.user.level.last == false
+      if @post.user.level.max_exp == @post.user.upload_count
+        @post.user.level = Level.find_by(rank: @user.level.rank + 1)
+      end
+    end
+
     if @post.save
       author_profile.save
       @post.tags.each do |t|

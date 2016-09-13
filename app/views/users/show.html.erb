@@ -22,7 +22,7 @@
       <div class="column f4">
         <h4>Level</h4>
         <div class="progress_bar">
-          <div class="progress" style="width: 66%; background: <%= @level.color %>;">66%</div>
+          <div class="progress" style="width: <%= @percentage %>%; background: <%= @level.color %>;"><%= @percentage %>%</div>
         </div>
         <span><%= @level.name %></span>
         <span style="float: right;"><%= @next_level.name %></span>

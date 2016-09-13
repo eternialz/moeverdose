@@ -10,6 +10,7 @@ class UsersController < ApplicationController
     @favorites_tags = @user.favorites_tags.split(" ")
     @blacklisted_tags = @user.blacklisted_tags.split(" ")
     @level = @user.level
+    @percentage = '%.2f' % ((@user.upload_count.to_f / @level.max_exp.to_f)*100)
     if @level.last == false
       @next_level = Level.find_by(rank: @level.rank + 1)
     else
