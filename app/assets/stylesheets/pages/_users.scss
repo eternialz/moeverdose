@@ -120,6 +120,14 @@
     background: url($header-image) no-repeat center center;
     background-size: cover;
 
+    .icon {
+      float: right;
+      text-shadow: 0 1px 2px #000;
+      font-size: 1.5em;
+      color: #FFF;
+      padding: 10px;
+    }
+
     .avatar {
       box-shadow: 0 1px 3px rgba(0,0,0,.25);
       position: absolute;
