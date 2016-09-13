@@ -38,10 +38,17 @@ class User
   # field :unlock_token,    type: String # Only if unlock strategy is :email or :both
   # field :locked_at,       type: Time
 
+  # Credentials
   field :name, type: String
   validates :name,  uniqueness: true
   validates :name,  presence: true
 
+  validates :email, presence: true
+
+  field :encrypted_password
+  validates :encrypted_password, presence: true, confirmation: true
+
+  # Personal Informations
   field :biography, type: String, default: ""
 
   field :website,   type: String, default: ""
@@ -49,33 +56,37 @@ class User
   field :twitter,   type: String, default: ""
   field :facebook,  type: String, default: ""
 
-  validates :email, presence: true
-
-  field :encrypted_password
-  validates :encrypted_password, presence: true, confirmation: true
-
+  # Banner and Avatar
   has_mongoid_attached_file :avatar, styles: { :thumb => {:geometry => "120x120#"}, :tiny => {:geometry => "60x60#"}}, default_url: "/images/default_user.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
   has_mongoid_attached_file :banner, styles: { :normal => {:geometry => "1600x440#"}}, default_url: "/images/default_banner.png"
   validates_attachment_content_type :banner, content_type: /\Aimage\/.*\Z/
 
+  # Posts
   has_many :posts, class_name: "Post", inverse_of: :user
-  field :upload_count, type: Integer, default: 0
 
-  #Posts marked as favorite of the user
+  # Stats
+  field :upload_count, type: Integer, default: 0
+  belongs_to :level, class_name: "Level", inverse_of: :user
+
+  # Posts marked as favorite of the user
   has_and_belongs_to_many :favorites, class_name: "Post", inverse_of: nil
   has_and_belongs_to_many :liked_posts, class_name: "Post", inverse_of: nil
   has_and_belongs_to_many :disliked_posts, class_name: "Post", inverse_of: nil
 
+  # Comments
   has_many :comments, class_name: "Comment", inverse_of: :user
 
+  # Tags options
   field :favorites_tags, type: String, default: ""
   field :blacklisted_tags, type: String, default: ""
 
+  # User reported
   field :report, type: Boolean, default: false
   alias_method :report?, :report
 
+  # Roles
   field :role, type: Symbol, default: :user
 
   module Role

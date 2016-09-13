@@ -9,6 +9,12 @@ class UsersController < ApplicationController
     @user = User.find_by(name: params[:id])
     @favorites_tags = @user.favorites_tags.split(" ")
     @blacklisted_tags = @user.blacklisted_tags.split(" ")
+    @level = @user.level
+    if @level.last == false
+      @next_level = Level.find_by(rank: @level.rank + 1)
+    else
+      @next_level = Level.new(name: "No more levels")
+    end
   end
 
   def update

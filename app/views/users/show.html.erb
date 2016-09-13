@@ -20,21 +20,20 @@
         </ul>
       </div>
       <div class="column f4">
+        <h4>Level</h4>
+        <div class="progress_bar">
+          <div class="progress" style="width: 66%; background: <%= @level.color %>;">66%</div>
+        </div>
+        <span><%= @level.name %></span>
+        <span style="float: right;"><%= @next_level.name %></span>
+        <p><%= @level.max_exp - @user.upload_count %> upload(s) until next level</p>
+      </div>
+      <div class="column f4">
         <h4>Favorites Tags</h4>
         <% if @favorites_tags.empty? %>
           <p>Nothing here</p>
         <% else %>
           <% @favorites_tags.each do |tag| %>
-            <a class="tag"><%= tag %></a>
-          <% end %>
-        <% end %>
-      </div>
-      <div class="column f4">
-        <h4>Blacklisted Tags</h4>
-        <% if @blacklisted_tags.empty? %>
-          <p>Nothing here</p>
-        <% else %>
-          <% @blacklisted_tags.each do |tag| %>
             <a class="tag"><%= tag %></a>
           <% end %>
         <% end %>
