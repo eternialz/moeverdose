@@ -15,76 +15,39 @@
       </div>
     <% end %>
   </div>
-  <%= form_tag(posts_path, {:method => "get", :class => "search_form"}) do%>
-    <input type="checkbox" name="search_on" id="search_form">
-    <label for="search_form" id="search_form_label"><%= fa_icon "search" %> search</label>
+  <form class="post_pagination" action="<%= all_posts_path %>">
+    <ul>
+      <% if @pages.size > 1 %>
+        <% if @current_page > 1 %>
+          <li><button name="page" title="first page" value="1" class="number"><%= fa_icon "angle-left" %><%= fa_icon "angle-left" %></button></li>
+          <li><button name="page" title="previous page" value="<%= @current_page-1 %>" class="number"><%= fa_icon "angle-left" %></button></li>
+        <% end %>
+
+        <% @pages.each do |page| %>
+          <% if @current_page == page %>
+            <li><button name="page" title="current page" value="<%= page %>" class="number current"><%= page %></button></li>
+          <% else %>
+            <li><button name="page" value="<%= page %>" class="number"><%= page %></button></li>
+          <% end %>
+        <% end %>
+
+        <% if @current_page < @posts.total_pages %>
+          <li><button name="page" title="next page" value="<%= @current_page+1 %>" class="number"><%= fa_icon "angle-right" %></button></li>
+          <li><button name="page" title="last page" value="<%= @posts.total_pages %>" class="number"><%= fa_icon "angle-right" %><%= fa_icon "angle-right" %></button></li>
+        <% end %>
+      <% end %>
+    </ul>
     <div>
-      <button value="value" type="submit"><%= fa_icon "search"%> send search</button>
-      <div class="tag_search row">
-        <div class="f6 column tag clearfix">
-          <h3 class="pink">Tags:</h3>
-          <input type="text" name="search[tags]">
-          <ul class="tags">
-            <% @tags.each do |tag| %>
-              <li><a><%= tag %></a></li>
-            <% end %>
-          </ul>
-        </div>
-        <div class="f6 column character">
-          <h3 class="blue">Characters:</h3>
-          <input type="text" name="search[characters]">
-          <ul class="characters">
-            <% @characters.each do |character| %>
-              <li><a><%= character %></a></li>
-            <% end %>
-          </ul>
-        </div>
-      </div>
-      <input type="checkbox" name="advanced_on" id="advanced_search">
-      <label for="advanced_search" id="advanced_search_label">more search options<br /><%= fa_icon "angle-down" %></label>
-      <div class="advanced_search row">
-        <div class="column f3">
-          <div class="advanced_field" title="Name of the author">
-            <p>Author:</p>
-            <input name="search[author]" type="text" placeholder="author name">
-          </div>
-          <div class="advanced_field" title="Name of the user">
-            <p>Uploaded by:</p>
-            <input name="search[uploader]" type="text" placeholder="user name">
-          </div>
-        </div>
-        <div class="column f3">
-          <div class="advanced_field" title="Minimum number of overdoses">
-            <p>Moe overdoses:</p>
-            <input name="search[overdoses]" type="number" min="0" placeholder="min">
-          </div>
-          <div class="advanced_field" title="Maximum number of shortage">
-            <p>Moe shortage:</p>
-            <input name="search[shortages]" type="number" min="0" placeholder="max">
-          </div>
-        </div>
-        <div class="column f3">
-          <div class="advanced_field" title="Minimum width of posts in pixels">
-            <p>Mininmum width:</p>
-            <input name="search[min-width]" type="number" min="200" max="10000" value="200" step="25">
-          </div>
-          <div class="advanced_field" title="Maximum width of posts in pixels">
-            <p>Maximum width:</p>
-            <input name="search[max-width]" type="number" min="200" max="10000" value="10000" step="25">
-          </div>
-        </div>
-        <div class="column f3">
-          <div class="advanced_field" title="Mininmum height of posts in pixels">
-            <p>Mininmum height:</p>
-            <input name="search[min-height]" type="number" min="200" max="10000" value="200" step="25">
-          </div>
-          <div class="advanced_field" title="Maximum height of posts in pixels">
-            <p>Maximum height:</p>
-            <input name="search[max-height]" type="number" min="200" max="10000" value="10000" step="25">
-          </div>
-        </div>
-      </div>
-      <label for="advanced_search" id="advanced_search_label"><%= fa_icon "angle-up" %><br />less search options</label>
+      <span>posts per page </span>
+      <% @permited_posts_per_page.each do |n| %>
+        <% if @posts_per_page == n %>
+          <input type="radio" name="posts_per_page" checked="checked  " id=<%= n %> value=<%= n %>>
+        <% else %>
+          <input type="radio" name="posts_per_page" id=<%= n %> value=<%= n %>>
+        <% end %>
+        <label for=<%= n %>><%= n %></label>
+      <% end %>
+      <input type="submit" value="apply">
     </div>
-  <% end %>
+  </form>
 </div>

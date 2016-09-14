@@ -88,7 +88,25 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @permited_posts_per_page = ['2', '8', '16', '32', '64']
+    if params[:posts_per_page] != nil
+      # Custom number of posts per page
+      @permited_posts_per_page.include? params[:posts_per_page]
+      @posts_per_page = params[:posts_per_page]
+    else # Default number of posts per page
+      @posts_per_page = "32"
+    end
+    if params[:page] == nil
+      params[:page] = 1
+    end
+    @posts = Post.order('created_at DESC').page(params[:page]).per(@posts_per_page)
+    @pages = []
+    @current_page = params[:page].to_i
+    (@current_page-3..@current_page+3).to_a.each do |page|
+      if (page >= 1) && (page <= @posts.total_pages)
+        @pages << page
+      end
+    end
     @tags = []
     @characters = []
     @authors = []
