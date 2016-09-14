@@ -5,6 +5,7 @@
     <li><a href="<%= new_post_path %>" title="Upload">Upload</a></li>
     <li><a>Best Posts</a></li>
     <li><a>Tags</a></li>
+    <li><a>Random Post</a></li>
   </ul>
   <ul>
     <h3><a>Authors</a></h3>
@@ -13,9 +14,8 @@
     <li><a>Best Authors</a></li>
   </ul>
   <ul>
-    <h3><a>Users</a></h3>
-    <li><a>All Users</a></li>
-    <li><a>Leaderboard</a></li>
+    <h3><%= link_to 'Users', users_path, title: 'Users' %></h3>
+    <li><%= link_to 'All Users', users_path, title: 'All Users' %></li>
   </ul>
   <ul>
     <h3><%= link_to 'Help', '/pages/help/index' %></h3>
