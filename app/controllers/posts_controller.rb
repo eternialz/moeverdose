@@ -154,11 +154,10 @@ class PostsController < ApplicationController
     author = Tag.where(name: author_name.downcase.tr(" ", "_"), type: :author)
 
     if author.empty?
-      author = Tag.new({name: author_name.downcase.tr(" ", "_"),type: :author})
-      author_profile = Author.new({name: author_name, posts: [@post]})
+      author = Tag.new({name: author_name.downcase.tr(" ", "_"), type: :author})
+      author_profile = Author.new({name: author_name})
     else
       author_profile = Author.find_by({name: author_name})
-      author_profile.posts << @post
     end
 
     @post.tags << author
