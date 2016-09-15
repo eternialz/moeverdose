@@ -12,10 +12,11 @@ class Post
   validates_attachment :post_image, presence: true,
     content_type: { content_type: /\Aimage\/.*\Z/ },
     size: { in: 0..10.megabytes }
-  validate :image_dimensions, :on => :create
 
   field :height, type: Integer
   field :width, type: Integer
+
+  validate :image_dimensions, :on => :create
 
   # Stats
   field :overdose, type: Integer, default: 0

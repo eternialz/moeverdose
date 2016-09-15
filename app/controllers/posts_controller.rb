@@ -186,7 +186,7 @@ class PostsController < ApplicationController
       end
       redirect_to post_path(@post)
     else
-      new
+      redirect_to :back
     end
   end
 

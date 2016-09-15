@@ -60,19 +60,30 @@ Post = {
         }
       },
       error : function() {
-        Notification.add("Can't add shortage","Did you already add an overdose for this post? If you wan't to change, remove your overdose before adding a shortage by clicking on the overdose button","error")
+        Notification.add("Can't add shortage","Maybe your aren't logged in or you already vote for this post","error")
       }
     });
   },
   percentage: function() {
     var overdose_percentage = 100 * (parseInt(Post.overdose.html()) / (parseInt(Post.overdose.html()) + parseInt(Post.shortage.html())));
     var shortage_percentage = 100 - overdose_percentage;
+    if ((Post.overdose.html() == "0") && (Post.shortage.html() == "0"))  {
+      var overdose_percentage = 50;
+      var shortage_percentage = 50;
+    };
+    if (overdose_percentage > 75) {
+      var overdose_percentage = 75;
+      var shortage_percentage = 25;
+    };
+    if (shortage_percentage > 75) {
+      var overdose_percentage = 25;
+      var shortage_percentage = 75;
+    };
     Post.root.find('.overdose_bar').css("width", overdose_percentage + "%");
     Post.root.find('.shortage_bar').css("width", shortage_percentage + "%");
   },
   comment_char: function() {
     var length = $(this).val().length;
-    console.log(length);
     if (length > 500) {
       $('#char_count').text("The comment is too long! Please remove " + ( length - 500 ) + " character(s)")
     } else {
