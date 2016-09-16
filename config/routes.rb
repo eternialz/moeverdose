@@ -10,11 +10,9 @@ Rails.application.routes.draw do
   get "/pages/help/:page" => "static_pages#help"
 
   # Posts
-  resources :posts, except: [:index] do
+  resources :posts do
     resources :comments
   end
-
-  get "/all_posts/" => "posts#index", as: 'all_posts'
 
   patch "/posts/:id/report" => "posts#report", as: 'report_post'
   patch "/posts/:id/overdose" => "posts#overdose"
