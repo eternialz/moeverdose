@@ -240,6 +240,11 @@ class PostsController < ApplicationController
     redirect_to post_path(@post)
   end
 
+  def random
+    @post = Post.all.sample
+    redirect_to(post_path(@post))
+  end
+
   private
   def set_post
     if params[:id]
