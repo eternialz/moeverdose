@@ -2,7 +2,12 @@ class UsersController < ApplicationController
   before_action :set_user, except: [:index]
 
   def index
-    @users = User.all.order(upload_count: :desc)
+    if params[:page] != nil
+      @current_page = params[:page].to_i
+    else
+      @current_page = 1
+    end
+    @users = User.all.order(upload_count:  :desc).page(params[:page]).per(50)
   end
 
   def show
