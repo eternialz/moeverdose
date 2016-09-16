@@ -4,6 +4,9 @@ Post = {
     Post.root.find('.overdose').click(Post.overdose);
     Post.root.find('.shortage').click(Post.shortage);
     Post.root.find('#add_to_favorites').click(Post.favorite);
+    Post.root.find('.post img').click( function() {
+      $('#zoom_post').prop('checked',true);
+    });
     Post.overdose = Post.root.find('.overdose_score');
     Post.shortage = Post.root.find('.shortage_score');
     $('#add_comment').bind('input propertychange', Post.comment_char);
