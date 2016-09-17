@@ -2,15 +2,25 @@ class UsersController < ApplicationController
   before_action :set_user, except: [:index]
 
   def index
-    @users = User.all.order(upload_count: :desc)
+    if params[:page] != nil
+      @current_page = params[:page].to_i
+    else
+      @current_page = 1
+    end
+    @users = User.all.order(upload_count:  :desc).page(params[:page]).per(50)
   end
 
   def show
     @user = User.find_by(name: params[:id])
+    @uploads = @user.posts.order(created_at: :desc).limit(8)
+    @favs = @user.favorites.order(created_at: :desc).limit(8)
     @favorites_tags = @user.favorites_tags.split(" ")
     @blacklisted_tags = @user.blacklisted_tags.split(" ")
     @level = @user.level
     @percentage = '%.2f' % ((@user.upload_count.to_f / @level.max_exp.to_f)*100)
+    if (@percentage.to_i > 100)
+      @percentage = "100"
+    end
     if @level.last == false
       @next_level = Level.find_by(rank: @level.rank + 1)
     else
