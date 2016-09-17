@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get "/pages/help/:page" => "static_pages#help"
 
   # Posts
+  get "/random" => "posts#random", as: :random
   resources :posts do
     resources :comments
   end

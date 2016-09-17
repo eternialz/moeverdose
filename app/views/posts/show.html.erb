@@ -59,9 +59,10 @@
         <h3><%= fa_icon "bolt" %> Actions</h3>
         <label class="action action-green" for="post_edit"><%= fa_icon "edit" %> Edit post</label>
         <a href="<%= @post.post_image.url %>" download class="action action-green"><%= fa_icon "download" %> Download</a>
+        <label for="zoom_post" class="action action-green"><%= fa_icon "plus" %> Zoom</label>
         <a class="action action-green" id="add_to_favorites"><%= fa_icon "heart" %> Add To Favorites</a>
         <a class="action action-green"><%= fa_icon "search" %> More from the same author</a>
-        <a class="action action-green"><%= fa_icon "google" %> Search image on google</a>
+        <a href="https://www.google.fr/searchbyimage?site=search&image_url=<%= request.domain + @post.post_image.url %>" class="action action-green"><%= fa_icon "google" %> Search image on google</a>
         <label for="report_form_input" class="action action-green"><%= fa_icon "close" %> Report post</label>
         <a class="action action-pink previous"><%= fa_icon "arrow-circle-left" %> Previous</a>
         <a class="action action-pink right next">Next <%= fa_icon "arrow-circle-right" %> </a>
@@ -114,3 +115,9 @@
     <% end %>
   </div>
 </div>
+
+<input type="checkbox" class="lightbox_switch" id="zoom_post">
+<label for="zoom_post" class="lightbox">
+  <label for="zoom_post" class="close">close</label>
+  <img src='<%= @post.post_image.url %>' title="Clic to close">
+</label>
