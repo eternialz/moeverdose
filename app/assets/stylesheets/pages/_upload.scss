@@ -81,7 +81,6 @@
 
     input[type=file]:valid + .file-dummy {
       border-color: $green;
-      background-color: $green;
 
       .success {
         display: inline;
