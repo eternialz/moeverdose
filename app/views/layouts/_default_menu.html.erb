@@ -4,13 +4,10 @@
   <div class="user">
     <% if user_signed_in? %>
       <a class="avatar" href="<%= user_path(current_user.name) %>" id="my_account"><%= image_tag current_user.avatar(:tiny) %></a>
-      <span><%= link_to current_user.name, user_path(current_user.name) %><br />
-       <%= link_to 'logout', destroy_user_session_path %></span>
+      <span><%= link_to current_user.name, user_path(current_user.name) %></span>
     <% else %>
-      <span>
-        <%= link_to "login", new_user_session_path %><br />
-        <%= link_to "sign up", new_user_registration_path %>
-      </span>
+      <a class="avatar" href="<%= new_user_registration_path %>"><%= image_tag image_path('default_user.png') %></a>
+      <span>Guest</span>
     <% end %>
   </div>
   <ul>

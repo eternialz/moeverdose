@@ -12,7 +12,7 @@
         <a href="<%= @user.website %>" class="icon tooltip"><%= fa_icon "link" %><span class="tip"><%= @user.website %></a>
       <% end %>
       <div class="user_banner">
-        <a class="action action-blue" href="<%= edit_user_path %>"><%= fa_icon "edit" %> edit profile</a>
+        <a class="btn btn-blue" href="<%= edit_user_path %>"><%= fa_icon "edit" %> edit profile</a>
         <h3><%= @user.biography %></h3><br />
         <p> Last seen: <%= @user.current_sign_in_at.to_time.strftime('%B %e at %l:%M %p') %></p>
       </div>

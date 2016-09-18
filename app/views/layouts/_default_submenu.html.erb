@@ -25,17 +25,28 @@
     <li><%= link_to 'Licence', '/pages/licence' %></li>
     <li><a>Stats</a></li>
   </ul>
-  <ul class="my-account">
     <% if user_signed_in? %>
-      <h3><a href="<%= user_path(current_user.name) %>"><%= fa_icon "user" %> My Account</a></h3>
-      <li><%= link_to "Profile", user_path(current_user.name) %></li>
-      <li><%= link_to "Options", edit_user_path(current_user.name) %></li>
-      <li><%= link_to 'Logout', destroy_user_session_path %></span></li>
+      <ul class="my-account">
+        <h3><a href="<%= user_path(current_user.name) %>"><%= fa_icon "user" %> My Account</a></h3>
+        <li><%= link_to "Profile", user_path(current_user.name) %></li>
+        <li><%= link_to "Options", edit_user_path(current_user.name) %></li>
+        <li><%= link_to 'Logout', destroy_user_session_path %></span></li>
+      </ul>
     <% else %>
-      <h3><%= link_to "My Account", new_user_session_path %></h3>
-      <li><%= link_to "Login", new_user_session_path %></li>
-      <li><%= link_to "Sign up", new_user_registration_path %></li>
-      </span>
+      <ul class="login register">
+        <h3>Need an account?</h3>
+        <p>With an account you can upload images, edit posts, add comments and many other things.</p>
+        <p>No activation necessary</p>
+        <%= link_to "Sign up", new_user_registration_path, class: 'btn btn-blue' %>
+      </ul>
+      <ul class="login">
+        <h3>Sign In</h3>
+        <%= form_for(:user, :url => session_path(:user)) do |f| %>
+          <%= f.email_field :email, autofocus: true, placeholder: 'email', autocomplete: "off" %>
+          <%= f.password_field :password, autocomplete: "off", placeholder: 'password', autocomplete: "off" %>
+          <%= link_to "Forgot your password?", new_password_path(:user) %>
+          <%= f.submit "Log in", class: "btn btn-blue" %>
+        <% end %>
+      </ul>
     <% end %>
-  </ul>
 </div>

@@ -5,11 +5,15 @@
       <div class="reported">
         <p>This post have been reported by <%= @post.report_user.name %> for:</p>
         <p><%= @post.report_reason %></p>
-        <label for="report_form_input" class="btn">Show post</label>
+        <label for="report_form_input" class="btn btn-pink">Show post <%= fa_icon 'eye' %></label>
       </div>
     <% end %>
-    <div class="post">
+    <div class="post_navigation clearfix">
       <h2><%= @post.title %></h2>
+      <a class="btn btn-pink previous"><%= fa_icon "arrow-circle-left" %> Previous</a>
+      <a class="btn btn-pink next">Next <%= fa_icon "arrow-circle-right" %></a>
+    </div>
+    <div class="post">
       <%= image_tag @post.post_image.url %>
       <div class="post-info clearfix">
       <div class="infos">
@@ -57,31 +61,37 @@
       </div>
       <div class="f3 column actions">
         <h3><%= fa_icon "bolt" %> Actions</h3>
-        <label class="action action-green" for="post_edit"><%= fa_icon "edit" %> Edit post</label>
-        <a href="<%= @post.post_image.url %>" download class="action action-green"><%= fa_icon "download" %> Download</a>
-        <label for="zoom_post" class="action action-green"><%= fa_icon "plus" %> Zoom</label>
-        <a class="action action-green" id="add_to_favorites"><%= fa_icon "heart" %> Add To Favorites</a>
-        <a class="action action-green"><%= fa_icon "search" %> More from the same author</a>
-        <a href="https://www.google.fr/searchbyimage?site=search&image_url=<%= request.domain + @post.post_image.url %>" class="action action-green"><%= fa_icon "google" %> Search image on google</a>
-        <label for="report_form_input" class="action action-green"><%= fa_icon "close" %> Report post</label>
-        <a class="action action-pink previous"><%= fa_icon "arrow-circle-left" %> Previous</a>
-        <a class="action action-pink right next">Next <%= fa_icon "arrow-circle-right" %> </a>
+        <label class="btn btn-blue" for="post_edit"><%= fa_icon "edit" %> Edit post</label>
+        <a href="<%= @post.post_image.url %>" download class="btn btn-blue"><%= fa_icon "download" %> Download</a>
+        <a class="btn btn-blue" id="add_to_favorites"><%= fa_icon "heart" %> Add To Favorites</a>
+        <a href="https://www.google.fr/searchbyimage?site=search&image_url=<%= request.domain + @post.post_image.url %>" class="btn btn-blue"><%= fa_icon "google" %> Search image on google</a>
+        <label for="report_form_input" class="btn btn-blue"><%= fa_icon "close" %> Report post</label>
       </div>
     </div>
     <input type="checkbox" id="post_edit">
-    <%= form_for @post, as: "post", url: post_path(@post) do |post| %>
+    <%= form_for @post, as: "post", id: "post-edit", url: post_path(@post) do |post| %>
       <h2>Edit Post</h2>
-      <h3><%= fa_icon "header" %> Title<span class="required">required</span></h3>
-      <%= post.text_field :title, placeholder: "Title" %>
-      <h3><%= fa_icon "rss" %> Source</h3>
-      <%= post.text_field :source, placeholder: "Source" %>
-      <h3><%= fa_icon "user" %> Author<span class="required">required</span></h3>
-      <input name="author_tag" type="text" placeholder="Author name" value="<%= @post.author.name %>">
-      <h3><%= fa_icon "tag" %> Tags<span class="required">required (at least three)</span></h3>
-      <textarea name="tags" placeholder='Tags ("1girl glasses")'><% @tags.each do |tag| %><%= tag + " " %><% end %></textarea>
-      <h3><%= fa_icon "group" %> Character(s)</h3>
-      <textarea name="characters" placeholder='Characters ("illyasviel_von_einzbern")'><% @characters.each do |character| %><%= character + " " %><% end %></textarea>
-      <div style="text-align:center;"><input class="btn" type="submit" value="Modifier le Post"></div>
+      <div class="field">
+        <span><%= fa_icon "header" %> Title:</span>
+        <%= post.text_field :title, placeholder: "Title" %>
+      </div>
+      <div class="field">
+        <span><%= fa_icon "rss" %> Source:</span>
+        <%= post.text_field :source, placeholder: "Source" %>
+      </div>
+      <div class="field">
+        <span><%= fa_icon "user" %> Author:</span>
+        <input name="author_tag" type="text" placeholder="Author name" value="<%= @post.author.name %>">
+      </div>
+      <div class="field_area">
+        <p><%= fa_icon "tag" %> Tags:</p>
+        <textarea name="tags" placeholder='Tags ("1girl glasses")'><% @tags.each do |tag| %><%= tag + " " %><% end %></textarea>
+      </div>
+      <div class="field_area">
+        <p><%= fa_icon "group" %> Character(s):</p>
+        <textarea name="characters" placeholder='Characters ("illyasviel_von_einzbern")'><% @characters.each do |character| %><%= character + " " %><% end %></textarea>
+      </div>
+      <button type="submit" form="edit_post" class="btn btn-pink" type="submit">Modifier le post <%= fa_icon 'edit' %></button>
     <% end %>
   </div>
 
@@ -90,7 +100,7 @@
     <%= post.check_box :report, class: "hide", checked: true %>
     <h2><%= fa_icon "exclamation-circle" %> Report post</h2>
     <%= post.text_area :report_reason, placeholder: "Reason" %>
-    <input class="btn" type="submit" value="Report post">
+    <button type="submit" form="report_post" class="btn btn-red" type="submit">Report <%= fa_icon 'exclamation' %></button>
   <% end %>
 
   <div class="comments zone">
@@ -106,11 +116,11 @@
         </div>
       <% end %>
     </div>
-    <%= form_tag post_comments_path(@post), class: "comment-form" do |comment| %>
+    <%= form_tag post_comments_path(@post), id: "comment-form" ,class: "comment-form" do |comment| %>
       <label for="add_comment"><h3>Add a comment<span id="char_count">Maximum 500 characters</span></h3></label>
       <textarea id="add_comment" name="comment[text]" placeholder="Write your message here "></textarea>
       <div class="button-zone">
-        <input class="btn" type="submit" value="Send">
+        <button type="submit" form="comment-form" class="btn btn-blue" type="submit">Send <%= fa_icon 'comment' %></button>
       </div>
     <% end %>
   </div>

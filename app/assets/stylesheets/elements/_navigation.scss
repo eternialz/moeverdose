@@ -10,6 +10,7 @@ nav.menu {
   top: 0;
   left: 0;
   right: 0;
+  height: 96px;
 
   .row {
     margin: auto;
@@ -96,7 +97,7 @@ nav.menu {
   .submenu {
     padding-left: 25px;
     height: 0px;
-    top: 90px;
+    top: 96px;
     -webkit-transition:all 200ms ease-in-out;
     -moz-transition:all 200ms ease-in-out;
     -o-transition:all 200ms ease-in-out;
@@ -105,8 +106,7 @@ nav.menu {
     width: 100%;
     z-index: 100;
     visibility: hidden;
-    background-image: linear-gradient(rgba(0,0,0,.9),rgba(0,0,0,.9));
-    box-shadow: 0 1px 3px rgba(0,0,0,.25);
+    background: #000;
     text-shadow: none;
 
     a {
@@ -117,9 +117,8 @@ nav.menu {
       min-width: 140px;
       height: 100%;
       margin-right: 25px;
-      padding-right: 20px;
       float: left;
-      border-top: 5px solid rgba(0,0,0,.0);
+      border-top: 4px solid rgba(0,0,0,.0);
       padding-top: 10px;
       -webkit-transition:all 100ms linear;
       -moz-transition:all 100ms linear;
@@ -128,7 +127,7 @@ nav.menu {
       overflow-y: hidden;
 
       h3 {
-        padding-left: 12px;
+        padding-left: 9px;
         font-style: normal;
         font-size: 1em;
       }
@@ -143,24 +142,80 @@ nav.menu {
       }
     }
 
-    ul.my-account {
+    ul.login {
+      right: 0;
+      width: 300px;
+      position: absolute;
+      padding: 10px;
+
+      h3 {
+        padding: 0;
+      }
+
+      p {
+        color: #AAA;
+      }
+
+      input[type="email"], input[type="password"] {
+        width: 100%;
+        background: #111;
+        border: 0;
+        padding: 8px;
+        border-radius: 3px;
+        margin-bottom: 5px;
+        color: #AAA;
+      }
+
+      input[type="email"]:invalid, input[type="password"]:invalid {
+        box-shadow: none;
+        border: none;
+      }
+
+      .btn {
+        position: absolute;
+        top: 175px;
+        right: 20px;
+      }
+
+      a {
+        text-align: center;
+        display: block;
+      }
+
+      a:before {
+        content: "";
+      }
+    }
+
+    ul.my-account, ul.login {
       float: right;
       margin-right: 0;
       padding-left: 10px;
+      padding-right: 20px;
 
       h3, h3 a, a:hover, a:hover:before {
         color: $blue,
       }
 
       &:hover {
-        border-top: 5px solid $blue;
+        border-top: 4px solid $blue;
       }
+    }
 
+
+    ul.register {
+      right: 299px;
+      padding: 10px 20px;
+    }
+
+    ul.login:hover {
+      border-top: 4px solid transparent;
     }
 
     ul:hover {
-      border-top: 5px solid $pink;
+      border-top: 4px solid $pink;
     }
+
     li {
       display: block;
     }
@@ -173,8 +228,8 @@ nav.menu {
     }
 
     a:before {
-      content: "• ";
-      color: rgba($blue,0);
+      content: "› ";
+      color: rgba($pink,0);
       -webkit-transition: all 70ms linear;
       -moz-transition: all 70ms linear;
       -o-transition: all 70ms linear;
@@ -186,19 +241,19 @@ nav.menu {
       text-shadow: none;
     }
   }
-
 }
 
 nav.menu:hover {
-
   .submenu {
     visibility: visible;
     height: 240px;
-    border-bottom-color: $pink;
-    box-shadow: 0 10px 0 $pink, 0 11px 3px rgba(0,0,0,.25);
 
-    ul.my-account {
-      box-shadow: 0 10px 0 $blue;
+    ul.my-account, ul.login {
+      background: #333;
+    }
+
+    ul.register {
+      background: #222;
     }
   }
 }
