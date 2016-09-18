@@ -21,7 +21,7 @@
       </div>
       <span><%= fa_icon "upload" %> Uploaded by: <%= link_to @post.user.name, user_path(@post.user.name) %></span>
       <% if @post.source != "" %>
-        <span><%= fa_icon "file" %> Source: <%= @post.source %></span>
+        <span><%= fa_icon "file" %> Source: <a href="http://www.google.fr/search?q=<%= @post.source %>" title="Search on google"><%= @post.source %></a></span>
       <% end %>
       </div>
     </div>
