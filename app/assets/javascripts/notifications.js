@@ -1,6 +1,7 @@
 Notification = {
   init: function(root) {
-    Notification.root = root
+    Notification.root = root;
+    Notification.counter = 0;
   },
   add: function(title, message, type) {
     type = type || "";
@@ -14,15 +15,18 @@ Notification = {
 
     var notification = $("<div id='" + id + "' class='notification " + type + "'><i class='fa fa-close'></i>" + title + message + "</div>");
 
-    Notification.root.prepend( $(notification) );
 
-    notification.find(".fa-close").click( function() {
+
+    Notification.counter += 1;
+    Notification.root.find($('.notifications_container')).append( $(notification) );
+
+    notification.click( function() {
       notification.remove();
     });
 
     setTimeout(function() {
       notification.remove();
-    }, 10000);
+    }, 6000);
   }
 };
 

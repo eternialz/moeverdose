@@ -37,15 +37,17 @@
         <h3>Need an account?</h3>
         <p>With an account you can upload images, edit posts, add comments and many other things.</p>
         <p>No activation necessary</p>
-        <%= link_to "Sign up", new_user_registration_path, class: 'btn btn-blue' %>
+        <%= link_to new_user_registration_path, class: 'btn btn-blue' do %>
+          Sign up <%= fa_icon 'user-plus' %>
+        <% end %>
       </ul>
       <ul class="login">
         <h3>Sign In</h3>
-        <%= form_for(:user, :url => session_path(:user)) do |f| %>
+        <%= form_for(:user, id: 'login', :url => session_path(:user)) do |f| %>
           <%= f.email_field :email, autofocus: true, placeholder: 'email', autocomplete: "off" %>
           <%= f.password_field :password, autocomplete: "off", placeholder: 'password', autocomplete: "off" %>
           <%= link_to "Forgot your password?", new_password_path(:user) %>
-          <%= f.submit "Log in", class: "btn btn-blue" %>
+          <button class="btn btn-blue" type="submit">Sign in <%= fa_icon "sign-in" %></button>
         <% end %>
       </ul>
     <% end %>

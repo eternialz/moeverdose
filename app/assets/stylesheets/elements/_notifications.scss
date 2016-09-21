@@ -1,16 +1,36 @@
+@-webkit-keyframes opacity {
+    0% {opacity: 0;}
+    8% {opacity: 1;}
+    92% {opacity: 1;}
+    100% {opacity: 0;}
+}
+
 .notifications {
   position: fixed;
-  top: 96px;
-  width: 100%;
+  bottom: 0;
+  right: 0;
+  width: 400px;
+  max-width: 100%;
   z-index: 150;
-  background: rgba(0,0,0,.8);
+
+  .notifications_container {
+    max-height: calc( 100vh - 96px);
+    overflow-y: auto;
+    margin: auto;
+    color: #555;
+    padding: 4px;
+  }
 
   .notification {
-    max-width: 600px;
-    padding: 10px;
+    animation-name: opacity;
+    animation-duration: 6s;
+    width: 100%;
     border-radius: 3px;
-    margin: 10px auto;
+    margin: auto;
+    padding: 10px;
+    margin: 10px 0;
     background: #FFF;
+    box-shadow: 0 1px 3px rgba(0,0,0,.25);
 
     h5, p {
       margin: 0;
@@ -34,7 +54,6 @@
     }
 
     &.warning {
-
       h5 {
         color: $orange;
       }

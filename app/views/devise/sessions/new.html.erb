@@ -3,12 +3,12 @@
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="field">
-      <span><%= fa_icon "envelope" %> EMAIL:</span>
+      <span><%= fa_icon "envelope" %> email:</span>
       <%= f.email_field :email, autofocus: true %>
     </div>
 
     <div class="field">
-      <span><%= fa_icon "envelope" %> PASSWORD:</span>
+      <span><%= fa_icon "unlock-alt" %> password:</span>
       <%= f.password_field :password, autocomplete: "off" %>
     </div>
 
@@ -16,13 +16,13 @@
       <div class="field">
         <label>
         <%= f.check_box :remember_me %>
-        REMEMBER ME
+        remember me
         </label>
       </div>
     <% end -%>
 
     <div class="actions">
-      <%= f.submit "Log in", class: "btn btn-blue" %>
+      <button class="btn btn-blue" type="submit">Sign in <%= fa_icon "sign-in" %></button>
     </div>
   <% end %>
 

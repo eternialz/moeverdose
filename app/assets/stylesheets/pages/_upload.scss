@@ -2,6 +2,7 @@
   background-image: url(image_path($header-image));
   background-image: linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)), url(image_path($header-image));
   background-size: cover;
+  background-attachment: fixed;
   background-position: center center;
   margin: 20px auto;
   padding: 25px;
@@ -53,7 +54,7 @@
       padding-top: 30px;
       height: 100px;
       font-weight: 900;
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(0, 0, 0, 0.65);
       -webkit-transition:all 100ms linear;
       -moz-transition:all 100ms linear;
       -o-transition:all 100ms linear;
@@ -95,7 +96,8 @@
     }
 
     input[type=file]:valid + .file-dummy + #file {
-      padding: 20px;
+      margin: 20px 0 0;
+      border-radius: 3px;
     }
   }
 }

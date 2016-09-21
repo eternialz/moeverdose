@@ -86,7 +86,7 @@ $(document).ready(function(){
   $.key('shift+2', to_favorites);
   $.key('shift+3', to_my_uploads);
   $.key('shift+backspace', log_out);
-  $.key('enter', to_upload);
+  $.key('shift+enter', to_upload);
 
   // Posts bindings
   if (arr[3] == "posts") {

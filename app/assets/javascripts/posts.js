@@ -74,14 +74,6 @@ Post = {
       var overdose_percentage = 50;
       var shortage_percentage = 50;
     };
-    if (overdose_percentage > 75) {
-      var overdose_percentage = 75;
-      var shortage_percentage = 25;
-    };
-    if (shortage_percentage > 75) {
-      var overdose_percentage = 25;
-      var shortage_percentage = 75;
-    };
     Post.root.find('.overdose_bar').css("width", overdose_percentage + "%");
     Post.root.find('.shortage_bar').css("width", shortage_percentage + "%");
   },

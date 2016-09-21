@@ -6,7 +6,7 @@
     <%= f.hidden_field :reset_password_token %>
 
     <div class="field tooltip">
-      <span><%= fa_icon "unlock_alt" %>PASSWORD:</span>
+      <span><%= fa_icon "unlock_alt" %>password:</span>
       <% if @minimum_password_length %>
         <div class="tip"><%= @minimum_password_length %> characters minimum</div>
       <% end %>
@@ -14,7 +14,7 @@
     </div>
 
     <div class="field">
-      <span><%= fa_icon "unlock_alt" %>CONFIRMATION:</span>
+      <span><%= fa_icon "unlock_alt" %>confirmation:</span>
       <%= f.password_field :password_confirmation, autocomplete: "off" %>
     </div>
 
