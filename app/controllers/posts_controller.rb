@@ -195,6 +195,11 @@ class PostsController < ApplicationController
   def update
     @post.assign_attributes(edit_post_params)
 
+    @post.tags.each do |t|
+      t.posts_count -= 1
+      t.save
+    end
+
     @post.tags = []
     tags = params[:tags].downcase.split(" ")
 
@@ -203,6 +208,7 @@ class PostsController < ApplicationController
       if t.empty?
         t = Tag.new({name: tag, type: :content})
       end
+      t
       @post.tags << t
     end
 
@@ -216,7 +222,7 @@ class PostsController < ApplicationController
       @post.tags << c
     end
 
-    author_name = params[:author]
+    author_name = params[:author_tag]
 
     if author_name != "" && author_name != nil
       author = Tag.where(name: author_name.downcase.tr(" ", "_"), type: :author)
@@ -236,7 +242,7 @@ class PostsController < ApplicationController
     if @post.save
       author_profile.save
       @post.tags.each do |t|
-        #t.posts_count =
+        t.posts_count += 1
         t.save
       end
     end
