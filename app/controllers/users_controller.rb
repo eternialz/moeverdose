@@ -12,8 +12,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(name: params[:id])
-    @uploads = @user.posts.order(created_at: :desc).limit(6)
-    @favs = @user.favorites.order(created_at: :desc).limit(6)
+    @uploads = @user.posts.where(report: false).order(created_at: :desc).limit(6)
+    @favs = @user.favorites.where(report: false).order(created_at: :desc).limit(6)
     @favorites_tags = @user.favorites_tags.split(" ")
     @blacklisted_tags = @user.blacklisted_tags.split(" ")
     @level = @user.level
