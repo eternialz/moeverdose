@@ -1,0 +1,59 @@
+$device-xsmall: 640px;
+$device-small: 1024px;
+$device-medium: 1280px;
+$device-large: 1600px;
+
+@media (max-width: $device-small) {
+  #menu_label {
+    display: inline-block !important;
+  }
+
+  .submenu {
+    padding: 10px 0;
+  }
+
+  .submenu ul {
+    width: 100%;
+  }
+
+  nav.menu .submenu ul:hover {
+    border-top: 4px solid transparent !important;
+  }
+
+  nav.menu .submenu ul.my-account, nav.menu .submenu ul.login {
+    display: none;
+  }
+
+  nav.menu ul li a{
+    display: none;
+  }
+
+  nav.menu .submenu.develop {
+    height: auto;
+  }
+
+  nav.menu:hover .submenu {
+    visibility: hidden;
+  }
+
+  #random {
+    display: none;
+  }
+
+  body {
+    padding-top: 0;
+  }
+
+  nav.menu {
+    position: static;
+  }
+
+  .footer-nav {
+    padding-top: 1em;
+  }
+
+  footer .footer-nav li {
+    display: block;
+    margin: 1em 0 1em 0;
+  }
+}
