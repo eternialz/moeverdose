@@ -120,17 +120,17 @@ h3 {
 }
 
 h4 {
-  color: $orange;
+  color: $blue;
   font-size: 1.15em;
 }
 
 h5 {
-  color: $green;
+  color: $pink;
   font-size: 1em;
 }
 
 h6 {
-  color: $yellow;
+  color: $blue;
   font-size: 0.8em;
 }
 
@@ -264,6 +264,12 @@ h6 {
     font-style: normal;
     font-weight: 900;
   }
+
+  .zone_title {
+    color: #555;
+    font-weight: normal;
+    margin: 15px 0 5px 15px;
+  }
 }
 
 .field {
@@ -338,7 +344,7 @@ h6 {
 .btn {
   background-image: url(image_path('pattern(2).svg'));
   background-position: 0 center;
-  display: block;
+  display: inline-block;
   margin: 5px 0 4px;
   min-width: 150px;
   min-height: 34px;

@@ -12,8 +12,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(name: params[:id])
-    @uploads = @user.posts.order(created_at: :desc).limit(8)
-    @favs = @user.favorites.order(created_at: :desc).limit(8)
+    @uploads = @user.posts.order(created_at: :desc).limit(6)
+    @favs = @user.favorites.order(created_at: :desc).limit(6)
     @favorites_tags = @user.favorites_tags.split(" ")
     @blacklisted_tags = @user.blacklisted_tags.split(" ")
     @level = @user.level
@@ -23,8 +23,10 @@ class UsersController < ApplicationController
     end
     if @level.last == false
       @next_level = Level.find_by(rank: @level.rank + 1)
+      @to_next = ''
     else
       @next_level = Level.new(name: "No more levels")
+      @to_next = '<p style="text-align: center;"><%= @level.max_exp - @user.upload_count %> upload(s) until next level</p>'
     end
   end
 

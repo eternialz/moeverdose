@@ -107,6 +107,25 @@
 
 // PROFILE
 
+.post-thumbnail.preview {
+  background: #000;
+  text-align: center;
+  padding-top: 50px;
+
+  p {
+    margin: 10px;
+    background: #444;
+    display: inline-block;
+    border-radius: 3px;
+    padding: 5px;
+    color: #FFF;
+  }
+}
+
+a.post-thumbnail.preview:hover {
+  background: #222;
+}
+
 .userprofile {
   color: #555;
 
@@ -186,40 +205,12 @@
       }
     }
   }
-
-  .normal_informations {
-    position: relative;
-    text-align: left;
-    padding: 40px;
-    font-weight: bold;
-
-    .bio {
-      font-weight: normal;
-    }
-
-    .user_stats {
-      margin-bottom: 10px;
-
-      span {
-        margin-right: 20px;
-      }
-    }
-
-    .advanced_informations {
-      h4 {
-        color: #555;
-      }
-
-      p {
-        text-align: center;
-        font-weight: normal;
-      }
-    }
-  }
 }
 
 .user_posts, .user_favs {
   margin-bottom: 15px;
+  background: #222;
+  box-shadow: 0 1px 3px rgba(0,0,0,.25);
 
   h2 {
     margin-left: 10px;
