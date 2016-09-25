@@ -86,9 +86,6 @@ class User
   field :report, type: Boolean, default: false
   alias_method :report?, :report
 
-  # Reported posts
-  belongs_to :post
-
   # Roles
   field :role, type: Symbol, default: :user
 

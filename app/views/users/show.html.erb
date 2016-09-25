@@ -12,16 +12,12 @@
         <a href="<%= @user.website %>" class="icon tooltip"><%= fa_icon "link" %><span class="tip"><%= @user.website %></a>
       <% end %>
       <div class="user_banner">
-        <a class="btn btn-blue" href="<%= edit_user_path %>"><%= fa_icon "edit" %> edit profile</a>
+        <% if @current %>
+          <a class="btn btn-blue" href="<%= edit_user_path %>"><%= fa_icon "edit" %> edit profile</a>
+        <% end %>
         <h3><%= @user.biography %></h3><br />
         <p> Last seen: <%= @user.current_sign_in_at.to_time.strftime('%B %e at %l:%M %p') %></p>
       </div>
-  </div>
-  <div class="zone clearfix level row">
-    <h3 class="zone_title">About Me</h3>
-    <div class="column f12">
-      <p class="bio"><%= @user.biography %></p>
-    </div>
   </div>
   <div class="zone clearfix tags row">
     <h3 class="zone_title">My Tags</h3>
@@ -36,7 +32,7 @@
       <% end %>
     </div>
     <div class="column f6">
-      <h6>Blocklisted Tags</h6>
+      <h6>Blacklisted Tags</h6>
       <% if @blacklisted_tags.empty? %>
         <p>Nothing here</p>
       <% else %>
