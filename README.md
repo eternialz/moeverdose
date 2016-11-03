@@ -83,7 +83,7 @@ Use fix/nameoffix to commit fixes
 
 #**PROBLEMs and Future ideas:**
 
-* *Wich girl should we use as a logo for moeverdose?!!!*
-* Wich server should we use?
-* Wich CDN should we use?
+* *Which girl should we use as a logo for moeverdose?!!!*
+* Which server should we use?
+* Which CDN should we use?
 * Changelog system ?
