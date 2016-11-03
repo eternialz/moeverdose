@@ -1,23 +1,23 @@
 <div class="userprofile">
   <div class="user_header clearfix" style="background-image: url(<%= @user.banner(:normal) %>)">
     <img class="avatar" src="<%= @user.avatar(:thumb) %>" width="120" height="120" />
-      <h3 class="username"><%= @user.name %></h3><span class="role"><%= @user.role %></span>
-      <% if @user.twitter != "" %>
-        <a href="https://twitter.com/<%= @user.twitter %>" class="icon tooltip"><%= fa_icon "twitter" %><span class="tip">@<%= @user.twitter %></span></a>
+    <h3 class="username"><%= @user.name %></h3><span class="role"><%= @user.role %></span>
+    <% if @user.twitter != "" %>
+      <a href="https://twitter.com/<%= @user.twitter %>" class="icon tooltip"><%= fa_icon "twitter" %><span class="tip">@<%= @user.twitter %></span></a>
+    <% end %>
+    <% if @user.facebook != "" %>
+      <a href="<%= @user.facebook %>" class="icon tooltip"><%= fa_icon "facebook" %><span class="tip"><%= @user.facebook %></a>
+    <% end %>
+    <% if @user.website != "" %>
+      <a href="<%= @user.website %>" class="icon tooltip"><%= fa_icon "link" %><span class="tip"><%= @user.website %></a>
+    <% end %>
+    <div class="user_banner">
+      <% if @current %>
+        <a class="btn btn-blue" href="<%= edit_user_path %>"><%= fa_icon "edit" %> edit profile</a>
       <% end %>
-      <% if @user.facebook != "" %>
-        <a href="<%= @user.facebook %>" class="icon tooltip"><%= fa_icon "facebook" %><span class="tip"><%= @user.facebook %></a>
-      <% end %>
-      <% if @user.website != "" %>
-        <a href="<%= @user.website %>" class="icon tooltip"><%= fa_icon "link" %><span class="tip"><%= @user.website %></a>
-      <% end %>
-      <div class="user_banner">
-        <% if @current %>
-          <a class="btn btn-blue" href="<%= edit_user_path %>"><%= fa_icon "edit" %> edit profile</a>
-        <% end %>
-        <h3><%= @user.biography %></h3><br />
-        <p> Last seen: <%= @user.current_sign_in_at.to_time.strftime('%B %e at %l:%M %p') %></p>
-      </div>
+      <h3><%= @user.biography %></h3><br />
+      <p> Last seen: <%= @user.current_sign_in_at.to_time.strftime('%B %e at %l:%M %p') %></p>
+    </div>
   </div>
   <div class="zone clearfix tags row">
     <h3 class="zone_title">My Tags</h3>

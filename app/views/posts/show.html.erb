@@ -1,5 +1,6 @@
 <div class="row posts">
-  <div class="post-container" style="background-image: url(<%= image_url(@post.post_image.url)%>)">
+  <div class="post-container">
+    <div class="image-blur" style="background-image: url(<%= image_url(@post.post_image.url)%>)"></div>
     <% if @post.report == true %>
       <input class="reported_input" id="report_form_input" type="checkbox">
       <div class="reported">

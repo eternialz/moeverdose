@@ -3,6 +3,24 @@ $device-small: 1024px;
 $device-medium: 1280px;
 $device-large: 1600px;
 
+@media (max-width: $device-xsmall) {
+  .menu .user img {
+    display: none;
+  }
+
+  .userprofile .user_header  {
+    .role {
+      display: none;
+    }
+
+    .user_banner {
+      p {
+        display: none;
+      }
+    }
+  }
+}
+
 @media (max-width: $device-small) {
   #menu_label {
     display: inline-block !important;
