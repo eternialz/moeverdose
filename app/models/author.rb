@@ -1,11 +1,11 @@
 class Author
   include Mongoid::Document
   include Mongoid::Timestamps
-  
+
   field :name, type: String
   validates :name, presence: true, uniqueness: true
 
-  has_many :posts, class_name: "Post", inverse_of: :author
+  has_and_belongs_to_many :posts, class_name: "Post", inverse_of: :author
 
   field :website, type: String
 

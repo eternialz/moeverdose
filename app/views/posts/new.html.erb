@@ -1,4 +1,4 @@
-<%= form_for @post, url: posts_path, html: {class: "upload clearfix"} do |f| %>
+<%= form_for @post, url: posts_path, html: {class: "zone upload clearfix"} do |f| %>
   <div id="file_upload">
     <%= f.file_field :post_image, required: "required" %>
     <div class="file-dummy">
@@ -8,29 +8,29 @@
     <img id="file"/>
   </div>
   <div id="info_upload" class="row">
-    <div class="header column f4">
-      <h3><%= fa_icon "header" %> Title<span class="required">required</span></h3>
-      <input type="text" name="post[title]" placeholder='Title'></textarea>
+    <div class="field">
+      <span><%= fa_icon "header" %> Title :</span></h3>
+      <input type="text" name="post[title]" placeholder='Title' autocomplete="off">
     </div>
-    <div class="authors column f4">
-      <h3><%= fa_icon "user" %> Author<span class="required">required</span></h3>
-      <input type="text" name="author" placeholder='Author ("hayao_miyazaki")'></textarea>
+    <div class="field">
+      <span><%= fa_icon "user" %> Author :</span></h3>
+      <input type="text" name="author" placeholder='Author' autocomplete="off"></textarea>
     </div>
-    <div class="source column f4">
-      <h3 class="yellow"><%= fa_icon "rss" %> Source</h3>
-      <input type="text" name="post[source]" placeholder='Source'></textarea>
+    <div class="field">
+      <span><%= fa_icon "rss" %> Source :</span>
+      <input type="text" name="post[source]" placeholder='Source ( it will be used as a link to search on google )' autocomplete="off"></textarea>
     </div>
-    <div class="tags column f6">
-      <h3><%= fa_icon "tag" %> Tags<span class="required">required (at least three)</span></h3>
-      <textarea name="tags" placeholder='Tags ("1girl glasses")'></textarea>
+    <div class="field_area">
+      <p><%= fa_icon "tag" %> Tags</p>
+      <textarea name="tags" placeholder='Tags ("1girl glasses ...")' autocomplete="off"></textarea>
     </div>
-    <div class="characters column f6">
-      <h3><%= fa_icon "group" %> Character(s)</h3>
-      <textarea name="characters" placeholder='Character(s) ("illyasviel_von_einzbern")'></textarea>
+    <div class="field_area">
+      <p><%= fa_icon "group" %> Character(s)</p>
+      <textarea name="characters" placeholder='Character(s) ("illyasviel_von_einzbern ...")' autocomplete="off"></textarea>
     </div>
   </div>
   <div style="text-align:center;">
-    <input type="submit" class="btn" value="Upload">
+    <button form="new_post" class="btn btn-pink" type="submit">Upload <%= fa_icon "upload" %></button>
   </div>
 <% end %>
 

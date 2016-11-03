@@ -10,10 +10,12 @@ Rails.application.routes.draw do
   get "/pages/help/:page" => "static_pages#help"
 
   # Posts
+  get "/random" => "posts#random", as: :random
   resources :posts do
     resources :comments
   end
 
+  patch "/posts/:id/report" => "posts#report", as: 'report_post'
   patch "/posts/:id/overdose" => "posts#overdose"
   patch "/posts/:id/shortage" => "posts#shortage"
   patch "/posts/:id/favorite" => "posts#favorite"

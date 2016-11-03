@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: [:update, :overdose, :shortage]
-  before_action :set_post, only: [:edit, :update, :show, :overdose, :shortage, :favorite]
+  before_action :authenticate_user!, only: [:update, :overdose, :shortage, :report]
+  before_action :set_post, only: [:edit, :update, :show, :overdose, :shortage, :favorite, :report]
 
   def show
     @tags = []
@@ -19,6 +19,14 @@ class PostsController < ApplicationController
       @overdose = @post.overdose / (@post.overdose + @post.moe_shortage).to_f * 100
       @shortage = 100 - @overdose
     end
+  end
+
+  def report
+    @post.assign_attributes(params.require(:post).permit(:report_reason))
+    @post.report = true
+    @post.report_user = current_user
+    @post.save
+    redirect_to post_path(@post)
   end
 
   def favorite
@@ -80,7 +88,28 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @permited_posts_per_page = ['2', '8', '16', '32', '64']
+    if params[:posts_per_page] != nil
+      # Custom number of posts per page
+      if @permited_posts_per_page.include? params[:posts_per_page]
+        @posts_per_page = params[:posts_per_page]
+      else
+        @posts_per_page = "32"
+      end
+    else # Default number of posts per page
+      @posts_per_page = "32"
+    end
+    if params[:page] == nil
+      params[:page] = 1
+    end
+    @posts = Post.where(report: :false).order('created_at DESC').page(params[:page]).per(@posts_per_page)
+    @pages = []
+    @current_page = params[:page].to_i
+    (@current_page-3..@current_page+3).to_a.each do |page|
+      if (page >= 1) && (page <= @posts.total_pages)
+        @pages << page
+      end
+    end
     @tags = []
     @characters = []
     @authors = []
@@ -128,11 +157,10 @@ class PostsController < ApplicationController
     author = Tag.where(name: author_name.downcase.tr(" ", "_"), type: :author)
 
     if author.empty?
-      author = Tag.new({name: author_name.downcase.tr(" ", "_"),type: :author})
-      author_profile = Author.new({name: author_name, posts: [@post]})
+      author = Tag.new({name: author_name.downcase.tr(" ", "_"), type: :author})
+      author_profile = Author.new({name: author_name})
     else
       author_profile = Author.find_by({name: author_name})
-      author_profile.posts << @post
     end
 
     @post.tags << author
@@ -146,6 +174,12 @@ class PostsController < ApplicationController
     @post.user = current_user
     @post.user.upload_count += 1
 
+    if @post.user.level.last == false
+      if @post.user.level.max_exp == @post.user.upload_count
+        @post.user.level = Level.find_by(rank: @post.user.level.rank + 1)
+      end
+    end
+
     if @post.save
       author_profile.save
       @post.tags.each do |t|
@@ -154,12 +188,17 @@ class PostsController < ApplicationController
       end
       redirect_to post_path(@post)
     else
-      new
+      redirect_to :back
     end
   end
 
   def update
     @post.assign_attributes(edit_post_params)
+
+    @post.tags.each do |t|
+      t.posts_count -= 1
+      t.save
+    end
 
     @post.tags = []
     tags = params[:tags].downcase.split(" ")
@@ -169,6 +208,7 @@ class PostsController < ApplicationController
       if t.empty?
         t = Tag.new({name: tag, type: :content})
       end
+      t
       @post.tags << t
     end
 
@@ -182,7 +222,7 @@ class PostsController < ApplicationController
       @post.tags << c
     end
 
-    author_name = params[:author]
+    author_name = params[:author_tag]
 
     if author_name != "" && author_name != nil
       author = Tag.where(name: author_name.downcase.tr(" ", "_"), type: :author)
@@ -202,11 +242,16 @@ class PostsController < ApplicationController
     if @post.save
       author_profile.save
       @post.tags.each do |t|
-        #t.posts_count =
+        t.posts_count += 1
         t.save
       end
     end
     redirect_to post_path(@post)
+  end
+
+  def random
+    @post = Post.all.sample
+    redirect_to(post_path(@post))
   end
 
   private

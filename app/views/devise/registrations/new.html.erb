@@ -5,19 +5,19 @@
     <%= devise_error_messages! %>
 
     <div class="field tooltip">
-      <span><%= fa_icon "user" %>USERNAME:</span>
+      <span><%= fa_icon "user" %>username:</span>
       <%= f.text_field :name, autofocus: true, placeholder: "MyNickname" %>
       <div class="tip">displayed as your name to others</div>
     </div>
 
     <div class="field tooltip">
-      <span><%= fa_icon "envelope" %>EMAIL:</span>
+      <span><%= fa_icon "envelope" %>email:</span>
       <%= f.email_field :email, placeholder: "you@something.com" %>
       <div class="tip">Used to log-in and reset your password if forgotten</div>
     </div>
 
     <div class="field tooltip">
-      <span><%= fa_icon "unlock-alt" %>PASSWORD:</span>
+      <span><%= fa_icon "unlock-alt" %>password:</span>
       <% if @minimum_password_length %>
       <% end %><br />
       <%= f.password_field :password, autocomplete: "off", placeholder: "Password" %>
@@ -25,13 +25,13 @@
     </div>
 
     <div class="field tooltip">
-      <span><%= fa_icon "unlock-alt" %>CONFIRMATION:</span>
+      <span><%= fa_icon "unlock-alt" %>confirmation:</span>
       <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Confirm password" %>
       <div class="tip"><%= @minimum_password_length %> characters minimum</div>
     </div>
 
     <div class="actions">
-      <%= f.submit "Sign up", class: "btn" %>
+      <button class="btn btn-blue" type="submit">Sign up <%= fa_icon "user-plus" %></button>
     </div>
   <% end %>
 

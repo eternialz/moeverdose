@@ -3,7 +3,7 @@
     <img class="avatar" src="<%= @user.avatar(:thumb) %>" width="120" height="120" />
     <h3 class="username"><%= @user.name %></h3><span class="role"><%= @user.role %></span>
     <div class="user_banner">
-      <button for="submit" class="action action-green"><%= fa_icon "save" %> Save profile</button>
+      <button for="submit" class="btn btn-green"><%= fa_icon "save" %> Save profile</button>
       <h3><%= @user.biography %></h3><br />
       <p>Last seen: <%= @user.current_sign_in_at.to_time.strftime('%B %e at %l:%M %p') %></p>
     </div>
@@ -30,9 +30,9 @@
           <div class="tip">The link to your website with http(s)://</div>
         </div>
         <div class="field tooltip">
-          <%= f.text_field :twitter, placeholder: "@twitter or https://twitter.com/moeverdose" %>
+          <%= f.text_field :twitter, placeholder: "username" %>
           <span><%= fa_icon "twitter" %> Twitter profile:</span>
-          <div class="tip">Your twitter username without the "@" or twitter profile url</div>
+          <div class="tip">Your twitter username without the "@"</div>
         </div>
         <div class="field tooltip">
           <%= f.text_field :facebook, placeholder: "https://www.facebook.com/my.profile" %>

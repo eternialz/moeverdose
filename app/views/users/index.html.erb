@@ -10,4 +10,16 @@
       <p><%= user.biography %></p>
     </a>
   <% end %>
+  <form class="post_pagination user_pagination" action="<%= users_path %>">
+    <ul>
+      <% if @current_page > 1 %>
+        <li><button name="page" title="first page" value="1" class="number"><%= fa_icon "angle-left" %><%= fa_icon "angle-left" %></button></li>
+        <li><button name="page" title="previous page" value="<%= @current_page-1 %>" class="number"><%= fa_icon "angle-left" %></button></li>
+      <% end %>
+
+      <% if @current_page < @users.total_pages %>
+        <li><button name="page" title="next page" value="<%= @current_page+1 %>" class="number"><%= fa_icon "angle-right" %></button></li>
+        <li><button name="page" title="last page" value="<%= @users.total_pages %>" class="number"><%= fa_icon "angle-right" %><%= fa_icon "angle-right" %></button></li>
+      <% end %>
+    </ul>
 </div>

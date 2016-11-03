@@ -5,13 +5,13 @@
     <%= devise_error_messages! %>
 
     <div class="field">
-      <span><%= fa_icon "envelope" %> EMAIL:</span>
+      <span><%= fa_icon "envelope" %> email:</span>
       <%= f.email_field :email, autofocus: true %>
     </div>
 
     <p>We will send you a link by mail to change your password</p>
     <div class="actions">
-      <%= f.submit "Send me reset password instructions", class: "btn" %>
+      <button class="btn btn-blue" type="submit">Reset <%= fa_icon "edit" %></button>
     </div>
   <% end %>
 
