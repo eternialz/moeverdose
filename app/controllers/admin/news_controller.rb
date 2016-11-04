@@ -16,20 +16,20 @@ class Admin::NewsController < Admin::BaseController
   end
 
   def create
-    @new.assign_params(new_params)
+    @new.assign_attributes(new_params)
     if @new.save
-      redirect_to admin_news(@new)
+      redirect_to admin_news_path(@new)
     else
       render :new
     end
   end
 
   def update
-    @new.assign_params(new_params)
+    @new.assign_attributes(new_params)
     if @new.save
-      redirect_to admin_news(@new)
+      redirect_to admin_news_path(@new)
     else
-      render :new
+      render :edit
     end
   end
 
@@ -45,7 +45,7 @@ class Admin::NewsController < Admin::BaseController
   end
 
   def new_params
-    parmas.require(:news).permit(:title, :text)
+    params.require(:news).permit(:title, :text)
   end
 
 end
