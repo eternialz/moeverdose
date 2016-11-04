@@ -1,0 +1,7 @@
+<h1> All News </h1>
+<% @news.each do |new| %>
+  <div>
+    <h2> <%= new.title %></h2>
+    <p> <%= new.text[0...200] %></p> 
+  </div>
+<% end %>
