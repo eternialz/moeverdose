@@ -87,7 +87,7 @@ class User
   alias_method :report?, :report
 
   # Reported posts
-  belongs_to :post
+  has_and_belongs_to_many :reported_posts, class_name: "Post", inverse_of: nil
 
   # Roles
   field :role, type: Symbol, default: :user
@@ -103,5 +103,6 @@ class User
       end
     end
   end
+  include User::Role
   validates :role, inclusion: {in: User::Role.all}
 end
