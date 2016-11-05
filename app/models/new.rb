@@ -4,6 +4,5 @@ class New
 
   field :title, type: String
   field :text, type: String
-  validates :text, length: {minimum: 200}
 
 end

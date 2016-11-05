@@ -8,5 +8,6 @@
       <a href="<%= admin_news_path(new) %>"><%= new.title %></a>
     </h2>
     <p> <%= new.text[0...200] + '...' %></p>
+    <a href="<%= admin_news_path(new)%>" data-method="delete" class="btn btn-blue"> Delete this News </a>
   </div>
 <% end %>
