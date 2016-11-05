@@ -1,11 +1,9 @@
 <h1> Add a News </h1>
 
 <%= form_for @new, as: :news, url: admin_news_index_path do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <%= f.label :text %>
-  <%= f.text_area :text %>
 
+  <%= render partial: 'form', locals: {f: f} %>
+  
   <div class="actions">
     <button class="btn btn-blue" type="submit"> Create the News</button>
   </div>
