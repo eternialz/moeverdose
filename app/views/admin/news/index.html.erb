@@ -4,7 +4,9 @@
 <a href="<%= new_admin_news_path %>" class=" btn btn-pink"> Add a News </a>
 <% @news.each do |new| %>
   <div>
-    <h2> <%= new.title %></h2>
-    <p> <%= new.text[0...200] %></p> 
+    <h2> 
+      <a href="<%= admin_news_path(new) %>"><%= new.title %></a>
+    </h2>
+    <p> <%= new.text[0...200] + '...' %></p>
   </div>
 <% end %>
