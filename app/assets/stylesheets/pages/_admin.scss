@@ -98,6 +98,14 @@
       }
     }
 
+    h3, h3 a {
+      color: $blue;
+    }
+
+    h3 a:hover {
+      color: $blue_light;
+    }
+
     .button_list {
         float: right;
         padding: 18px;

@@ -1,8 +1,7 @@
-<h1> <%= @new.title %></h1>
+<h2> <%= @new.title %></h2>
 </br>
-<p> <%= @new.text %></p> 
+<p><%= @new.text %></p>
 <div class="actions">
   <a class="btn btn-pink" href="<%= edit_admin_news_path %>"> Edit the News</a>
   <a href="<%= admin_news_path(@new)%>" data-method="delete" class="btn btn-blue"> Delete this News </a>
 </div>
-
