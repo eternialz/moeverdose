@@ -1,9 +1,9 @@
 .admin {
-  box-shadow: 0 1px 3px rgba(0,0,0,.25);
+  box-shadow: 0 1px 3px rgba(0,0,0,.25), inset 200px 0 #000;
+  background: #FFF;
 
   .navigation {
-    width: 200px;
-    background: #000;
+    min-width: 200px;
     color: #FFF;
     padding: 20px 0;
     float: left;
@@ -55,7 +55,6 @@
     float: left;
     width: calc( 100% - 200px );
     padding: 50px;
-    background: #FFF;
     height: 100%;
   }
 
@@ -64,5 +63,48 @@
     display: block;
     content: " ";
     width: 100%;
+  }
+
+  .admin_list {
+    box-shadow: 0 1px 3px rgba(0,0,0,.25);
+
+    li {
+      border-bottom: 1px solid #EEE;
+
+      img.avatar {
+        border-radius: 3px;
+        margin: 10px;
+        border: 1px solid #EEE;
+      }
+
+      &::after {
+        clear: both;
+        display: block;
+        content: " ";
+        width: 100%;
+      }
+
+      img, span, h3 {
+        float: left;
+      }
+
+      h3 {
+        padding: 10px 0 0 10px;
+        margin: 0;
+      }
+
+      span {
+        margin-left: 10px;
+      }
+    }
+
+    .button_list {
+        float: right;
+        padding: 18px;
+    }
+
+    li:last-child {
+      border-bottom: 0;
+    }
   }
 }

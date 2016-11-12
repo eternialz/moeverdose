@@ -1,21 +1,3 @@
-<div class="admin">
-  <ul class="navigation">
-    <li><a href="<%= admin_dashboard_path %>"><%= fa_icon 'dashboard' %> Dashboard</a></li>
-    <li>
-      <a href="<%= admin_dashboard_path %>"><%= fa_icon 'image' %> Posts</a>
-      <ul>
-        <li><a href="<%= admin_dashboard_path %>">All Posts</a></li>
-        <li><a href="<%= admin_dashboard_path %>">Reported Posts</a></li>
-      </ul>
-    </li>
-    <li><a href="<%= admin_dashboard_path %>"><%= fa_icon 'comments' %> Comments</a></li>
-    <li><a href="<%= admin_users_path %>"><%= fa_icon 'user' %> Users</a></li>
-    <li><a href="<%= admin_news_index_path %>"><%= fa_icon 'newspaper-o' %> News</a></li>
-    <li><a href="<%= admin_dashboard_path %>"><%= fa_icon 'heartbeat' %> Levels</a></li>
-  </ul>
-  <div class="content">
-    <h2>Dashboard</h2>
-    <p>Welcome, <%= current_user.name %></p>
-    <p>You are an <%= current_user.role %></p>
-  </div>
-</div>
+<h2>Dashboard</h2>
+<p>Welcome, <%= current_user.name %></p>
+<p>You are an <%= current_user.role %></p>
