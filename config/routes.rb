@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
   #Admin Section
   scope :admin, as: :admin do
-    root 'admin/dashboard#index'
+    root 'admin/dashboard#index', as: 'dashboard'
 
     resources :users, controller: "admin/users", except: [:new, :create]
     resources :news, controller: "admin/news"
