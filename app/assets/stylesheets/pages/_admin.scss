@@ -115,4 +115,12 @@
       border-bottom: 0;
     }
   }
+
+  .admin_zone {
+    padding: 10px;
+    border: 1px solid #EEE;
+    border-radius: 3px;
+
+    p:last-child {margin: 0}
+  }
 }
