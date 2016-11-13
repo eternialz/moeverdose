@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   scope :admin, as: :admin do
     root 'admin/dashboard#index', as: 'dashboard'
 
+    get "stats" => "admin/dashboard#stats", as: 'stats'
     resources :users, controller: "admin/users", except: [:new, :create]
     resources :news, controller: "admin/news"
   end
