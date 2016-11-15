@@ -2,38 +2,30 @@
   <div class="post-container" style="background-image: url(<%= image_url(@post.post_image.url)%>)">
     <div class="post_navigation clearfix">
       <h2><%= @post.title %></h2>
-      <a class="btn btn-pink previous"><%= fa_icon "arrow-circle-left" %> Previous</a>
-      <a class="btn btn-pink next">Next <%= fa_icon "arrow-circle-right" %></a>
     </div>
     <div class="post">
       <%= image_tag @post.post_image.url %>
     </div>
-    <div class="post-details row">
-      <div class="author">
-        <h3><a><%= fa_icon "user" %> Author: <%= @post.author.name %></a></h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        <a><%= fa_icon "link" %> website</a><a><%= fa_icon "user-plus" %> profile</a>
-      </div>
-    </div>
-      <ul class="f3 column infos">
-        <h3><%= fa_icon "info-circle" %> Informations</h3>
-        <li id="id"><span>id:</span><%= @post.id %></li>
-        <% if @post.source != "" and @post.source != nil %>
-          <li id="id"><span>source:</span><a href="http://www.google.fr/search?q=<%= @post.source %>" title="Search on google"><%= @post.source %></a></li>
-        <% end %>
-        <li id="id"><span>user:</span><%= link_to @post.user.name, user_path(@post.user.name) %></li>
-        <li id="width-height"><span>dimension:</span><%= @post.width.to_s + " x " + @post.height.to_s %>px</li>
-        <li id="type"><span>type:</span><%= @post.post_image_content_type.split("/")[-1].upcase %></li>
-        <li id="size"><span>size:</span><%= '%.3f' % (@post.post_image_file_size.to_f / 1048576).to_s + ' MB' %></li>
-        <li id="date"><span>date:</span><%= @post.post_image_updated_at.to_time.strftime('%B %e at %l:%M %p') %></li>
-      </ul>
-    </div>
-    <div class="actions">
-      <a class="btn btn-pink" href="<%= edit_admin_post_path(@post) %>"> Edit the Post</a>
-      <a href="<%= admin_post_path(@post)%>" data-method="delete" class="btn btn-blue"> Delete this Post </a>
-      <a href="<%= admin_post_unreport_path(@post) %>" data-method="patch"> Unreport this post </a>
-    </div>
   </div>
+
+  <div class="actions">
+    <a class="btn btn-pink" href="<%= edit_admin_post_path(@post) %>"><%= fa_icon "edit"%>Edit the Post</a>
+    <a class="btn btn-blue" href="<%= admin_post_unreport_path(@post) %>" data-method="patch"><%= fa_icon "check"%>Unreport this post</a>
+    <a class="btn btn-red" href="<%= admin_post_path(@post)%>" data-method="delete"><%= fa_icon "exclamation"%>Delete this Post</a>
+  </div>
+
+  <ul class="infos">
+    <h3><%= fa_icon "info-circle" %> Informations</h3>
+    <li id="id"><span>id: </span><%= @post.id %></li>
+    <% if @post.source != "" and @post.source != nil %>
+      <li id="id"><span>source: </span><a href="http://www.google.fr/search?q=<%= @post.source %>" title="Search on google"><%= @post.source %></a></li>
+    <% end %>
+    <li id="id"><span>user: </span><%= link_to @post.user.name, user_path(@post.user.name) %></li>
+    <li id="width-height"><span>dimension: </span><%= @post.width.to_s + " x " + @post.height.to_s %>px</li>
+    <li id="type"><span>type: </span><%= @post.post_image_content_type.split("/")[-1].upcase %></li>
+    <li id="size"><span>size: </span><%= '%.3f' % (@post.post_image_file_size.to_f / 1048576).to_s + ' MB' %></li>
+    <li id="date"><span>date: </span><%= @post.post_image_updated_at.to_time.strftime('%B %e at %l:%M %p') %></li>
+  </ul>
 </div>
 
 <input type="checkbox" class="lightbox_switch" id="zoom_post">

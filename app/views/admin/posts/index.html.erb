@@ -1,14 +1,22 @@
-<h1> All Reported Posts </h1>
-
+<h2> All Reported Posts </h2>
+<p>List of all reported posts</p>
+<ul class="admin_list posts">
 <% @posts.each do |post| %>
-  <div>
+  <li>
+    <span class="button_list">
+      <a class="btn btn-pink" href="<%= edit_admin_post_path(post) %>"><%= fa_icon "edit"%>Edit the Post</a>
+      <a class="btn btn-blue" href="<%= admin_post_unreport_path(post) %>" data-method="patch"><%= fa_icon "check"%>Unreport this post</a>
+      <a class="btn btn-red" href="<%= admin_post_path(post)%>" data-method="delete"><%= fa_icon "exclamation"%>Delete this Post</a>
+    </span>
     <a href="<%= admin_post_path(post) %>">
-    <%= image_tag post.post_image.url(:thumb) %>
+    <%= image_tag post.post_image.url(:thumb), class: 'avatar' %>
+    <h3><%= post.title %></h3><br/><br/><br/>
     </a>
-    <p>
-    User: <a href="<%= user_path(post.user.name) %>"> <%= post.user.name %> </a> </br>
-    User who reported the post: <a href="<%= user_path(post.report_user.name) %>"> <%= post.report_user.name %> </a> </br>
-      Reason of the report: <%= post.report_reason %> </br>
+    <span div="text">
+      <p>Uploaded by: <a href="<%= user_path(post.user.name) %>"><%= post.user.name %></a></p>
+      <p>Reported by: <a href="<%= user_path(post.report_user.name) %>"><%= post.report_user.name %></a></p>
+      <p>Reason: <%= post.report_reason %></p>
+    </span>
     </p>
-  </div>
+  </li>
 <% end %>
