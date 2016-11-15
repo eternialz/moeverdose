@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     get "stats" => "admin/dashboard#stats", as: 'stats'
     resources :users, controller: "admin/users", except: [:new, :create]
     resources :news, controller: "admin/news"
+    resources :posts, controller:"admin/posts", except: [:new, :create]
   end
 
   devise_for :users, path: 'account', :controllers => { registrations: 'user_registrations' }

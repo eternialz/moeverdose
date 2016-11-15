@@ -25,7 +25,7 @@ class Post
   # Report
   field :report, type: Boolean, default: false
   alias_method :report?, :report
-  has_one :report_user, class_name: "User", inverse_of: :post
+  belongs_to :report_user, class_name: "User", inverse_of: nil
   field :report_reason, type: String
 
 

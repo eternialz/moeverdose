@@ -1,0 +1,14 @@
+<h1> All Reported Posts </h1>
+
+<% @posts.each do |post| %>
+  <div>
+    <a href="<%= admin_post_path(post) %>">
+    <%= image_tag post.post_image.url(:thumb) %>
+    </a>
+    <p>
+    User: <a href="<%= user_path(post.user.name) %>"> <%= post.user.name %> </a> </br>
+    User who reported the post: <a href="<%= user_path(post.report_user.name) %>"> <%= post.report_user.name %> </a> </br>
+      Reason of the report: <%= post.report_reason %> </br>
+    </p>
+  </div>
+<% end %>
