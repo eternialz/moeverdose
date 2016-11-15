@@ -25,6 +25,19 @@ class Admin::PostsController < Admin::BaseController
     redirect_to admin_posts_path
   end
 
+  def unreport
+    @post.report = false
+    @post.report_user = nil
+    @post.report_reason = ''
+    if @post.save
+      flash[:notice] = "The post has been unreported"
+      redirect_to admin_posts_path
+    else 
+      flash[:error] =  "An error occured, please try again"
+      redirect_to admin_post_path(@post)
+    end
+  end
+
   protected
   def set_post
     @post = Post.find(params[:id])

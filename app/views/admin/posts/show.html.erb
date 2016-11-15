@@ -31,6 +31,7 @@
     <div class="actions">
       <a class="btn btn-pink" href="<%= edit_admin_post_path(@post) %>"> Edit the Post</a>
       <a href="<%= admin_post_path(@post)%>" data-method="delete" class="btn btn-blue"> Delete this Post </a>
+      <a href="<%= admin_post_unreport_path(@post) %>" data-method="patch"> Unreport this post </a>
     </div>
   </div>
 </div>

@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     resources :users, controller: "admin/users", except: [:new, :create]
     resources :news, controller: "admin/news"
     resources :posts, controller:"admin/posts", except: [:new, :create]
+    patch "/posts/:id/unreport" => "admin/posts#unreport", as: "post_unreport"
   end
 
   devise_for :users, path: 'account', :controllers => { registrations: 'user_registrations' }
