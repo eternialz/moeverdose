@@ -1,0 +1,22 @@
+<h1> All Levels </h1>
+
+<a class="btn btn-green" href="<%= new_admin_level_path%>"><%= fa_icon "plus"%>Create a Level</a>
+<ul class="admin_list posts">
+<% @levels.each do |level| %>
+  <span class="button_list">
+    <a class="btn btn-pink" href="<%= edit_admin_level_path(level) %>"><%= fa_icon "edit"%>Edit the Level</a>
+  </span>
+  <ul>
+    <li>
+      <%= level.name %>
+    </li>
+    <li>
+      Rank: <%= level.rank %>
+    </li>
+    <li>
+      Max XP: <%= level.max_exp %>
+    </li>
+    
+  </ul>
+<% end %>
+</ul>
