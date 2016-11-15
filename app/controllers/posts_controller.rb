@@ -7,9 +7,9 @@ class PostsController < ApplicationController
     @characters = []
     @post.tags.each do |tag|
       if tag.content?
-        @tags << tag.name
+        @tags << tag.names[0]
       elsif tag.character?
-        @characters << tag.name
+        @characters << tag.names[0]
       end
     end
     if @post.overdose == 0 && @post.moe_shortage == 0
@@ -115,12 +115,12 @@ class PostsController < ApplicationController
     @authors = []
     @posts.each do |post|
       post.tags.each do |tag|
-        if tag.content? && !(@tags.include?(tag.name))
-          @tags << tag.name
-        elsif tag.character? && !(@characters.include?(tag.name))
-          @characters << tag.name
-        elsif tag.author? && !(@authors.include?(tag.name))
-          @authors << tag.name
+        if tag.content? && !(@tags.include?(tag.names[0]))
+          @tags << tag.names[0]
+        elsif tag.character? && !(@characters.include?(tag.names[0]))
+          @characters << tag.names[0]
+        elsif tag.author? && !(@authors.include?(tag.names[0]))
+          @authors << tag.names[0]
         end
       end
     end
@@ -136,9 +136,9 @@ class PostsController < ApplicationController
     tags = params[:tags].downcase.split(" ")
 
     tags.each do |tag|
-      t = Tag.where(name: tag, type: :content)
+      t = Tag.where(:names => tag).where(type: :content)
       if t.empty?
-        t = Tag.new({name: tag, type: :content})
+        t = Tag.new({names: [tag], type: :content})
       end
       @post.tags << t
     end
@@ -146,18 +146,18 @@ class PostsController < ApplicationController
     characters = params[:characters].downcase.split(" ")
 
     characters.each do |character|
-      c = Tag.where(name: character, type: :character)
+      c = Tag.where(:names => character).where(type: :character)
       if c.empty?
-        c = Tag.new({name: character, type: :character})
+        c = Tag.new({names: [character], type: :character})
       end
       @post.tags << c
     end
 
     author_name = params[:author]
-    author = Tag.where(name: author_name.downcase.tr(" ", "_"), type: :author)
+    author = Tag.where(:names => author_name.downcase.tr(" ", "_")).where(type: :author)
 
     if author.empty?
-      author = Tag.new({name: author_name.downcase.tr(" ", "_"), type: :author})
+      author = Tag.new({names: [author_name.downcase.tr(" ", "_")], type: :author})
       author_profile = Author.new({name: author_name})
     else
       author_profile = Author.find_by({name: author_name})
@@ -204,9 +204,9 @@ class PostsController < ApplicationController
     tags = params[:tags].downcase.split(" ")
 
     tags.each do |tag|
-      t = Tag.where(name: tag, type: :content)
+      t = Tag.where(:names => tag).where(type: :content)
       if t.empty?
-        t = Tag.new({name: tag, type: :content})
+        t = Tag.new({names: [tag], type: :content})
       end
       t
       @post.tags << t
@@ -215,9 +215,9 @@ class PostsController < ApplicationController
     characters = params[:characters].downcase.split(" ")
 
     characters.each do |character|
-      c = Tag.where(name: character, type: :character)
+      c = Tag.where(:names => character).where(type: :character)
       if c.empty?
-        c = Tag.new({name: character, type: :character})
+        c = Tag.new({names: [character], type: :character})
       end
       @post.tags << c
     end
@@ -225,10 +225,10 @@ class PostsController < ApplicationController
     author_name = params[:author_tag]
 
     if author_name != "" && author_name != nil
-      author = Tag.where(name: author_name.downcase.tr(" ", "_"), type: :author)
+      author = Tag.where(:names => author_name.downcase.tr(" ", "_")).where(type: :author)
 
       if author.empty?
-        author = Tag.new({name: author_name.downcase.tr(" ", "_"),type: :author})
+        author = Tag.new({names: [author_name.downcase.tr(" ", "_")],type: :author})
         author_profile = Author.new({name: author_name, posts: [@post]})
       else
         author_profile = Author.find_by({name: author_name})
