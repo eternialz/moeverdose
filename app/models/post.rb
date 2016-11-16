@@ -11,7 +11,7 @@ class Post
   has_mongoid_attached_file :post_image, styles: { thumb: "200x200#" }
   validates_attachment :post_image, presence: true,
     content_type: { content_type: /\Aimage\/.*\Z/ },
-    size: { in: 0..10.megabytes }
+    size: { in: 0..50.megabytes }
 
   field :height, type: Integer
   field :width, type: Integer

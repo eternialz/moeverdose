@@ -36,65 +36,79 @@
 
 
 $(document).ready(function(){
-
   // Location data
   var url = window.location.href
   var arr = url.split("/");
-  console.log(arr);
   var domain = arr[0] + "//" + arr[2]
 
   var user_profile = $("#my_account").attr('href');
 
+  function in_focus() {
+    return ( $('input:focus,textarea:focus').length > 0 );
+  };
+
   // Key functions
   function to_key_help() {
-    window.location.href = domain + "/pages/help/keyboard";
+    if (in_focus()) {
+      return false;
+    } else {
+      window.location.href = domain + "/pages/help/keyboard";
+    };
   };
   function to_my_profile() {
-    if (user_profile == undefined) {
-      window.location.href = domain + "/account/sign_in";
+    if (in_focus()) {
+      return false;
     } else {
-      window.location.href = domain + user_profile;
+      if (user_profile == undefined) {
+        window.location.href = domain + "/account/sign_in";
+      } else {
+        window.location.href = domain + user_profile;
+      };
     };
   };
   function to_favorites() {
-    window.location.href = domain + user_profile + "/favorites/";
+    if (in_focus()) {
+      return false;
+    } else {
+      window.location.href = domain + user_profile + "/favorites/";
+    };
   };
   function to_my_uploads() {
-    window.location.href = domain + user_profile + "/uploads/";
+    if (in_focus()) {
+      return false;
+    } else {
+      window.location.href = domain + user_profile + "/uploads/";
+    };
   };
   function log_out() {
-    window.location.href = domain + '/account/sign_out';
+    if (in_focus()) {
+      return false;
+    } else {
+      window.location.href = domain + '/account/sign_out';
+    };
   };
   function to_upload() {
-    window.location.href = domain + "/posts/new";
-  };
-  function edit_post() {
-    var edit = $('#post_edit')
-    edit.prop('checked', true);
-    var scroll = $('.post-details');
-    console.log(scroll);
-    scroll = scroll.offset().top + scroll.height() - 100
-    console.log(scroll);
-    $('html, body').animate({
-        scrollTop: scroll
-    }, 1000);
+    if (in_focus()) {
+      return false;
+    } else {
+      window.location.href = domain + "/posts/new";
+    };
   };
 
   // Global key bindings
-  $.key('shift+0', to_key_help);
-  $.key('shift+1', to_my_profile);
-  $.key('shift+2', to_favorites);
-  $.key('shift+3', to_my_uploads);
-  $.key('shift+backspace', log_out);
-  $.key('shift+enter', to_upload);
+  $.key('ctrl+0', to_key_help);
+  $.key('ctrl+1', to_my_profile);
+  $.key('ctrl+2', to_favorites);
+  $.key('ctrl+3', to_my_uploads);
+  $.key('ctrl+backspace', log_out);
+  $.key('ctrl+enter', to_upload);
 
   // Posts bindings
   if (arr[3] == "posts") {
     if (arr[4] != undefined) {
-      $.key('shift+4', Post.favorite);
-      $.key('shift+5', edit_post);
-      $.key('shift+6', Post.overdose);
-      $.key('shift+7', Post.shortage);
+      $.key('ctrl+4', Post.favorite);
+      $.key('ctrl+5', Post.overdose);
+      $.key('ctrl+6', Post.shortage);
     };
   };
 });

@@ -3,6 +3,24 @@ $device-small: 1024px;
 $device-medium: 1280px;
 $device-large: 1600px;
 
+@media (max-width: $device-xsmall) {
+  .menu .user img {
+    display: none;
+  }
+
+  .userprofile .user_header  {
+    .role {
+      display: none;
+    }
+
+    .user_banner {
+      p {
+        display: none;
+      }
+    }
+  }
+}
+
 @media (max-width: $device-small) {
   #menu_label {
     display: inline-block !important;
@@ -10,6 +28,8 @@ $device-large: 1600px;
 
   .submenu {
     padding: 10px 0;
+    height: auto !important;
+    opacity: 0;
   }
 
   .submenu ul {
@@ -30,6 +50,7 @@ $device-large: 1600px;
 
   nav.menu .submenu.develop {
     height: auto;
+    opacity: 1;
   }
 
   nav.menu:hover .submenu {
@@ -55,5 +76,52 @@ $device-large: 1600px;
   footer .footer-nav li {
     display: block;
     margin: 1em 0 1em 0;
+  }
+
+  .posts .post-container .post-thumbnail a.informations {
+    opacity: 0 !important;
+  }
+}
+
+@media screen and (min-width: 200px) and (max-width: 400px) {
+  .posts .post-container .post-thumbnail {
+    width: 50%;
+    height: 50vw;
+  }
+}
+@media screen and (min-width: 401px) and (max-width: 600px) {
+  .posts .post-container .post-thumbnail {
+    width: 33.333%;
+    height: 33.33vw;
+  }
+}
+@media screen and (min-width: 601px) and (max-width: 800px) {
+  .posts .post-container .post-thumbnail {
+    width: 25%;
+    height: 25vw;
+  }
+}
+@media screen and (min-width: 801px) and (max-width: 1000px) {
+  .posts .post-container .post-thumbnail {
+    width: 20%;
+    height: 20vw;
+  }
+}
+@media screen and (min-width: 1001px) and (max-width: 1200px) {
+  .posts .post-container .post-thumbnail {
+    width: 16.666%;
+    height: 16.666vw;
+  }
+}
+@media screen and (min-width: 1201px) and (max-width: 1400px) {
+  .posts .post-container .post-thumbnail {
+    width: 14.2857%;
+    height: 14.2857vw;
+  }
+}
+@media screen and (min-width: 1401px) and (max-width: 1600px) {
+  .posts .post-container .post-thumbnail {
+    width: 12.5%;
+    height: 12.5vw;
   }
 }

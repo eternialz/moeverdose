@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find_by(name: params[:id])
+    @current = (current_user == @user)
     @uploads = @user.posts.where(report: false).order(created_at: :desc).limit(6)
     @favs = @user.favorites.where(report: false).order(created_at: :desc).limit(6)
     @favorites_tags = @user.favorites_tags.split(" ")
@@ -40,6 +40,7 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to(user_path(@user.name))
     else
+      binding.pry
       redirect_to(edit_user_path(@user.name))
     end
   end
