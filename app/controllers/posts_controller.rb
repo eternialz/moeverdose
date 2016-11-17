@@ -174,7 +174,7 @@ class PostsController < ApplicationController
     @post.user = current_user
     @post.user.upload_count += 1
 
-    if @post.user.level.last == false
+    if @post.user.level.final == false
       if @post.user.level.max_exp == @post.user.upload_count
         @post.user.level = Level.find_by(rank: @post.user.level.rank + 1)
       end
