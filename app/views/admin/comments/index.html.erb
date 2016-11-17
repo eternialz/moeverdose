@@ -1,0 +1,21 @@
+<h1> All Reported Comments </h1>
+
+<ul class="admin_list">
+  <% @comments.each do |comment| %>
+    <li>
+      <span class="button_list">
+        <a href="<%= admin_unreport_comment_path(comment)%>" class="btn btn-blue">Unreport comment</a>
+        <a href="<%= admin_comment_path(comment)%>" data-method="delete" class="btn btn-red">Delete comment<%= fa_icon "exclamation"%></a>
+      </span>
+      <span>
+        <%= comment.text %>
+      </span>
+      <br />
+      <br />
+      <span><%= comment.user.name %></span>
+      <br />
+      <br />
+      <span> <a href="<%= post_path(comment.post) %>">Link to Post</a>
+    </li>
+  <% end %>
+</ul>

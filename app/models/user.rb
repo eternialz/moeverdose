@@ -45,9 +45,6 @@ class User
 
   validates :email, presence: true
 
-  field :encrypted_password
-  validates :encrypted_password, presence: true, confirmation: true
-
   # Personal Informations
   field :biography, type: String, default: ""
 

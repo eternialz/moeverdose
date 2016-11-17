@@ -10,6 +10,6 @@ class Comment
 
   field :report, type: Boolean, default: false
   alias_method :report?, :report
-  has_one :report_user, class_name: "User"
+  belongs_to :report_user, class_name: "User", optional: true
   field :report_reason, type: String
 end
