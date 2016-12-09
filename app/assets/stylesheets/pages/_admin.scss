@@ -125,4 +125,23 @@
 
     p:last-child {margin: 0}
   }
+
+  .comments {
+    padding: 0;
+
+    li {
+      padding: 20px 10px;
+    }
+
+    .text {
+      background: #EEE;
+      text-align: justify;
+      padding: 10px 20px;
+      width: 600px;
+      max-height: 200px;
+      overflow-y: auto;
+      margin-right: 20px;
+      word-wrap: break-word;
+    }
+  }
 }
