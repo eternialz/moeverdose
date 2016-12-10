@@ -1,0 +1,160 @@
+.admin {
+  box-shadow: 0 1px 3px rgba(0,0,0,.25), inset 200px 0 #000;
+  background: #FFF;
+
+  .navigation {
+    min-width: 200px;
+    color: #FFF;
+    padding: 20px 0;
+    float: left;
+
+    a {
+      color: #FFF;
+      padding: 10px;
+      width: 100%;
+      display: inline-block;
+    }
+
+    li:hover > a {
+      color: $pink;
+    }
+
+    li {
+      position: relative;
+
+      i {
+        width: 25px;
+        text-align: center;
+      }
+    }
+
+    li ul {
+      position: absolute;
+      z-index: 1000;
+      left: 100%;
+      width: 100%;
+      top: 0;
+      height: 0;
+      overflow: hidden;
+      background: #222;
+      -webkit-transition: all 70ms linear;
+      -moz-transition: all 70ms linear;
+      -o-transition: all 70ms linear;
+      transition: all 70ms linear;
+    }
+
+    li:hover a{
+      background: #222;
+    }
+
+    li:hover ul{
+      height: auto;
+    }
+  }
+
+  .content {
+    float: left;
+    width: calc( 100% - 200px );
+    padding: 50px;
+    height: 100%;
+  }
+
+  &::after {
+    clear: both;
+    display: block;
+    content: " ";
+    width: 100%;
+  }
+
+  .admin_list {
+    box-shadow: 0 1px 3px rgba(0,0,0,.25);
+
+    li {
+      border-bottom: 1px solid #EEE;
+
+      img.avatar {
+        border-radius: 3px;
+        margin: 10px;
+        border: 1px solid #EEE;
+      }
+
+      &::after {
+        clear: both;
+        display: block;
+        content: " ";
+        width: 100%;
+      }
+
+      img, span, h3 {
+        float: left;
+      }
+
+      h3 {
+        padding: 10px 0 0 10px;
+        margin: 0;
+      }
+
+      span {
+        margin-left: 10px;
+      }
+    }
+
+    h3, h3 a {
+      color: $blue;
+    }
+
+    h3 a:hover {
+      color: $blue_light;
+    }
+
+    .button_list {
+        float: right;
+        padding: 18px;
+    }
+
+    li:last-child {
+      border-bottom: 0;
+    }
+  }
+
+  .admin_zone {
+    padding: 10px;
+    border: 1px solid #EEE;
+    border-radius: 3px;
+    margin-bottom: 10px;
+
+    p:last-child {margin: 0}
+  }
+
+  .comments {
+    padding: 0;
+
+    li {
+      padding: 20px 10px;
+    }
+
+    .text {
+      background: #EEE;
+      text-align: justify;
+      padding: 10px 20px;
+      width: 600px;
+      max-height: 200px;
+      overflow-y: auto;
+      margin-right: 20px;
+      word-wrap: break-word;
+    }
+  }
+
+  .levels {
+    li {
+      padding: 10px;
+    }
+  }
+
+  .input_zone {
+    border: 1px solid #EEE;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    padding: 15px;
+  }
+}

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Moeverdose</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="notifications">
+      <div class="notifications_container">
+      </div>
+    </div>
+    <nav class="menu">
+      <div class="row">
+        <% if content_for?(:menu) %>
+          <%= yield(:menu) %>
+        <% else %>
+          <%= render "layouts/default_menu" %>
+        <% end %>
+        <% if content_for?(:submenu) %>
+          <%= yield(:submenu) %>
+        <% else %>
+          <%= render "layouts/default_submenu" %>
+        <% end %>
+      </div>
+    </nav>
+    <div class="page">
+      <div class="admin">
+        <ul class="navigation">
+          <li><a href="<%= admin_dashboard_path %>"><%= fa_icon 'dashboard' %> Dashboard</a></li>
+          <li><a href="<%= admin_stats_path %>"><%= fa_icon 'pie-chart' %> Stats</a></li><br />
+          <li><a href="<%= admin_posts_path %>"><%= fa_icon 'image' %> Posts</a></li>
+          <li><a href="<%= admin_comments_path %>"><%= fa_icon 'comments' %> Comments</a></li>
+          <li><a href="<%= admin_users_path %>"><%= fa_icon 'users' %> Users</a></li>
+          <li>
+            <a href="<%= admin_news_index_path %>"><%= fa_icon 'newspaper-o' %> News</a>
+            <ul>
+              <li><a href="<%= admin_news_index_path %>"><%= fa_icon 'list' %> All News</a></li>
+              <li><a href="<%=  new_admin_news_path %>"><%= fa_icon 'plus' %> Create News</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="<%= admin_levels_path %>"><%= fa_icon 'heartbeat' %> Levels</a>
+            <ul>
+              <li><a href="<%= admin_levels_path %>"><%= fa_icon 'list' %> All Levels</a></li>
+              <li><a href="<%=  new_admin_level_path %>"><%= fa_icon 'plus' %> Create Level</a></li>
+            </ul>
+          </li>
+
+        </ul>
+        <div class="content">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="row">
+        <ul class="footer-nav">
+          <li><a href="<%= root_path %>">home</a></li>
+          <li><a href="<%= posts_path %>">posts</a></li>
+          <li><a>users</a></li>
+          <li><%= link_to 'help', '/pages/help/index' %></li>
+          <li><%= link_to 'team', '/pages/team' %></li>
+          <li><a>authors</a></li>
+          <li><a>join discord chat</a></li>
+          <li style="float:right;position:absolute;right:0;"><a title="Scroll to top" href="#">▴</a></li>
+        </ul>
+        <div class="column f4">
+          <h2 class="footer-title">Links</h3>
+          <ul class="footer-links">
+            <li><a>home</a></li>
+            <li><a>posts</a></li>
+            <li><a>users</a></li>
+            <li><a>help</a></li>
+            <li><a>team</a></li>
+          </ul>
+          <ul class="footer-links">
+            <li><a>home</a></li>
+            <li><a>posts</a></li>
+            <li><a>users</a></li>
+            <li><a>help</a></li>
+            <li><a>team</a></li>
+          </ul>
+        </div>
+        <div class="column f4">
+          <h3 class="footer-title">Friends of moeverdose</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone.</p>
+        </div>
+        <div class="column f4">
+          <h4 class="footer-title">Stats<a href="#">more</a></h3>
+          <div class="column f6">
+            <dl>
+              <dt>Posts</dt>
+              <dd>666 Images</dd>
+            </dl>
+            <dl>
+              <dt>Users</dt>
+              <dd>404 Users</dd>
+            </dl>
+          </div>
+          <div class="column f6">
+            <dl>
+              <dt>Authors</dt>
+              <dd>500 Authors</dd>
+            </dl>
+            <dl>
+              <dt>Lolis</dt>
+              <dd>Infinite lolis</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+      <span class="copyright">© 2016 Moeverdose - </span><a>Mentions Légales</a>
+    </footer>
+  </body>
+</html>

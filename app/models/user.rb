@@ -45,9 +45,6 @@ class User
 
   validates :email, presence: true
 
-  field :encrypted_password
-  validates :encrypted_password, presence: true, confirmation: true
-
   # Personal Informations
   field :biography, type: String, default: ""
 
@@ -86,6 +83,9 @@ class User
   field :report, type: Boolean, default: false
   alias_method :report?, :report
 
+  # Reported posts
+  has_and_belongs_to_many :reported_posts, class_name: "Post", inverse_of: nil
+
   # Roles
   field :role, type: Symbol, default: :user
 
@@ -100,5 +100,6 @@ class User
       end
     end
   end
+  include User::Role
   validates :role, inclusion: {in: User::Role.all}
 end

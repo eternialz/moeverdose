@@ -1,0 +1,14 @@
+<h2>Dashboard</h2>
+<p>Welcome, <%= current_user.name %></p>
+<p>You are an <%= current_user.role %></p>
+<div class="admin_zone">
+  <h5 style="display: inline-block">Stats summary</h5><a style="float:right;" href="<%= admin_stats_path %>" class="btn btn-pink"><%= fa_icon "pie-chart" %>See all stats</a><br />
+  <p># Reported posts<br />
+     # Reported comments
+  </p>
+  <p># New users<br />
+     # new posts<br />
+     # New comments<br />
+     # New tags
+</div>
+<img src='<%= image_path('admin.gif')%>' >
