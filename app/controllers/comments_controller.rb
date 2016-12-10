@@ -16,7 +16,6 @@ class CommentsController < ApplicationController
 
   def report
     @comment = Comment.find(params[:comment_id])
-    @comment.assign_attributes(params.require(:comment).permit(:report_reason))
     @comment.report = true
     @comment.report_user = current_user
     @comment.save

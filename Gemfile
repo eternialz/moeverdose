@@ -25,6 +25,7 @@ gem 'jbuilder', '~> 2.5'
 
 # Rails cells
 gem "cells-rails"
+gem "cells-erb"
 
 # Paperclip File attachments
 gem "paperclip", "~> 5.0.0"

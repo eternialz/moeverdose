@@ -13,8 +13,10 @@ Rails.application.routes.draw do
   get "/random" => "posts#random", as: :random
   resources :posts do
     resources :comments
-    patch "/comments/:comment_id/report" => "comments#report", as: "comment_report"
   end
+
+  # Comments
+  patch "/:post_id/comments/:comment_id/report" => "comments#report", as: "comment_report"
 
   patch "/posts/:id/report" => "posts#report", as: 'report_post'
   patch "/posts/:id/overdose" => "posts#overdose"
