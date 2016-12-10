@@ -4,6 +4,8 @@ class Post
   include Mongoid::Paperclip
 
   # Identification
+  field :number, type: Integer, default: 1
+  validates :number, uniqueness: true
   field :title, type: String
   field :source, type: String, default: ""
 

@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
       @post.save
       @comment.save
     end
-    redirect_to post_path(@post)
+    redirect_to post_path(@post.number)
   end
 
   private
