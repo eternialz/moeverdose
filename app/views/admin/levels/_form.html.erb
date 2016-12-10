@@ -1,12 +1,17 @@
 <%= form_for @level, url: level_path do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.label :max_exp %>
-  <%= f.number_field :max_exp %>
-  <%= f.label :color %>
-  <p> Please enter an hexadecimal color like #1AB or #1A2E5D </p>
-  <%= f.text_field :color %>
-
+  <div class="input_zone">
+    <p><%= f.label :name %>:</p>
+    <%= f.text_field :name %>
+  </div>
+  <div class="input_zone">
+    <p><%= f.label :max_exp %>:</p>
+    <%= f.number_field :max_exp %>
+  </div>
+  <div class="input_zone">
+    <p><%= f.label :color %>:</p>
+    <p> Please enter an hexadecimal color like #1AB or #1A2E5D </p>
+    <%= f.text_field :color %>
+  </div>
   <div class="actions">
     <button class="btn btn-green" type="submit"> <%= text %></button>
   </div>

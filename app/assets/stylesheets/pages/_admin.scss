@@ -144,4 +144,17 @@
       word-wrap: break-word;
     }
   }
+
+  .levels {
+    li {
+      padding: 10px;
+    }
+  }
+
+  .input_zone {
+    border: 1px solid #EEE;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    padding: 15px;
+  }
 }

@@ -42,8 +42,13 @@
               <li><a href="<%=  new_admin_news_path %>"><%= fa_icon 'plus' %> Create News</a></li>
             </ul>
           </li>
-          <li><a href="<%= admin_levels_path %>"><%= fa_icon 'heartbeat' %> Levels</a></li><br />
-          <li><a href="<%= admin_dashboard_path %>"><%= fa_icon 'user-circle' %> Edit My Account</a></li>
+          <li>
+            <a href="<%= admin_levels_path %>"><%= fa_icon 'heartbeat' %> Levels</a>
+            <ul>
+              <li><a href="<%= admin_levels_path %>"><%= fa_icon 'list' %> All Levels</a></li>
+              <li><a href="<%=  new_admin_level_path %>"><%= fa_icon 'plus' %> Create Level</a></li>
+            </ul>
+          </li>
 
         </ul>
         <div class="content">
