@@ -113,13 +113,7 @@
     <h2><%= fa_icon "comments-o" %> Commentaires</h2>
     <div class="comments-zone">
       <% @post.comments.each_with_index do |comment,index| %>
-        <div class="comment">
-          <a href="<%= user_path(comment.user.name) %>" title="<%= comment.user.name %>"><img class="avatar" src="<%= comment.user.avatar(:thumb) %>" title="<%= comment.user.name %>" height="60" width="60"/></a>
-          <div class="comment-content">
-            <a href="<%= user_path(comment.user.name) %>" id="comment_<%= index +1 %>" ><h5 class="<%= comment.user.role %>"><%= comment.user.name %></h5></a><a id="comment_<%= index + 1 %>" href="#comment_<%= index + 1 %>" class="comment_number"> comment #<%= index + 1 %></a>
-            <p><%= comment.text %></p>
-          </div>
-        </div>
+        <%= cell(:comment, comment, post: @post, index: index).(:show) %>
       <% end %>
     </div>
     <%= form_tag post_comments_path(@post), id: "comment-form" ,class: "comment-form" do |comment| %>

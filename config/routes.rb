@@ -15,6 +15,9 @@ Rails.application.routes.draw do
     resources :comments
   end
 
+  # Comments
+  patch "/:post_id/comments/:comment_id/report" => "comments#report", as: "comment_report"
+
   patch "/posts/:id/report" => "posts#report", as: 'report_post'
   patch "/posts/:id/overdose" => "posts#overdose"
   patch "/posts/:id/shortage" => "posts#shortage"
