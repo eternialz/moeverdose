@@ -55,7 +55,7 @@
       </div>
       <ul class="f3 column infos">
         <h3><%= fa_icon "info-circle" %> Informations</h3>
-        <li id="id"><span>id:</span><%= @post.id %></li>
+        <li id="id"><span>id:</span><%= @post.number %></li>
         <% if @post.source != "" and @post.source != nil %>
           <li id="id"><span>source:</span><a href="http://www.google.fr/search?q=<%= @post.source %>" title="Search on google"><%= @post.source %></a></li>
         <% end %>
@@ -75,7 +75,7 @@
       </div>
     </div>
     <input type="checkbox" id="post_edit">
-    <%= form_for @post, as: "post", id: "post-edit", url: post_path(@post) do |post| %>
+    <%= form_for @post, as: "post", id: "post-edit", url: post_path(@post.number) do |post| %>
       <h2>Edit Post</h2>
       <div class="field">
         <span><%= fa_icon "header" %> Title:</span>
@@ -102,7 +102,7 @@
   </div>
 
   <input class="reported_input" id="report_form_input" type="checkbox">
-  <%= form_for @post, as: "post", url: report_post_path(@post), html: {class: "zone report_form", id: 'report_post'} do |post| %>
+  <%= form_for @post, as: "post", url: report_post_path(@post.number), html: {class: "zone report_form", id: 'report_post'} do |post| %>
     <%= post.check_box :report, class: "hide", checked: true %>
     <h2><%= fa_icon "exclamation-circle" %> Report post</h2>
     <%= post.text_area :report_reason, placeholder: "Reason" %>
@@ -113,13 +113,7 @@
     <h2><%= fa_icon "comments-o" %> Commentaires</h2>
     <div class="comments-zone">
       <% @post.comments.each_with_index do |comment,index| %>
-        <div class="comment">
-          <a href="<%= user_path(comment.user.name) %>" title="<%= comment.user.name %>"><img class="avatar" src="<%= comment.user.avatar(:thumb) %>" title="<%= comment.user.name %>" height="60" width="60"/></a>
-          <div class="comment-content">
-            <a href="<%= user_path(comment.user.name) %>" id="comment_<%= index +1 %>" ><h5 class="<%= comment.user.role %>"><%= comment.user.name %></h5></a><a id="comment_<%= index + 1 %>" href="#comment_<%= index + 1 %>" class="comment_number"> comment #<%= index + 1 %></a>
-            <p><%= comment.text %></p>
-          </div>
-        </div>
+        <%= cell(:comment, comment, post: @post, index: index).(:show) %>
       <% end %>
     </div>
     <%= form_tag post_comments_path(@post), id: "comment-form" ,class: "comment-form" do |comment| %>

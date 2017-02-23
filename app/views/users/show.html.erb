@@ -75,7 +75,7 @@
     <% @uploads.each do |post| %>
       <div class="post-thumbnail clearfix">
         <%= image_tag post.post_image.url(:thumb) %>
-        <a title="<%= post.title %>" href="<%= post_path(post) %>" class="informations">
+        <a title="<%= post.title %>" href="<%= post_path(post.number) %>" class="informations">
           <h3><%= post.title %></h3>
           <span class="post-stats">
             <span title="overdose(s)"><%= post.overdose %> <%= fa_icon "heartbeat" %> </span>
@@ -102,7 +102,7 @@
     <% @favs.each do |post| %>
       <div class="post-thumbnail clearfix">
         <%= image_tag post.post_image.url(:thumb) %>
-        <a title="<%= post.title %>" href="<%= post_path(post) %>" class="informations">
+        <a title="<%= post.title %>" href="<%= post_path(post.number) %>" class="informations">
           <h3><%= post.title %></h3>
           <span class="post-stats">
             <span title="overdose(s)"><%= post.overdose %> <%= fa_icon "heartbeat" %> </span>

@@ -4,6 +4,8 @@ class Post
   include Mongoid::Paperclip
 
   # Identification
+  field :number, type: Integer, default: 1
+  validates :number, uniqueness: true
   field :title, type: String
   field :source, type: String, default: ""
 
@@ -25,7 +27,7 @@ class Post
   # Report
   field :report, type: Boolean, default: false
   alias_method :report?, :report
-  has_one :report_user, class_name: "User", inverse_of: :post
+  belongs_to :report_user, class_name: "User", inverse_of: nil, optional: true
   field :report_reason, type: String
 
 

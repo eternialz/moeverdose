@@ -1,0 +1,14 @@
+<h1> Edit the Post </h1>
+
+<%= form_for @post, url: admin_post_path(@post) do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.label :source %>
+  <%= f.text_field :source %>
+  <%= f.label :report %>
+  <%= f.check_box :report %>
+
+  <div class="actions">
+    <button class="btn btn-blue" type="submit"> Update the Post</button>
+  </div>
+<% end %>

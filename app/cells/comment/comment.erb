@@ -1,0 +1,11 @@
+<div class="comment">
+  <a href="<%= user_path(model.user.name) %>" title="<%= model.user.name %>"><img class="avatar" src="<%= model.user.avatar(:thumb) %>" title="<%= model.user.name %>" height="60" width="60"/></a>
+  <div class="comment-content">
+    <a href="<%= user_path(model.user.name) %>" id="model_<%= options[:index] +1 %>" >
+      <h5 class="<%= model.user.role %>"><%= model.user.name %></h5>
+    </a>
+    <a id="comment_<%= options[:index] + 1 %>" href="#comment_<%= options[:index] + 1 %>" class="comment_number"> comment #<%= options[:index] + 1 %></a>
+    <%= link_to "report", comment_report_path(options[:post],model), method: :patch %>
+    <p><%= model.text %></p>
+  </div>
+</div>

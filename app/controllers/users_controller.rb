@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     if (@percentage.to_i > 100)
       @percentage = "100"
     end
-    if @level.last == false
+    if @level.final == false
       @next_level = Level.find_by(rank: @level.rank + 1)
       @to_next = ''
     else

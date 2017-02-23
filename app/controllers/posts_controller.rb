@@ -26,7 +26,7 @@ class PostsController < ApplicationController
     @post.report = true
     @post.report_user = current_user
     @post.save
-    redirect_to post_path(@post)
+    redirect_to post_path(@post.number)
   end
 
   def favorite
@@ -133,6 +133,13 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
 
+    begin
+      @previous_post = Post.last
+      @post.number = @previous_post.number + 1
+    rescue
+      @post.number = 1
+    end
+
     tags = params[:tags].downcase.split(" ")
 
     tags.each do |tag|
@@ -174,7 +181,7 @@ class PostsController < ApplicationController
     @post.user = current_user
     @post.user.upload_count += 1
 
-    if @post.user.level.last == false
+    if @post.user.level.final == false
       if @post.user.level.max_exp == @post.user.upload_count
         @post.user.level = Level.find_by(rank: @post.user.level.rank + 1)
       end
@@ -186,7 +193,7 @@ class PostsController < ApplicationController
         t.posts_count += 1
         t.save
       end
-      redirect_to post_path(@post)
+      redirect_to post_path(@post.number)
     else
       redirect_to :back
     end
@@ -246,18 +253,18 @@ class PostsController < ApplicationController
         t.save
       end
     end
-    redirect_to post_path(@post)
+    redirect_to post_path(@post.number)
   end
 
   def random
     @post = Post.all.sample
-    redirect_to(post_path(@post))
+    redirect_to(post_path(@post.number))
   end
 
   private
   def set_post
     if params[:id]
-      @post = Post.find(params[:id])
+      @post = Post.find_by(number: params[:id])
     end
   end
 
