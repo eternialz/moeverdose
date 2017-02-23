@@ -3,26 +3,26 @@
 http://moeverdose.moe (old php version)
 
 A booru made from scratch with Rails 5 and MongoDB
-With beautiful design! And stupid things! And heretic rituals! And cute hamsters (Umarun~) !
+With a stupid team! And heretic rituals! And cute hamsters (Umarun~) !
 
 #**TODOs:**
+## **Priorities**
 
-## GLOBAL/OTHERS
-* Random link to a post
-* Custom error pages
-* Discord
-  * To registered user, display a link to join chat on a special page after. The link remain valid 1 hour and is generated after the user asked.
-  * General bot for chat fun
-  * Custom bot which report all uploads
+* 1 Posts system 99%
+* 2 User system 75%
+* 3 Comments system 50%
+* 4 Author system 50%
+* 5 Tag system 70%
+* 6 Filter posts 5%
+* 7 Alias system 0%
+* 8 News system 80%
 
 ## ADMIN
-* Lists:
-  * Reported posts
-  * Reported comments
-  * All users list
-* Users edition/delete
-* Stats
+* User list + delete and notification of infractions
+* All Post list + thumbnail + delete + reported filter + link to uploader profile in admin page
 * Prevent user deletion if they are not regular users
+* All Tag list and their aliases
+* All reported comments + delete or acceptation
 
 ## POSTS
 * Report system
@@ -34,56 +34,47 @@ With beautiful design! And stupid things! And heretic rituals! And cute hamsters
 * Pagination in index
 
 ## COMMENTS
-* Reply ?
-* Score ?
+* Replies or quotes?
 * Spoilers ?
+* Anon comments?
 * Post links '#[id_of_post]'
-* User link '\@username'
+* User link '@username'
+* Hide reported comments
 
 ## TAGS
-* aliases system
-* posts counts
-* All tags page
+* Aliases system
 
 ## USERS
-* Secutiry options
-* Follow authors/characters
-* Notifications for follows
+* Security options
+  * Change pass
+  * Change mail
+* Follow authors/characters/tags
+* Notification system
+* Level grow when other user like uploaded posts by the user
 * Protect upload/edit/destroy/etc from non logged users and non authorized roles
 
 ## AUTHORS
 * profiles?
 * biography
-* edition
+* edit
 
-### **Priorities**
-
-* 1 Posts system 90%
-* 2 User system 75%
-* 3 Comments system 50%
-* 4 Author system 50%
-* 5 Tag system 10%
-* 6 Filter posts 5%
-* 7 Alias system 0%
-* 8 News system 0%
+## OTHERS
+* Custom error pages
 
 # Branches
 
 master = Prod
+preprod = Prod candidate
+develop = Where every feature branches are merged when they are completed
+feature/* are branches started from develop
+hotfix/* are branches started from master
 
-pre-prod = Prod candidate
-
-develop = Where every feature/fix are applied when they are finished
-
-feature/* and fix/* are always branches of develop
-
-Use feature/nameoffeature to commit new features
-
-Use fix/nameoffix to commit fixes
+Use feature/name_of_new_feature to commit new features
+Use hotfix/name_of_bug_to_fix to commit fixes
 
 #**PROBLEMs and Future ideas:**
 
-* *Wich girl should we use as a logo for moeverdose?!!!*
-* Wich server should we use?
-* Wich CDN should we use?
-* Changelog system ?
+* What logo should we use?
+* Which server should we use?
+* Which CDN should we use?
+* Discord bot + integration
