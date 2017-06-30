@@ -4,124 +4,124 @@ $device-medium: 1280px;
 $device-large: 1600px;
 
 @media (max-width: $device-xsmall) {
-  .menu .user img {
-    display: none;
-  }
-
-  .userprofile .user_header  {
-    .role {
-      display: none;
-    }
-
-    .user_banner {
-      p {
+    .menu .user img {
         display: none;
-      }
     }
-  }
+
+    .userprofile .user_header  {
+        .role {
+            display: none;
+        }
+
+        .user_banner {
+            p {
+                display: none;
+            }
+        }
+    }
 }
 
 @media (max-width: $device-small) {
-  #menu_label {
-    display: inline-block !important;
-  }
+    #menu_label {
+        display: inline-block !important;
+    }
 
-  .submenu {
-    padding: 10px 0;
-    height: auto !important;
-    opacity: 0;
-  }
+    .submenu {
+        padding: 10px 0;
+        height: auto !important;
+        opacity: 0;
+    }
 
-  .submenu ul {
-    width: 100%;
-  }
+    .submenu ul {
+        width: 100%;
+    }
 
-  nav.menu .submenu ul:hover {
-    border-top: 4px solid transparent !important;
-  }
+    nav.menu .submenu ul:hover {
+        border-top: 4px solid transparent !important;
+    }
 
-  nav.menu .submenu ul.my-account, nav.menu .submenu ul.login {
-    display: none;
-  }
+    nav.menu .submenu ul.my-account, nav.menu .submenu ul.login {
+        display: none;
+    }
 
-  nav.menu ul li a{
-    display: none;
-  }
+    nav.menu ul li a{
+        display: none;
+    }
 
-  nav.menu .submenu.develop {
-    height: auto;
-    opacity: 1;
-  }
+    nav.menu .submenu.develop {
+        height: auto;
+        opacity: 1;
+    }
 
-  nav.menu:hover .submenu {
-    visibility: hidden;
-  }
+    nav.menu:hover .submenu {
+        visibility: hidden;
+    }
 
-  #random {
-    display: none;
-  }
+    #random {
+        display: none;
+    }
 
-  body {
-    padding-top: 0;
-  }
+    body {
+        padding-top: 0;
+    }
 
-  nav.menu {
-    position: static;
-  }
+    nav.menu {
+        position: static;
+    }
 
-  .footer-nav {
-    padding-top: 1em;
-  }
+    .footer-nav {
+        padding-top: 1em;
+    }
 
-  footer .footer-nav li {
-    display: block;
-    margin: 1em 0 1em 0;
-  }
+    footer .footer-nav li {
+        display: block;
+        margin: 1em 0 1em 0;
+    }
 
-  .posts .post-container .post-thumbnail a.informations {
-    opacity: 0 !important;
-  }
+    .posts .post-container .post-thumbnail a.informations {
+        opacity: 0 !important;
+    }
 }
 
 @media screen and (min-width: 200px) and (max-width: 400px) {
-  .posts .post-container .post-thumbnail {
-    width: 50%;
-    height: 50vw;
-  }
+    .posts .post-container .post-thumbnail {
+        width: 50%;
+        height: 50vw;
+    }
 }
 @media screen and (min-width: 401px) and (max-width: 600px) {
-  .posts .post-container .post-thumbnail {
-    width: 33.333%;
-    height: 33.33vw;
-  }
+    .posts .post-container .post-thumbnail {
+        width: 33.333%;
+        height: 33.33vw;
+    }
 }
 @media screen and (min-width: 601px) and (max-width: 800px) {
-  .posts .post-container .post-thumbnail {
-    width: 25%;
-    height: 25vw;
-  }
+    .posts .post-container .post-thumbnail {
+        width: 25%;
+        height: 25vw;
+    }
 }
 @media screen and (min-width: 801px) and (max-width: 1000px) {
-  .posts .post-container .post-thumbnail {
-    width: 20%;
-    height: 20vw;
-  }
+    .posts .post-container .post-thumbnail {
+        width: 20%;
+        height: 20vw;
+    }
 }
 @media screen and (min-width: 1001px) and (max-width: 1200px) {
-  .posts .post-container .post-thumbnail {
-    width: 16.666%;
-    height: 16.666vw;
-  }
+    .posts .post-container .post-thumbnail {
+        width: 16.666%;
+        height: 16.666vw;
+    }
 }
 @media screen and (min-width: 1201px) and (max-width: 1400px) {
-  .posts .post-container .post-thumbnail {
-    width: 14.2857%;
-    height: 14.2857vw;
-  }
+    .posts .post-container .post-thumbnail {
+        width: 14.2857%;
+        height: 14.2857vw;
+    }
 }
 @media screen and (min-width: 1401px) and (max-width: 1600px) {
-  .posts .post-container .post-thumbnail {
-    width: 12.5%;
-    height: 12.5vw;
-  }
+    .posts .post-container .post-thumbnail {
+        width: 12.5%;
+        height: 12.5vw;
+    }
 }

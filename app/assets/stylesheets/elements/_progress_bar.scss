@@ -1,0 +1,14 @@
+
+.progress_bar {
+    background: #AAA;
+    color: #FFF;
+    font-size: 0.8em;
+    font-weight: 900;
+
+    .progress {
+        width: 66%;
+        background: #1AB;
+        padding: 2px;
+        text-align: right;
+    }
+}
