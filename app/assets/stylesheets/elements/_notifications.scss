@@ -6,64 +6,64 @@
 }
 
 .notifications {
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  width: 400px;
-  max-width: 100%;
-  z-index: 150;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 400px;
+    max-width: 100%;
+    z-index: 150;
 
-  .notifications_container {
-    max-height: calc( 100vh - 96px);
-    overflow-y: auto;
-    margin: auto;
-    color: #555;
-    padding: 4px;
-  }
-
-  .notification {
-    animation-name: opacity;
-    animation-duration: 6s;
-    width: 100%;
-    border-radius: 3px;
-    margin: auto;
-    padding: 10px;
-    margin: 10px 0;
-    background: #FFF;
-    box-shadow: 0 1px 3px rgba(0,0,0,.25);
-
-    h5, p {
-      margin: 0;
+    .notifications_container {
+        max-height: calc( 100vh - 96px);
+        overflow-y: auto;
+        margin: auto;
+        color: #555;
+        padding: 4px;
     }
 
-    i {
-      float: right;
-      cursor: pointer;
-    }
+    .notification {
+        animation-name: opacity;
+        animation-duration: 6s;
+        width: 100%;
+        border-radius: 3px;
+        margin: auto;
+        padding: 10px;
+        margin: 10px 0;
+        background: #FFF;
+        box-shadow: 0 1px 3px rgba(0,0,0,.25);
 
-    & {
-      h5 {
-        color: $blue;
-      }
-    }
+        h5, p {
+            margin: 0;
+        }
 
-    &.success {
-      h5 {
-        color: $green;
-      }
-    }
+        i {
+            float: right;
+            cursor: pointer;
+        }
 
-    &.warning {
-      h5 {
-        color: $orange;
-      }
-    }
+        & {
+            h5 {
+                color: $blue;
+            }
+        }
 
-    &.error {
+        &.success {
+            h5 {
+                color: $green;
+            }
+        }
 
-      h5 {
-        color: $red;
-      }
+        &.warning {
+            h5 {
+                color: $orange;
+            }
+        }
+
+        &.error {
+
+            h5 {
+                color: $red;
+            }
+        }
     }
-  }
 }

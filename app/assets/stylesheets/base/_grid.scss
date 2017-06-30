@@ -1,0 +1,123 @@
+.row {
+    margin: auto;
+    width: 1600px;
+    max-width: 100%;
+    position: relative;
+}
+
+/*Responsives Columns*/
+.row {
+    display: block;
+
+    &:after {
+        content: " ";
+        height: 0;
+        display: block;
+        clear: both;
+    }
+
+    .column {
+        display: inline-block;
+        text-align: justify;
+        padding: 15px;
+        float: left;
+    }
+
+    .f12 {
+        width: 100%;
+    }
+
+    .f10 {
+        width: 83.33%;
+    }
+
+    .f8 {
+        width: 66.66%;
+    }
+
+    .f6 {
+        width: 50%;
+    }
+
+    .f4 {
+        width: 33.33%;
+    }
+
+    .f3 {
+        width: 25%;
+    }
+
+    .f2 {
+        width: 16.66%;
+    }
+
+    @media (max-width: $device-small) {
+        .f2 {
+            width: 33.33%;
+        }
+
+        .f3 {
+            width: 50%;
+        }
+
+        .f4 {
+            width: 50%;
+        }
+
+        .f6 {
+            width: 100%;
+        }
+
+        .f8 {
+            width: 100%;
+        }
+
+        .f10 {
+            width: 100%;
+        }
+    }
+
+    @media (max-width: $device-xsmall) {
+        .f2 {
+            width: 50%;
+        }
+
+        .f3 {
+            width: 100%;
+        }
+
+        .f4 {
+            width: 100%;
+        }
+
+        .f6 {
+            width: 100%;
+        }
+
+        .f8 {
+            width: 100%;
+        }
+
+        .f10 {
+            width: 100%;
+        }
+    }
+}
+
+/* Global Elements */
+.clearfix:after {
+    display: block;
+    height: 0;
+    content: " ";
+    clear: both;
+}
+
+.hide {
+    display: none;
+}
+
+.page {
+    margin: auto;
+    width: 100%;
+    max-width: 1600px;
+}

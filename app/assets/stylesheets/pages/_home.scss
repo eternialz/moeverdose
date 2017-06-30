@@ -1,10 +1,10 @@
 .header-img {
-  height: 400px;
-  box-shadow: 0 1px 3px rgba(0,0,0,.25);
-  background: image_url($header-image) no-repeat center center;
-  background-size: cover;
+    height: 400px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.25);
+    background: image_url($header-image) no-repeat center center;
+    background-size: cover;
 
-  h1 {
-    color: #FFF;
-  }
+    h1 {
+        color: #FFF;
+    }
 }
