@@ -16,14 +16,14 @@
     <nav class="menu">
         <div class="row">
             <% if content_for?(:menu) %>
-            <%= yield(:menu) %>
+                <%= yield(:menu) %>
             <% else %>
-            <%= render "layouts/default_menu" %>
+                <%= render "layouts/default_menu" %>
             <% end %>
             <% if content_for?(:submenu) %>
-            <%= yield(:submenu) %>
+                <%= yield(:submenu) %>
             <% else %>
-            <%= render "layouts/default_submenu" %>
+                <%= render "layouts/default_submenu" %>
             <% end %>
         </div>
     </nav>

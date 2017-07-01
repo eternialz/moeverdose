@@ -1,19 +1,19 @@
 <div class="container">
-  <a href="<%= root_path %>"><h1>moeverdose.moe</h1></a>
-  <span id="random"><%= cell(:random_message).(:show) %></span>
-  <div class="user">
-    <% if user_signed_in? %>
-      <a class="avatar" href="<%= user_path(current_user.name) %>" id="my_account"><%= image_tag current_user.avatar(:tiny) %></a>
-      <span><%= link_to current_user.name, user_path(current_user.name) %></span>
-    <% else %>
-      <a class="avatar" href="<%= new_user_registration_path %>"><%= image_tag image_path('default_user.png') %></a>
-      <span>Guest</span>
-    <% end %>
-  </div>
-  <ul>
-    <li><a id="menu_label"><%= fa_icon 'bars' %>Menu</a></li>
-    <li><%= link_to 'Posts', posts_path, title: 'Posts' %></li>
-    <li><%= link_to 'Upload', new_post_path, title: 'Upload' %></li>
-    <li><a href="https://twitter.com/moeverdose" target="_blank" title="Moeverdose Twitter"><%= fa_icon "twitter"%></a></li>
-  </ul>
+    <a href="<%= root_path %>"><h1>moeverdose.moe</h1></a>
+    <span id="random"><%= cell(:random_message).(:show) %></span>
+    <div class="user">
+        <% if user_signed_in? %>
+            <a class="avatar" href="<%= user_path(current_user.name) %>" id="my_account"><%= image_tag current_user.avatar(:tiny) %></a>
+            <span><%= link_to current_user.name, user_path(current_user.name) %></span>
+        <% else %>
+            <a class="avatar" href="<%= new_user_registration_path %>"><%= image_tag image_path('default_user.png') %></a>
+            <span>Guest</span>
+        <% end %>
+    </div>
+    <ul>
+        <li><a id="menu_label"><%= fa_icon 'bars' %>Menu</a></li>
+        <li><%= link_to 'Posts', posts_path, title: 'Posts' %></li>
+        <li><%= link_to 'Upload', new_post_path, title: 'Upload' %></li>
+        <li><a href="https://twitter.com/moeverdose" target="_blank" title="Moeverdose Twitter"><%= fa_icon "twitter"%></a></li>
+    </ul>
 </div>

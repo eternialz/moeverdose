@@ -65,7 +65,7 @@ dd {
 }
 
 body {
-    padding-top: 95px;
+    padding-top: 100px;
     background-image: url(image_path('background.svg'));
     background-size: cover;
     background-attachment: fixed;
@@ -89,6 +89,7 @@ textarea {
 /* Titles */
 h2,h3,h4,h5,h6 {
     font-style: italic;
+    margin-bottom: 10px;
 }
 
 h1, h2, h3, h4, h5, h6, p {

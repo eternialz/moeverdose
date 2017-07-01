@@ -1,54 +1,58 @@
 <div class="submenu">
-  <% if user_signed_in? %>
-    <ul class="my-account">
-      <h3><a href="<%= user_path(current_user.name) %>"><%= fa_icon "user" %> My Account</a></h3>
-      <li><%= link_to "Profile", user_path(current_user.name) %></li>
-      <li><%= link_to "Options", edit_user_path(current_user.name) %></li>
-      <li><%= link_to 'Logout', destroy_user_session_path %></span></li>
+    <% if user_signed_in? %>
+        <ul class="my-account">
+            <h3><a href="<%= user_path(current_user.name) %>"><%= fa_icon "user" %> My Account</a></h3>
+            <li><%= link_to "Profile", user_path(current_user.name) %></li>
+            <li><%= link_to "Options", edit_user_path(current_user.name) %></li>
+            <li><%= link_to 'Logout', destroy_user_session_path %></span></li>
+        </ul>
+    <% else %>
+        <ul class="login">
+            <h3>Sign In</h3>
+            <%= form_for(:user, id: 'login', :url => session_path(:user)) do |f| %>
+            <%= f.email_field :email, autofocus: true, placeholder: 'email', autocomplete: "off" %>
+            <%= f.password_field :password, autocomplete: "off", placeholder: 'password', autocomplete: "off" %>
+            <%= link_to "Forgot your password?", new_password_path(:user) %>
+            <button class="btn btn-blue" type="submit">Sign in <%= fa_icon "sign-in" %></button>
+            <% end %>
+        </ul>
+
+        <ul class="login register">
+            <h3>Need an account?</h3>
+            <p>With an account you can upload images, edit posts, add comments and many other things.</p>
+            <p>No activation necessary</p>
+            <%= link_to new_user_registration_path, class: 'btn btn-blue' do %>
+                Sign up <%= fa_icon 'user-plus' %>
+            <% end %>
+        </ul>
+    <% end %>
+
+    <ul>
+        <h3><a href="<%= posts_path %>" title="Posts">Posts</a></h3>
+        <li><a href="<%= posts_path %>" title="All Posts">All Posts</a></li>
+        <li><%= link_to 'Random', random_path %></li>
+        <li><a href="<%= new_post_path %>" title="Upload">Upload</a></li>
+        <li><a>Best Posts</a></li>
+        <li><a>Tags</a></li>
+        <li><a>Authors list</a></li>
     </ul>
-  <% else %>
-    <ul class="login">
-      <h3>Sign In</h3>
-      <%= form_for(:user, id: 'login', :url => session_path(:user)) do |f| %>
-        <%= f.email_field :email, autofocus: true, placeholder: 'email', autocomplete: "off" %>
-        <%= f.password_field :password, autocomplete: "off", placeholder: 'password', autocomplete: "off" %>
-        <%= link_to "Forgot your password?", new_password_path(:user) %>
-        <button class="btn btn-blue" type="submit">Sign in <%= fa_icon "sign-in" %></button>
-      <% end %>
+
+    <ul>
+        <h3><%= link_to 'Help', '/pages/help/index' %></h3>
+        <li><%= link_to 'Rules', '/pages/help/rules' %></li>
+        <li><%= link_to 'Posts', '/pages/help/posts' %></li>
+        <li><%= link_to 'Upload', '/pages/help/upload' %></li>
+        <li><%= link_to 'Search Engine', '/pages/help/search' %></li>
+        <li><%= link_to 'Keyboard', '/pages/help/keyboard' %></li>
+        <li><%= link_to 'Chat', '/pages/help/chat' %></li>
     </ul>
-    <ul class="login register">
-      <h3>Need an account?</h3>
-      <p>With an account you can upload images, edit posts, add comments and many other things.</p>
-      <p>No activation necessary</p>
-      <%= link_to new_user_registration_path, class: 'btn btn-blue' do %>
-        Sign up <%= fa_icon 'user-plus' %>
-      <% end %>
+
+    <ul>
+        <h3><%= link_to 'Moeverdose', '/pages/about' %></h3>
+        <li><%= link_to 'About', '/pages/about' %></li>
+        <li><%= link_to 'Team', '/pages/team' %></li>
+        <li><%= link_to 'Source', '/pages/source' %></li>
+        <li><%= link_to 'Licence', '/pages/licence' %></li>
+        <li><a>Stats</a></li>
     </ul>
-  <% end %>
-  <ul>
-    <h3><a href="<%= posts_path %>" title="Posts">Posts</a></h3>
-    <li><a href="<%= posts_path %>" title="All Posts">All Posts</a></li>
-    <li><%= link_to 'Random', random_path %></li>
-    <li><a href="<%= new_post_path %>" title="Upload">Upload</a></li>
-    <li><a>Best Posts</a></li>
-    <li><a>Tags</a></li>
-    <li><a>Authors list</a></li>
-  </ul>
-  <ul>
-    <h3><%= link_to 'Help', '/pages/help/index' %></h3>
-    <li><%= link_to 'Rules', '/pages/help/rules' %></li>
-    <li><%= link_to 'Posts', '/pages/help/posts' %></li>
-    <li><%= link_to 'Upload', '/pages/help/upload' %></li>
-    <li><%= link_to 'Search Engine', '/pages/help/search' %></li>
-    <li><%= link_to 'Keyboard', '/pages/help/keyboard' %></li>
-    <li><%= link_to 'Chat', '/pages/help/chat' %></li>
-  </ul>
-  <ul>
-    <h3><%= link_to 'Moeverdose', '/pages/about' %></h3>
-    <li><%= link_to 'About', '/pages/about' %></li>
-    <li><%= link_to 'Team', '/pages/team' %></li>
-    <li><%= link_to 'Source', '/pages/source' %></li>
-    <li><%= link_to 'Licence', '/pages/licence' %></li>
-    <li><a>Stats</a></li>
-  </ul>
 </div>
