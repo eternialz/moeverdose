@@ -1,22 +1,23 @@
 <div class="row posts">
     <div class="post-container">
-        <div class="image-blur" style="background-image: url(<%= image_url(@post.post_image.url)%>)"></div>
         <% if @post.report == true %>
-        <input class="reported_input" id="report_form_input" type="checkbox">
-        <div class="reported">
-            <p>This post have been reported by <%= @post.report_user.name %> for:</p>
-            <p><%= @post.report_reason %></p>
-            <label for="report_form_input" class="btn btn-pink">Show post <%= fa_icon 'eye' %></label>
-        </div>
+            <input class="reported_input" id="report_form_input" type="checkbox">
+            <div class="reported">
+                <p>This post have been reported by <%= @post.report_user.name %> for:</p>
+                <p><%= @post.report_reason %></p>
+                <label for="report_form_input" class="btn btn-pink">Show post <%= fa_icon 'eye' %></label>
+            </div>
         <% end %>
         <div class="post_navigation clearfix">
             <h2><%= @post.title %></h2>
             <a class="btn btn-pink previous"><%= fa_icon "arrow-circle-left" %> Previous</a>
             <a class="btn btn-pink next">Next <%= fa_icon "arrow-circle-right" %></a>
         </div>
+
         <div class="post">
             <%= image_tag @post.post_image.url %>
         </div>
+
         <div id="post-score" class="clearfix">
             <div class="overdose_bar clearfix" style="width: <%= @overdose %>%">
                 <span class="overdose_score"><%= @post.overdose %></span>
@@ -25,47 +26,52 @@
                 <span class="shortage_score"><%= @post.moe_shortage %></span>
             </div>
         </div>
+
         <div class="post-details row">
             <div class="post_vote clearfix">
                 <a class="overdose btn btn-pink"><%= fa_icon "heartbeat" %> MOE OVERDOSE</a>
                 <a class="shortage btn btn-blue">MOE SHORTAGE <%= fa_icon "thumbs-down" %></a>
             </div>
-            <div class="f3 column tags">
-                <h3><%= fa_icon "tag" %> Tags</h3>
-                <% @tags.each do |tag| %>
-                <a class="tag"><%= tag %></a>
-                <% end %>
-            </div>
-            <div class="f3 column characters">
-                <h3><%= fa_icon "group" %> Character(s)</h3>
-                <% if @characters.any? %>
-                <% @characters.each do |character| %>
-                <a class="tag"><%= character %></a>
-                <% end %>
-                <% else %>
-                <p style="text-align: center; padding-top: 20px;">no characters specified </p>
-                <% end %>
-            </div>
-            <div class="f3 column authors">
-                <div class="author">
-                    <h3><a><%= fa_icon "user" %> Author: <%= @post.author.name %></a></h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    <a><%= fa_icon "link" %> website</a><a><%= fa_icon "user-plus" %> profile</a>
+
+            <div class="col-8">
+                <div class="col-4 tags">
+                    <h3><%= fa_icon "tag" %> Tags</h3>
+                    <% if @tags.any? %>
+                        <% @tags.each do |tag| %>
+                            <a class="tag"><%= tag %></a>
+                        <% end %>
+                    <% else %>
+                        <p style="text-align: center; padding-top: 20px;">no tags specified </p>
+                    <% end %>
                 </div>
+
+                <div class="col-4 characters">
+                    <h3><%= fa_icon "group" %> Character(s)</h3>
+                    <% if @characters.any? %>
+                        <% @characters.each do |character| %>
+                            <a class="tag"><%= character %></a>
+                        <% end %>
+                    <% else %>
+                        <p style="text-align: center; padding-top: 20px;">no characters specified </p>
+                    <% end %>
+                </div>
+
+                <ul class="col-4 infos">
+                    <h3><%= fa_icon "info-circle" %> Informations</h3>
+                    <li id="id"><span>id:</span><%= @post.number %></li>
+                    <li id="author"><span>author:</span><%= @post.author.name %></li>
+                    <% if @post.source != "" and @post.source != nil %>
+                        <li id="id"><span>source:</span><a href="http://www.google.fr/search?q=<%= @post.source %>" title="Search on google"><%= @post.source %></a></li>
+                    <% end %>
+                    <li id="user"><span>user:</span><%= link_to @post.user.name, user_path(@post.user.name) %></li>
+                    <li id="width-height"><span>dimension:</span><%= @post.width.to_s + " x " + @post.height.to_s %>px</li>
+                    <li id="type"><span>type:</span><%= @post.post_image_content_type.split("/")[-1].upcase %></li>
+                    <li id="size"><span>size:</span><%= '%.3f' % (@post.post_image_file_size.to_f / 1048576).to_s + ' MB' %></li>
+                    <li id="date"><span>date:</span><%= @post.post_image_updated_at.to_time.strftime('%B %e at %l:%M %p') %></li>
+                </ul>
             </div>
-            <ul class="f3 column infos">
-                <h3><%= fa_icon "info-circle" %> Informations</h3>
-                <li id="id"><span>id:</span><%= @post.number %></li>
-                <% if @post.source != "" and @post.source != nil %>
-                <li id="id"><span>source:</span><a href="http://www.google.fr/search?q=<%= @post.source %>" title="Search on google"><%= @post.source %></a></li>
-                <% end %>
-                <li id="id"><span>user:</span><%= link_to @post.user.name, user_path(@post.user.name) %></li>
-                <li id="width-height"><span>dimension:</span><%= @post.width.to_s + " x " + @post.height.to_s %>px</li>
-                <li id="type"><span>type:</span><%= @post.post_image_content_type.split("/")[-1].upcase %></li>
-                <li id="size"><span>size:</span><%= '%.3f' % (@post.post_image_file_size.to_f / 1048576).to_s + ' MB' %></li>
-                <li id="date"><span>date:</span><%= @post.post_image_updated_at.to_time.strftime('%B %e at %l:%M %p') %></li>
-            </ul>
-            <div class="f12 column actions">
+
+            <div class="col-4 actions">
                 <h3><%= fa_icon "bolt" %> Actions</h3>
                 <label class="action" for="post_edit"><%= fa_icon "edit" %> Edit post</label>
                 <a href="<%= @post.post_image.url %>" download class="action"><%= fa_icon "download" %> Download</a>

@@ -1,107 +1,65 @@
-.row {
-    margin: auto;
-    width: 1600px;
-    max-width: 100%;
-    position: relative;
+// utility
+
+.left {
+    text-align: left;
 }
 
-/*Responsives Columns*/
+.right {
+    text-align: right;
+}
+
+.center {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.justify {
+    text-align: justify;
+}
+// grid
+
+$width: 100%;
+$gutter: 30px;
+
 .row {
+    margin-right: auto;
+    margin-left: auto;
+    position: relative;
+    width: 100%;
+    max-width: 1600px;
+}
+
+.row [class^="col-"] {
+    float: left;
+    padding: 15px;
+    min-height: 0.125rem;
+    text-align: left;
+}
+
+.row::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+@media only screen and (min-width: 720px) {
+  .col-1 { width:($width / 12)  }
+  .col-2 { width: ($width / 6)  }
+  .col-3 { width: ($width / 4) }
+  .col-4 { width: ($width / 3) }
+  .col-5 { width: ($width / (12 / 5)) }
+  .col-6 { width: ($width / 2) }
+  .col-7 { width: ($width / (12 / 7)) }
+  .col-8 { width: ($width / (12 / 8)) }
+  .col-9 { width: ($width / (12 / 9)) }
+  .col-10 { width: ($width / (12 / 10)) }
+  .col-11 { width: ($width / (12 / 11)) }
+  .col-12 { width: $width; }
+
+  .hidden-sm {
     display: block;
-
-    &:after {
-        content: " ";
-        height: 0;
-        display: block;
-        clear: both;
-    }
-
-    .column {
-        display: inline-block;
-        text-align: justify;
-        padding: 15px;
-        float: left;
-    }
-
-    .f12 {
-        width: 100%;
-    }
-
-    .f10 {
-        width: 83.33%;
-    }
-
-    .f8 {
-        width: 66.66%;
-    }
-
-    .f6 {
-        width: 50%;
-    }
-
-    .f4 {
-        width: 33.33%;
-    }
-
-    .f3 {
-        width: 25%;
-    }
-
-    .f2 {
-        width: 16.66%;
-    }
-
-    @media (max-width: $device-small) {
-        .f2 {
-            width: 33.33%;
-        }
-
-        .f3 {
-            width: 50%;
-        }
-
-        .f4 {
-            width: 50%;
-        }
-
-        .f6 {
-            width: 100%;
-        }
-
-        .f8 {
-            width: 100%;
-        }
-
-        .f10 {
-            width: 100%;
-        }
-    }
-
-    @media (max-width: $device-xsmall) {
-        .f2 {
-            width: 50%;
-        }
-
-        .f3 {
-            width: 100%;
-        }
-
-        .f4 {
-            width: 100%;
-        }
-
-        .f6 {
-            width: 100%;
-        }
-
-        .f8 {
-            width: 100%;
-        }
-
-        .f10 {
-            width: 100%;
-        }
-    }
+  }
 }
 
 /* Global Elements */
@@ -114,10 +72,4 @@
 
 .hide {
     display: none;
-}
-
-.page {
-    margin: auto;
-    width: 100%;
-    max-width: 1600px;
 }
