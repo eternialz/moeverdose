@@ -22,31 +22,31 @@
 
     <div class="zone clearfix tags row">
         <h3 class="zone_title">My Tags</h3>
-        <div class="column f6">
+        <div class="col-6">
             <h6>Favorites Tags</h6>
             <% if @favorites_tags.empty? %>
-            <p>Nothing here</p>
+                <p>Nothing here</p>
             <% else %>
-            <% @favorites_tags.each do |tag| %>
-            <a class="tag"><%= tag %></a>
-            <% end %>
+                <% @favorites_tags.each do |tag| %>
+                    <a class="tag"><%= tag %></a>
+                <% end %>
             <% end %>
         </div>
-        <div class="column f6">
+        <div class="col-6">
             <h6>Blacklisted Tags</h6>
             <% if @blacklisted_tags.empty? %>
-            <p>Nothing here</p>
+                <p>Nothing here</p>
             <% else %>
-            <% @blacklisted_tags.each do |tag| %>
-            <a class="tag"><%= tag %></a>
-            <% end %>
+                <% @blacklisted_tags.each do |tag| %>
+                    <a class="tag"><%= tag %></a>
+                <% end %>
             <% end %>
         </div>
     </div>
 
     <div class="zone clearfix level row">
         <h3 class="zone_title">Level</h3>
-        <div class="column f12">
+        <div class="col-12">
             <div class="progress_bar">
                 <div class="progress" style="width: <%= @percentage %>%; background: <%= @level.color %>;"><%= @percentage %>%</div>
             </div>
@@ -58,7 +58,7 @@
 
     <div class="zone clearfix stats row">
         <h3 class="zone_title">Stats</h3>
-        <div class="stats column f6">
+        <div class="col-6 stats">
             <ul class="user_stats">
                 <li><%= @user.upload_count %> upload(s)</li>
                 <li>666 comments</li>

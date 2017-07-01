@@ -35,6 +35,7 @@ $header-image: "header-img/"+random(33)+".jpg";
 html {
     box-sizing: border-box;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 *, *:before, *:after {
@@ -86,14 +87,13 @@ textarea {
     min-height: 200px;
 }
 
-/* Titles */
+h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+}
+
 h2,h3,h4,h5,h6 {
     font-style: italic;
     margin-bottom: 10px;
-}
-
-h1, h2, h3, h4, h5, h6, p {
-    margin: 0;
 }
 
 h1 {

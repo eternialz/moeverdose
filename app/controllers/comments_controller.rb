@@ -2,9 +2,6 @@ class CommentsController < ApplicationController
     before_action :set_post
 
     def create
-
-        binding.pry
-
         length = params[:comment][:text].length
         if length >= 2 && length <= 500
             @comment = Comment.create(params.require(:comment).permit(:text))
@@ -13,7 +10,6 @@ class CommentsController < ApplicationController
             @comment.post = @post
             @post.save
             @comment.save
-            binding.pry
         end
         redirect_to post_path(@post.number)
     end
@@ -23,12 +19,12 @@ class CommentsController < ApplicationController
         @comment.report = true
         @comment.report_user = current_user
         @comment.save
-        redirect_to post_path(@post)
+        redirect_to post_path(@post.number)
     end
 
     private
 
     def set_post
-        @post = Post.find(params[:post_id])
+        @post = Post.find_by(number: params[:post_id])
     end
 end

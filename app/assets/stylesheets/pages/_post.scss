@@ -136,10 +136,10 @@
         li {
             position: relative;
             border-bottom: 1px solid #EEE;
-            padding: 5px;
+            padding: 8px;
             overflow: hidden !important;
             text-overflow: ellipsis !important;
-            padding-left: 90px;
+            padding-left: 100px;
         }
 
         li:last-child {
@@ -148,10 +148,10 @@
 
         span {
             position: absolute;
-            left: 0;
+            left: 10px;
             min-width: 90px;
             display: inline-block;
-            text-align: right;
+            text-align: left;
             padding-right: 8px;
         }
     }
@@ -192,19 +192,10 @@
     }
 
     .actions {
-        text-align: center;
+        background: $gray;
 
-        .action {
-            margin: 10px;
-            color: #AAA;
-        }
-
-        .action:hover {
-            text-decoration: underline;
-
-            i {
-                text-decoration: underline;
-            }
+        .btn {
+            margin-right: 10px;
         }
     }
 }
@@ -221,7 +212,6 @@
 
 #edit_post {
     display: none;
-    padding: 50px;
 
     input, textarea {
         margin-bottom: 20px;
@@ -233,5 +223,9 @@
 
     h3 {
         color: #FFF;
+    }
+
+    p {
+        color: #444;
     }
 }
