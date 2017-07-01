@@ -32,18 +32,11 @@
         <li><a href="<%= posts_path %>" title="All Posts">All Posts</a></li>
         <li><%= link_to 'Random', random_path %></li>
         <li><a href="<%= new_post_path %>" title="Upload">Upload</a></li>
-        <li><a>Best Posts</a></li>
-        <li><a>Tags</a></li>
-        <li><a>Authors list</a></li>
     </ul>
 
     <ul>
-        <h3><%= link_to 'Help', '/pages/help/index' %></h3>
-        <li><%= link_to 'Rules', '/pages/help/rules' %></li>
-        <li><%= link_to 'Posts', '/pages/help/posts' %></li>
-        <li><%= link_to 'Upload', '/pages/help/upload' %></li>
-        <li><%= link_to 'Search Engine', '/pages/help/search' %></li>
-        <li><%= link_to 'Keyboard', '/pages/help/keyboard' %></li>
+        <h3><%= link_to 'Community', '/pages/help/chat' %></h3>
+        <li><%= link_to 'Users', '/users' %></li>
         <li><%= link_to 'Chat', '/pages/help/chat' %></li>
     </ul>
 
@@ -52,7 +45,13 @@
         <li><%= link_to 'About', '/pages/about' %></li>
         <li><%= link_to 'Team', '/pages/team' %></li>
         <li><%= link_to 'Source', '/pages/source' %></li>
-        <li><%= link_to 'Licence', '/pages/licence' %></li>
         <li><a>Stats</a></li>
+    </ul>
+
+    <ul>
+        <h3><%= link_to 'Help', '/pages/help/index' %></h3>
+        <li><%= link_to 'I need help', '/pages/help/index' %></li>
+        <li><%= link_to 'Post Rules', '/pages/help/rules' %></li>
+        <li><%= link_to 'How to upload', '/pages/help/upload' %></li>
     </ul>
 </div>

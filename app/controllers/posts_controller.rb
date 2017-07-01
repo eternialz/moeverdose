@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
+    before_action :try_set_post, only: [:show]
     before_action :authenticate_user!, only: [:update, :overdose, :shortage, :report]
-    before_action :set_post, only: [:edit, :update, :show, :overdose, :shortage, :favorite, :report]
+    before_action :set_post, only: [:edit, :update, :overdose, :shortage, :favorite, :report]
 
     def show
         @tags = []
@@ -256,6 +257,10 @@ class PostsController < ApplicationController
         redirect_to post_path(@post.number)
     end
 
+    def not_found
+        render "posts/not_found", :status => 404
+    end
+
     def random
         @post = Post.all.sample
         redirect_to(post_path(@post.number))
@@ -265,6 +270,17 @@ class PostsController < ApplicationController
     def set_post
         if params[:id]
             @post = Post.find_by(number: params[:id])
+        end
+    end
+
+    def try_set_post
+        if params[:id]
+            Mongoid.raise_not_found_error = false
+            @post = Post.find_by(number: params[:id])
+
+            unless @post
+                not_found
+            end
         end
     end
 
