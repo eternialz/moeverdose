@@ -1,20 +1,20 @@
 <div class="row posts">
     <div class="post-container">
-        <% if @post.report == true %>
-            <input class="reported_input" id="report_form_input" type="checkbox">
-            <div class="reported">
-                <p>This post have been reported by <%= @post.report_user.name %> for:</p>
-                <p><%= @post.report_reason %></p>
-                <label for="report_form_input" class="btn btn-pink">Show post <%= fa_icon 'eye' %></label>
-            </div>
-        <% end %>
         <div class="post_navigation clearfix">
             <h2><%= @post.title %></h2>
-            <a class="btn btn-pink previous"><%= fa_icon "arrow-circle-left" %> Previous</a>
-            <a class="btn btn-pink next">Next <%= fa_icon "arrow-circle-right" %></a>
+            <a href="/posts/<%= @post.number + 1 %>"class="btn btn-pink previous"><%= fa_icon "arrow-circle-left" %> Previous</a>
+            <a href="/posts/<%= @post.number - 1 %>" class="btn btn-pink next">Next <%= fa_icon "arrow-circle-right" %></a>
         </div>
 
         <div class="post">
+            <% if @post.report == true %>
+                <input class="reported_input" id="report_form_input" type="checkbox">
+                <div class="reported">
+                    <p>This post have been reported by <%= @post.report_user.name %> for:</p>
+                    <p><%= @post.report_reason %></p>
+                    <label for="report_form_input" class="btn btn-pink">Show post <%= fa_icon 'eye' %></label>
+                </div>
+            <% end %>
             <%= image_tag @post.post_image.url %>
         </div>
 

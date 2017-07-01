@@ -258,6 +258,9 @@ class PostsController < ApplicationController
     end
 
     def not_found
+        if Integer(params[:id]) < 1
+            params[:id] = '0'
+        end
         render "posts/not_found", :status => 404
     end
 
