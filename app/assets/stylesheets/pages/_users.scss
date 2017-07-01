@@ -48,63 +48,6 @@
     }
 }
 
-// INDEX
-
-.user_list {
-    margin: 25px auto;
-    width: 100%;
-    max-width: 800px;
-
-    .user_entry {
-        display: block;
-        position: relative;
-        margin: 5px 0;
-        border: 2px solid transparent;
-        color: #555;
-        outline: none;
-
-        .avatar {
-            float: left;
-            border-radius: 3px;
-        }
-
-        h3 {
-            position: absolute;
-            top: 15px;
-            left: 85px;
-        }
-
-        &.top h3 {
-            margin: 10px;
-            text-align: center;
-            font-size: 1.56em;
-            position: static;
-        }
-
-        p {
-            position: absolute;
-            top: 40px;
-            left: 85px;
-
-        }
-
-        .upload_count {
-            float: right;
-            background: $blue;
-            color: #FFF;
-            font-weight: 900;
-            padding: 5px 8px;
-            border-radius: 3px;
-        }
-    }
-
-    a.user_entry:hover {
-        border-color: $blue;
-        .avatar {
-        }
-    }
-}
-
 // PROFILE
 
 .post-thumbnail.preview {
