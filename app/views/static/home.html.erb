@@ -2,24 +2,54 @@
 <div class="header-img">
 </div>
 
-<div class="zone">
-  <h2>Moeverdose is still under construction. You will likely encounter bugs.</h2>
-
-  <p>If you do, please report them in the chat</p>
-</div>
-
 <% if !@news.empty? %>
-  <div class="zone news">
+<div class="zone news">
     <h2 class="small-title">NEWS</h2>
     <% @news.each do |n| %>
-      <div class="new">
+    <div class="new">
         <h3><%= n.title %></h3>
         <p><%= n.text %></p>
-      </div>
+    </div>
     <% end %>
-  </div>
+</div>
 <% else %>
-  <div class="zone news">
+<div class="zone news">
     <p class=" small-title" style="float: none; text-align: center; margin: 10px;">No news</p>
-  </div>
+</div>
 <% end %>
+
+<div class="home-about row">
+    <div class="col-6 col-sm">
+        <div class="zone">
+            <h2>About Moeverdose</h2>
+
+            <p>Moeverdose is a safe for work image board for cute anime style characters</p>
+
+        </div>
+    </div>
+
+    <div class="col-6 col-sm">
+        <div class="zone">
+            <h2>Moeverdose is still under construction. You will likely encounter bugs.</h2>
+
+            <p>If you do, please report them in the chat</p>
+            <br />
+            <h5>Already reported bugs:</h5>
+            <ul>
+                <li>Post created without author return an error</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="col-12 zone">
+    <h2>Next planned features</h2>
+    <ol>
+        <li>Search</li>
+        <li>Advanced search</li>
+        <li>Tag aliases</li>
+        <li>Functionnal favorites tags</li>
+        <li>Posts modification logs</li>
+        <li>And more</li>
+    </ol>
+</div>

@@ -10,7 +10,7 @@
         <ul class="login">
             <h3>Sign In</h3>
             <%= form_for(:user, id: 'login', :url => session_path(:user)) do |f| %>
-            <%= f.email_field :email, autofocus: true, placeholder: 'email', autocomplete: "off" %>
+            <%= f.email_field :email, placeholder: 'email', autocomplete: "off" %>
             <%= f.password_field :password, autocomplete: "off", placeholder: 'password', autocomplete: "off" %>
             <%= link_to "Forgot your password?", new_password_path(:user) %>
             <button class="btn btn-blue" type="submit">Sign in <%= fa_icon "sign-in" %></button>
@@ -37,7 +37,7 @@
     <ul>
         <h3><%= link_to 'Community', '/pages/help/chat' %></h3>
         <li><%= link_to 'Users', '/users' %></li>
-        <li><%= link_to 'Chat', '/pages/help/chat' %></li>
+        <li><%= link_to 'Chat', 'https://discord.gg/6zs7v9k', target: "_blank" %></li>
     </ul>
 
     <ul>

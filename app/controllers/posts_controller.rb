@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
     before_action :try_set_post, only: [:show]
-    before_action :authenticate_user!, only: [:update, :overdose, :shortage, :report]
     before_action :set_post, only: [:edit, :update, :overdose, :shortage, :favorite, :report]
+    before_action :authenticate_user!, only: [:update, :overdose, :shortage, :report, :favorite, :create, :new]
 
     def show
         @tags = []
