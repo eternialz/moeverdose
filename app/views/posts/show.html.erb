@@ -60,7 +60,11 @@
                 </div>
                 <div class="field">
                     <span><%= fa_icon "user" %> Author:</span>
-                    <input name="author_tag" type="text" placeholder="Author name" value="<%= @post.author.name %>">
+                    <% unless @post.author.blank? %>
+                        <input name="author_tag" type="text" placeholder="Author name" value="<%= @post.author.name %>">
+                    <% else %>
+                        <input name="author_tag" type="text" placeholder="Author name">
+                    <% end %>
                 </div>
                 <div class="field_area">
                     <p><%= fa_icon "tag" %> Tags:</p>
@@ -110,10 +114,16 @@
             <ul class="col-4 infos">
                 <h3><%= fa_icon "info-circle" %> Informations</h3>
                 <li id="id"><span>id:</span><%= @post.number %></li>
-                <li id="author"><span>author:</span><%= @post.author.name %></li>
+                <% unless @post.author.blank? %>
+                    <li id="author"><span>author:</span><a href="http://www.google.fr/search?q=<%= @post.author.name %>" title="Search on google"><%= @post.author.name %></a></li>
+                <% else %>
+                    <li id="author"><span>author:</span>unknown author</li>
+                <% end %>
+
                 <% if @post.source != "" and @post.source != nil %>
                     <li id="id"><span>source:</span><a href="http://www.google.fr/search?q=<%= @post.source %>" title="Search on google"><%= @post.source %></a></li>
                 <% end %>
+
                 <li id="user"><span>user:</span><%= link_to @post.user.name, user_path(@post.user.name) %></li>
                 <li id="width-height"><span>dimension:</span><%= @post.width.to_s + " x " + @post.height.to_s %>px</li>
                 <li id="type"><span>type:</span><%= @post.post_image_content_type.split("/")[-1].upcase %></li>
