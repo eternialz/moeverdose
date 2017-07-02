@@ -1,5 +1,5 @@
 
-.btn {
+.btn, a.btn {
     background-image: url(image_path('pattern(2).svg'));
     background-position: 0 center;
     display: inline-block;
@@ -16,7 +16,8 @@
     -moz-transition: all 170ms ease-in-out;
     -o-transition: all 170ms ease-in-out;
     transition: all 170ms ease-in-out;
-    color: #FFF;
+    color: #FFF !important;
+    opacity: 1 !important;
     cursor: pointer;
     -webkit-appearance: none;
     -moz-appearance: none;
