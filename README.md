@@ -2,7 +2,7 @@
 
 http://moeverdose.moe
 
-A booru made from scratch with Rails 5 and MongoDB.
+A booru made from scratch with Rails 5 and MongoDB
 
 # **TODOs:**
 ## **Priorities**
