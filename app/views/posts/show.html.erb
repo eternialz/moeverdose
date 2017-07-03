@@ -1,3 +1,19 @@
+<%= content_for :cards do %>
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@moeverdose" />
+    <meta name="twitter:creator" content="@moeverdose" />
+    <meta name="twitter:title" content="<%= @post.title %>" />
+    <meta name="twitter:description" content="Post uploaded by <%= @post.user.name %>" />
+    <meta name="twitter:image" content="<%= request.base_url + @post.post_image.url %>" />
+
+    <meta property="og:title" content="<%= @post.title %>" />
+    <meta property="og:type" content="image" />
+    <meta property="og:description" content="Post uploaded by <%= @post.user.name %>" />
+    <meta property="og:site_name" content="Moeverdose" />
+    <meta property="og:url" content="<%= request.original_url %>" />
+    <meta property="og:image" content="<%= request.base_url + @post.post_image.url %>" />
+<% end %>
+
 <div class="row posts">
     <div class="post-container">
         <div class="post_navigation clearfix">
