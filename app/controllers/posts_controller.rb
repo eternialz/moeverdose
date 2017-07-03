@@ -129,6 +129,7 @@ class PostsController < ApplicationController
 
     def new
         @post ||= Post.new
+        @favorites_tags = current_user.favorites_tags.split
     end
 
     def create

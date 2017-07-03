@@ -71,16 +71,16 @@
                     <%= post.text_field :title, placeholder: "Title" %>
                 </div>
                 <div class="field">
-                    <span><%= fa_icon "rss" %> Source:</span>
-                    <%= post.text_field :source, placeholder: "Source" %>
-                </div>
-                <div class="field">
                     <span><%= fa_icon "user" %> Author:</span>
                     <% unless @post.author.blank? %>
-                        <input name="author_tag" type="text" placeholder="Author name" value="<%= @post.author.name %>">
+                    <input name="author_tag" type="text" placeholder="Author name" value="<%= @post.author.name %>">
                     <% else %>
-                        <input name="author_tag" type="text" placeholder="Author name">
+                    <input name="author_tag" type="text" placeholder="Author name">
                     <% end %>
+                </div>
+                <div class="field">
+                    <span><%= fa_icon "rss" %> Source:</span>
+                    <%= post.text_field :source, placeholder: "Source" %>
                 </div>
                 <div class="field_area">
                     <p><%= fa_icon "tag" %> Tags:</p>

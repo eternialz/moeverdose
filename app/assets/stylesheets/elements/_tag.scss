@@ -1,17 +1,25 @@
 
-a.tag {
+.tag {
     box-shadow: 0 1px 1px rgba(0,0,0,.1);
     background: #FAFAFA;
-    font-size: 12px;
+    font-size: 14px;
     display: inline-block;
     max-width: 250px;
     margin: 3px;
     padding: 6px;
     overflow: hidden;
     text-overflow: ellipsis;
+    border-radius: 2px;
+    font-weight: bold;
 }
 
-a.tag:hover {
+.tag:hover {
     color: $pink;
     background: #F6F6F6;
+    cursor: pointer;
+}
+
+.tag:active {
+    color: $pink_dark;
+    background: #E6E6E6;
 }

@@ -109,7 +109,7 @@ $(document).ready(function(){
 
     // Posts bindings
     if (arr[3] == "posts") {
-        if (arr[4] != undefined) {
+        if (!isNaN(arr[4])) {
             $.key('1', Post.favorite);
             $.key('2', Post.overdose);
             $.key('3', Post.shortage);
