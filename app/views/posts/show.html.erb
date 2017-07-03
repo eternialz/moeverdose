@@ -18,8 +18,8 @@
     <div class="post-container">
         <div class="post_navigation clearfix">
             <h2><%= @post.title %></h2>
-            <a href="/posts/<%= @post.number + 1 %>"class="btn btn-pink previous"><%= fa_icon "arrow-circle-left" %> Previous</a>
-            <a href="/posts/<%= @post.number - 1 %>" class="btn btn-pink next">Next <%= fa_icon "arrow-circle-right" %></a>
+            <a id="previous" href="/posts/<%= @post.number + 1 %>"class="btn btn-pink previous"><%= fa_icon "arrow-circle-left" %> Previous</a>
+            <a id="next" href="/posts/<%= @post.number - 1 %>" class="btn btn-pink next">Next <%= fa_icon "arrow-circle-right" %></a>
         </div>
 
         <div class="post">

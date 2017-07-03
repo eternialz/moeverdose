@@ -94,21 +94,27 @@ $(document).ready(function(){
             window.location.href = domain + "/posts/new";
         };
     };
+    function to_next() {
+        window.location.href = domain + "/posts/" + parseInt(-1 + parseInt(arr[4]));
+    };
+    function to_previous() {
+        window.location.href = domain + "/posts/" + parseInt( 1 + parseInt(arr[4]));
+    };
 
     // Global key bindings
-    $.key('ctrl+0', to_key_help);
-    $.key('ctrl+1', to_my_profile);
-    $.key('ctrl+2', to_favorites);
-    $.key('ctrl+3', to_my_uploads);
-    $.key('ctrl+backspace', log_out);
-    $.key('ctrl+enter', to_upload);
+    $.key('h', to_key_help);
+    $.key('4', to_my_profile);
+    $.key('5', to_upload);
+    $.key('0', log_out);
 
     // Posts bindings
     if (arr[3] == "posts") {
         if (arr[4] != undefined) {
-            $.key('ctrl+4', Post.favorite);
-            $.key('ctrl+5', Post.overdose);
-            $.key('ctrl+6', Post.shortage);
+            $.key('1', Post.favorite);
+            $.key('2', Post.overdose);
+            $.key('3', Post.shortage);
+            $.key('left', to_previous);
+            $.key('right', to_next);
         };
     };
 });
