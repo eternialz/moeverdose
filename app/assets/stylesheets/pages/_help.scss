@@ -48,3 +48,14 @@
         color: #FFF;
     }
 }
+
+.help_page {
+    ul {
+        list-style: circle;
+        margin-left: 30px;
+
+        li {
+            margin: 5px 0;
+        }
+    }
+}

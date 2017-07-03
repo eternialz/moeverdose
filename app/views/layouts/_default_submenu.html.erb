@@ -32,6 +32,7 @@
         <li><a href="<%= posts_path %>" title="All Posts">All Posts</a></li>
         <li><%= link_to 'Random', random_path %></li>
         <li><a href="<%= new_post_path %>" title="Upload">Upload</a></li>
+        <li><%= link_to 'Help', '/pages/help/rules#help' %></li>
     </ul>
 
     <ul>
@@ -44,14 +45,13 @@
         <h3><%= link_to 'Moeverdose', '/pages/about' %></h3>
         <li><%= link_to 'About', '/pages/about' %></li>
         <li><%= link_to 'Team', '/pages/team' %></li>
-        <li><%= link_to 'Source', '/pages/source' %></li>
-        <li><a>Stats</a></li>
+        <li><%= link_to 'Source Code', '/pages/source' %></li>
+        <li><%= link_to 'Terms of Service', '/pages/tos' %></li>
     </ul>
 
     <ul>
         <h3><%= link_to 'Help', '/pages/help/index' %></h3>
         <li><%= link_to 'I need help', '/pages/help/index' %></li>
-        <li><%= link_to 'Post Rules', '/pages/help/rules' %></li>
-        <li><%= link_to 'How to upload', '/pages/help/upload' %></li>
+        <li><%= link_to 'Post Rules', '/pages/help/rules#rules' %></li>
     </ul>
 </div>

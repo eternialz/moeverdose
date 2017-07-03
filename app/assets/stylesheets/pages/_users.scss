@@ -164,6 +164,8 @@ a.post-thumbnail.preview:hover {
 // EDIT user
 
 .userprofile.edit {
+    position: relative;
+
     input.hide {
         & + .user_option {
             display: none;
@@ -197,7 +199,14 @@ a.post-thumbnail.preview:hover {
     }
 
     #banner_img {
-        max-width: 100%;
+        background-position: center center;
+        background-size: cover;
+        width: 100%;
+        max-width: 100vw;
+        max-height: 429px;
+        height: 440px;
+        left: 0;
+        position: relative;
     }
 
     .user_header {

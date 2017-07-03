@@ -1,120 +1,120 @@
 <%= form_for current_user, url: user_path(current_user.name), html: {class: "userprofile edit", method: :patch } do |f| %>
-  <div class="user_header clearfix" style="background-image: url(<%= @user.banner(:normal) %>)">
-    <img class="avatar" src="<%= @user.avatar(:thumb) %>" width="120" height="120" />
-    <h3 class="username"><%= @user.name %></h3><span class="role"><%= @user.role %></span>
-    <div class="user_banner">
-      <button for="submit" class="btn btn-green"><%= fa_icon "save" %> Save profile</button>
-      <a href="<%= user_path(current_user.name) %>" class="btn btn-red"><%= fa_icon "exclamation" %> Discard changes</a>
-      <h3><%= @user.biography %></h3><br />
-      <p>Last seen: <%= @user.current_sign_in_at.to_time.strftime('%B %e at %l:%M %p') %></p>
+    <div class="user_header clearfix" style="background-image: url(<%= @user.banner(:normal) %>)">
+        <img class="avatar" src="<%= @user.avatar(:thumb) %>" width="120" height="120" />
+        <h3 class="username"><%= @user.name %></h3><span class="role"><%= @user.role %></span>
+        <div class="user_banner">
+            <button for="submit" class="btn btn-green"><%= fa_icon "save" %> Save profile</button>
+            <a href="<%= user_path(current_user.name) %>" class="btn btn-red"><%= fa_icon "exclamation" %> Discard changes</a>
+            <h3><%= @user.biography %></h3><br />
+            <p>Last seen: <%= @user.current_sign_in_at.to_time.strftime('%B %e at %l:%M %p') %></p>
+        </div>
     </div>
-  </div>
-  <input type="radio" name="tabs" class="hide" id="profile" checked>
-  <div class="user_option" id="profiles">
-    <ul class="user_edit_nav">
-      <li><label for="profile" class="active">Public Profile</label></li>
-      <li><label for="avatar">Avatar</label></li>
-      <li><label for="banner">Banner</label></li>
-      <li><label for="tag">Tag options</label></li>
-      <li><label for="security">Security</label></li>
-    </ul>
-    <div class="row clearfix">
-      <div class="column">
-        <div class="field tooltip">
-          <%= f.text_field :biography, placeholder: "Master of daruma otoshi" %>
-          <span><%= fa_icon "user" %> About me:</span>
-          <div class="tip">Displayed near your username max 200 characters</div>
+    <input type="radio" name="tabs" class="hide" id="profile" checked>
+    <div class="user_option" id="profiles">
+        <ul class="user_edit_nav">
+            <li><label for="profile" class="active">Public Profile</label></li>
+            <li><label for="avatar">Avatar</label></li>
+            <li><label for="banner">Banner</label></li>
+            <li><label for="tag">Tag options</label></li>
+            <li><label for="security">Security</label></li>
+        </ul>
+        <div class="row clearfix">
+            <div class="column">
+                <div class="field tooltip">
+                    <%= f.text_field :biography, placeholder: "Master of daruma otoshi" %>
+                    <span><%= fa_icon "user" %> About me:</span>
+                    <div class="tip">Displayed near your username max 200 characters</div>
+                </div>
+                <div class="field tooltip">
+                    <%= f.text_field :website, placeholder: "https://mywebsite.me" %>
+                    <span><%= fa_icon "link" %> Website url:</span>
+                    <div class="tip">The link to your website with http(s)://</div>
+                </div>
+                <div class="field tooltip">
+                    <%= f.text_field :twitter, placeholder: "username" %>
+                    <span><%= fa_icon "twitter" %> Twitter profile:</span>
+                    <div class="tip">Your twitter username without the "@"</div>
+                </div>
+                <div class="field tooltip">
+                    <%= f.text_field :facebook, placeholder: "https://www.facebook.com/my.profile" %>
+                    <span><%= fa_icon "facebook" %> Facebook url:</span>
+                    <div class="tip">The full url to your facebook profile/page</div>
+                </div>
+            </div>
         </div>
-        <div class="field tooltip">
-          <%= f.text_field :website, placeholder: "https://mywebsite.me" %>
-          <span><%= fa_icon "link" %> Website url:</span>
-          <div class="tip">The link to your website with http(s)://</div>
-        </div>
-        <div class="field tooltip">
-          <%= f.text_field :twitter, placeholder: "username" %>
-          <span><%= fa_icon "twitter" %> Twitter profile:</span>
-          <div class="tip">Your twitter username without the "@"</div>
-        </div>
-        <div class="field tooltip">
-          <%= f.text_field :facebook, placeholder: "https://www.facebook.com/my.profile" %>
-          <span><%= fa_icon "facebook" %> Facebook url:</span>
-          <div class="tip">The full url to your facebook profile/page</div>
-        </div>
-      </div>
     </div>
-  </div>
 
-  <input type="radio" name="tabs" class="hide" id="avatar">
-  <div class="user_option" id="avatars">
-    <ul class="user_edit_nav">
-      <li><label for="profile">Public Profile</label></li>
-      <li><label for="avatar" class="active">Avatar</label></li>
-      <li><label for="banner">Banner</label></li>
-      <li><label for="tag">Tag options</label></li>
-      <li><label for="security">Security</label></li>
-    </ul>
-    <div class="row image">
-      <div class="banner_upload">
-        <%= f.file_field :avatar %>
-      </div>
-      <%= image_tag @user.avatar, id: "avatar_img" %>
-      <p>Files are resized and cropped to 120x120px</p>
-    </div>
-  </div>
-
-  <input type="radio" name="tabs" class="hide" id="banner">
-  <div class="user_option" id="banners">
-    <ul class="user_edit_nav">
-      <li><label for="profile">Public Profile</label></li>
-      <li><label for="avatar">Avatar</label></li>
-      <li><label for="banner" class="active">Banner</label></li>
-      <li><label for="tag">Tag options</label></li>
-      <li><label for="security">Security</label></li>
-    </ul>
-    <div class="row image">
-      <%= f.file_field :banner %>
-      <%= image_tag @user.banner(:normal), id: "banner_img", width: 1600, height: 440  %>
-      <p>Files are resized and cropped to 1600x440px</p>
-    </div>
-  </div>
-
-  <input type="radio" name="tabs" class="hide" id="tag">
-  <div class="user_option" id="tags">
-    <ul class="user_edit_nav">
-      <li><label for="profile">Public Profile</label></li>
-      <li><label for="avatar">Avatar</label></li>
-      <li><label for="banner">Banner</label></li>
-      <li><label for="tag" class="active">Tag options</label></li>
-      <li><label for="security">Security</label></li>
-    </ul>
-    <div class="row clearfix">
-      <div class="column">
-        <div class="field_area">
-          <p><%= fa_icon "tag" %> Favorites tags:</p>
-          <%= text_area :tags, :favorites, placeholder: "1girl brown_hair", value: @user.favorites_tags  %>
+    <input type="radio" name="tabs" class="hide" id="avatar">
+    <div class="user_option" id="avatars">
+        <ul class="user_edit_nav">
+            <li><label for="profile">Public Profile</label></li>
+            <li><label for="avatar" class="active">Avatar</label></li>
+            <li><label for="banner">Banner</label></li>
+            <li><label for="tag">Tag options</label></li>
+            <li><label for="security">Security</label></li>
+        </ul>
+        <div class="row image">
+            <div class="banner_upload">
+                <%= f.file_field :avatar %>
+            </div>
+            <%= image_tag @user.avatar, id: "avatar_img" %>
+            <p>Files are resized and cropped to 120x120px</p>
         </div>
-        <p>Favorites tags are displayed as buttons to you when uploading a post to quickly add tags to the post. Replace spaces by underscores and use spaces to separate tags.</p>
-      </div>
-      <div class="column">
-        <div class="field_area">
-          <p><%= fa_icon "tag" %> Blacklisted tags:</p>
-          <%= text_area :tags, :blacklisted, placeholder: "1boy", value: @user.blacklisted_tags %>
-        </div>
-        <p>Posts with a blacklisted tag won't be displayed in the post list if you are logged-in. Replace spaces by underscores and use spaces to separate tags.</p>
-      </div>
     </div>
-  </div>
 
-  <input type="radio" name="tabs" class="hide" id="security">
-  <div class="user_option" id="securitys">
-    <ul class="user_edit_nav">
-      <li><label for="profile">Public Profile</label></li>
-      <li><label for="avatar">Avatar</label></li>
-      <li><label for="banner">Banner</label></li>
-      <li><label for="tag">Tag options</label></li>
-      <li><label for="security" class="active">Security</label></li>
-    </ul>
-    <!-- Display fav tags on profile -->
-    <!-- Display blacklisted tags on profile -->
-  </div>
+    <input type="radio" name="tabs" class="hide" id="banner">
+    <div class="user_option" id="banners">
+        <ul class="user_edit_nav">
+            <li><label for="profile">Public Profile</label></li>
+            <li><label for="avatar">Avatar</label></li>
+            <li><label for="banner" class="active">Banner</label></li>
+            <li><label for="tag">Tag options</label></li>
+            <li><label for="security">Security</label></li>
+        </ul>
+        <div class="row image">
+            <%= f.file_field :banner %>
+            <div id="banner_img" style="background-image: url(<%= @user.banner(:normal) %>)"></div>
+            <p>Files are resized and cropped to 1600x440px</p>
+        </div>
+    </div>
+
+    <input type="radio" name="tabs" class="hide" id="tag">
+    <div class="user_option" id="tags">
+        <ul class="user_edit_nav">
+            <li><label for="profile">Public Profile</label></li>
+            <li><label for="avatar">Avatar</label></li>
+            <li><label for="banner">Banner</label></li>
+            <li><label for="tag" class="active">Tag options</label></li>
+            <li><label for="security">Security</label></li>
+        </ul>
+        <div class="row clearfix">
+            <div class="column">
+                <div class="field_area">
+                    <p><%= fa_icon "tag" %> Favorites tags:</p>
+                    <%= text_area :tags, :favorites, placeholder: "1girl brown_hair", value: @user.favorites_tags  %>
+                </div>
+                <p>Favorites tags are displayed as buttons to you when uploading a post to quickly add tags to the post. Replace spaces by underscores and use spaces to separate tags.</p>
+            </div>
+            <div class="column">
+                <div class="field_area">
+                    <p><%= fa_icon "tag" %> Blacklisted tags:</p>
+                    <%= text_area :tags, :blacklisted, placeholder: "1boy", value: @user.blacklisted_tags %>
+                </div>
+                <p>Posts with a blacklisted tag won't be displayed in the post list if you are logged-in. Replace spaces by underscores and use spaces to separate tags.</p>
+            </div>
+        </div>
+    </div>
+
+    <input type="radio" name="tabs" class="hide" id="security">
+    <div class="user_option" id="securitys">
+        <ul class="user_edit_nav">
+            <li><label for="profile">Public Profile</label></li>
+            <li><label for="avatar">Avatar</label></li>
+            <li><label for="banner">Banner</label></li>
+            <li><label for="tag">Tag options</label></li>
+            <li><label for="security" class="active">Security</label></li>
+        </ul>
+        <!-- Display fav tags on profile -->
+        <!-- Display blacklisted tags on profile -->
+    </div>
 <% end %>
