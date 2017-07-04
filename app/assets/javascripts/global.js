@@ -14,7 +14,7 @@ Global = {
             $(this).removeClass('open');
             $('.submenu').removeClass('develop');
             Global.menu = false;
-        };
+        }
     },
     close_submenu: function() {
         $("#menu_label").removeClass('open');
@@ -26,7 +26,7 @@ Global = {
             $('#menu_label').addClass('open');
             $('.submenu').addClass('develop');
             Global.menu = true;
-        };
+        }
     }
 };
 
