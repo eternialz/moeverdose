@@ -1,133 +1,179 @@
+<%= content_for :cards do %>
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@moeverdose" />
+    <meta name="twitter:creator" content="@moeverdose" />
+    <meta name="twitter:title" content="<%= @post.title %>" />
+    <meta name="twitter:description" content="Post uploaded by <%= @post.user.name %>" />
+    <meta name="twitter:image" content="<%= request.base_url + @post.post_image.url %>" />
+
+    <meta property="og:title" content="<%= @post.title %>" />
+    <meta property="og:type" content="image" />
+    <meta property="og:description" content="Post uploaded by <%= @post.user.name %>" />
+    <meta property="og:site_name" content="Moeverdose" />
+    <meta property="og:url" content="<%= request.original_url %>" />
+    <meta property="og:image" content="<%= request.base_url + @post.post_image.url %>" />
+<% end %>
+
 <div class="row posts">
-  <div class="post-container">
-    <div class="image-blur" style="background-image: url(<%= image_url(@post.post_image.url)%>)"></div>
-    <% if @post.report == true %>
-      <input class="reported_input" id="report_form_input" type="checkbox">
-      <div class="reported">
-        <p>This post have been reported by <%= @post.report_user.name %> for:</p>
-        <p><%= @post.report_reason %></p>
-        <label for="report_form_input" class="btn btn-pink">Show post <%= fa_icon 'eye' %></label>
-      </div>
-    <% end %>
-    <div class="post_navigation clearfix">
-      <h2><%= @post.title %></h2>
-      <a class="btn btn-pink previous"><%= fa_icon "arrow-circle-left" %> Previous</a>
-      <a class="btn btn-pink next">Next <%= fa_icon "arrow-circle-right" %></a>
-    </div>
-    <div class="post">
-      <%= image_tag @post.post_image.url %>
-    </div>
-    <div id="post-score" class="clearfix">
-      <div class="overdose_bar clearfix" style="width: <%= @overdose %>%">
-        <span class="overdose_score"><%= @post.overdose %></span>
-      </div>
-      <div class="shortage_bar clearfix" style="width: <%= @shortage %>%">
-        <span class="shortage_score"><%= @post.moe_shortage %></span>
-      </div>
-    </div>
-    <div class="post-details row">
-      <div class="post_vote clearfix">
-        <a class="overdose btn btn-pink"><%= fa_icon "heartbeat" %> MOE OVERDOSE</a>
-        <a class="shortage btn btn-blue">MOE SHORTAGE <%= fa_icon "thumbs-down" %></a>
-      </div>
-      <div class="f3 column tags">
-        <h3><%= fa_icon "tag" %> Tags</h3>
-        <% @tags.each do |tag| %>
-          <a class="tag"><%= tag %></a>
-        <% end %>
-      </div>
-      <div class="f3 column characters">
-        <h3><%= fa_icon "group" %> Character(s)</h3>
-        <% if @characters.any? %>
-          <% @characters.each do |character| %>
-            <a class="tag"><%= character %></a>
-          <% end %>
-        <% else %>
-          <p style="text-align: center; padding-top: 20px;">no characters specified </p>
-        <% end %>
-      </div>
-      <div class="f3 column authors">
-        <div class="author">
-          <h3><a><%= fa_icon "user" %> Author: <%= @post.author.name %></a></h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-          <a><%= fa_icon "link" %> website</a><a><%= fa_icon "user-plus" %> profile</a>
+    <div class="post-container">
+        <div class="post_navigation clearfix">
+            <h2><%= @post.title %></h2>
+            <a id="previous" href="/posts/<%= @post.number + 1 %>"class="btn btn-pink previous"><%= fa_icon "arrow-circle-left" %> Previous</a>
+            <a id="next" href="/posts/<%= @post.number - 1 %>" class="btn btn-pink next">Next <%= fa_icon "arrow-circle-right" %></a>
         </div>
-      </div>
-      <ul class="f3 column infos">
-        <h3><%= fa_icon "info-circle" %> Informations</h3>
-        <li id="id"><span>id:</span><%= @post.number %></li>
-        <% if @post.source != "" and @post.source != nil %>
-          <li id="id"><span>source:</span><a href="http://www.google.fr/search?q=<%= @post.source %>" title="Search on google"><%= @post.source %></a></li>
-        <% end %>
-        <li id="id"><span>user:</span><%= link_to @post.user.name, user_path(@post.user.name) %></li>
-        <li id="width-height"><span>dimension:</span><%= @post.width.to_s + " x " + @post.height.to_s %>px</li>
-        <li id="type"><span>type:</span><%= @post.post_image_content_type.split("/")[-1].upcase %></li>
-        <li id="size"><span>size:</span><%= '%.3f' % (@post.post_image_file_size.to_f / 1048576).to_s + ' MB' %></li>
-        <li id="date"><span>date:</span><%= @post.post_image_updated_at.to_time.strftime('%B %e at %l:%M %p') %></li>
-      </ul>
-      <div class="f12 column actions">
-        <h3><%= fa_icon "bolt" %> Actions</h3>
-        <label class="action" for="post_edit"><%= fa_icon "edit" %> Edit post</label>
-        <a href="<%= @post.post_image.url %>" download class="action"><%= fa_icon "download" %> Download</a>
-        <a class="action" id="add_to_favorites"><%= fa_icon "heart" %> Add To Favorites</a>
-        <a href="https://www.google.fr/searchbyimage?site=search&image_url=<%= request.domain + @post.post_image.url %>" class="action"><%= fa_icon "google" %> Search image on google</a>
-        <label for="report_form_input" class="action"><%= fa_icon "close" %> Report post</label>
-      </div>
+
+        <div class="post">
+            <% if @post.report == true %>
+                <input class="reported_input" id="report_form_input" type="checkbox">
+                <div class="reported">
+                    <p>This post have been reported by <%= @post.report_user.name %> for:</p>
+                    <p><%= @post.report_reason %></p>
+                    <label for="report_form_input" class="btn btn-pink">Show post <%= fa_icon 'eye' %></label>
+                </div>
+            <% end %>
+            <%= image_tag @post.post_image.url %>
+        </div>
+
+        <div id="post-score" class="clearfix">
+            <div class="overdose_bar clearfix" style="width: <%= @overdose %>%">
+                <span class="overdose_score"><%= @post.overdose %></span>
+            </div>
+            <div class="shortage_bar clearfix" style="width: <%= @shortage %>%">
+                <span class="shortage_score"><%= @post.moe_shortage %></span>
+            </div>
+        </div>
+        <div class="post-details">
+            <div class="post_vote clearfix">
+                <a class="overdose btn btn-pink"><%= fa_icon "heartbeat" %> OVERDOSE</a>
+                <a class="shortage btn btn-blue">SHORTAGE <%= fa_icon "thumbs-down" %></a>
+            </div>
+        </div>
     </div>
+
+    <div class="zone row">
+        <div class="col-12 actions">
+            <h5><%= fa_icon "bolt" %> Actions</h5>
+            <a class="action btn btn-pink" id="add_to_favorites"><%= fa_icon "heart" %> Add To Favorites</a>
+            <a class="action btn btn-green" href="<%= @post.post_image.url %>" download><%= fa_icon "download" %> Download</a>
+            <a class="action btn btn-yellow" target="_blank" href="https://www.google.fr/searchbyimage?site=search&image_url=<%= @post.post_image.url %>"><%= fa_icon "google" %> Search image on google</a>
+            <label class="action btn btn-blue" for="post_edit"><%= fa_icon "edit" %> Edit post</label>
+            <label class="action btn btn-red" for="report_form_input"><%= fa_icon "close" %> Report post</label>
+        </div>
+    </div>
+
     <input type="checkbox" id="post_edit">
     <%= form_for @post, as: "post", id: "post-edit", url: post_path(@post.number) do |post| %>
-      <h2>Edit Post</h2>
-      <div class="field">
-        <span><%= fa_icon "header" %> Title:</span>
-        <%= post.text_field :title, placeholder: "Title" %>
-      </div>
-      <div class="field">
-        <span><%= fa_icon "rss" %> Source:</span>
-        <%= post.text_field :source, placeholder: "Source" %>
-      </div>
-      <div class="field">
-        <span><%= fa_icon "user" %> Author:</span>
-        <input name="author_tag" type="text" placeholder="Author name" value="<%= @post.author.name %>">
-      </div>
-      <div class="field_area">
-        <p><%= fa_icon "tag" %> Tags:</p>
-        <textarea name="tags" placeholder='Tags ("1girl glasses")'><% @tags.each do |tag| %><%= tag + " " %><% end %></textarea>
-      </div>
-      <div class="field_area">
-        <p><%= fa_icon "group" %> Character(s):</p>
-        <textarea name="characters" placeholder='Characters ("illyasviel_von_einzbern")'><% @characters.each do |character| %><%= character + " " %><% end %></textarea>
-      </div>
-      <button type="submit" form="edit_post" class="btn btn-pink" type="submit">Modifier le post <%= fa_icon 'edit' %></button>
+        <div class="zone row">
+            <div class="col-12">
+                <h5>Edit Post</h5>
+                <div class="field">
+                    <span><%= fa_icon "header" %> Title:</span>
+                    <%= post.text_field :title, placeholder: "Title" %>
+                </div>
+                <div class="field">
+                    <span><%= fa_icon "user" %> Author:</span>
+                    <% unless @post.author.blank? %>
+                    <input name="author_tag" type="text" placeholder="Author name" value="<%= @post.author.name %>">
+                    <% else %>
+                    <input name="author_tag" type="text" placeholder="Author name">
+                    <% end %>
+                </div>
+                <div class="field">
+                    <span><%= fa_icon "rss" %> Source:</span>
+                    <%= post.text_field :source, placeholder: "Source" %>
+                </div>
+                <div class="field_area">
+                    <p><%= fa_icon "tag" %> Tags:</p>
+                    <textarea name="tags" placeholder='Tags ("1girl glasses")'><% @tags.each do |tag| %><%= tag + " " %><% end %></textarea>
+                </div>
+                <div class="field_area">
+                    <p><%= fa_icon "group" %> Character(s):</p>
+                    <textarea name="characters" placeholder='Characters ("illyasviel_von_einzbern")'><% @characters.each do |character| %><%= character + " " %><% end %></textarea>
+                </div>
+                <button type="submit" form="edit_post" class="btn btn-pink" type="submit">Modifier le post <%= fa_icon 'edit' %></button>
+            </div>
+        </div>
     <% end %>
-  </div>
 
-  <input class="reported_input" id="report_form_input" type="checkbox">
-  <%= form_for @post, as: "post", url: report_post_path(@post.number), html: {class: "zone report_form", id: 'report_post'} do |post| %>
-    <%= post.check_box :report, class: "hide", checked: true %>
-    <h2><%= fa_icon "exclamation-circle" %> Report post</h2>
-    <%= post.text_area :report_reason, placeholder: "Reason" %>
-    <button type="submit" form="report_post" class="btn btn-red" type="submit">Report <%= fa_icon 'exclamation' %></button>
-  <% end %>
+    <input class="reported_input" id="report_form_input" type="checkbox">
+    <%= form_for @post, as: "post", url: report_post_path(@post.number), html: {class: "zone report_form", id: 'report_post'} do |post| %>
+        <%= post.check_box :report, class: "hide", checked: true %>
+        <h2><%= fa_icon "exclamation-circle" %> Report post</h2>
+        <%= post.text_area :report_reason, placeholder: "Reason" %>
+        <button type="submit" form="report_post" class="btn btn-red" type="submit">Report <%= fa_icon 'exclamation' %></button>
+    <% end %>
 
-  <div class="comments zone">
-    <h2><%= fa_icon "comments-o" %> Commentaires</h2>
-    <div class="comments-zone">
-      <% @post.comments.each_with_index do |comment,index| %>
-        <%= cell(:comment, comment, post: @post, index: index).(:show) %>
-      <% end %>
+    <div class="zone row">
+        <div class="post-details row">
+            <div class="col-4 tags">
+                <h3><%= fa_icon "tag" %> Tags</h3>
+                <% if @tags.any? %>
+                    <% @tags.each do |tag| %>
+                        <a class="tag"><%= tag %></a>
+                    <% end %>
+                <% else %>
+                    <p style="text-align: center; padding-top: 20px;">no tags specified </p>
+                <% end %>
+            </div>
+
+            <div class="col-4 characters">
+                <h3><%= fa_icon "group" %> Character(s)</h3>
+                <% if @characters.any? %>
+                    <% @characters.each do |character| %>
+                        <a class="tag"><%= character %></a>
+                    <% end %>
+                <% else %>
+                    <p style="text-align: center; padding-top: 20px;">no characters specified </p>
+                <% end %>
+            </div>
+
+            <ul class="col-4 infos">
+                <h3><%= fa_icon "info-circle" %> Informations</h3>
+                <li id="id"><span>id:</span><%= @post.number %></li>
+                <% unless @post.author.blank? %>
+                    <li id="author"><span>author:</span><a href="http://www.google.fr/search?q=<%= @post.author.name %>" title="Search on google"><%= @post.author.name %></a></li>
+                <% else %>
+                    <li id="author"><span>author:</span>unknown author</li>
+                <% end %>
+
+                <% if @post.source != "" and @post.source != nil %>
+                    <li id="id"><span>source:</span><a href="http://www.google.fr/search?q=<%= @post.source %>" title="Search on google"><%= @post.source %></a></li>
+                <% end %>
+
+                <li id="user"><span>user:</span><%= link_to @post.user.name, user_path(@post.user.name) %></li>
+                <li id="width-height"><span>dimension:</span><%= @post.width.to_s + " x " + @post.height.to_s %>px</li>
+                <li id="type"><span>type:</span><%= @post.post_image_content_type.split("/")[-1].upcase %></li>
+                <li id="size"><span>size:</span><%= '%.3f' % (@post.post_image_file_size.to_f / 1048576).to_s + ' MB' %></li>
+                <li id="date"><span>date:</span><%= @post.post_image_updated_at.to_time.strftime('%B %e at %l:%M %p') %></li>
+            </ul>
+        </div>
     </div>
-    <%= form_tag post_comments_path(@post), id: "comment-form" ,class: "comment-form" do |comment| %>
-      <label for="add_comment"><h3>Add a comment<span id="char_count">Maximum 500 characters</span></h3></label>
-      <textarea id="add_comment" name="comment[text]" placeholder="Write your message here "></textarea>
-      <div class="button-zone">
-        <button type="submit" form="comment-form" class="btn btn-blue" type="submit">Send <%= fa_icon 'comment' %></button>
-      </div>
-    <% end %>
-  </div>
+
+    <div class="comments zone">
+        <h2><%= fa_icon "comments-o" %> Commentaires</h2>
+        <div class="comments-zone">
+            <% @post.comments.each_with_index do |comment,index| %>
+            <%= cell(:comment, comment, post: @post, index: index).(:show) %>
+            <% end %>
+        </div>
+
+        <% if user_signed_in? %>
+            <%= form_tag post_comments_path(@post.number), id: "comment-form" ,class: "comment-form" do |comment| %>
+                <label for="add_comment"><h3>Add a comment<span id="char_count">Maximum 500 characters</span></h3></label>
+                <textarea id="add_comment" name="comment[text]" placeholder="Write your message here "></textarea>
+                <div class="button-zone">
+                    <button type="submit" form="comment-form" class="btn btn-blue" type="submit">Send <%= fa_icon 'comment' %></button>
+                </div>
+            <% end %>
+        <% else %>
+            <h3>You need to be logged in to add a comment</h3>
+            <p><%= link_to "Sign up", new_user_registration_path %> or <%= link_to "log in", new_user_session_path %> to post a comment</p>
+        <% end %>
+    </div>
 </div>
 
 <input type="checkbox" class="lightbox_switch" id="zoom_post">
 <label for="zoom_post" class="lightbox">
-  <label for="zoom_post" class="close">close</label>
-  <img src='<%= @post.post_image.url %>' title="Clic to close">
+    <label for="zoom_post" class="close">close</label>
+    <img src='<%= @post.post_image.url %>' title="Clic to close">
 </label>

@@ -1,121 +1,109 @@
 <div class="userprofile">
-  <div class="user_header clearfix" style="background-image: url(<%= @user.banner(:normal) %>)">
-    <img class="avatar" src="<%= @user.avatar(:thumb) %>" width="120" height="120" />
-    <h3 class="username"><%= @user.name %></h3><span class="role"><%= @user.role %></span>
-    <% if @user.twitter != "" %>
-      <a href="https://twitter.com/<%= @user.twitter %>" class="icon tooltip"><%= fa_icon "twitter" %><span class="tip">@<%= @user.twitter %></span></a>
-    <% end %>
-    <% if @user.facebook != "" %>
-      <a href="<%= @user.facebook %>" class="icon tooltip"><%= fa_icon "facebook" %><span class="tip"><%= @user.facebook %></a>
-    <% end %>
-    <% if @user.website != "" %>
-      <a href="<%= @user.website %>" class="icon tooltip"><%= fa_icon "link" %><span class="tip"><%= @user.website %></a>
-    <% end %>
-    <div class="user_banner">
-      <% if @current %>
-        <a class="btn btn-blue" href="<%= edit_user_path %>"><%= fa_icon "edit" %> edit profile</a>
-      <% end %>
-      <h3><%= @user.biography %></h3><br />
-      <p> Last seen: <%= @user.current_sign_in_at.to_time.strftime('%B %e at %l:%M %p') %></p>
-    </div>
-  </div>
-  <div class="zone clearfix tags row">
-    <h3 class="zone_title">My Tags</h3>
-    <div class="column f6">
-      <h6>Favorites Tags</h6>
-      <% if @favorites_tags.empty? %>
-        <p>Nothing here</p>
-      <% else %>
-        <% @favorites_tags.each do |tag| %>
-          <a class="tag"><%= tag %></a>
+    <div class="user_header clearfix" style="background-image: url(<%= @user.banner(:normal) %>)">
+        <img class="avatar" src="<%= @user.avatar(:thumb) %>" width="120" height="120" />
+        <h3 class="username"><%= @user.name %></h3><span class="role"><%= @user.role %></span>
+        <% if @user.twitter != "" %>
+            <a href="https://twitter.com/<%= @user.twitter %>" class="icon tooltip"><%= fa_icon "twitter" %><span class="tip">@<%= @user.twitter %></span></a>
         <% end %>
-      <% end %>
-    </div>
-    <div class="column f6">
-      <h6>Blacklisted Tags</h6>
-      <% if @blacklisted_tags.empty? %>
-        <p>Nothing here</p>
-      <% else %>
-        <% @blacklisted_tags.each do |tag| %>
-          <a class="tag"><%= tag %></a>
+        <% if @user.facebook != "" %>
+            <a href="<%= @user.facebook %>" class="icon tooltip"><%= fa_icon "facebook" %><span class="tip"><%= @user.facebook %></a>
         <% end %>
-      <% end %>
+        <% if @user.website != "" %>
+            <a href="<%= @user.website %>" class="icon tooltip"><%= fa_icon "link" %><span class="tip"><%= @user.website %></a>
+        <% end %>
+        <div class="user_banner">
+            <% if @current %>
+            <a class="btn btn-blue" href="<%= edit_user_path %>"><%= fa_icon "edit" %> edit profile</a>
+            <% end %>
+            <h3><%= @user.biography %></h3><br />
+            <p> Last seen: <%= @user.current_sign_in_at.to_time.strftime('%B %e at %l:%M %p') %></p>
+        </div>
     </div>
-  </div>
-  <div class="zone clearfix level row">
-    <h3 class="zone_title">Level</h3>
-    <div class="column f12">
-      <div class="progress_bar">
-        <div class="progress" style="width: <%= @percentage %>%; background: <%= @level.color %>;"><%= @percentage %>%</div>
-      </div>
-      <span><%= @level.name %></span>
-      <span style="float: right;"><%= @next_level.name %></span>
-      <%= @to_level %>
-    </div>
-  </div>
-  </div>
-  <div class="zone clearfix stats row">
-    <h3 class="zone_title">Stats</h3>
-    <div class="stats column f6">
-      <ul class="user_stats">
-        <li><%= @user.upload_count %> upload(s)</li>
-        <li>666 comments</li>
-        <li>126039 uploads</li>
-      </ul>
-    </div>
-  </div>
-</div>
 
-<div class="user_posts posts">
-  <div class="clearfix">
-    <div class="post-thumbnail preview clearfix">
-      <h5>my upload(s)</h5>
-      <p><%= @user.upload_count %> uploads</p>
+    <div class="zone clearfix tags row">
+        <h3 class="zone_title">My Tags</h3>
+        <div class="col-6">
+            <h6>Favorites Tags</h6>
+            <% if @favorites_tags.empty? %>
+                <p>Nothing here</p>
+            <% else %>
+                <% @favorites_tags.each do |tag| %>
+                    <a class="tag"><%= tag %></a>
+                <% end %>
+            <% end %>
+        </div>
+        <div class="col-6">
+            <h6>Blacklisted Tags</h6>
+            <% if @blacklisted_tags.empty? %>
+                <p>Nothing here</p>
+            <% else %>
+                <% @blacklisted_tags.each do |tag| %>
+                    <a class="tag"><%= tag %></a>
+                <% end %>
+            <% end %>
+        </div>
     </div>
-    <% @uploads.each do |post| %>
-      <div class="post-thumbnail clearfix">
-        <%= image_tag post.post_image.url(:thumb) %>
-        <a title="<%= post.title %>" href="<%= post_path(post.number) %>" class="informations">
-          <h3><%= post.title %></h3>
-          <span class="post-stats">
-            <span title="overdose(s)"><%= post.overdose %> <%= fa_icon "heartbeat" %> </span>
-            <span title="shortage(s)"><%= post.moe_shortage %> <%= fa_icon "thumbs-down" %> </span>
-            <!-- TODO integrate post comment count -->
-            <span title="comment(s)"><%= 0 %> <%= fa_icon "comment" %></span>
-          </span>
-        </a>
-      </div>
-    <% end %>
-    <a class="post-thumbnail preview clearfix" style="float:right;">
-      <h5>&#160;</h5>
-      <p>See All <%= fa_icon 'angle-right' %></p>
-    </a>
-  </div>
-</div>
 
-<div class="user_favs posts">
-  <div class="clearfix">
-    <div class="post-thumbnail preview clearfix">
-      <h5>my favorite(s)</h5>
-      <p><%= @favs.count %> favorites</p>
+    <div class="zone clearfix level row">
+        <h3 class="zone_title">Level</h3>
+        <div class="col-12">
+            <div class="progress_bar">
+                <div class="progress" style="width: <%= @percentage %>%; background: <%= @level.color %>;"><%= @percentage %>%</div>
+            </div>
+            <span><%= @level.name %></span>
+            <span style="float: right;"><%= @next_level.name %></span>
+            <%= @to_level %>
+        </div>
     </div>
-    <% @favs.each do |post| %>
-      <div class="post-thumbnail clearfix">
-        <%= image_tag post.post_image.url(:thumb) %>
-        <a title="<%= post.title %>" href="<%= post_path(post.number) %>" class="informations">
-          <h3><%= post.title %></h3>
-          <span class="post-stats">
-            <span title="overdose(s)"><%= post.overdose %> <%= fa_icon "heartbeat" %> </span>
-            <span title="shortage(s)"><%= post.moe_shortage %> <%= fa_icon "thumbs-down" %> </span>
-            <!-- TODO integrate post comment count -->
-            <span title="comment(s)"><%= 0 %> <%= fa_icon "comment" %></span>
-          </span>
-        </a>
-      </div>
-    <% end %>
-    <a class="post-thumbnail preview clearfix" style="float:right;">
-      <h5>&#160;</h5>
-      <p>See All <%= fa_icon 'angle-right' %></p>
-    </a>
-  </div>
+
+    <div class="zone clearfix stats row">
+        <h3 class="zone_title">Stats</h3>
+        <div class="col-6 stats">
+            <ul class="user_stats">
+                <li><%= @user.upload_count %> upload(s)</li>
+                <li>666 comments</li>
+                <li>126039 uploads</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="user_posts posts">
+        <div class="clearfix">
+            <div class="post-thumbnail preview clearfix">
+                <h5>my upload(s)</h5>
+                <p><%= @user.upload_count %> uploads</p>
+            </div>
+            <% @uploads.each do |post| %>
+                <div class="post-thumbnail clearfix" style="background-image: url(<%= post.post_image.url(:thumb) %>)">
+                    <a title="<%= post.title %>" href="<%= post_path(post.number) %>" class="informations">
+                        <h3><%= post.title %></h3>
+                    </a>
+                </div>
+            <% end %>
+            <a class="post-thumbnail preview clearfix" style="float:right;">
+                <h5>&#160;</h5>
+                <p>See All <%= fa_icon 'angle-right' %></p>
+            </a>
+        </div>
+    </div>
+
+    <div class="user_favs posts">
+        <div class="clearfix">
+            <div class="post-thumbnail preview clearfix">
+                <h5>my favorite(s)</h5>
+                <p><%= @favs.count %> favorites</p>
+            </div>
+            <% @favs.each do |post| %>
+                <div class="post-thumbnail clearfix" style="background-image: url(<%= post.post_image.url(:thumb) %>)">
+                    <a title="<%= post.title %>" href="<%= post_path(post.number) %>" class="informations">
+                        <h3><%= post.title %></h3>
+                    </a>
+                </div>
+            <% end %>
+            <a class="post-thumbnail preview clearfix" style="float:right;">
+                <h5>&#160;</h5>
+                <p>See All <%= fa_icon 'angle-right' %></p>
+            </a>
+        </div>
+    </div>
 </div>

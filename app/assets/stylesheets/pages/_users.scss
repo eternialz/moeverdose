@@ -1,349 +1,289 @@
 // LOGIN & SIGNUPS
 
 .user_form {
-  width: 100%;
-  padding: 25px;
-  margin: 25px auto;
-  max-width: 800px;
-  background: linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)), url($header-image);
-  background-position: center center;
-  background-size: cover;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
-
-  h3 {
-    text-shadow: 0 1px 1px #000;
-  }
-
-  p {
-    color: #FFF;
-    text-align: center;
-  }
-
-  .links {
-    text-align: center;
-
-    a {
-      margin: 0 5px;
-      color: #CCC;
-      outline: none;
-      font-weight: 900;
-    }
-
-    a:hover {
-      color: #FFF;
-    }
-  }
-
-  label {
-    font-weight: 900;
-    padding: 10px;
-    color: #FFF;
-    background: rgba(0,0,0,.5);
-    border-radius: 3px;
-    display: inline-block;
-  }
-
-  label:hover {
-    background: rgba(0,0,0,.75);
-  }
-}
-
-// INDEX
-
-.user_list {
-  margin: 25px auto;
-  width: 100%;
-  max-width: 800px;
-
-  .user_entry {
-    display: block;
-    position: relative;
-    margin: 5px 0;
-    border: 2px solid transparent;
-    color: #555;
-    outline: none;
-
-    .avatar {
-      float: left;
-      border-radius: 3px;
-    }
+    width: 100%;
+    padding: 25px;
+    margin: 25px auto;
+    max-width: 800px;
+    background: linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)), url($header-image);
+    background-position: center center;
+    background-size: cover;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
 
     h3 {
-      position: absolute;
-      top: 15px;
-      left: 85px;
-    }
-
-    &.top h3 {
-      margin: 10px;
-      text-align: center;
-      font-size: 1.56em;
-      position: static;
+        text-shadow: 0 1px 1px #000;
     }
 
     p {
-      position: absolute;
-      top: 40px;
-      left: 85px;
-
+        color: #FFF;
+        text-align: center;
     }
 
-    .upload_count {
-      float: right;
-      background: $blue;
-      color: #FFF;
-      font-weight: 900;
-      padding: 5px 8px;
-      border-radius: 3px;
-    }
-  }
+    .links {
+        text-align: center;
 
-  a.user_entry:hover {
-    border-color: $blue;
-    .avatar {
+        a {
+            margin: 0 5px;
+            color: #CCC;
+            outline: none;
+            font-weight: 900;
+        }
+
+        a:hover {
+            color: #FFF;
+        }
     }
-  }
+
+    label {
+        font-weight: 900;
+        padding: 10px;
+        color: #FFF;
+        background: rgba(0,0,0,.5);
+        border-radius: 3px;
+        display: inline-block;
+    }
+
+    label:hover {
+        background: rgba(0,0,0,.75);
+    }
 }
 
 // PROFILE
 
 .post-thumbnail.preview {
-  background: #000;
-  text-align: center;
-  padding-top: 50px;
+    background: #000;
+    text-align: center;
+    padding-top: 50px;
 
-  p {
-    margin: 10px;
-    background: #444;
-    display: inline-block;
-    border-radius: 3px;
-    padding: 5px;
-    color: #FFF;
-  }
+    p {
+        margin: 10px;
+        background: #444;
+        display: inline-block;
+        border-radius: 3px;
+        padding: 5px;
+        color: #FFF;
+    }
 }
 
 a.post-thumbnail.preview:hover {
-  background: #222;
+    background: #222;
 }
 
 .userprofile {
-  color: #555;
+    color: #555;
 
-  .user_header {
-    padding: 20px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -200px 100px -100px rgba(0,0,0,.75);
-    position: relative;
-    height: 440px;
-    background: url($header-image) no-repeat center center;
-    background-size: cover;
+    .user_header {
+        padding: 20px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -200px 100px -100px rgba(0,0,0,.75);
+        position: relative;
+        height: 300px;
+        background: url($header-image) no-repeat center center;
+        background-size: cover;
 
-    .icon {
-      float: right;
-      text-shadow: 0 1px 2px #000;
-      font-size: 1.5em;
-      color: #FFF;
-      padding: 10px;
+        .icon {
+            float: right;
+            text-shadow: 0 1px 2px #000;
+            font-size: 1.5em;
+            color: #FFF;
+            padding: 10px;
+        }
+
+        .avatar {
+            box-shadow: 0 1px 3px rgba(0,0,0,.25);
+            position: absolute;
+            left: 20px;
+            bottom: 20px;
+            z-index: 100;
+            border-radius: 3px;
+        }
+
+        .username {
+            position: absolute;
+            left: 160px;
+            bottom: 70px;
+            color: #FFF;
+            text-shadow: 0 1px 3px rgba(black, .5);
+            font-size: 2em;
+        }
+
+        .role {
+            position: absolute;
+            right: 20px;
+            bottom: 85px;
+            background: #FFF;
+            border-radius: 3px;
+            padding: 4px 15px 8px;
+            color: #555;
+            font-size: 1.2em;
+            font-weight: 900;
+            box-shadow: 0 1px 3px rgba(0,0,0,.25);
+        }
+
+
+        .user_banner {
+            position: absolute;
+            height: 66px;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            margin: 0;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 0 0 0 160px;
+
+            h3 {
+                color: #555;
+                padding: 10px 0 0 0;
+                display: inline-block;
+                margin: 0;
+                font-size: 1.5em;
+                font-weight: 400;
+                font-style: normal;
+            }
+
+            p {
+                display: inline-block;
+            }
+
+            .btn {
+                float: right;
+                margin: 16px;
+
+                width: auto;
+            }
+        }
+
+        @media only screen and (max-width: $xsmall) {
+            .avatar {
+                height: 60px;
+                width: 60px;
+            }
+
+            .role {
+                display: none;
+            }
+
+            h3.username {
+                left: 20px;
+                bottom: 80px;
+            }
+
+            .user_banner h3, .user_banner p {
+                display: none;
+            }
+        }
     }
-
-    .avatar {
-      box-shadow: 0 1px 3px rgba(0,0,0,.25);
-      position: absolute;
-      float: left;
-      z-index: 100;
-      top: 299px;
-      border-radius: 3px;
-    }
-
-    .username {
-      position: absolute;
-      left: 160px;
-      bottom: 70px;
-      color: #FFF;
-      text-shadow: 0 1px 3px #000;
-      font-size: 2em;
-    }
-
-    .role {
-      position: absolute;
-      right: 20px;
-      bottom: 85px;
-      background: #FFF;
-      border-radius: 3px;
-      padding: 4px 15px 8px;
-      color: #555;
-      font-size: 1.2em;
-      font-weight: 900;
-      box-shadow: 0 1px 3px rgba(0,0,0,.25);
-    }
-
-    .user_banner {
-      position: absolute;
-      height: 66px;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      margin: 0;
-      background: rgba(255, 255, 255, 0.8);
-      padding: 0 0 0 160px;
-
-      h3 {
-        color: #555;
-        padding: 10px 0 0 0;
-        display: inline-block;
-        margin: 0;
-        font-size: 1.5em;
-        font-weight: 400;
-        font-style: normal;
-      }
-
-      p {
-        display: inline-block;
-      }
-
-      .btn {
-        float: right;
-        margin: 16px;
-      }
-    }
-  }
 }
 
 .user_posts, .user_favs {
-  margin-bottom: 15px;
-  background: #222;
-  box-shadow: 0 1px 3px rgba(0,0,0,.25);
+    margin-bottom: 15px;
+    background: #222;
+    box-shadow: 0 1px 3px rgba(0,0,0,.25);
 
-  h2 {
-    margin-left: 10px;
-  }
+    h2 {
+        margin-left: 10px;
+    }
 }
 
 // EDIT user
 
 .userprofile.edit {
-  input.hide {
-    & + .user_option {
-      display: none;
-    }
-    &:checked + .user_option {
-      display: block;
-    }
-  }
+    position: relative;
 
-  #avatar_img {
-    margin: auto;
-    display: block;
-  }
+    input.hide {
+        & + .user_option {
+            display: none;
+        }
+        &:checked + .user_option {
+            display: block;
+        }
+    }
 
-  #banners, #avatars {
+    #avatar_img {
+        border-radius: 3px;
+        margin: 20px 0;
+        display: inline-block;
+        float: left;
+    }
 
     input[type="file"] {
-      text-align: center;
-      margin-top: 15px;
-      text-align: center;
-      color: #FFF;
-      width: 100%;
-      padding: 25px;
-      background: rgba(0,0,0,.5);
+        border-radius: 3px;
+        text-align: center;
+        margin-top: 15px;
+        text-align: center;
+        color: #FFF;
+        width: 100%;
+        padding: 25px;
+        background: rgba(0,0,0,.5);
     }
 
-    p {
-      text-align: center;
-      margin-top: 15px;
-    }
-  }
-
-  #banner_img {
-    max-width: 100%;
-  }
-
-  .user_header {
-    border-color: $blue;
-  }
-
-  #user_current_password {
-    float: right;
-    margin: 13px 0;
-    padding: 10px;
-    background: #FFF;
-    box-shadow: 0 1px 3px rgba(0,0,0,.25) inset;
-    border: none;
-    border-radius: 3px;
-    height: 40px;
-  }
-
-  #avatar {
-    border-radius: 3px;
-  }
-
-  #error_explanation {
-    background: #FFF;
-    margin-top: 15px;
-    box-shadow: 0 1px 3px rgba(0,0,0,.25);
-    padding: 20px;
-  }
-
-  button {
-    float: right;
-    border: none;
-    margin: 13px;
-    width: 200px;
-    text-align: left;
-    cursor: pointer;
-  }
-
-  .user_option {
-    margin-top: 15px;
-    position: relative;
-    padding: 70px 20px 20px 20px;
-    background: url($header-image);
-    box-shadow: 0 0 0 10000px rgba(0,0,0,.55) inset, 0 1px 3px rgba(0,0,0,.25);
-    background-size: cover;
-    background-attachment: fixed;
-
-    .column {
-      float: none;
-      display: block;
-      margin: auto;
-      width: 800px;
+    #banner_img {
+        border-radius: 3px;
+        margin: 20px 0 0;
+        background-position: center center;
+        background-size: cover;
+        width: 100%;
+        max-width: 100vw;
+        max-height: 300px;
+        height: 300px;
+        left: 0;
+        position: relative;
     }
 
-    p {
-      color: #FFF;
-      padding: 0 5px;
-      font-weight: 900;
+    .user_header {
+        border-color: $blue;
     }
-  }
 
-  .user_edit_nav {
-    position: absolute;
-    width: 100%;
-    top: 0;
-    left: 0;
-    background: #FFF;
-    color: #555;
+    #user_current_password {
+        float: right;
+        margin: 13px 0;
+        padding: 10px;
+        background: #FFF;
+        box-shadow: 0 1px 3px rgba(0,0,0,.25) inset;
+        border: none;
+        border-radius: 3px;
+        height: 40px;
+    }
 
-    li {
-      display: inline-block;
+    #avatar {
+        border-radius: 3px;
+    }
 
-      label {
-        font-weight: 900;
-        border-bottom: 3px solid white;
-        padding: 23px 20px 17px 20px;
-        display: inline-block;
-        -webkit-transition:all 100ms linear;
-        -moz-transition:all 100ms linear;
-        -o-transition:all 100ms linear;
-        transition:all 100ms linear;
+    #error_explanation {
+        background: #FFF;
+        margin-top: 15px;
+        box-shadow: 0 1px 3px rgba(0,0,0,.25);
+        padding: 20px;
+    }
 
-        &.active, &:hover {
-          border-bottom: 3px solid $blue;
-          color: $blue;
-          box-shadow: 0 15px 10px -10px rgba($blue, .5), 0 6px 6px -6px rgba($blue, .5);
-          text-shadow: 0 0 4px rgba($blue, .5);
-          padding: 15px 20px 20px 20px;
+    button {
+        float: right;
+        border: none;
+        margin: 13px;
+        width: 200px;
+        text-align: left;
+        cursor: pointer;
+    }
+
+    .user_option {
+        margin-top: 15px;
+        position: relative;
+        padding: 30px;
+        background: url($header-image);
+        box-shadow: 0 0 0 10000px rgba(0,0,0,.75) inset, 0 1px 3px rgba(0,0,0,.25);
+        background-size: cover;
+        background-attachment: fixed;
+
+        p {
+            margin: 20px;
+            display: inline-block;
+            float: left;
+            color: #FFF;
+            padding: 0 5px;
+            font-weight: 900;
         }
-      }
+
+        .row {
+            margin-bottom: 60px;
+        }
     }
-  }
 }

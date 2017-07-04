@@ -1,25 +1,64 @@
 
 <div class="header-img">
+    <ul>
+        <li><%= link_to 'Posts', posts_path, title: 'Posts' %></li>
+        <li><%= link_to 'Upload', new_post_path, title: 'Upload' %></li>
+        <li><%= link_to 'Chat', "https://discord.gg/6fsV4pj", target: "_blank", title: 'Chat' %></li>
+        <li><%= link_to 'About', "/pages/about", title: 'About' %></li>
+        <li><%= link_to 'Help', "/pages/help/index", title: 'Help' %></li>
+        <li><a href="https://twitter.com/moeverdose" target="_blank" title="Moeverdose Twitter"><%= fa_icon "twitter"%></a></li>
+    </ul>
 </div>
 
-<div class="zone">
-  <h2>Moeverdose is still under construction. You will likely encounter bugs.</h2>
+<div class="home-about row">
+    <div class="col-6 col-sm">
+        <div class="zone">
+            <h2>About Moeverdose</h2>
 
-  <p>If you do, please report them in the chat</p>
+            <p>Moeverdose is a safe for work image board for cute anime style characters.</p>
+            <br />
+            <p>If you need help using our website, you can find informations on the <a href="/pages/help/index">Help page</a>.</p>
+            <br />
+            <br />
+            <p>Continuing your use of our website mean you have accepted our <a href="/pages/tos">Terms of Service</a>.</p>
+        </div>
+    </div>
+
+    <div class="col-6 col-sm">
+        <div class="zone">
+            <h2>Moeverdose is still under construction. You will likely encounter bugs.</h2>
+
+            <p>If you do, please report them in the chat</p>
+            <br />
+            <h5>Already reported bugs:</h5>
+            <ul>
+                <li>No bugs were found</li>
+            </ul>
+        </div>
+    </div>
 </div>
 
 <% if !@news.empty? %>
-  <div class="zone news">
-    <h2 class="small-title">NEWS</h2>
-    <% @news.each do |n| %>
-      <div class="new">
-        <h3><%= n.title %></h3>
-        <p><%= n.text %></p>
-      </div>
-    <% end %>
-  </div>
+    <div class="zone news">
+        <h2 class="small-title">NEWS</h2>
+        <% @news.each do |n| %>
+            <div class="new">
+                <h3><%= n.title %></h3>
+                <p><%= n.text %></p>
+            </div>
+        <% end %>
+    </div>
 <% else %>
-  <div class="zone news">
-    <p class=" small-title" style="float: none; text-align: center; margin: 10px;">No news</p>
-  </div>
+    <div class="zone news">
+        <p class=" small-title" style="float: none; text-align: center; margin: 10px;">No news</p>
+    </div>
 <% end %>
+
+<div class="col-12 zone">
+    <h2>Next planned features</h2>
+    <ol>
+        <li>Search</li>
+        <li>Posts modification logs</li>
+        <li>...</li>
+    </ol>
+</div>

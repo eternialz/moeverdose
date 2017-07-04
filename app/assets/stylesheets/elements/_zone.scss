@@ -1,0 +1,29 @@
+
+.zone {
+    background: #FFF;
+    box-shadow: 0 1px 3px rgba(0,0,0,.25);
+    padding: 15px;
+    margin: 15px 0;
+
+    .small-title {
+        float: right;
+        color: #BBB;
+        font-size: 0.8em;
+        font-style: normal;
+        font-weight: 900;
+    }
+
+    .zone_title {
+        color: #555;
+        font-weight: normal;
+        margin: 15px 0 5px 15px;
+    }
+
+    a {
+        color: $pink;
+    }
+
+    a:hover {
+        opacity: 0.8;
+    }
+}

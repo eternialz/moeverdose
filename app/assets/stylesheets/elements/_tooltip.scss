@@ -1,0 +1,39 @@
+
+.tooltip {
+    position: relative;
+
+    .tip {
+        -webkit-transition: all 250ms linear;
+        -moz-transition: all 250ms linear;
+        -o-transition: all 250ms linear;
+        transition: all 250ms linear;
+        pointer-events: none;
+        position: absolute;
+        top: calc(100% + 10px);
+        left: calc(50% - 175px);
+        width: 350px;
+        background: rgba(0,0,0,.85);
+        border-radius: 3px;
+        color: #FFF;
+        text-align: center;
+        padding: 10px 7px 12px 7px;
+        opacity: 0;
+        font-weight: normal;
+        z-index: 10000;
+        font-size: 15px;
+
+        &::after {
+            position: absolute;
+            bottom: 100%;
+            left: calc(50% - 10px);
+            content: "";
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid rgba(0,0,0,.85);
+        }
+    }
+
+    &:hover .tip {
+        opacity: 1;
+    }
+}

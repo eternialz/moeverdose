@@ -2,44 +2,46 @@ $default: #50C;
 $default_light: lighten($default, 15%);
 $default_dark: darken($default, 9%);
 .default {
-  color: $default;
+    color: $default;
 }
 
 $pink: #f09;
 $pink_light: lighten($pink, 20%);
 $pink_dark: darken($pink, 9%);
 .pink {
-  color: $pink;
+    color: $pink;
 }
 
 $blue: #1AB;
 $blue_light: lighten($blue, 10%);
 $blue_dark: darken($blue, 9%);
 .blue {
-  color: $blue;
+    color: $blue;
 }
 
 $green: #1B2;
 $green_light: lighten($green, 15%);
 $green_dark: darken($green, 9%);
 .green {
-  color: $green;
+    color: $green;
 }
 
 $yellow: #fc2;
 $yellow_light: lighten($yellow, 15%);
 $yellow_dark: darken($yellow, 9%);
 .yellow {
-  color: $yellow;
+    color: $yellow;
 }
 
 $orange: #F60;
 $orange_light: lighten($orange, 15%);
 $orange_dark: darken($orange, 9%);
 .orange {
-  color: $orange;
+    color: $orange;
 }
 
 $red: #F33;
 $red_light: lighten($red, 7%);
 $red_dark: darken($red, 9%);
+
+$gray: #222;

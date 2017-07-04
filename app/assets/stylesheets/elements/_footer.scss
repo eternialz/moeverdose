@@ -1,98 +1,44 @@
 footer {
-  padding-bottom: 50px;
-  background: #213;
-  color: #AAA;
-  text-align: center;
-  width: 100%;
-
-  .footer-nav {
-    position: relative;
-
-    li {
-      margin: 50px 25px 30px 25px;
-      display: inline-block;
-    }
+    padding: 50px 0;
+    background: #213;
+    color: #AAA;
+    text-align: center;
+    width: 100%;
 
     a {
-      font-style: italic;
-      color: #FFF;
-      font-weight: 900;
-    }
-
-    a:before, a:after {
-      content: "-";
-      color: rgba(255,255,255,0);
-      -webkit-transition: all 70ms linear;
-      -moz-transition: all 70ms linear;
-      -o-transition: all 70ms linear;
-      transition: all 70ms linear;
+        color: #AAA;
     }
 
     a:hover {
-      &:before, &:after {
         color: #FFF;
-      }
-    }
-  }
-
-  dl {
-    padding: 5px;
-    margin: 5px 3px 12px;
-    border-radius: 3px;
-    background: rgba(0,0,0,.25);
-  }
-
-  dt {
-    border-bottom: 1px solid rgba(255,255,255,.1);
-    padding: 3px;
-    font-weight: bold;
-    font-style: italic;
-  }
-
-  dd {
-    padding: 5px;
-  }
-
-  a:hover {
-    color: #FFF;
-  }
-
-  .row {
-    max-width: 1600px;
-    margin: auto;
-  }
-
-  & > p {
-    text-align: center;
-  }
-
-  .footer-title {
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    box-shadow: 0 10px 10px -15px #000;
-    padding: 10px;
-    font-size: 1em;
-
-    a {
-      color: #AAA;
-      float: right;
-      text-decoration: none;
-    }
-  }
-
-  .footer-links {
-    width: 50%;
-    display: inline-block;
-    float: left;
-
-    li a {
-      display: block;
-      font-style: italic;
-      font-weight: bold;
-      padding: 5px;
     }
 
-    li a:hover {
-      background: rgba(0,0,0,.25);
+    & > p {
+        text-align: center;
     }
-  }
+
+    .footer-title {
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        padding: 10px;
+        font-size: 1em;
+    }
+
+    ul {
+        display: inline-block;
+
+        li a {
+            display: block;
+            font-style: italic;
+            font-weight: bold;
+            padding: 5px;
+        }
+
+        li a:hover {
+            background: rgba(0,0,0,.25);
+        }
+    }
+
+    .copyright {
+        text-align: center;
+    }
 }

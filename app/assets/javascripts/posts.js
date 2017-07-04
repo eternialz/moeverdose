@@ -63,19 +63,17 @@ Post = {
                 }
             },
             error : function() {
-                Notification.add("Can't add shortage","Maybe your aren't logged in or you already vote for this post","error")
+                Notification.add("Can't add shortage","Maybe you aren't logged in or you already voted for this post","error")
             }
         });
     },
     percentage: function() {
         var overdose_percentage = 100 * (parseInt(Post.overdose.html()) / (parseInt(Post.overdose.html()) + parseInt(Post.shortage.html())));
         var shortage_percentage = 100 - overdose_percentage;
-
         if ((Post.overdose.html() == "0") && (Post.shortage.html() == "0"))  {
-            overdose_percentage = 50;
-            shortage_percentage = 50;
+            var overdose_percentage = 50;
+            var shortage_percentage = 50;
         }
-
         Post.root.find('.overdose_bar').css("width", overdose_percentage + "%");
         Post.root.find('.shortage_bar').css("width", shortage_percentage + "%");
     },
@@ -90,5 +88,5 @@ Post = {
 };
 
 $(document).ready(function(){
-    Post.init($('.post-container'));
+    Post.init($('.posts'));
 });

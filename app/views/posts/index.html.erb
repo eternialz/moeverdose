@@ -1,53 +1,52 @@
 <div class="row posts">
-  <div class="post-container clearfix">
-    <% @posts.each do |post| %>
-      <div class="post-thumbnail  clearfix">
-        <%= image_tag post.post_image.url(:thumb) %>
-        <a title="<%= post.title %>" href="<%= post_path(post.number) %>" class="informations">
-          <h3><%= post.title %></h3>
-          <span class="post-stats">
-            <span title="overdose(s)"><%= post.overdose %> <%= fa_icon "heartbeat" %> </span>
-            <span title="shortage(s)"><%= post.moe_shortage %> <%= fa_icon "thumbs-down" %> </span>
-            <!-- TODO integrate post comment count -->
-            <span title="comment(s)"><%= 0 %> <%= fa_icon "comment" %></span>
-          </span>
-        </a>
-      </div>
-    <% end %>
-  </div>
-  <form class="post_pagination" action="<%= posts_path %>">
-    <ul>
-      <% if @pages.size > 1 %>
-        <% if @current_page > 1 %>
-          <li><button name="page" title="first page" value="1" class="number"><%= fa_icon "angle-left" %><%= fa_icon "angle-left" %></button></li>
-          <li><button name="page" title="previous page" value="<%= @current_page-1 %>" class="number"><%= fa_icon "angle-left" %></button></li>
+    <div class="post-container clearfix">
+        <% @posts.each do |post| %>
+            <div class="post-thumbnail clearfix" style="background-image: url(<%= post.post_image.url(:thumb)%> )">
+                <a title="<%= post.title %>" href="<%= post_path(post.number) %>" class="informations">
+                    <h3><%= post.title %></h3>
+                    <span class="post-stats">
+                        <span title="overdose(s)"><%= post.overdose %> <%= fa_icon "heartbeat" %> </span>
+                        <span title="shortage(s)"><%= post.moe_shortage %> <%= fa_icon "thumbs-down" %> </span>
+                        <!-- TODO integrate post comment count -->
+                        <span title="comment(s)"><%= 0 %> <%= fa_icon "comment" %></span>
+                    </span>
+                </a>
+            </div>
         <% end %>
-
-        <% @pages.each do |page| %>
-          <% if @current_page == page %>
-            <li><button name="page" title="current page" value="<%= page %>" class="number current"><%= page %></button></li>
-          <% else %>
-            <li><button name="page" value="<%= page %>" class="number"><%= page %></button></li>
-          <% end %>
-        <% end %>
-
-        <% if @current_page < @posts.total_pages %>
-          <li><button name="page" title="next page" value="<%= @current_page+1 %>" class="number"><%= fa_icon "angle-right" %></button></li>
-          <li><button name="page" title="last page" value="<%= @posts.total_pages %>" class="number"><%= fa_icon "angle-right" %><%= fa_icon "angle-right" %></button></li>
-        <% end %>
-      <% end %>
-    </ul>
-    <div>
-      <span>posts per page </span>
-      <% @permited_posts_per_page.each do |n| %>
-        <% if @posts_per_page == n %>
-          <input type="radio" name="posts_per_page" checked="checked  " id=<%= n %> value=<%= n %>>
-        <% else %>
-          <input type="radio" name="posts_per_page" id=<%= n %> value=<%= n %>>
-        <% end %>
-        <label for=<%= n %>><%= n %></label>
-      <% end %>
-      <input type="submit" value="apply">
     </div>
-  </form>
+    <form class="post_pagination" action="<%= posts_path %>">
+        <ul>
+            <% if @pages.size > 1 %>
+                <% if @current_page > 1 %>
+                    <li><button name="page" title="first page" value="1" class="number"><%= fa_icon "angle-left" %><%= fa_icon "angle-left" %></button></li>
+                    <li><button name="page" title="previous page" value="<%= @current_page-1 %>" class="number"><%= fa_icon "angle-left" %></button></li>
+                <% end %>
+
+                <% @pages.each do |page| %>
+                    <% if @current_page == page %>
+                        <li><button name="page" title="current page" value="<%= page %>" class="number current"><%= page %></button></li>
+                    <% else %>
+                        <li><button name="page" value="<%= page %>" class="number"><%= page %></button></li>
+                    <% end %>
+                <% end %>
+
+                <% if @current_page < @posts.total_pages %>
+                    <li><button name="page" title="next page" value="<%= @current_page+1 %>" class="number"><%= fa_icon "angle-right" %></button></li>
+                    <li><button name="page" title="last page" value="<%= @posts.total_pages %>" class="number"><%= fa_icon "angle-right" %><%= fa_icon "angle-right" %></button></li>
+                <% end %>
+            <% end %>
+        </ul>
+        <div>
+            <span>posts per page </span>
+            <% @permited_posts_per_page.each do |n| %>
+                <% if @posts_per_page == n %>
+                    <input type="radio" name="posts_per_page" checked="checked  " id=<%= n %> value=<%= n %>>
+                <% else %>
+                    <input type="radio" name="posts_per_page" id=<%= n %> value=<%= n %>>
+                <% end %>
+                <label for=<%= n %>><%= n %></label>
+            <% end %>
+            <input type="submit" value="apply">
+        </div>
+    </form>
 </div>
