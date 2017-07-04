@@ -15,6 +15,6 @@ class PostLogic < SimpleDelegator
             end
         end
         return {tags: tags, characters: characters, authors: authors}
-
     end
+
 end

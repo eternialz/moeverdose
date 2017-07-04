@@ -145,35 +145,16 @@ class PostsController < ApplicationController
         tags = params[:tags].downcase.split(" ")
 
         tags.each do |tag|
-            t = Tag.where(name: tag, type: :content)
-            if t.empty?
-                t = Tag.new({name: tag, type: :content})
-            end
-            @post.tags << t
+            TagLogic.find_or_create(tag, :content, @post)
         end
 
         characters = params[:characters].downcase.split(" ")
 
         characters.each do |character|
-            c = Tag.where(name: character, type: :character)
-            if c.empty?
-                c = Tag.new({name: character, type: :character})
-            end
-            @post.tags << c
+            TagLogic.find_or_create(character, :character, @post)
         end
 
-        author_name = params[:author]
-        author = Tag.where(name: author_name.downcase.tr(" ", "_"), type: :author)
-
-        if author.empty?
-            author = Tag.new({name: author_name.downcase.tr(" ", "_"), type: :author})
-            author_profile = Author.new({name: author_name})
-        else
-            author_profile = Author.find_by({name: author_name})
-        end
-
-        @post.tags << author
-        @post.author = author_profile
+        TagLogic.find_or_create_author(params[:author], @post)
 
         dimensions = Paperclip::Geometry.from_file(@post.post_image.queued_for_write[:original].path)
 
@@ -181,16 +162,10 @@ class PostsController < ApplicationController
         @post.height = dimensions.height
 
         @post.user = current_user
-        @post.user.upload_count += 1
-
-        if @post.user.level.final == false
-            if @post.user.level.max_exp == @post.user.upload_count
-                @post.user.level = Level.find_by(rank: @post.user.level.rank + 1)
-            end
-        end
+        user_logic = UserLogic.new(current_user)
+        user_logic.update_level
 
         if @post.save
-            author_profile.save
             @post.tags.each do |t|
                 t.posts_count += 1
                 t.save
@@ -213,42 +188,23 @@ class PostsController < ApplicationController
         tags = params[:tags].downcase.split(" ")
 
         tags.each do |tag|
-            t = Tag.where(name: tag, type: :content)
-            if t.empty?
-                t = Tag.new({name: tag, type: :content})
-            end
-            @post.tags << t
+            TagLogic.find_or_create(tag, :content, @post)
         end
 
         characters = params[:characters].downcase.split(" ")
 
         characters.each do |character|
-            c = Tag.where(name: character, type: :character)
-            if c.empty?
-                c = Tag.new({name: character, type: :character})
-            end
-            @post.tags << c
+            TagLogic.find_or_create(character, :character, @post)
         end
 
         author_name = params[:author_tag]
 
         if author_name != "" && author_name != nil
-            author = Tag.where(name: author_name.downcase.tr(" ", "_"), type: :author)
-
-            if author.empty?
-                author = Tag.new({name: author_name.downcase.tr(" ", "_"),type: :author})
-                author_profile = Author.new({name: author_name, posts: [@post]})
-            else
-                author_profile = Author.find_by({name: author_name})
-                author_profile.posts << @post
-            end
+            @post.author.posts.delete(@post)
+            TagLogic.find_or_create_author(author_name, @post)
         end
 
-        @post.tags << author
-        @post.author = author_profile
-
         if @post.save
-            author_profile.save
             @post.tags.each do |t|
                 t.posts_count += 1
                 t.save
