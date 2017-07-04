@@ -3,6 +3,7 @@ Global = {
         Global.menu = false;
         $('#menu_label').click(Global.develop_submenu);
         $('.submenu input').focus(Global.develop_submenu_focus);
+        $('#submenu_close').click(Global.close_submenu);
     },
     develop_submenu: function() {
         if (Global.menu == false) {
@@ -14,6 +15,11 @@ Global = {
             $('.submenu').removeClass('develop');
             Global.menu = false;
         };
+    },
+    close_submenu: function() {
+        $("#menu_label").removeClass('open');
+        $('.submenu').removeClass('develop');
+        Global.menu = false;
     },
     develop_submenu_focus: function() {
         if (Global.menu == false) {

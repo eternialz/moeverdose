@@ -1,6 +1,9 @@
 .post-thumbnail {
     width: 200px;
     height: 200px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
     display: inline-block;
     position: relative;
     float: left;
@@ -45,5 +48,33 @@
         &:hover {
             opacity: 1;
         }
+    }
+}
+
+@media only screen and (max-width: $xsmall) {
+    .post-thumbnail {
+        width: 33.333%;
+        height: 33.333vw;
+    }
+}
+
+@media only screen and (min-width: $xsmall) and (max-width: $small) {
+    .post-thumbnail {
+        width: 25%;
+        height: 25vw;
+    }
+}
+
+@media only screen and (min-width: $small) and (max-width: $normal) {
+    .post-thumbnail {
+        width: 20%;
+        height: 20vw;
+    }
+}
+
+@media only screen and (min-width: $normal) and (max-width: $large) {
+    .post-thumbnail {
+        width: 16.666%;
+        height: 16.666vw;
     }
 }

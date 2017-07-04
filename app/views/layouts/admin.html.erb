@@ -1,87 +1,90 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Moeverdose</title>
-    <%= csrf_meta_tags %>
+    <head>
+        <title>Moeverdose</title>
+        <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-</head>
+        <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-<body>
-    <div class="notifications">
-        <div class="notifications_container">
-        </div>
-    </div>
-    <nav class="menu">
-        <div class="row">
-            <% if content_for?(:menu) %>
-            <%= yield(:menu) %>
-            <% else %>
-            <%= render "layouts/default_menu" %>
-            <% end %>
-            <% if content_for?(:submenu) %>
-            <%= yield(:submenu) %>
-            <% else %>
-            <%= render "layouts/default_submenu" %>
-            <% end %>
-        </div>
-    </nav>
-    <div class="page">
-        <div class="admin">
-            <ul class="navigation">
-                <li><a href="<%= admin_dashboard_path %>"><%= fa_icon 'dashboard' %> Dashboard</a></li>
-                <li><a href="<%= admin_stats_path %>"><%= fa_icon 'pie-chart' %> Stats</a></li><br />
-                <li><a href="<%= admin_posts_path %>"><%= fa_icon 'image' %> Posts</a></li>
-                <li><a href="<%= admin_comments_path %>"><%= fa_icon 'comments' %> Comments</a></li>
-                <li><a href="<%= admin_users_path %>"><%= fa_icon 'users' %> Users</a></li>
-                <li>
-                    <a href="<%= admin_news_index_path %>"><%= fa_icon 'newspaper-o' %> News</a>
-                    <ul>
-                        <li><a href="<%= admin_news_index_path %>"><%= fa_icon 'list' %> All News</a></li>
-                        <li><a href="<%=  new_admin_news_path %>"><%= fa_icon 'plus' %> Create News</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="<%= admin_levels_path %>"><%= fa_icon 'heartbeat' %> Levels</a>
-                    <ul>
-                        <li><a href="<%= admin_levels_path %>"><%= fa_icon 'list' %> All Levels</a></li>
-                        <li><a href="<%=  new_admin_level_path %>"><%= fa_icon 'plus' %> Create Level</a></li>
-                    </ul>
-                </li>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    </head>
 
-            </ul>
-            <div class="content">
-                <%= yield %>
+    <body>
+        <div class="notifications">
+            <div class="notifications_container">
             </div>
         </div>
-    </div>
-    <footer class="footer">
-        <div class="row">
-            <div class="col-6">
-                <h3 class="footer-title">Links</h3>
-                <ul class="col-6">
-                    <li><a>home</a></li>
-                    <li><a>posts</a></li>
-                    <li><a>users</a></li>
-                    <li><a>help</a></li>
-                    <li><a>team</a></li>
+        <nav class="menu">
+            <div class="row">
+                <% if content_for?(:menu) %>
+                    <%= yield(:menu) %>
+                <% else %>
+                    <%= render "layouts/default_menu" %>
+                <% end %>
+                <% if content_for?(:submenu) %>
+                    <%= yield(:submenu) %>
+                <% else %>
+                    <%= render "layouts/default_submenu" %>
+                <% end %>
+            </div>
+        </nav>
+        <div class="page">
+            <div class="admin">
+                <ul class="navigation">
+                    <li><a href="<%= admin_dashboard_path %>"><%= fa_icon 'dashboard' %> Dashboard</a></li>
+                    <li><a href="<%= admin_stats_path %>"><%= fa_icon 'pie-chart' %> Stats</a></li><br />
+                    <li><a href="<%= admin_posts_path %>"><%= fa_icon 'image' %> Posts</a></li>
+                    <li><a href="<%= admin_comments_path %>"><%= fa_icon 'comments' %> Comments</a></li>
+                    <li><a href="<%= admin_users_path %>"><%= fa_icon 'users' %> Users</a></li>
+                    <li>
+                        <a href="<%= admin_news_index_path %>"><%= fa_icon 'newspaper-o' %> News</a>
+                        <ul>
+                            <li><a href="<%= admin_news_index_path %>"><%= fa_icon 'list' %> All News</a></li>
+                            <li><a href="<%=  new_admin_news_path %>"><%= fa_icon 'plus' %> Create News</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="<%= admin_levels_path %>"><%= fa_icon 'heartbeat' %> Levels</a>
+                        <ul>
+                            <li><a href="<%= admin_levels_path %>"><%= fa_icon 'list' %> All Levels</a></li>
+                            <li><a href="<%=  new_admin_level_path %>"><%= fa_icon 'plus' %> Create Level</a></li>
+                        </ul>
+                    </li>
+
                 </ul>
-                <ul class="col-6">
-                    <li><a>home</a></li>
-                    <li><a>posts</a></li>
-                    <li><a>users</a></li>
-                    <li><a>help</a></li>
-                    <li><a>team</a></li>
-                </ul>
+                <div class="content">
+                    <%= yield %>
+                </div>
             </div>
+        </div>
+        <footer class="footer">
+            <div class="row">
+                <div class="col-6">
+                    <h3 class="footer-title">Links</h3>
+                    <ul class="col-6">
+                        <li><a>home</a></li>
+                        <li><a>posts</a></li>
+                        <li><a>users</a></li>
+                        <li><a>help</a></li>
+                        <li><a>team</a></li>
+                    </ul>
+                    <ul class="col-6">
+                        <li><a>home</a></li>
+                        <li><a>posts</a></li>
+                        <li><a>users</a></li>
+                        <li><a>help</a></li>
+                        <li><a>team</a></li>
+                    </ul>
+                </div>
 
-            <div class="col-6">
-                <h3 class="footer-title">Friends of moeverdose</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone.</p>
+                <div class="col-6">
+                    <h3 class="footer-title">Friends of moeverdose</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone.</p>
+                </div>
+
             </div>
-
-            <div class="col-12 center">
+            <div class="row center">
                 <p class="center copyright">© 2016 Moeverdose - <a>Mentions Légales</a></p>
             </div>
         </footer>

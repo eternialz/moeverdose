@@ -12,7 +12,7 @@ nav.menu {
         position: relative;
         padding: 10px 0 0 0;
         height: 96px;
-        z-index: 20000;
+        z-index: 5000;
 
         h1 {
             padding-left: 10px;
@@ -25,6 +25,12 @@ nav.menu {
             font-style: italic;
             font-weight: bold;
             padding: 10px;
+        }
+
+        @media only screen and (max-width: $small) {
+            .user .avatar, #random {
+                display: none;
+            }
         }
 
         .user {
@@ -89,6 +95,18 @@ nav.menu {
             #menu_label.open {
                 color: #FFF;
                 text-shadow: 0 0 5px rgba(255,255,255,.75);
+            }
+
+
+            @media only screen and (max-width: $normal) {
+
+                a {
+                    display: none;
+                }
+
+                a#menu_label {
+                    display: block;
+                }
             }
         }
     }

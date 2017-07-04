@@ -1,63 +1,66 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Moeverdose</title>
-    <%= csrf_meta_tags %>
+    <head>
+        <title>Moeverdose</title>
+        <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+        <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-    <%= yield(:cards) %>
-</head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-<body>
-    <div class="notifications">
-        <div class="notifications_container">
-        </div>
-    </div>
-    <nav class="menu">
-        <div class="row">
-            <% if content_for?(:menu) %>
-                <%= yield(:menu) %>
-            <% else %>
-                <%= render "layouts/default_menu" %>
-            <% end %>
-            <% if content_for?(:submenu) %>
-                <%= yield(:submenu) %>
-            <% else %>
-                <%= render "layouts/default_submenu" %>
-            <% end %>
-        </div>
-    </nav>
-    <div class="row">
-        <%= yield %>
-    </div>
-    <footer class="footer">
-        <div class="row">
-            <div class="col-6">
-                <h3 class="footer-title">Links</h3>
-                <ul class="col-6">
-                    <li><a>home</a></li>
-                    <li><a>posts</a></li>
-                    <li><a>users</a></li>
-                    <li><a>help</a></li>
-                    <li><a>team</a></li>
-                </ul>
-                <ul class="col-6">
-                    <li><a>home</a></li>
-                    <li><a>posts</a></li>
-                    <li><a>users</a></li>
-                    <li><a>help</a></li>
-                    <li><a>team</a></li>
-                </ul>
+        <%= yield(:cards) %>
+    </head>
+
+    <body>
+        <div class="notifications">
+            <div class="notifications_container">
             </div>
-
-            <div class="col-6">
-                <h3 class="footer-title">Friends of moeverdose</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone.</p>
+        </div>
+        <nav class="menu">
+            <div class="row">
+                <% if content_for?(:menu) %>
+                    <%= yield(:menu) %>
+                <% else %>
+                    <%= render "layouts/default_menu" %>
+                <% end %>
+                <% if content_for?(:submenu) %>
+                    <%= yield(:submenu) %>
+                <% else %>
+                    <%= render "layouts/default_submenu" %>
+                <% end %>
             </div>
+        </nav>
+        <div class="row">
+            <%= yield %>
+        </div>
+        <footer class="footer">
+            <div class="row">
+                <div class="col-6">
+                    <h3 class="footer-title">Links</h3>
+                    <ul class="col-6">
+                        <li><a>home</a></li>
+                        <li><a>posts</a></li>
+                        <li><a>users</a></li>
+                        <li><a>help</a></li>
+                        <li><a>team</a></li>
+                    </ul>
+                    <ul class="col-6">
+                        <li><a>home</a></li>
+                        <li><a>posts</a></li>
+                        <li><a>users</a></li>
+                        <li><a>help</a></li>
+                        <li><a>team</a></li>
+                    </ul>
+                </div>
 
-            <div class="col-12 center">
+                <div class="col-6">
+                    <h3 class="footer-title">Friends of moeverdose</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone.</p>
+                </div>
+
+            </div>
+            <div class="row center">
                 <p class="center copyright">© 2016 Moeverdose - <a>Mentions Légales</a></p>
             </div>
         </footer>

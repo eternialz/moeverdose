@@ -153,9 +153,67 @@ nav.menu .submenu {
     a:hover, a:hover:before {
         color: $pink;
     }
+
+    #submenu_close {
+        background: #222;
+        display: none;
+        padding: 20px 30px;
+        right: 0;
+        text-align: center;
+        top: 0;
+        width: 100%;
+    }
 }
 
-nav.menu .submenu.develop, nav.menu:hover .submenu {
+@media only screen and (min-width: $normal) {
+    nav.menu:hover .submenu {
+        visibility: visible;
+        top: 96px;
+    }
+}
+
+nav.menu .submenu.develop {
     visibility: visible;
     top: 96px;
+}
+
+@media only screen and (max-width: $small) {
+    nav.menu .submenu {
+        -webkit-transition: none;
+        -moz-transition: none;
+        -o-transition: none;
+        transition: none;
+
+        padding: 0;
+
+        overflow-y: scroll;
+
+
+        ul, ul.login, ul.register {
+            position: static;
+            width: 100%;
+            height: auto;
+            float: none;
+            padding: 10px 20px;
+            border: 0 !important;
+
+            .btn {
+                width: 100%;
+                display: block;
+                margin: 20px 0 10px;
+                position: static;
+            }
+        }
+
+        #submenu_close {
+            display: block;
+        }
+    }
+
+    nav.menu .submenu.develop {
+        visibility: visible;
+        top: 0;
+        z-index: 10000;
+        height: 100vh;
+    }
 }
