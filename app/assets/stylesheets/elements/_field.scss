@@ -24,6 +24,10 @@ select:-webkit-autofill:focus {
     min-width: 300px;
     position: relative;
 
+    input:focus {
+        outline: none;
+    }
+
     input[type="text"], input[type="email"], input[type="password"], textarea {
         background: none;
         box-shadow: none;

@@ -42,4 +42,11 @@ Rails.application.routes.draw do
 
     resources :users, only: [:show, :edit, :update, :index]
 
+    match "/404", :to => "errors#not_found", :via => :all
+    match "/500", :to => "errors#internal_server_error", :via => :all
+
+    %w(400 408 422 502 503 504).each do |code|
+        match code, :to => "errors#error", :via => :all, :code => code
+    end
+
 end
