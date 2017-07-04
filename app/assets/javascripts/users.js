@@ -9,7 +9,6 @@ Useredit = {
             var reader = new FileReader();
 
             reader.onload = function (e) {
-                console.log(e.target.result);
                 image.css("background-image", "url(" + e.target.result + ")");
             }
 

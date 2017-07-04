@@ -1,7 +1,7 @@
-Notification = {
+Notifications = {
     init: function(root) {
-        Notification.root = root;
-        Notification.counter = 0;
+        Notifications.root = root;
+        Notifications.counter = 0;
     },
     add: function(title, message, type) {
         type = type || "";
@@ -17,8 +17,8 @@ Notification = {
 
 
 
-        Notification.counter += 1;
-        Notification.root.find($('.notifications_container')).append( $(notification) );
+        Notifications.counter += 1;
+        Notifications.root.find($('.notifications_container')).append( $(notification) );
 
         notification.click( function() {
             notification.remove();
@@ -31,5 +31,5 @@ Notification = {
 };
 
 $(document).ready(function(){
-    Notification.init($('.notifications'));
+    Notifications.init($('.notifications'));
 });
