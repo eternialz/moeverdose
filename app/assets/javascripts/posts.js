@@ -17,10 +17,10 @@ Post = {
             type : 'PATCH',
             statusCode: {
                 200: function() {
-                    Notification.add("Favorite added to your profile", "", "success");
+                    Notifications.add("Favorite added to your profile", "", "success");
                 },
                 202: function() {
-                    Notification.add("Favorite removed from your profile");
+                    Notifications.add("Favorite removed from your profile");
                 }
             },
         });
@@ -33,16 +33,16 @@ Post = {
                 200: function() {
                     Post.overdose.html(parseInt(Post.overdose.html()) +1);
                     Post.percentage();
-                    Notification.add("Overdose added","","success")
+                    Notifications.add("Overdose added","","success")
                 },
                 202: function() {
                     Post.overdose.html(parseInt(Post.overdose.html()) -1);
                     Post.percentage();
-                    Notification.add("Overdose removed","","success")
+                    Notifications.add("Overdose removed","","success")
                 }
             },
             error : function() {
-                Notification.add("Can't add overdose","Did you already add a shortage for this post? If you wan't to change, remove your shortage before adding an overdose by clicking on the shortage button","error")
+                Notifications.add("Can't add overdose","Did you already add a shortage for this post? If you wan't to change, remove your shortage before adding an overdose by clicking on the shortage button","error")
             }
         });
     },
@@ -54,16 +54,16 @@ Post = {
                 200: function() {
                     Post.shortage.html(parseInt(Post.shortage.html()) +1);
                     Post.percentage();
-                    Notification.add("Moe shortage added","","success")
+                    Notifications.add("Moe shortage added","","success")
                 },
                 202: function() {
                     Post.shortage.html(parseInt(Post.shortage.html()) -1);
                     Post.percentage();
-                    Notification.add("Moe shortage removed","","success")
+                    Notifications.add("Moe shortage removed","","success")
                 }
             },
             error : function() {
-                Notification.add("Can't add shortage","Maybe you aren't logged in or you already voted for this post","error")
+                Notifications.add("Can't add shortage","Maybe you aren't logged in or you already voted for this post","error")
             }
         });
     },
@@ -71,9 +71,9 @@ Post = {
         var overdose_percentage = 100 * (parseInt(Post.overdose.html()) / (parseInt(Post.overdose.html()) + parseInt(Post.shortage.html())));
         var shortage_percentage = 100 - overdose_percentage;
         if ((Post.overdose.html() == "0") && (Post.shortage.html() == "0"))  {
-            var overdose_percentage = 50;
-            var shortage_percentage = 50;
-        };
+            overdose_percentage = 50;
+            shortage_percentage = 50;
+        }
         Post.root.find('.overdose_bar').css("width", overdose_percentage + "%");
         Post.root.find('.shortage_bar').css("width", shortage_percentage + "%");
     },
