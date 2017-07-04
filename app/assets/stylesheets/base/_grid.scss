@@ -29,6 +29,10 @@ $gutter: 30px;
     text-align: left;
 }
 
+[class^="col-"] {
+    width: 100%;
+}
+
 .row .col-sm {
     padding: 0;
 
@@ -38,6 +42,12 @@ $gutter: 30px;
 
     &:last-child {
         padding-left: $gutter / 2;
+    }
+
+    @media only screen and (max-width: $xsmall) {
+        &:first-child, &:last-child {
+            padding: 0 !important;
+        }
     }
 }
 

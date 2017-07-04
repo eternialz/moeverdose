@@ -36,6 +36,11 @@ html {
     box-sizing: border-box;
     overflow-y: scroll;
     overflow-x: hidden;
+
+
+    @media only screen and (max-width: $xsmall) {
+        font-size: 14px;
+    }
 }
 
 *, *:before, *:after {

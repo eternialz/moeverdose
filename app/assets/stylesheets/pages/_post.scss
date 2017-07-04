@@ -59,7 +59,14 @@
         pointer-events: none;
         overflow: hidden;
         text-overflow: ellipsis;
+
+        @media only screen and (max-width: $xsmall) {
+            max-width: calc(100% - 30px);
+            overflow: visible;
+            text-overflow: clip;
+        }
     }
+
 
     .next {
         float: right;
@@ -133,6 +140,15 @@
     color: #444;
     text-align: left;
 
+    @media only screen and (max-width: $xsmall) {
+        div { width: 100% }
+        
+        ul {
+            display: block;
+            width: 100%;
+        }
+    }
+
     .infos {
         li {
             position: relative;
@@ -158,7 +174,11 @@
     }
 
     .post_vote {
-        padding: 15px;
+        padding: 25px 30px;
+
+        .btn {
+            margin: 5px 0;
+        }
     }
 
     .overdose, .shortage {

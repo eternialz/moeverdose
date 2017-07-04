@@ -1,22 +1,14 @@
 
 <div class="header-img">
+    <ul>
+        <li><%= link_to 'Posts', posts_path, title: 'Posts' %></li>
+        <li><%= link_to 'Upload', new_post_path, title: 'Upload' %></li>
+        <li><%= link_to 'Chat', "https://discord.gg/6zs7v9k", target: "_blank", title: 'Chat' %></li>
+        <li><%= link_to 'About', "/pages/about", title: 'About' %></li>
+        <li><%= link_to 'Help', "/pages/help/index", title: 'Help' %></li>
+        <li><a href="https://twitter.com/moeverdose" target="_blank" title="Moeverdose Twitter"><%= fa_icon "twitter"%></a></li>
+    </ul>
 </div>
-
-<% if !@news.empty? %>
-<div class="zone news">
-    <h2 class="small-title">NEWS</h2>
-    <% @news.each do |n| %>
-    <div class="new">
-        <h3><%= n.title %></h3>
-        <p><%= n.text %></p>
-    </div>
-    <% end %>
-</div>
-<% else %>
-<div class="zone news">
-    <p class=" small-title" style="float: none; text-align: center; margin: 10px;">No news</p>
-</div>
-<% end %>
 
 <div class="home-about row">
     <div class="col-6 col-sm">
@@ -40,19 +32,33 @@
             <br />
             <h5>Already reported bugs:</h5>
             <ul>
+                <li>No bugs were found</li>
             </ul>
         </div>
     </div>
 </div>
 
+<% if !@news.empty? %>
+    <div class="zone news">
+        <h2 class="small-title">NEWS</h2>
+        <% @news.each do |n| %>
+            <div class="new">
+                <h3><%= n.title %></h3>
+                <p><%= n.text %></p>
+            </div>
+        <% end %>
+    </div>
+<% else %>
+    <div class="zone news">
+        <p class=" small-title" style="float: none; text-align: center; margin: 10px;">No news</p>
+    </div>
+<% end %>
+
 <div class="col-12 zone">
     <h2>Next planned features</h2>
     <ol>
         <li>Search</li>
-        <li>Advanced search</li>
-        <li>Tag aliases</li>
-        <li>Functionnal favorites tags</li>
         <li>Posts modification logs</li>
-        <li>And more</li>
+        <li>...</li>
     </ol>
 </div>

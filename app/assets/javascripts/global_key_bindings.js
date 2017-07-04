@@ -95,7 +95,11 @@ $(document).ready(function(){
         };
     };
     function to_next() {
-        window.location.href = domain + "/posts/" + parseInt(-1 + parseInt(arr[4]));
+        if (parseInt(arr[4]) > 0) {
+            window.location.href = domain + "/posts/" + parseInt(-1 + parseInt(arr[4]));
+        } else {
+            window.location.href = domain + "/posts/" + 0;
+        }
     };
     function to_previous() {
         window.location.href = domain + "/posts/" + parseInt( 1 + parseInt(arr[4]));

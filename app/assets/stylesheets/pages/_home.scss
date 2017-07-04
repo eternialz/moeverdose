@@ -1,11 +1,33 @@
 .header-img {
-    height: 400px;
+    height: 300px;
     box-shadow: 0 1px 3px rgba(0,0,0,.25);
     background: image_url($header-image) no-repeat center center;
     background-size: cover;
+    position: relative;
 
-    h1 {
-        color: #FFF;
+    ul {
+        width: 100%;
+        position: absolute;
+        text-align: center;
+        bottom: 0;
+        padding: 20px;
+        margin: 0;
+        background: rgba(0,0,0,.6);
+    }
+
+    li {
+        display: inline-block;
+
+        a {
+            padding: 5px;
+            color: #DDD;
+            text-shadow: 0 1px 2px rgba(0,0,0,.25);
+            font-weight: bold;
+
+            &:hover, &:active {
+                color: #FFF;
+            }
+        }
     }
 }
 
@@ -13,6 +35,6 @@
     height: 400px;
 
     .zone {
-        height: 385px;
+        height: 370px;
     }
 }
