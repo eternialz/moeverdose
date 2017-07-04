@@ -1,4 +1,4 @@
-# Moeverdose [![CodeFactor](https://www.codefactor.io/repository/github/eternialz/moeverdose/badge) [![dev chat](https://discordapp.com/api/guilds/163371003366342657/widget.png?style=shield)](https://discord.me/moeverdose)]
+# Moeverdose [![CodeFactor](https://www.codefactor.io/repository/github/eternialz/moeverdose/badge)](https://www.codefactor.io/repository/github/eternialz/moeverdose/) [![dev chat](https://discordapp.com/api/guilds/163371003366342657/widget.png?style=shield)](https://discord.me/moeverdose)]
 
 http://moeverdose.moe | https://twitter.com/moeverdose
 
