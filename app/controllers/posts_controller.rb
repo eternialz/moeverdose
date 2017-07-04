@@ -126,6 +126,10 @@ class PostsController < ApplicationController
                 end
             end
         end
+
+        @tags.sort_by!{ |tag| tag.downcase }
+        @characters.sort_by!{ |character| character.downcase }
+        @authors.sort_by!{ |author| author.downcase }
     end
 
     def new
