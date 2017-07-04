@@ -1,33 +1,36 @@
-# moeverdose
+# Moeverdose [![CodeFactor](https://www.codefactor.io/repository/github/eternialz/moeverdose/badge)]
 
-http://moeverdose.moe
+http://moeverdose.moe | https://twitter.com/moeverdose
 
 A booru made from scratch with Rails 5 and MongoDB
 
-# **TODOs:**
-## **Priorities**
+# Installation
 
-## ADMIN
+We currently does not provide help for installing and deploying Moeverdose.
+
+
+
+# TODOs:
+
+#### ADMIN
 * User list + delete and notification of infractions
 * All Post list + thumbnail + delete + reported filter + link to uploader profile in admin page
 * Prevent user deletion if they are not regular users
 * All Tag list and their aliases
 * All reported comments + delete or acceptation
 
-## POSTS
+#### POSTS
 * Search system + filter
 
-## COMMENTS
-* Replies or quotes?
+#### COMMENTS
 * Spoilers ?
-* Post links '#[id_of_post]'
-* User link '@username'
+* Comment links '$[num_of_comment]' ?
+* Post links '#[id_of_post]' ?
+* User links '@username' ?
 
-## TAGS
-* Aliases system
-
-## USERS
+#### USERS
 * Level grow when other user like uploaded posts by the user
 
-## OTHERS
-* Custom error pages
+# Licence
+
+Mozilla Public Licence 2.0
