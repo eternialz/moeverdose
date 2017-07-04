@@ -90,20 +90,16 @@ class PostsController < ApplicationController
 
     def index
         @permited_posts_per_page = ['2', '8', '16', '32', '64']
-        if params[:posts_per_page] != nil
+        #Default posts per page
+        @posts_per_page = "32"
+        if !params[:posts_per_page].nil?
             # Custom number of posts per page
             if @permited_posts_per_page.include? params[:posts_per_page]
                 @posts_per_page = params[:posts_per_page]
-            else
-                @posts_per_page = "32"
             end
-        else # Default number of posts per page
-            @posts_per_page = "32"
-        end
-        if params[:page] == nil
-            params[:page] = 1
         end
 
+        params[:page] = params[:page].nil? ? 1 : params[:page]
         @posts = Kaminari.paginate_array(Post.where(report: :false).order('created_at DESC')).page(params[:page]).per(@posts_per_page)
         @pages = []
         @current_page = params[:page].to_i
@@ -116,16 +112,15 @@ class PostsController < ApplicationController
         @characters = []
         @authors = []
         @posts.each do |post|
-            post.tags.each do |tag|
-                if tag.content? && !(@tags.include?(tag.name))
-                    @tags << tag.name
-                elsif tag.character? && !(@characters.include?(tag.name))
-                    @characters << tag.name
-                elsif tag.author? && !(@authors.include?(tag.name))
-                    @authors << tag.name
-                end
-            end
+            post_logic = PostLogic.new(post)
+            results = post_logic.get_different_tags
+            @tags += results[:tags]
+            @characters += results[:characters]
+            @authors += results[:authors]
         end
+        @tags = @tags.uniq
+        @characters = @characters.uniq
+        @authors = @authors.uniq
 
         @tags.sort_by!{ |tag| tag.downcase }
         @characters.sort_by!{ |character| character.downcase }
