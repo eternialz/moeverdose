@@ -1,4 +1,5 @@
 <div class="row posts">
+    <%= render 'posts/search' %>
     <div class="post-container clearfix">
         <% @posts.each do |post| %>
             <div class="post-thumbnail clearfix" style="background-image: url(<%= post.post_image.url(:thumb)%> )">

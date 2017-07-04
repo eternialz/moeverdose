@@ -103,7 +103,8 @@ class PostsController < ApplicationController
         if params[:page] == nil
             params[:page] = 1
         end
-        @posts = Post.where(report: :false).order('created_at DESC').page(params[:page]).per(@posts_per_page)
+
+        @posts = Kaminari.paginate_array(Post.where(report: :false).order('created_at DESC')).page(params[:page]).per(@posts_per_page)
         @pages = []
         @current_page = params[:page].to_i
         (@current_page-3..@current_page+3).to_a.each do |page|
