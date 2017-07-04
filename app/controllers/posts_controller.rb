@@ -217,7 +217,6 @@ class PostsController < ApplicationController
             if t.empty?
                 t = Tag.new({name: tag, type: :content})
             end
-            t
             @post.tags << t
         end
 
