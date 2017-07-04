@@ -57,7 +57,7 @@ class User
   has_mongoid_attached_file :avatar, styles: { :thumb => {:geometry => "120x120#"}, :tiny => {:geometry => "60x60#"}}, default_url: "/images/default_user.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
-  has_mongoid_attached_file :banner, styles: { :normal => {:geometry => "1600x440#"}}, default_url: "/images/default_banner.png"
+  has_mongoid_attached_file :banner, styles: { :normal => {:geometry => "1600x300#"}}, default_url: "/images/default_banner.png"
   validates_attachment_content_type :banner, content_type: /\Aimage\/.*\Z/
 
   # Posts
