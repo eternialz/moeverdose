@@ -5,28 +5,30 @@ class TagLogic < SimpleDelegator
 
         type = type.to_sym
 
-        tag = Tag.where(name: name, type: type)
+        tag = Tag.where(names: name, type: type)
         if tag.empty?
-            tag = Tag.create(name: name, type: type)
+            tag = Tag.create(names: [name], type: type)
+        end
 
         post.tags << tag
-        post.save
     end
 
     def self.find_or_create_author(name, post)
         name = name.downcase.tr(" ", "_")
-        tag = Tag.where(name: name, type: :author)
+        tag = Tag.where(names: name, type: :author)
         if tag.empty?
-            tag = Tag.create(name: name, type: :author)
-            author = Author.create(name: name)
+            tag = Tag.create(names: [name], type: :author)
+            author = Author.new(name: name)
         else
-            author = Author.find_by({name: name})
+            begin
+                author = Author.find_by({name: name})
+            rescue
+                author = Author.new(name: name)
+            end
         end
-        author.posts << post
 
         post.tags << tag
-        author.save
         post.author = author
-        post.save
+        return author
     end
 end

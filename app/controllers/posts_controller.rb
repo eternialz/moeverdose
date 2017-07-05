@@ -8,9 +8,9 @@ class PostsController < ApplicationController
         @characters = []
         @post.tags.each do |tag|
             if tag.content?
-                @tags << tag.name
+                @tags << tag.names[0]
             elsif tag.character?
-                @characters << tag.name
+                @characters << tag.names[0]
             end
         end
         if @post.overdose == 0 && @post.moe_shortage == 0
@@ -117,14 +117,15 @@ class PostsController < ApplicationController
             @tags += results[:tags]
             @characters += results[:characters]
             @authors += results[:authors]
+            
         end
         @tags = @tags.uniq
         @characters = @characters.uniq
         @authors = @authors.uniq
 
-        @tags.sort_by!{ |tag| tag.downcase }
-        @characters.sort_by!{ |character| character.downcase }
-        @authors.sort_by!{ |author| author.downcase }
+        @tags.sort_by!{ |tag| tag&.downcase }
+        @characters.sort_by!{ |character| character&.downcase }
+        @authors.sort_by!{ |author| author&.downcase }
     end
 
     def new
@@ -154,8 +155,6 @@ class PostsController < ApplicationController
             TagLogic.find_or_create(character, :character, @post)
         end
 
-        TagLogic.find_or_create_author(params[:author], @post)
-
         dimensions = Paperclip::Geometry.from_file(@post.post_image.queued_for_write[:original].path)
 
         @post.width = dimensions.width
@@ -165,8 +164,11 @@ class PostsController < ApplicationController
         user_logic = UserLogic.new(current_user)
         user_logic.update_level
 
+        author = TagLogic.find_or_create_author(params[:author], @post)
+
         if @post.save
             @post.tags.each do |t|
+                author.save
                 t.posts_count += 1
                 t.save
             end
@@ -185,6 +187,7 @@ class PostsController < ApplicationController
         end
 
         @post.tags = []
+        author.save
         tags = params[:tags].downcase.split(" ")
 
         tags.each do |tag|
@@ -200,12 +203,12 @@ class PostsController < ApplicationController
         author_name = params[:author_tag]
 
         if author_name != "" && author_name != nil
-            @post.author.posts.delete(@post)
-            TagLogic.find_or_create_author(author_name, @post)
+            author = TagLogic.find_or_create_author(author_name, @post)
         end
 
         if @post.save
             @post.tags.each do |t|
+                author.save
                 t.posts_count += 1
                 t.save
             end

@@ -2,19 +2,19 @@ require 'delegate'
 
 class PostLogic < SimpleDelegator
     def get_different_tags
-        characters = []
-        authors = []
-        tags = []
-        self.tags.each do |tag|
-            if tag.content?
-                tags << tag.name
-            elsif tag.character?
-                characters << tag.name
-            elsif tag.author?
-                authors << tag.name
+        character = []
+        author = []
+        tag = []
+        self.__getobj__.tags.each do |t|
+            if t.content?
+                tag << t.names[0]
+            elsif t.character?
+                character << t.names[0]
+            elsif t.author?
+                author << t.names[0]
             end
         end
-        return {tags: tags, characters: characters, authors: authors}
+        return {tags: tag, characters: character, authors: author}
     end
 
 end
