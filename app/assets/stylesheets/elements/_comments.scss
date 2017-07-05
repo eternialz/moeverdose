@@ -50,7 +50,7 @@
         }
 
         a.comment_number {
-            position: relative; 
+            position: relative;
             z-index: 1000;
             font-size: 0.8em;
             margin-left: 20px;
@@ -72,6 +72,10 @@
             -o-hyphens: auto;
             hyphens: auto;
             max-width: 100%;
+        }
+
+        p span {
+            opacity: .6;
         }
     }
 
