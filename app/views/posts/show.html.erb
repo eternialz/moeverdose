@@ -151,6 +151,7 @@
                 <li id="type"><span>type:</span><%= @post.post_image_content_type.split("/")[-1].upcase %></li>
                 <li id="size"><span>size:</span><%= '%.3f' % (@post.post_image_file_size.to_f / 1048576).to_s + ' MB' %></li>
                 <li id="date"><span>date:</span><%= @post.post_image_updated_at.to_time.strftime('%B %e at %l:%M %p') %></li>
+                <li id="date"><span>MD5:</span><%= @post.md5 %></li>
             </ul>
         </div>
     </div>
