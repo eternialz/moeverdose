@@ -104,7 +104,11 @@ class PostsController < ApplicationController
         params[:page] = params[:page].nil? ? 1 : params[:page]
         if params[:query]
             posts_tags_ids = Tag.where(:names.in => params[:query].split()).map do |t| t.id end
-            @posts = Kaminari.paginate_array(Post.where(report: :false, :tag_ids.in => posts_tags_ids).order('created_at DESC')).page(params[:page]).per(@posts_per_page)
+
+            @posts = Kaminari.paginate_array(Post.where(
+                report: :false,
+                :tag_ids.in => posts_tags_ids
+            ).order('created_at DESC')).page(params[:page]).per(@posts_per_page)
         else
             @posts = Kaminari.paginate_array(Post.where(report: :false).order('created_at DESC')).page(params[:page]).per(@posts_per_page)
         end
@@ -116,6 +120,7 @@ class PostsController < ApplicationController
                 @pages << page
             end
         end
+
         @tags = []
         @characters = []
         @authors = []
@@ -125,7 +130,7 @@ class PostsController < ApplicationController
             @tags += results[:tags]
             @characters += results[:characters]
             @authors += results[:authors]
-            
+
         end
         @tags = @tags.uniq
         @characters = @characters.uniq
@@ -197,7 +202,6 @@ class PostsController < ApplicationController
         end
 
         @post.tags = []
-        author.save
         tags = params[:tags].downcase.split(" ")
 
         tags.each do |tag|
