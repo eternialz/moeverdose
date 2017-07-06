@@ -150,12 +150,6 @@
     </div>
 
     <div class="comments zone">
-        <h2><%= fa_icon "comments-o" %> Commentaires</h2>
-        <div class="comments-zone">
-            <% @post.comments.each_with_index do |comment,index| %>
-            <%= cell(:comment, comment, post: @post, index: index).(:show) %>
-            <% end %>
-        </div>
 
         <% if user_signed_in? %>
             <%= form_tag post_comments_path(@post.number), id: "comment-form" ,class: "comment-form" do |comment| %>
@@ -166,9 +160,17 @@
                 </div>
             <% end %>
         <% else %>
-            <h3>You need to be logged in to add a comment</h3>
+            <h3>Add a comment</h3>
             <p><%= link_to "Sign up", new_user_registration_path %> or <%= link_to "log in", new_user_session_path %> to post a comment</p>
+            <br />
         <% end %>
+
+        <h3><%= fa_icon "comments-o" %> Commentaires</h3>
+        <div class="comments-zone">
+            <% @post.comments.each_with_index do |comment,index| %>
+            <%= cell(:comment, comment, post: @post, index: index).(:show) %>
+            <% end %>
+        </div>
     </div>
 </div>
 

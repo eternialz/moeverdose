@@ -34,12 +34,12 @@
         min-height: 100%;
 
         h5 {
-            position: absolute;
+            position: relative;
             z-index: 1000;
             float:left;
             color: $pink;
             display: block;
-            margin-bottom: 5px;
+            margin: 0 5px 0 0;
         }
 
         h5:after {
@@ -60,7 +60,7 @@
         }
 
         p {
-            padding: 10px 0;
+            padding: 5px 0;
             float: left;
             display: block;
             width: 100%;

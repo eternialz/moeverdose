@@ -4,6 +4,7 @@
     background: image_url($header-image) no-repeat center center;
     background-size: cover;
     position: relative;
+    margin-bottom: 15px;
 
     ul {
         width: 100%;
@@ -32,9 +33,9 @@
 }
 
 .home-about {
-    height: 400px;
 
     .zone {
-        height: 370px;
+        min-height: 220px;
+        margin: 15px 0;
     }
 }

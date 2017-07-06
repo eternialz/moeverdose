@@ -1,7 +1,5 @@
 
 .btn, a.btn {
-    background-image: url(image_path('pattern(2).svg'));
-    background-position: 0 center;
     display: inline-block;
     margin: 5px 0 4px;
     min-width: 150px;
@@ -12,10 +10,10 @@
     font-size: 16px;
     text-align: left !important;
     font-weight: bold;
-    -webkit-transition: all 170ms ease-in-out;
-    -moz-transition: all 170ms ease-in-out;
-    -o-transition: all 170ms ease-in-out;
-    transition: all 170ms ease-in-out;
+    -webkit-transition: background-color 170ms ease-in-out;
+    -moz-transition: background-color 170ms ease-in-out;
+    -o-transition: background-color 170ms ease-in-out;
+    transition: background-color 170ms ease-in-out;
     color: #FFF !important;
     opacity: 1 !important;
     cursor: pointer;
@@ -24,7 +22,7 @@
     appearance: none;
     outline: none !important;
 
-    .fa {
+    .fa, svg {
         float: right;
         margin: 3px 0 0px 14px;
     }
@@ -32,52 +30,60 @@
     @media only screen and (max-width: $xsmall) {
             width: 100%;
     }
+
+    svg {
+        max-height: 16px;
+        max-width: 14px;
+    }
 }
 
 .btn:hover {
-    background-position: 30px center;
     color: #FFF !important;
 }
 
-.btn:active {
-    box-shadow: inset 0 0 0 50px rgba(0,0,0,.25);
-}
-
 .btn-pink {
-    box-shadow: inset 0 0 0 50px rgba($pink,.7);
+    background: $pink;
 
     &:active {
-        box-shadow: inset 0 0 0 50px rgba($pink,.9);
+        background: darken($pink, 5%);
     }
 }
 .btn-blue {
-    box-shadow: inset 0 0 0 50px rgba($blue,.7);
+    background: $blue;
 
     &:active {
-        box-shadow: inset 0 0 0 50px rgba($blue,.9);
+        background: darken($blue, 5%);
     }
 }
 
 .btn-yellow {
-    box-shadow: inset 0 0 0 50px rgba($yellow,.7);
+    background: $yellow;
 
     &:active {
-        box-shadow: inset 0 0 0 50px rgba($yellow,.9);
+        background: darken($yellow, 5%);
     }
 }
 
 .btn-red {
-    box-shadow: inset 0 0 0 50px rgba($red,.7);
+    background: $red;
 
     &:active {
-        box-shadow: inset 0 0 0 50px rgba($red,.9);
+        background: darken($red, 5%);
     }
 }
 
 .btn-green {
-    box-shadow: inset 0 0 0 50px rgba($green,.7);
+    background: $green;
 
     &:active {
-        box-shadow: inset 0 0 0 50px rgba($green,.9);
+        background: darken($green, 5%);
+    }
+}
+
+.btn-discord {
+    background: $discord;
+
+    &:active {
+        background: darken($discord, 5%);
     }
 }

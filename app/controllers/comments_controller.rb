@@ -6,14 +6,17 @@ class CommentsController < ApplicationController
 
     def create
         @comment = Comment.create(params.require(:comment).permit(:text))
+        length = @comment.text.length
 
-        @comment.text = scan_comment(@comment.text)
+        if length > 1 and length < 500
+            @comment.text = scan_comment(@comment.text) # This can add to the length, so validations are not used
 
-        @comment.user = current_user
-        @post.comments << @comment
-        @comment.post = @post
-        @post.save
-        @comment.save
+            @comment.user = current_user
+            @post.comments << @comment
+            @comment.post = @post
+            @post.save
+            @comment.save
+        end
 
         redirect_to post_path(@post.number)
     end
@@ -52,7 +55,7 @@ class CommentsController < ApplicationController
     end
 
     def scan_for_user(text)
-        users = text.scan(/\@[a-zA-Z0-9]+/) # matches @number
+        users = text.scan(/\@[a-zA-Z0-9]+/) # matches @username
 
         users.each do |user|
             link = '<span>@</span>' + link_to(user[1..-1], user_path(id: user[1..-1]))

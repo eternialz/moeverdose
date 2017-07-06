@@ -41,6 +41,10 @@ html {
     @media only screen and (max-width: $xsmall) {
         font-size: 14px;
     }
+
+    @media only screen and (min-width: $xlarge) {
+        font-size: 18px;
+    }
 }
 
 *, *:before, *:after {
