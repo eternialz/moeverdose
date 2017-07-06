@@ -10,7 +10,7 @@
 
     <ul>
         <h3><%= link_to 'Moeverdose', '/pages/about' %></h3>
-        <li><%= link_to 'Chat', 'https://discord.gg/6fsV4pj', target: "_blank" %></li>
+        <li><%= link_to 'Chat', 'https://discord.me/moeverdose', target: "_blank" %></li>
         <li><%= link_to 'Users', '/users' %></li>
         <li><%= link_to 'Team', '/pages/team' %></li>
         <li><%= link_to 'About', '/pages/about' %></li>
@@ -45,7 +45,7 @@
             <h3>Sign In</h3>
             <%= form_for(:user, id: 'login', :url => session_path(:user)) do |f| %>
             <%= f.email_field :email, placeholder: 'email', autocomplete: "off" %>
-            <%= f.password_field :password, autocomplete: "off", placeholder: 'password', autocomplete: "off" %>
+            <%= f.password_field :password, placeholder: 'password', autocomplete: "off" %>
             <%= link_to "Forgot your password?", new_password_path(:user) %>
             <button class="btn btn-blue" type="submit">Sign in <%= fa_icon "sign-in" %></button>
             <% end %>

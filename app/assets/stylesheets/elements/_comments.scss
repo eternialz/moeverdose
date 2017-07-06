@@ -20,7 +20,6 @@
 
     .avatar {
         position: absolute;
-        z-index: 1000;
         top:10px;
         left: 10px;
         border-radius: 3px;
@@ -34,23 +33,19 @@
         min-height: 100%;
 
         h5 {
-            position: absolute;
-            z-index: 1000;
             float:left;
             color: $pink;
             display: block;
-            margin-bottom: 5px;
+            margin: 0 5px 0 0;
         }
 
         h5:after {
-            position: absolute;
-            z-index: 1000;
             font-size: 0.8em;
             color: #DDD;
         }
 
         a.comment_number {
-            position: relative; 
+            position: relative;
             z-index: 1000;
             font-size: 0.8em;
             margin-left: 20px;
@@ -60,7 +55,7 @@
         }
 
         p {
-            padding: 10px 0;
+            padding: 5px 0;
             float: left;
             display: block;
             width: 100%;
@@ -72,6 +67,10 @@
             -o-hyphens: auto;
             hyphens: auto;
             max-width: 100%;
+        }
+
+        p span {
+            opacity: .6;
         }
     }
 

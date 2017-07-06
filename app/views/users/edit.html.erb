@@ -12,32 +12,26 @@
 
         <h3>Profile</h3>
         <div class="row clearfix">
-            <div class="column">
-                <div class="field tooltip">
-                    <%= f.text_field :biography, placeholder: "Master of daruma otoshi" %>
-                    <span><%= fa_icon "user" %> About me:</span>
-                    <div class="tip">Displayed near your username max 200 characters</div>
-                </div>
-                <div class="field tooltip">
-                    <%= f.text_field :website, placeholder: "https://mywebsite.me" %>
-                    <span><%= fa_icon "link" %> Website url:</span>
-                    <div class="tip">The link to your website with http(s)://</div>
-                </div>
-                <div class="field tooltip">
-                    <%= f.text_field :twitter, placeholder: "username" %>
-                    <span><%= fa_icon "twitter" %> Twitter profile:</span>
-                    <div class="tip">Your twitter username without the "@"</div>
-                </div>
-                <div class="field tooltip">
-                    <%= f.text_field :facebook, placeholder: "https://www.facebook.com/my.profile" %>
-                    <span><%= fa_icon "facebook" %> Facebook url:</span>
-                    <div class="tip">The full url to your facebook profile/page</div>
-                </div>
+            <div class="field_area">
+                <p><%= fa_icon "user" %> About me:</p>
+                <%= f.text_area :biography, placeholder: "Master of daruma otoshi" %>
+            </div>
+            <div class="field">
+                <%= f.text_field :website, placeholder: "https://mywebsite.me" %>
+                <span><%= fa_icon "link" %> Website url:</span>
+            </div>
+            <div class="field">
+                <%= f.text_field :twitter, placeholder: "username" %>
+                <span><%= fa_icon "twitter" %> Twitter profile:</span>
+            </div>
+            <div class="field">
+                <%= f.text_field :facebook, placeholder: "https://www.facebook.com/my.profile" %>
+                <span><%= fa_icon "facebook" %> Facebook url:</span>
             </div>
         </div>
 
-        <h3>Avatar</h3>
         <div class="row image">
+            <h3>Avatar</h3>
             <div class="banner_upload">
                 <%= f.file_field :avatar %>
             </div>
@@ -46,29 +40,30 @@
         </div>
 
 
-        <h3>Banner</h3>
         <div class="row image">
+            <h3>Banner</h3>
             <%= f.file_field :banner %>
             <div id="banner_img" style="background-image: url(<%= @user.banner(:normal) %>)"></div>
             <p>Files are resized and cropped to 1600x300px</p>
         </div>
 
 
-        <h3>Tags</h3>
-        <div class="row clearfix">
-            <div class="column">
+        <div class="clearfix">
+            <h3>Tags</h3>
+            <div class="row">
                 <div class="field_area">
                     <p><%= fa_icon "tag" %> Favorites tags:</p>
                     <%= text_area :tags, :favorites, placeholder: "1girl brown_hair", value: @user.favorites_tags  %>
+                    <p>Favorites tags are displayed as buttons to you when uploading a post to quickly add tags to the post. Replace spaces by underscores and use spaces to separate tags.</p>
                 </div>
-                <p>Favorites tags are displayed as buttons to you when uploading a post to quickly add tags to the post. Replace spaces by underscores and use spaces to separate tags.</p>
             </div>
-            <div class="column">
+
+            <div class="row">
                 <div class="field_area">
                     <p><%= fa_icon "tag" %> Blacklisted tags:</p>
                     <%= text_area :tags, :blacklisted, placeholder: "1boy", value: @user.blacklisted_tags %>
+                    <p>Posts with a blacklisted tag won't be displayed in the post list if you are logged-in. Replace spaces by underscores and use spaces to separate tags.</p>
                 </div>
-                <p>Posts with a blacklisted tag won't be displayed in the post list if you are logged-in. Replace spaces by underscores and use spaces to separate tags.</p>
             </div>
         </div>
 

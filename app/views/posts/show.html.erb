@@ -26,8 +26,10 @@
             <% if @post.report == true %>
                 <input class="reported_input" id="report_form_input" type="checkbox">
                 <div class="reported">
-                    <p>This post have been reported by <%= @post.report_user.name %> for:</p>
+                    <p>This post have been reported by <%= link_to @post.report_user.name, user_path(id: @post.report_user.name) %> for:</p>
+                    <br />
                     <p><%= @post.report_reason %></p>
+                    <br />
                     <label for="report_form_input" class="btn btn-pink">Show post <%= fa_icon 'eye' %></label>
                 </div>
             <% end %>
@@ -56,51 +58,55 @@
             <a class="action btn btn-pink" id="add_to_favorites"><%= fa_icon "heart" %> Add To Favorites</a>
             <a class="action btn btn-green" href="<%= @post.post_image.url %>" download><%= fa_icon "download" %> Download</a>
             <a class="action btn btn-yellow" target="_blank" href="https://www.google.fr/searchbyimage?site=search&image_url=<%= @post.post_image.url %>"><%= fa_icon "google" %> Search image on google</a>
-            <label class="action btn btn-blue" for="post_edit"><%= fa_icon "edit" %> Edit post</label>
-            <label class="action btn btn-red" for="report_form_input"><%= fa_icon "close" %> Report post</label>
+            <% if user_signed_in? %>
+                <label class="action btn btn-blue" for="post_edit"><%= fa_icon "edit" %> Edit post</label>
+                <label class="action btn btn-red" for="report_form_input"><%= fa_icon "close" %> Report post</label>
+            <% end %>
         </div>
     </div>
 
-    <input type="checkbox" id="post_edit">
-    <%= form_for @post, as: "post", id: "post-edit", url: post_path(@post.number) do |post| %>
-        <div class="zone row">
-            <div class="col-12">
-                <h5>Edit Post</h5>
-                <div class="field">
-                    <span><%= fa_icon "header" %> Title:</span>
-                    <%= post.text_field :title, placeholder: "Title" %>
+    <% if user_signed_in? %>
+        <input type="checkbox" id="post_edit">
+        <%= form_for @post, as: "post", id: "post-edit", url: post_path(@post.number) do |post| %>
+            <div class="zone row">
+                <div class="col-12">
+                    <h5>Edit Post</h5>
+                    <div class="field">
+                        <span><%= fa_icon "header" %> Title:</span>
+                        <%= post.text_field :title, placeholder: "Title" %>
+                    </div>
+                    <div class="field">
+                        <span><%= fa_icon "user" %> Author:</span>
+                        <% unless @post.author.blank? %>
+                        <input name="author_tag" type="text" placeholder="Author name" value="<%= @post.author.name %>">
+                        <% else %>
+                        <input name="author_tag" type="text" placeholder="Author name">
+                        <% end %>
+                    </div>
+                    <div class="field">
+                        <span><%= fa_icon "rss" %> Source:</span>
+                        <%= post.text_field :source, placeholder: "Source" %>
+                    </div>
+                    <div class="field_area">
+                        <p><%= fa_icon "tag" %> Tags:</p>
+                        <textarea name="tags" placeholder='Tags ("1girl glasses")'><% @tags.each do |tag| %><%= tag + " " %><% end %></textarea>
+                    </div>
+                    <div class="field_area">
+                        <p><%= fa_icon "group" %> Character(s):</p>
+                        <textarea name="characters" placeholder='Characters ("illyasviel_von_einzbern")'><% @characters.each do |character| %><%= character + " " %><% end %></textarea>
+                    </div>
+                    <button type="submit" form="edit_post" class="btn btn-pink" type="submit">Modifier le post <%= fa_icon 'edit' %></button>
                 </div>
-                <div class="field">
-                    <span><%= fa_icon "user" %> Author:</span>
-                    <% unless @post.author.blank? %>
-                    <input name="author_tag" type="text" placeholder="Author name" value="<%= @post.author.name %>">
-                    <% else %>
-                    <input name="author_tag" type="text" placeholder="Author name">
-                    <% end %>
-                </div>
-                <div class="field">
-                    <span><%= fa_icon "rss" %> Source:</span>
-                    <%= post.text_field :source, placeholder: "Source" %>
-                </div>
-                <div class="field_area">
-                    <p><%= fa_icon "tag" %> Tags:</p>
-                    <textarea name="tags" placeholder='Tags ("1girl glasses")'><% @tags.each do |tag| %><%= tag + " " %><% end %></textarea>
-                </div>
-                <div class="field_area">
-                    <p><%= fa_icon "group" %> Character(s):</p>
-                    <textarea name="characters" placeholder='Characters ("illyasviel_von_einzbern")'><% @characters.each do |character| %><%= character + " " %><% end %></textarea>
-                </div>
-                <button type="submit" form="edit_post" class="btn btn-pink" type="submit">Modifier le post <%= fa_icon 'edit' %></button>
             </div>
-        </div>
-    <% end %>
+        <% end %>
 
-    <input class="reported_input" id="report_form_input" type="checkbox">
-    <%= form_for @post, as: "post", url: report_post_path(@post.number), html: {class: "zone report_form", id: 'report_post'} do |post| %>
-        <%= post.check_box :report, class: "hide", checked: true %>
-        <h2><%= fa_icon "exclamation-circle" %> Report post</h2>
-        <%= post.text_area :report_reason, placeholder: "Reason" %>
-        <button type="submit" form="report_post" class="btn btn-red" type="submit">Report <%= fa_icon 'exclamation' %></button>
+        <input class="reported_input" id="report_form_input" type="checkbox">
+        <%= form_for @post, as: "post", url: report_post_path(@post.number), html: {class: "zone report_form", id: 'report_post'} do |post| %>
+            <%= post.check_box :report, class: "hide", checked: true %>
+            <h2><%= fa_icon "exclamation-circle" %> Report post</h2>
+            <%= post.text_area :report_reason, placeholder: "Reason" %>
+            <button type="submit" form="report_post" class="btn btn-red" type="submit">Report <%= fa_icon 'exclamation' %></button>
+        <% end %>
     <% end %>
 
     <div class="zone row">
@@ -145,17 +151,12 @@
                 <li id="type"><span>type:</span><%= @post.post_image_content_type.split("/")[-1].upcase %></li>
                 <li id="size"><span>size:</span><%= '%.3f' % (@post.post_image_file_size.to_f / 1048576).to_s + ' MB' %></li>
                 <li id="date"><span>date:</span><%= @post.post_image_updated_at.to_time.strftime('%B %e at %l:%M %p') %></li>
+                <li id="date"><span>MD5:</span><%= @post.md5 %></li>
             </ul>
         </div>
     </div>
 
     <div class="comments zone">
-        <h2><%= fa_icon "comments-o" %> Commentaires</h2>
-        <div class="comments-zone">
-            <% @post.comments.each_with_index do |comment,index| %>
-            <%= cell(:comment, comment, post: @post, index: index).(:show) %>
-            <% end %>
-        </div>
 
         <% if user_signed_in? %>
             <%= form_tag post_comments_path(@post.number), id: "comment-form" ,class: "comment-form" do |comment| %>
@@ -166,8 +167,19 @@
                 </div>
             <% end %>
         <% else %>
-            <h3>You need to be logged in to add a comment</h3>
+
+            <h3>Add a comment</h3>
             <p><%= link_to "Sign up", new_user_registration_path %> or <%= link_to "log in", new_user_session_path %> to post a comment</p>
+            <br />
+        <% end %>
+
+        <% if @post.comments.any? %>
+            <h3><%= fa_icon "comments-o" %> Commentaires</h3>
+            <div class="comments-zone">
+                <% @post.comments.each_with_index do |comment,index| %>
+                    <%= cell(:comment, comment, post: @post, index: index).(:show) %>
+                <% end %>
+            </div>
         <% end %>
     </div>
 </div>

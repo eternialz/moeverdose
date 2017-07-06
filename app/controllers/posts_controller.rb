@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+    require 'digest/md5'
+
     before_action :try_set_post, only: [:show]
     before_action :set_post, only: [:edit, :update, :overdose, :shortage, :favorite, :report]
     before_action :authenticate_user!, only: [:update, :overdose, :shortage, :report, :favorite, :create, :new]
@@ -156,6 +158,8 @@ class PostsController < ApplicationController
         end
 
         dimensions = Paperclip::Geometry.from_file(@post.post_image.queued_for_write[:original].path)
+
+        @post.md5 = Digest::MD5.file(@post.post_image.queued_for_write[:original].path).hexdigest
 
         @post.width = dimensions.width
         @post.height = dimensions.height
