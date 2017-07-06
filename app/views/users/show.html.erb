@@ -13,14 +13,27 @@
         <% end %>
         <div class="user_banner">
             <% if @current %>
-            <a class="btn btn-blue" href="<%= edit_user_path %>"><%= fa_icon "edit" %> edit profile</a>
+                <a class="btn btn-blue" href="<%= edit_user_path %>"><%= fa_icon "edit" %> edit profile</a>
             <% end %>
-            <h3><%= @user.biography %></h3><br />
             <p> Last seen: <%= @user.current_sign_in_at.to_time.strftime('%B %e at %l:%M %p') %></p>
         </div>
     </div>
 
-    <div class="zone clearfix tags row">
+    <% if !@user.biography.empty? %>
+        <div class="zone biography row">
+            <h3>About me</h3>
+            <p><%= @user.biography %></p>
+        </div>
+    <% else %>
+        <% if current_user == @user %>
+            <div class="zone biography row">
+                <h3>About me</h3>
+                <p>You can edit this text in your <%= link_to "account options", edit_user_path(id: @user.name) %>.</p>
+            </div>
+        <% end %>
+    <% end %>
+
+    <div class="zone tags row">
         <h3 class="zone_title">My Tags</h3>
         <div class="col-6">
             <h6>Favorites Tags</h6>
@@ -44,7 +57,7 @@
         </div>
     </div>
 
-    <div class="zone clearfix level row">
+    <div class="zone level row">
         <h3 class="zone_title">Level</h3>
         <div class="col-12">
             <div class="progress_bar">
@@ -53,17 +66,6 @@
             <span><%= @level.name %></span>
             <span style="float: right;"><%= @next_level.name %></span>
             <%= @to_level %>
-        </div>
-    </div>
-
-    <div class="zone clearfix stats row">
-        <h3 class="zone_title">Stats</h3>
-        <div class="col-6 stats">
-            <ul class="user_stats">
-                <li><%= @user.upload_count %> upload(s)</li>
-                <li>666 comments</li>
-                <li>126039 uploads</li>
-            </ul>
         </div>
     </div>
 

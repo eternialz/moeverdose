@@ -20,7 +20,6 @@
 
     .avatar {
         position: absolute;
-        z-index: 1000;
         top:10px;
         left: 10px;
         border-radius: 3px;
@@ -34,8 +33,6 @@
         min-height: 100%;
 
         h5 {
-            position: relative;
-            z-index: 1000;
             float:left;
             color: $pink;
             display: block;
@@ -43,8 +40,6 @@
         }
 
         h5:after {
-            position: absolute;
-            z-index: 1000;
             font-size: 0.8em;
             color: #DDD;
         }
