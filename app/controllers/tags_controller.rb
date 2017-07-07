@@ -1,5 +1,5 @@
 class TagsController < ApplicationController
-    before_action :set_tag
+    before_action :set_tag, except: [:index]
     before_action :authenticate_user!
 
     def index
@@ -13,7 +13,11 @@ class TagsController < ApplicationController
     def update
         @tag.names = params[:names].downcase.split(" ").insert(0, @tag.names[0])
 
-        @tag.save
+        if @tag.save
+            redirect_to tags_path
+        else
+            edit
+        end
     end
 
     private

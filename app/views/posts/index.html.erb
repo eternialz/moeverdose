@@ -3,7 +3,7 @@
     <div class="post-container clearfix">
         <% @posts.each do |post| %>
             <div class="post-thumbnail clearfix" style="background-image: url(<%= post.post_image.url(:thumb)%> )">
-                <a title="<%= post.title %>" href="<%= post_path(post.number) %>" class="informations">
+                <a title="<%= post.title %>" href="<%= post_path(post.number, query: params[:query]) %>" class="informations">
                     <h3><%= post.title %></h3>
                     <span class="post-stats">
                         <span title="overdose(s)"><%= post.overdose %> <%= fa_icon "heartbeat" %> </span>

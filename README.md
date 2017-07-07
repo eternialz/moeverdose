@@ -30,8 +30,6 @@ We currently does not provide help for installing and deploying Moeverdose.
 #### POSTS
 * Search/filter system
 * Sharing buttons
-* Views count
-* Duplicate finder before post save, with md5 and/or perceptual hashes (better)
 
 #### COMMENTS
 * Spoilers
@@ -51,6 +49,7 @@ We currently does not provide help for installing and deploying Moeverdose.
 * Posts notes (for story, traductions, ...)
 * Code testing
 * Install and Deployment script
+* Possible duplicate finder with perceptual hashes
 
 # Licence
 

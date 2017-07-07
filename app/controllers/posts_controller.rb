@@ -8,11 +8,14 @@ class PostsController < ApplicationController
     def show
         @tags = []
         @characters = []
+        @authors = []
         @post.tags.each do |tag|
             if tag.content?
                 @tags << tag.names[0]
             elsif tag.character?
                 @characters << tag.names[0]
+            elsif tag.author?
+                @authors << tag.names[0]
             end
         end
         if @post.overdose == 0 && @post.moe_shortage == 0
