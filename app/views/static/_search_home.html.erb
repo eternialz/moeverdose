@@ -4,24 +4,3 @@
         <button type="submit" form="search" value="Submit"><%= fa_icon "search" %></button>
     </form>
 </div>
-
-<script>
-    $(".tag").click( function addRemoveTag() {
-        var choice = jQuery.trim($(this).text());
-        var input = $("#tags");
-
-        // if the <li> with the word was allready clicked, then remove its "selected" class
-        input.val(function(_, val) {
-            if (val.indexOf(choice) >= 0) {
-                var text = val;
-                var re = new RegExp(choice, "g"); // all occurence of choice
-                text = text.replace(re, ''); // remove all occurence of choice
-                text = text.replace(/  /g, ' '); // change all double space to one space
-
-                return text;
-            } else {
-                return val.replace(/  /g, ' ') + choice + ' '; // add
-            }
-        });
-    });
-</script>
