@@ -32,6 +32,9 @@ class PostsController < ApplicationController
         @post.report = true
         @post.report_user = current_user
         @post.save
+
+        flash[:info] = "Post reported"
+
         redirect_to post_path(@post.number)
     end
 
@@ -190,9 +193,15 @@ class PostsController < ApplicationController
                 t.posts_count += 1
                 t.save
             end
+
+            flash[:success] = "Post #{@post.title} created!"
+
             redirect_to post_path(@post.number)
         else
-            redirect_to :back
+            flash[:error] = "The post could not be created. Please verify the picture dimensions and size."
+
+            @favorites_tags = current_user.favorites_tags.split
+            render :template => "posts/new"
         end
     end
 
@@ -221,15 +230,21 @@ class PostsController < ApplicationController
 
         if author_name != "" && author_name != nil
             author = TagLogic.find_or_create_author(author_name, @post)
+        else
+            author = Author.new
         end
 
-        if @post.save
+        if author.save && @post.save
             @post.tags.each do |t|
-                author.save
                 t.posts_count += 1
                 t.save
             end
+
+            flash[:success] = "Post id #{@post.number} updated!"
+        else
+            flash[:error] = "Modifications could not be saved! Please verify informations entered"
         end
+
         redirect_to post_path(@post.number)
     end
 
