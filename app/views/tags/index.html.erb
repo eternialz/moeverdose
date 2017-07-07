@@ -1,0 +1,18 @@
+<div class="row tags">
+    <% @tags.each do |t| %>
+        <ul>
+            <li class="zone">
+                <div class="title <%= t.type %>">
+                    <%= link_to edit_tag_path(t), class: "btn btn-blue"  do %>
+                        Edit tag aliases<%= fa_icon "edit" %>
+                    <% end %>
+                    <h5><%= t.names[0] %></h5>
+                </div>
+
+                <% t.names[1..-1].each do |n| %>
+                    <span><%= n %></span>
+                <% end %>
+            </li>
+        </ul>
+    <% end %>
+</div>

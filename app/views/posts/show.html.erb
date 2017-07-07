@@ -15,6 +15,7 @@
 <% end %>
 
 <div class="row posts">
+    <%= render 'posts/search' %>
     <div class="post-container">
         <div class="post_navigation clearfix">
             <h2><%= @post.title %></h2>
@@ -53,7 +54,7 @@
     </div>
 
     <div class="zone row">
-        <div class="col-12 actions">
+        <div class="col-6 actions">
             <h5><%= fa_icon "bolt" %> Actions</h5>
             <a class="action btn btn-pink" id="add_to_favorites"><%= fa_icon "heart" %> Add To Favorites</a>
             <a class="action btn btn-green" href="<%= @post.post_image.url %>" download><%= fa_icon "download" %> Download</a>
@@ -62,6 +63,26 @@
                 <label class="action btn btn-blue" for="post_edit"><%= fa_icon "edit" %> Edit post</label>
                 <label class="action btn btn-red" for="report_form_input"><%= fa_icon "close" %> Report post</label>
             <% end %>
+        </div>
+
+        <div class="col-6 social_sharing">
+            <h5><%= fa_icon "share" %> Share</h5>
+            <!-- Buffer -->
+            <a href="https://bufferapp.com/add?url=<%= request.original_url %>" target="_blank" class="btn-social btn-buffer">
+                <svg fill="#FFF" height="16px" viewBox="0 0 24 24" width="16px"><g><path d="M22.8,11.3l-2.1-1c-0.4-0.2-0.9-0.2-1.3,0l-7.1,3.2c-0.2,0.1-0.4,0.1-0.5,0l-7.1-3.2c-0.4-0.2-0.9-0.2-1.3,0l-2.1,1   c-0.3,0.1-0.5,0.4-0.5,0.8c0,0.3,0.2,0.6,0.5,0.8l10.1,4.6c0.2,0.1,0.4,0.1,0.7,0.1s0.5-0.1,0.7-0.1l10.1-4.6   c0.3-0.1,0.5-0.4,0.5-0.8C23.3,11.7,23.1,11.4,22.8,11.3z"/><path d="M22.8,17.2l-2.1-1c-0.4-0.2-0.9-0.2-1.3,0l-7.1,3.2c-0.2,0.1-0.4,0.1-0.5,0l-7.1-3.2c-0.4-0.2-0.9-0.2-1.3,0l-2.1,1   c-0.3,0.1-0.5,0.4-0.5,0.8c0,0.3,0.2,0.6,0.5,0.8l10.1,4.6c0.2,0.1,0.4,0.1,0.7,0.1c0.2,0,0.5-0.1,0.7-0.1l10.1-4.6   c0.3-0.1,0.5-0.4,0.5-0.8C23.3,17.6,23.1,17.3,22.8,17.2z"/><path d="M1.2,6.9l10.1,4.6c0.2,0.1,0.4,0.1,0.7,0.1s0.5-0.1,0.7-0.1l10.1-4.6c0.3-0.1,0.5-0.4,0.5-0.8c0-0.3-0.2-0.6-0.5-0.8   l-10-4.6c-0.5-0.2-1-0.2-1.5,0l-10,4.6C0.9,5.4,0.7,5.7,0.7,6.1C0.7,6.4,0.9,6.7,1.2,6.9z"/></g></svg>
+            </a>
+
+            <!-- Facebook -->
+            <a href="http://www.facebook.com/sharer.php?u=<%= request.original_url %>" target="_blank" class="btn-social btn-facebook"><%= fa_icon "facebook" %></a>
+
+            <!-- Reddit -->
+            <a href="http://reddit.com/submit?url=<%= request.original_url %>" target="_blank" class="btn-social btn-reddit"><%= fa_icon "reddit" %></a>
+
+            <!-- Tumblr-->
+            <a href="http://www.tumblr.com/share/link?url=<%= request.original_url %>" target="_blank" class="btn-social btn-tumblr"><%= fa_icon "tumblr" %></a>
+
+            <!-- Twitter -->
+            <a href="https://twitter.com/share?url=<%= request.original_url %>" target="_blank" class="btn-social btn-twitter"><%= fa_icon "twitter" %></a>
         </div>
     </div>
 

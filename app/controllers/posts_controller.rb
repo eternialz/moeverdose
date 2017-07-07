@@ -8,11 +8,14 @@ class PostsController < ApplicationController
     def show
         @tags = []
         @characters = []
+        @authors = []
         @post.tags.each do |tag|
             if tag.content?
-                @tags << tag.name
+                @tags << tag.names[0]
             elsif tag.character?
-                @characters << tag.name
+                @characters << tag.names[0]
+            elsif tag.author?
+                @authors << tag.names[0]
             end
         end
         if @post.overdose == 0 && @post.moe_shortage == 0
@@ -92,20 +95,27 @@ class PostsController < ApplicationController
 
     def index
         @permited_posts_per_page = ['2', '8', '16', '32', '64']
-        if params[:posts_per_page] != nil
+        #Default posts per page
+        @posts_per_page = "32"
+        if !params[:posts_per_page].nil?
             # Custom number of posts per page
             if @permited_posts_per_page.include? params[:posts_per_page]
                 @posts_per_page = params[:posts_per_page]
-            else
-                @posts_per_page = "32"
             end
-        else # Default number of posts per page
-            @posts_per_page = "32"
         end
-        if params[:page] == nil
-            params[:page] = 1
+
+        params[:page] = params[:page].nil? ? 1 : params[:page]
+        if params[:query]
+            posts_tags_ids = Tag.where(:names.in => params[:query].split()).map do |t| t.id end
+
+            @posts = Kaminari.paginate_array(Post.where(
+                report: :false,
+                :tag_ids.all => posts_tags_ids
+            ).order('created_at DESC')).page(params[:page]).per(@posts_per_page)
+        else
+            @posts = Kaminari.paginate_array(Post.where(report: :false).order('created_at DESC')).page(params[:page]).per(@posts_per_page)
         end
-        @posts = Post.where(report: :false).order('created_at DESC').page(params[:page]).per(@posts_per_page)
+
         @pages = []
         @current_page = params[:page].to_i
         (@current_page-3..@current_page+3).to_a.each do |page|
@@ -113,20 +123,25 @@ class PostsController < ApplicationController
                 @pages << page
             end
         end
+
         @tags = []
         @characters = []
         @authors = []
         @posts.each do |post|
-            post.tags.each do |tag|
-                if tag.content? && !(@tags.include?(tag.name))
-                    @tags << tag.name
-                elsif tag.character? && !(@characters.include?(tag.name))
-                    @characters << tag.name
-                elsif tag.author? && !(@authors.include?(tag.name))
-                    @authors << tag.name
-                end
-            end
+            post_logic = PostLogic.new(post)
+            results = post_logic.get_different_tags
+            @tags += results[:tags]
+            @characters += results[:characters]
+            @authors += results[:authors]
+
         end
+        @tags = @tags.uniq
+        @characters = @characters.uniq
+        @authors = @authors.uniq
+
+        @tags.sort_by!{ |tag| tag&.downcase }
+        @characters.sort_by!{ |character| character&.downcase }
+        @authors.sort_by!{ |author| author&.downcase }
     end
 
     def new
@@ -147,35 +162,14 @@ class PostsController < ApplicationController
         tags = params[:tags].downcase.split(" ")
 
         tags.each do |tag|
-            t = Tag.where(name: tag, type: :content)
-            if t.empty?
-                t = Tag.new({name: tag, type: :content})
-            end
-            @post.tags << t
+            TagLogic.find_or_create(tag, :content, @post)
         end
 
         characters = params[:characters].downcase.split(" ")
 
         characters.each do |character|
-            c = Tag.where(name: character, type: :character)
-            if c.empty?
-                c = Tag.new({name: character, type: :character})
-            end
-            @post.tags << c
+            TagLogic.find_or_create(character, :character, @post)
         end
-
-        author_name = params[:author]
-        author = Tag.where(name: author_name.downcase.tr(" ", "_"), type: :author)
-
-        if author.empty?
-            author = Tag.new({name: author_name.downcase.tr(" ", "_"), type: :author})
-            author_profile = Author.new({name: author_name})
-        else
-            author_profile = Author.find_by({name: author_name})
-        end
-
-        @post.tags << author
-        @post.author = author_profile
 
         dimensions = Paperclip::Geometry.from_file(@post.post_image.queued_for_write[:original].path)
 
@@ -185,17 +179,14 @@ class PostsController < ApplicationController
         @post.height = dimensions.height
 
         @post.user = current_user
-        @post.user.upload_count += 1
+        user_logic = UserLogic.new(current_user)
+        user_logic.update_level
 
-        if @post.user.level.final == false
-            if @post.user.level.max_exp == @post.user.upload_count
-                @post.user.level = Level.find_by(rank: @post.user.level.rank + 1)
-            end
-        end
+        author = TagLogic.find_or_create_author(params[:author], @post)
 
         if @post.save
-            author_profile.save
             @post.tags.each do |t|
+                author.save
                 t.posts_count += 1
                 t.save
             end
@@ -217,43 +208,24 @@ class PostsController < ApplicationController
         tags = params[:tags].downcase.split(" ")
 
         tags.each do |tag|
-            t = Tag.where(name: tag, type: :content)
-            if t.empty?
-                t = Tag.new({name: tag, type: :content})
-            end
-            @post.tags << t
+            TagLogic.find_or_create(tag, :content, @post)
         end
 
         characters = params[:characters].downcase.split(" ")
 
         characters.each do |character|
-            c = Tag.where(name: character, type: :character)
-            if c.empty?
-                c = Tag.new({name: character, type: :character})
-            end
-            @post.tags << c
+            TagLogic.find_or_create(character, :character, @post)
         end
 
         author_name = params[:author_tag]
 
         if author_name != "" && author_name != nil
-            author = Tag.where(name: author_name.downcase.tr(" ", "_"), type: :author)
-
-            if author.empty?
-                author = Tag.new({name: author_name.downcase.tr(" ", "_"),type: :author})
-                author_profile = Author.new({name: author_name, posts: [@post]})
-            else
-                author_profile = Author.find_by({name: author_name})
-                author_profile.posts << @post
-            end
+            author = TagLogic.find_or_create_author(author_name, @post)
         end
 
-        @post.tags << author
-        @post.author = author_profile
-
         if @post.save
-            author_profile.save
             @post.tags.each do |t|
+                author.save
                 t.posts_count += 1
                 t.save
             end

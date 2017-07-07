@@ -1,0 +1,62 @@
+
+.btn-social {
+    float: left;
+    margin: 5px;
+    color: #FFF !important;
+    border-radius: 3px;
+    min-width: auto;
+    line-height: 20px;
+    width: 35px;
+    height: 35px;
+    padding: 7px;
+    text-align: center;
+
+    .fa, svg {
+        float: none;
+        margin-left: 0;
+    }
+
+    svg {
+        margin: 3px 0 0 1px;
+    }
+}
+
+.btn-buffer {
+    background: $buffer;
+
+    &:active {
+        background: darken($buffer, 5%);
+    }
+}
+
+.btn-twitter {
+    background: $twitter;
+
+    &:active {
+        background: darken($twitter, 5%);
+    }
+}
+
+.btn-facebook {
+    background: $facebook;
+
+    &:active {
+        background: darken($facebook, 5%);
+    }
+}
+
+.btn-reddit {
+    background: $reddit;
+
+    &:active {
+        background: darken($reddit, 5%);
+    }
+}
+
+.btn-tumblr {
+    background: $tumblr;
+
+    &:active {
+        background: darken($tumblr, 5%);
+    }
+}
