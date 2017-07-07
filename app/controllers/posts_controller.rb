@@ -110,7 +110,7 @@ class PostsController < ApplicationController
 
             @posts = Kaminari.paginate_array(Post.where(
                 report: :false,
-                :tag_ids.in => posts_tags_ids
+                :tag_ids.all => posts_tags_ids
             ).order('created_at DESC')).page(params[:page]).per(@posts_per_page)
         else
             @posts = Kaminari.paginate_array(Post.where(report: :false).order('created_at DESC')).page(params[:page]).per(@posts_per_page)
