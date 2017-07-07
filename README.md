@@ -13,22 +13,13 @@ We currently does not provide help for installing and deploying Moeverdose.
 # TODOs:
 
 #### ADMIN
-* Possibility to change user roles
-* All Post list ordered by most recent
-* Prevent user deletion if they are not regular users
-* All Tag list and their aliases
-* All reported comments + delete or acceptation
-* Interpret html code in News text
+* Better admin features
 
 #### LEVEL
-* Maybe change level max exp for exp to next level
+* Change level.max_exp for level.exp_to_next_level
 * Level grow when other user like uploaded posts by the user
 
-#### TAGS
-* Page to add and modify aliases
-
 #### POSTS
-* Search/filter system
 * Sharing buttons
 
 #### COMMENTS
@@ -44,8 +35,7 @@ We currently does not provide help for installing and deploying Moeverdose.
 # PLANNED FEATURES
 * Batch Upload
 * Batch Delete
-* Keep search/filters betweens pages
-* Integrate filter to next/previous pages
+* Keep query in next/previous pages
 * Posts notes (for story, traductions, ...)
 * Code testing
 * Install and Deployment script
