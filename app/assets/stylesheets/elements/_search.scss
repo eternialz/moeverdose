@@ -3,6 +3,14 @@
     margin: 20px 0;
     box-shadow: 0 1px 3px rgba(0,0,0,.25);
 
+    &.search-home {
+        margin: 0 0 15px;
+
+        input[type=text] {
+            width: calc(100% - 46px);
+        }
+    }
+
     input[type=text] {
         background: #000;
         color: #FFF;
@@ -11,6 +19,7 @@
         width: calc(100% - 92px);
         border-radius: 0;
         height: 49px;
+        border: 0;
         border-bottom: 3px solid #888;
         -webkit-transition: all 170ms ease-in-out;
         -moz-transition: all 170ms ease-in-out;
@@ -20,7 +29,7 @@
 
     input[type=text]:focus {
         border-color: $pink;
-        background: #111;
+        background: #222;
         outline: none;
     }
 
@@ -39,6 +48,12 @@
         -o-transition: all 170ms ease-in-out;
         transition: all 170ms ease-in-out;
         border-bottom: 3px solid #888;
+    }
+
+    button:hover, label:hover {
+        border-color: $pink;
+        background: #222;
+        cursor: pointer;
     }
 
     i {

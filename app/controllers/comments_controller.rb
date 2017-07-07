@@ -39,6 +39,7 @@ class CommentsController < ApplicationController
         text = scan_for_post(text)
         text = scan_for_user(text)
         text = scan_for_comment(text)
+        text = scan_for_spoiler(text)
         return text
     end
 
@@ -73,6 +74,18 @@ class CommentsController < ApplicationController
             link = '<span>$</span>' + link_to(comment[1..-1], '#comment_' + comment[1..-1])
 
             text.sub! comment, link
+        end
+
+        return text
+    end
+
+    def scan_for_spoiler(text)
+        spoilers = text.scan(/\[spoiler\].+?\[\/spoiler\]/) # matches $number
+
+        spoilers.each do |spoiler|
+            spoil = '<div class="spoiler">' + spoiler[9..-11] + '</div>'
+
+            text.sub! spoiler, spoil
         end
 
         return text
