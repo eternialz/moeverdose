@@ -170,9 +170,7 @@ class PostsController < ApplicationController
         end
 
         if @post.save
-            if author != "" && author != nil
-                author.save
-            end
+            author&.save
 
             TagLogic.change_counts(@post.tags, 1)
 
@@ -206,14 +204,10 @@ class PostsController < ApplicationController
         author_name = params[:author_tag]
         if author_name != "" && author_name != nil
             author = TagLogic.find_or_create_author(author_name, @post)
-        else
-            author = Author.new
         end
 
         if @post.save
-            if author != "" && author != nil
-                author.save
-            end
+            author&.save
 
             TagLogic.change_counts(@old_tags, -1)
             TagLogic.change_counts(@post.tags, 1)
