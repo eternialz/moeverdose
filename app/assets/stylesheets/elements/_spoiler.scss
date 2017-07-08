@@ -1,27 +1,35 @@
-.spoiler {
-    color: #444;
-    background: #444;
-    border: 2px solid #444;
+span.spoiler {
+    color: #000;
+    background: #000;
+    border: 2px solid #000;
     border-radius: 3px;
-    transition: 170ms background ease-in-out;
     margin: 10px 0;
     padding: 5px;
     position: relative;
+    display: inline-block;
+    min-width: 75px;
+
+    a {
+        color: #000;
+    }
 
     &::after {
         color: #FFF;
-        content: "spoiler (hover or tap to see)";
+        content: "spoiler";
         left: 5px;
         position: absolute;
         top: 5px;
-        transition: 170ms color ease-in-out;
     }
 
     &:hover {
         background: #FFF;
 
+        a {
+            color: $pink;
+        }
+
         &::after {
-            color: transparent;
+            visibility: hidden;
         }
     }
 }

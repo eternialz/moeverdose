@@ -12,7 +12,7 @@ class TagsController < ApplicationController
             end
         end
 
-        @tags = Kaminari.paginate_array(Tag.all).page(params[:page]).per(10).padding(3)
+        @tags = Kaminari.paginate_array(Tag.all).page(params[:page]).per(20)
     end
 
     def edit

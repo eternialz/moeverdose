@@ -40,8 +40,7 @@ class User
 
   # Credentials
   field :name, type: String
-  validates :name,  uniqueness: true
-  validates :name,  presence: true
+  validates :name,  uniqueness: true, presence: true
 
   validates :email, presence: true
 

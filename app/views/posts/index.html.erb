@@ -1,27 +1,33 @@
 <div class="row posts">
     <%= render 'posts/search' %>
     <div class="post-container clearfix">
-        <% @posts.each do |post| %>
-            <div class="post-thumbnail clearfix" style="background-image: url(<%= post.post_image.url(:thumb)%> )">
-                <a title="<%= post.title %>" href="<%= post_path(post.number, query: params[:query]) %>" class="informations">
-                    <h3><%= post.title %></h3>
-                    <span class="post-stats">
-                        <span title="overdose(s)"><%= post.overdose %> <%= fa_icon "heartbeat" %> </span>
-                        <span title="shortage(s)"><%= post.moe_shortage %> <%= fa_icon "thumbs-down" %> </span>
-                        <!-- TODO integrate post comment count -->
-                        <span title="comment(s)"><%= 0 %> <%= fa_icon "comment" %></span>
-                    </span>
-                </a>
+        <% if !@posts.empty? %>
+            <% @posts.each do |post| %>
+                <div class="post-thumbnail clearfix" style="background-image: url(<%= post.post_image.url(:thumb)%> )">
+                    <a title="<%= post.title %>" href="<%= post_path(post.number, query: params[:query]) %>" class="informations">
+                        <h3><%= post.title %></h3>
+                        <span class="post-stats">
+                            <span title="overdose(s)"><%= post.overdose %> <%= fa_icon "heartbeat" %> </span>
+                            <span title="shortage(s)"><%= post.moe_shortage %> <%= fa_icon "thumbs-down" %> </span>
+                            <!-- TODO integrate post comment count -->
+                            <span title="comment(s)"><%= 0 %> <%= fa_icon "comment" %></span>
+                        </span>
+                    </a>
+                </div>
+            <% end %>
+        <% else %>
+            <div class="col-12">
+                <h4 style="text-align: center;">No posts were found</h4>
             </div>
         <% end %>
     </div>
-    <form class="post_pagination" action="<%= posts_path %>">
+    <form class="general_pagination" action="<%= posts_path %>">
         <%= paginate @posts %>
         <div>
             <span>posts per page </span>
             <% @permited_posts_per_page.each do |n| %>
                 <% if @posts_per_page == n %>
-                    <input type="radio" name="posts_per_page" checked="checked  " id=<%= n %> value=<%= n %>>
+                    <input type="radio" name="posts_per_page" checked="checked" id=<%= n %> value=<%= n %>>
                 <% else %>
                     <input type="radio" name="posts_per_page" id=<%= n %> value=<%= n %>>
                 <% end %>

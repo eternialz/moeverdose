@@ -1,0 +1,52 @@
+.list {
+    ul {
+        margin: 0
+    }
+
+    li {
+        display: block;
+        background: #FFF;
+        box-shadow: 0 1px 3px rgba(0,0,0,.25);
+        padding: 0;
+        height: 54px;
+        overflow: hidden;
+        margin: 6px 0;
+
+        .title, .count {
+            background: #DDD;
+            float: left;
+            padding: 18px 16px;
+            height: 54px;
+        }
+
+        .count {
+            float: right;
+        }
+
+        .title.character h5 {
+            color: $blue;
+        }
+
+        .title.author h5 {
+            color: $green;
+        }
+
+        span {
+            float: left;
+            height: 54px;
+            display: inline-block;
+            padding: 18px 16px;
+            border-left: 1px solid #DDD;
+            max-width: 150px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        h5 {
+            margin: 0;
+            display: inline-block;
+        }
+
+    }
+}

@@ -89,7 +89,7 @@ class CommentsController < ApplicationController
         spoilers = text.scan(/\[spoiler\].+?\[\/spoiler\]/) # matches $number
 
         spoilers.each do |spoiler|
-            spoil = '<div class="spoiler">' + spoiler[9..-11] + '</div>'
+            spoil = '<span class="spoiler">' + spoiler[9..-11] + '</span>'
 
             text.sub! spoiler, spoil
         end

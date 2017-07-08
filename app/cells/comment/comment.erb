@@ -5,7 +5,7 @@
             <h5 class="<%= model.user.role %>"><%= model.user.name %></h5>
         </a>
         <a id="comment_<%= options[:index] + 1 %>" href="#comment_<%= options[:index] + 1 %>" class="comment_number"> comment #<%= options[:index] + 1 %></a>
-        <%= link_to "report", comment_report_path(options[:post][:number], model), method: :patch %>
+        <%= link_to "report", comment_report_path(options[:post][:number], model), class:"report", method: :patch %>
         <p><%= model.text %></p>
     </div>
 </div>

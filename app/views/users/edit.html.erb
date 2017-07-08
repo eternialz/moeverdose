@@ -52,7 +52,7 @@
                 <div class="banner_upload">
                     <%= f.file_field :avatar %>
                 </div>
-                <%= image_tag @user.avatar, id: "avatar_img" %>
+                <%= image_tag @user.avatar(:thumb), id: "avatar_img" %>
                 <p>Files are resized and cropped to 120x120px</p>
             </div>
         </div>

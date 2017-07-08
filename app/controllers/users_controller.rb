@@ -21,6 +21,10 @@ class UsersController < ApplicationController
         end
     end
 
+    def index
+        @users = Kaminari.paginate_array(User.order('upload_count DESC')).page(params[:page]).per(20)
+    end
+
     def update
         @user.update_attributes(account_update_params)
         tags = params[:tags]
