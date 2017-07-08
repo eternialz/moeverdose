@@ -29,9 +29,12 @@ class UsersController < ApplicationController
         @user.blacklisted_tags = tags[:blacklisted]
 
         if @user.save
+            flash[:success] = "Profile saved."
+
             redirect_to(user_path(@user.name))
         else
-            binding.pry
+            flash[:error] = "Profile informations invalid. Please verify and try again."
+
             redirect_to(edit_user_path(@user.name))
         end
     end

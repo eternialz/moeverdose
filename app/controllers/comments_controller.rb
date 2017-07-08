@@ -14,8 +14,14 @@ class CommentsController < ApplicationController
             @comment.user = current_user
             @post.comments << @comment
             @comment.post = @post
-            @post.save
-            @comment.save
+
+            if @post.save && @comment.save
+                flash[:success] = "Comment added."
+            else
+                flash[:error] = "Comment invalid."
+            end
+        else
+            flash[:error] = "Comment invalid: please verify the length."
         end
 
         redirect_to post_path(@post.number)

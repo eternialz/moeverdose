@@ -23,16 +23,13 @@ class TagsController < ApplicationController
     def update
         @tag.names = params[:names].downcase.split(" ").insert(0, @tag.names[0])
 
+        @tag.names = @tag.names.uniq # remove duplicates
+
         if @tag.save
-<<<<<<< Updated upstream
-            redirect_to tags_path
-        else
-=======
             flash.now[:success] = "Modifications for #{@tag.names[0]} saved!"
             redirect_to tags_path
         else
             flash.now[:error] = "The modifications you entered are invalid. Please verify the informations and try to save again."
->>>>>>> Stashed changes
             edit
         end
     end
