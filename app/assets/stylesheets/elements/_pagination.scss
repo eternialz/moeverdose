@@ -1,22 +1,8 @@
-.user_pagination {
-
-    li:nth-child(2) button {
-        border-radius: 0 3px 3px 0;
-        margin-right: 5px;
-    }
-
-    li:nth-child(3) button {
-        border-radius: 3px 0 0 3px;
-        margin-left: 5px;
-    }
-}
-
 .post_pagination {
     background: #000;
     margin: 0;
     padding: 10px;
     text-align: center;
-    font-size: 0;
     color: #FFF;
 
     div {
@@ -39,44 +25,35 @@
         }
     }
 
-    p {
-        font-size: 12px;
-        margin: 0;
-    }
-
-    li {
-        display: inline-block;
-    }
-
-    .number {
-        display: inline-block;
-        height: 40px;
-        min-width: 40px;
-        cursor: pointer;
-        padding: 4px;
-        font-size: 20px;
+    .pagination {
         background: #FFF;
-        color: #555;
-        font-weight: 900;
-        border: none;
-        border-right: 2px solid #F6F6F6;
-    }
+        display: inline-block;
+        border-radius: 3px;
+        overflow: hidden;
 
-    li:first-child .number {
-        border-radius: 3px 0 0 3px;
-    }
+        span {
+            display: inline-block;
+            font-weight: bold;
+            text-align: center;
+            height: 39px;
+            float: left;
+        }
 
-    li:last-child .number {
-        border-radius: 0 3px 3px 0;
-        border-right: none;
-    }
+        span.current {
+            padding: 10px 17px;
+            color: #FFF;
+            background: $pink;
+        }
 
-    .number:hover {
-        color: $pink;
-    }
+        span a {
+            display: inline-block;
+            padding: 10px 17px;
+            width: 100%;
+            color: #444;
 
-    .number.current {
-        background: $pink;
-        color: #FFF;
+            &:hover {
+
+            }
+        }
     }
 }

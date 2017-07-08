@@ -16,27 +16,7 @@
         <% end %>
     </div>
     <form class="post_pagination" action="<%= posts_path %>">
-        <ul>
-            <% if @pages.size > 1 %>
-                <% if @current_page > 1 %>
-                    <li><button name="page" title="first page" value="1" class="number"><%= fa_icon "angle-left" %><%= fa_icon "angle-left" %></button></li>
-                    <li><button name="page" title="previous page" value="<%= @current_page-1 %>" class="number"><%= fa_icon "angle-left" %></button></li>
-                <% end %>
-
-                <% @pages.each do |page| %>
-                    <% if @current_page == page %>
-                        <li><button name="page" title="current page" value="<%= page %>" class="number current"><%= page %></button></li>
-                    <% else %>
-                        <li><button name="page" value="<%= page %>" class="number"><%= page %></button></li>
-                    <% end %>
-                <% end %>
-
-                <% if @current_page < @posts.total_pages %>
-                    <li><button name="page" title="next page" value="<%= @current_page+1 %>" class="number"><%= fa_icon "angle-right" %></button></li>
-                    <li><button name="page" title="last page" value="<%= @posts.total_pages %>" class="number"><%= fa_icon "angle-right" %><%= fa_icon "angle-right" %></button></li>
-                <% end %>
-            <% end %>
-        </ul>
+        <%= paginate @posts %>
         <div>
             <span>posts per page </span>
             <% @permited_posts_per_page.each do |n| %>

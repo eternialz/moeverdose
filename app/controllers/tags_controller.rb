@@ -8,12 +8,11 @@ class TagsController < ApplicationController
             if @tag.exists?
                 redirect_to edit_tag_path(@tag[0])
             else
-                flash.now[:error] = "No tag were found"
-                @tags = Tag.all
+                flash.now[:error] = "The specified tag wasn't found"
             end
-        else
-            @tags = Tag.all
         end
+
+        @tags = Kaminari.paginate_array(Tag.all).page(params[:page]).per(10).padding(3)
     end
 
     def edit
