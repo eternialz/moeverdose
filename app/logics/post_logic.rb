@@ -17,4 +17,12 @@ class PostLogic < SimpleDelegator
         return {tags: tag, characters: character, authors: author}
     end
 
+    def self.set_id(new_post)
+        last_post = Post.last
+        if !last_post.nil?
+            new_post.number = last_post.number + 1
+        else
+            return 1
+        end
+    end
 end

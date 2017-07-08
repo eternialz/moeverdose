@@ -37,17 +37,30 @@
         overflow: hidden;
         margin: 6px 0;
 
+        .count {
+            float: right;
+            background: #DDD;
+        }
+
         .title {
             background: #DDD;
             float: left;
             padding: 10px;
         }
 
+        .title.character h5 {
+            color: $blue;
+        }
+
+        .title.author h5 {
+            color: $green;
+        }
+
         span {
             float: left;
             height: 54px;
             display: inline-block;
-            padding: 16px 10px;
+            padding: 16px;
             font-size: 16px;
             border-left: 1px solid #DDD;
         }

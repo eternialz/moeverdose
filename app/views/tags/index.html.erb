@@ -1,3 +1,5 @@
+<%= render 'tags/search' %>
+
 <div class="row tags">
     <% @tags.each do |t| %>
         <ul>
@@ -8,7 +10,9 @@
                     <% end %>
                     <h5><%= t.names[0] %></h5>
                 </div>
-
+                <div class="count">
+                    <span><%= t.posts_count %> posts</span>
+                </div>
                 <% t.names[1..-1].each do |n| %>
                     <span><%= n %></span>
                 <% end %>

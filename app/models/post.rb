@@ -18,7 +18,7 @@ class Post
         size: { in: 0..50.megabytes }
 
     field :md5, type: String
-    validates :md5, uniqueness: true, presence: true
+    validates :md5, uniqueness: { message: ": The file already exists (MD5 already exists in our base)" }, presence: true
 
     field :height, type: Integer
     field :width, type: Integer
@@ -38,7 +38,7 @@ class Post
 
     belongs_to :user, class_name: "User", inverse_of: :posts
 
-    belongs_to :author, class_name: "Author", inverse_of: :posts
+    belongs_to :author, class_name: "Author", inverse_of: :posts, optional: true
 
     has_and_belongs_to_many :comments, class_name: "Comment", inverse_of: :post
 

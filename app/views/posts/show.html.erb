@@ -18,7 +18,13 @@
     <%= render 'posts/search' %>
     <div class="post-container">
         <div class="post_navigation clearfix">
-            <h2><%= @post.title %></h2>
+
+            <% if @post.title != '' %>
+                <h2><%= @post.title %></h2>
+            <% else %>
+                <h2>Post id <%= @post.number %></h2>
+            <% end %>
+
             <a id="previous" href="/posts/<%= @post.number + 1 %>"class="btn btn-pink previous"><%= fa_icon "arrow-circle-left" %> Previous</a>
             <a id="next" href="/posts/<%= @post.number - 1 %>" class="btn btn-pink next">Next <%= fa_icon "arrow-circle-right" %></a>
         </div>
@@ -136,7 +142,7 @@
                 <h3><%= fa_icon "tag" %> Tags</h3>
                 <% if @tags.any? %>
                     <% @tags.each do |tag| %>
-                        <a class="tag"><%= tag %></a>
+                        <a class="tag" href="<%= posts_path(query: tag ) %>"><%= tag %></a>
                     <% end %>
                 <% else %>
                     <p style="text-align: center; padding-top: 20px;">no tags specified </p>
@@ -147,7 +153,7 @@
                 <h3><%= fa_icon "group" %> Character(s)</h3>
                 <% if @characters.any? %>
                     <% @characters.each do |character| %>
-                        <a class="tag"><%= character %></a>
+                        <a class="tag" href="<%= posts_path(query: character ) %>"><%= character %></a>
                     <% end %>
                 <% else %>
                     <p style="text-align: center; padding-top: 20px;">no characters specified </p>
@@ -157,8 +163,9 @@
             <ul class="col-4 infos">
                 <h3><%= fa_icon "info-circle" %> Informations</h3>
                 <li id="id"><span>id:</span><%= @post.number %></li>
+
                 <% unless @post.author.blank? %>
-                    <li id="author"><span>author:</span><a href="http://www.google.fr/search?q=<%= @post.author.name %>" title="Search on google"><%= @post.author.name %></a></li>
+                    <li id="author"><span>author:</span><a  href="<%= posts_path(query: @post.author.name )%>" title="Search on google"><%= @post.author.name %></a></li>
                 <% else %>
                     <li id="author"><span>author:</span>unknown author</li>
                 <% end %>

@@ -13,6 +13,13 @@ class TagLogic < SimpleDelegator
         post.tags << tag
     end
 
+    def self.change_counts(tags, num)
+        tags.each do |t|
+            t.posts_count += num
+            t.save
+        end
+    end
+
     def self.find_or_create_author(name, post)
         name = name.downcase.tr(" ", "_")
         tag = Tag.where(names: name, type: :author)

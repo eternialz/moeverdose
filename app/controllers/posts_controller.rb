@@ -152,21 +152,14 @@ class PostsController < ApplicationController
     def create
         @post = Post.new(post_params)
 
-        begin
-            @previous_post = Post.last
-            @post.number = @previous_post.number + 1
-        rescue
-            @post.number = 1
-        end
+        PostLogic.set_id(@post)
 
         tags = params[:tags].downcase.split(" ")
-
         tags.each do |tag|
             TagLogic.find_or_create(tag, :content, @post)
         end
 
         characters = params[:characters].downcase.split(" ")
-
         characters.each do |character|
             TagLogic.find_or_create(character, :character, @post)
         end
@@ -182,53 +175,69 @@ class PostsController < ApplicationController
         user_logic = UserLogic.new(current_user)
         user_logic.update_level
 
-        author = TagLogic.find_or_create_author(params[:author], @post)
+        if params[:author] != "" && params[:author] != nil
+            author = TagLogic.find_or_create_author(params[:author], @post)
+        end
 
         if @post.save
-            @post.tags.each do |t|
+            if author != "" && author != nil
                 author.save
-                t.posts_count += 1
-                t.save
             end
+
+            TagLogic.change_counts(@post.tags, 1)
+
+            flash[:success] = "Post #{@post.title} created!"
+
             redirect_to post_path(@post.number)
         else
-            redirect_to :back
+            flash.now[:error] = "The post could not be created. Please verify the picture dimensions and size."
+
+            @favorites_tags = current_user.favorites_tags.split
+            render :template => "posts/new"
         end
     end
 
     def update
         @post.assign_attributes(edit_post_params)
 
-        @post.tags.each do |t|
-            t.posts_count -= 1
-            t.save
-        end
+        @old_tags = Post.find_by(number: @post.number).tags
 
         @post.tags = []
-        tags = params[:tags].downcase.split(" ")
 
+        tags = params[:tags].downcase.split(" ")
         tags.each do |tag|
             TagLogic.find_or_create(tag, :content, @post)
         end
 
         characters = params[:characters].downcase.split(" ")
-
         characters.each do |character|
             TagLogic.find_or_create(character, :character, @post)
         end
 
         author_name = params[:author_tag]
-
         if author_name != "" && author_name != nil
             author = TagLogic.find_or_create_author(author_name, @post)
         end
 
         if @post.save
+<<<<<<< Updated upstream
             @post.tags.each do |t|
                 author.save
                 t.posts_count += 1
                 t.save
             end
+=======
+            if author != "" && author != nil
+                author.save
+            end
+
+            TagLogic.change_counts(@old_tags, -1)
+            TagLogic.change_counts(@post.tags, 1)
+
+            flash[:success] = "Post id #{@post.number} updated!"
+        else
+            flash[:error] = "Modifications could not be saved! Please verify informations provided"
+>>>>>>> Stashed changes
         end
         redirect_to post_path(@post.number)
     end
