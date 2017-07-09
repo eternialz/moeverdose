@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
 
     private
     def title(page_title)
-        @title = page_title.to_s
+        if page_title.to_s != ""
+            @title = page_title.to_s + ' - ' + helpers.site_name
+        end
     end
 end

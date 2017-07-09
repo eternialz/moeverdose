@@ -188,8 +188,8 @@
 
         <% if user_signed_in? %>
             <%= form_tag post_comments_path(@post.number), id: "comment-form" ,class: "comment-form" do |comment| %>
-                <label for="add_comment"><h3>Add a comment<span id="char_count">Maximum 500 characters</span></h3></label>
-                <textarea id="add_comment" name="comment[text]" placeholder="Write your message here "></textarea>
+                <label for="add_comment"><h3>Add a comment<span id="char_count">Maximum <%= max_comment_length %> characters</span></h3></label>
+                <textarea id="add_comment" data-length="<%= max_comment_length %>" name="comment[text]" placeholder="Write your message here "></textarea>
                 <div class="button-zone">
                     <button type="submit" form="comment-form" class="btn btn-blue" type="submit">Send <%= fa_icon 'comment' %></button>
                 </div>

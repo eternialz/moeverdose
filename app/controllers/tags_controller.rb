@@ -13,10 +13,14 @@ class TagsController < ApplicationController
         end
 
         @tags = Kaminari.paginate_array(Tag.all).page(params[:page]).per(20)
+
+        title("All Tags")
     end
 
     def edit
         @names = @tag.names[1..-1].map {|str| "#{str}"}.join(' ')
+
+        title("Edit tag " + @tag.names[0])
     end
 
     def update

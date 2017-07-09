@@ -81,10 +81,11 @@ Post = {
     },
     comment_char: function() {
         var length = $(this).val().length;
-        if (length > 500) {
-            $('#char_count').text("The comment is too long! Please remove " + ( length - 500 ) + " character(s)")
+        var max = parseInt($(this).data("length"))
+        if (length > max) {
+            $('#char_count').text("The comment is too long! Please remove " + ( length - max ) + " character(s)")
         } else {
-            $('#char_count').text(500 - length + " character(s) left");
+            $('#char_count').text(max - length + " character(s) left");
         }
     }
 };

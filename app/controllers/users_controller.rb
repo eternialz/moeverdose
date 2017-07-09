@@ -19,10 +19,14 @@ class UsersController < ApplicationController
             @next_level = Level.new(name: "No more levels")
             @to_next = '<p style="text-align: center;"><%= @level.max_exp - @user.upload_count %> upload(s) until next level</p>'
         end
+
+        title(@user.name + " profile")
     end
 
     def index
         @users = Kaminari.paginate_array(User.order('upload_count DESC')).page(params[:page]).per(20)
+
+        title("All Users")
     end
 
     def update
@@ -44,7 +48,6 @@ class UsersController < ApplicationController
     end
 
     def destroy
-
     end
 
     private

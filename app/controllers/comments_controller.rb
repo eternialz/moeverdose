@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
         @comment = Comment.create(params.require(:comment).permit(:text))
         length = @comment.text.length
 
-        if length > 1 and length < 500
+        if length > 1 and length < helpers.max_comment_length
             @comment.text = scan_comment(@comment.text) # This can add to the length, so validations are not used
 
             @comment.user = current_user

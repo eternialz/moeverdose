@@ -10,14 +10,15 @@
     </ul>
 
     <ul>
-        <h3><%= link_to 'Community', 'https://discord.me/moeverdose', target: "_blank" %></h3>
-        <li><%= link_to 'Chat', 'https://discord.me/moeverdose', target: "_blank" %></li>
-        <li><%= link_to 'Users', '/users' %></li>
+        <h3><li><%= link_to 'Community', chat_url, target: "_blank" %></li></h3>
+        <li><%= link_to 'Chat', chat_url, target: "_blank", title: 'Chat' %></li>
+        <li><%= link_to 'Users', users_path %></li>
         <li><%= link_to 'Team', '/pages/team' %></li>
+        <li><%= link_to 'Twitter', twitter_url %></li>
     </ul>
 
     <ul>
-        <h3><%= link_to 'Moeverdose', '/pages/about' %></h3>
+        <h3><%= link_to site_name, '/pages/about' %></h3>
 
         <li><%= link_to 'About', '/pages/about' %></li>
         <li><%= link_to 'Source Code', '/pages/source' %></li>

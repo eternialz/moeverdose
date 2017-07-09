@@ -49,38 +49,32 @@ $(document).ready(function(){
 
     // Key functions
     function to_key_help() {
-        if (in_focus()) {
-            return false;
-        } else {
-            window.location.href = domain + "/pages/help/keyboard";
-        }
+        if (in_focus()) return;
+
+        window.location.href = domain + "/pages/help/keyboard";
     }
     function to_my_profile() {
-        if (in_focus()) {
-            return false;
+        if (in_focus()) return;
+
+        if (user_profile == undefined) {
+            window.location.href = domain + "/account/sign_in";
         } else {
-            if (user_profile == undefined) {
-                window.location.href = domain + "/account/sign_in";
-            } else {
-                window.location.href = domain + user_profile;
-            }
+            window.location.href = domain + user_profile;
         }
     }
     function log_out() {
-        if (in_focus()) {
-            return false;
-        } else {
-            window.location.href = domain + '/account/sign_out';
-        }
+        if (in_focus()) return;
+
+        window.location.href = domain + '/account/sign_out';
     }
     function to_upload() {
-        if (in_focus()) {
-            return false;
-        } else {
-            window.location.href = domain + "/posts/new";
-        }
+        if (in_focus()) return;
+
+        window.location.href = domain + "/posts/new";
     }
     function to_next() {
+        if (in_focus()) return;
+
         if (parseInt(arr[4]) > 0) {
             window.location.href = domain + "/posts/" + parseInt(-1 + parseInt(arr[4]));
         } else {
@@ -88,7 +82,24 @@ $(document).ready(function(){
         }
     }
     function to_previous() {
+        if (in_focus()) return;
+
         window.location.href = domain + "/posts/" + parseInt( 1 + parseInt(arr[4]));
+    }
+    function add_to_favorites() {
+        if (in_focus()) return;
+        console.log('test');
+        Post.favorite();
+    }
+    function add_overdose() {
+        if (in_focus()) return;
+
+        Post.overdose();
+    }
+    function add_shortage() {
+        if (in_focus()) return;
+
+        Post.shortage();
     }
 
     // Global key bindings
@@ -99,10 +110,10 @@ $(document).ready(function(){
 
     // Posts bindings
     if (arr[3] == "posts") {
-        if (!isNaN(arr[4])) {
-            $.key('1', Post.favorite);
-            $.key('2', Post.overdose);
-            $.key('3', Post.shortage);
+        if (!isNaN(arr[4])) { // Is Integer
+            $.key('1', add_to_favorites);
+            $.key('2', add_overdose);
+            $.key('3', add_shortage);
             $.key('left', to_previous);
             $.key('right', to_next);
         }

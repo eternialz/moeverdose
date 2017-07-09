@@ -1,30 +1,29 @@
 <footer class="footer">
     <div class="row">
-        <div class="col-6">
-            <h3 class="footer-title">Links</h3>
-            <ul class="col-6">
-                <li><a>home</a></li>
-                <li><a>posts</a></li>
-                <li><a>users</a></li>
-                <li><a>help</a></li>
-                <li><a>team</a></li>
-            </ul>
-            <ul class="col-6">
-                <li><a>home</a></li>
-                <li><a>posts</a></li>
-                <li><a>users</a></li>
-                <li><a>help</a></li>
-                <li><a>team</a></li>
-            </ul>
-        </div>
 
         <div class="col-6">
-            <h3 class="footer-title">Friends of moeverdose</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone Forever Alone.</p>
+            <h3 class="footer-title">Advertisement</h3>
         </div>
+
+        <ul class="col-3">
+            <h3 class="footer-title">About</h3>
+            <p>
+                <%= site_name %> is a safe for work taggable image board/booru for cute anime style characters made with Ruby on Rails and MongoDB.
+            </p>
+        </ul>
+
+        <ul class="col-3">
+            <h3 class="footer-title">Navigation</h3>
+            <li><%= link_to "Home", root_path %></li>
+            <li><%= link_to "All Posts", posts_path %></li>
+            <li><%= link_to "Upload", new_post_path %></li>
+            <li><%= link_to "Random", random_path %></li>
+            <li><%= link_to "Help", "/pages/help/index" %></li>
+            <li><%= link_to "Terms of Service", "/pages/tos" %></li>
+        </ul>
 
     </div>
     <div class="row center">
-        <p class="center copyright">© 2016 Moeverdose - <a href="/pages/tos">Terms of Services</a> - <a href="/pages/legal">Mentions Légales</a></p>
+        <p class="center copyright">© 2016 <%= site_name %> - <a href="/pages/tos">Terms of Services</a> - <a href="/pages/legal">Mentions Légales</a></p>
     </div>
 </footer>

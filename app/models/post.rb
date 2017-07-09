@@ -12,7 +12,7 @@ class Post
 
 
     # File
-    has_mongoid_attached_file :post_image, styles: { thumb: "200x200#" }
+    has_mongoid_attached_file :post_image, styles: { thumb: ConfigHelper.thumb_size + "#" }
     validates_attachment :post_image, presence: true,
         content_type: { content_type: /\Aimage\/.*\Z/ },
         size: { in: 0..50.megabytes }
@@ -46,13 +46,14 @@ class Post
 
     private
     def image_dimensions
-        required_min_width = 200
-        required_min_height = 200
-        required_max_dimensions = 10000
+        required_min_width = ConfigHelper.min_img_width
+        required_min_height = ConfigHelper.min_img_height
+        required_max_width = ConfigHelper.max_img_width
+        required_max_height = ConfigHelper.max_img_height
 
-        errors.add(:image, "Width must be higher than #{required_min_width}px") unless width >= required_min_width
+        errors.add(:image, "Width must be larger than #{required_min_width}px") unless width >= required_min_width
         errors.add(:image, "Height must be higher than #{required_min_height}px") unless height >= required_min_height
-        errors.add(:image, "Width must be lower than #{required_max_dimensions}px") unless width <= required_max_dimensions
-        errors.add(:image, "Height must be lower than #{required_max_dimensions}px") unless height <= required_max_dimensions
+        errors.add(:image, "Width must be smaller than #{required_max_dimensions}px") unless width <= required_max_width
+        errors.add(:image, "Height must be smaller than #{required_max_dimensions}px") unless height <= required_max_height
     end
 end

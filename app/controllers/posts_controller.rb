@@ -18,6 +18,8 @@ class PostsController < ApplicationController
                 @authors << tag.names[0]
             end
         end
+
+        title(@post.title)
     end
 
     def report
@@ -125,11 +127,15 @@ class PostsController < ApplicationController
         @tags.sort_by!{ |tag| tag&.downcase }
         @characters.sort_by!{ |character| character&.downcase }
         @authors.sort_by!{ |author| author&.downcase }
+
+        title("All posts")
     end
 
     def new
         @post ||= Post.new
         @favorites_tags = current_user.favorites_tags.split
+
+        title("Upload")
     end
 
     def create
@@ -217,6 +223,8 @@ class PostsController < ApplicationController
         if Integer(params[:id]) < 1
             params[:id] = '0'
         end
+        title("404: Post id " + params[:id] + " not found")
+
         render "posts/not_found", :status => 404
     end
 

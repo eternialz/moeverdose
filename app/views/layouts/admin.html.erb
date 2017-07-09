@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Moeverdose</title>
+        <title><%= defined?(@title) ? @title : site_name %></title>
         <%= csrf_meta_tags %>
 
         <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -11,10 +11,19 @@
     </head>
 
     <body>
+        <% if flash.any? %>
+            <div class="row flashes">
+                <% flash.each do |key, value| %>
+                    <div class="alert alert-<%= key %>"><%= value %></div>
+                <% end %>
+            </div>
+        <% end %>
+
         <div class="notifications">
             <div class="notifications_container">
             </div>
         </div>
+
         <nav class="menu">
             <div class="row">
                 <% if content_for?(:menu) %>
