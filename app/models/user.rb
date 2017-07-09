@@ -80,9 +80,20 @@ class User
     field :favorites_tags, type: String, default: ""
     field :blacklisted_tags, type: String, default: ""
 
-    # User reported
+    # User security
     field :report, type: Boolean, default: false
     alias_method :report?, :report
+
+    field :banned, type: Boolean, default: false
+    alias_method :banned?, :banned
+
+    def active_for_authentication? # Prevent banned user authentications
+        super && !self.banned?
+    end
+
+    def inactive_message # Custom error message for banned user
+        !banned? ? super : :banned
+    end
 
     # Reported posts
     has_and_belongs_to_many :reported_posts, class_name: "Post", inverse_of: nil

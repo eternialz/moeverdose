@@ -41,6 +41,9 @@
                 </div>
             <% end %>
             <%= image_tag @post.post_image.url %>
+            <% if user_signed_in? %>
+                <%= cell(:admin_toolbar, @post, role: current_user.role).(:show_post) %>
+            <% end %>
         </div>
 
         <div id="post-score" class="clearfix">

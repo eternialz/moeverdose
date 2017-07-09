@@ -45,14 +45,14 @@
     background: $pink;
 
     &:active {
-        background: darken($pink, 5%);
+        background: darken($pink, 10%);
     }
 }
 .btn-blue {
     background: $blue;
 
     &:active {
-        background: darken($blue, 5%);
+        background: darken($blue, 10%);
     }
 }
 
@@ -60,7 +60,7 @@
     background: $yellow;
 
     &:active {
-        background: darken($yellow, 5%);
+        background: darken($yellow, 10%);
     }
 }
 
@@ -68,7 +68,7 @@
     background: $red;
 
     &:active {
-        background: darken($red, 5%);
+        background: darken($red, 13%);
     }
 }
 
@@ -76,7 +76,7 @@
     background: $green;
 
     &:active {
-        background: darken($green, 5%);
+        background: darken($green, 10%);
     }
 }
 
@@ -84,6 +84,6 @@
     background: $discord;
 
     &:active {
-        background: darken($discord, 5%);
+        background: darken($discord, 10%);
     }
 }

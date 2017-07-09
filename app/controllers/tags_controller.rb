@@ -1,6 +1,6 @@
 class TagsController < ApplicationController
     before_action :set_tag, except: [:index]
-    before_action :authenticate_user!
+    before_action :authenticate_user!, except: [:index]
 
     def index
         if params[:query]

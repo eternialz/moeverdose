@@ -18,16 +18,24 @@
         </div>
     </div>
 
+    <% if user_signed_in? %>
+        <%= cell(:admin_toolbar, @user).(:show_user) %>
+    <% end %>
+
     <% if !@user.biography.empty? %>
         <div class="zone biography row">
-            <h3>About me</h3>
-            <p><%= @user.biography %></p>
+            <div class="col-12">
+                <h3>About me</h3>
+                <p><%= @user.biography %></p>
+            </div>
         </div>
     <% else %>
         <% if current_user == @user %>
             <div class="zone biography row">
-                <h3>About me</h3>
-                <p>You can edit this text in your <%= link_to "account options", edit_user_path(id: @user.name) %>.</p>
+                <div class="col-12">
+                    <h3>About me</h3>
+                    <p>You can edit this text in your <%= link_to "account options", edit_user_path(id: @user.name) %>.</p>
+                </div>
             </div>
         <% end %>
     <% end %>
