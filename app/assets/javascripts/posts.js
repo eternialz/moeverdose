@@ -10,6 +10,8 @@ Post = {
         Post.overdose = Post.root.find('.overdose_score');
         Post.shortage = Post.root.find('.shortage_score');
         $('#add_comment').bind('input propertychange', Post.comment_char);
+
+        Post.percentage();
     },
     favorite: function() {
         $.ajax({

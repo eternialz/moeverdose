@@ -18,13 +18,6 @@ class PostsController < ApplicationController
                 @authors << tag.names[0]
             end
         end
-        if @post.overdose == 0 && @post.moe_shortage == 0
-            @overdose = 50
-            @shortage = 50
-        else
-            @overdose = @post.overdose / (@post.overdose + @post.moe_shortage).to_f * 100
-            @shortage = 100 - @overdose
-        end
     end
 
     def report
