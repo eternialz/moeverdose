@@ -1,18 +1,22 @@
 <h2> All Reported Comments </h2>
 <p>List of all reported comments</p>
 <ul class="admin_list comments">
-<% @comments.each do |comment| %>
-  <li>
-    <span class="button_list">
-      <a href="<%= admin_comment_unreport_path(comment)%>" class="btn btn-blue">Unreport comment</a>
-      <a href="<%= admin_comment_path(comment)%>" data-method="delete" class="btn btn-red">Delete comment<%= fa_icon "exclamation"%></a>
-    </span>
-    <span class="text"><%= comment.text %></span>
-    <br />
-    <span><a href="<%= user_path(comment.user.name) %>"><%= comment.user.name %></a></span>
-    <br />
-    <br />
-    <span><a href="<%= post_path(comment.post) %>">Link to Post</a></span>
-  </li>
-<% end %>
+    <% @comments.each do |comment| %>
+        <li>
+            <span class="button_list">
+                <a href="<%= admin_comment_unreport_path(comment)%>" class="btn btn-blue">Unreport comment</a>
+                <a href="<%= admin_comment_path(comment)%>" data-method="delete" class="btn btn-red">Delete comment<%= fa_icon "exclamation"%></a>
+            </span>
+            <span class="text"><%= comment.text %></span>
+            <br />
+            <span><a href="<%= user_path(comment.user.name) %>"><%= comment.user.name %></a></span>
+            <br />
+            <br />
+            <span><a href="<%= post_path(comment.post) %>">Link to Post</a></span>
+        </li>
+    <% end %>
 </ul>
+
+<div class="general_pagination">
+    <%= paginate @comments %>
+</div>

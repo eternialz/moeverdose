@@ -2,14 +2,18 @@
 
 <a class="btn btn-green" href="<%= new_admin_level_path%>"><%= fa_icon "plus"%>Create a Level</a>
 <ul class="admin_list levels">
-<% @levels.each do |level| %>
-  <span class="button_list">
-    <a class="btn btn-pink" href="<%= edit_admin_level_path(level) %>"><%= fa_icon "edit"%>Edit the Level</a>
-  </span>
-  <li>
-    <h4><%= level.name %></h4>
-    Rank: <%= level.rank %><br />
-    Exp to next level: <%= level.max_exp %>
-  </li>
-<% end %>
+    <% @levels.each do |level| %>
+        <span class="button_list">
+            <a class="btn btn-pink" href="<%= edit_admin_level_path(level) %>"><%= fa_icon "edit"%>Edit the Level</a>
+        </span>
+        <li>
+            <h4><%= level.name %></h4>
+            Rank: <%= level.rank %><br />
+            Exp to next level: <%= level.max_exp %>
+        </li>
+    <% end %>
 </ul>
+
+<div class="general_pagination">
+    <%= paginate @levels %>
+</div>

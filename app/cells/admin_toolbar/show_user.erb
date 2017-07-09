@@ -2,9 +2,5 @@
     <div class="col-12">
         <h2>Adminstration</h2>
         <a class="btn btn-red" href="<%= admin_user_ban_path(model)%>" data-method="patch">Ban User</a>
-        <%= link_to "Edit", edit_admin_post_path(model.id), class: "btn btn-blue" %>
-        <%= if model.report? %>
-            <a class="btn btn-blue" href="<%= admin_post_unreport_path(model) %>" data-method="patch">Unreport</a>
-        <% end %>
     </div>
 </div>

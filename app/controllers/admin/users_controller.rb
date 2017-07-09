@@ -2,7 +2,8 @@ class Admin::UsersController < Admin::BaseController
     before_action :set_user, except: [:index]
 
     def index
-        @users = User.all
+        @users = Kaminari.paginate_array(User.order('created_at DESC')).page(params[:page]).per(20)
+
         if params[:report]
             @users = @users.where(report: params[:report])
         end
@@ -30,14 +31,14 @@ class Admin::UsersController < Admin::BaseController
         if @user.banned?
             @user.banned = false
             @user.save
-            flash[:success] = "User unbanned"
+            flash[:success] = "User unbanned."
         else
             if @user.role == :user
                 @user.banned = true
                 @user.save
-                flash[:success] = "User banned"
+                flash[:success] = "User banned."
             else
-                flash[:error] = "The user isn't a regular user; change the role to user before deleting"
+                flash[:error] = "The user isn't a regular user; change the role to user before banning."
             end
         end
 

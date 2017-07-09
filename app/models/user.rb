@@ -84,7 +84,7 @@ class User
     field :report, type: Boolean, default: false
     alias_method :report?, :report
 
-    field :banned, type: Boolean, default: false
+    field :banned, type: Boolean, default: true
     alias_method :banned?, :banned
 
     def active_for_authentication? # Prevent banned user authentications
@@ -92,7 +92,7 @@ class User
     end
 
     def inactive_message # Custom error message for banned user
-        !banned? ? super : :banned
+        !self.banned? ? super : :banned
     end
 
     # Reported posts

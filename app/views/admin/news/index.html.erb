@@ -1,18 +1,21 @@
 <h2> All news </h2>
 <ul class="admin_list">
-  <% @news.each do |new| %>
-      <li>
-        <span class="button_list">
-          <a href="<%= edit_admin_news_path(new)%>" class="btn btn-blue">Edit news<%= fa_icon "edit  "%></a>
-          <a href="<%= admin_news_path(new)%>" data-method="delete" class="btn btn-red">Delete news<%= fa_icon "exclamation"%></a>
-        </span>
-        <h3>
-          <a href="<%= admin_news_path(new) %>"><%= new.title %></a>
-        </h3>
-        <br />
-        <br />
-        <span><%= new.text[0..200] + '...' %></span>
-      <li>
-  <% end %>
+    <% @news.each do |new| %>
+        <li>
+            <span class="button_list">
+                <a href="<%= edit_admin_news_path(new)%>" class="btn btn-blue">Edit news<%= fa_icon "edit  "%></a>
+                <a href="<%= admin_news_path(new)%>" data-method="delete" class="btn btn-red">Delete news<%= fa_icon "exclamation"%></a>
+            </span>
+            <h3>
+                <a href="<%= admin_news_path(new) %>"><%= new.title %></a>
+            </h3>
+            <br />
+            <br />
+            <span><%= new.text[0..200] + '...' %></span>
+        <li>
+    <% end %>
 </ul>
 <a href="<%= new_admin_news_path %>" class=" btn btn-pink"> Add a news </a>
+<div class="general_pagination">
+    <%= paginate @news %>
+</div>

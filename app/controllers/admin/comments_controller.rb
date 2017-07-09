@@ -3,11 +3,8 @@ class Admin::CommentsController < Admin::BaseController
 
     layout 'admin'
 
-    protected
-
-
     def index
-        @comments = Comment.where(report: true)
+        @comments = Kaminari.paginate_array(Comment.where(report: true)).page(params[:page]).per(20)
     end
 
     def destroy
