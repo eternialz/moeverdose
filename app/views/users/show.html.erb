@@ -57,14 +57,33 @@
     </div>
 
     <div class="zone level row">
-        <h3 class="zone_title">Level</h3>
+        <h3 class="zone_title">Level <%= @level.rank %>: <%= @level.name %></h3>
         <div class="col-12">
-            <div class="progress_bar">
-                <div class="progress" style="width: <%= @percentage %>%; background: <%= @level.color %>;"><%= @percentage %>%</div>
-            </div>
-            <span><%= @level.name %></span>
-            <span style="float: right;"><%= @next_level.name %></span>
-            <%= @to_level %>
+            <% if !@level.final %>
+                <div class="progress_bar">
+                    <div id="level_progress" data-count="<%= @user.exp %>" data-max="<%= @user.level.max_exp %>" class="progress" style="background: <%= @level.color %>"></div>
+                </div>
+                <span><%= @level.name %></span>
+                <span style="float: right;"><%= @next_level.name %></span>
+
+                <script>
+                    var progress = $("#level_progress");
+
+                    var count = parseInt(progress.data("count"));
+                    var max = parseInt(progress.data("max"));
+
+                    if (count != 0) {
+                        var percentage = (count / max * 100).toFixed(1).toString();
+                    } else {
+                        var percentage = "0";
+                    }
+
+                    progress.css("width", percentage + "%");
+                    progress.html(percentage + "%");
+                </script>
+            <% else %>
+                <h3>The last level has been reached</h3>
+            <% end %>
         </div>
     </div>
 

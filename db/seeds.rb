@@ -7,5 +7,4 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 #
 
-level = Level.create(name: "Newbie", max_exp: 50, final: true)
-
+level = Level.create(name: "Initial Level", max_exp: 50, final: true)

@@ -88,7 +88,7 @@ $(document).ready(function(){
     }
     function add_to_favorites() {
         if (in_focus()) return;
-        console.log('test');
+
         Post.favorite();
     }
     function add_overdose() {

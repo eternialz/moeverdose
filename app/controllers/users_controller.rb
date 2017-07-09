@@ -8,16 +8,9 @@ class UsersController < ApplicationController
         @favorites_tags = @user.favorites_tags.split(" ")
         @blacklisted_tags = @user.blacklisted_tags.split(" ")
         @level = @user.level
-        @percentage = '%.2f' % ((@user.upload_count.to_f / @level.max_exp.to_f)*100)
-        if (@percentage.to_i > 100)
-            @percentage = "100"
-        end
-        if @level.final == false
-            @next_level = Level.find_by(rank: @level.rank + 1)
-            @to_next = ''
-        else
-            @next_level = Level.new(name: "No more levels")
-            @to_next = '<p style="text-align: center;"><%= @level.max_exp - @user.upload_count %> upload(s) until next level</p>'
+
+        if (!@level.final)
+            @next_level = Level.find_by(rank: @user.level.rank + 1)
         end
 
         title(@user.name + " profile")
@@ -60,6 +53,6 @@ class UsersController < ApplicationController
     end
 
     def account_update_params
-        params.require(:user).permit(:email, :password, :password_confirmation, :avatar, :banner, :website, :facebook, :twitter, :biography)
+        params.require(:user).permit(:email, :avatar, :banner, :website, :facebook, :twitter, :biography)
     end
 end
