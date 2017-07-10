@@ -99,14 +99,17 @@ class PostsController < ApplicationController
         end
 
         if params[:query]
-            posts_tags_ids = Tag.where(:names.in => params[:query].split()).map do |t| t.id end
-
-            @posts = Kaminari.paginate_array(Post.where(
-                report: :false,
-                :tag_ids.all => posts_tags_ids
-            ).order('created_at DESC')).page(params[:page]).per(@posts_per_page)
+            if user_signed_in?
+                @posts = PostLogic.query_with_blacklist(params[:query], current_user.blacklisted_tags, params[:page], @posts_per_page)
+            else
+                @posts = PostLogic.query(params[:query], params[:page], @posts_per_page)
+            end
         else
-            @posts = Kaminari.paginate_array(Post.where(report: :false).order('created_at DESC')).page(params[:page]).per(@posts_per_page)
+            if user_signed_in?
+                @posts = PostLogic.all_posts_with_blacklist(current_user.blacklisted_tags, params[:page], @posts_per_page)
+            else
+                @posts = PostLogic.all_posts(params[:page], @posts_per_page)
+            end
         end
 
         @tags = []

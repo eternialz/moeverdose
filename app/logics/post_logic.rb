@@ -25,4 +25,44 @@ class PostLogic < SimpleDelegator
             return 1
         end
     end
+
+    def self.query(query, page, posts_per_page)
+        posts_tags_ids = posts_tags(query)
+
+        return Kaminari.paginate_array(Post.where(
+            report: :false,
+            :tag_ids.all => posts_tags_ids,
+        ).order('created_at DESC')).page(page).per(posts_per_page)
+    end
+
+    def self.query_with_blacklist(query, blacklist, page, posts_per_page)
+        posts_tags_ids = posts_tags(query)
+        blacklisted_posts_tags_ids = posts_tags(blacklist)
+
+        return Kaminari.paginate_array(Post.where(
+            report: :false,
+            :tag_ids.all => posts_tags_ids,
+            :tag_ids.nin => blacklisted_posts_tags_ids
+        ).order('created_at DESC')).page(page).per(posts_per_page)
+    end
+
+    def self.all_posts(page, posts_per_page)
+        return Kaminari.paginate_array(Post.where(
+            report: :false
+        ).order('created_at DESC')).page(page).per(posts_per_page)
+    end
+
+    def self.all_posts_with_blacklist(blacklist, page, posts_per_page)
+        blacklisted_posts_tags_ids = posts_tags(blacklist)
+
+        return Kaminari.paginate_array(Post.where(
+            report: :false,
+            :tag_ids.nin => blacklisted_posts_tags_ids
+        ).order('created_at DESC')).page(page).per(posts_per_page)
+    end
+
+    private
+    def self.posts_tags(query)
+        return Tag.where(:names.in => query.split()).map do |t| t.id end
+    end
 end
