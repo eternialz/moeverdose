@@ -9,15 +9,12 @@ class PostsController < ApplicationController
         @tags = []
         @characters = []
         @authors = []
-        @post.tags.each do |tag|
-            if tag.content?
-                @tags << tag.names[0]
-            elsif tag.character?
-                @characters << tag.names[0]
-            elsif tag.author?
-                @authors << tag.names[0]
-            end
-        end
+
+        post_logic = PostLogic.new(@post)
+        results = post_logic.get_different_tags
+        @tags += results[:tags]
+        @characters += results[:characters]
+        @authors += results[:authors]
 
         title(@post.title)
     end
