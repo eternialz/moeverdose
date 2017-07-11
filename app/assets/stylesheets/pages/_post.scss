@@ -5,6 +5,7 @@
 .reported_input:checked + form {
     display: block;
 }
+
 .reported_input:checked + div {
     display: none;
 }
@@ -222,10 +223,8 @@
     }
 
     .actions {
-        background: $gray;
-
         .btn {
-            margin-right: 10px;
+            width: 100%;
         }
     }
 }

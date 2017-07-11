@@ -30,6 +30,8 @@
             <h3><a href="<%= user_path(current_user.name) %>"><%= fa_icon "user" %> My Account</a></h3>
             <li><%= link_to "Profile", user_path(current_user.name) %></li>
             <li><%= link_to "Options", edit_user_path(current_user.name) %></li>
+            <li><%= link_to 'Favorites', favorites_path(current_user.name) %></span></li>
+            <li><%= link_to 'My Uploads', uploads_path(current_user.name) %></span></li>
             <li><%= link_to 'Logout', destroy_user_session_path %></span></li>
         </ul>
     <% else %>

@@ -3,18 +3,14 @@ class PostsController < ApplicationController
 
     before_action :try_set_post, only: [:show]
     before_action :set_post, only: [:edit, :update, :overdose, :shortage, :favorite, :report]
-    before_action :authenticate_user!, only: [:update, :overdose, :shortage, :report, :favorite, :create, :new]
+    before_action :authenticate_user!, except: [:show, :index, :not_found, :random]
 
     def show
-        @tags = []
-        @characters = []
-        @authors = []
-
         post_logic = PostLogic.new(@post)
         results = post_logic.get_different_tags
-        @tags += results[:tags]
-        @characters += results[:characters]
-        @authors += results[:authors]
+        @tags = results[:tags]
+        @characters = results[:characters]
+        @authors = results[:authors]
 
         title(@post.title)
     end
@@ -187,6 +183,7 @@ class PostsController < ApplicationController
         @post.assign_attributes(edit_post_params)
 
         @old_tags = Post.find_by(number: @post.number).tags
+        TagLogic.change_counts(@old_tags, -1)
 
         @post.tags = []
 
@@ -208,11 +205,12 @@ class PostsController < ApplicationController
         if @post.save
             author&.save
 
-            TagLogic.change_counts(@old_tags, -1)
-            TagLogic.change_counts(@post.tags, 1)
+            TagLogic.change_counts(@post.tags, 1) # Increase new tags post count
 
             flash[:success] = "Post id #{@post.number} updated!"
         else
+            TagLogic.change_counts(@old_tags, 1) # Revert tags post count
+
             flash[:error] = "Modifications could not be saved! Please verify informations provided"
         end
 
@@ -253,13 +251,13 @@ class PostsController < ApplicationController
 
     def post_params
         params.require(:post).permit(
-        :title, :source, :post_image
+            :title, :source, :post_image, :description
         )
     end
 
     def edit_post_params
         params.require(:post).permit(
-        :title, :source
+            :title, :source, :description
         )
     end
 

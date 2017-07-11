@@ -148,13 +148,21 @@ a.post-thumbnail.preview:hover {
     }
 }
 
-.user_posts, .user_favs {
-    margin-bottom: 15px;
-    background: #222;
-    box-shadow: 0 1px 3px rgba(0,0,0,.25);
+.user_posts {
+    .favorites, .uploads {
+        background: $gray;
+        border-radius: 3px;
+        overflow: hidden;
+    }
 
-    h2 {
-        margin-left: 10px;
+    .post-thumbnail {
+        width: 20%;
+        height: 200px;
+    }
+
+    a {
+        margin-top: 15px;
+        float: right;
     }
 }
 

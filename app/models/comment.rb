@@ -4,7 +4,7 @@ class Comment
 
     belongs_to :user, class_name: "User", inverse_of: :comment
 
-    belongs_to :post, class_name: "Post", inverse_of: :comment
+    belongs_to :post, class_name: "Post", inverse_of: :comment, touch: true
 
     field :text, type: String
 

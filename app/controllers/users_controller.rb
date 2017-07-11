@@ -1,19 +1,26 @@
 class UsersController < ApplicationController
     before_action :set_user, except: [:index]
+    before_action :permitted_per_page, only: [:favorites, :uploads]
 
     def show
         @current = (current_user == @user)
-        @uploads = @user.posts.where(report: false).order(created_at: :desc).limit(6)
-        @favs = @user.favorites.where(report: false).order(created_at: :desc).limit(6)
         @favorites_tags = @user.favorites_tags.split(" ")
         @blacklisted_tags = @user.blacklisted_tags.split(" ")
-        @level = @user.level
 
+        @level = @user.level
         if (!@level.final)
             @next_level = Level.find_by(rank: @user.level.rank + 1)
         end
 
         title(@user.name + " profile")
+    end
+
+    def favorites
+        @posts = Kaminari.paginate_array(@user.favorites).page(params[:page]).per(@posts_per_page)
+    end
+
+    def uploads
+        @posts = Kaminari.paginate_array(@user.posts).page(params[:page]).per(@posts_per_page)
     end
 
     def index
@@ -46,6 +53,14 @@ class UsersController < ApplicationController
     private
     def set_user
         @user = User.find_by(name: params[:id])
+    end
+
+    def permitted_per_page
+        @permited_posts_per_page = ['2', '8', '16', '32', '64']
+
+        if !params[:posts_per_page].nil?
+            @posts_per_page = params[:posts_per_page]
+        end
     end
 
     def sign_up_params

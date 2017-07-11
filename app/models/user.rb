@@ -84,7 +84,7 @@ class User
     field :report, type: Boolean, default: false
     alias_method :report?, :report
 
-    field :banned, type: Boolean, default: true
+    field :banned, type: Boolean, default: false
     alias_method :banned?, :banned
 
     def active_for_authentication? # Prevent banned user authentications

@@ -1,137 +1,123 @@
-<div class="userprofile">
-    <div class="user_header clearfix" style="background-image: url(<%= @user.banner(:normal) %>)">
-        <img class="avatar" src="<%= @user.avatar(:thumb) %>" width="120" height="120" />
-        <% if @user.twitter != "" %>
-            <a href="https://twitter.com/<%= @user.twitter %>" class="icon tooltip"><%= fa_icon "twitter" %><span class="tip">@<%= @user.twitter %></span></a>
-        <% end %>
-        <% if @user.facebook != "" %>
-            <a href="<%= @user.facebook %>" class="icon tooltip"><%= fa_icon "facebook" %><span class="tip"><%= @user.facebook %></a>
-        <% end %>
-        <% if @user.website != "" %>
-            <a href="<%= @user.website %>" class="icon tooltip"><%= fa_icon "link" %><span class="tip"><%= @user.website %></a>
-        <% end %>
-        <div class="user_banner">
-            <h3 class="username"><%= @user.name %></h3><span class="role"><%= @user.role %></span>
-            <% if @current %>
-                <a class="btn btn-blue" href="<%= edit_user_path %>"><%= fa_icon "edit" %> edit profile</a>
+<% cache @user do %>
+    <div class="userprofile">
+        <div class="user_header clearfix" style="background-image: url(<%= @user.banner(:normal) %>)">
+            <img class="avatar" src="<%= @user.avatar(:thumb) %>" width="120" height="120" />
+            <% if @user.twitter != "" %>
+                <a href="https://twitter.com/<%= @user.twitter %>" class="icon tooltip"><%= fa_icon "twitter" %><span class="tip">@<%= @user.twitter %></span></a>
             <% end %>
-        </div>
-    </div>
-
-    <% if user_signed_in? %>
-        <%= cell(:admin_toolbar, @user).(:show_user) %>
-    <% end %>
-
-    <% if !@user.biography.empty? %>
-        <div class="zone biography row">
-            <div class="col-12">
-                <h3>About me</h3>
-                <p><%= @user.biography %></p>
+            <% if @user.facebook != "" %>
+                <a href="<%= @user.facebook %>" class="icon tooltip"><%= fa_icon "facebook" %><span class="tip"><%= @user.facebook %></a>
+            <% end %>
+            <% if @user.website != "" %>
+                <a href="<%= @user.website %>" class="icon tooltip"><%= fa_icon "link" %><span class="tip"><%= @user.website %></a>
+            <% end %>
+            <div class="user_banner">
+                <h3 class="username"><%= @user.name %></h3><span class="role"><%= @user.role %></span>
+                <% if @current %>
+                    <a class="btn btn-blue" href="<%= edit_user_path %>"><%= fa_icon "edit" %> edit profile</a>
+                <% end %>
             </div>
         </div>
-    <% else %>
-        <% if current_user == @user %>
+
+        <% if !@user.biography.empty? %>
             <div class="zone biography row">
+                <h3 class="zone_title">About me</h3>
                 <div class="col-12">
-                    <h3>About me</h3>
-                    <p>You can edit this text in your <%= link_to "account options", edit_user_path(id: @user.name) %>.</p>
+                    <p><%= @user.biography %></p>
                 </div>
             </div>
+        <% else %>
+            <% if current_user == @user %>
+                <div class="zone biography row">
+                    <h3 class="zone_title">About me</h3>
+                    <div class="col-12">
+                        <p>You can edit this text in your <%= link_to "account options", edit_user_path(id: @user.name) %>.</p>
+                    </div>
+                </div>
+            <% end %>
         <% end %>
-    <% end %>
 
-    <div class="zone tags row">
-        <h3 class="zone_title">My Tags</h3>
-        <div class="col-6">
-            <h6>Favorites Tags</h6>
-            <% if @favorites_tags.empty? %>
-                <p>Nothing here</p>
-            <% else %>
-                <% @favorites_tags.each do |tag| %>
-                    <a class="tag"><%= tag %></a>
+        <div class="zone tags row">
+            <h3 class="zone_title">My Tags</h3>
+            <div class="col-6">
+                <h6>Favorites Tags</h6>
+                <% if @favorites_tags.empty? %>
+                    <p>Nothing here</p>
+                <% else %>
+                    <% @favorites_tags.each do |tag| %>
+                        <a class="tag"><%= tag %></a>
+                    <% end %>
                 <% end %>
-            <% end %>
-        </div>
-        <div class="col-6">
-            <h6>Blacklisted Tags</h6>
-            <% if @blacklisted_tags.empty? %>
-                <p>Nothing here</p>
-            <% else %>
-                <% @blacklisted_tags.each do |tag| %>
-                    <a class="tag"><%= tag %></a>
+            </div>
+            <div class="col-6">
+                <h6>Blacklisted Tags</h6>
+                <% if @blacklisted_tags.empty? %>
+                    <p>Nothing here</p>
+                <% else %>
+                    <% @blacklisted_tags.each do |tag| %>
+                        <a class="tag"><%= tag %></a>
+                    <% end %>
                 <% end %>
-            <% end %>
-        </div>
-    </div>
-
-    <div class="zone level row">
-        <h3 class="zone_title">Level <%= @level.rank %>: <%= @level.name %></h3>
-        <div class="col-12">
-            <% if !@level.final %>
-                <div class="progress_bar">
-                    <div id="level_progress" data-count="<%= @user.exp %>" data-max="<%= @user.level.max_exp %>" class="progress" style="background: <%= @level.color %>"></div>
-                </div>
-                <span><%= @level.name %></span>
-                <span style="float: right;"><%= @next_level.name %></span>
-
-                <script>
-                    var progress = $("#level_progress");
-
-                    var count = parseInt(progress.data("count"));
-                    var max = parseInt(progress.data("max"));
-
-                    if (count != 0) {
-                        var percentage = (count / max * 100).toFixed(1).toString();
-                    } else {
-                        var percentage = "0";
-                    }
-
-                    progress.css("width", percentage + "%");
-                    progress.html(percentage + "%");
-                </script>
-            <% else %>
-                <h3>The last level has been reached</h3>
-            <% end %>
-        </div>
-    </div>
-
-    <div class="user_posts posts">
-        <div class="clearfix">
-            <div class="post-thumbnail preview clearfix">
-                <h5>my upload(s)</h5>
-                <p><%= @user.upload_count %> uploads</p>
             </div>
-            <% @uploads.each do |post| %>
-                <div class="post-thumbnail clearfix" style="background-image: url(<%= post.post_image.url(:thumb) %>)">
-                    <a title="<%= post.title %>" href="<%= post_path(post.number) %>" class="informations">
-                        <h3><%= post.title %></h3>
-                    </a>
-                </div>
-            <% end %>
-            <a class="post-thumbnail preview clearfix" style="float:right;">
-                <h5>&#160;</h5>
-                <p>See All <%= fa_icon 'angle-right' %></p>
-            </a>
         </div>
-    </div>
 
-    <div class="user_favs posts">
-        <div class="clearfix">
-            <div class="post-thumbnail preview clearfix">
-                <h5>my favorite(s)</h5>
-                <p><%= @favs.count %> favorites</p>
+        <div class="zone row user_posts">
+            <h3 class="zone_title">Posts</h3>
+            <div class="col-6">
+                <% if @user.favorites.any? %>
+                    <h6>Favorites Posts <span>(<%= @user.favorites.count %>)</span></h6>
+                    <div class="favorites clearfix">
+                        <% @user.favorites.limit(5).each do |post| %>
+                            <div class="post-thumbnail clearfix" style="background-image: url(<%= post.post_image.url(:thumb)%> )"></div>
+                        <% end %>
+                    </div>
+                    <a class="btn btn-pink" href="<%= favorites_path(@user.name) %>">More <%= fa_icon "eye" %></a>
+                <% end %>
             </div>
-            <% @favs.each do |post| %>
-                <div class="post-thumbnail clearfix" style="background-image: url(<%= post.post_image.url(:thumb) %>)">
-                    <a title="<%= post.title %>" href="<%= post_path(post.number) %>" class="informations">
-                        <h3><%= post.title %></h3>
-                    </a>
+            <div class="col-6">
+                <h6>Uploaded Posts <span>(<%= @user.upload_count %>)</span></h6>
+                <div class="uploads clearfix">
+                    <% @user.posts.limit(5).each do |post| %>
+                        <div class="post-thumbnail clearfix" style="background-image: url(<%= post.post_image.url(:thumb)%> )"></div>
+                    <% end %>
                 </div>
-            <% end %>
-            <a class="post-thumbnail preview clearfix" style="float:right;">
-                <h5>&#160;</h5>
-                <p>See All <%= fa_icon 'angle-right' %></p>
-            </a>
+                <a class="btn btn-pink" href="<%= uploads_path(@user.name) %>">More <%= fa_icon "eye" %></a>
+            </div>
+        </div>
+
+        <div class="zone level row">
+            <h3 class="zone_title">Level <%= @level.rank %>: <%= @level.name %></h3>
+            <div class="col-12">
+                <% if !@level.final %>
+                    <div class="progress_bar">
+                        <div id="level_progress" data-count="<%= @user.exp %>" data-max="<%= @user.level.max_exp %>" class="progress" style="background: <%= @level.color %>"></div>
+                    </div>
+                    <span><%= @level.name %></span>
+                    <span style="float: right;"><%= @next_level.name %></span>
+
+                    <script>
+                        var progress = $("#level_progress");
+
+                        var count = parseInt(progress.data("count"));
+                        var max = parseInt(progress.data("max"));
+
+                        if (count != 0) {
+                            var percentage = (count / max * 100).toFixed(1).toString();
+                        } else {
+                            var percentage = "0";
+                        }
+
+                        progress.css("width", percentage + "%");
+                        progress.html(percentage + "%");
+                    </script>
+                <% else %>
+                    <h3>The last level has been reached</h3>
+                <% end %>
+            </div>
         </div>
     </div>
-</div>
+<% end %>
+
+<% if user_signed_in? %>
+    <%= cell(:admin_toolbar, @user).(:show_user) %>
+<% end %>
