@@ -27,23 +27,25 @@ class PostLogic < SimpleDelegator
     end
 
     def self.query(query, page, posts_per_page)
-        posts_tags_ids = posts_tags(query)
+        posts_tags_ids, ignored = posts_tags(query)
 
-        return Kaminari.paginate_array(Post.where(
+        return [Kaminari.paginate_array(Post.where(
             report: :false,
             :tag_ids.all => posts_tags_ids,
-        ).order('created_at DESC')).page(page).per(posts_per_page)
+        ).order('created_at DESC')).page(page).per(posts_per_page),
+        ignored]
     end
 
     def self.query_with_blacklist(query, blacklist, page, posts_per_page)
-        posts_tags_ids = posts_tags(query)
-        blacklisted_posts_tags_ids = posts_tags(blacklist)
+        posts_tags_ids, ignored = posts_tags(query)
+        blacklisted_posts_tags_ids = posts_tags(blacklist)[0]
 
-        return Kaminari.paginate_array(Post.where(
+        return [Kaminari.paginate_array(Post.where(
             report: :false,
             :tag_ids.all => posts_tags_ids,
             :tag_ids.nin => blacklisted_posts_tags_ids
-        ).order('created_at DESC')).page(page).per(posts_per_page)
+        ).order('created_at DESC')).page(page).per(posts_per_page),
+        ignored]
     end
 
     def self.all_posts(page, posts_per_page)
@@ -63,6 +65,9 @@ class PostLogic < SimpleDelegator
 
     private
     def self.posts_tags(query)
-        return Tag.where(:names.in => query.split()).map do |t| t.id end
+        query = query.split().uniq() # Change query into an array and remove duplicates
+        tags = Tag.where(:names.in => query).map do |t| t.id end
+        return [tags, query.length() != tags.length()]
+        # [0] = all found tags, [1] if one or more nonexisting tags were ignored
     end
 end

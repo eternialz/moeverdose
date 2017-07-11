@@ -93,9 +93,13 @@ class PostsController < ApplicationController
 
         if params[:query]
             if user_signed_in?
-                @posts = PostLogic.query_with_blacklist(params[:query], current_user.blacklisted_tags, params[:page], @posts_per_page)
+                @posts, ignored = PostLogic.query_with_blacklist(params[:query], current_user.blacklisted_tags, params[:page], @posts_per_page)
             else
-                @posts = PostLogic.query(params[:query], params[:page], @posts_per_page)
+                @posts, ignored = PostLogic.query(params[:query], params[:page], @posts_per_page)
+            end
+
+            if ignored
+                flash.now[:info] = "One or more tags were ignored. It means that your query contains at least a tag which doesn't exist on our website."
             end
         else
             if user_signed_in?

@@ -67,7 +67,11 @@
         <div class="zone row post-details">
             <div class="col-6">
                 <h5><%= fa_icon "book" %> Description</h5>
-                <p><%= @post.description %></p>
+                <% if @post.description != "" %>
+                    <p><%= @post.description %></p>
+                <% else %>
+                    <p style="text-align: center">No description added</p>
+                <% end %>
             </div>
 
             <div class="col-3 social_sharing">
@@ -127,7 +131,7 @@
                         </div>
                         <div class="field_area">
                             <p><%= fa_icon "book" %> Description:</p>
-                            <%= post.text_area :description, placeholder: 'Tags ("1girl glasses")' %>
+                            <%= post.text_area :description, placeholder: 'Description: short history, traduction ...' %>
                         </div>
                         <div class="field_area">
                             <p><%= fa_icon "tag" %> Tags:</p>
