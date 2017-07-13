@@ -10,9 +10,6 @@
             <p>
                 <%= site_name %> is a safe for work taggable image board/booru for cute anime style characters made with Ruby on Rails and MongoDB.
             </p>
-        </ul>
-
-        <ul class="col-3">
             <h3 class="footer-title">Navigation</h3>
             <li><%= link_to "Home", root_path %></li>
             <li><%= link_to "All Posts", posts_path %></li>
@@ -20,6 +17,11 @@
             <li><%= link_to "Random", random_path %></li>
             <li><%= link_to "Help", "/pages/help/index" %></li>
             <li><%= link_to "Terms of Service", "/pages/tos" %></li>
+        </ul>
+
+        <ul class="col-3" style="text-align: center;">
+            <%= image_tag "kokoro_tiny.png", width: 216, height: 200 %>
+            <a href="/pages/support" class="btn-support btn-pink">Support us! <%= fa_icon "heart" %></a>
         </ul>
 
     </div>
