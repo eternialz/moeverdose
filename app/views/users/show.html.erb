@@ -64,24 +64,30 @@
         <div class="zone row user_posts">
             <h3 class="zone_title">Posts</h3>
             <div class="col-6">
+                <h6>Favorites Posts <span>(<%= @user.favorites.count %>)</span></h6>
                 <% if @user.favorites.any? %>
-                    <h6>Favorites Posts <span>(<%= @user.favorites.count %>)</span></h6>
                     <div class="favorites clearfix">
                         <% @user.favorites.limit(5).each do |post| %>
                             <div class="post-thumbnail clearfix" style="background-image: url(<%= post.post_image.url(:thumb)%> )"></div>
                         <% end %>
                     </div>
                     <a class="btn btn-pink" href="<%= favorites_path(@user.name) %>">More <%= fa_icon "eye" %></a>
+                <% else %>
+                    <p>No favotites yet</p>
                 <% end %>
             </div>
             <div class="col-6">
                 <h6>Uploaded Posts <span>(<%= @user.upload_count %>)</span></h6>
-                <div class="uploads clearfix">
-                    <% @user.posts.limit(5).each do |post| %>
-                        <div class="post-thumbnail clearfix" style="background-image: url(<%= post.post_image.url(:thumb)%> )"></div>
-                    <% end %>
-                </div>
-                <a class="btn btn-pink" href="<%= uploads_path(@user.name) %>">More <%= fa_icon "eye" %></a>
+                <% if @user.posts.any? %>
+                    <div class="uploads clearfix">
+                        <% @user.posts.limit(5).each do |post| %>
+                            <div class="post-thumbnail clearfix" style="background-image: url(<%= post.post_image.url(:thumb)%> )"></div>
+                        <% end %>
+                    </div>
+                    <a class="btn btn-pink" href="<%= uploads_path(@user.name) %>">More <%= fa_icon "eye" %></a>
+                <% else %>
+                    <p>No uploads yet</p>
+                <% end %>
             </div>
         </div>
 
