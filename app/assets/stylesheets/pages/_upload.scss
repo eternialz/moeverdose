@@ -1,6 +1,6 @@
 .upload {
-    background-image: linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)), url(image_path($header-image));
     background-image: url(image_path($header-image));
+    background-image: linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)), url(image_path($header-image));
     background-position: center center;
     background-size: cover;
     margin: 20px auto;

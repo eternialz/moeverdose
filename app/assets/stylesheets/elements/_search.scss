@@ -13,9 +13,9 @@
 
     input[type=text] {
         background: #000;
+        border: 0;
         border-bottom: 3px solid #888;
         border-radius: 0;
-        border: 0;
         color: #FFF;
         float: left;
         height: 49px;
@@ -32,8 +32,8 @@
 
     button, label {
         background: none;
-        border-bottom: 3px solid #888;
         border: none;
+        border-bottom: 3px solid #888;
         color: #FFF;
         display: inline-block;
         float: left;
