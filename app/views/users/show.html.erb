@@ -1,7 +1,7 @@
 <% cache @user do %>
     <div class="userprofile">
-        <div class="user_header clearfix" style="background-image: url(<%= @user.banner(:normal) %>)">
-            <img class="avatar" src="<%= @user.avatar(:thumb) %>" width="120" height="120" />
+        <div class="user_header clearfix" style="background-image: url(<%= @user.banner %>)">
+            <img class="avatar" src="<%= @user.avatar %>" width="120" height="120" />
             <% if @user.twitter != "" %>
                 <a href="https://twitter.com/<%= @user.twitter %>" class="icon tooltip"><%= fa_icon "twitter" %><span class="tip">@<%= @user.twitter %></span></a>
             <% end %>
