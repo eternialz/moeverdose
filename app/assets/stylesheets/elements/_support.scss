@@ -1,17 +1,17 @@
 .btn-support {
-    padding: 10px;
-    display: block;
-    max-width: 100%;
-    margin: 30px auto;
     border-radius: 3px;
-    color: #FFF;
     border: 3px solid transparent;
+    color: #FFF;
+    display: block;
     line-height: 20px;
+    margin: 30px auto;
+    max-width: 100%;
+    padding: 10px;
     width: 180px;
 
     i {
-        border: 3px solid #FFF;
         border-radius: 50%;
+        border: 3px solid #FFF;
         padding: 5px 4px 3px;
     }
 }

@@ -1,43 +1,43 @@
 nav.menu .submenu {
-    padding-left: 25px;
-    height: 240px;
-    top: -144px;
-    -webkit-transition:all 200ms ease-in-out;
     -moz-transition:all 200ms ease-in-out;
     -o-transition:all 200ms ease-in-out;
-    transition:all 200ms ease-in-out;
+    -webkit-transition:all 200ms ease-in-out;
+    background: #000;
+    box-shadow: 0 4px 0 $yellow;
+    height: 240px;
+    overflow: hidden;
+    padding-left: 25px;
     position: absolute;
+    text-shadow: none;
+    top: -144px;
+    transition:all 200ms ease-in-out;
+    visibility: visible;
     width: 100%;
     z-index: 200;
-    visibility: visible;
-    background: #000;
-    text-shadow: none;
-    box-shadow: 0 4px 0 $yellow;
-    overflow: hidden;
 
     a {
         color: #FFF;
     }
 
     ul {
-        min-width: 140px;
-        height: 240px;
-        top: 0;
-        margin-right: 25px;
-        margin: 0;
-        float: left;
-        border-top: 4px solid rgba(0,0,0,.0);
-        padding-top: 10px;
-        -webkit-transition:all 100ms linear;
         -moz-transition:all 100ms linear;
         -o-transition:all 100ms linear;
-        transition:all 100ms linear;
+        -webkit-transition:all 100ms linear;
+        border-top: 4px solid rgba(0,0,0,.0);
+        float: left;
+        height: 240px;
+        margin-right: 25px;
+        margin: 0;
+        min-width: 140px;
         overflow-y: hidden;
+        padding-top: 10px;
+        top: 0;
+        transition:all 100ms linear;
 
         h3 {
-            padding-left: 9px;
-            font-style: normal;
             font-size: 1em;
+            font-style: normal;
+            padding-left: 9px;
         }
 
         h3 a {
@@ -51,10 +51,10 @@ nav.menu .submenu {
     }
 
     ul.login {
-        position: absolute;
-        width: 300px;
-        right: 0;
         padding: 10px;
+        position: absolute;
+        right: 0;
+        width: 300px;
 
         h3 {
             padding: 0;
@@ -65,29 +65,29 @@ nav.menu .submenu {
         }
 
         input[type="email"], input[type="password"] {
-            width: 100%;
             background: #222;
-            border: 0;
-            padding: 8px;
             border-radius: 3px;
-            margin-bottom: 5px;
+            border: 0;
             color: #AAA;
+            margin-bottom: 5px;
+            padding: 8px;
+            width: 100%;
         }
 
         input[type="email"]:invalid, input[type="password"]:invalid {
-            box-shadow: none;
             border: none;
+            box-shadow: none;
         }
 
         .btn {
             position: absolute;
-            top: 175px;
             right: 20px;
+            top: 175px;
         }
 
         a {
-            text-align: center;
             display: block;
+            text-align: center;
         }
 
         a:before {
@@ -116,9 +116,9 @@ nav.menu .submenu {
 
 
     ul.register {
-        right: 299px;
-        padding: 10px 20px;
         background: #222;
+        padding: 10px 20px;
+        right: 299px;
     }
 
     ul.login:hover {
@@ -134,18 +134,18 @@ nav.menu .submenu {
     }
 
     a {
-        padding: 4px;
         display: block;
         font-weight: bold;
+        padding: 4px;
         text-align: left;
     }
 
     a:before {
-        content: "› ";
-        color: rgba($pink,0);
-        -webkit-transition: all 70ms linear;
         -moz-transition: all 70ms linear;
         -o-transition: all 70ms linear;
+        -webkit-transition: all 70ms linear;
+        color: rgba($pink,0);
+        content: "› ";
         transition: all 70ms linear;
     }
 
@@ -166,41 +166,38 @@ nav.menu .submenu {
 
 @media only screen and (min-width: $normal) {
     nav.menu:hover .submenu {
-        visibility: visible;
         top: 96px;
+        visibility: visible;
     }
 }
 
 nav.menu .submenu.develop {
-    visibility: visible;
     top: 96px;
+    visibility: visible;
 }
 
 @media only screen and (max-width: $small) {
     nav.menu .submenu {
-        -webkit-transition: none;
         -moz-transition: none;
         -o-transition: none;
+        -webkit-transition: none;
+        overflow-y: scroll;
+        padding: 0;
         transition: none;
 
-        padding: 0;
-
-        overflow-y: scroll;
-
-
         ul, ul.login, ul.register {
+            border: 0 !important;
+            float: none;
+            height: auto;
+            padding: 10px 20px;
             position: static;
             width: 100%;
-            height: auto;
-            float: none;
-            padding: 10px 20px;
-            border: 0 !important;
 
             .btn {
-                width: 100%;
                 display: block;
                 margin: 20px 0 10px;
                 position: static;
+                width: 100%;
             }
         }
 
@@ -210,9 +207,9 @@ nav.menu .submenu.develop {
     }
 
     nav.menu .submenu.develop {
-        visibility: visible;
-        top: 0;
-        z-index: 10000;
         height: 100vh;
+        top: 0;
+        visibility: visible;
+        z-index: 10000;
     }
 }

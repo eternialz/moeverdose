@@ -1,26 +1,26 @@
 
 .btn, a.btn {
-    display: inline-block;
-    margin: 5px 0 4px;
-    min-width: 150px;
-    min-height: 34px;
-    padding: 7px 13px !important;
-    border-radius: 3px;
-    border: 0;
-    font-size: 16px;
-    text-align: left !important;
-    font-weight: bold;
-    -webkit-transition: background-color 170ms ease-in-out;
+    -moz-appearance: none;
     -moz-transition: background-color 170ms ease-in-out;
     -o-transition: background-color 170ms ease-in-out;
-    transition: background-color 170ms ease-in-out;
-    color: #FFF !important;
-    opacity: 1 !important;
-    cursor: pointer;
     -webkit-appearance: none;
-    -moz-appearance: none;
+    -webkit-transition: background-color 170ms ease-in-out;
     appearance: none;
+    border-radius: 3px;
+    border: 0;
+    color: #FFF !important;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 5px 0 4px;
+    min-height: 34px;
+    min-width: 150px;
+    opacity: 1 !important;
     outline: none !important;
+    padding: 7px 13px !important;
+    text-align: left !important;
+    transition: background-color 170ms ease-in-out;
 
     .fa, svg {
         float: right;
@@ -28,7 +28,7 @@
     }
 
     @media only screen and (max-width: $xsmall) {
-            width: 100%;
+        width: 100%;
     }
 
     svg {

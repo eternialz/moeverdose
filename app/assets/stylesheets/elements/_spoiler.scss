@@ -1,13 +1,13 @@
 span.spoiler {
-    color: #000;
     background: #000;
-    border: 2px solid #000;
     border-radius: 3px;
+    border: 2px solid #000;
+    color: #000;
+    display: inline-block;
     margin: 10px 0;
+    min-width: 75px;
     padding: 5px;
     position: relative;
-    display: inline-block;
-    min-width: 75px;
 
     a {
         color: #000;

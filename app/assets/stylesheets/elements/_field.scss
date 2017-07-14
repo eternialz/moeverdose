@@ -1,6 +1,6 @@
 .field {
-    position: relative;
     height: 45px;
+    position: relative;
 }
 
 input:-webkit-autofill,
@@ -13,9 +13,9 @@ textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
-    border: 3px solid transparent;
-    -webkit-text-fill-color: white;
     -webkit-box-shadow: 0 0 0px 1000px #000 inset;
+    -webkit-text-fill-color: white;
+    border: 3px solid transparent;
     transition: background-color 5000s ease-in-out 0s;
 }
 
@@ -30,20 +30,20 @@ select:-webkit-autofill:focus {
 
     input[type="text"], input[type="email"], input[type="password"], textarea {
         background: none;
-        box-shadow: none;
-        color: #FFF;
         background: rgba(0,0,0,.7);
         border-radius: 3px;
         border: 3px solid transparent;
+        box-shadow: none;
+        color: #FFF;
         padding: 10px;
         width: 100%;
     }
 
     input[type="text"], input[type="email"], input[type="password"] {
+        left: 0;
         padding-left: 160px;
         position: absolute;
         top: 0;
-        left: 0;
     }
 
     input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, textarea:focus {
@@ -51,21 +51,21 @@ select:-webkit-autofill:focus {
     }
 
     p {
-        font-weight: 900;
         color: #FFF;
+        font-weight: 900;
         margin-bottom: 10px;
     }
 
     span {
-        position: absolute;
-        z-index: 1;
-        padding: 12px 0;
-        display: inline-block;
-        width: 150px;
-        font-weight: 900;
-        text-align: right;
         color: #FFF;
+        display: inline-block;
+        font-weight: 900;
+        padding: 12px 0;
         pointer-events: none;
+        position: absolute;
+        text-align: right;
+        width: 150px;
+        z-index: 1;
 
         i {
             float: left;

@@ -19,32 +19,32 @@
     }
 
     textarea {
-        font-weight: bold;
         color: #888;
+        font-weight: bold;
         margin: 20px 0;
     }
 }
 
 .post-container {
-    box-shadow: 0 1px 3px rgba(0,0,0,.25);
-    position: relative;
-    overflow: hidden;
     background: $gray;
+    box-shadow: 0 1px 3px rgba(0,0,0,.25);
     color: #FFF;
+    overflow: hidden;
+    position: relative;
 
     .reported {
         background: $gray;
-        text-align: center;
-        font-weight: 900;
         color: #FFF !important;
-        position: absolute;
-        padding: 200px 0;
-        z-index: 100;
-        top: 0;
-        margin: 0 auto;
-        width: 100%;
-        max-width: 100%;
+        font-weight: 900;
         height: 100%;
+        margin: 0 auto;
+        max-width: 100%;
+        padding: 200px 0;
+        position: absolute;
+        text-align: center;
+        top: 0;
+        width: 100%;
+        z-index: 100;
 
         a {
             color: $pink !important;
@@ -58,11 +58,11 @@
     text-align: center;
 
     h2 {
-        max-width: calc(100% - 400px);
         display: inline-block;
         margin: 10px;
-        pointer-events: none;
+        max-width: calc(100% - 400px);
         overflow: hidden;
+        pointer-events: none;
         text-overflow: ellipsis;
 
         @media only screen and (max-width: $xsmall) {
@@ -88,13 +88,13 @@
 }
 
 .post {
+    padding-top: 20px;
     position: relative;
     text-align: center;
-    padding-top: 20px;
 
     img {
-        max-width: 100%;
         cursor: pointer;
+        max-width: 100%;
     }
 
 }
@@ -103,29 +103,29 @@
     position: relative;
 
     .overdose_bar, .shortage_bar {
-        display: inline-block;
-        float: left;
-        position: relative;
-        height: 60px;
-        -webkit-transition:all 500ms ease-in-out;
         -moz-transition:all 500ms ease-in-out;
         -o-transition:all 500ms ease-in-out;
+        -webkit-transition:all 500ms ease-in-out;
+        display: inline-block;
+        float: left;
+        height: 60px;
+        position: relative;
         transition:all 500ms ease-in-out;
     }
 
     span {
-        text-align: center;
-        position: absolute;
         display: inline-block;
         font-weight: 900;
-        padding-top: 23px;
-        min-width: 46px;
         height: 60px;
+        min-width: 46px;
+        padding-top: 23px;
+        position: absolute;
+        text-align: center;
     }
 
     .shortage_score {
-        left: 0;
         border-bottom: 7px solid $blue;
+        left: 0;
     }
 
     .overdose_score {
@@ -134,20 +134,20 @@
     }
 
     .overdose_bar {
-        width: 50%;
         border-bottom: 4px solid $pink;
+        width: 50%;
     }
 
     .shortage_bar {
-        width: 50%;
         border-bottom: 4px solid $blue;
+        width: 50%;
     }
 }
 
 .post-details {
     background: #FFF;
-    text-align: center;
     color: #444;
+    text-align: center;
     text-align: left;
 
     @media only screen and (max-width: $xsmall) {
@@ -161,12 +161,12 @@
 
     .infos {
         li {
-            position: relative;
             border-bottom: 1px solid #EEE;
-            padding: 8px;
             overflow: hidden !important;
-            text-overflow: ellipsis !important;
             padding-left: 100px;
+            padding: 8px;
+            position: relative;
+            text-overflow: ellipsis !important;
         }
 
         li:last-child {
@@ -174,12 +174,12 @@
         }
 
         span {
-            position: absolute;
+            display: inline-block;
             left: 10px;
             min-width: 90px;
-            display: inline-block;
-            text-align: left;
             padding-right: 8px;
+            position: absolute;
+            text-align: left;
         }
     }
 
@@ -205,17 +205,17 @@
     }
 
     .column {
+        color: #555;
         display: inline-block;
         text-align: left;
-        color: #555;
     }
 
     h3 {
+        color: $pink;
         font-size: 1em;
+        overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        overflow: hidden;
-        color: $pink;
     }
 
     .author > a {

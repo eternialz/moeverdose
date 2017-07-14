@@ -1,28 +1,28 @@
 .header-img {
-    height: 300px;
-    box-shadow: 0 1px 3px rgba(0,0,0,.25);
-    background: image_url($header-image) no-repeat center center;
     background-size: cover;
+    background: image_url($header-image) no-repeat center center;
+    box-shadow: 0 1px 3px rgba(0,0,0,.25);
+    height: 300px;
     position: relative;
 
     ul {
-        width: 100%;
+        background: rgba(0,0,0,.6);
+        bottom: 0;
+        margin: 0;
+        padding: 20px;
         position: absolute;
         text-align: center;
-        bottom: 0;
-        padding: 20px;
-        margin: 0;
-        background: rgba(0,0,0,.6);
+        width: 100%;
     }
 
     li {
         display: inline-block;
 
         a {
-            padding: 5px;
             color: #DDD;
-            text-shadow: 0 1px 2px rgba(0,0,0,.25);
             font-weight: bold;
+            padding: 5px;
+            text-shadow: 0 1px 2px rgba(0,0,0,.25);
 
             &:hover, &:active {
                 color: #FFF;
@@ -37,7 +37,7 @@
     }
 
     .zone {
-        min-height: 220px;
         margin: 15px 0;
+        min-height: 220px;
     }
 }

@@ -1,7 +1,7 @@
 .search-form {
     background: #000;
-    margin: 20px 0 0;
     box-shadow: 0 1px 3px rgba(0,0,0,.25);
+    margin: 20px 0 0;
 
     &.search-home {
         margin: 0 0 15px;
@@ -12,54 +12,54 @@
     }
 
     input[type=text] {
-        background: #000;
-        color: #FFF;
-        float: left;
-        padding: 14px 14px 17px;
-        width: calc(100% - 92px);
-        border-radius: 0;
-        height: 49px;
-        border: 0;
-        border-bottom: 3px solid #888;
-        -webkit-transition: all 170ms ease-in-out;
         -moz-transition: all 170ms ease-in-out;
         -o-transition: all 170ms ease-in-out;
+        -webkit-transition: all 170ms ease-in-out;
+        background: #000;
+        border-bottom: 3px solid #888;
+        border-radius: 0;
+        border: 0;
+        color: #FFF;
+        float: left;
+        height: 49px;
+        padding: 14px 14px 17px;
         transition: all 170ms ease-in-out;
+        width: calc(100% - 92px);
     }
 
     input[type=text]:focus {
-        border-color: $pink;
         background: #222;
+        border-color: $pink;
         outline: none;
     }
 
     button, label {
+        -moz-transition: all 170ms ease-in-out;
+        -o-transition: all 170ms ease-in-out;
+        -webkit-transition: all 170ms ease-in-out;
         background: none;
+        border-bottom: 3px solid #888;
         border: none;
         color: #FFF;
         display: inline-block;
         float: left;
         line-height: 49px;
         max-height: 49px;
-        width: 46px;
         text-align: center;
-        -webkit-transition: all 170ms ease-in-out;
-        -moz-transition: all 170ms ease-in-out;
-        -o-transition: all 170ms ease-in-out;
         transition: all 170ms ease-in-out;
-        border-bottom: 3px solid #888;
+        width: 46px;
     }
 
     button:hover, label:hover {
-        border-color: $pink;
         background: #222;
+        border-color: $pink;
         cursor: pointer;
     }
 
     i {
-        -webkit-transition: all 170ms ease-in-out;
         -moz-transition: all 170ms ease-in-out;
         -o-transition: all 170ms ease-in-out;
+        -webkit-transition: all 170ms ease-in-out;
         transition: all 170ms ease-in-out;
     }
 
@@ -68,15 +68,15 @@
     }
 
     .tag_list {
+        -moz-transition: all 170ms ease-in-out;
+        -o-transition: all 170ms ease-in-out;
+        -webkit-transition: all 170ms ease-in-out;
         background: #222;
         float: left;
         height: 0;
         overflow-y: scroll;
-        width: 100%;
-        -webkit-transition: all 170ms ease-in-out;
-        -moz-transition: all 170ms ease-in-out;
-        -o-transition: all 170ms ease-in-out;
         transition: all 170ms ease-in-out;
+        width: 100%;
     }
 
     #advanced_search {

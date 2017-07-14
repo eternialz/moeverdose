@@ -1,25 +1,25 @@
 
 .tag {
-    box-shadow: 0 1px 1px rgba(0,0,0,.1);
     background: #FAFAFA;
-    font-size: 14px;
-    display: inline-block;
-    max-width: 250px;
-    margin: 3px;
-    padding: 6px;
-    overflow: hidden;
-    text-overflow: ellipsis;
     border-radius: 2px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.1);
+    display: inline-block;
+    font-size: 14px;
     font-weight: bold;
+    margin: 3px;
+    max-width: 250px;
+    overflow: hidden;
+    padding: 6px;
+    text-overflow: ellipsis;
 }
 
 .tag:hover {
-    color: $pink;
     background: #F6F6F6;
+    color: $pink;
     cursor: pointer;
 }
 
 .tag:active {
-    color: $pink_dark;
     background: #E6E6E6;
+    color: $pink_dark;
 }

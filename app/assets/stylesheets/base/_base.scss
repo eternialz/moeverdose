@@ -34,9 +34,9 @@ $header-image: "header-img.jpg";
 /* Global default custom styles */
 html {
     box-sizing: border-box;
-    overflow-y: scroll;
-    overflow-x: hidden;
     font-size: 16px;
+    overflow-x: hidden;
+    overflow-y: scroll;
 
     @media only screen and (max-width: $xsmall) {
         font-size: 14px;
@@ -48,17 +48,17 @@ html {
 }
 
 ul {
-    padding-left: 0;
     list-style: none;
     margin-top: 0;
+    padding-left: 0;
 }
 
 a {
-    cursor: pointer;
-    text-decoration: none;
-    -webkit-transition: all 70ms linear;
     -moz-transition: all 70ms linear;
     -o-transition: all 70ms linear;
+    -webkit-transition: all 70ms linear;
+    cursor: pointer;
+    text-decoration: none;
     transition: all 70ms linear;
 }
 
@@ -71,25 +71,25 @@ dd {
 }
 
 body {
-    padding-top: 100px;
+    background-attachment: fixed;
     background-image: url(image_path('background.svg'));
     background-size: cover;
-    background-attachment: fixed;
+    padding-top: 100px;
 }
 
 /* Inputs */
 
 textarea, input[type="text"] {
-    border: 0;
     border-radius: 3px;
-    width: 100%;
+    border: 0;
     box-shadow: 0 1px 3px rgba(0,0,0,.25) inset;
     padding: 10px;
+    width: 100%;
 }
 
 textarea {
-    resize: vertical;
     min-height: 200px;
+    resize: vertical;
 }
 
 h1, h2, h3, h4, h5, h6, p {
