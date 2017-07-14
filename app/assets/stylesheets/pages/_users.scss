@@ -44,29 +44,18 @@
     }
 }
 
-// PROFILE
-
-.post-thumbnail.preview {
-    background: #000;
-    padding-top: 50px;
-    text-align: center;
-
-    p {
-        background: #444;
-        border-radius: 3px;
-        color: #FFF;
-        display: inline-block;
-        margin: 10px;
-        padding: 5px;
-    }
-}
-
-a.post-thumbnail.preview:hover {
-    background: #222;
-}
-
 .userprofile {
     color: #555;
+
+    .username {
+        color: #555;
+        display: inline-block;
+        font-size: 2em;
+        font-style: normal;
+        font-weight: 400;
+        margin: 0;
+        margin-top: 10px;
+    }
 
     .user_header {
         background-size: cover;
@@ -106,9 +95,8 @@ a.post-thumbnail.preview:hover {
             right: 20px;
         }
 
-
         .user_banner {
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.7);
             bottom: 0;
             height: 66px;
             left: 0;
@@ -117,15 +105,6 @@ a.post-thumbnail.preview:hover {
             position: absolute;
             width: 100%;
 
-            h3 {
-                color: #555;
-                display: inline-block;
-                font-size: 2em;
-                font-style: normal;
-                font-weight: 400;
-                margin: 0;
-                padding: 10px 0 0 0;
-            }
 
             .btn {
                 float: right;
@@ -168,35 +147,101 @@ a.post-thumbnail.preview:hover {
 // EDIT user
 
 .userprofile.edit {
-    position: relative;
+    #edit-zone {
+        position: fixed;
+        bottom: 10px;
+        z-index: 100;
+    }
 
-    input.hide {
-        & + .user_option {
-            display: none;
+    #edit-title {
+        transition: 170ms transform ease-in-out;
+        background: rgba($gray, .8);
+        box-shadow: 0 0 5px rgba($gray, .5);
+        border-radius: 3px;
+        padding: 9px;
+        width: 800px;
+        max-width: calc(100vw - 30px);
+        margin: auto;
+        transform: translateY(100px);
+
+        .btn {
+            width: auto;
+            margin: 0;
+            float: right;
         }
-        &:checked + .user_option {
-            display: block;
+
+        span {
+            color: #fff;
+            padding: 10px;
+            line-height: 30px;
         }
     }
 
-    #avatar_img {
+    #edit-title.modified {
+        transform: translateY(0px);
+    }
+
+
+    .tooltip {
+        color: #AAA;
+        margin: 10px;
+        cursor: help;
+    }
+
+    h3, h6 {
+        display: inline-block;
+    }
+
+    #avatar-img {
+        display: inline;
         border-radius: 3px;
         box-shadow: 0 1px 3px rgba(0,0,0,.25);
-        display: inline-block;
         float: left;
-        margin: 20px 0;
+        position: relative;
+        width: 120px;
+        height: 120px;
+        background-position: center;
+        background-size: cover;
+        margin: 0;
+
+        &:hover .message{
+            background: rgba($gray, .2);
+        }
     }
 
-    input[type="file"] {
-        background: rgba(0,0,0,.5);
-        border-radius: 3px;
-        color: #FFF;
-        margin-top: 15px;
-        padding: 25px;
-        text-align: center;
-        text-align: center;
-        width: 100%;
+    .avatar-upload {
+        line-height: 120px;
+
+        input {
+            position: absolute;
+            left: 0;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .message {
+            border-radius: 3px;
+            width: 100%;
+            color: #FFF;
+            text-align: center;
+            padding: 0 20px;
+            float: left;
+            transition: 170ms all ease-in-out;
+            background: rgba($gray, .5);
+        }
+
+        .btn {
+            line-height: 1.4;
+            margin: 20px;
+        }
+
+        label {
+            float: left;
+        }
     }
+
 
     #banner_img {
         background-position: center center;
@@ -205,59 +250,51 @@ a.post-thumbnail.preview:hover {
         box-shadow: 0 1px 3px rgba(0,0,0,.25);
         height: 300px;
         left: 0;
-        margin: 20px 0 0;
         max-height: 300px;
-        max-width: 100vw;
         position: relative;
+        margin: 0px;
         width: 100%;
-    }
 
-    .user_header {
-        border-color: $blue;
-    }
+        label {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transition: 170ms all ease-in-out;
+            border-radius: 3px;
+            background: rgba($gray, .5);
 
-    #user_current_password {
-        background: #FFF;
-        border-radius: 3px;
-        border: none;
-        box-shadow: 0 1px 3px rgba(0,0,0,.25) inset;
-        float: right;
-        height: 40px;
-        margin: 13px 0;
-        padding: 10px;
-    }
-
-    #avatar {
-        border-radius: 3px;
-    }
-
-    #error_explanation {
-        background: #FFF;
-        box-shadow: 0 1px 3px rgba(0,0,0,.25);
-        margin-top: 15px;
-        padding: 20px;
-    }
-
-    button {
-        border: none;
-        cursor: pointer;
-        float: right;
-        margin: 13px;
-        text-align: left;
-        width: 200px;
-    }
-
-    .user_option {
-        p {
-            color: #444;
-            display: inline-block;
-            float: left;
-            font-weight: 900;
-            padding: 0 5px;
+            span {
+                padding: 10px 13px;
+                background: #fff;
+                border-radius: 3px;
+                transition: 170ms box-shadow ease-in-out;
+            }
         }
 
-        .row {
-            margin-bottom: 60px;
+        .message {
+            pointer-events: none;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            font-weight: bold;
+            font-size: 22px;
+            text-align: center;
+            line-height: 300px;
+        }
+
+        input[type="file"] {
+            opacity: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        label:hover {
+            background: rgba($gray, 0.2);
+
+            span {
+                box-shadow: 0 0 0 5px rgba($blue, .8);
+            }
+
         }
     }
 }

@@ -1,18 +1,15 @@
 <%= form_for current_user, url: user_path(current_user.name), html: {class: "row userprofile edit", method: :patch } do |f| %>
     <div class="user_header clearfix" style="background-image: url(<%= @user.banner %>)">
         <img class="avatar" src="<%= @user.avatar %>" width="120" height="120" />
-        <% if @user.twitter != "" %>
-            <a href="https://twitter.com/<%= @user.twitter %>" class="icon tooltip"><%= fa_icon "twitter" %><span class="tip">@<%= @user.twitter %></span></a>
-        <% end %>
-        <% if @user.facebook != "" %>
-            <a href="<%= @user.facebook %>" class="icon tooltip"><%= fa_icon "facebook" %><span class="tip"><%= @user.facebook %></a>
-        <% end %>
-        <% if @user.website != "" %>
-            <a href="<%= @user.website %>" class="icon tooltip"><%= fa_icon "link" %><span class="tip"><%= @user.website %></a>
-        <% end %>
         <div class="user_banner">
-            <h3 class="username"><%= @user.name %></h3><span class="role"><%= @user.role %></span>
+            <h3 class="username"><%= @user.name %></h3>
             <button for="submit" class="btn btn-green"><%= fa_icon "save" %> Save profile</button>
+        </div>
+    </div>
+
+    <div class="row" id="edit-zone">
+        <div id="edit-title" class="clearfix">
+            <span>Careful - you have unaved changes</span><button for="submit" class="btn btn-green">Save changes <%= fa_icon "save" %></span></button>
         </div>
     </div>
 
@@ -21,26 +18,30 @@
             <h3>Profile</h3>
             <div class="row clearfix">
                 <div class="col-6">
-                    <h5><%= fa_icon "user" %> About me:</h5>
+                    <h6><%= fa_icon "user" %> About me</h6>
+                    <span class="tooltip"><%= fa_icon "question-circle" %><span class="tip">
+                        Displayed to everyone in your public profile
+                    </span></span>
                     <div class="field_area">
                         <%= f.text_area :biography, placeholder: "Master of daruma otoshi" %>
                     </div>
                 </div>
                 <div class="col-6">
-                    <h5><%= fa_icon "user" %> Social:</h5>
-                    <div class="">
-                        <div class="field">
-                            <%= f.text_field :website, placeholder: "https://mywebsite.me" %>
-                            <span><%= fa_icon "link" %> Website url:</span>
-                        </div>
-                        <div class="field">
-                            <%= f.text_field :twitter, placeholder: "username" %>
-                            <span><%= fa_icon "twitter" %> Twitter profile:</span>
-                        </div>
-                        <div class="field">
-                            <%= f.text_field :facebook, placeholder: "https://www.facebook.com/my.profile" %>
-                            <span><%= fa_icon "facebook" %> Facebook url:</span>
-                        </div>
+                    <h6><%= fa_icon "user" %> Social</h6>
+                    <span class="tooltip"><%= fa_icon "question-circle" %><span class="tip">
+                        Those links will be added in your profile banner
+                    </span></span>
+                    <div class="field">
+                        <%= f.text_field :website, placeholder: "https://mywebsite.me" %>
+                        <span><%= fa_icon "link" %> Website url:</span>
+                    </div>
+                    <div class="field">
+                        <%= f.text_field :twitter, placeholder: "username" %>
+                        <span><%= fa_icon "twitter" %> Twitter profile:</span>
+                    </div>
+                    <div class="field">
+                        <%= f.text_field :facebook, placeholder: "https://www.facebook.com/my.profile" %>
+                        <span><%= fa_icon "facebook" %> Facebook url:</span>
                     </div>
                 </div>
             </div>
@@ -49,46 +50,66 @@
         <div class="zone">
             <div class="row image">
                 <h3>Avatar</h3>
-                <div class="banner_upload">
-                    <%= f.file_field :avatar %>
+                <span class="tooltip"><%= fa_icon "question-circle" %><span class="tip">
+                    Avatars are resized and cropped to 120x120px
+                </span></span>
+                <div class="avatar-upload">
+                    <div class="tooltip" id="avatar-img" style="background-image: url(<%= @user.avatar %>)">
+                        <span class="tip">Drag and drop avatar here</span>
+                        <p class="message"><%= fa_icon "upload" %></p>
+                        <%= f.file_field :avatar %>
+                    </div>
+                    <%= f.label :avatar do %>
+                        <p class="btn btn-blue">Choisir mon avatar</p>
+                    <% end %>
                 </div>
-                <%= image_tag @user.avatar, id: "avatar_img" %>
-                <p>Files are resized and cropped to 120x120px</p>
             </div>
         </div>
 
         <div class="zone">
             <div class="row image">
                 <h3>Banner</h3>
-                <%= f.file_field :banner %>
-                <div id="banner_img" style="background-image: url(<%= @user.banner %>)"></div>
-                <p>Files are resized and cropped to 1600x300px</p>
+                <span class="tooltip"><%= fa_icon "question-circle" %><span class="tip">
+                    Banners are resized and cropped to 1600x300px
+                </span></span>
+                <div class="tooltip" id="banner_img" style="background-image: url(<%= @user.banner %>)">
+                    <%= f.label :banner do %>
+                        <div class="message"><span><%= fa_icon "upload" %></span></div>
+                        <%= f.file_field :banner %>
+                    <% end %>
+                    <span class="tip">Drag and drop banner here</span>
+                </div>
             </div>
         </div>
 
         <div class="zone">
             <div class="clearfix">
                 <h3>Tags</h3>
-                <div class="col-6">
-                    <div class="field_area">
-                        <p><%= fa_icon "tag" %> Favorites tags:</p>
-                        <%= text_area :tags, :favorites, placeholder: "1girl brown_hair", value: @user.favorites_tags  %>
-                        <p>Favorites tags are displayed as buttons to you when uploading a post to quickly add tags to the post. Replace spaces by underscores and use spaces to separate tags.</p>
+                <span class="tooltip"><%= fa_icon "question-circle" %><span class="tip">
+                    Replace spaces in each tag with an underscore and add space to separate tags
+                </span></span>
+                <div>
+                    <div class="col-6">
+                        <h6><%= fa_icon "tag" %> Favorites tags</h6>
+                        <span class="tooltip"><%= fa_icon "question-circle" %><span class="tip">
+                            Displayed in the upload page to make the upload process faster
+                        </span></span>
+                        <div class="field_area">
+                            <%= text_area :tags, :favorites, placeholder: "1girl brown_hair", value: @user.favorites_tags  %>
+                        </div>
                     </div>
-                </div>
 
-                <div class="col-6">
-                    <div class="field_area">
-                        <p><%= fa_icon "tag" %> Blacklisted tags:</p>
-                        <%= text_area :tags, :blacklisted, placeholder: "1boy", value: @user.blacklisted_tags %>
-                        <p>Posts with a blacklisted tag won't be displayed in the post list if you are logged-in. Replace spaces by underscores and use spaces to separate tags.</p>
+                    <div class="col-6">
+                        <h6><%= fa_icon "tag" %> Blacklisted tags</h6>
+                        <span class="tooltip"><%= fa_icon "question-circle" %><span class="tip">
+                            Posts containing a blaklisted tag don't appear in posts index or searches
+                        </span></span>
+                        <div class="field_area">
+                            <%= text_area :tags, :blacklisted, placeholder: "1boy", value: @user.blacklisted_tags %>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="zone">
-            <h3>Security</h3>
         </div>
     </div>
 <% end %>
