@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
     require 'digest/md5'
+    require 'httparty'
+    require 'json'
 
     before_action :try_set_post, only: [:show]
     before_action :set_post, only: [:edit, :update, :overdose, :shortage, :favorite, :report]
@@ -175,6 +177,8 @@ class PostsController < ApplicationController
 
             flash[:success] = "Post #{@post.title} created!"
 
+            notify("New post: " + post_url(id: @post.number))
+
             redirect_to post_path(@post.number)
         else
             flash.now[:error] = "The post could not be created. Please verify the picture dimensions and size."
@@ -268,4 +272,22 @@ class PostsController < ApplicationController
     def set_user
         @user = User.find(current_user.id)
     end
+
+    def notify(text)
+        @url = ENV["DISCORD_WEBHOOK_POSTS_URL"]
+
+        @result = HTTParty.post(@url,
+            :body => {
+                 :content => text
+            }.to_json,
+            :headers => { 'Content-Type' => 'application/json' }
+        )
+    end
+
+    def set_params
+    {
+          "content" => "tttt"
+    }
+    end
+
 end

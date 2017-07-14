@@ -1,0 +1,15 @@
+# RAILS
+export SECRET_KEY_BASE=
+export SECRET_KEY_DEV=
+export SECRET_KEY_TEST=
+
+# DEVISE
+export SECRET_KEY_DEVISE=
+
+# DISCORD
+## webhook
+export DISCORD_WEBHOOK_POSTS_URL=
+
+## bot
+export DISCORD_BOT_USER_TOKEN=
+export DISCORD_CLIENT_ID=

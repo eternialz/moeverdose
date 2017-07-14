@@ -19,5 +19,10 @@ module Moeverdose
         # -- all .rb files in that directory are automatically loaded.
 
         config.exceptions_app = self.routes
+
+        config.after_initialize do
+            bot = DiscordBot.new()
+            bot.run()
+        end
     end
 end

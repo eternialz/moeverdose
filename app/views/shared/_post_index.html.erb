@@ -2,7 +2,7 @@
     <div class="post-container clearfix">
         <% if !@posts.empty? %>
             <% @posts.each do |post| %>
-                <% cache ["index", post] do %>
+                <% if params[:query] %>
                     <div class="post-thumbnail clearfix" style="background-image: url(<%= post.post_image.url(:thumb)%> )">
                         <a title="<%= post.title %>" href="<%= post_path(post.number, query: params[:query]) %>" class="informations">
                             <h3><%= post.title %></h3>
@@ -10,10 +10,24 @@
                                 <span title="overdose(s)"><%= post.overdose %> <%= fa_icon "heartbeat" %> </span>
                                 <span title="shortage(s)"><%= post.moe_shortage %> <%= fa_icon "thumbs-down" %> </span>
                                 <!-- TODO integrate post comment count -->
-                                <span title="comment(s)"><%= 0 %> <%= fa_icon "comment" %></span>
+                                <span title="comment(s)"><%= post.comments.count %> <%= fa_icon "comment" %></span>
                             </span>
                         </a>
                     </div>
+                <% else %>
+                    <% cache ["index", post] do %>
+                        <div class="post-thumbnail clearfix" style="background-image: url(<%= post.post_image.url(:thumb)%> )">
+                            <a title="<%= post.title %>" href="<%= post_path(post.number) %>" class="informations">
+                                <h3><%= post.title %></h3>
+                                <span class="post-stats">
+                                    <span title="overdose(s)"><%= post.overdose %> <%= fa_icon "heartbeat" %> </span>
+                                    <span title="shortage(s)"><%= post.moe_shortage %> <%= fa_icon "thumbs-down" %> </span>
+                                    <!-- TODO integrate post comment count -->
+                                    <span title="comment(s)"><%= post.comments.count %> <%= fa_icon "comment" %></span>
+                                </span>
+                            </a>
+                        </div>
+                    <% end %>
                 <% end %>
             <% end %>
         <% else %>

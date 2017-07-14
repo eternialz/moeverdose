@@ -14,7 +14,7 @@
             <div class="user_banner">
                 <h3 class="username"><%= @user.name %></h3><span class="role"><%= @user.role %></span>
                 <% if @current %>
-                    <a class="btn btn-blue" href="<%= edit_user_path %>"><%= fa_icon "edit" %> edit profile</a>
+                    <a class="btn btn-blue" href="<%= edit_user_path(@user.name) %>"><%= fa_icon "edit" %> edit profile</a>
                 <% end %>
             </div>
         </div>
