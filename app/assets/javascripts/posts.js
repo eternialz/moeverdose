@@ -24,7 +24,7 @@ Post = {
                 202: function() {
                     Notifications.add("Favorite removed from your profile");
                 }
-            },
+            }
         });
     },
     overdose: function() {
@@ -33,12 +33,12 @@ Post = {
             type : 'PATCH',
             statusCode: {
                 200: function() {
-                    Post.overdose.html(parseInt(Post.overdose.html()) +1);
+                    Post.overdose.html(parseInt(Post.overdose.html()) + 1, 10);
                     Post.percentage();
                     Notifications.add("Overdose added","","success")
                 },
                 202: function() {
-                    Post.overdose.html(parseInt(Post.overdose.html()) -1);
+                    Post.overdose.html(parseInt(Post.overdose.html()) - 1, 10);
                     Post.percentage();
                     Notifications.add("Overdose removed","","success")
                 }
@@ -54,12 +54,12 @@ Post = {
             type : 'PATCH',
             statusCode: {
                 200: function() {
-                    Post.shortage.html(parseInt(Post.shortage.html()) +1);
+                    Post.shortage.html(parseInt(Post.shortage.html()) + 1, 10);
                     Post.percentage();
                     Notifications.add("Moe shortage added","","success")
                 },
                 202: function() {
-                    Post.shortage.html(parseInt(Post.shortage.html()) -1);
+                    Post.shortage.html(parseInt(Post.shortage.html()) - 1, 10);
                     Post.percentage();
                     Notifications.add("Moe shortage removed","","success")
                 }
@@ -70,9 +70,9 @@ Post = {
         });
     },
     percentage: function() {
-        var overdose_percentage = 100 * (parseInt(Post.overdose.html()) / (parseInt(Post.overdose.html()) + parseInt(Post.shortage.html())));
+        var overdose_percentage = 100 * (parseInt(Post.overdose.html(), 10) / (parseInt(Post.overdose.html(), 10) + parseInt(Post.shortage.html(), 10)));
         var shortage_percentage = 100 - overdose_percentage;
-        if ((Post.overdose.html() == "0") && (Post.shortage.html() == "0"))  {
+        if ((Post.overdose.html() === "0") && (Post.shortage.html() === "0"))  {
             overdose_percentage = 50;
             shortage_percentage = 50;
         }
@@ -81,7 +81,7 @@ Post = {
     },
     comment_char: function() {
         var length = $(this).val().length;
-        var max = parseInt($(this).data("length"))
+        var max = parseInt($(this).data("length"), 10)
         if (length > max) {
             $('#char_count').text("The comment is too long! Please remove " + ( length - max ) + " character(s)")
         } else {
