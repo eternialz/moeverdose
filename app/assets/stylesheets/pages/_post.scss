@@ -164,6 +164,8 @@
             padding: 8px;
             position: relative;
             text-overflow: ellipsis !important;
+            white-space: nowrap;
+            text-overflow: ellipsis;
         }
 
         li:last-child {
@@ -172,11 +174,8 @@
 
         span {
             display: inline-block;
-            left: 10px;
             min-width: 90px;
             padding-right: 8px;
-            position: absolute;
-            text-align: left;
         }
     }
 
