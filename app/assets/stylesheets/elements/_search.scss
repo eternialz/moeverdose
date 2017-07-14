@@ -12,9 +12,6 @@
     }
 
     input[type=text] {
-        -moz-transition: all 170ms ease-in-out;
-        -o-transition: all 170ms ease-in-out;
-        -webkit-transition: all 170ms ease-in-out;
         background: #000;
         border-bottom: 3px solid #888;
         border-radius: 0;
@@ -34,9 +31,6 @@
     }
 
     button, label {
-        -moz-transition: all 170ms ease-in-out;
-        -o-transition: all 170ms ease-in-out;
-        -webkit-transition: all 170ms ease-in-out;
         background: none;
         border-bottom: 3px solid #888;
         border: none;
@@ -57,9 +51,6 @@
     }
 
     i {
-        -moz-transition: all 170ms ease-in-out;
-        -o-transition: all 170ms ease-in-out;
-        -webkit-transition: all 170ms ease-in-out;
         transition: all 170ms ease-in-out;
     }
 
@@ -68,9 +59,6 @@
     }
 
     .tag_list {
-        -moz-transition: all 170ms ease-in-out;
-        -o-transition: all 170ms ease-in-out;
-        -webkit-transition: all 170ms ease-in-out;
         background: #222;
         float: left;
         height: 0;

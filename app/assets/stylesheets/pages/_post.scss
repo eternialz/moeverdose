@@ -103,9 +103,6 @@
     position: relative;
 
     .overdose_bar, .shortage_bar {
-        -moz-transition:all 500ms ease-in-out;
-        -o-transition:all 500ms ease-in-out;
-        -webkit-transition:all 500ms ease-in-out;
         display: inline-block;
         float: left;
         height: 60px;

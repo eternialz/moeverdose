@@ -1,7 +1,4 @@
 nav.menu .submenu {
-    -moz-transition:all 200ms ease-in-out;
-    -o-transition:all 200ms ease-in-out;
-    -webkit-transition:all 200ms ease-in-out;
     background: #000;
     box-shadow: 0 4px 0 $yellow;
     height: 240px;
@@ -20,9 +17,6 @@ nav.menu .submenu {
     }
 
     ul {
-        -moz-transition:all 100ms linear;
-        -o-transition:all 100ms linear;
-        -webkit-transition:all 100ms linear;
         border-top: 4px solid rgba(0,0,0,.0);
         float: left;
         height: 240px;
@@ -141,9 +135,6 @@ nav.menu .submenu {
     }
 
     a:before {
-        -moz-transition: all 70ms linear;
-        -o-transition: all 70ms linear;
-        -webkit-transition: all 70ms linear;
         color: rgba($pink,0);
         content: "› ";
         transition: all 70ms linear;
@@ -178,9 +169,6 @@ nav.menu .submenu.develop {
 
 @media only screen and (max-width: $small) {
     nav.menu .submenu {
-        -moz-transition: none;
-        -o-transition: none;
-        -webkit-transition: none;
         overflow-y: scroll;
         padding: 0;
         transition: none;
