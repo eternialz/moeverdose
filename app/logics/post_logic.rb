@@ -63,7 +63,6 @@ class PostLogic < SimpleDelegator
         ).order('created_at DESC')).page(page).per(posts_per_page)
     end
 
-    private
     def self.posts_tags(query)
         query = query.split().uniq() # Change query into an array and remove duplicates
         tags = Tag.where(:names.in => query).map do |t| t.id end

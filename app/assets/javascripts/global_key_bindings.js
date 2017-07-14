@@ -56,7 +56,7 @@ $(document).ready(function(){
     function to_my_profile() {
         if (in_focus()) return;
 
-        if (user_profile == undefined) {
+        if (user_profile === undefined) {
             window.location.href = domain + "/account/sign_in";
         } else {
             window.location.href = domain + user_profile;
@@ -75,8 +75,8 @@ $(document).ready(function(){
     function to_next() {
         if (in_focus()) return;
 
-        if (parseInt(arr[4]) > 0) {
-            window.location.href = domain + "/posts/" + parseInt(-1 + parseInt(arr[4]));
+        if (parseInt(arr[4], 10) > 0) {
+            window.location.href = domain + "/posts/" + parseInt(-1 + parseInt(arr[4], 10), 10);
         } else {
             window.location.href = domain + "/posts/" + 0;
         }
@@ -84,7 +84,7 @@ $(document).ready(function(){
     function to_previous() {
         if (in_focus()) return;
 
-        window.location.href = domain + "/posts/" + parseInt( 1 + parseInt(arr[4]));
+        window.location.href = domain + "/posts/" + parseInt( 1 + parseInt(arr[4], 10), 10);
     }
     function add_to_favorites() {
         if (in_focus()) return;
@@ -109,7 +109,7 @@ $(document).ready(function(){
     $.key('0', log_out);
 
     // Posts bindings
-    if (arr[3] == "posts") {
+    if (arr[3] === "posts") {
         if (!isNaN(arr[4])) { // Is Integer
             $.key('1', add_to_favorites);
             $.key('2', add_overdose);

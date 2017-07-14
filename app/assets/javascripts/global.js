@@ -6,7 +6,7 @@ Global = {
         $('#submenu_close').click(Global.close_submenu);
     },
     develop_submenu: function() {
-        if (Global.menu == false) {
+        if (Global.menu === false) {
             $(this).addClass('open');
             $('.submenu').addClass('develop');
             Global.menu = true;
@@ -22,7 +22,7 @@ Global = {
         Global.menu = false;
     },
     develop_submenu_focus: function() {
-        if (Global.menu == false) {
+        if (Global.menu === false) {
             $('#menu_label').addClass('open');
             $('.submenu').addClass('develop');
             Global.menu = true;
