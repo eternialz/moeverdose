@@ -1,4 +1,5 @@
 Rails.application.configure do
+    Rails.application.routes.default_url_options[:host] = (ENV['MOEVERDOSE_PROD_HOST'].to_s) + ':' + (ENV['MOEVERDOSE_PROD_PORT'].to_s)
     # Settings specified here will take precedence over those in config/application.rb.
 
     # Code is not reloaded between requests.
