@@ -119,6 +119,10 @@
                 width: 60px;
             }
 
+            .user_banner {
+                padding-left: 100px;
+            }
+
             .role {
                 display: none;
             }
@@ -160,7 +164,7 @@
         border-radius: 3px;
         padding: 9px;
         width: 800px;
-        max-width: calc(100vw - 30px);
+        max-width: calc(100vw - 20px);
         margin: auto;
         transform: translateY(100px);
 

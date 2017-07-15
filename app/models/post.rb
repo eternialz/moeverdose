@@ -12,7 +12,7 @@ class Post
 
 
     # File
-    has_mongoid_attached_file :post_image, styles: { thumb: ConfigHelper.thumb_size + "#" }
+    has_mongoid_attached_file :post_image, styles: { thumb: {:geometry => ConfigHelper.thumb_size + "#", :animated => false}}
     validates_attachment :post_image, presence: true,
         content_type: { content_type: /\Aimage\/.*\Z/ },
         size: { in: 0..50.megabytes }

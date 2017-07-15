@@ -9,7 +9,7 @@
 
     <div class="row" id="edit-zone">
         <div id="edit-title" class="clearfix">
-            <span>Careful - you have unaved changes</span><button for="submit" class="btn btn-green">Save changes <%= fa_icon "save" %></span></button>
+            <span>Careful - unsaved changes</span><button for="submit" class="btn btn-green">Save changes <%= fa_icon "save" %></span></button>
         </div>
     </div>
 
@@ -33,15 +33,15 @@
                     </span></span>
                     <div class="field">
                         <%= f.text_field :website, placeholder: "https://mywebsite.me" %>
-                        <span><%= fa_icon "link" %> Website url:</span>
+                        <span><%= fa_icon "link" %> Website:</span>
                     </div>
                     <div class="field">
-                        <%= f.text_field :twitter, placeholder: "username" %>
-                        <span><%= fa_icon "twitter" %> Twitter profile:</span>
+                        <%= f.text_field :twitter, placeholder: "https://twitter.com/username" %>
+                        <span><%= fa_icon "twitter" %> Twitter:</span>
                     </div>
                     <div class="field">
                         <%= f.text_field :facebook, placeholder: "https://www.facebook.com/my.profile" %>
-                        <span><%= fa_icon "facebook" %> Facebook url:</span>
+                        <span><%= fa_icon "facebook" %> Facebook:</span>
                     </div>
                 </div>
             </div>

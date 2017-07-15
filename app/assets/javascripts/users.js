@@ -18,7 +18,6 @@ Useredit = {
         }
     },
     display_save: function() {
-        console.log($(this));
         Useredit.root.find('#edit-title').addClass("modified");
     }
 };

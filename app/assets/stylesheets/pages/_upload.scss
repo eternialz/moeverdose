@@ -1,8 +1,4 @@
 .upload {
-    background-image: url(image_path($header-image));
-    background-image: linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)), url(image_path($header-image));
-    background-position: center center;
-    background-size: cover;
     margin: 20px auto;
     padding: 25px;
 
@@ -16,14 +12,6 @@
         padding: 10px;
     }
 
-    h6 {
-        color: #FFF;
-    }
-
-    p {
-        color: #FFF;
-    }
-
     .favorites_tags {
         margin-bottom: 20px;
     }
@@ -35,7 +23,6 @@
 
     #info_upload {
         margin: auto;
-        max-width: 1000px;
     }
 
     #file_upload {
@@ -43,11 +30,9 @@
         height: auto;
         margin-bottom: 15px;
         margin: auto;
-        max-width: 1000px;
         position: relative;
         text-align: center;
         transition:all 100ms linear;
-        width: 100%;
 
         #file {
             max-width: 100%;
@@ -58,7 +43,7 @@
         }
 
         .file-dummy {
-            background: rgba(0, 0, 0, 0.65);
+            background: rgba(0, 0, 0, 0.7);
             border-radius: 3px;
             border: 3px solid transparent;
             font-weight: 900;

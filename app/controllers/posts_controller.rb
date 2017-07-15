@@ -181,7 +181,7 @@ class PostsController < ApplicationController
 
             redirect_to post_path(@post.number)
         else
-            flash.now[:error] = "The post could not be created. Please verify the picture dimensions and size."
+            flash.now[:error] = "The post could not be created."
             @favorites_tags = current_user.favorites_tags.split
             render :template => "posts/new"
         end
