@@ -41,8 +41,6 @@ Post = {
             type : 'PATCH',
             dataType: "json",
             success: function(data) {
-                console.log(data)
-
                 Post.overdose.html(parseInt(data.overdose, 10));
                 Post.shortage.html(parseInt(data.shortage, 10));
                 Post.percentage();
