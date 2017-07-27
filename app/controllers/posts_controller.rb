@@ -4,7 +4,7 @@ class PostsController < ApplicationController
     require 'json'
 
     before_action :try_set_post, only: [:show]
-    before_action :set_post, only: [:edit, :update, :overdose, :shortage, :favorite, :report]
+    before_action :set_post, only: [:edit, :update, :dose, :favorite, :report]
     before_action :authenticate_user!, except: [:show, :index, :not_found, :random]
 
     def show
@@ -42,44 +42,45 @@ class PostsController < ApplicationController
         end
     end
 
-    def overdose
+    def dose
         if user_signed_in?
-            if current_user.liked_posts.exclude?(@post)
-                if current_user.disliked_posts.exclude?(@post)
-                    @post.overdose += 1
-                    @post.save
-                    current_user.liked_posts << @post
-                    head 200
-                else
-                    head 403
-                end
-            else
-                @post.overdose -= 1
-                @post.save
-                current_user.liked_posts.delete(@post)
-                head 202
-            end
-        else
-            head 403
-        end
-    end
+            @removed = false;
 
-    def shortage
-        if user_signed_in?
-            if current_user.disliked_posts.exclude?(@post)
+            if params[:dose] == "overdose"
                 if current_user.liked_posts.exclude?(@post)
-                    @post.moe_shortage += 1
+                    if current_user.disliked_posts.include?(@post)
+                        @post.moe_shortage -= 1
+                        current_user.disliked_posts.delete(@post)
+                    end
+                    @post.overdose += 1
+                    current_user.liked_posts << @post
                     @post.save
-                    current_user.disliked_posts << @post
-                    head 200
                 else
-                    head 403
+                    @post.overdose -= 1
+                    @removed = true
+                    current_user.liked_posts.delete(@post)
+                    @post.save
                 end
-            else
-                @post.moe_shortage -= 1
-                @post.save
-                current_user.disliked_posts.delete(@post)
-                head 202
+
+                render json: {overdose: @post.overdose, shortage: @post.moe_shortage, removed: @removed}, status: 200
+
+            else params[:dose] == "shortage"
+                if current_user.disliked_posts.exclude?(@post)
+                    if current_user.liked_posts.include?(@post)
+                        @post.overdose -= 1
+                        current_user.liked_posts.delete(@post)
+                    end
+                    @post.moe_shortage += 1
+                    current_user.disliked_posts << @post
+                    @post.save
+                else
+                    @post.moe_shortage -= 1
+                    @removed = true
+                    current_user.disliked_posts.delete(@post)
+                    @post.save
+                end
+
+                render json: {overdose: @post.overdose, shortage: @post.moe_shortage, removed: @removed}, status: 200
             end
         else
             head 403
