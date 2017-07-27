@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     get 'home/show'
 
     # Homepage
-    root 'static_pages#home'
+    root 'application#home'
 
     # Static contents
     get "/pages/:page" => "static_pages#show"
