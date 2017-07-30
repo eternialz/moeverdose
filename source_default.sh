@@ -11,6 +11,7 @@ export SECRET_KEY_DEVISE=
 export DISCORD_WEBHOOK_POSTS_URL=
 
 ## bot
+export FORCE_DISCORD_BOT_START=False # Use to start bot in development env
 export DISCORD_BOT_USER_TOKEN=
 export DISCORD_CLIENT_ID=
 

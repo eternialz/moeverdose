@@ -20,9 +20,11 @@ module Moeverdose
 
         config.exceptions_app = self.routes
 
-        config.after_initialize do
+        if !(Rails.env.development?) or ENV["FORCE_DISCORD_BOT_START"] == "True"
+            config.after_initialize do
             bot = DiscordBot.new()
-            bot.run()
+                bot.run()
+            end
         end
     end
 end
