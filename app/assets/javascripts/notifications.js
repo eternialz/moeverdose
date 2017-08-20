@@ -30,6 +30,6 @@ Notifications = {
     }
 };
 
-$(document).ready(function(){
+$(document).on('ready page:load', function(event) {
     Notifications.init($('.notifications'));
 });

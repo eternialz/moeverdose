@@ -35,7 +35,7 @@
 })(jQuery, document);
 
 
-$(document).ready(function(){
+$(document).on('ready page:load', function(event) {
     // Location data
     var url = window.location.href
     var arr = url.split("/");
@@ -94,12 +94,12 @@ $(document).ready(function(){
     function add_overdose() {
         if (in_focus()) return;
 
-        Post.overdose();
+        Post.dose({dose: 'overdose'});
     }
     function add_shortage() {
         if (in_focus()) return;
 
-        Post.shortage();
+        Post.dose({dose: 'shortage'});
     }
 
     // Global key bindings

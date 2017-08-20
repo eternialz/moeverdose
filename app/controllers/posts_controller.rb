@@ -61,9 +61,6 @@ class PostsController < ApplicationController
                     current_user.liked_posts.delete(@post)
                     @post.save
                 end
-
-                render json: {overdose: @post.overdose, shortage: @post.moe_shortage, removed: @removed}, status: 200
-
             else params[:dose] == "shortage"
                 if current_user.disliked_posts.exclude?(@post)
                     if current_user.liked_posts.include?(@post)
@@ -79,9 +76,9 @@ class PostsController < ApplicationController
                     current_user.disliked_posts.delete(@post)
                     @post.save
                 end
-
-                render json: {overdose: @post.overdose, shortage: @post.moe_shortage, removed: @removed}, status: 200
             end
+
+            render json: {overdose: @post.overdose, shortage: @post.moe_shortage, removed: @removed}, status: 200
         else
             head 403
         end

@@ -29,10 +29,10 @@ Post = {
             }
         });
     },
-    dose: function() {
+    dose: function(args) {
         var button = $(this);
 
-        var dose = button.data('dose');
+        var dose = args.dose || button.data('dose');
 
         button.prop("disabled", true);
 
@@ -46,13 +46,13 @@ Post = {
                 Post.percentage();
 
                 if(dose === "overdose") {
-                    if(data.removed === "true") {
+                    if(data.removed === true) {
                         Notifications.add("Overdose removed", "", "info");
                     } else {
                         Notifications.add("Overdose added", "", "success");
                     }
                 } else {
-                    if(data.removed === "true") {
+                    if(data.removed === true) {
                         Notifications.add("Shortage removed", "","info");
                     } else {
                         Notifications.add("Shortage added", "", "success");
@@ -87,6 +87,6 @@ Post = {
     }
 };
 
-$(document).ready(function(){
+$(document).on('ready page:load', function(event) {
     Post.init($('.posts'));
 });

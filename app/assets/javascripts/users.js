@@ -22,6 +22,6 @@ Useredit = {
     }
 };
 
-$(document).ready(function(){
+$(document).on('ready page:load', function(event) {
     Useredit.init($('.userprofile'));
 });
