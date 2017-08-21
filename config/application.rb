@@ -20,6 +20,9 @@ module Moeverdose
 
         config.exceptions_app = self.routes
 
+        #Activate MongoDB Query Caching
+        config.middleware.use "Mongoid::QueryCache::Middleware"
+
         if !(Rails.env.development?) or ENV["FORCE_DISCORD_BOT_START"] == "True"
             config.after_initialize do
             bot = DiscordBot.new()

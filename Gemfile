@@ -73,6 +73,7 @@ group :development do
   gem 'rack-mini-profiler'
   gem 'stackprof'
   gem 'flamegraph'
+  gem 'bullet'
 
   # PRY
   gem "pry"

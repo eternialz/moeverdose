@@ -14,6 +14,7 @@ class PostLogic < SimpleDelegator
                 author << t.names[0]
             end
         end
+
         return {tags: tag, characters: character, authors: author}
     end
 

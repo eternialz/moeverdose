@@ -88,6 +88,6 @@ Post = {
     }
 };
 
-$(document).on('ready turbolinks:load', function(event) {
+$(document).on('turbolinks:load', function(event) {
     Post.init($('.posts'));
 });
