@@ -15,6 +15,15 @@ class PostsController < ApplicationController
         @authors = results[:authors]
 
         title(@post.title)
+        if user_signed_in?
+            respond_to do |format|
+                format.html
+            end
+        elsif stale?(etag: @post, last_modified: @post.updated_at)
+            respond_to do |format|
+                format.html
+            end
+        end
     end
 
     def report
@@ -247,7 +256,7 @@ class PostsController < ApplicationController
     def try_set_post
         if params[:id]
             Mongoid.raise_not_found_error = false
-            @post = Post.find_by(number: params[:id])
+            @post = Post.includes(:comments, :tags).find_by(number: params[:id])
 
             unless @post
                 not_found

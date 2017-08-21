@@ -31,7 +31,6 @@ Post = {
     },
     dose: function(args) {
         var button = $(this);
-        console.log(1);
 
         var dose = args.dose || button.data('dose');
 
