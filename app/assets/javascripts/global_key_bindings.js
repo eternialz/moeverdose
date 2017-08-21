@@ -35,7 +35,7 @@
 })(jQuery, document);
 
 
-$(document).on('ready page:load', function(event) {
+$(document).on('turbolinks:load', function(event) {
     // Location data
     var url = window.location.href
     var arr = url.split("/");

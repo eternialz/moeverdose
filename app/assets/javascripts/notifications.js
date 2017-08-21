@@ -30,6 +30,6 @@ Notifications = {
     }
 };
 
-$(document).on('ready page:load', function(event) {
+$(document).on('turbolinks:load', function(event) {
     Notifications.init($('.notifications'));
 });

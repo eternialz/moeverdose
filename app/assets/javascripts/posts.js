@@ -31,6 +31,7 @@ Post = {
     },
     dose: function(args) {
         var button = $(this);
+        console.log(1);
 
         var dose = args.dose || button.data('dose');
 
@@ -87,6 +88,6 @@ Post = {
     }
 };
 
-$(document).on('ready page:load', function(event) {
+$(document).on('ready turbolinks:load', function(event) {
     Post.init($('.posts'));
 });
