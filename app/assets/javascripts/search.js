@@ -29,6 +29,6 @@ Search = {
     }
 };
 
-$(document).on('turbolinks:load', function(event) {
+$(document).on('turbolinks:load', function() {
     Search.init($('.tags-form'));
 });

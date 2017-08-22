@@ -18,6 +18,6 @@ Upload = {
     }
 };
 
-$(document).on('turbolinks:load', function(event) {
+$(document).on('turbolinks:load', function() {
     Upload.init($('.upload'));
 });

@@ -87,6 +87,6 @@ Post = {
     }
 };
 
-$(document).on('turbolinks:load', function(event) {
+$(document).on('turbolinks:load', function() {
     Post.init($('.posts'));
 });

@@ -22,6 +22,6 @@ Useredit = {
     }
 };
 
-$(document).on('turbolinks:load', function(event) {
+$(document).on('turbolinks:load', function() {
     Useredit.init($('.userprofile'));
 });

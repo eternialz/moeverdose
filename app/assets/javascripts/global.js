@@ -30,6 +30,6 @@ Global = {
     }
 };
 
-$(document).on('ready turbolinks:load', function(event) {
+$(document).on('ready turbolinks:load', function() {
     Global.init();
 });
