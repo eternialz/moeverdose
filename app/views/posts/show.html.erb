@@ -217,14 +217,13 @@
                 </div>
             <% end %>
         <% else %>
-
             <h3>Add a comment</h3>
-            <p><%= link_to "Sign up", new_user_registration_path %> or <%= link_to "log in", new_user_session_path %> to post a comment</p>
+            <p><%= link_to "Sign up", new_user_registration_path %> or <%= link_to "log in", new_user_session_path %> to post a comment.</p>
             <br />
         <% end %>
 
         <% if @post.comments.any? %>
-            <h3><%= fa_icon "comments-o" %> Commentaires</h3>
+            <h3><%= fa_icon "comments-o" %> Comments</h3>
             <div class="comments-zone">
                 <% @post.comments.includes(:user).each_with_index do |comment,index| %>
                     <%= cell(:comment, comment, post: @post, index: index).(:show) %>

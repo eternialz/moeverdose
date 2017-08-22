@@ -1,5 +1,5 @@
 nav.menu {
-    background: $default;
+    background: $gray;
     color: #FFF;
     height: 96px;
     position: fixed;
@@ -8,7 +8,7 @@ nav.menu {
     z-index: 20000;
 
     .container {
-        background: $default;
+        background: $gray;
         height: 96px;
         padding: 10px 0 0 0;
         position: relative;
@@ -27,8 +27,14 @@ nav.menu {
         }
 
         @media only screen and (max-width: $small) {
-            .user .avatar, #random {
-                display: none;
+            .user .avatar, .user img {
+                width: 46px;
+                height: 46px;
+            }
+
+            .user img {
+                width: 40px;
+                height: 40px;
             }
         }
 
@@ -51,6 +57,7 @@ nav.menu {
                 float: right;
                 overflow: hidden;
                 padding: 0;
+                margin-right: 10px;
 
                 img {
                     float: left;
@@ -61,6 +68,43 @@ nav.menu {
                 border-color: $blue;
                 border-radius: 3px;
             }
+        }
+    }
+
+    @media only screen and (max-width: $small) {
+        height: 65px;
+
+        .container {
+            height: 65px;
+        }
+
+        #random {
+            display: none;
+        }
+
+        h1 {
+            line-height: 45px;
+            font-size: 1.2em;
+            margin: 0;
+        }
+    }
+
+    #menu_label {
+        display: none;
+        border-radius: 3px;
+        color: #FFF;
+        background: rgba(#FFF, 0.5);
+        font-size: 24px;
+        line-height: 40px;
+        width: 40px;
+        text-align: center;
+        float: right;
+        margin: 3px;
+    }
+
+    @media only screen and (max-width: $small) {
+        a#menu_label {
+            display: inline-block;
         }
     }
 
@@ -80,32 +124,19 @@ nav.menu {
                 transition:all 100ms linear;
             }
 
+            @media only screen and (max-width: $small) {
+                a {
+                    display: none;
+                }
+            }
+
             i {
                 margin-right: 10px;
             }
 
-            #menu_label {
-                display: none;
-            }
-
-            #menu_label.open {
-                color: #FFF;
-                text-shadow: 0 0 5px rgba(255,255,255,.75);
-            }
-
-
-            @media only screen and (max-width: $normal) {
-
-                a {
-                    display: none;
-                }
-
-                a#menu_label {
-                    display: block;
-                }
-            }
         }
     }
+
 
     a:hover {
         color: #FFF;

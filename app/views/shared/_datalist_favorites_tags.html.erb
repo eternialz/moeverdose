@@ -1,7 +1,7 @@
 <% if user_signed_in? %>
     <datalist id="fav-tags">
         <%= current_user.favorites_tags.split().each do |t| %>
-                <option value="<%= t %>"></option>
+                <option value="<%= t %> "></option>
         <% end %>
-    </datalist>
+     </datalist>
 <% end %>

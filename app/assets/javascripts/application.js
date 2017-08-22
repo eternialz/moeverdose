@@ -13,6 +13,14 @@
 //= require jquery
 //= require jquery_ujs
 //
-//= require_tree .
+//= require cable
+//= require global_key_bindings
+//= require global
+//= require level
+//= require notifications
+//= require posts
+//= require search
+//= require upload
+//= require users
 //
 //= require turbolinks

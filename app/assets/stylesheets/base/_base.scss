@@ -60,6 +60,13 @@ body {
     padding-top: 100px;
 }
 
+
+@media only screen and (max-width: $small) {
+    body {
+        padding-top: 0px 
+    }
+}
+
 /* Inputs */
 
 textarea, input[type="text"] {

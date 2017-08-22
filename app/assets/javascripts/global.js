@@ -1,35 +1,47 @@
 Global = {
     init: function() {
         Global.menu = false;
+        Global.mouseOver = false;
+        Global.timeOut = setTimeout('', 1);
         $('#menu_label').click(Global.develop_submenu);
-        $('.submenu input').focus(Global.develop_submenu_focus);
-        $('#submenu_close').click(Global.close_submenu);
+
+        $('nav.menu, nav.menu .submenu').on('mouseover', function () {
+            Global.open_submenu();
+            Global.mouseOver = true;
+        }).on('mouseout', function (e) {
+            Global.mouseOver = false;
+
+            if ($(e.target).is('input')) {
+                Global.mouseOver = true; // Close only if it's out and not if hovered on browser input autocomplete
+            }
+
+            clearTimeout(Global.timeOut); // Remove potential old Timeout
+            Global.timeOut = setTimeout(function() { // Close after 2ms if not hovered
+                if (!Global.mouseOver) {
+                    Global.close_submenu();
+                }
+            }, 1000)
+        });
     },
     develop_submenu: function() {
         if (Global.menu === false) {
-            $(this).addClass('open');
-            $('.submenu').addClass('develop');
+            Global.open_submenu();
             Global.menu = true;
         } else {
-            $(this).removeClass('open');
-            $('.submenu').removeClass('develop');
+            Global.close_submenu();
             Global.menu = false;
         }
+    },
+    open_submenu: function() {
+        $("#menu_label").addClass('open');
+        $('.submenu').addClass('develop');
     },
     close_submenu: function() {
         $("#menu_label").removeClass('open');
         $('.submenu').removeClass('develop');
-        Global.menu = false;
     },
-    develop_submenu_focus: function() {
-        if (Global.menu === false) {
-            $('#menu_label').addClass('open');
-            $('.submenu').addClass('develop');
-            Global.menu = true;
-        }
-    }
 };
 
-$(document).on('ready turbolinks:load', function() {
+$(document).on('turbolinks:load', function() {
     Global.init();
 });

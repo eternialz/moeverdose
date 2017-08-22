@@ -48,7 +48,7 @@ nav.menu .submenu {
         padding: 10px;
         position: absolute;
         right: 0;
-        width: 300px;
+        width: 220px;
 
         h3 {
             padding: 0;
@@ -112,7 +112,7 @@ nav.menu .submenu {
     ul.register {
         background: #222;
         padding: 10px 20px;
-        right: 299px;
+        right: 219px;
     }
 
     ul.login:hover {
@@ -155,13 +155,6 @@ nav.menu .submenu {
     }
 }
 
-@media only screen and (min-width: $normal) {
-    nav.menu:hover .submenu {
-        top: 96px;
-        visibility: visible;
-    }
-}
-
 nav.menu .submenu.develop {
     top: 96px;
     visibility: visible;
@@ -189,14 +182,32 @@ nav.menu .submenu.develop {
             }
         }
 
+        .my-account {
+            display: none;
+        }
+
+        li {
+            width: calc(50% - 20px);
+            float: left;
+        }
+
         #submenu_close {
             display: block;
         }
     }
 
+    nav.menu {
+        position: static;
+    }
+
+
+    nav.menu .submenu {
+        top: -180px;
+    }
+
     nav.menu .submenu.develop {
-        height: 100vh;
-        top: 0;
+        height: calc( 100vh - 69px );
+        top: 65px;
         visibility: visible;
         z-index: 10000;
     }

@@ -5,15 +5,13 @@
             <span id="random"><%= cell(:random_message).(:show) %></span>
             <div class="user">
                 <% if user_signed_in? %>
-                    <a class="avatar" href="<%= user_path(current_user.name) %>" id="my_account"><%= image_tag current_user.avatar(:tiny), width: 60, height: 60 %></a>
-                    <span><%= link_to current_user.name, user_path(current_user.name) %></span>
+                    <a class="avatar" href="<%= user_path(current_user.name) %>" id="my_account"><%= image_tag current_user.avatar(:original), width: 60, height: 60 %></a>
                 <% else %>
                     <a class="avatar" href="<%= new_user_registration_path %>"><%= image_tag image_path('default_user.png'), width: 60, height: 60 %></a>
-                    <span>Guest</span>
                 <% end %>
             </div>
+            <a id="menu_label"><%= fa_icon 'bars' %></a>
             <ul>
-                <li><a id="menu_label"><%= fa_icon 'bars' %>Menu</a></li>
                 <li><%= link_to 'Posts', posts_path, title: 'Posts' %></li>
                 <li><%= link_to 'Upload', new_post_path, title: 'Upload' %></li>
                 <li><%= link_to 'Tags', tags_path, title: 'Tags' %></li>
@@ -28,8 +26,7 @@
             </ul>
         </div>
 
-        <div class="submenu">
-            <label id="submenu_close">Close Menu <%= fa_icon "close" %></label>
+        <div class="submenu" id="submenu">
             <ul>
                 <h3><a href="<%= posts_path %>" title="Posts">Posts</a></h3>
                 <li><a href="<%= posts_path %>" title="All Posts">All Posts</a></li>
@@ -40,7 +37,7 @@
             </ul>
 
             <ul>
-                <h3><li><%= link_to 'Community', chat_url, target: "_blank" %></li></h3>
+                <h3><%= link_to 'Community', chat_url, target: "_blank" %></h3>
                 <li><%= link_to 'Chat', chat_url, target: "_blank", title: 'Chat' %></li>
                 <li><%= link_to 'Users', users_path %></li>
                 <li><%= link_to 'Team', '/pages/team' %></li>
