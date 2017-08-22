@@ -1,20 +1,8 @@
 
 <div class="header-img">
-    <ul>
-        <li><%= link_to 'Posts', posts_path, title: 'Posts' %></li>
-        <li><%= link_to 'Upload', new_post_path, title: 'Upload' %></li>
-        <li><%= link_to 'Chat', chat_url, target: "_blank", title: 'Chat' %></li>
-        <li><%= link_to 'About', "/pages/about", title: 'About' %></li>
-        <li><%= link_to 'Help', "/pages/help/index", title: 'Help' %></li>
-        <li>
-            <%= link_to twitter_url, target: "_blank", title: 'Twitter' do %>
-                <%= fa_icon "twitter"%>
-            <% end %>
-        </li>
-    </ul>
+    <%= render '/search_home' %>
 </div>
 
-<%= render '/search_home' %>
 
 <div class="home-about row">
     <div class="col-6 col-sm">

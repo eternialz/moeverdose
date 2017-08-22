@@ -1,6 +1,7 @@
-<div class="search-form search-home clearfix">
+<div class="search-home clearfix">
     <form method="get" action="<%= posts_path %>" id="search">
-        <input id="tags" type="text" name="query" placeholder="Search by tags separated by spaces" value="<%= params[:query] %>"/>
+        <input id="choix-tags" list="fav-tags" autocomplete="off" type="text" name="query" placeholder="Search by tags separated by spaces" value="<%= params[:query] %>"/>
         <button type="submit" form="search" value="Submit"><%= fa_icon "search" %></button>
+        <%= render 'shared/datalist_favorites_tags' %>
     </form>
 </div>

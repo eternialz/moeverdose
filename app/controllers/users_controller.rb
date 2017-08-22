@@ -37,8 +37,8 @@ class UsersController < ApplicationController
         @user.update_attributes(account_update_params)
         tags = params[:tags]
 
-        @user.favorites_tags = tags[:favorites]
-        @user.blacklisted_tags = tags[:blacklisted]
+        @user.favorites_tags = tags[:favorites].split().uniq().join(' ') # remove duplicates
+        @user.blacklisted_tags = tags[:blacklisted].split().uniq().join(' ')
 
         if @user.save
             flash[:success] = "Profile saved."
