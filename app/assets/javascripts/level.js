@@ -4,7 +4,7 @@ Level = {
         Level.root = root;
         Level.percentage();
     },
-    percentage: function(choice) {
+    percentage: function() {
         var progress = Level.root.find("#level_progress");
 
         var count = parseInt(progress.data("count"));
