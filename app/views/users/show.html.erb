@@ -100,22 +100,6 @@
                     </div>
                     <span><%= @level.name %></span>
                     <span style="float: right;"><%= @next_level.name %></span>
-
-                    <script>
-                        var progress = $("#level_progress");
-
-                        var count = parseInt(progress.data("count"));
-                        var max = parseInt(progress.data("max"));
-
-                        if (count != 0) {
-                            var percentage = (count / max * 100).toFixed(1).toString();
-                        } else {
-                            var percentage = "0";
-                        }
-
-                        progress.css("width", percentage + "%");
-                        progress.html(percentage + "%");
-                    </script>
                 <% else %>
                     <h3>The last level has been reached</h3>
                 <% end %>

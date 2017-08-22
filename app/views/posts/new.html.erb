@@ -32,7 +32,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-6">
+        <div class="col-6 tags-form">
             <div class="field_area">
                 <h6><%= fa_icon "tag" %> Tags</h6>
                 <textarea name="tags" id="tags" placeholder='Tags ("1girl glasses ...")' autocomplete="off"></textarea>
@@ -61,42 +61,3 @@
         <button form="new_post" class="btn btn-pink disable_on_submit" type="submit">Upload <%= fa_icon "upload" %></button>
     </div>
 <% end %>
-
-<script>
-function readURL(input) {
-
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-            $('#file').attr('src', e.target.result);
-        }
-
-        reader.readAsDataURL(input.files[0]);
-    }
-}
-
-$("#post_post_image").change(function(){
-    readURL(this);
-});
-
-$(".tag").click( function() {
-    var choice = jQuery.trim($(this).text());
-    var textArea = $("#tags");
-
-    // if the <li> with the word was allready clicked, then remove its "selected" class
-    textArea.val(function(_, val) {
-        if (val.indexOf(choice) >= 0) {
-            var text = val;
-            var re = new RegExp(choice, "g"); // all occurence of choice
-            text = text.replace(re, ''); // remove all occurence of choice
-            text = text.replace(/  /g, ' '); // change all double space to one space
-
-            return text;
-        } else {
-            return val.replace(/  /g, ' ') + choice + ' '; // add
-        }
-    });
-});
-
-</script>
