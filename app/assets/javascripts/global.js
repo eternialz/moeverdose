@@ -2,21 +2,25 @@ Global = {
     init: function() {
         Global.menu = false;
         Global.mouseOver = false;
-        Global.timeOut = setTimeout('', 1);
+        Global.timeout_close = setTimeout('', 1);
+        Global.timeout_open = setTimeout('', 1);
         $('#menu_label').click(Global.develop_submenu);
 
         $('nav.menu .container, nav.menu .submenu').on('mouseover', function () {
-            Global.open_submenu();
+            Global.timeout_open = setTimeout(function() { // Close after 2ms if not hovered
+                Global.open_submenu();
+            }, 100)
             Global.mouseOver = true;
         }).on('mouseout', function (e) {
+            clearTimeout(Global.timeout_open);
             Global.mouseOver = false;
 
             if ($(e.target).is('input')) {
                 Global.mouseOver = true; // Close only if it's out and not if hovered on browser input autocomplete
             }
 
-            clearTimeout(Global.timeOut); // Remove potential old Timeout
-            Global.timeOut = setTimeout(function() { // Close after 2ms if not hovered
+            clearTimeout(Global.timeout_close); // Remove potential old Timeout
+            Global.timeout_close = setTimeout(function() { // Close after 2ms if not hovered
                 if (!Global.mouseOver) {
                     Global.close_submenu();
                 }

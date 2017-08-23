@@ -1,35 +1,18 @@
-span.spoiler {
-    background: #000;
+.spoiler-toggle {
     border-radius: 3px;
-    border: 2px solid #000;
-    color: #000;
-    display: inline-block;
-    margin: 10px 0;
-    min-width: 75px;
+    background: #DDD;
+    display: block;
     padding: 5px;
-    position: relative;
 
-    a {
-        color: #000;
+    input {
+        display: none;
     }
+}
 
-    &::after {
-        color: #FFF;
-        content: "spoiler";
-        left: 5px;
-        position: absolute;
-        top: 5px;
-    }
+.spoiler-toggle input:checked + .spoiler {
+    display: block;
+}
 
-    &:hover {
-        background: #FFF;
-
-        a {
-            color: $pink;
-        }
-
-        &::after {
-            visibility: hidden;
-        }
-    }
+span.spoiler {
+    display: none;
 }

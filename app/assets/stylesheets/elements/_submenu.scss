@@ -1,12 +1,11 @@
 nav.menu .submenu {
     background: $gray-black;
-    box-shadow: 0 4px 0 $yellow;
+    box-shadow: 0 4px 0 $pink;
     height: 240px;
-    overflow: hidden;
     padding-left: 25px;
     position: absolute;
     text-shadow: none;
-    top: -144px;
+    top: -148px;
     transition:all 200ms ease-in-out;
     visibility: visible;
     width: 100%;
@@ -94,6 +93,7 @@ nav.menu .submenu {
         float: right;
         margin-right: 0;
         padding: 10px 20px;
+        box-shadow: 0 4px 0 $blue;
 
         h3, h3 a, a:hover, a:hover:before {
             color: $blue,

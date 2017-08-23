@@ -1,5 +1,5 @@
 .search-form {
-    background: $gray-black;
+    background: $gray;
     box-shadow: 0 1px 3px rgba(0,0,0,.25);
 
     &.search-home {
@@ -13,7 +13,8 @@
     input[type=text] {
         background: none;
         border: 0;
-        border-bottom: 3px solid $gray-black;
+        border-bottom: 3px solid $gray;
+        box-shadow: none;
         border-radius: 0;
         color: #FFF;
         font-weight: bold;
@@ -25,7 +26,7 @@
     }
 
     input[type=text]:focus {
-        background: $gray-dark;
+        background: mix($gray, #000, 90%);
         border-color: $pink;
         outline: none;
     }
@@ -33,7 +34,7 @@
     button, label {
         background: none;
         border: none;
-        border-bottom: 3px solid $gray-black;
+        border-bottom: 3px solid $gray;
         color: #FFF;
         display: inline-block;
         float: left;
