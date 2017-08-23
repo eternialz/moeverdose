@@ -1,53 +1,56 @@
+
 .search-form {
-    background: $gray;
-    box-shadow: 0 1px 3px rgba(0,0,0,.25);
+    background: image_url($header-image) no-repeat center center;
+    background-size: cover;
+    box-shadow: 0 2px 6px rgba(0,0,0,.35), inset 0 0 0 23px rgba(0,0,0,.5);
+    padding: 20px;
 
-    &.search-home {
-        margin: 0 0 15px;
-
-        input[type=text] {
-            width: calc(100% - 46px);
-        }
+    #search {
+        background: $gray;
+        position: relative;
+        border-radius: 3px;
+        box-shadow: 0 2px 6px rgba(#000, .35);
     }
 
     input[type=text] {
         background: none;
         border: 0;
-        border-bottom: 3px solid $gray;
         box-shadow: none;
-        border-radius: 0;
         color: #FFF;
         font-weight: bold;
         float: left;
         height: 49px;
-        padding: 20px 14px 17px;
+        padding: 10px 102px 10px 10px;
         transition: all 170ms ease-in-out;
-        width: calc(100% - 92px);
+        width: 100%;
     }
 
     input[type=text]:focus {
+        box-shadow: 0 0 0 3px $blue;
         background: mix($gray, #000, 90%);
-        border-color: $pink;
         outline: none;
     }
 
     button, label {
         background: none;
         border: none;
-        border-bottom: 3px solid $gray;
         color: #FFF;
         display: inline-block;
         float: left;
         line-height: 49px;
         max-height: 49px;
+        position: absolute;
+        right: 0;
         text-align: center;
         transition: all 170ms ease-in-out;
         width: 46px;
     }
 
+    label {
+        right: 46px;
+    }
+
     button:hover, label:hover {
-        background: $gray-dark;
-        border-color: $pink;
         cursor: pointer;
     }
 
@@ -60,19 +63,29 @@
     }
 
     .tag_list {
-        background: $gray-dark;
+        border-radius: 3px;
+        overflow: hidden;
+        background: $gray;
         float: left;
         height: 0;
-        overflow-y: scroll;
         transition: all 170ms ease-in-out;
         width: 100%;
+        top: calc(100% + 10px);
+        position: absolute;
+        z-index: 1000;
+        box-shadow: 0 2px 6px rgba(#000, .5);
+    }
+
+    .tag_list .scroll {
+        height: 100%;
+        overflow-y: scroll;
     }
 
     #advanced_search {
         display: none;
 
         &:checked + label i {
-            transform: rotate(90deg);
+            transform: rotate(-180deg);
         }
 
         &:checked + label + .tag_list {

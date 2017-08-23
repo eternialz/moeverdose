@@ -1,5 +1,5 @@
-<div class="search-form search-home clearfix">
-    <form method="get" action="<%= tags_path %>" id="search">
+<div class="search-form tags-form clearfix">
+    <form method="get" action="<%= tags_path %>" class="clearfix" id="search">
         <input id="tags" type="text" name="query" placeholder="Edit the entered tag" value="<%= params[:query] %>"/>
         <button type="submit" form="search" value="Submit"><%= fa_icon "search" %></button>
     </form>
