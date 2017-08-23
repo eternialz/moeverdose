@@ -44,7 +44,10 @@ $red: #F33;
 $red_light: lighten($red, 7%);
 $red_dark: darken($red, 9%);
 
-$gray: #222;
+$gray-light: #6a7989;
+$gray: #49535e;
+$gray-dark: #282d33;
+$gray-black: #1d2025;
 
 
 $buffer: #323b43;

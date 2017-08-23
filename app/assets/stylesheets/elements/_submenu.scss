@@ -1,5 +1,5 @@
 nav.menu .submenu {
-    background: #000;
+    background: $gray-black;
     box-shadow: 0 4px 0 $yellow;
     height: 240px;
     overflow: hidden;
@@ -22,7 +22,7 @@ nav.menu .submenu {
         height: 240px;
         margin-right: 25px;
         margin: 0;
-        min-width: 140px;
+        min-width: 160px;
         overflow-y: hidden;
         padding-top: 10px;
         top: 0;
@@ -59,7 +59,7 @@ nav.menu .submenu {
         }
 
         input[type="email"], input[type="password"] {
-            background: #222;
+            background: $gray-dark;
             border-radius: 3px;
             border: 0;
             color: #AAA;
@@ -90,7 +90,7 @@ nav.menu .submenu {
     }
 
     ul.my-account, ul.login {
-        background: #333;
+        background: $gray;
         float: right;
         margin-right: 0;
         padding: 10px 20px;
@@ -110,7 +110,7 @@ nav.menu .submenu {
 
 
     ul.register {
-        background: #222;
+        background: $gray-dark;
         padding: 10px 20px;
         right: 219px;
     }

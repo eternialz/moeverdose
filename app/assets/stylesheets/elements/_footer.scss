@@ -1,5 +1,5 @@
 footer {
-    background: #213;
+    background: $gray-dark;
     color: #AAA;
     padding: 50px 0;
     text-align: center;
@@ -16,18 +16,11 @@ footer {
     .footer-title {
         border-bottom: 1px solid rgba(255,255,255,0.1);
         font-size: 1em;
-        padding: 10px;
-    }
-
-    li a {
-        display: block;
-
-        &:hover {
-            background: rgba(0,0,0,.25);
-        }
+        padding: 10px 0;
     }
 
     a {
+        display: block;
         color: #AAA;
         display: inline-block;
         font-weight: bold;

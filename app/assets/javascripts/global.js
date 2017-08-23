@@ -5,7 +5,7 @@ Global = {
         Global.timeOut = setTimeout('', 1);
         $('#menu_label').click(Global.develop_submenu);
 
-        $('nav.menu, nav.menu .submenu').on('mouseover', function () {
+        $('nav.menu .container, nav.menu .submenu').on('mouseover', function () {
             Global.open_submenu();
             Global.mouseOver = true;
         }).on('mouseout', function (e) {
@@ -20,7 +20,7 @@ Global = {
                 if (!Global.mouseOver) {
                     Global.close_submenu();
                 }
-            }, 1000)
+            }, 350)
         });
     },
     develop_submenu: function() {

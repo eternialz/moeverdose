@@ -1,7 +1,6 @@
 .search-form {
-    background: #000;
+    background: $gray-black;
     box-shadow: 0 1px 3px rgba(0,0,0,.25);
-    margin: 20px 0 0;
 
     &.search-home {
         margin: 0 0 15px;
@@ -12,11 +11,12 @@
     }
 
     input[type=text] {
-        background: #000;
+        background: none;
         border: 0;
-        border-bottom: 3px solid #888;
+        border-bottom: 3px solid $gray-black;
         border-radius: 0;
         color: #FFF;
+        font-weight: bold;
         float: left;
         height: 49px;
         padding: 20px 14px 17px;
@@ -25,7 +25,7 @@
     }
 
     input[type=text]:focus {
-        background: #222;
+        background: $gray-dark;
         border-color: $pink;
         outline: none;
     }
@@ -33,7 +33,7 @@
     button, label {
         background: none;
         border: none;
-        border-bottom: 3px solid #888;
+        border-bottom: 3px solid $gray-black;
         color: #FFF;
         display: inline-block;
         float: left;
@@ -45,7 +45,7 @@
     }
 
     button:hover, label:hover {
-        background: #222;
+        background: $gray-dark;
         border-color: $pink;
         cursor: pointer;
     }
@@ -59,7 +59,7 @@
     }
 
     .tag_list {
-        background: #222;
+        background: $gray-dark;
         float: left;
         height: 0;
         overflow-y: scroll;

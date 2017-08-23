@@ -14,10 +14,6 @@
     <meta property="og:image" content="<%= request.base_url + @post.post_image.url %>" />
 <% end %>
 
-<% if user_signed_in? %>
-    <%= cell(:admin_toolbar, @post, role: current_user.role).(:show_post) %>
-<% end %>
-
 <div class="row posts">
     <%= render 'posts/search' %>
     <% cache @post do %>
@@ -45,7 +41,9 @@
                         <label for="report_form_input" class="btn btn-pink">Show post <%= fa_icon 'eye' %></label>
                     </div>
                 <% end %>
-                <%= image_tag @post.post_image.url %>
+                <div class="post-img">
+                    <%= image_tag @post.post_image.url %>
+                </div>
             </div>
 
             <div id="post-score" class="clearfix">
@@ -105,6 +103,10 @@
                 <% end %>
             </div>
         </div>
+    <% end %>
+
+    <% if user_signed_in? %>
+        <%= cell(:admin_toolbar, @post, role: current_user.role).(:show_post) %>
     <% end %>
 
     <% if user_signed_in? %>

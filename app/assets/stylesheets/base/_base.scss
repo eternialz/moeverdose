@@ -54,16 +54,14 @@ dd {
 }
 
 body {
-    background-attachment: fixed;
-    background-image: url(image_path('background.svg'));
-    background-size: cover;
+    background: #DDD;
     padding-top: 100px;
 }
 
 
 @media only screen and (max-width: $small) {
     body {
-        padding-top: 0px 
+        padding-top: 0px
     }
 }
 

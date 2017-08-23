@@ -19,14 +19,15 @@
         text-align: center;
 
         a {
-            color: #CCC;
+            color: $gray;
+            opacity: .7;
             font-weight: 900;
             margin: 0 5px;
             outline: none;
         }
 
         a:hover {
-            color: #444;
+            opacity: 1;
         }
     }
 
@@ -133,7 +134,7 @@
 
 .user_posts {
     .favorites, .uploads {
-        background: $gray;
+        background: $gray-light;
         border-radius: 3px;
         overflow: hidden;
     }

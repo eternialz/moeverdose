@@ -1,5 +1,5 @@
 nav.menu {
-    background: $gray;
+    background: $gray-dark;
     color: #FFF;
     height: 96px;
     position: fixed;
@@ -8,7 +8,7 @@ nav.menu {
     z-index: 20000;
 
     .container {
-        background: $gray;
+        background: $gray-dark;
         height: 96px;
         padding: 10px 0 0 0;
         position: relative;
@@ -30,6 +30,10 @@ nav.menu {
             .user .avatar, .user img {
                 width: 46px;
                 height: 46px;
+            }
+
+            .user a.avatar {
+                margin: 0 10px !important;
             }
 
             .user img {
@@ -57,7 +61,7 @@ nav.menu {
                 float: right;
                 overflow: hidden;
                 padding: 0;
-                margin-right: 10px;
+                margin: 5px 10px;
 
                 img {
                     float: left;

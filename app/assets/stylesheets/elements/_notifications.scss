@@ -26,7 +26,7 @@
     .notification {
         animation-duration: 6s;
         animation-name: opacity;
-        background: #444;
+        background: $gray-dark;
         border-radius: 3px;
         box-shadow: 0 3px 10px rgba(0,0,0,.5);
         margin: 3px auto;

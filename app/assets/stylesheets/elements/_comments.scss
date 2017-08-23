@@ -4,7 +4,7 @@
 }
 
 .comment {
-    border-bottom: 1px solid #EEE;
+    border-bottom: 1px solid #CCC;
     clear: both;
     min-height: 80px;
     padding: 10px;
@@ -40,7 +40,7 @@
         }
 
         h5:after {
-            color: #DDD;
+            color: $gray-light;
             font-size: 0.8em;
         }
 
@@ -54,7 +54,9 @@
         }
 
         a.report {
+            float: right;
             color: #AAA;
+            font-size: 0.8em;
         }
 
         p {
