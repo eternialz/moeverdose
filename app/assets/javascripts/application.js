@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //
 //= require cable
+//= require cookies
 //= require global_key_bindings
 //= require global
 //= require level
