@@ -11,9 +11,9 @@
         margin-top: 20px;
 
         li a {
-            background: #DDD;
+            background: $background;
             border-radius: 3px;
-            color: #444;
+            color: $gray;
             display: block;
             font-weight: bold;
             margin: 0 0 10px;
@@ -21,7 +21,6 @@
         }
 
         li a:hover {
-            background: rgba(0,0,0,.1);
             color: $pink;
         }
     }
@@ -30,21 +29,21 @@
 .help_nav {
     background: $pink;
     box-shadow: 0 1px 3px rgba(0,0,0,.25);
-    color: #FFF;
+    color: $white;
 
     h3, h2 {
-        color:#FFF;
+        color:$white;
         display: inline-block;
         font-size: 1.2em;
         margin: 20px;
     }
 
     a {
-        color: #DDD;
+        color: $white;
     }
 
     a:hover {
-        color: #FFF;
+        color: $white;
     }
 }
 

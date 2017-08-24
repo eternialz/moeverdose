@@ -1,8 +1,7 @@
 
 .tag {
-    background: #FAFAFA;
+    background: $background;
     border-radius: 2px;
-    box-shadow: 0 1px 1px rgba(0,0,0,.1);
     display: inline-block;
     font-size: 14px;
     font-weight: bold;
@@ -11,15 +10,19 @@
     overflow: hidden;
     padding: 6px;
     text-overflow: ellipsis;
+    color: $gray !important;
+
 }
 
-.tag:hover {
-    background: #F6F6F6;
-    color: $pink;
-    cursor: pointer;
-}
+a.tag {
+    &:hover {
+        background: darken($background, 5%);
+        color: $pink;
+        cursor: pointer;
+    }
 
-.tag:active {
-    background: #E6E6E6;
-    color: $pink_dark;
+    &:active {
+        background: darken($background, 10%);
+        color: $pink_dark;
+    }
 }

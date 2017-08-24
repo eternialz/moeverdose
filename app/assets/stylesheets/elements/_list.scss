@@ -4,7 +4,7 @@
     }
 
     li {
-        background: #FFF;
+        background: $white;
         box-shadow: 0 1px 3px rgba(0,0,0,.25);
         display: block;
         height: 54px;
@@ -13,7 +13,7 @@
         padding: 0;
 
         .title, .count {
-            background: #DDD;
+            background: $background;
             float: left;
             height: 54px;
             padding: 18px 16px;
@@ -32,7 +32,7 @@
         }
 
         span {
-            border-left: 1px solid #DDD;
+            border-left: 1px solid $background;
             display: inline-block;
             float: left;
             height: 54px;

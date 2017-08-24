@@ -1,11 +1,13 @@
 .progress_bar {
-    background: #AAA;
-    color: #FFF;
+    background: $gray-white;
+    color: $white;
     font-size: 0.8em;
     font-weight: 900;
 
     .progress {
-        background: #1AB;
+        transition: all 1s ease-in-out;
+        width: 0%;
+        background: $blue;
         padding: 2px;
         text-align: right;
     }

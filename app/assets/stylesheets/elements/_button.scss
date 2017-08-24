@@ -3,7 +3,7 @@
     appearance: none;
     border-radius: 3px;
     border: 0;
-    color: #FFF !important;
+    color: $white !important;
     cursor: pointer;
     display: inline-block;
     font-size: 16px;
@@ -33,7 +33,7 @@
 }
 
 .btn:hover {
-    color: #FFF !important;
+    color: $white !important;
 }
 
 .btn-pink {

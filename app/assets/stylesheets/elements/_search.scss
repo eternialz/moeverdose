@@ -9,14 +9,14 @@
         background: $gray;
         position: relative;
         border-radius: 3px;
-        box-shadow: 0 2px 6px rgba(#000, .35);
+        box-shadow: 0 2px 6px rgba($black, .35);
     }
 
     input[type=text] {
         background: none;
         border: 0;
         box-shadow: none;
-        color: #FFF;
+        color: $white;
         font-weight: bold;
         float: left;
         height: 49px;
@@ -27,14 +27,14 @@
 
     input[type=text]:focus {
         box-shadow: 0 0 0 3px $blue;
-        background: mix($gray, #000, 90%);
+        background: mix($gray, $black, 90%);
         outline: none;
     }
 
     button, label {
         background: none;
         border: none;
-        color: #FFF;
+        color: $white;
         display: inline-block;
         float: left;
         line-height: 49px;
@@ -73,7 +73,7 @@
         top: calc(100% + 10px);
         position: absolute;
         z-index: 1000;
-        box-shadow: 0 2px 6px rgba(#000, .5);
+        box-shadow: 0 2px 6px rgba($black, .5);
     }
 
     .tag_list .scroll {

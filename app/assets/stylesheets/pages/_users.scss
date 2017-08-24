@@ -3,7 +3,7 @@
 .user_form {
     background-position: center center;
     background-size: cover;
-    background: #FFF;
+    background: $white;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
     margin: 25px auto;
     max-width: 800px;
@@ -11,7 +11,7 @@
     width: 100%;
 
     p {
-        color: #FFF;
+        color: $white;
         text-align: center;
     }
 
@@ -34,7 +34,7 @@
     label {
         background: rgba(0,0,0,.5);
         border-radius: 3px;
-        color: #FFF;
+        color: $white;
         display: inline-block;
         font-weight: 900;
         padding: 10px;
@@ -46,10 +46,9 @@
 }
 
 .userprofile {
-    color: #555;
 
     .username {
-        color: #555;
+        color: $gray;
         display: inline-block;
         font-size: 2em;
         font-style: normal;
@@ -61,35 +60,34 @@
     .user_header {
         background: url($header-image) no-repeat center center;
         background-size: cover;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -200px 100px -100px rgba(0,0,0,.75);
+        box-shadow: 0 2px 6px rgba($black, .35), inset 0 -200px 100px -100px rgba(0,0,0,.75);
         height: 300px;
         padding: 20px;
         position: relative;
 
         .icon {
-            color: #FFF;
+            color: $white;
             float: right;
             font-size: 1.5em;
             padding: 10px;
-            text-shadow: 0 1px 2px #000;
+            text-shadow: 0 1px 2px $black;
         }
 
         .avatar {
             border-radius: 3px;
             bottom: 20px;
             box-shadow: 0 1px 3px rgba(0,0,0,.25);
-            background: #FFF;
+            background: $white;
             left: 20px;
             position: absolute;
             z-index: 100;
         }
 
         .role {
-            background: #FFF;
+            background: $white;
             border-radius: 3px;
             bottom: 85px;
             box-shadow: 0 1px 3px rgba(0,0,0,.25);
-            color: #555;
             font-size: 1.2em;
             font-weight: 900;
             padding: 4px 15px 8px;
@@ -177,7 +175,7 @@
         }
 
         span {
-            color: #fff;
+            color: $white;
             padding: 10px;
             line-height: 30px;
         }
@@ -189,7 +187,7 @@
 
 
     .tooltip {
-        color: #AAA;
+        color: $gray-white;
         margin: 10px;
         cursor: help;
     }
@@ -230,7 +228,7 @@
         .message {
             border-radius: 3px;
             width: 100%;
-            color: #FFF;
+            color: $white;
             text-align: center;
             padding: 0 20px;
             float: left;
@@ -271,7 +269,7 @@
 
             span {
                 padding: 10px 13px;
-                background: #fff;
+                background: $white;
                 border-radius: 3px;
                 transition: 170ms box-shadow ease-in-out;
             }

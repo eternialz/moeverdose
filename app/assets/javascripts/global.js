@@ -4,6 +4,7 @@ Global = {
         Global.mouseOver = false;
         Global.timeout_close = setTimeout('', 1);
         Global.timeout_open = setTimeout('', 1);
+        Global.close_submenu();
         $('#menu_label').click(Global.develop_submenu);
 
         $('nav.menu .container, nav.menu .submenu').on('mouseover', function () {

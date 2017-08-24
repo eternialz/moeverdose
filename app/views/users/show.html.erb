@@ -18,23 +18,34 @@
         </div>
     </div>
 
-    <% if !@user.biography.empty? %>
-        <div class="zone biography row">
-            <h3 class="zone_title">About me</h3>
-            <div class="col-12">
+    <div class="zone biography row">
+        <h3 class="zone_title">About me</h3>
+        <div class="col-6">
+            <h6>biography</h6>
+            <% if !@user.biography.empty? %>
                 <p><%= @user.biography %></p>
-            </div>
-        </div>
-    <% else %>
-        <% if current_user == @user %>
-            <div class="zone biography row">
-                <h3 class="zone_title">About me</h3>
-                <div class="col-12">
+            <% else %>
+                <% if current_user == @user %>
                     <p>You can edit this text in your <%= link_to "account options", edit_user_path(id: @user.name) %>.</p>
+                <% else %>
+                    <p>No biography was provided by this user</p>
+                <% end %>
+            <% end %>
+        </div>
+        <div class="col-6">
+            <h6>Level <%= @level.rank %>: <%= @level.name %></h6>
+            <% if !@level.final %>
+                <div class="progress_bar">
+                    <div id="level_progress" data-count="<%= @user.exp %>" data-max="<%= @user.level.max_exp %>" class="progress" style="background: <%= @level.color %>"></div>
                 </div>
-            </div>
-        <% end %>
-    <% end %>
+            <% else %>
+                <div class="progress_bar">
+                    <div id="level_progress" class="progress" style="background: <%= @level.color %>; width: 100%"></div>
+                </div>
+                <h3>The last level has been reached</h3>
+            <% end %>
+        </div>
+    </div>
 
     <% cache @user do %>
         <div class="zone tags row">
@@ -45,7 +56,7 @@
                     <p>Nothing here</p>
                 <% else %>
                     <% @favorites_tags.each do |tag| %>
-                        <a class="tag"><%= tag %></a>
+                        <span class="tag"><%= tag %></span>
                     <% end %>
                 <% end %>
             </div>
@@ -55,7 +66,7 @@
                     <p>Nothing here</p>
                 <% else %>
                     <% @blacklisted_tags.each do |tag| %>
-                        <a class="tag"><%= tag %></a>
+                        <span class="tag"><%= tag %></span>
                     <% end %>
                 <% end %>
             </div>
@@ -87,21 +98,6 @@
                     <a class="btn btn-pink" href="<%= uploads_path(@user.name) %>">More <%= fa_icon "eye" %></a>
                 <% else %>
                     <p>No uploads yet</p>
-                <% end %>
-            </div>
-        </div>
-
-        <div class="zone level row">
-            <h3 class="zone_title">Level <%= @level.rank %>: <%= @level.name %></h3>
-            <div class="col-12">
-                <% if !@level.final %>
-                    <div class="progress_bar">
-                        <div id="level_progress" data-count="<%= @user.exp %>" data-max="<%= @user.level.max_exp %>" class="progress" style="background: <%= @level.color %>"></div>
-                    </div>
-                    <span><%= @level.name %></span>
-                    <span style="float: right;"><%= @next_level.name %></span>
-                <% else %>
-                    <h3>The last level has been reached</h3>
                 <% end %>
             </div>
         </div>

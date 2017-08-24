@@ -115,6 +115,7 @@
             <div class="zone row">
                 <div class="col-12">
                     <h5>Edit Post</h5>
+                    <p><%= fa_icon "list" %> Informations:</p>
                     <div class="field">
                         <span><%= fa_icon "header" %> Title:</span>
                         <%= post.text_field :title, placeholder: "Title" %>
@@ -149,7 +150,7 @@
         <% end %>
 
         <input class="reported_input" id="report_form_input" type="checkbox">
-        <%= form_for @post, as: "post", url: report_post_path(@post.number), html: {class: "zone report_form", id: 'report_post'} do |post| %>
+        <%= form_for @post, as: "post", url: report_post_path(@post.number), html: {class: "zone report_form field_area", id: 'report_post'} do |post| %>
             <%= post.check_box :report, class: "hide", checked: true %>
             <h2><%= fa_icon "exclamation-circle" %> Report post</h2>
             <%= post.text_area :report_reason, placeholder: "Reason" %>

@@ -6,13 +6,13 @@ nav.menu .submenu {
     position: absolute;
     text-shadow: none;
     top: -148px;
-    transition:all 200ms ease-in-out;
+    transition: all 130ms ease-out;
     visibility: visible;
     width: 100%;
     z-index: 200;
 
     a {
-        color: #FFF;
+        color: $white;
     }
 
     ul {
@@ -54,14 +54,14 @@ nav.menu .submenu {
         }
 
         p {
-            color: #AAA;
+            color: $white-break;
         }
 
         input[type="email"], input[type="password"] {
             background: $gray-dark;
             border-radius: 3px;
             border: 0;
-            color: #AAA;
+            color: $white-break;
             margin-bottom: 5px;
             padding: 8px;
             width: 100%;
@@ -143,16 +143,6 @@ nav.menu .submenu {
     a:hover, a:hover:before {
         color: $pink;
     }
-
-    #submenu_close {
-        background: #222;
-        display: none;
-        padding: 20px 30px;
-        right: 0;
-        text-align: center;
-        top: 0;
-        width: 100%;
-    }
 }
 
 nav.menu .submenu.develop {
@@ -189,10 +179,6 @@ nav.menu .submenu.develop {
         li {
             width: calc(50% - 20px);
             float: left;
-        }
-
-        #submenu_close {
-            display: block;
         }
     }
 

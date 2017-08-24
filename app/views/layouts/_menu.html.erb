@@ -6,6 +6,7 @@
             <div class="user">
                 <% if user_signed_in? %>
                     <a class="avatar" href="<%= user_path(current_user.name) %>" id="my_account"><%= image_tag current_user.avatar(:original), width: 60, height: 60 %></a>
+                    <a href="<%= user_path(current_user.name) %>" id="username"><%= current_user.name %></span>
                 <% else %>
                     <a class="avatar" href="<%= new_user_registration_path %>"><%= image_tag image_path('default_user.png'), width: 60, height: 60 %></a>
                 <% end %>
@@ -55,7 +56,6 @@
 
             <% if user_signed_in? %>
                 <ul class="my-account">
-                    <h3><a href="<%= user_path(current_user.name) %>"><%= fa_icon "user" %> Account</a></h3>
                     <li><%= link_to "Profile", user_path(current_user.name) %></li>
                     <li><%= link_to "Options", edit_user_path(current_user.name) %></li>
                     <li><%= link_to 'Favorites', favorites_path(current_user.name) %></span></li>

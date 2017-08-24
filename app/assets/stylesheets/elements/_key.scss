@@ -1,8 +1,8 @@
 .key {
-    background: #EEE;
+    background: $background;
     border-radius: 3px;
-    border: 1px solid #CCC;
-    box-shadow: 0 1px #CCC;
+    border: 1px solid $gray-white;
+    box-shadow: 0 1px $gray-white;
     color: $gray-dark;
     display: inline-block;
     margin: 5px;

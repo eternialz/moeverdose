@@ -15,7 +15,7 @@
 
     .informations {
         background-image: linear-gradient(rgba(0,0,0,.25) 0%, $gray-black 130%);
-        color: #FFF;
+        color: $white;
         height: 100%;
         left: 0;
         opacity: 0;
@@ -38,7 +38,7 @@
         }
 
         h3 {
-            color: #FFF;
+            color: $white;
             width: 180px;
         }
 

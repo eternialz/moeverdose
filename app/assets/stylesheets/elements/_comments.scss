@@ -4,7 +4,6 @@
 }
 
 .comment {
-    border-bottom: 1px solid #CCC;
     clear: both;
     min-height: 80px;
     padding: 10px;
@@ -20,7 +19,6 @@
 
     .avatar {
         border-radius: 3px;
-        border: 1px solid rgba(0,0,0,.25);
         float: left;
         left: 10px;
         position: absolute;
@@ -45,7 +43,7 @@
         }
 
         a.comment_number {
-            color: #AAA;
+            color: $white-break;
             float: right;
             font-size: 0.8em;
             margin-left: 20px;
@@ -55,7 +53,7 @@
 
         a.report {
             float: right;
-            color: #AAA;
+            color: $white-break;
             font-size: 0.8em;
         }
 
@@ -76,7 +74,7 @@
     }
 
     .comment_report_overlay {
-        background: #FFF;
+        background: $white;
         cursor: default;
         height: 100%;
         left: 0;
@@ -126,7 +124,7 @@ h5.developper {
 }
 
 h5.banned {
-    color: #999 !important;
+    color: $gray-white !important;
 
     &:after {
         content: " (banned)"
@@ -141,7 +139,7 @@ h5.banned {
     }
 
     #char_count {
-        color: #AAA;
+        color: $white-break;
         font-size: 0.7em;
         font-weight: 900;
         margin-left: 20px;

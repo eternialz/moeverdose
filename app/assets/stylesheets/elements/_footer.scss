@@ -1,6 +1,6 @@
 footer {
     background: $gray-dark;
-    color: #AAA;
+    color: $white-break;
     padding: 50px 0;
     text-align: center;
     width: 100%;
@@ -21,13 +21,13 @@ footer {
 
     a {
         display: block;
-        color: #AAA;
+        color: $white-break;
         display: inline-block;
         font-weight: bold;
         padding: 5px;
 
         &:hover {
-            color: #FFF;
+            color: $white;
         }
     }
 

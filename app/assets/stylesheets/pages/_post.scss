@@ -17,31 +17,25 @@
     h2 {
         color: $red;
     }
-
-    textarea {
-        color: #888;
-        font-weight: bold;
-        margin: 20px 0;
-    }
 }
 
 .post-container {
-    background-color: #EEE;
+    background-color: $background;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 8 8'%3E%3Cg fill='%23444444' fill-opacity='0.4'%3E%3Cpath fill-rule='evenodd' d='M0 0h4v4H0V0zm4 4h4v4H4V4z'/%3E%3C/g%3E%3C/svg%3E");
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
-    color: #FFF;
+    color: $white;
     overflow: hidden;
     position: relative;
 
     .reported {
-        background: $gray;
+        background: $gray-light;
         color: $red !important;
         font-weight: 900;
         height: 100%;
         left: 0;
         margin: 0 auto;
         max-width: 100%;
-        padding: 200px 0;
+        padding: 50px 0;
         position: absolute;
         text-align: center;
         top: 0;
@@ -55,7 +49,7 @@
 }
 
 .post_navigation {
-    background: #FFF;
+    background: $white;
     padding: 14.5px 20px;
     text-align: center;
 
@@ -90,13 +84,14 @@
 }
 
 .post {
-    box-shadow: inset 0 10px 10px -10px rgba(#000, .7);
+    box-shadow: inset 0 10px 10px -10px rgba($black, .7);
+    min-height: 240px;
     padding: 20px;
     position: relative;
     text-align: center;
 
     .post-img {
-        border: 1px dashed #888;
+        border: 1px dashed $gray-light;
         cursor: pointer;
         display: inline-block;
     }
@@ -152,8 +147,7 @@
 }
 
 .post-details {
-    background: #FFF;
-    color: #444;
+    background: $white;
     text-align: center;
     text-align: left;
 
@@ -168,7 +162,6 @@
 
     .infos {
         li {
-            border-bottom: 1px solid #EEE;
             overflow: hidden !important;
             padding-left: 100px;
             padding: 8px;
@@ -208,12 +201,6 @@
 
     .shortage {
         float: right;
-    }
-
-    .column {
-        color: #555;
-        display: inline-block;
-        text-align: left;
     }
 
     h3 {
@@ -257,10 +244,11 @@
     }
 
     h3 {
-        color: #FFF;
+        color: $white;
     }
 
     p {
-        color: #444;
+        color: $gray;
+        margin-bottom: 10px;
     }
 }
