@@ -3,8 +3,8 @@
         <% if !@posts.empty? %>
             <% @posts.each do |post| %>
                 <% if params[:query] %>
-                    <div class="post-thumbnail clearfix" style="background-image: url(<%= post.post_image.url(:thumb).dump %> )">
-                        <a title="<%= post.title %>" href="<%= post_path(post.number, query: params[:query]) %>" class="informations">
+                    <a title="<%= post.title %>" href="<%= post_path(post.number, query: params[:query]) %>" class="post-thumbnail clearfix" style="background-image: url(<%= post.post_image.url(:thumb).dump %> )">
+                        <div class="informations">
                             <h3><%= post.title %></h3>
                             <span class="post-stats">
                                 <span title="overdose(s)"><%= post.overdose %> <%= fa_icon "heartbeat" %> </span>
@@ -12,12 +12,12 @@
                                 <!-- TODO integrate post comment count -->
                                 <span title="comment(s)"><%= post.comments.count %> <%= fa_icon "comment" %></span>
                             </span>
-                        </a>
-                    </div>
+                        </div>
+                    </a>
                 <% else %>
                     <% cache ["index", post] do %>
-                        <div class="post-thumbnail clearfix" style="background-image: url(<%= post.post_image.url(:thumb)%> )">
-                            <a title="<%= post.title %>" href="<%= post_path(post.number) %>" class="informations">
+                        <a title="<%= post.title %>" href="<%= post_path(post.number) %>" class="post-thumbnail clearfix" style="background-image: url(<%= post.post_image.url(:thumb)%> )">
+                            <div class="informations">
                                 <h3><%= post.title %></h3>
                                 <span class="post-stats">
                                     <span title="overdose(s)"><%= post.overdose %> <%= fa_icon "heartbeat" %> </span>
@@ -25,8 +25,8 @@
                                     <!-- TODO integrate post comment count -->
                                     <span title="comment(s)"><%= post.comments.count %> <%= fa_icon "comment" %></span>
                                 </span>
-                            </a>
-                        </div>
+                            </div>
+                        </a>
                     <% end %>
                 <% end %>
             <% end %>

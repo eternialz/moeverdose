@@ -16,7 +16,7 @@ Level = {
             var percentage = "0";
         }
 
-        if(percentage > 100) { percentage = 100 };
+        if(percentage > 100) { percentage = 100 }
 
         progress.css("width", percentage + "%");
     }

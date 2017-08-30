@@ -2,16 +2,20 @@
 .tag {
     background: $background;
     border-radius: 2px;
+    color: $gray !important;
     display: inline-block;
     font-size: 14px;
     font-weight: bold;
     margin: 3px;
     max-width: 250px;
+    outline: none;
     overflow: hidden;
     padding: 6px;
     text-overflow: ellipsis;
-    color: $gray !important;
 
+    &:focus {
+        box-shadow: 0 0 0 3px rgba($pink, .7);
+    }
 }
 
 a.tag {

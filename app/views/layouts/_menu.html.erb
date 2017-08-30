@@ -3,15 +3,15 @@
         <div class="container">
             <a href="<%= root_path %>"><h1><%= site_name %></h1></a>
             <span id="random"><%= cell(:random_message).(:show) %></span>
+            <a id="menu_label"><%= fa_icon 'bars' %></a>
             <div class="user">
                 <% if user_signed_in? %>
                     <a class="avatar" href="<%= user_path(current_user.name) %>" id="my_account"><%= image_tag current_user.avatar(:original), width: 60, height: 60 %></a>
-                    <a href="<%= user_path(current_user.name) %>" id="username"><%= current_user.name %></span>
+                    <a href="<%= user_path(current_user.name) %>" id="username"><%= current_user.name %></a>
                 <% else %>
                     <a class="avatar" href="<%= new_user_registration_path %>"><%= image_tag image_path('default_user.png'), width: 60, height: 60 %></a>
                 <% end %>
             </div>
-            <a id="menu_label"><%= fa_icon 'bars' %></a>
             <ul>
                 <li><%= link_to 'Posts', posts_path, title: 'Posts' %></li>
                 <li><%= link_to 'Upload', new_post_path, title: 'Upload' %></li>
@@ -29,29 +29,47 @@
 
         <div class="submenu" id="submenu">
             <ul>
-                <h3><a href="<%= posts_path %>" title="Posts">Posts</a></h3>
-                <li><a href="<%= posts_path %>" title="All Posts">All Posts</a></li>
-                <li><%= link_to 'Random Post', random_path %></li>
-                <li><a href="<%= new_post_path %>" title="Upload">Upload</a></li>
-                <li><%= link_to 'Tags', tags_path, title: 'Tags' %></li>
-                <li><%= link_to 'Help & Rules', '/pages/help/rules' %></li>
+                <input id="sub_1" type="radio" name="sub" checked>
+                <label title="Posts" for="sub_1"><h3>posts</h3></label>
+                <div>
+                    <li><a href="<%= posts_path %>" title="All Posts">all</a></li>
+                    <li><%= link_to 'random', random_path %></li>
+                    <li><a href="<%= new_post_path %>" title="Upload">upload</a></li>
+                    <li><%= link_to 'tags', tags_path, title: 'Tags' %></li>
+                </div>
             </ul>
 
             <ul>
-                <h3><%= link_to 'Community', chat_url, target: "_blank" %></h3>
-                <li><%= link_to 'Chat', chat_url, target: "_blank", title: 'Chat' %></li>
-                <li><%= link_to 'Users', users_path %></li>
-                <li><%= link_to 'Team', '/pages/team' %></li>
-                <li><%= link_to 'Twitter', twitter_url %></li>
+                <input id="sub_2" type="radio" name="sub">
+                <label title="Community" for="sub_2"><h3>community</h3></label>
+                <div>
+                    <li><%= link_to 'chat', chat_url, target: "_blank", title: 'Chat' %></li>
+                    <li><%= link_to 'users', users_path %></li>
+                    <li><%= link_to 'team', '/pages/team' %></li>
+                    <li><%= link_to 'twitter', twitter_url %></li>
+                </div>
             </ul>
 
             <ul>
-                <h3><%= link_to site_name, '/pages/about' %></h3>
+                <input id="sub_3" type="radio" name="sub">
+                <label title="Help" for="sub_3"><h3>help</h3></label>
+                <div>
+                    <li><%= link_to 'index', '/pages/help/index' %></li>
+                    <li><%= link_to 'keyboard', '/pages/help/keyboard' %></li>
+                    <li><%= link_to 'posts', '/pages/help/rules' %></li>
+                    <li><%= link_to 'copyright request', '/pages/help/copyright' %></li>
+                </div>
+            </ul>
 
-                <li><%= link_to 'About', '/pages/about' %></li>
-                <li><%= link_to 'Source Code', '/pages/source' %></li>
-                <li><%= link_to 'Terms of Service', '/pages/tos' %></li>
-                <li><%= link_to 'Cookies & Privacy', '/pages/cookies' %></li>
+            <ul>
+                <input id="sub_4" type="radio" name="sub">
+                <label title="<%= site_name %>" for="sub_4"><h3><%= site_name.downcase %></h3></label>
+                <div>
+                    <li><%= link_to 'about', '/pages/about' %></li>
+                    <li><%= link_to 'source code', '/pages/source' %></li>
+                    <li><%= link_to 'terms of service', '/pages/tos' %></li>
+                    <li><%= link_to 'cookies & privacy', '/pages/cookies' %></li>
+                </div>
             </ul>
 
             <% if user_signed_in? %>
@@ -59,7 +77,7 @@
                     <li><%= link_to "Profile", user_path(current_user.name) %></li>
                     <li><%= link_to "Options", edit_user_path(current_user.name) %></li>
                     <li><%= link_to 'Favorites', favorites_path(current_user.name) %></span></li>
-                    <li><%= link_to 'My Uploads', uploads_path(current_user.name) %></span></li>
+                    <li><%= link_to 'Uploads', uploads_path(current_user.name) %></span></li>
                     <li><%= link_to 'Logout', destroy_user_session_path %></span></li>
                 </ul>
             <% else %>

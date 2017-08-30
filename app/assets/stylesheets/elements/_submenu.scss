@@ -1,5 +1,5 @@
 nav.menu .submenu {
-    background: $gray-black;
+    background: rgba($gray-black, .88);
     box-shadow: 0 4px 0 $pink;
     height: 240px;
     padding-left: 25px;
@@ -29,17 +29,16 @@ nav.menu .submenu {
 
         h3 {
             font-size: 1em;
-            font-style: normal;
-            padding-left: 9px;
+            padding-left: 12px;
+            color: $white;
         }
 
-        h3 a {
-            color: $pink;
-            font-weight: 900;
+        input[type=radio] {
+            display: none;
+        }
 
-            &:before {
-                content: "";
-            }
+        div {
+            @extend %clearfix;
         }
     }
 
@@ -129,7 +128,6 @@ nav.menu .submenu {
 
     a {
         display: block;
-        font-weight: bold;
         padding: 4px;
         text-align: left;
     }
@@ -140,7 +138,7 @@ nav.menu .submenu {
         transition: all 70ms linear;
     }
 
-    a:hover, a:hover:before {
+    a:hover:before , a:hover {
         color: $pink;
     }
 }
@@ -150,35 +148,67 @@ nav.menu .submenu.develop {
     visibility: visible;
 }
 
+
+@media only screen and (min-width: $small) {
+    label {
+        cursor: auto;
+    }
+}
 @media only screen and (max-width: $small) {
     nav.menu .submenu {
         overflow-y: scroll;
         padding: 0;
         transition: none;
+        font-size: 1.2em;
+        font-weight: lighter;
 
-        ul, ul.login, ul.register {
-            border: 0 !important;
-            float: none;
-            height: auto;
-            padding: 10px 20px;
-            position: static;
-            width: 100%;
+        label {
+            display: block;
+            opacity: 0.65;
+            padding: 10px 0;
 
-            .btn {
-                display: block;
-                margin: 20px 0 10px;
-                position: static;
-                width: 100%;
+            h3 {
+                font-weight: normal;
             }
         }
 
-        .my-account {
+        input + label + div {
             display: none;
         }
 
-        li {
-            width: calc(50% - 20px);
-            float: left;
+        input:checked + label,
+        input:checked + label + div {
+            display: block;
+            opacity: 1;
+        }
+
+        ul {
+            border: 0 !important;
+            float: none;
+            height: auto;
+            padding: 0;
+            position: static;
+            width: 100%;
+        }
+
+        a {
+            color: $white !important;
+            padding: 7px 0;
+        }
+
+        a::before {
+            color: $white !important;
+            display: inline-block;
+            text-align: center;
+            width: 40px;
+        }
+
+        h3 {
+            margin: 0;
+        }
+
+        .my-account,  ul.login, ul.register {
+            display: none;
         }
     }
 
@@ -192,7 +222,9 @@ nav.menu .submenu.develop {
     }
 
     nav.menu .submenu.develop {
-        height: calc( 100vh - 69px );
+        background: $gray;
+        height: auto;
+        padding-bottom: 15px;
         top: 65px;
         visibility: visible;
         z-index: 10000;

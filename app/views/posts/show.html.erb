@@ -94,7 +94,7 @@
 
             <div class="col-3 actions">
                 <h5><%= fa_icon "bolt" %> Actions</h5>
-                <a class="action btn btn-pink" id="add_to_favorites"><%= fa_icon "heart" %> Add Favorite</a>
+                <a class="action btn btn-pink" href="" id="add_to_favorites"><%= fa_icon "heart" %> Add Favorite</a>
                 <a class="action btn btn-green" href="<%= @post.post_image.url %>" download><%= fa_icon "download" %> Download</a>
                 <a class="action btn btn-yellow" target="_blank" href="https://www.google.fr/searchbyimage?site=search&image_url=<%= @post.post_image.url %>"><%= fa_icon "google" %>Search image</a>
                 <% if user_signed_in? %>

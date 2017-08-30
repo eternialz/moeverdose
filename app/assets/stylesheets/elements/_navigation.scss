@@ -1,5 +1,6 @@
 nav.menu {
     background: $gray-dark;
+    box-shadow: 0 -3px 6px 5px rgba($black, .35);
     color: $white;
     height: 96px;
     position: fixed;
@@ -33,7 +34,7 @@ nav.menu {
             }
 
             .user a.avatar {
-                margin: 0 10px !important;
+                margin: 0 !important;
             }
 
             .user img {
@@ -114,7 +115,7 @@ nav.menu {
         width: 40px;
         text-align: center;
         float: right;
-        margin: 3px;
+        margin: 3px 10px;
     }
 
     @media only screen and (max-width: $small) {
@@ -133,10 +134,10 @@ nav.menu {
 
             a {
                 color: $white-break;
-                font-weight: bold;
                 padding: 5px 10px;
                 text-align: center;
                 transition:all 100ms linear;
+                font-weight: 500;
             }
 
             @media only screen and (max-width: $small) {

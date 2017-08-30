@@ -42,12 +42,20 @@
     &:active {
         background: darken($pink, 10%);
     }
+
+    &:focus {
+        box-shadow: 0 0 0 3px rgba($pink, .4);
+    }
 }
 .btn-blue {
     background: $blue;
 
     &:active {
         background: darken($blue, 10%);
+    }
+
+    &:focus {
+        box-shadow: 0 0 0 3px rgba($blue, .4);
     }
 }
 
@@ -57,6 +65,10 @@
     &:active {
         background: darken($yellow, 10%);
     }
+
+    &:focus {
+        box-shadow: 0 0 0 3px rgba($yellow, .4);
+    }
 }
 
 .btn-red {
@@ -64,6 +76,10 @@
 
     &:active {
         background: darken($red, 13%);
+    }
+
+    &:focus {
+        box-shadow: 0 0 0 3px rgba($red, .4);
     }
 }
 
@@ -73,6 +89,10 @@
     &:active {
         background: darken($green, 10%);
     }
+
+    &:focus {
+        box-shadow: 0 0 0 3px rgba($green, .4);
+    }
 }
 
 .btn-discord {
@@ -80,5 +100,9 @@
 
     &:active {
         background: darken($discord, 10%);
+    }
+
+    &:focus {
+        box-shadow: 0 0 0 3px rgba($discord, .4);
     }
 }
