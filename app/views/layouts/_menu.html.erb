@@ -16,6 +16,7 @@
                 <li><%= link_to 'Posts', posts_path, title: 'Posts' %></li>
                 <li><%= link_to 'Upload', new_post_path, title: 'Upload' %></li>
                 <li><%= link_to 'Tags', tags_path, title: 'Tags' %></li>
+                <li><%= link_to 'Authors', authors_path, title: 'Authors' %></li>
                 <li><%= link_to 'Chat', chat_url, target: "_blank", title: 'Chat' %></li>
                 <li><%= link_to 'About', "/pages/about", title: 'About' %></li>
                 <li><%= link_to 'Help', "/pages/help/index", title: 'Help' %></li>
@@ -36,6 +37,7 @@
                     <li><%= link_to 'random', random_path %></li>
                     <li><a href="<%= new_post_path %>" title="Upload">upload</a></li>
                     <li><%= link_to 'tags', tags_path, title: 'Tags' %></li>
+                    <li><%= link_to 'authors', authors_path, title: 'Authors' %></li>
                 </div>
             </ul>
 
@@ -45,7 +47,6 @@
                 <div>
                     <li><%= link_to 'chat', chat_url, target: "_blank", title: 'Chat' %></li>
                     <li><%= link_to 'users', users_path %></li>
-                    <li><%= link_to 'team', '/pages/team' %></li>
                     <li><%= link_to 'twitter', twitter_url %></li>
                 </div>
             </ul>
@@ -66,6 +67,7 @@
                 <label title="<%= site_name %>" for="sub_4"><h3><%= site_name.downcase %></h3></label>
                 <div>
                     <li><%= link_to 'about', '/pages/about' %></li>
+                    <li><%= link_to 'team', '/pages/team' %></li>
                     <li><%= link_to 'source code', '/pages/source' %></li>
                     <li><%= link_to 'terms of service', '/pages/tos' %></li>
                     <li><%= link_to 'cookies & privacy', '/pages/cookies' %></li>

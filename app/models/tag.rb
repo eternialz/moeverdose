@@ -10,6 +10,8 @@ class Tag
 
     field :type, type: Symbol
 
+    has_one :author, class_name: "Tag", inverse_of: :tag
+
     module Type
         def self.all
             [:content, :character, :author]

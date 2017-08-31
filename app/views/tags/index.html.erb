@@ -2,7 +2,7 @@
 
 <div class="row list">
     <% @tags.each do |t| %>
-        <% cache ["index", t] do %>
+        <% cache ["tag_index", t] do %>
             <ul>
                 <li class="zone">
                     <%= link_to posts_path(query: t.names[0]), class: "title " + t.type.to_s do %>

@@ -36,7 +36,7 @@
                     <div class="reported">
                         <p>This post have been reported by <%= link_to @post.report_user.name, user_path(id: @post.report_user.name) %> for:</p>
                         <br />
-                        <p><%= @post.report_reason %></p>
+                        <p><%= @post.report_reason.empty? ? "no reason given by the user" : @post.report_reason %></p>
                         <br />
                         <label for="report_form_input" class="btn btn-pink">Show post <%= fa_icon 'eye' %></label>
                     </div>
@@ -144,7 +144,7 @@
                         <p><%= fa_icon "group" %> Character(s):</p>
                         <textarea name="characters" placeholder='Characters ("illyasviel_von_einzbern")'><% @characters.each do |character| %><%= character + " " %><% end %></textarea>
                     </div>
-                    <button type="submit" form="edit_post" class="btn btn-pink" type="submit">Modifier le post <%= fa_icon 'edit' %></button>
+                    <button type="submit" form="edit_post" class="btn btn-pink">Update Post<%= fa_icon 'edit' %></button>
                 </div>
             </div>
         <% end %>
@@ -189,7 +189,7 @@
                     <li id="id"><span>id:</span><%= @post.number %></li>
 
                     <% unless @post.author.blank? %>
-                        <li id="author"><span>author:</span><a  href="<%= posts_path(query: @post.author.name )%>" title="Search on google"><%= @post.author.name %></a></li>
+                        <li id="author"><span>author:</span><a  href="<%= author_path(@post.author)%>" title="Search on google"><%= @post.author.name %></a></li>
                     <% else %>
                         <li id="author"><span>author:</span>unknown author</li>
                     <% end %>

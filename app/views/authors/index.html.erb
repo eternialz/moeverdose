@@ -1,0 +1,16 @@
+<div class="row list">
+    <% @authors.each do |a| %>
+        <% cache ["author_index", a] do %>
+            <ul>
+                <li class="zone">
+                    <%= link_to author_path(a), class: "title" do %>
+                        <h5><%= a.name %></h5>
+                    <% end %>
+                </li>
+            </ul>
+        <% end %>
+    <% end %>
+    <div class="general_pagination">
+        <%= paginate @authors %>
+    </div>
+</div>

@@ -3,13 +3,14 @@ class Author
     include Mongoid::Timestamps
 
     field :name, type: String
-    validates :name, presence: true, uniqueness: true, allow_blank: false
+    validates :name, presence: true
+
+    field :biography, type: String, default: ""
 
     has_and_belongs_to_many :posts, class_name: "Post", inverse_of: :author
 
-    field :website, type: String
+    belongs_to :tag, class_name: "Tag", inverse_of: :author
+    validates :tag, presence: true
 
-    field :overdose, type: Integer, default: 0
-    field :moe_shortage, type: Integer, default: 0
-
+    field :websites, type: Array, default: []
 end
