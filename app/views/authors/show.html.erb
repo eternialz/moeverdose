@@ -6,6 +6,7 @@
             <p>Posts: <%= @tag.posts_count %></p>
             <a class="btn btn-pink" href="<%= posts_path(query: @tag.names[0]) %>">All Posts<%= fa_icon "eye" %></a>
             <a class="btn btn-blue" href="<%= edit_author_path(@author) %>">Edit<%= fa_icon "edit" %></a>
+            <a class="btn btn-blue" href="<%= edit_tag_path(@tag) %>">Edit aliases<%= fa_icon "edit" %></a>
         </div>
 
         <div class="col-6">
@@ -24,7 +25,7 @@
             <% if !@websites.empty? %>
                 <ul>
                     <% @websites.each do |w| %>
-                        <li><a href="<%= w %>"><%= w %></a></li>
+                        <li><a target="_blank "href="<%= w %>"><%= w %></a></li>
                     <% end %>
                 </ul>
             <% else %>

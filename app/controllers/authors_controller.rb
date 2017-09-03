@@ -2,7 +2,7 @@ class AuthorsController < ApplicationController
     require 'uri'
 
     before_action :set_author, except: [:index]
-    before_action :authenticate_user!, only: [:update]
+    before_action :authenticate_user!, only: [:update, :edit]
 
     def index
         @authors = Kaminari.paginate_array(Author.includes(:tag).all.order_by(:name => 'asc')).page(params[:page]).per(20)
@@ -29,6 +29,20 @@ class AuthorsController < ApplicationController
     end
 
     def update
+        new_name = params[:author][:name]
+
+        if @author.name != new_name
+            index = @author.tag.names.find_index(new_name)
+
+            @author.tag.names << @author.tag.names[0]
+
+            if index
+                @author.tag.names[0] = @author.tag.names.delete_at(index)
+            else
+                @author.tag.names[0] = new_name
+            end
+        end
+
         @author.assign_attributes(author_params)
 
         @author.websites = params[:websites].split(" ")
