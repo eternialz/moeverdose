@@ -1,8 +1,9 @@
 
 .tag {
     background: $background;
-    border-radius: 2px;
+    border-radius: 3px;
     color: $gray !important;
+    cursor: pointer;
     display: inline-block;
     font-size: 14px;
     font-weight: bold;
@@ -22,11 +23,5 @@ a.tag {
     &:hover {
         background: darken($background, 5%);
         color: $pink;
-        cursor: pointer;
-    }
-
-    &:active {
-        background: darken($background, 10%);
-        color: $pink_dark;
     }
 }

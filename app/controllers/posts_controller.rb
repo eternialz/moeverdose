@@ -15,15 +15,6 @@ class PostsController < ApplicationController
         @authors = results[:authors]
 
         title(@post.title)
-        if user_signed_in?
-            respond_to do |format|
-                format.html
-            end
-        elsif stale?(etag: @post, last_modified: @post.updated_at)
-            respond_to do |format|
-                format.html
-            end
-        end
     end
 
     def report
@@ -96,13 +87,13 @@ class PostsController < ApplicationController
     def index
         @permited_posts_per_page = ['2', '8', '16', '32', '64']
 
-        if !params[:posts_per_page].nil?
+        unless params[:posts_per_page].nil?
             @posts_per_page = params[:posts_per_page]
         end
 
         if params[:query]
             if user_signed_in?
-                @posts, ignored = PostLogic.query_with_blacklist(params[:query], current_user.blacklisted_tags, params[:page], @posts_per_page)
+                @posts, ignored = PostLogic.query_with_blacklist(params[:query], current_user.blacklisted_tags, params[:page], @posts_per_page < @permited_posts_per_page.last ? @posts_per_page : @permited_posts_per_page.last)
             else
                 @posts, ignored = PostLogic.query(params[:query], params[:page], @posts_per_page)
             end
@@ -127,15 +118,15 @@ class PostsController < ApplicationController
             @tags += results[:tags]
             @characters += results[:characters]
             @authors += results[:authors]
-
         end
+
         @tags = @tags.uniq
         @characters = @characters.uniq
         @authors = @authors.uniq
 
-        @tags.sort_by!{ |tag| tag&.downcase }
-        @characters.sort_by!{ |character| character&.downcase }
-        @authors.sort_by!{ |author| author&.downcase }
+        @tags.sort_by!{ |tag| tag }
+        @characters.sort_by!{ |character| character }
+        @authors.sort_by!{ |author| author }
 
         title("All posts")
     end
@@ -152,26 +143,13 @@ class PostsController < ApplicationController
 
         PostLogic.set_id(@post)
 
-        tags = params[:tags].downcase.split(" ")
-        tags.each do |tag|
-            TagLogic.find_or_create(tag, :content, @post)
-        end
-
-        characters = params[:characters].downcase.split(" ")
-        characters.each do |character|
-            TagLogic.find_or_create(character, :character, @post)
-        end
-
-        dimensions = Paperclip::Geometry.from_file(@post.post_image.queued_for_write[:original].path)
-
         @post.md5 = Digest::MD5.file(@post.post_image.queued_for_write[:original].path).hexdigest
 
-        @post.width = dimensions.width
-        @post.height = dimensions.height
+        PostLogic.set_post_tags({tags: params[:tags], characters: params[:characters]}, @post)
 
-        @post.user = current_user
-        user_logic = UserLogic.new(current_user)
-        user_logic.update_level
+        PostLogic.set_post_dimensions(@post)
+
+        PostLogic.set_post_user(@post, current_user)
 
         if params[:author] != "" && params[:author] != nil
             author = TagLogic.find_or_create_author(params[:author], @post)
@@ -179,18 +157,16 @@ class PostsController < ApplicationController
 
         if @post.save
             author&.save
-
             TagLogic.change_counts(@post.tags, 1)
 
             flash[:success] = "Post #{@post.title} created!"
-
             notify("New post: " + post_url(id: @post.number))
 
             redirect_to post_path(@post.number)
         else
             flash.now[:error] = "The post could not be created."
-            @favorites_tags = current_user.favorites_tags.split
-            render :template => "posts/new"
+
+            render template: new_post_path
         end
     end
 
@@ -202,19 +178,10 @@ class PostsController < ApplicationController
 
         @post.tags = []
 
-        tags = params[:tags].downcase.split(" ")
-        tags.each do |tag|
-            TagLogic.find_or_create(tag, :content, @post)
-        end
+        PostLogic.set_post_tags({tags: params[:tags], characters: params[:characters]}, @post)
 
-        characters = params[:characters].downcase.split(" ")
-        characters.each do |character|
-            TagLogic.find_or_create(character, :character, @post)
-        end
-
-        author_name = params[:author_tag]
-        if author_name != "" && author_name != nil
-            author = TagLogic.find_or_create_author(author_name, @post)
+        if params[:author_tag] != "" && params[:author_tag] != nil
+            author = TagLogic.find_or_create_author(params[:author_tag], @post)
         end
 
         if @post.save

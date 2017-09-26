@@ -53,14 +53,14 @@ select:-webkit-autofill:focus {
 
     p {
         color: $white;
-        font-weight: 900;
+        font-weight: bold;
         margin-bottom: 10px;
     }
 
     span {
         color: $white;
         display: inline-block;
-        font-weight: 900;
+        font-weight: bold;
         padding: 12px 0;
         pointer-events: none;
         position: absolute;

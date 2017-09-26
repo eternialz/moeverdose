@@ -1,5 +1,5 @@
 nav.menu .submenu {
-    background: rgba($gray-black, .88);
+    background: rgba($gray-black, .92);
     box-shadow: 0 4px 0 $pink;
     height: 240px;
     padding-left: 25px;
@@ -28,9 +28,8 @@ nav.menu .submenu {
         transition:all 100ms linear;
 
         h3 {
-            font-size: 1em;
-            padding-left: 12px;
             color: $white;
+            padding-left: 12px;
         }
 
         input[type=radio] {

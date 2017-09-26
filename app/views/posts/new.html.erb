@@ -38,13 +38,13 @@
                 <textarea name="tags" id="tags" placeholder='Tags ("1girl glasses ...")' autocomplete="off"></textarea>
             </div>
             <div class="favorites_tags">
-                <% if @favorites_tags.empty? %>
+                <% if current_user.favorites_tags.empty? %>
                     <h6>FAVORITES TAGS:</h6>
                     <p>You can add your favorites tags in your <%= link_to "account options", edit_user_path(current_user.name) %> to upload faster.<br />
                     Favorites tags will be displayed here; once you click them the tag will be added to the post you are currently uploading.</p><br />
                 <% else %>
                     <h6>FAVORITES TAGS:</h6>
-                    <% @favorites_tags.each do |tag| %>
+                    <% current_user.favorites_tags.split.each do |tag| %>
                         <span class="tag"><%= tag %></span>
                     <% end %>
                 <% end %>
