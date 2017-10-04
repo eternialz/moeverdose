@@ -6,8 +6,4 @@ group: stable
 dist: precise
 os: linux
 env:
-  - MOEVERDOSE_DEV_HOST=localhost
-  - MOEVERDOSE_DEV_PORT=3000
-notifications:
-  webhooks:
-    - https://discordapp.com/api/webhooks/365061764758503437/RgpcY_QoDSKILRB_osqlH-dLB-JkQ9FaNGic0nBZC2WN85aTOwDvktTNo_0zCP8lfMrp
+  - MOEVERDOSE_DEV_HOST=localhost MOEVERDOSE_DEV_PORT=3000
