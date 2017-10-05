@@ -1,35 +1,52 @@
 Global = {
     init: function() {
         Global.menu = false;
+        Global.mouseOver = false;
+        Global.timeout_close = setTimeout('', 1);
+        Global.timeout_open = setTimeout('', 1);
+        Global.close_submenu();
         $('#menu_label').click(Global.develop_submenu);
-        $('.submenu input').focus(Global.develop_submenu_focus);
-        $('#submenu_close').click(Global.close_submenu);
+
+        $('nav.menu .container, nav.menu .submenu').on('mouseover', function () {
+            Global.timeout_open = setTimeout(function() { // Close after 2ms if not hovered
+                Global.open_submenu();
+            }, 100)
+            Global.mouseOver = true;
+        }).on('mouseout', function (e) {
+            clearTimeout(Global.timeout_open);
+            Global.mouseOver = false;
+
+            if ($(e.target).is('input')) {
+                Global.mouseOver = true; // Close only if it's out and not if hovered on browser input autocomplete
+            }
+
+            clearTimeout(Global.timeout_close); // Remove potential old Timeout
+            Global.timeout_close = setTimeout(function() { // Close after 2ms if not hovered
+                if (!Global.mouseOver) {
+                    Global.close_submenu();
+                }
+            }, 350)
+        });
     },
     develop_submenu: function() {
-        if (Global.menu == false) {
-            $(this).addClass('open');
-            $('.submenu').addClass('develop');
+        if (Global.menu === false) {
+            Global.open_submenu();
             Global.menu = true;
         } else {
-            $(this).removeClass('open');
-            $('.submenu').removeClass('develop');
+            Global.close_submenu();
             Global.menu = false;
         }
+    },
+    open_submenu: function() {
+        $("#menu_label").addClass('open');
+        $('.submenu').addClass('develop');
     },
     close_submenu: function() {
         $("#menu_label").removeClass('open');
         $('.submenu').removeClass('develop');
-        Global.menu = false;
     },
-    develop_submenu_focus: function() {
-        if (Global.menu == false) {
-            $('#menu_label').addClass('open');
-            $('.submenu').addClass('develop');
-            Global.menu = true;
-        }
-    }
 };
 
-$(document).ready(function(){
+$(document).on('turbolinks:load', function() {
     Global.init();
 });

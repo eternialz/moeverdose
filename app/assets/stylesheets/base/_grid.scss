@@ -3,29 +3,29 @@ $width: 100%;
 $gutter: 30px;
 
 .row {
-    margin-right: auto;
     margin-left: auto;
+    margin-right: auto;
+    max-width: 1400px;
     position: relative;
     width: 100%;
-    max-width: 1600px;
 }
 
 @media only screen and (min-width: $xlarge) {
     .row {
-        max-width: 2000px;
+        max-width: 1600px;
     }
 }
 
 @media only screen and (min-width: $xxlarge) {
     .row {
-        max-width: 2200px;
+        max-width: 1800px;
     }
 }
 
 .row [class^="col-"] {
     float: left;
-    padding: $gutter / 2;
     min-height: 0.125rem;
+    padding: $gutter / 2;
     text-align: left;
 }
 
@@ -74,10 +74,10 @@ $gutter: 30px;
 
 /* Global Elements */
 .clearfix:after {
+    clear: both;
+    content: " ";
     display: block;
     height: 0;
-    content: " ";
-    clear: both;
 }
 
 .hide {

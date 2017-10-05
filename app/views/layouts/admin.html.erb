@@ -1,43 +1,12 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title><%= defined?(@title) ? @title : site_name %></title>
-        <%= csrf_meta_tags %>
-
-        <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-        <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    </head>
+    <%= render "layouts/head" %>
 
     <body>
-        <% if flash.any? %>
-            <div class="row flashes">
-                <% flash.each do |key, value| %>
-                    <div class="alert alert-<%= key %>"><%= value %></div>
-                <% end %>
-            </div>
-        <% end %>
+        <%= render "layouts/menu" %>
 
-        <div class="notifications">
-            <div class="notifications_container">
-            </div>
-        </div>
+        <%= render "layouts/notifications" %>
 
-        <nav class="menu">
-            <div class="row">
-                <% if content_for?(:menu) %>
-                    <%= yield(:menu) %>
-                <% else %>
-                    <%= render "layouts/default_menu" %>
-                <% end %>
-                <% if content_for?(:submenu) %>
-                    <%= yield(:submenu) %>
-                <% else %>
-                    <%= render "layouts/default_submenu" %>
-                <% end %>
-            </div>
-        </nav>
         <div class="row">
             <div class="admin">
                 <ul class="navigation">
@@ -69,6 +38,5 @@
         </div>
 
         <%= render "layouts/footer" %>
-
     </body>
 </html>

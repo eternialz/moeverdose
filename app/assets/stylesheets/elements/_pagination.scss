@@ -1,14 +1,14 @@
 .general_pagination {
-    background: #000;
+    background: $gray-black;
+    color: $white;
     margin: 0;
     padding: 10px;
     text-align: center;
-    color: #FFF;
 
     div {
-        padding: 7px 5px;
         font-size: 12px;
         font-weight: bold;
+        padding: 7px 5px;
 
         input[type="radio"] {
             display: none;
@@ -21,35 +21,35 @@
         input[type="submit"] {
             background: none;
             border: none;
-            color: #FFF;
+            color: $white;
         }
     }
 
     .pagination {
-        background: #FFF;
-        display: inline-block;
+        background: $white;
         border-radius: 3px;
+        display: inline-block;
         overflow: hidden;
 
         span {
             display: inline-block;
-            font-weight: bold;
-            text-align: center;
-            height: 39px;
             float: left;
+            font-weight: bold;
+            height: 39px;
+            text-align: center;
         }
 
         span.current {
-            padding: 10px 17px;
-            color: #FFF;
             background: $pink;
+            color: $white;
+            padding: 10px 17px;
         }
 
         span a {
+            color: $gray;
             display: inline-block;
             padding: 10px 17px;
             width: 100%;
-            color: #444;
 
             &:hover {
 

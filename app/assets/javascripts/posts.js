@@ -1,8 +1,7 @@
 Post = {
     init: function(root) {
         Post.root = root;
-        Post.root.find('.overdose').click(Post.overdose);
-        Post.root.find('.shortage').click(Post.shortage);
+        Post.root.find('.dose').click(Post.dose);
         Post.root.find('#add_to_favorites').click(Post.favorite);
         Post.root.find('.post img').click( function() {
             $('#zoom_post').prop('checked',true);
@@ -22,57 +21,55 @@ Post = {
                     Notifications.add("Favorite added to your profile", "", "success");
                 },
                 202: function() {
-                    Notifications.add("Favorite removed from your profile");
-                }
-            },
-        });
-    },
-    overdose: function() {
-        $.ajax({
-            url : window.location.pathname + '/overdose',
-            type : 'PATCH',
-            statusCode: {
-                200: function() {
-                    Post.overdose.html(parseInt(Post.overdose.html()) +1);
-                    Post.percentage();
-                    Notifications.add("Overdose added","","success")
+                    Notifications.add("Favorite removed from your profile", "", "info");
                 },
-                202: function() {
-                    Post.overdose.html(parseInt(Post.overdose.html()) -1);
-                    Post.percentage();
-                    Notifications.add("Overdose removed","","success")
+                403: function() {
+                    Notifications.add("You need to be logged in to add a favorite", "", "error");
                 }
-            },
-            error : function() {
-                Notifications.add("Can't add overdose","Did you already add a shortage for this post? If you wan't to change, remove your shortage before adding an overdose by clicking on the shortage button","error")
             }
         });
     },
-    shortage: function() {
+    dose: function(args) {
+        var button = $(this);
+
+        var dose = args.dose || button.data('dose');
+
+        button.prop("disabled", true);
+
         $.ajax({
-            url : window.location.pathname + '/shortage',
+            url : window.location.pathname + "/dose/" + dose,
             type : 'PATCH',
-            statusCode: {
-                200: function() {
-                    Post.shortage.html(parseInt(Post.shortage.html()) +1);
-                    Post.percentage();
-                    Notifications.add("Moe shortage added","","success")
-                },
-                202: function() {
-                    Post.shortage.html(parseInt(Post.shortage.html()) -1);
-                    Post.percentage();
-                    Notifications.add("Moe shortage removed","","success")
+            dataType: "json",
+            success: function(data) {
+                Post.overdose.html(parseInt(data.overdose, 10));
+                Post.shortage.html(parseInt(data.shortage, 10));
+                Post.percentage();
+
+                if(dose === "overdose") {
+                    if(data.removed === true) {
+                        Notifications.add("Overdose removed", "", "info");
+                    } else {
+                        Notifications.add("Overdose added", "", "success");
+                    }
+                } else {
+                    if(data.removed === true) {
+                        Notifications.add("Shortage removed", "","info");
+                    } else {
+                        Notifications.add("Shortage added", "", "success");
+                    }
                 }
+
+                button.prop("disabled", false);
             },
-            error : function() {
-                Notifications.add("Can't add shortage","Maybe you aren't logged in or you already voted for this post","error")
+            error: function() {
+                Notifications.add("Can't add overdose","You need to be logged in to add an " + dose,"error")
             }
         });
     },
     percentage: function() {
-        var overdose_percentage = 100 * (parseInt(Post.overdose.html()) / (parseInt(Post.overdose.html()) + parseInt(Post.shortage.html())));
+        var overdose_percentage = 100 * (parseInt(Post.overdose.html(), 10) / (parseInt(Post.overdose.html(), 10) + parseInt(Post.shortage.html(), 10)));
         var shortage_percentage = 100 - overdose_percentage;
-        if ((Post.overdose.html() == "0") && (Post.shortage.html() == "0"))  {
+        if ((Post.overdose.html() === "0") && (Post.shortage.html() === "0"))  {
             overdose_percentage = 50;
             shortage_percentage = 50;
         }
@@ -81,7 +78,7 @@ Post = {
     },
     comment_char: function() {
         var length = $(this).val().length;
-        var max = parseInt($(this).data("length"))
+        var max = parseInt($(this).data("length"), 10)
         if (length > max) {
             $('#char_count').text("The comment is too long! Please remove " + ( length - max ) + " character(s)")
         } else {
@@ -90,6 +87,6 @@ Post = {
     }
 };
 
-$(document).ready(function(){
+$(document).on('turbolinks:load', function() {
     Post.init($('.posts'));
 });

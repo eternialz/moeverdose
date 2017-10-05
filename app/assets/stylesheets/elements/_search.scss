@@ -1,65 +1,60 @@
+
 .search-form {
-    background: #000;
-    margin: 20px 0 0;
-    box-shadow: 0 1px 3px rgba(0,0,0,.25);
+    background: image_url($header-image) no-repeat center center;
+    background-size: cover;
+    box-shadow: 0 2px 6px rgba(0,0,0,.35), inset 0 0 0 23px rgba(0,0,0,.5);
+    padding: 20px;
 
-    &.search-home {
-        margin: 0 0 15px;
-
-        input[type=text] {
-            width: calc(100% - 46px);
-        }
+    #search {
+        background: $gray;
+        position: relative;
+        border-radius: 3px;
+        box-shadow: 0 2px 6px rgba($black, .35);
     }
 
     input[type=text] {
-        background: #000;
-        color: #FFF;
-        float: left;
-        padding: 14px 14px 17px;
-        width: calc(100% - 92px);
-        border-radius: 0;
-        height: 49px;
+        background: none;
         border: 0;
-        border-bottom: 3px solid #888;
-        -webkit-transition: all 170ms ease-in-out;
-        -moz-transition: all 170ms ease-in-out;
-        -o-transition: all 170ms ease-in-out;
+        box-shadow: none;
+        color: $white;
+        font-weight: bold;
+        float: left;
+        height: 49px;
+        padding: 10px 102px 10px 10px;
         transition: all 170ms ease-in-out;
+        width: 100%;
     }
 
     input[type=text]:focus {
-        border-color: $pink;
-        background: #222;
+        box-shadow: 0 0 0 3px $blue;
+        background: mix($gray, $black, 90%);
         outline: none;
     }
 
     button, label {
         background: none;
         border: none;
-        color: #FFF;
+        color: $white;
         display: inline-block;
         float: left;
         line-height: 49px;
         max-height: 49px;
-        width: 46px;
+        position: absolute;
+        right: 0;
         text-align: center;
-        -webkit-transition: all 170ms ease-in-out;
-        -moz-transition: all 170ms ease-in-out;
-        -o-transition: all 170ms ease-in-out;
         transition: all 170ms ease-in-out;
-        border-bottom: 3px solid #888;
+        width: 46px;
+    }
+
+    label {
+        right: 46px;
     }
 
     button:hover, label:hover {
-        border-color: $pink;
-        background: #222;
         cursor: pointer;
     }
 
     i {
-        -webkit-transition: all 170ms ease-in-out;
-        -moz-transition: all 170ms ease-in-out;
-        -o-transition: all 170ms ease-in-out;
         transition: all 170ms ease-in-out;
     }
 
@@ -68,22 +63,29 @@
     }
 
     .tag_list {
-        background: #222;
+        border-radius: 3px;
+        overflow: hidden;
+        background: $gray;
         float: left;
         height: 0;
-        overflow-y: scroll;
-        width: 100%;
-        -webkit-transition: all 170ms ease-in-out;
-        -moz-transition: all 170ms ease-in-out;
-        -o-transition: all 170ms ease-in-out;
         transition: all 170ms ease-in-out;
+        width: 100%;
+        top: calc(100% + 10px);
+        position: absolute;
+        z-index: 1000;
+        box-shadow: 0 2px 6px rgba($black, .5);
+    }
+
+    .tag_list .scroll {
+        height: 100%;
+        overflow-y: scroll;
     }
 
     #advanced_search {
         display: none;
 
         &:checked + label i {
-            transform: rotate(90deg);
+            transform: rotate(-180deg);
         }
 
         &:checked + label + .tag_list {

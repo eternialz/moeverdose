@@ -2,22 +2,24 @@
 
 <div class="row list">
     <% @tags.each do |t| %>
-        <ul>
-            <li class="zone">
-                <%= link_to posts_path(query: t.names[0]), class: "title " + t.type.to_s do %>
-                    <h5><%= t.names[0] %></h5>
-                <% end %>
-                <a class="count" href="<%= edit_tag_path(t) %>">
-                    <%= fa_icon "edit" %>
-                </a>
-                <div class="count">
-                    <%= t.posts_count %> posts</span>
-                </div>
-                <% t.names[1..-1].each do |n| %>
-                    <span><%= n %></span>
-                <% end %>
-            </li>
-        </ul>
+        <% cache ["tag_index", t] do %>
+            <ul>
+                <li class="zone">
+                    <%= link_to posts_path(query: t.names[0]), class: "title " + t.type.to_s do %>
+                        <h5><%= t.names[0] %></h5>
+                    <% end %>
+                    <a class="count" href="<%= edit_tag_path(t) %>">
+                        <%= fa_icon "edit" %>
+                    </a>
+                    <div class="count">
+                        <%= t.posts_count %> posts</span>
+                    </div>
+                    <% t.names[1..-1].each do |n| %>
+                        <span><%= n %></span>
+                    <% end %>
+                </li>
+            </ul>
+        <% end %>
     <% end %>
     <div class="general_pagination">
         <%= paginate @tags %>

@@ -43,7 +43,7 @@ module ParserConcern
         spoilers = text.scan(/\[spoiler\].+?\[\/spoiler\]/) # matches $number
 
         spoilers.each do |spoiler|
-            spoil = '<span class="spoiler">' + spoiler[9..-11] + '</span>'
+            spoil = '<label class="spoiler-toggle" title="Click to display">Spoiler<input type="checkbox"><span class="spoiler">' + spoiler[9..-11] + '</span></label>'
 
             text.sub! spoiler, spoil
         end

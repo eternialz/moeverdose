@@ -1,93 +1,84 @@
 nav.menu .submenu {
-    padding-left: 25px;
+    background: rgba($gray-black, .92);
+    box-shadow: 0 4px 0 $pink;
     height: 240px;
-    top: -144px;
-    -webkit-transition:all 200ms ease-in-out;
-    -moz-transition:all 200ms ease-in-out;
-    -o-transition:all 200ms ease-in-out;
-    transition:all 200ms ease-in-out;
+    padding-left: 25px;
     position: absolute;
+    text-shadow: none;
+    top: -148px;
+    transition: all 130ms ease-out;
+    visibility: visible;
     width: 100%;
     z-index: 200;
-    visibility: visible;
-    background: #000;
-    text-shadow: none;
-    box-shadow: 0 4px 0 $yellow;
-    overflow: hidden;
 
     a {
-        color: #FFF;
+        color: $white;
     }
 
     ul {
-        min-width: 140px;
+        border-top: 4px solid rgba(0,0,0,.0);
+        float: left;
         height: 240px;
-        top: 0;
         margin-right: 25px;
         margin: 0;
-        float: left;
-        border-top: 4px solid rgba(0,0,0,.0);
-        padding-top: 10px;
-        -webkit-transition:all 100ms linear;
-        -moz-transition:all 100ms linear;
-        -o-transition:all 100ms linear;
-        transition:all 100ms linear;
+        min-width: 160px;
         overflow-y: hidden;
+        padding-top: 10px;
+        top: 0;
+        transition: border 100ms linear;
 
         h3 {
-            padding-left: 9px;
-            font-style: normal;
-            font-size: 1em;
+            color: $white;
+            padding-left: 12px;
         }
 
-        h3 a {
-            color: $pink;
-            font-weight: 900;
+        input[type=radio] {
+            display: none;
+        }
 
-            &:before {
-                content: "";
-            }
+        div {
+            @extend %clearfix;
         }
     }
 
     ul.login {
-        position: absolute;
-        width: 300px;
-        right: 0;
         padding: 10px;
+        position: absolute;
+        right: 0;
+        width: 220px;
 
         h3 {
             padding: 0;
         }
 
         p {
-            color: #AAA;
+            color: $white-break;
         }
 
         input[type="email"], input[type="password"] {
-            width: 100%;
-            background: #222;
-            border: 0;
-            padding: 8px;
+            background: $gray-dark;
             border-radius: 3px;
+            border: 0;
+            color: $white-break;
             margin-bottom: 5px;
-            color: #AAA;
+            padding: 8px;
+            width: 100%;
         }
 
         input[type="email"]:invalid, input[type="password"]:invalid {
-            box-shadow: none;
             border: none;
+            box-shadow: none;
         }
 
         .btn {
             position: absolute;
-            top: 175px;
             right: 20px;
+            top: 175px;
         }
 
         a {
-            text-align: center;
             display: block;
+            text-align: center;
         }
 
         a:before {
@@ -96,10 +87,11 @@ nav.menu .submenu {
     }
 
     ul.my-account, ul.login {
-        background: #333;
+        background: $gray;
         float: right;
         margin-right: 0;
         padding: 10px 20px;
+        box-shadow: 0 4px 0 $blue;
 
         h3, h3 a, a:hover, a:hover:before {
             color: $blue,
@@ -116,9 +108,9 @@ nav.menu .submenu {
 
 
     ul.register {
-        right: 299px;
+        background: $gray-dark;
         padding: 10px 20px;
-        background: #222;
+        right: 219px;
     }
 
     ul.login:hover {
@@ -134,85 +126,106 @@ nav.menu .submenu {
     }
 
     a {
-        padding: 4px;
         display: block;
-        font-weight: bold;
+        padding: 4px;
         text-align: left;
     }
 
     a:before {
-        content: "› ";
         color: rgba($pink,0);
-        -webkit-transition: all 70ms linear;
-        -moz-transition: all 70ms linear;
-        -o-transition: all 70ms linear;
+        content: "› ";
         transition: all 70ms linear;
     }
 
-    a:hover, a:hover:before {
+    a:hover:before , a:hover {
         color: $pink;
-    }
-
-    #submenu_close {
-        background: #222;
-        display: none;
-        padding: 20px 30px;
-        right: 0;
-        text-align: center;
-        top: 0;
-        width: 100%;
-    }
-}
-
-@media only screen and (min-width: $normal) {
-    nav.menu:hover .submenu {
-        visibility: visible;
-        top: 96px;
     }
 }
 
 nav.menu .submenu.develop {
-    visibility: visible;
     top: 96px;
+    visibility: visible;
 }
 
+
+@media only screen and (min-width: $small) {
+    label {
+        cursor: auto;
+    }
+}
 @media only screen and (max-width: $small) {
     nav.menu .submenu {
-        -webkit-transition: none;
-        -moz-transition: none;
-        -o-transition: none;
-        transition: none;
-
-        padding: 0;
-
         overflow-y: scroll;
+        padding: 0;
+        transition: none;
+        font-size: 1.2em;
+        font-weight: lighter;
 
+        label {
+            display: block;
+            opacity: 0.65;
+            padding: 10px 0;
 
-        ul, ul.login, ul.register {
-            position: static;
-            width: 100%;
-            height: auto;
-            float: none;
-            padding: 10px 20px;
-            border: 0 !important;
-
-            .btn {
-                width: 100%;
-                display: block;
-                margin: 20px 0 10px;
-                position: static;
+            h3 {
+                font-weight: normal;
             }
         }
 
-        #submenu_close {
+        input + label + div {
+            display: none;
+        }
+
+        input:checked + label,
+        input:checked + label + div {
             display: block;
+            opacity: 1;
+        }
+
+        ul {
+            border: 0 !important;
+            float: none;
+            height: auto;
+            padding: 0;
+            position: static;
+            width: 100%;
+        }
+
+        a {
+            color: $white !important;
+            padding: 7px 0;
+        }
+
+        a::before {
+            color: $white !important;
+            display: inline-block;
+            text-align: center;
+            width: 40px;
+        }
+
+        h3 {
+            margin: 0;
+        }
+
+        .my-account,  ul.login, ul.register {
+            display: none;
         }
     }
 
+    nav.menu {
+        position: static;
+    }
+
+
+    nav.menu .submenu {
+        top: -180px;
+    }
+
     nav.menu .submenu.develop {
+        background: $gray;
+        height: auto;
+        padding-bottom: 15px;
+        top: 65px;
         visibility: visible;
-        top: 0;
         z-index: 10000;
-        height: 100vh;
     }
 }

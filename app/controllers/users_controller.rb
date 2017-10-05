@@ -3,13 +3,17 @@ class UsersController < ApplicationController
     before_action :permitted_per_page, only: [:favorites, :uploads]
 
     def show
-        @current = (current_user == @user)
-        @favorites_tags = @user.favorites_tags.split(" ")
-        @blacklisted_tags = @user.blacklisted_tags.split(" ")
+        if @user.banned?
+            render 'users/banned'
+        else
+            @current = (current_user == @user)
+            @favorites_tags = @user.favorites_tags.split(" ")
+            @blacklisted_tags = @user.blacklisted_tags.split(" ")
 
-        @level = @user.level
-        if (!@level.final)
-            @next_level = Level.find_by(rank: @user.level.rank + 1)
+            @level = @user.level
+            if (!@level.final)
+                @next_level = Level.find_by(rank: @user.level.rank + 1)
+            end
         end
 
         title(@user.name + " profile")
@@ -33,8 +37,8 @@ class UsersController < ApplicationController
         @user.update_attributes(account_update_params)
         tags = params[:tags]
 
-        @user.favorites_tags = tags[:favorites]
-        @user.blacklisted_tags = tags[:blacklisted]
+        @user.favorites_tags = tags[:favorites].split().uniq().join(' ') # remove duplicates
+        @user.blacklisted_tags = tags[:blacklisted].split().uniq().join(' ')
 
         if @user.save
             flash[:success] = "Profile saved."

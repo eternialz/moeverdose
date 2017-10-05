@@ -6,6 +6,7 @@
 
 # Ignore bundler config.
 /.bundle
+/vendor/bundle
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
@@ -26,3 +27,6 @@
 *.swp
 *.swo
 public/system/
+
+# Ignore environnement variables with secrets and tokens
+source.sh

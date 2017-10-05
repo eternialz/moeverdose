@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     get 'home/show'
 
     # Homepage
-    root 'static_pages#home'
+    root 'application#home'
 
     # Static contents
     get "/pages/:page" => "static_pages#show"
@@ -15,6 +15,9 @@ Rails.application.routes.draw do
         resources :comments
     end
 
+    # Artists
+    resources :authors
+
     # Tags
     resources :tags
 
@@ -22,8 +25,7 @@ Rails.application.routes.draw do
     patch "/posts/:post_id/comments/:comment_id/report" => "comments#report", as: "comment_report"
 
     patch "/posts/:id/report" => "posts#report", as: 'report_post'
-    patch "/posts/:id/overdose" => "posts#overdose"
-    patch "/posts/:id/shortage" => "posts#shortage"
+    patch "/posts/:id/dose/:dose" => "posts#dose", as: 'post_dose'
     patch "/posts/:id/favorite" => "posts#favorite"
 
     #Admin Section
@@ -46,7 +48,7 @@ Rails.application.routes.draw do
 
     resources :users, only: [:show, :edit, :update, :index]
     get "/users/:id/favorites" => "users#favorites", as: 'favorites'
-    get "/users/:id/uploads" => "users#uploads", as: 'uploads' 
+    get "/users/:id/uploads" => "users#uploads", as: 'uploads'
 
     match "/404", :to => "errors#not_found", :via => :all
     match "/500", :to => "errors#internal_server_error", :via => :all

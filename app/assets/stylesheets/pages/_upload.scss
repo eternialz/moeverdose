@@ -1,8 +1,4 @@
 .upload {
-    background-image: url(image_path($header-image));
-    background-image: linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)), url(image_path($header-image));
-    background-size: cover;
-    background-position: center center;
     margin: 20px auto;
     padding: 25px;
 
@@ -12,16 +8,8 @@
 
     h3 {
         border-bottom: 1px solid rgba(0,0,0,.1);
-        padding: 10px;
         font-size: 1em;
-    }
-
-    h6 {
-        color: #FFF;
-    }
-
-    p {
-        color: #FFF;
+        padding: 10px;
     }
 
     .favorites_tags {
@@ -34,23 +22,17 @@
     }
 
     #info_upload {
-        max-width: 1000px;
         margin: auto;
     }
 
     #file_upload {
-        max-width: 1000px;
+        color: $white;
+        height: auto;
+        margin-bottom: 15px;
         margin: auto;
         position: relative;
-        height: auto;
-        width: 100%;
-        color: #FFF;
         text-align: center;
-        -webkit-transition:all 100ms linear;
-        -moz-transition:all 100ms linear;
-        -o-transition:all 100ms linear;
         transition:all 100ms linear;
-        margin-bottom: 15px;
 
         #file {
             max-width: 100%;
@@ -61,17 +43,14 @@
         }
 
         .file-dummy {
-            width: 100%;
-            padding-top: 30px;
-            height: 100px;
-            font-weight: 900;
-            background: rgba(0, 0, 0, 0.65);
-            -webkit-transition:all 100ms linear;
-            -moz-transition:all 100ms linear;
-            -o-transition:all 100ms linear;
-            transition:all 100ms linear;
+            background: $gray;
             border-radius: 3px;
             border: 3px solid transparent;
+            font-weight: bold;
+            height: 100px;
+            padding-top: 30px;
+            transition:all 100ms linear;
+            width: 100%;
         }
 
         #message {
@@ -80,15 +59,15 @@
         }
 
         input[type=file] {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            right: 0;
             bottom: 0;
-            opacity: 0;
             cursor: pointer;
+            height: 100%;
+            left: 0;
+            opacity: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 100%;
         }
 
         &:hover .file-dummy {
@@ -107,8 +86,8 @@
         }
 
         input[type=file]:valid + .file-dummy + #file {
-            margin: 20px 0 0;
             border-radius: 3px;
+            margin: 20px 0 0;
         }
     }
 }

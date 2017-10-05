@@ -6,13 +6,26 @@ class Post
     # Identification
     field :number, type: Integer, default: 1
     validates :number, uniqueness: true
-    field :title, type: String
-    field :source, type: String, default: ""
-
-
 
     # File
-    has_mongoid_attached_file :post_image, styles: { thumb: ConfigHelper.thumb_size + "#" }
+    has_mongoid_attached_file :post_image,
+                              styles: {
+                                    thumb: {
+                                        :geometry => ConfigHelper.thumb_size + "#",
+                                        :animated => false
+                                    }
+                              },
+                              :path => ":rails_root/public/system/:attachment/:id/:style/:file_name-:style.:extension",
+                              :url => "/system/:attachment/:id/:style/:file_name-:style.:extension"
+
+    Paperclip.interpolates :file_name do |attachment, style|
+        attachment.instance.file_name
+    end
+
+    def file_name
+        "post-#{self.number}"
+    end
+
     validates_attachment :post_image, presence: true,
         content_type: { content_type: /\Aimage\/.*\Z/ },
         size: { in: 0..50.megabytes }
@@ -29,6 +42,9 @@ class Post
     field :overdose, type: Integer, default: 0
     field :moe_shortage, type: Integer, default: 0
 
+    # Infos
+    field :title, type: String
+    field :source, type: String, default: ""
     field :description, type: String, default: ""
 
     # Report

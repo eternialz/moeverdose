@@ -1,17 +1,17 @@
 // LOGIN & SIGNUPS
 
 .user_form {
-    width: 100%;
-    padding: 25px;
-    margin: 25px auto;
-    max-width: 800px;
-    background: #FFF;
     background-position: center center;
     background-size: cover;
+    background: $white;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+    margin: 25px auto;
+    max-width: 800px;
+    padding: 25px;
+    width: 100%;
 
     p {
-        color: #FFF;
+        color: $white;
         text-align: center;
     }
 
@@ -19,24 +19,25 @@
         text-align: center;
 
         a {
+            color: $gray;
+            opacity: .7;
+            font-weight: bold;
             margin: 0 5px;
-            color: #CCC;
             outline: none;
-            font-weight: 900;
         }
 
         a:hover {
-            color: #444;
+            opacity: 1;
         }
     }
 
     label {
-        font-weight: 900;
-        padding: 10px;
-        color: #FFF;
         background: rgba(0,0,0,.5);
         border-radius: 3px;
+        color: $white;
         display: inline-block;
+        font-weight: bold;
+        padding: 10px;
     }
 
     label:hover {
@@ -44,93 +45,70 @@
     }
 }
 
-// PROFILE
-
-.post-thumbnail.preview {
-    background: #000;
-    text-align: center;
-    padding-top: 50px;
-
-    p {
-        margin: 10px;
-        background: #444;
-        display: inline-block;
-        border-radius: 3px;
-        padding: 5px;
-        color: #FFF;
-    }
-}
-
-a.post-thumbnail.preview:hover {
-    background: #222;
-}
-
 .userprofile {
-    color: #555;
+
+    .username {
+        color: $gray;
+        display: inline-block;
+        font-size: 2em;
+        font-style: normal;
+        font-weight: 400;
+        margin: 0;
+        margin-top: 10px;
+    }
 
     .user_header {
-        padding: 20px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -200px 100px -100px rgba(0,0,0,.75);
-        position: relative;
-        height: 300px;
         background: url($header-image) no-repeat center center;
         background-size: cover;
+        box-shadow: 0 2px 6px rgba($black, .35), inset 0 -200px 100px -100px rgba(0,0,0,.75);
+        height: 300px;
+        padding: 20px;
+        position: relative;
 
         .icon {
+            color: $white;
             float: right;
-            text-shadow: 0 1px 2px #000;
             font-size: 1.5em;
-            color: #FFF;
             padding: 10px;
+            text-shadow: 0 1px 2px $black;
         }
 
         .avatar {
-            box-shadow: 0 1px 3px rgba(0,0,0,.25);
-            position: absolute;
-            left: 20px;
-            bottom: 20px;
-            z-index: 100;
             border-radius: 3px;
+            bottom: 20px;
+            box-shadow: 0 2px 6px rgba(0,0,0,.35);
+            background: $white;
+            left: 20px;
+            position: absolute;
+            z-index: 100;
         }
 
         .role {
+            background: $white;
+            border-radius: 3px;
+            bottom: 85px;
+            box-shadow: 0 2px 6px rgba(0,0,0,.35);
+            font-size: 1.2em;
+            font-weight: bold;
+            padding: 4px 15px 8px;
             position: absolute;
             right: 20px;
-            bottom: 85px;
-            background: #FFF;
-            border-radius: 3px;
-            padding: 4px 15px 8px;
-            color: #555;
-            font-size: 1.2em;
-            font-weight: 900;
-            box-shadow: 0 1px 3px rgba(0,0,0,.25);
         }
 
-
         .user_banner {
-            position: absolute;
+            background: rgba(255, 255, 255, 0.7);
+            bottom: 0;
             height: 66px;
             left: 0;
-            bottom: 0;
-            width: 100%;
             margin: 0;
-            background: rgba(255, 255, 255, 0.8);
             padding: 0 0 0 160px;
+            position: absolute;
+            width: 100%;
 
-            h3 {
-                color: #555;
-                padding: 10px 0 0 0;
-                display: inline-block;
-                margin: 0;
-                font-size: 2em;
-                font-weight: 400;
-                font-style: normal;
-            }
 
             .btn {
                 float: right;
                 margin: 16px;
-
                 width: auto;
             }
         }
@@ -141,6 +119,10 @@ a.post-thumbnail.preview:hover {
                 width: 60px;
             }
 
+            .user_banner {
+                padding-left: 100px;
+            }
+
             .role {
                 display: none;
             }
@@ -149,19 +131,21 @@ a.post-thumbnail.preview:hover {
 }
 
 .user_posts {
-    .favorites, .uploads {
-        background: $gray;
-        border-radius: 3px;
-        overflow: hidden;
+
+    h6 {
+        line-height: 44px;
+        display: inline-block;
+        margin: 0;
     }
 
-    .post-thumbnail {
-        width: 20%;
-        height: 200px;
+    .favorites, .uploads {
+        width: calc(50% - 30px);
+        margin: 15px;
+        border-radius: 3px;
+        background: $gray;
     }
 
     a {
-        margin-top: 15px;
         float: right;
     }
 }
@@ -169,96 +153,154 @@ a.post-thumbnail.preview:hover {
 // EDIT user
 
 .userprofile.edit {
-    position: relative;
+    #edit-zone {
+        position: fixed;
+        bottom: 10px;
+        z-index: 100;
+    }
 
-    input.hide {
-        & + .user_option {
-            display: none;
+    #edit-title {
+        transition: 170ms transform ease-in-out;
+        background: rgba($gray, .8);
+        box-shadow: 0 0 5px rgba($gray, .5);
+        border-radius: 3px;
+        padding: 9px;
+        width: 800px;
+        max-width: calc(100vw - 20px);
+        margin: auto;
+        transform: translateY(100px);
+
+        .btn {
+            width: auto;
+            margin: 0;
+            float: right;
         }
-        &:checked + .user_option {
-            display: block;
+
+        span {
+            color: $white;
+            padding: 10px;
+            line-height: 30px;
         }
     }
 
-    #avatar_img {
-        border-radius: 3px;
-        margin: 20px 0;
+    #edit-title.modified {
+        transform: translateY(0px);
+    }
+
+
+    .tooltip {
+        color: $gray-white;
+        margin: 10px;
+        cursor: help;
+    }
+
+    h3, h6 {
         display: inline-block;
-        float: left;
-        box-shadow: 0 1px 3px rgba(0,0,0,.25);
     }
 
-    input[type="file"] {
+    #avatar-img {
+        display: inline;
         border-radius: 3px;
-        text-align: center;
-        margin-top: 15px;
-        text-align: center;
-        color: #FFF;
-        width: 100%;
-        padding: 25px;
-        background: rgba(0,0,0,.5);
+        box-shadow: 0 2px 6px rgba(0,0,0,.35);
+        float: left;
+        position: relative;
+        width: 120px;
+        height: 120px;
+        background-position: center;
+        background-size: cover;
+        margin: 0;
+
+        &:hover .message{
+            background: rgba($gray, .2);
+        }
     }
+
+    .avatar-upload {
+        line-height: 120px;
+
+        input {
+            position: absolute;
+            left: 0;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .message {
+            border-radius: 3px;
+            width: 100%;
+            color: $white;
+            text-align: center;
+            padding: 0 20px;
+            float: left;
+            transition: 170ms all ease-in-out;
+            background: rgba($gray, .5);
+        }
+
+        .btn {
+            line-height: 1.4;
+            margin: 20px;
+        }
+
+        label {
+            float: left;
+        }
+    }
+
 
     #banner_img {
-        border-radius: 3px;
-        margin: 20px 0 0;
         background-position: center center;
         background-size: cover;
-        width: 100%;
-        max-width: 100vw;
-        max-height: 300px;
+        border-radius: 3px;
+        box-shadow: 0 2px 6px rgba(0,0,0,.35);
         height: 300px;
         left: 0;
+        max-height: 300px;
         position: relative;
-        box-shadow: 0 1px 3px rgba(0,0,0,.25);
-    }
+        margin: 0px;
+        width: 100%;
 
-    .user_header {
-        border-color: $blue;
-    }
+        label {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transition: 170ms all ease-in-out;
+            border-radius: 3px;
+            background: rgba($gray, .5);
 
-    #user_current_password {
-        float: right;
-        margin: 13px 0;
-        padding: 10px;
-        background: #FFF;
-        box-shadow: 0 1px 3px rgba(0,0,0,.25) inset;
-        border: none;
-        border-radius: 3px;
-        height: 40px;
-    }
-
-    #avatar {
-        border-radius: 3px;
-    }
-
-    #error_explanation {
-        background: #FFF;
-        margin-top: 15px;
-        box-shadow: 0 1px 3px rgba(0,0,0,.25);
-        padding: 20px;
-    }
-
-    button {
-        float: right;
-        border: none;
-        margin: 13px;
-        width: 200px;
-        text-align: left;
-        cursor: pointer;
-    }
-
-    .user_option {
-        p {
-            display: inline-block;
-            float: left;
-            color: #444;
-            padding: 0 5px;
-            font-weight: 900;
+            span {
+                padding: 10px 13px;
+                background: $white;
+                border-radius: 3px;
+                transition: 170ms box-shadow ease-in-out;
+            }
         }
 
-        .row {
-            margin-bottom: 60px;
+        .message {
+            pointer-events: none;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            font-weight: bold;
+            font-size: 22px;
+            text-align: center;
+            line-height: 300px;
+        }
+
+        input[type="file"] {
+            opacity: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        label:hover {
+            background: rgba($gray, 0.2);
+
+            span {
+                box-shadow: 0 0 0 5px rgba($blue, .8);
+            }
+
         }
     }
 }

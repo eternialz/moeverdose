@@ -1,0 +1,54 @@
+<div class="header-img">
+    <%= render '/search_home' %>
+</div>
+
+
+<div class="home-about row">
+    <div class="col-12 zone">
+            <h2>About <%= site_name %></h2>
+            <p>
+                <%= site_name %> is a safe for work image board for cute anime style characters.
+                If you need help using our website, you can find informations on the <a href="/pages/help/index">Help page</a>.
+            </p>
+            <br />
+            <div class="col-6">
+                <a href="<%= chat_url %>" class="btn btn-discord" target="_blank">Join the Chat
+                    <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 245 240"><style>.st0{fill:#FFFFFF;}</style><path class="st0" d="M104.4 103.9c-5.7 0-10.2 5-10.2 11.1s4.6 11.1 10.2 11.1c5.7 0 10.2-5 10.2-11.1.1-6.1-4.5-11.1-10.2-11.1zM140.9 103.9c-5.7 0-10.2 5-10.2 11.1s4.6 11.1 10.2 11.1c5.7 0 10.2-5 10.2-11.1s-4.5-11.1-10.2-11.1z"/><path class="st0" d="M189.5 20h-134C44.2 20 35 29.2 35 40.6v135.2c0 11.4 9.2 20.6 20.5 20.6h113.4l-5.3-18.5 12.8 11.9 12.1 11.2 21.5 19V40.6c0-11.4-9.2-20.6-20.5-20.6zm-38.6 130.6s-3.6-4.3-6.6-8.1c13.1-3.7 18.1-11.9 18.1-11.9-4.1 2.7-8 4.6-11.5 5.9-5 2.1-9.8 3.5-14.5 4.3-9.6 1.8-18.4 1.3-25.9-.1-5.7-1.1-10.6-2.7-14.7-4.3-2.3-.9-4.8-2-7.3-3.4-.3-.2-.6-.3-.9-.5-.2-.1-.3-.2-.4-.3-1.8-1-2.8-1.7-2.8-1.7s4.8 8 17.5 11.8c-3 3.8-6.7 8.3-6.7 8.3-22.1-.7-30.5-15.2-30.5-15.2 0-32.2 14.4-58.3 14.4-58.3 14.4-10.8 28.1-10.5 28.1-10.5l1 1.2c-18 5.2-26.3 13.1-26.3 13.1s2.2-1.2 5.9-2.9c10.7-4.7 19.2-6 22.7-6.3.6-.1 1.1-.2 1.7-.2 6.1-.8 13-1 20.2-.2 9.5 1.1 19.7 3.9 30.1 9.6 0 0-7.9-7.5-24.9-12.7l1.4-1.6s13.7-.3 28.1 10.5c0 0 14.4 26.1 14.4 58.3 0 0-8.5 14.5-30.6 15.2z"/></svg>
+                </a>
+                <p>
+                    Join our Discord Chat and get automatic updates, moeverdose bots and more
+                </p>
+            </div>
+            <div class="col-6">
+                <a href="https://github.com/eternialz/moeverdose" class="btn btn-pink" target="_blank">Source Code <%= fa_icon "github" %></a>
+                <p>
+                    Moeverdose is an open source project under the Mozilla Public Licence 2.0
+                </p>
+            </div>
+    </div>
+    <div class="col-12 zone">
+        <h2><%= site_name %> is currently in open beta</h2>
+        <p>
+            The current database will most probably be deleted or have some parts removed at the end of the beta test.<br />
+            If you encounter bugs (graphical glitch, slow speed, error 500, ...), please help us by reporting them in the discord chat, under the #bug_report channel.
+        </p>
+    </div>
+</div>
+
+<% if !@news.empty? %>
+    <div class="zone news clearfix">
+        <h2 class="zone_title">NEWS</h2>
+        <div class="col-12">
+            <% @news.each do |n| %>
+                <div class="new clearfix">
+                    <h3><%= n.title %><span><%= n.created_at.strftime("%Y/%m/%d") %></span></h3>
+                    <p><%= n.text %></p>
+                </div>
+            <% end %>
+        </div>
+    </div>
+<% else %>
+    <div class="zone news">
+        <p class="small-title" style="float: none; text-align: center; margin: 10px;">No news</p>
+    </div>
+<% end %>

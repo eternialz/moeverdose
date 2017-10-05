@@ -1,26 +1,21 @@
 
 .btn, a.btn {
-    display: inline-block;
-    margin: 5px 0 4px;
-    min-width: 150px;
-    min-height: 34px;
-    padding: 7px 13px !important;
+    appearance: none;
     border-radius: 3px;
     border: 0;
-    font-size: 16px;
-    text-align: left !important;
-    font-weight: bold;
-    -webkit-transition: background-color 170ms ease-in-out;
-    -moz-transition: background-color 170ms ease-in-out;
-    -o-transition: background-color 170ms ease-in-out;
-    transition: background-color 170ms ease-in-out;
-    color: #FFF !important;
-    opacity: 1 !important;
+    color: $white !important;
     cursor: pointer;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 5px 0 4px;
+    min-height: 34px;
+    min-width: 150px;
+    opacity: 1 !important;
     outline: none !important;
+    padding: 7px 13px !important;
+    text-align: left !important;
+    transition: background-color 170ms ease-in-out;
 
     .fa, svg {
         float: right;
@@ -28,7 +23,7 @@
     }
 
     @media only screen and (max-width: $xsmall) {
-            width: 100%;
+        width: 100%;
     }
 
     svg {
@@ -38,7 +33,7 @@
 }
 
 .btn:hover {
-    color: #FFF !important;
+    color: $white !important;
 }
 
 .btn-pink {
@@ -47,12 +42,20 @@
     &:active {
         background: darken($pink, 10%);
     }
+
+    &:focus {
+        box-shadow: 0 0 0 3px rgba($pink, .4);
+    }
 }
 .btn-blue {
     background: $blue;
 
     &:active {
         background: darken($blue, 10%);
+    }
+
+    &:focus {
+        box-shadow: 0 0 0 3px rgba($blue, .4);
     }
 }
 
@@ -62,6 +65,10 @@
     &:active {
         background: darken($yellow, 10%);
     }
+
+    &:focus {
+        box-shadow: 0 0 0 3px rgba($yellow, .4);
+    }
 }
 
 .btn-red {
@@ -69,6 +76,10 @@
 
     &:active {
         background: darken($red, 13%);
+    }
+
+    &:focus {
+        box-shadow: 0 0 0 3px rgba($red, .4);
     }
 }
 
@@ -78,6 +89,10 @@
     &:active {
         background: darken($green, 10%);
     }
+
+    &:focus {
+        box-shadow: 0 0 0 3px rgba($green, .4);
+    }
 }
 
 .btn-discord {
@@ -85,5 +100,9 @@
 
     &:active {
         background: darken($discord, 10%);
+    }
+
+    &:focus {
+        box-shadow: 0 0 0 3px rgba($discord, .4);
     }
 }

@@ -18,6 +18,8 @@ gem 'coffee-rails', '~> 4.2'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+# Jquery Turbolinks Compatibility
+gem 'jquery-turbolinks'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -46,6 +48,16 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Font-awesome
 gem "font-awesome-rails"
 
+# Discord BOT
+gem "discordrb"
+
+# Httparty
+gem "httparty"
+
+#Twitter
+gem "twitter"
+gem "rufus-scheduler"
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
@@ -59,7 +71,11 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 
+  # Performance monitoring
   gem 'rack-mini-profiler'
+  gem 'stackprof'
+  gem 'flamegraph'
+  gem 'bullet'
 
   # PRY
   gem "pry"

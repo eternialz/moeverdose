@@ -7,88 +7,57 @@
 <% end %>
 
 <%= form_for @post, url: posts_path, html: {class: "zone upload clearfix"} do |f| %>
-    <div id="file_upload">
-        <%= f.file_field :post_image, required: "required" %>
-        <div class="file-dummy">
-            <span class="success">Nice! <br /><span id="message">Please respect the rules for posts while uploading</span></span>
-            <span class="normal"><%= fa_icon "image" %> Click to select the image or drop it here<br /><span id="message">waiting for image...</span></span>
+    <div class="row">
+        <div id="file_upload" class="col-6">
+            <%= f.file_field :post_image, required: "required" %>
+            <div class="file-dummy">
+                <span class="success">Nice! <br /><span id="message">Please respect the rules for posts while uploading</span></span>
+                <span class="normal"><%= fa_icon "image" %> Click to select the image or drop it here<br /><span id="message">waiting for image...</span></span>
+            </div>
+            <img id="file"/>
         </div>
-        <img id="file"/>
+        <div id="info_upload" class="col-6">
+            <div class="field">
+                <span><%= fa_icon "header" %> Title :</span></h3>
+                <input type="text" name="post[title]" placeholder='Title' autocomplete="off">
+            </div>
+            <div class="field">
+                <span><%= fa_icon "user" %> Author :</span></h3>
+                <input type="text" name="author" placeholder='Author' autocomplete="off"></textarea>
+            </div>
+            <div class="field">
+                <span><%= fa_icon "rss" %> Source :</span>
+                <input type="text" name="post[source]" placeholder='Source ( it will be used as a link to search on google )' autocomplete="off"></textarea>
+            </div>
+        </div>
     </div>
-    <div id="info_upload" class="row">
-        <div class="field">
-            <span><%= fa_icon "header" %> Title :</span></h3>
-            <input type="text" name="post[title]" placeholder='Title' autocomplete="off">
-        </div>
-        <div class="field">
-            <span><%= fa_icon "user" %> Author :</span></h3>
-            <input type="text" name="author" placeholder='Author' autocomplete="off"></textarea>
-        </div>
-        <div class="field">
-            <span><%= fa_icon "rss" %> Source :</span>
-            <input type="text" name="post[source]" placeholder='Source ( it will be used as a link to search on google )' autocomplete="off"></textarea>
-        </div>
-        <div class="field_area">
-            <p><%= fa_icon "tag" %> Tags</p>
-            <textarea name="tags" id="tags" placeholder='Tags ("1girl glasses ...")' autocomplete="off"></textarea>
-        </div>
-        <div class="favorites_tags">
-            <% if @favorites_tags.empty? %>
-                <h6>FAVORITES TAGS:</h6>
-                <p>You can add your favorites tags in your <%= link_to "account options", edit_user_path(current_user.name) %> to upload faster.<br />
-                Favorites tags will be displayed here; once you click them the tag will be added to the post you are currently uploading.</p><br />
-            <% else %>
-                <h6>FAVORITES TAGS:</h6>
-                <% @favorites_tags.each do |tag| %>
-                    <span class="tag"><%= tag %></span>
+    <div class="row">
+        <div class="col-6 tags-form">
+            <div class="field_area">
+                <h6><%= fa_icon "tag" %> Tags</h6>
+                <textarea name="tags" id="tags" placeholder='Tags ("1girl glasses ...")' autocomplete="off"></textarea>
+            </div>
+            <div class="favorites_tags">
+                <% if current_user.favorites_tags.empty? %>
+                    <h6>FAVORITES TAGS:</h6>
+                    <p>You can add your favorites tags in your <%= link_to "account options", edit_user_path(current_user.name) %> to upload faster.<br />
+                    Favorites tags will be displayed here; once you click them the tag will be added to the post you are currently uploading.</p><br />
+                <% else %>
+                    <h6>FAVORITES TAGS:</h6>
+                    <% current_user.favorites_tags.split.each do |tag| %>
+                        <span class="tag"><%= tag %></span>
+                    <% end %>
                 <% end %>
-            <% end %>
+            </div>
         </div>
-        <div class="field_area">
-            <p><%= fa_icon "group" %> Character(s)</p>
-            <textarea name="characters" placeholder='Character(s) ("illyasviel_von_einzbern ...")' autocomplete="off"></textarea>
+        <div class="col-6">
+            <div class="field_area">
+                <h6><%= fa_icon "group" %> Character(s)</h6>
+                <textarea name="characters" placeholder='Character(s) ("illyasviel_von_einzbern ...")' autocomplete="off"></textarea>
+            </div>
         </div>
     </div>
     <div style="text-align:center;">
-        <button form="new_post" class="btn btn-pink" type="submit">Upload <%= fa_icon "upload" %></button>
+        <button form="new_post" class="btn btn-pink disable_on_submit" type="submit">Upload <%= fa_icon "upload" %></button>
     </div>
 <% end %>
-
-<script>
-function readURL(input) {
-
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-            $('#file').attr('src', e.target.result);
-        }
-
-        reader.readAsDataURL(input.files[0]);
-    }
-}
-
-$("#post_post_image").change(function(){
-    readURL(this);
-});
-
-$(".tag").click( function() {
-    var choice = jQuery.trim($(this).text());
-    var textArea = $("#tags");
-
-    // if the <li> with the word was allready clicked, then remove its "selected" class
-    textArea.val(function(_, val) {
-        if (val.indexOf(choice) >= 0) {
-            var text = val;
-            var re = new RegExp(choice, "g"); // all occurence of choice
-            text = text.replace(re, ''); // remove all occurence of choice
-            text = text.replace(/  /g, ' '); // change all double space to one space
-
-            return text;
-        } else {
-            return val.replace(/  /g, ' ') + choice + ' '; // add
-        }
-    });
-});
-
-</script>

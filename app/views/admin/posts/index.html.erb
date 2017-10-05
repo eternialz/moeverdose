@@ -9,7 +9,7 @@
                 <a class="btn btn-red" href="<%= admin_post_path(post)%>" data-method="delete"><%= fa_icon "exclamation"%>Delete this Post</a>
             </span>
             <a href="<%= admin_post_path(post) %>">
-                <%= image_tag post.post_image.url(:thumb), class: 'avatar' %>
+                <%= image_tag post.post_image.url, class: 'avatar' %>
                 <h3><%= post.title %></h3><br/><br/><br/>
             </a>
             <span div="text">

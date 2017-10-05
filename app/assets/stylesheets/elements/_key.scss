@@ -1,10 +1,10 @@
 .key {
-    display: inline-block;
-    padding: 2px 8px;
-    margin: 5px;
-    color: #222;
-    background: #EEE;
-    border: 1px solid #CCC;
-    box-shadow: 0 1px #CCC;
+    background: $background;
     border-radius: 3px;
+    border: 1px solid $gray-white;
+    box-shadow: 0 1px $gray-white;
+    color: $gray-dark;
+    display: inline-block;
+    margin: 5px;
+    padding: 2px 8px;
 }

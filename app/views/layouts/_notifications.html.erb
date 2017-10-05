@@ -1,0 +1,12 @@
+<% if flash.any? %>
+    <div class="row flashes">
+        <% flash.each do |key, value| %>
+            <div class="alert alert-<%= key %>"><%= value %></div>
+        <% end %>
+    </div>
+<% end %>
+
+<div class="notifications">
+    <div class="notifications_container">
+    </div>
+</div>

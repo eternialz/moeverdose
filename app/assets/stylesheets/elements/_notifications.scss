@@ -1,4 +1,4 @@
-@-webkit-keyframes opacity {
+@keyframes opacity {
     0% {opacity: 0;}
     8% {opacity: 1;} // Appeared
     92% {opacity: 1;}
@@ -6,41 +6,40 @@
 }
 
 .notifications {
-    position: fixed;
     bottom: 0;
-    width: 100%;
     margin: auto;
-    z-index: 150;
     pointer-events: none;
+    position: fixed;
+    width: 100%;
+    z-index: 150;
 
     .notifications_container {
-        pointer-events: all;
-        max-height: calc( 100vh - 96px);
-        overflow-y: auto;
-        max-width: 800px;
+        color: $white;
         margin: auto;
-        color: #FFF;
+        max-height: calc( 100vh - 96px);
+        max-width: 800px;
+        overflow-y: auto;
         padding: 4px 20px;
+        pointer-events: all;
     }
 
     .notification {
-        animation-name: opacity;
         animation-duration: 6s;
-        width: 100%;
+        animation-name: opacity;
+        background: $gray-dark;
         border-radius: 3px;
-        margin: auto;
-        padding: 10px;
-        margin: 10px 0;
-        background: #444;
         box-shadow: 0 3px 10px rgba(0,0,0,.5);
+        margin: 3px auto;
+        padding: 10px;
+        width: 100%;
 
         h5, p {
             margin: 0;
         }
 
         i {
-            float: right;
             cursor: pointer;
+            float: right;
         }
 
         & {

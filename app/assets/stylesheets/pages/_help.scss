@@ -1,6 +1,6 @@
 .help {
-    min-height: 350px;
     margin: 0;
+    min-height: 350px;
 
     h2 {
         border-bottom: 1px solid rgba(0,0,0,.1);
@@ -11,41 +11,39 @@
         margin-top: 20px;
 
         li a {
-            display: block;
-            font-style: italic;
-            font-weight: bold;
-            padding: 8px 10px 10px 10px;
-            margin: 0 0 10px;
-            background: #DDD;
+            background: $background;
             border-radius: 3px;
-            color: #444;
+            color: $gray;
+            display: block;
+            font-weight: bold;
+            margin: 0 0 10px;
+            padding: 8px 10px 10px 10px;
         }
 
         li a:hover {
             color: $pink;
-            background: rgba(0,0,0,.1);
         }
     }
 }
 
 .help_nav {
-    color: #FFF;
     background: $pink;
-    box-shadow: 0 1px 3px rgba(0,0,0,.25);
+    box-shadow: 0 2px 6px rgba(0,0,0,.35);
+    color: $white;
 
     h3, h2 {
-        color:#FFF;
-        font-size: 1.2em;
+        color:$white;
         display: inline-block;
+        font-size: 1.2em;
         margin: 20px;
     }
 
     a {
-        color: #DDD;
+        color: $white;
     }
 
     a:hover {
-        color: #FFF;
+        color: $white;
     }
 }
 

@@ -1,47 +1,45 @@
 .post-thumbnail {
-    width: 200px;
-    height: 200px;
-    background-repeat: no-repeat;
     background-position: center;
+    background-repeat: no-repeat;
     background-size: cover;
     display: inline-block;
-    position: relative;
     float: left;
+    height: 200px;
     overflow: hidden;
+    position: relative;
+    transition:all 100ms linear;
+    width: 200px;
 
     img {
         float: left;
     }
 
     .informations {
-        position: absolute;
-        top: 0;
+        background-image: linear-gradient(rgba(0,0,0,.25) 0%, $gray-black 130%);
+        color: $white;
+        height: 100%;
         left: 0;
         opacity: 0;
-        background-image: linear-gradient(rgba(0,0,0,.25) 0%, #000 130%);
-        width: 100%;
-        height: 100%;
         padding: 140px 0 10px 10px;
-        color: #FFF;
+        position: absolute;
         text-align: left;
-        -webkit-transition:all 100ms linear;
-        -moz-transition:all 100ms linear;
-        -o-transition:all 100ms linear;
+        top: 0;
         transition:all 100ms linear;
+        width: 100%;
 
         .post-stats {
-            font-weight: 900;
             font-size: 0.8em;
+            font-weight: bold;
         }
 
         h3  {
+            overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-            overflow: hidden;
         }
 
         h3 {
-            color: #FFF;
+            color: $white;
             width: 180px;
         }
 
@@ -49,32 +47,40 @@
             opacity: 1;
         }
     }
+
+    &:focus {
+        outline: none;
+        
+        .informations {
+            opacity: 1;
+        }
+    }
 }
 
 @media only screen and (max-width: $xsmall) {
     .post-thumbnail {
-        width: 33.333%;
         height: 33.333vw;
+        width: 33.333%;
     }
 }
 
 @media only screen and (min-width: $xsmall) and (max-width: $small) {
     .post-thumbnail {
-        width: 25%;
         height: 25vw;
+        width: 25%;
     }
 }
 
 @media only screen and (min-width: $small) and (max-width: $normal) {
     .post-thumbnail {
-        width: 20%;
         height: 20vw;
+        width: 20%;
     }
 }
 
 @media only screen and (min-width: $normal) and (max-width: $large) {
     .post-thumbnail {
-        width: 16.666%;
         height: 16.666vw;
+        width: 16.666%;
     }
 }

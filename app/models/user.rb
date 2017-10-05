@@ -53,11 +53,49 @@ class User
     field :facebook,  type: String, default: ""
 
     # Banner and Avatar
-    has_mongoid_attached_file :avatar, styles: { :thumb => {:geometry => "120x120#"}, :tiny => {:geometry => "60x60#"}}, default_url: "/images/default_user.png"
-    validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+    has_mongoid_attached_file :avatar,
+                                styles: {
+                                    :original => {:geometry => "120x120#"},
+                                    :tiny => {:geometry => "60x60#"}
+                                },
+                                default_url: "/images/default_user.png",
+                                :path => ":rails_root/public/system/:attachment/:id/:style/:normalized_avatar_file_name-:style.:extension",
+                                :url => "/system/:attachment/:id/:style/:normalized_avatar_file_name-:style.:extension"
 
-    has_mongoid_attached_file :banner, styles: { :normal => {:geometry => "1600x300#"}}, default_url: "/images/default_banner.png"
-    validates_attachment_content_type :banner, content_type: /\Aimage\/.*\Z/
+    Paperclip.interpolates :normalized_avatar_file_name do |attachment, style|
+        attachment.instance.normalized_avatar_file_name
+    end
+
+    def normalized_avatar_file_name
+        "avatar-#{self.name}"
+    end
+
+    validates_attachment_content_type :avatar,
+        content_type: /\Aimage\/.*\Z/,
+        size: { in: 0..0.5.megabytes }
+
+    has_mongoid_attached_file :banner,
+                                styles: {
+                                    :original => {
+                                        :geometry => "1600x300#",
+                                        :animated => false
+                                    }
+                                },
+                                :path => ":rails_root/public/system/:attachment/:id/:style/:normalized_banner_file_name-:style.:extension",
+                                :url => "/system/:attachment/:id/:style/:normalized_banner_file_name-:style.:extension",
+                                default_url: "/images/default_banner.png"
+
+    Paperclip.interpolates :normalized_banner_file_name do |attachment, style|
+        attachment.instance.normalized_banner_file_name
+    end
+
+    def normalized_banner_file_name
+        "banner-#{self.id}"
+    end
+
+    validates_attachment_content_type :banner,
+        content_type: /\Aimage\/.*\Z/,
+        size: { in: 0..1.megabytes }
 
     # Posts
     has_many :posts, class_name: "Post", inverse_of: :user

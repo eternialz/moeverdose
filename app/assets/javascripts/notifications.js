@@ -5,7 +5,7 @@ Notifications = {
     },
     add: function(title, message, type) {
         type = type || "";
-        if (message != undefined) {
+        if (message !== undefined) {
             message = "<p>" + message + "<p>";
         } else {
             message = ""
@@ -30,6 +30,6 @@ Notifications = {
     }
 };
 
-$(document).ready(function(){
+$(document).on('turbolinks:load', function() {
     Notifications.init($('.notifications'));
 });
