@@ -38,17 +38,19 @@
     </div>
     <form class="general_pagination" action="<%= posts_path %>">
         <%= paginate @posts %>
-        <div>
-            <span>posts per page </span>
-            <% @permited_posts_per_page.each do |n| %>
-                <% if @posts_per_page == n %>
-                    <input type="radio" name="posts_per_page" checked="checked" id=<%= n %> value=<%= n %>>
-                <% else %>
-                    <input type="radio" name="posts_per_page" id=<%= n %> value=<%= n %>>
+        <% if defined? @permited_posts_per_page %>
+            <div>
+                <span>posts per page </span>
+                <% @permited_posts_per_page.each do |n| %>
+                    <% if @posts_per_page == n %>
+                        <input type="radio" name="posts_per_page" checked="checked" id=<%= n %> value=<%= n %>>
+                    <% else %>
+                        <input type="radio" name="posts_per_page" id=<%= n %> value=<%= n %>>
+                    <% end %>
+                    <label for=<%= n %>><%= n %></label>
                 <% end %>
-                <label for=<%= n %>><%= n %></label>
-            <% end %>
-            <input type="submit" value="apply">
-        </div>
+                <input type="submit" value="apply">
+            </div>
+        <% end %>
     </form>
 </div>

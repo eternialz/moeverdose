@@ -19,6 +19,7 @@ Level = {
         if(percentage > 100) { percentage = 100 }
 
         progress.css("width", percentage + "%");
+        progress.html("<span>" + percentage + "%</span>");
     }
 };
 

@@ -25,12 +25,12 @@ class TagLogic < SimpleDelegator
         tag = Tag.where(names: name, type: :author)
         if tag.empty?
             tag = Tag.create(names: [name], type: :author)
-            author = Author.new(name: name)
+            author = Author.new(name: name, tag: tag)
         else
             begin
                 author = Author.find_by({name: name})
             rescue
-                author = Author.new(name: name)
+                author = Author.new(name: name, tag: tag)
             end
         end
 
