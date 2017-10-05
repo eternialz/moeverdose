@@ -54,12 +54,10 @@ class PostsController < ApplicationController
                     end
                     @post.overdose += 1
                     current_user.liked_posts << @post
-                    @post.save
                 else
                     @post.overdose -= 1
                     @removed = true
                     current_user.liked_posts.delete(@post)
-                    @post.save
                 end
             else params[:dose] == "shortage"
                 if current_user.disliked_posts.exclude?(@post)
@@ -69,15 +67,14 @@ class PostsController < ApplicationController
                     end
                     @post.moe_shortage += 1
                     current_user.disliked_posts << @post
-                    @post.save
                 else
                     @post.moe_shortage -= 1
                     @removed = true
                     current_user.disliked_posts.delete(@post)
-                    @post.save
                 end
             end
 
+            @post.save
             render json: {overdose: @post.overdose, shortage: @post.moe_shortage, removed: @removed}, status: 200
         else
             head 403
@@ -88,18 +85,18 @@ class PostsController < ApplicationController
         @permited_posts_per_page = ['2', '8', '16', '32', '64']
 
         unless params[:posts_per_page].nil?
-            @posts_per_page = params[:posts_per_page]
+            @posts_per_page = params[:posts_per_page].to_i < @permited_posts_per_page.last ? params[:posts_per_page] : @permited_posts_per_page.last
         end
 
-        if params[:query]
+        if params[:query] && !params[:query]&.empty?
             if user_signed_in?
-                @posts, ignored = PostLogic.query_with_blacklist(params[:query], current_user.blacklisted_tags, params[:page], @posts_per_page < @permited_posts_per_page.last ? @posts_per_page : @permited_posts_per_page.last)
+                @posts, ignored = PostLogic.query_with_blacklist(params[:query], current_user.blacklisted_tags, params[:page], @posts_per_page)
             else
                 @posts, ignored = PostLogic.query(params[:query], params[:page], @posts_per_page)
             end
 
             if ignored
-                flash.now[:info] = "One or more tags were ignored. It means that your query contains at least a tag which doesn't exist on our website."
+                flash.now[:info] = "One or more tags were ignored. Your query contains at least one tag which doesn't exist in our database."
             end
         else
             if user_signed_in?
@@ -120,9 +117,9 @@ class PostsController < ApplicationController
             @authors += results[:authors]
         end
 
-        @tags = @tags.uniq
-        @characters = @characters.uniq
-        @authors = @authors.uniq
+        @tags.uniq!
+        @characters.uniq!
+        @authors.uniq!
 
         @tags.sort_by!{ |tag| tag }
         @characters.sort_by!{ |character| character }
