@@ -3,6 +3,8 @@ $width: 100%;
 $gutter: 30px;
 
 .row {
+    @extend %clearfix;
+
     margin-left: auto;
     margin-right: auto;
     max-width: 1400px;
@@ -10,13 +12,25 @@ $gutter: 30px;
     width: 100%;
 }
 
+@media only screen and (min-width: $large) {
+    .row {
+        max-width: 1200px;
+    }
+}
+
 @media only screen and (min-width: $xlarge) {
+    .row {
+        max-width: 1400px;
+    }
+}
+
+@media only screen and (min-width: $xxlarge) {
     .row {
         max-width: 1600px;
     }
 }
 
-@media only screen and (min-width: $xxlarge) {
+@media only screen and (min-width: $xxxlarge) {
     .row {
         max-width: 1800px;
     }
@@ -70,16 +84,4 @@ $gutter: 30px;
     .col-10 { width: ($width / (12 / 10)) }
     .col-11 { width: ($width / (12 / 11)) }
     .col-12 { width: $width; }
-}
-
-/* Global Elements */
-.clearfix:after {
-    clear: both;
-    content: " ";
-    display: block;
-    height: 0;
-}
-
-.hide {
-    display: none;
 }

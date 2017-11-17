@@ -1,11 +1,3 @@
-%clearfix {
-    &:after {
-        content: "";
-        display: table;
-        clear: both;
-    }
-}
-
 /* Header Image */
 $header-image: "header-img.jpg";
 
@@ -22,13 +14,29 @@ $header-image: "header-img.jpg";
 /* Global default custom styles */
 html {
     box-sizing: border-box;
-    font-size: 16px;
+    font-size: $default-font-size;
+    line-height: $default-line-height;
     overflow-x: hidden;
     overflow-y: scroll;
     color: $gray;
 
     @media only screen and (max-width: $xsmall) {
-        font-size: 14px;
+        font-size: $default-font-size * 0.9;
+    }
+
+    @media only screen and (min-width: $large) {
+        font-size: $default-font-size * 1.07;
+        line-height: $default-line-height * 1.07;
+    }
+
+    @media only screen and (min-width: $xlarge) {
+        font-size: $default-font-size * 1.13;
+        line-height: $default-line-height * 1.13;
+    }
+
+    @media only screen and (min-width: $xxlarge) {
+        font-size: $default-font-size * 1.2;
+        line-height: $default-line-height * 1.2;
     }
 }
 
@@ -90,30 +98,38 @@ h2,h3,h4,h5,h6 {
 }
 
 h1 {
-    font-size: 2em;
+    font-size: $default-font-size * 1.5;
 }
 
 h2 {
     color: $blue;
-    font-size: 1.25em;
+    font-size: $default-font-size * 1.25;
 }
 
 h3 {
     color: $blue;
-    font-size: 1.20em;
+    font-size: $default-font-size * 1.20;
 }
 
 h4 {
     color: $blue;
-    font-size: 1.15em;
+    font-size: $default-font-size * 1.15;
 }
 
 h5 {
     color: $blue;
-    font-size: 1em;
+    font-size: $default-font-size * 1;
 }
 
 h6 {
     color: $blue;
-    font-size: 0.9em;
+    font-size: $default-font-size * 0.9;
+}
+
+.clearfix {
+    @extend %clearfix;
+}
+
+.hide {
+    display: none;
 }

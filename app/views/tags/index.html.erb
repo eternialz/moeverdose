@@ -1,6 +1,6 @@
 <%= render 'tags/search' %>
 
-<div class="row list">
+<div class="list">
     <% @tags.each do |t| %>
         <% cache ["tag_index", t] do %>
             <ul>

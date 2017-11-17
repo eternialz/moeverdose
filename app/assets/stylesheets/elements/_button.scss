@@ -6,21 +6,21 @@
     color: $white !important;
     cursor: pointer;
     display: inline-block;
-    font-size: 16px;
     font-weight: bold;
-    line-height: 2.5em;
-    padding-top: 0.2em;
+    font-size: 0.8em;
+    line-height: 2em;
+    padding: 0.2em 1em !important;
     letter-spacing: 0.125em;
     text-transform: uppercase;
     min-width: 150px;
     opacity: 1 !important;
-    padding: 0 13px !important;
     text-align: left !important;
     transition: background-color 170ms ease-in-out;
 
     .fa, svg {
+        margin-left: 1em;
         float: right;
-        line-height: 2.5em;
+        line-height: 2em;
     }
 
     @media only screen and (max-width: $xsmall) {
@@ -28,7 +28,7 @@
     }
 
     svg {
-        max-height: 1em;
+        height: 2em;
         max-width: 1em;
     }
 }

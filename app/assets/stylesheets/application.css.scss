@@ -12,6 +12,7 @@
 *
 */
 
+@import 'base/extends';
 @import 'base/normalize';
 @import 'base/fonts';
 @import 'base/colors';
@@ -38,9 +39,11 @@
 @import 'elements/post_details';
 @import 'elements/post_doses';
 @import 'elements/post_image';
+@import 'elements/post_index';
 @import 'elements/post_navigation';
 @import 'elements/post_edit';
 @import 'elements/post_report';
+@import 'elements/post_thumbnail';
 
 @import 'elements/progress_bar';
 @import 'elements/search';
@@ -50,11 +53,11 @@
 @import 'elements/submenu';
 @import 'elements/support';
 @import 'elements/tag';
-@import 'elements/thumbnail';
 @import 'elements/tooltip';
 @import 'elements/zone';
 
-@import 'pages/admin';
+@import 'elements/admin/admin';
+
 @import 'pages/help';
 @import 'pages/home';
 @import 'pages/upload';

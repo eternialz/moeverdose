@@ -1,4 +1,4 @@
-<div class="row posts">
+<div class="posts">
     <div class="post-container">
         <div class="post_navigation clearfix">
             <h2>Post id <%= params[:id] %> not found</h2>
@@ -6,7 +6,7 @@
             <a href="/posts/<%= Integer(params[:id]) - 1 %>" class="btn btn-pink next">Next <%= fa_icon "arrow-circle-right" %></a>
         </div>
     </div>
-    <div class="row zone">
+    <div class="zone">
         <div class="col-12">
             <h2>Post id <%= params[:id] %> wasn't found</h2>
             <p>The post you asked for wasn't found, maybe it was deleted from <%= site_name.downcase %> or the link you used was wrong.<br />

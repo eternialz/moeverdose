@@ -2,7 +2,7 @@ nav.menu {
     background: $gray-dark;
     box-shadow: 0 -3px 6px 5px rgba($black, .35);
     color: $white;
-    height: 96px;
+    height: 5em;
     position: fixed;
     top: 0;
     width: 100%;
@@ -10,12 +10,13 @@ nav.menu {
 
     .container {
         background: $gray-dark;
-        height: 96px;
+        height: 5em;
         padding: 10px 0 0 0;
         position: relative;
         z-index: 5000;
 
         h1 {
+            font-size: 1em;
             color: $white;
             display: inline-block;
             padding-left: 10px;
@@ -50,7 +51,7 @@ nav.menu {
             float: right;
 
             #username {
-                font-size: 1.1em;
+                font-size: 1em;
                 text-transform: capitalize;
                 margin-top: 40px;
             }
@@ -108,8 +109,8 @@ nav.menu {
         border-radius: 3px;
         color: $white;
         background: rgba($white, 0.5);
-        font-size: 24px;
-        line-height: 40px;
+        font-size: 1.4em;
+        line-height: 2em;
         width: 40px;
         text-align: center;
         float: right;

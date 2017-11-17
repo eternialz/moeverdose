@@ -36,9 +36,6 @@ nav.menu .submenu {
             display: none;
         }
 
-        div {
-            @extend %clearfix;
-        }
     }
 
     ul.login {
