@@ -6,12 +6,6 @@
     }
 }
 
-/* Screen Sizes */
-$device-xsmall: 640px;
-$device-small: 1024px;
-$device-medium: 1280px;
-$device-large: 1600px;
-
 /* Header Image */
 $header-image: "header-img.jpg";
 
@@ -49,7 +43,6 @@ ul {
 }
 
 a {
-    cursor: pointer;
     text-decoration: none;
     transition: all 70ms linear;
 }
@@ -79,7 +72,6 @@ body {
 textarea, input[type="text"] {
     border-radius: 3px;
     border: 0;
-    box-shadow: 0 1px 3px rgba(0,0,0,.25) inset;
     padding: 10px;
     width: 100%;
 }
@@ -102,7 +94,7 @@ h1 {
 }
 
 h2 {
-    color: $pink;
+    color: $blue;
     font-size: 1.25em;
 }
 
@@ -117,7 +109,7 @@ h4 {
 }
 
 h5 {
-    color: $pink;
+    color: $blue;
     font-size: 1em;
 }
 

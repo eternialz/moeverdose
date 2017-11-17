@@ -8,18 +8,19 @@
     display: inline-block;
     font-size: 16px;
     font-weight: bold;
-    margin: 5px 0 4px;
-    min-height: 34px;
+    line-height: 2.5em;
+    padding-top: 0.2em;
+    letter-spacing: 0.125em;
+    text-transform: uppercase;
     min-width: 150px;
     opacity: 1 !important;
-    outline: none !important;
-    padding: 7px 13px !important;
+    padding: 0 13px !important;
     text-align: left !important;
     transition: background-color 170ms ease-in-out;
 
     .fa, svg {
         float: right;
-        margin: 3px 0 0px 14px;
+        line-height: 2.5em;
     }
 
     @media only screen and (max-width: $xsmall) {
@@ -27,8 +28,8 @@
     }
 
     svg {
-        max-height: 16px;
-        max-width: 14px;
+        max-height: 1em;
+        max-width: 1em;
     }
 }
 
@@ -42,20 +43,13 @@
     &:active {
         background: darken($pink, 10%);
     }
-
-    &:focus {
-        box-shadow: 0 0 0 3px rgba($pink, .4);
-    }
 }
+
 .btn-blue {
     background: $blue;
 
     &:active {
         background: darken($blue, 10%);
-    }
-
-    &:focus {
-        box-shadow: 0 0 0 3px rgba($blue, .4);
     }
 }
 
@@ -65,10 +59,6 @@
     &:active {
         background: darken($yellow, 10%);
     }
-
-    &:focus {
-        box-shadow: 0 0 0 3px rgba($yellow, .4);
-    }
 }
 
 .btn-red {
@@ -76,10 +66,6 @@
 
     &:active {
         background: darken($red, 13%);
-    }
-
-    &:focus {
-        box-shadow: 0 0 0 3px rgba($red, .4);
     }
 }
 
@@ -89,10 +75,6 @@
     &:active {
         background: darken($green, 10%);
     }
-
-    &:focus {
-        box-shadow: 0 0 0 3px rgba($green, .4);
-    }
 }
 
 .btn-discord {
@@ -100,9 +82,5 @@
 
     &:active {
         background: darken($discord, 10%);
-    }
-
-    &:focus {
-        box-shadow: 0 0 0 3px rgba($discord, .4);
     }
 }

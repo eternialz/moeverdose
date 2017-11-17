@@ -33,6 +33,15 @@
 @import 'elements/navigation';
 @import 'elements/notifications';
 @import 'elements/pagination';
+
+@import 'elements/post_container';
+@import 'elements/post_details';
+@import 'elements/post_doses';
+@import 'elements/post_image';
+@import 'elements/post_navigation';
+@import 'elements/post_edit';
+@import 'elements/post_report';
+
 @import 'elements/progress_bar';
 @import 'elements/search';
 @import 'elements/search_home';
@@ -48,6 +57,5 @@
 @import 'pages/admin';
 @import 'pages/help';
 @import 'pages/home';
-@import 'pages/post';
 @import 'pages/upload';
 @import 'pages/users';

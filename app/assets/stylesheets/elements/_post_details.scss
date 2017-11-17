@@ -1,0 +1,66 @@
+.post-details {
+    background: $white;
+    text-align: center;
+    text-align: left;
+
+    @media only screen and (max-width: $xsmall) {
+        div { width: 100% }
+
+        ul {
+            display: block;
+            width: 100%;
+        }
+    }
+
+    .infos {
+        li {
+            overflow: hidden !important;
+            padding-left: 100px;
+            padding: 8px;
+            position: relative;
+            text-overflow: ellipsis !important;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        li:last-child {
+            border: 0;
+        }
+
+        span {
+            display: inline-block;
+            min-width: 90px;
+            padding-right: 8px;
+        }
+    }
+
+    .post_vote {
+        padding: 14.5px 20px;
+
+        .btn {
+            margin: 5px 0;
+        }
+    }
+
+    h5 {
+        font-size: 1em;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .shortage {
+        float: right;
+    }
+
+    .author > a {
+        padding: 10px;
+    }
+
+    .actions {
+        .btn {
+            width: 100%;
+            margin-bottom: 0.5em;
+        }
+    }
+}

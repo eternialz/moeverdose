@@ -46,18 +46,20 @@
                 </div>
             </div>
 
-            <div id="post-score" class="clearfix">
-                <div class="overdose_bar clearfix" style="width: 50%">
-                    <span class="overdose_score"><%= @post.overdose %></span>
+            <div id="doses">
+                <div id="post-score" class="clearfix">
+                    <div class="overdose_bar clearfix" style="width: 50%">
+                        <span class="overdose_score"><%= @post.overdose %></span>
+                    </div>
+                    <div class="shortage_bar clearfix" style="width: 50%">
+                        <span class="shortage_score"><%= @post.moe_shortage %></span>
+                    </div>
                 </div>
-                <div class="shortage_bar clearfix" style="width: 50%">
-                    <span class="shortage_score"><%= @post.moe_shortage %></span>
-                </div>
-            </div>
-            <div class="post-details">
-                <div class="post_vote clearfix">
-                    <button class="overdose dose btn btn-pink" data-dose="overdose"><%= fa_icon "heartbeat" %> OVERDOSE</button>
-                    <button class="shortage dose btn btn-blue" data-dose="shortage">SHORTAGE <%= fa_icon "thumbs-down" %></button>
+                <div class="post-details">
+                    <div class="post_vote clearfix">
+                        <button class="overdose dose btn btn-pink" data-dose="overdose"><%= fa_icon "heartbeat" %> OVERDOSE</button>
+                        <button class="shortage dose btn btn-blue" data-dose="shortage">SHORTAGE <%= fa_icon "thumbs-down" %></button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -163,7 +165,7 @@
         <div class="zone row">
             <div class="post-details row">
                 <div class="col-4 tags">
-                    <h3><%= fa_icon "tag" %> Tags</h3>
+                    <h5><%= fa_icon "tag" %> Tags</h5>
                     <% if @tags.any? %>
                         <% @tags.each do |tag| %>
                             <a class="tag" href="<%= posts_path(query: tag ) %>"><%= tag %></a>
@@ -174,7 +176,7 @@
                 </div>
 
                 <div class="col-4 characters">
-                    <h3><%= fa_icon "group" %> Character(s)</h3>
+                    <h5><%= fa_icon "group" %> Character(s)</h5>
                     <% if @characters.any? %>
                         <% @characters.each do |character| %>
                             <a class="tag" href="<%= posts_path(query: character ) %>"><%= character %></a>
@@ -185,7 +187,7 @@
                 </div>
 
                 <ul class="col-4 infos">
-                    <h3><%= fa_icon "info-circle" %> Informations</h3>
+                    <h5><%= fa_icon "info-circle" %> Informations</h5>
                     <li id="id"><span>id:</span><%= @post.number %></li>
 
                     <% unless @post.author.blank? %>

@@ -1,0 +1,47 @@
+#doses {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07), 0 1px 3px rgba(0,0,0,.25);
+}
+
+#post-score {
+    position: relative;
+    background: rgba($gray, .75);
+    overflow: hidden;
+
+    .overdose_bar, .shortage_bar {
+        display: inline-block;
+        float: left;
+        position: relative;
+        height: 60px;
+        transition:all 500ms ease-in-out;
+    }
+
+    span {
+        bottom: 0;
+        display: inline-block;
+        font-weight: bold;
+        line-height: 46px;
+        position: absolute;
+        text-align: center;
+        width: 46px;
+    }
+
+    .shortage_score {
+        border-bottom: 7px solid $blue;
+        left: 0;
+    }
+
+    .overdose_score {
+        border-bottom: 7px solid $pink;
+        right: 0;
+    }
+
+    .overdose_bar {
+        border-bottom: 4px solid $pink;
+        width: 50%;
+    }
+
+    .shortage_bar {
+        border-bottom: 4px solid $blue;
+        width: 50%;
+    }
+}

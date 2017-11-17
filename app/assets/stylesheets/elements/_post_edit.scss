@@ -1,0 +1,30 @@
+// Post Editing
+
+#post_edit {
+    display: none;
+
+    &:checked + form {
+        display: block;
+    }
+}
+
+#edit_post {
+    display: none;
+
+    input, textarea {
+        margin-bottom: 20px;
+    }
+
+    textarea:last-child {
+        margin: 0;
+    }
+
+    h3 {
+        color: $white;
+    }
+
+    p {
+        color: $gray;
+        margin-bottom: 10px;
+    }
+}
