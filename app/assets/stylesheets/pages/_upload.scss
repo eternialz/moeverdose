@@ -17,7 +17,7 @@
     }
 
     input[type="submit"] {
-        margin: 5px 0 20px 0;
+        margin: 5px 0 20px;
         width: 250px;
     }
 
@@ -25,18 +25,18 @@
         margin: auto;
     }
 
+    #file {
+        box-shadow: 0 0 0 1px $gray-white;
+        margin: 20px 0 0;
+        max-width: 100%;
+        border-radius: 3px;
+    }
+
     #file_upload {
         color: $white;
-        height: auto;
-        margin-bottom: 15px;
-        margin: auto;
         position: relative;
         text-align: center;
-        transition:all 100ms linear;
-
-        #file {
-            max-width: 100%;
-        }
+        transition: all 100ms linear;
 
         .success {
             display: none;
@@ -80,14 +80,10 @@
             .success {
                 display: inline;
             }
+
             .normal {
                 display: none;
             }
-        }
-
-        input[type=file]:valid + .file-dummy + #file {
-            border-radius: 3px;
-            margin: 20px 0 0;
         }
     }
 }

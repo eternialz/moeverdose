@@ -1,8 +1,6 @@
 // LOGIN & SIGNUPS
 
 .user_form {
-    background-position: center center;
-    background-size: cover;
     background: $white;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
     margin: 25px auto;
@@ -184,9 +182,8 @@
     }
 
     #edit-title.modified {
-        transform: translateY(0px);
+        transform: none;
     }
-
 
     .tooltip {
         color: $gray-white;

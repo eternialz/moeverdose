@@ -104,12 +104,15 @@ nav.menu .submenu {
         right: 219px;
     }
 
-    ul.login:hover {
-        border-top: 4px solid transparent;
-    }
 
-    ul:hover {
-        border-top: 4px solid $pink;
+    @media only screen and (min-width: $small) {
+        ul.login:hover {
+            border-top: 4px solid transparent;
+        }
+
+        ul:hover {
+            border-top: 4px solid $pink;
+        }
     }
 
     li {
@@ -147,12 +150,8 @@ nav.menu .submenu.develop {
 }
 
 @media only screen and (max-width: $small) {
-    nav.menu .submenu.develop {
-        top: 5em;
-        visibility: visible;
-    }
-
     nav.menu .submenu {
+        display: none;
         font-weight: lighter;
         overflow-y: scroll;
         padding: 0;
@@ -161,7 +160,7 @@ nav.menu .submenu.develop {
         label {
             display: block;
             opacity: 0.65;
-            padding: 10px 0;
+            padding: 0.5em 0;
 
             h3 {
                 font-weight: normal;
@@ -179,21 +178,20 @@ nav.menu .submenu.develop {
         }
 
         ul {
-            border: 0 !important;
             float: none;
             height: auto;
             padding: 0;
             position: static;
             width: 100%;
+            margin: 0;
         }
 
-        a {
-            color: $white !important;
-            padding: 7px 0;
+        a:hover:before , a:hover {
+            color: $white;
         }
 
         a::before {
-            color: $white !important;
+            color: $white;
             display: inline-block;
             text-align: center;
             width: 40px;
@@ -208,16 +206,11 @@ nav.menu .submenu.develop {
         }
     }
 
-    nav.menu .submenu {
-        display: none;
-    }
-
     nav.menu .submenu.develop {
         display: block;
         background: $gray;
         height: auto;
         padding-bottom: 15px;
-        top: 4em;
         z-index: 10000;
     }
 }

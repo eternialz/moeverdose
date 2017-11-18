@@ -13,7 +13,7 @@
             <span class="success">Nice! <br /><span id="message">Please respect the rules for posts while uploading</span></span>
             <span class="normal"><%= fa_icon "image" %> Click to select the image or drop it here<br /><span id="message">waiting for image...</span></span>
         </div>
-        <img id="file"/>
+        <%= image_tag "kokoro_tiny.png", id: "file" %>
     </div>
     <div id="info_upload" class="col-6">
         <div class="field">
@@ -46,14 +46,12 @@
                 <% end %>
             <% end %>
         </div>
-    </div>
-    <div class="col-6">
         <div class="field_area">
             <h6><%= fa_icon "group" %> Character(s)</h6>
             <textarea name="characters" placeholder='Character(s) ("illyasviel_von_einzbern ...")' autocomplete="off"></textarea>
         </div>
     </div>
-    <div style="text-align:center;">
+    <div class="col-12" style="text-align:right;">
         <button form="new_post" class="btn btn-pink disable_on_submit" type="submit">Upload <%= fa_icon "upload" %></button>
     </div>
 <% end %>

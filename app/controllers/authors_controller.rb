@@ -48,7 +48,7 @@ class AuthorsController < ApplicationController
         @author.websites = params[:websites].split(" ")
 
         @author.websites.each do |url|
-            unless url =~ URI::regexp
+            unless url =~ URI::DEFAULT_PARSER.make_regexp
                 flash.now[:error] = "Modifications could not be saved! Please verify website(s) url provided"
             end
         end

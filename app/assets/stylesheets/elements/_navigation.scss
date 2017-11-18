@@ -51,7 +51,6 @@ nav.menu {
         }
     }
 
-
     a:hover {
         color: $white;
     }
@@ -60,19 +59,14 @@ nav.menu {
         float: right;
 
         #username {
+            color: $white;
             font-size: 1em;
             text-transform: capitalize;
             line-height: 3em;
             margin-right: 1em;
         }
 
-        a {
-            color: $white;
-            display: inline-block;
-            margin: 0 0 8px 0;
-        }
-
-        a.avatar {
+        .avatar {
             border-radius: 3px;
             float: right;
             overflow: hidden;
@@ -85,7 +79,7 @@ nav.menu {
             }
         }
 
-        a.avatar:hover {
+        .avatar:hover {
             box-shadow: 0 0 0 3px $blue;
         }
     }
