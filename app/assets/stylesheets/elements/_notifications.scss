@@ -43,9 +43,8 @@
             float: right;
         }
 
-        & {
-            background: $blue;
-        }
+        // Info, notices
+        background: $blue;
 
         &.success {
             background: $green;

@@ -31,7 +31,6 @@
         position: relative;
 
         h5 {
-            color: $pink;
             display: block;
             float:left;
             margin: 0 5px 0 0;
@@ -91,40 +90,32 @@
     }
 }
 
-h5.administrator {
-    color: $blue !important;
+.administrator {
+    color: $green;
 
     &:after {
         content: " (administrator)"
     }
 }
 
-h5.moderator {
-    color: $blue !important;
+.moderator {
+    color: $orange;
 
     &:after {
         content: " (moderator)"
     }
 }
 
-h5.contributor {
-    color: $yellow !important;
+.contributor {
+    color: $yellow;
 
     &:after {
         content: " (contributor)"
     }
 }
 
-h5.developper {
-    color: $orange !important;
-
-    &:after {
-        content: " (developper)"
-    }
-}
-
-h5.banned {
-    color: $gray-white !important;
+.banned {
+    color: $gray-white;
 
     &:after {
         content: " (banned)"

@@ -2,28 +2,23 @@ nav.menu .submenu {
     background: rgba($gray-black, .92);
     box-shadow: 0 4px 0 $pink;
     height: 240px;
-    padding-left: 25px;
+    padding-left: 1em;
     position: absolute;
     text-shadow: none;
-    top: -148px;
+    top: calc(-244px + 5em);
     transition: all 130ms ease-out;
     visibility: visible;
     width: 100%;
     z-index: 200;
 
-    a {
-        color: $white;
-    }
-
     ul {
         border-top: 4px solid rgba(0,0,0,.0);
         float: left;
+        font-size: 0.9em;
         height: 240px;
-        margin-right: 25px;
-        margin: 0;
         min-width: 160px;
         overflow-y: hidden;
-        padding-top: 10px;
+        padding: 0.6em 0.5em 0 0;
         top: 0;
         transition: border 100ms linear;
 
@@ -85,10 +80,10 @@ nav.menu .submenu {
 
     ul.my-account, ul.login {
         background: $gray;
+        box-shadow: 0 4px 0 $blue;
         float: right;
         margin-right: 0;
-        padding: 10px 20px;
-        box-shadow: 0 4px 0 $blue;
+        padding: 0.6em 1em;
 
         h3, h3 a, a:hover, a:hover:before {
             color: $blue,
@@ -102,7 +97,6 @@ nav.menu .submenu {
             border-top: 4px solid $blue;
         }
     }
-
 
     ul.register {
         background: $gray-dark;
@@ -123,6 +117,7 @@ nav.menu .submenu {
     }
 
     a {
+        color: $white;
         display: block;
         padding: 4px;
         text-align: left;
@@ -140,7 +135,7 @@ nav.menu .submenu {
 }
 
 nav.menu .submenu.develop {
-    top: 96px;
+    top: 5em;
     visibility: visible;
 }
 
@@ -150,13 +145,18 @@ nav.menu .submenu.develop {
         cursor: auto;
     }
 }
+
 @media only screen and (max-width: $small) {
+    nav.menu .submenu.develop {
+        top: 5em;
+        visibility: visible;
+    }
+
     nav.menu .submenu {
+        font-weight: lighter;
         overflow-y: scroll;
         padding: 0;
         transition: none;
-        font-size: 1.2em;
-        font-weight: lighter;
 
         label {
             display: block;
@@ -203,26 +203,21 @@ nav.menu .submenu.develop {
             margin: 0;
         }
 
-        .my-account,  ul.login, ul.register {
+        .my-account,  .login, .register {
             display: none;
         }
     }
 
-    nav.menu {
-        position: static;
-    }
-
-
     nav.menu .submenu {
-        top: -180px;
+        display: none;
     }
 
     nav.menu .submenu.develop {
+        display: block;
         background: $gray;
         height: auto;
         padding-bottom: 15px;
-        top: 65px;
-        visibility: visible;
+        top: 4em;
         z-index: 10000;
     }
 }

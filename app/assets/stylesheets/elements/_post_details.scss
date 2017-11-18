@@ -1,6 +1,5 @@
 .post-details {
     background: $white;
-    text-align: center;
     text-align: left;
 
     @media only screen and (max-width: $xsmall) {
@@ -18,9 +17,8 @@
             padding-left: 100px;
             padding: 8px;
             position: relative;
-            text-overflow: ellipsis !important;
-            white-space: nowrap;
             text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
         li:last-child {

@@ -28,10 +28,11 @@
             font-weight: bold;
         }
 
-        h3  {
+        h5  {
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
+            line-height: 1em;
             color: $white;
             width: 180px;
         }

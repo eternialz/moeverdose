@@ -1,8 +1,7 @@
 <nav class="menu">
     <div class="row">
         <div class="container">
-            <a href="<%= root_path %>"><h1><%= site_name %></h1></a>
-            <span id="random"><%= cell(:random_message).(:show) %></span>
+            <a id="site" href="<%= root_path %>"><h1><%= site_name %></h1></a>
             <a id="menu_label"><%= fa_icon 'bars' %></a>
             <div class="user">
                 <% if user_signed_in? %>
@@ -26,6 +25,8 @@
                     <% end %>
                 </li>
             </ul>
+            <br/>
+            <span id="random"><%= cell(:random_message).(:show) %></span>
         </div>
 
         <div class="submenu" id="submenu">

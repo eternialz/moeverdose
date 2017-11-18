@@ -25,18 +25,13 @@ html {
     }
 
     @media only screen and (min-width: $large) {
-        font-size: $default-font-size * 1.07;
-        line-height: $default-line-height * 1.07;
+        font-size: $default-font-size * 1.05;
+        line-height: $default-line-height * 1.05;
     }
 
     @media only screen and (min-width: $xlarge) {
-        font-size: $default-font-size * 1.13;
-        line-height: $default-line-height * 1.13;
-    }
-
-    @media only screen and (min-width: $xxlarge) {
-        font-size: $default-font-size * 1.2;
-        line-height: $default-line-height * 1.2;
+        font-size: $default-font-size * 1.1;
+        line-height: $default-line-height * 1.1;
     }
 }
 
@@ -51,6 +46,7 @@ ul {
 }
 
 a {
+    color: $pink;
     text-decoration: none;
     transition: all 70ms linear;
 }
@@ -65,7 +61,7 @@ dd {
 
 body {
     background: $background;
-    padding-top: 96px;
+    padding-top: 5em;
 }
 
 
