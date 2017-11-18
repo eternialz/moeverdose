@@ -34,17 +34,6 @@
 @import 'elements/navigation';
 @import 'elements/notifications';
 @import 'elements/pagination';
-
-@import 'elements/post_container';
-@import 'elements/post_details';
-@import 'elements/post_doses';
-@import 'elements/post_image';
-@import 'elements/post_index';
-@import 'elements/post_navigation';
-@import 'elements/post_edit';
-@import 'elements/post_report';
-@import 'elements/post_thumbnail';
-
 @import 'elements/progress_bar';
 @import 'elements/search';
 @import 'elements/search_home';
@@ -56,9 +45,11 @@
 @import 'elements/tooltip';
 @import 'elements/zone';
 
+@import 'elements/posts/posts';
+@import 'elements/users/users';
+
 @import 'elements/admin/admin';
 
 @import 'pages/help';
 @import 'pages/home';
 @import 'pages/upload';
-@import 'pages/users';

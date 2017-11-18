@@ -1,5 +1,5 @@
 nav.menu .submenu {
-    background: rgba($gray-black, .92);
+    background: rgba($gray7, .92);
     box-shadow: 0 4px 0 $pink;
     height: 240px;
     padding-left: 1em;
@@ -44,20 +44,20 @@ nav.menu .submenu {
         }
 
         p {
-            color: $white-break;
+            color: $gray2;
         }
 
-        input[type="email"], input[type="password"] {
-            background: $gray-dark;
+        input {
+            background: $gray5;
             border-radius: 3px;
             border: 0;
-            color: $white-break;
+            color: $gray2;
             margin-bottom: 5px;
             padding: 8px;
             width: 100%;
         }
 
-        input[type="email"]:invalid, input[type="password"]:invalid {
+        input:invalid {
             border: none;
             box-shadow: none;
         }
@@ -79,7 +79,7 @@ nav.menu .submenu {
     }
 
     ul.my-account, ul.login {
-        background: $gray;
+        background: $gray4;
         box-shadow: 0 4px 0 $blue;
         float: right;
         margin-right: 0;
@@ -99,7 +99,7 @@ nav.menu .submenu {
     }
 
     ul.register {
-        background: $gray-dark;
+        background: $gray5;
         padding: 10px 20px;
         right: 219px;
     }
@@ -208,7 +208,7 @@ nav.menu .submenu.develop {
 
     nav.menu .submenu.develop {
         display: block;
-        background: $gray;
+        background: $gray4;
         height: auto;
         padding-bottom: 15px;
         z-index: 10000;

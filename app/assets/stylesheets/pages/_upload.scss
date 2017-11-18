@@ -26,7 +26,7 @@
     }
 
     #file {
-        box-shadow: 0 0 0 1px $gray-white;
+        box-shadow: 0 0 0 1px $gray2;
         margin: 20px 0 0;
         max-width: 100%;
         border-radius: 3px;
@@ -43,7 +43,7 @@
         }
 
         .file-dummy {
-            background: $gray;
+            background: $gray4;
             border-radius: 3px;
             border: 3px solid transparent;
             font-weight: bold;

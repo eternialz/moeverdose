@@ -13,7 +13,7 @@
         padding: 0;
 
         .title, .count {
-            background: $background;
+            background: $white;
             float: left;
             height: 54px;
             padding: 18px 16px;
@@ -32,7 +32,7 @@
         }
 
         span {
-            border-left: 1px solid $background;
+            border-left: 1px solid $white;
             display: inline-block;
             float: left;
             height: 54px;

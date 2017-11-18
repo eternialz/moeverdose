@@ -1,8 +1,4 @@
 
-.comments {
-    padding: 20px;
-}
-
 .comment {
     clear: both;
     min-height: 80px;
@@ -37,12 +33,12 @@
         }
 
         h5:after {
-            color: $gray-light;
+            color: $gray3;
             font-size: 0.8em;
         }
 
         a.comment_number {
-            color: $white-break;
+            color: $gray2;
             float: right;
             font-size: 0.8em;
             margin-left: 20px;
@@ -52,7 +48,7 @@
 
         a.report {
             float: right;
-            color: $white-break;
+            color: $gray2;
             font-size: 0.8em;
         }
 
@@ -115,7 +111,7 @@
 }
 
 .banned {
-    color: $gray-white;
+    color: $gray2;
 
     &:after {
         content: " (banned)"
@@ -123,25 +119,22 @@
 }
 
 .comment-form {
-    h3 {
-        display: inline-block;
-        margin: 0;
-        padding: 10px;
-    }
 
     #char_count {
-        color: $white-break;
+        color: $gray2;
         font-size: 0.7em;
         margin-left: 20px;
     }
 
     textarea {
+        background: $gray0;
         box-shadow: none;
     }
 
     .button-zone {
+        padding-top: 10px;
         border-top: 1px solid rgba(0,0,0,.1);
-        text-align: center;
+        text-align: right;
     }
 
     input[type="submit"] {

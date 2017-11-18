@@ -1,5 +1,5 @@
 nav.menu {
-    background: $gray-dark;
+    background: $gray5;
     box-shadow: 0 -3px 6px 5px rgba($black, .35);
     color: $white;
     height: 5em;
@@ -16,7 +16,7 @@ nav.menu {
     }
 
     .container {
-        background: $gray-dark;
+        background: $gray5;
         height: 5em;
         padding: 1em;
         position: relative;
@@ -33,7 +33,7 @@ nav.menu {
         }
 
         a {
-            color: $white-break;
+            color: $gray2;
             padding: 5px 10px;
             text-align: center;
             transition:all 100ms linear;

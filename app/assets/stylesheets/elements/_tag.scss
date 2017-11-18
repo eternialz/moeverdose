@@ -1,8 +1,8 @@
 
 .tag {
-    background: $background;
+    background: $gray0;
     border-radius: 3px;
-    color: $gray !important;
+    color: $gray4;
     cursor: pointer;
     display: inline-block;
     font-size: 0.9em;
@@ -20,8 +20,10 @@
 }
 
 a.tag {
+    color: $gray4;
+
     &:hover {
-        background: darken($background, 5%);
+        background: $gray1;
         color: $pink;
     }
 }
