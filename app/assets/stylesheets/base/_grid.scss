@@ -1,6 +1,6 @@
 
 $width: 100%;
-$gutter: 30px;
+$gutter: 2em;
 
 .row [class^="col-"] {
     float: left;
@@ -10,22 +10,8 @@ $gutter: 30px;
     width: 100%;
 }
 
-.row .col-sm {
+.row .no-pad {
     padding: 0;
-
-    &:first-child {
-        padding-right: $gutter / 2;
-    }
-
-    &:last-child {
-        padding-left: $gutter / 2;
-    }
-
-    @media only screen and (max-width: $xsmall) {
-        &:first-child, &:last-child {
-            padding: 0 !important;
-        }
-    }
 }
 
 .row {
@@ -53,18 +39,18 @@ $gutter: 30px;
     }
 
     @media only screen and (min-width: $large) {
-        max-width: 1200px;
+        max-width: 80%;
     }
 
     @media only screen and (min-width: $xlarge) {
-        max-width: 1400px;
+        max-width: 73%;
     }
 
     @media only screen and (min-width: $xxlarge) {
-        max-width: 1600px;
+        max-width: 66.5%;
     }
 
     @media only screen and (min-width: $xxxlarge) {
-        max-width: 1800px;
+        max-width: 60%;
     }
 }

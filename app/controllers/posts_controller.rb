@@ -4,7 +4,7 @@ class PostsController < ApplicationController
     require 'json'
 
     before_action :try_set_post, only: [:show]
-    before_action :set_post, only: [:edit, :update, :dose, :favorite, :report]
+    before_action :set_post, only: [:edit, :update, :dose, :favorite, :report, :report_update]
     before_action :authenticate_user!, except: [:show, :index, :not_found, :random]
 
     def show
@@ -15,70 +15,6 @@ class PostsController < ApplicationController
         @authors = results[:authors]
 
         title(@post.title)
-    end
-
-    def report
-        @post.assign_attributes(params.require(:post).permit(:report_reason))
-        @post.report = true
-        @post.report_user = current_user
-        @post.save
-
-        flash[:info] = "Post reported"
-
-        redirect_to post_path(@post.number)
-    end
-
-    def favorite
-        if user_signed_in?
-            if current_user.favorites.exclude?(@post)
-                current_user.favorites << @post
-                head 200
-            else
-                current_user.favorites.delete(@post)
-                head 202
-            end
-        else
-            head 403
-        end
-    end
-
-    def dose
-        if user_signed_in?
-            @removed = false;
-
-            if params[:dose] == "overdose"
-                if current_user.liked_posts.exclude?(@post)
-                    if current_user.disliked_posts.include?(@post)
-                        @post.moe_shortage -= 1
-                        current_user.disliked_posts.delete(@post)
-                    end
-                    @post.overdose += 1
-                    current_user.liked_posts << @post
-                else
-                    @post.overdose -= 1
-                    @removed = true
-                    current_user.liked_posts.delete(@post)
-                end
-            else params[:dose] == "shortage"
-                if current_user.disliked_posts.exclude?(@post)
-                    if current_user.liked_posts.include?(@post)
-                        @post.overdose -= 1
-                        current_user.liked_posts.delete(@post)
-                    end
-                    @post.moe_shortage += 1
-                    current_user.disliked_posts << @post
-                else
-                    @post.moe_shortage -= 1
-                    @removed = true
-                    current_user.disliked_posts.delete(@post)
-                end
-            end
-
-            @post.save
-            render json: {overdose: @post.overdose, shortage: @post.moe_shortage, removed: @removed}, status: 200
-        else
-            head 403
-        end
     end
 
     def index
@@ -167,6 +103,16 @@ class PostsController < ApplicationController
         end
     end
 
+    def edit
+        post_logic = PostLogic.new(@post)
+        results = post_logic.get_different_tags
+        @tags = results[:tags]
+        @characters = results[:characters]
+        @authors = results[:authors]
+
+        title("Edit post: " + @post.title)
+    end
+
     def update
         @post.assign_attributes(edit_post_params)
 
@@ -210,7 +156,78 @@ class PostsController < ApplicationController
         redirect_to(post_path(@post.number))
     end
 
+    def report
+    end
+
+    def report_update
+        @post.assign_attributes(params.require(:post).permit(:report_reason))
+        @post.report = true
+        @post.report_user = current_user
+        @post.save
+
+        flash[:info] = "Post reported"
+
+        redirect_to post_path(@post.number)
+    end
+
+    def favorite
+        if user_signed_in?
+            if current_user.favorites.exclude?(@post)
+                current_user.favorites << @post
+                head 200
+            else
+                current_user.favorites.delete(@post)
+                head 202
+            end
+        else
+            head 403
+        end
+    end
+
+    def dose
+        if user_signed_in?
+            @removed = false;
+
+            params[:dose] == "overdose" ? overdose : shortage
+
+            @post.save
+            render json: {overdose: @post.overdose, shortage: @post.moe_shortage, removed: @removed}, status: 200
+        else
+            head 403
+        end
+    end
+
     private
+    def shortage
+        if current_user.disliked_posts.exclude?(@post)
+            if current_user.liked_posts.include?(@post)
+                @post.overdose -= 1
+                current_user.liked_posts.delete(@post)
+            end
+            @post.moe_shortage += 1
+            current_user.disliked_posts << @post
+        else
+            @post.moe_shortage -= 1
+            @removed = true
+            current_user.disliked_posts.delete(@post)
+        end
+    end
+
+    def overdose
+        if current_user.liked_posts.exclude?(@post)
+            if current_user.disliked_posts.include?(@post)
+                @post.moe_shortage -= 1
+                current_user.disliked_posts.delete(@post)
+            end
+            @post.overdose += 1
+            current_user.liked_posts << @post
+        else
+            @post.overdose -= 1
+            @removed = true
+            current_user.liked_posts.delete(@post)
+        end
+    end
+
     def set_post
         if params[:id]
             @post = Post.find_by(number: params[:id])
@@ -249,16 +266,16 @@ class PostsController < ApplicationController
 
         @result = HTTParty.post(@url,
             :body => {
-                 :content => text
+                :content => text
             }.to_json,
             :headers => { 'Content-Type' => 'application/json' }
         )
     end
 
     def set_params
-    {
-          "content" => "tttt"
-    }
+        {
+            "content" => "tttt"
+        }
     end
 
 end

@@ -37,7 +37,7 @@
             font-size: 0.8em;
         }
 
-        a.comment_number {
+        .comment_number {
             color: $gray2;
             float: right;
             font-size: 0.8em;
@@ -46,7 +46,7 @@
             z-index: 1000;
         }
 
-        a.report {
+        .report {
             float: right;
             color: $gray2;
             font-size: 0.8em;
@@ -115,29 +115,5 @@
 
     &:after {
         content: " (banned)"
-    }
-}
-
-.comment-form {
-
-    #char_count {
-        color: $gray2;
-        font-size: 0.7em;
-        margin-left: 20px;
-    }
-
-    textarea {
-        background: $gray0;
-        box-shadow: none;
-    }
-
-    .button-zone {
-        padding-top: 10px;
-        border-top: 1px solid rgba(0,0,0,.1);
-        text-align: right;
-    }
-
-    input[type="submit"] {
-        margin: 5px;
     }
 }

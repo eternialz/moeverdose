@@ -1,14 +1,16 @@
 .userprofile.edit {
     #edit-zone {
-        position: fixed;
         bottom: 10px;
+        left: 0;
+        position: fixed;
+        width: 100%;
         z-index: 100;
     }
 
     #edit-title {
         transition: 170ms transform ease-in-out;
-        background: rgba($gray4, .8);
-        box-shadow: 0 0 5px rgba($gray4, .5);
+        background: $gray9;
+        box-shadow: 0 2px 5px rgba($black, .25);
         border-radius: 3px;
         padding: 9px;
         width: 800px;

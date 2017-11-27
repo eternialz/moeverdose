@@ -1,0 +1,37 @@
+<%= form_for @post, as: "post", url: post_path(@post.number) do |post| %>
+    <div class="zone">
+        <div class="col-12">
+            <h5>Edit Post</h5>
+            <p><%= fa_icon "list" %> Informations:</p>
+            <div class="field">
+                <span><%= fa_icon "header" %> Title:</span>
+                <%= post.text_field :title, placeholder: "Title" %>
+            </div>
+            <div class="field">
+                <span><%= fa_icon "user" %> Author:</span>
+                <% unless @post.author.blank? %>
+                <input name="author_tag" type="text" placeholder="Author name" value="<%= @post.author.name %>">
+                <% else %>
+                <input name="author_tag" type="text" placeholder="Author name">
+                <% end %>
+            </div>
+            <div class="field">
+                <span><%= fa_icon "rss" %> Source:</span>
+                <%= post.text_field :source, placeholder: "Source" %>
+            </div>
+            <div class="field_area">
+                <p><%= fa_icon "book" %> Description:</p>
+                <%= post.text_area :description, placeholder: 'Description: short history, translations ...' %>
+            </div>
+            <div class="field_area">
+                <p><%= fa_icon "tag" %> Tags:</p>
+                <textarea name="tags" placeholder='Tags ("1girl glasses")'><% @tags.each do |tag| %><%= tag + " " %><% end %></textarea>
+            </div>
+            <div class="field_area">
+                <p><%= fa_icon "group" %> Character(s):</p>
+                <textarea name="characters" placeholder='Characters ("illyasviel_von_einzbern")'><% @characters.each do |character| %><%= character + " " %><% end %></textarea>
+            </div>
+            <button type="submit" form="edit_post" class="btn btn-pink">Update Post<%= fa_icon 'edit' %></button>
+        </div>
+    </div>
+<% end %>

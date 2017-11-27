@@ -14,7 +14,6 @@
 
 @import 'base/extends';
 @import 'base/normalize';
-@import 'base/fonts';
 @import 'base/colors';
 @import 'base/variables';
 @import 'base/base';
@@ -23,6 +22,7 @@
 
 @import 'elements/button';
 @import 'elements/comments';
+@import 'elements/comment_form';
 @import 'elements/cookies_disclaimer';
 @import 'elements/field';
 @import 'elements/flashes';

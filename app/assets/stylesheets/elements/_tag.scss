@@ -19,11 +19,10 @@
     }
 }
 
-a.tag {
+.tag {
     color: $gray4;
 
     &:hover {
         background: $gray1;
-        color: $pink;
     }
 }

@@ -19,16 +19,11 @@
     display: none;
 }
 
-.reported_input:checked + form {
-    display: block;
-}
-
-.reported_input:checked + div {
+.reported_input:checked + .reported {
     display: none;
 }
 
 .report_form {
-    display: none;
     padding: 20px;
 
     h2 {

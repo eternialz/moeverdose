@@ -6,6 +6,9 @@
                     <%= link_to author_path(a), class: "title" do %>
                         <h5><%= a.name %></h5>
                     <% end %>
+                    <a class="count" href="<%= edit_author_path(a) %>">
+                        <%= fa_icon "edit" %>
+                    </a>
                 </li>
             </ul>
         <% end %>

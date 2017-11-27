@@ -14,6 +14,10 @@ Rails.application.routes.draw do
     resources :posts do
         resources :comments
     end
+    patch "/posts/:id/report" => "posts#report_update", as: 'report_post'
+    get "/posts/:id/report" => "posts#report", as: 'edit_report_post'
+    patch "/posts/:id/dose/:dose" => "posts#dose", as: 'post_dose'
+    patch "/posts/:id/favorite" => "posts#favorite"
 
     # Artists
     resources :authors
@@ -23,10 +27,6 @@ Rails.application.routes.draw do
 
     # Comments
     patch "/posts/:post_id/comments/:comment_id/report" => "comments#report", as: "comment_report"
-
-    patch "/posts/:id/report" => "posts#report", as: 'report_post'
-    patch "/posts/:id/dose/:dose" => "posts#dose", as: 'post_dose'
-    patch "/posts/:id/favorite" => "posts#favorite"
 
     #Admin Section
     scope :admin, as: :admin do

@@ -2,7 +2,7 @@ $default: #50C;
 $default_light: lighten($default, 15%);
 $default_dark: darken($default, 9%);
 
-$pink: #f09;
+$pink: #ef34a4;
 $pink_light: lighten($pink, 20%);
 $pink_dark: darken($pink, 9%);
 
@@ -10,11 +10,11 @@ $blue: #1AB;
 $blue_light: lighten($blue, 10%);
 $blue_dark: darken($blue, 9%);
 
-$green: #1B2;
+$green: #3cc94a;
 $green_light: lighten($green, 15%);
 $green_dark: darken($green, 9%);
 
-$yellow: #fc2;
+$yellow: #e9b32a;
 $yellow_light: lighten($yellow, 15%);
 $yellow_dark: darken($yellow, 9%);
 
@@ -27,10 +27,10 @@ $red_light: lighten($red, 7%);
 $red_dark: darken($red, 9%);
 
 $white: #FDFDFD;
-$gray0: #dfe3ef;
-$gray1: #ced4e7;
-$gray2: #949fae;
-$gray3: #6a7989;
+$gray0: #DFE3E8;
+$gray1: #CED4DB;
+$gray2: #949FA9;
+$gray3: #6a7982;
 $gray4: #49535e;
 $gray5: #333a41;
 $gray6: #282d33;

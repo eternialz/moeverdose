@@ -15,6 +15,7 @@ $header-image: "header-img.jpg";
 html {
     box-sizing: border-box;
     font-size: $default-font-size;
+    font-family: 'Exo 2', Arial Grande, Tahoma, Helvetica, Arial, sans-serif;
     line-height: $default-line-height;
     overflow-x: hidden;
     overflow-y: scroll;
@@ -60,7 +61,7 @@ dd {
 }
 
 body {
-    background: $white;
+    background: $gray0;
     padding-top: 5em;
 }
 
@@ -75,12 +76,13 @@ body {
 textarea, input[type="text"] {
     border-radius: 3px;
     border: 0;
-    padding: 10px;
+    padding: 0.5em;
     width: 100%;
 }
 
 textarea {
     min-height: 200px;
+    margin-bottom: 1em;
     resize: vertical;
 }
 

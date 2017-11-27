@@ -1,4 +1,4 @@
-nav.menu .submenu {
+.menu .submenu {
     background: rgba($gray7, .92);
     box-shadow: 0 4px 0 $pink;
     height: 240px;
@@ -137,20 +137,13 @@ nav.menu .submenu {
     }
 }
 
-nav.menu .submenu.develop {
+.menu .submenu.develop {
     top: 5em;
     visibility: visible;
 }
 
-
-@media only screen and (min-width: $small) {
-    label {
-        cursor: auto;
-    }
-}
-
 @media only screen and (max-width: $small) {
-    nav.menu .submenu {
+    .menu .submenu {
         display: none;
         font-weight: lighter;
         overflow-y: scroll;
@@ -206,7 +199,7 @@ nav.menu .submenu.develop {
         }
     }
 
-    nav.menu .submenu.develop {
+    .menu .submenu.develop {
         display: block;
         background: $gray4;
         height: auto;
