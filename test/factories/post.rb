@@ -6,12 +6,15 @@ FactoryBot.define do
         title {Faker::Lovecraft.deity}
         source {Faker::ElderScrolls.race}
         description {Faker::DrWho.quote}
-        post_image {sample_file}
         width 500
         height 500
+        md5 {SecureRandom.hex(32)}
+        post_image {sample_file}
 
         after(:build) do |post|
-            post.md5 = Digest::MD5.file(post.post_image.queued_for_write[:original].path).hexdigest
+            post.tags << create(:tag_content)
+            post.tags << create(:tag_character)
+            post.tags << create(:tag_author)
         end
     end
 end
