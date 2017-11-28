@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
     protect_from_forgery with: :exception
 
     def home
-        @news = New.limit(2).order(created_at: :desc)
+        @news = New.all.desc('created_at').limit(2)
         render "/home"
     end
 

@@ -15,6 +15,9 @@ Rails.application.routes.draw do
         resources :comments
     end
 
+    # Artists
+    resources :authors
+
     # Tags
     resources :tags
 

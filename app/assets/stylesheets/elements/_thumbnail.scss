@@ -7,6 +7,7 @@
     height: 200px;
     overflow: hidden;
     position: relative;
+    transition:all 100ms linear;
     width: 200px;
 
     img {
@@ -14,8 +15,8 @@
     }
 
     .informations {
-        background-image: linear-gradient(rgba(0,0,0,.25) 0%, #000 130%);
-        color: #FFF;
+        background-image: linear-gradient(rgba(0,0,0,.25) 0%, $gray-black 130%);
+        color: $white;
         height: 100%;
         left: 0;
         opacity: 0;
@@ -28,7 +29,7 @@
 
         .post-stats {
             font-size: 0.8em;
-            font-weight: 900;
+            font-weight: bold;
         }
 
         h3  {
@@ -38,11 +39,19 @@
         }
 
         h3 {
-            color: #FFF;
+            color: $white;
             width: 180px;
         }
 
         &:hover {
+            opacity: 1;
+        }
+    }
+
+    &:focus {
+        outline: none;
+        
+        .informations {
             opacity: 1;
         }
     }

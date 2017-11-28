@@ -1,19 +1,18 @@
 nav.menu .submenu {
-    background: #000;
-    box-shadow: 0 4px 0 $yellow;
+    background: rgba($gray-black, .92);
+    box-shadow: 0 4px 0 $pink;
     height: 240px;
-    overflow: hidden;
     padding-left: 25px;
     position: absolute;
     text-shadow: none;
-    top: -144px;
-    transition:all 200ms ease-in-out;
+    top: -148px;
+    transition: all 130ms ease-out;
     visibility: visible;
     width: 100%;
     z-index: 200;
 
     a {
-        color: #FFF;
+        color: $white;
     }
 
     ul {
@@ -22,25 +21,23 @@ nav.menu .submenu {
         height: 240px;
         margin-right: 25px;
         margin: 0;
-        min-width: 140px;
+        min-width: 160px;
         overflow-y: hidden;
         padding-top: 10px;
         top: 0;
-        transition:all 100ms linear;
+        transition: border 100ms linear;
 
         h3 {
-            font-size: 1em;
-            font-style: normal;
-            padding-left: 9px;
+            color: $white;
+            padding-left: 12px;
         }
 
-        h3 a {
-            color: $pink;
-            font-weight: 900;
+        input[type=radio] {
+            display: none;
+        }
 
-            &:before {
-                content: "";
-            }
+        div {
+            @extend %clearfix;
         }
     }
 
@@ -48,21 +45,21 @@ nav.menu .submenu {
         padding: 10px;
         position: absolute;
         right: 0;
-        width: 300px;
+        width: 220px;
 
         h3 {
             padding: 0;
         }
 
         p {
-            color: #AAA;
+            color: $white-break;
         }
 
         input[type="email"], input[type="password"] {
-            background: #222;
+            background: $gray-dark;
             border-radius: 3px;
             border: 0;
-            color: #AAA;
+            color: $white-break;
             margin-bottom: 5px;
             padding: 8px;
             width: 100%;
@@ -90,10 +87,11 @@ nav.menu .submenu {
     }
 
     ul.my-account, ul.login {
-        background: #333;
+        background: $gray;
         float: right;
         margin-right: 0;
         padding: 10px 20px;
+        box-shadow: 0 4px 0 $blue;
 
         h3, h3 a, a:hover, a:hover:before {
             color: $blue,
@@ -110,9 +108,9 @@ nav.menu .submenu {
 
 
     ul.register {
-        background: #222;
+        background: $gray-dark;
         padding: 10px 20px;
-        right: 299px;
+        right: 219px;
     }
 
     ul.login:hover {
@@ -129,7 +127,6 @@ nav.menu .submenu {
 
     a {
         display: block;
-        font-weight: bold;
         padding: 4px;
         text-align: left;
     }
@@ -140,25 +137,8 @@ nav.menu .submenu {
         transition: all 70ms linear;
     }
 
-    a:hover, a:hover:before {
+    a:hover:before , a:hover {
         color: $pink;
-    }
-
-    #submenu_close {
-        background: #222;
-        display: none;
-        padding: 20px 30px;
-        right: 0;
-        text-align: center;
-        top: 0;
-        width: 100%;
-    }
-}
-
-@media only screen and (min-width: $normal) {
-    nav.menu:hover .submenu {
-        top: 96px;
-        visibility: visible;
     }
 }
 
@@ -167,36 +147,84 @@ nav.menu .submenu.develop {
     visibility: visible;
 }
 
+
+@media only screen and (min-width: $small) {
+    label {
+        cursor: auto;
+    }
+}
 @media only screen and (max-width: $small) {
     nav.menu .submenu {
         overflow-y: scroll;
         padding: 0;
         transition: none;
+        font-size: 1.2em;
+        font-weight: lighter;
 
-        ul, ul.login, ul.register {
-            border: 0 !important;
-            float: none;
-            height: auto;
-            padding: 10px 20px;
-            position: static;
-            width: 100%;
+        label {
+            display: block;
+            opacity: 0.65;
+            padding: 10px 0;
 
-            .btn {
-                display: block;
-                margin: 20px 0 10px;
-                position: static;
-                width: 100%;
+            h3 {
+                font-weight: normal;
             }
         }
 
-        #submenu_close {
+        input + label + div {
+            display: none;
+        }
+
+        input:checked + label,
+        input:checked + label + div {
             display: block;
+            opacity: 1;
+        }
+
+        ul {
+            border: 0 !important;
+            float: none;
+            height: auto;
+            padding: 0;
+            position: static;
+            width: 100%;
+        }
+
+        a {
+            color: $white !important;
+            padding: 7px 0;
+        }
+
+        a::before {
+            color: $white !important;
+            display: inline-block;
+            text-align: center;
+            width: 40px;
+        }
+
+        h3 {
+            margin: 0;
+        }
+
+        .my-account,  ul.login, ul.register {
+            display: none;
         }
     }
 
+    nav.menu {
+        position: static;
+    }
+
+
+    nav.menu .submenu {
+        top: -180px;
+    }
+
     nav.menu .submenu.develop {
-        height: 100vh;
-        top: 0;
+        background: $gray;
+        height: auto;
+        padding-bottom: 15px;
+        top: 65px;
         visibility: visible;
         z-index: 10000;
     }

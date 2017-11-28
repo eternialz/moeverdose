@@ -1,3 +1,11 @@
+%clearfix {
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
 /* Screen Sizes */
 $device-xsmall: 640px;
 $device-small: 1024px;
@@ -10,11 +18,11 @@ $header-image: "header-img.jpg";
 /* Browser Styling */
 ::selection {
     background: $pink_light;
-    color: #FFF
+    color: $white
 }
 
 ::placeholder {
-    color: #888;
+    color: $gray-white;
 }
 
 /* Global default custom styles */
@@ -23,6 +31,7 @@ html {
     font-size: 16px;
     overflow-x: hidden;
     overflow-y: scroll;
+    color: $gray;
 
     @media only screen and (max-width: $xsmall) {
         font-size: 14px;
@@ -54,10 +63,15 @@ dd {
 }
 
 body {
-    background-attachment: fixed;
-    background-image: url(image_path('background.svg'));
-    background-size: cover;
-    padding-top: 100px;
+    background: $background;
+    padding-top: 96px;
+}
+
+
+@media only screen and (max-width: $small) {
+    body {
+        padding-top: 0px
+    }
 }
 
 /* Inputs */

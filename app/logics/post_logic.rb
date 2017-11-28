@@ -65,9 +65,32 @@ class PostLogic < SimpleDelegator
     end
 
     def self.posts_tags(query)
-        query = query.split().uniq() # Change query into an array and remove duplicates
+        query = query.downcase.split.uniq # Change query into an array and remove duplicates
         tags = Tag.where(:names.in => query).map do |t| t.id end
         return [tags, query.length() != tags.length()]
-        # [0] = all found tags, [1] if one or more nonexisting tags were ignored
+        # [0] = all found tags, [1] true if one or more nonexisting tags were ignored
+    end
+
+    def self.set_post_tags(params, post)
+        tags = params[:tags].downcase.split(" ")
+        tags.each do |tag|
+            self.find_or_create(tag, :content, post)
+        end
+
+        characters = params[:characters].downcase.split(" ")
+        characters.each do |character|
+            self.find_or_create(character, :character, post)
+        end
+    end
+
+    def self.set_post_dimensions(post)
+        dimensions = Paperclip::Geometry.from_file(post.post_image.queued_for_write[:original].path)
+        post.width, post.height = dimensions.width, dimensions.height
+    end
+
+    def self.set_post_user(post, user)
+        post.user = user
+        user_logic = UserLogic.new(user)
+        user_logic.update_level
     end
 end

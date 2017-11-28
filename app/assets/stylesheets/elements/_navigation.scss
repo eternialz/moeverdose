@@ -1,6 +1,7 @@
 nav.menu {
-    background: $default;
-    color: #FFF;
+    background: $gray-dark;
+    box-shadow: 0 -3px 6px 5px rgba($black, .35);
+    color: $white;
     height: 96px;
     position: fixed;
     top: 0;
@@ -8,26 +9,39 @@ nav.menu {
     z-index: 20000;
 
     .container {
-        background: $default;
+        background: $gray-dark;
         height: 96px;
         padding: 10px 0 0 0;
         position: relative;
         z-index: 5000;
 
         h1 {
-            color: #FFF;
+            color: $white;
             display: inline-block;
             padding-left: 10px;
         }
 
         span {
-            font-weight: bold;
             margin-left: 20px;
             padding: 10px;
         }
 
         @media only screen and (max-width: $small) {
-            .user .avatar, #random {
+            .user .avatar, .user img {
+                width: 46px;
+                height: 46px;
+            }
+
+            .user a.avatar {
+                margin: 0 !important;
+            }
+
+            .user img {
+                width: 40px;
+                height: 40px;
+            }
+
+            #username {
                 display: none;
             }
         }
@@ -35,8 +49,14 @@ nav.menu {
         .user {
             float: right;
 
+            #username {
+                font-size: 1.1em;
+                text-transform: capitalize;
+                margin-top: 40px;
+            }
+
             a {
-                color: #EEE;
+                color: $white;
                 display: inline-block;
                 margin: 0 0 8px 0;
             }
@@ -51,6 +71,7 @@ nav.menu {
                 float: right;
                 overflow: hidden;
                 padding: 0;
+                margin: 5px 10px;
 
                 img {
                     float: left;
@@ -64,6 +85,43 @@ nav.menu {
         }
     }
 
+    @media only screen and (max-width: $small) {
+        height: 65px;
+
+        .container {
+            height: 65px;
+        }
+
+        #random {
+            display: none;
+        }
+
+        h1 {
+            line-height: 45px;
+            font-size: 1.2em;
+            margin: 0;
+        }
+    }
+
+    #menu_label {
+        display: none;
+        border-radius: 3px;
+        color: $white;
+        background: rgba($white, 0.5);
+        font-size: 24px;
+        line-height: 40px;
+        width: 40px;
+        text-align: center;
+        float: right;
+        margin: 3px 10px;
+    }
+
+    @media only screen and (max-width: $small) {
+        a#menu_label {
+            display: inline-block;
+        }
+    }
+
     ul {
         display: block;
         margin-bottom: 10px;
@@ -73,41 +131,28 @@ nav.menu {
             display: inline-block;
 
             a {
-                color: #CCC;
-                font-weight: bold;
+                color: $white-break;
                 padding: 5px 10px;
                 text-align: center;
                 transition:all 100ms linear;
+                font-weight: 500;
+            }
+
+            @media only screen and (max-width: $small) {
+                a {
+                    display: none;
+                }
             }
 
             i {
                 margin-right: 10px;
             }
 
-            #menu_label {
-                display: none;
-            }
-
-            #menu_label.open {
-                color: #FFF;
-                text-shadow: 0 0 5px rgba(255,255,255,.75);
-            }
-
-
-            @media only screen and (max-width: $normal) {
-
-                a {
-                    display: none;
-                }
-
-                a#menu_label {
-                    display: block;
-                }
-            }
         }
     }
 
+
     a:hover {
-        color: #FFF;
+        color: $white;
     }
 }

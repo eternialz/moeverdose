@@ -25,7 +25,7 @@ Search = {
     addSpaceEnd: function() {
         if (Search.input.val().substr(Search.input.val().length - 1) !== ' ') {
             Search.input.val(Search.input.val() + " ");
-        };
+        }
     }
 };
 

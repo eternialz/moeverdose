@@ -1,25 +1,27 @@
 
 .tag {
-    background: #FAFAFA;
-    border-radius: 2px;
-    box-shadow: 0 1px 1px rgba(0,0,0,.1);
+    background: $background;
+    border-radius: 3px;
+    color: $gray !important;
+    cursor: pointer;
     display: inline-block;
     font-size: 14px;
     font-weight: bold;
     margin: 3px;
     max-width: 250px;
+    outline: none;
     overflow: hidden;
     padding: 6px;
     text-overflow: ellipsis;
+
+    &:focus {
+        box-shadow: 0 0 0 3px rgba($pink, .7);
+    }
 }
 
-.tag:hover {
-    background: #F6F6F6;
-    color: $pink;
-    cursor: pointer;
-}
-
-.tag:active {
-    background: #E6E6E6;
-    color: $pink_dark;
+a.tag {
+    &:hover {
+        background: darken($background, 5%);
+        color: $pink;
+    }
 }

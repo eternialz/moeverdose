@@ -1,27 +1,30 @@
 <div class="search-form tags-form clearfix">
-    <form method="get" action="<%= posts_path %>" id="search">
-        <input id="tags" type="text" name="query" placeholder="Search by tags separated by spaces" value="<%= params[:query] %>"/>
+    <form method="get" action="<%= posts_path %>" class="clearfix" id="search">
+        <input id="tags" list="fav-tags" autocomplete="off" type="text" name="query" placeholder="Search by tags separated by spaces" value="<%= params[:query] %>"/>
+        <%= render 'shared/datalist_favorites_tags' %>
         <button type="submit" form="search" value="Submit"><%= fa_icon "search" %></button>
         <input type="checkbox" id="advanced_search">
-        <label for="advanced_search"><%= fa_icon "chevron-right" %></label>
+        <label for="advanced_search"><%= fa_icon "chevron-down" %></label>
         <div class="tag_list">
-            <div class="col-4">
-                <h5>Tags</h5>
-                <% @tags.each do |tag| %>
-                    <span class="tag"><%= tag %></span>
-                <% end %>
-            </div>
-            <div class="col-4">
-                <h5>Characters</h5>
-                <% @characters.each do |tag| %>
-                    <span class="tag"><%= tag %></span>
-                <% end %>
-            </div>
-            <div class="col-4">
-                <h5>Authors</h5>
-                <% @authors.each do |tag| %>
-                    <span class="tag"><%= tag %></span>
-                <% end %>
+            <div class="scroll">
+                <div class="col-4">
+                    <h5>Tags</h5>
+                    <% @tags.each do |tag| %>
+                        <a class="tag"><%= tag %></a>
+                    <% end %>
+                </div>
+                <div class="col-4">
+                    <h5>Characters</h5>
+                    <% @characters.each do |tag| %>
+                        <a class="tag"><%= tag %></a>
+                    <% end %>
+                </div>
+                <div class="col-4">
+                    <h5>Authors</h5>
+                    <% @authors.each do |tag| %>
+                        <a class="tag"><%= tag %></a>
+                    <% end %>
+                </div>
             </div>
         </div>
     </form>

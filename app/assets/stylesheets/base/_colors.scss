@@ -44,8 +44,16 @@ $red: #F33;
 $red_light: lighten($red, 7%);
 $red_dark: darken($red, 9%);
 
-$gray: #222;
+$white: #FFF;
+$white-break: #a2acb7;
+$gray-white: #949fac;
+$gray-light: #6a7989;
+$gray: #49535e;
+$gray-dark: #333a41;
+$gray-black: #1d2025;
+$black: #000;
 
+$background: #eaedee;
 
 $buffer: #323b43;
 $twitter: #00aced;

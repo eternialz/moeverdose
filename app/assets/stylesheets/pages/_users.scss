@@ -3,7 +3,7 @@
 .user_form {
     background-position: center center;
     background-size: cover;
-    background: #FFF;
+    background: $white;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
     margin: 25px auto;
     max-width: 800px;
@@ -11,7 +11,7 @@
     width: 100%;
 
     p {
-        color: #FFF;
+        color: $white;
         text-align: center;
     }
 
@@ -19,23 +19,24 @@
         text-align: center;
 
         a {
-            color: #CCC;
-            font-weight: 900;
+            color: $gray;
+            opacity: .7;
+            font-weight: bold;
             margin: 0 5px;
             outline: none;
         }
 
         a:hover {
-            color: #444;
+            opacity: 1;
         }
     }
 
     label {
         background: rgba(0,0,0,.5);
         border-radius: 3px;
-        color: #FFF;
+        color: $white;
         display: inline-block;
-        font-weight: 900;
+        font-weight: bold;
         padding: 10px;
     }
 
@@ -45,10 +46,9 @@
 }
 
 .userprofile {
-    color: #555;
 
     .username {
-        color: #555;
+        color: $gray;
         display: inline-block;
         font-size: 2em;
         font-style: normal;
@@ -60,37 +60,36 @@
     .user_header {
         background: url($header-image) no-repeat center center;
         background-size: cover;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25), inset 0 -200px 100px -100px rgba(0,0,0,.75);
+        box-shadow: 0 2px 6px rgba($black, .35), inset 0 -200px 100px -100px rgba(0,0,0,.75);
         height: 300px;
         padding: 20px;
         position: relative;
 
         .icon {
-            color: #FFF;
+            color: $white;
             float: right;
             font-size: 1.5em;
             padding: 10px;
-            text-shadow: 0 1px 2px #000;
+            text-shadow: 0 1px 2px $black;
         }
 
         .avatar {
             border-radius: 3px;
             bottom: 20px;
-            box-shadow: 0 1px 3px rgba(0,0,0,.25);
-            background: #FFF;
+            box-shadow: 0 2px 6px rgba(0,0,0,.35);
+            background: $white;
             left: 20px;
             position: absolute;
             z-index: 100;
         }
 
         .role {
-            background: #FFF;
+            background: $white;
             border-radius: 3px;
             bottom: 85px;
-            box-shadow: 0 1px 3px rgba(0,0,0,.25);
-            color: #555;
+            box-shadow: 0 2px 6px rgba(0,0,0,.35);
             font-size: 1.2em;
-            font-weight: 900;
+            font-weight: bold;
             padding: 4px 15px 8px;
             position: absolute;
             right: 20px;
@@ -132,20 +131,22 @@
 }
 
 .user_posts {
-    .favorites, .uploads {
-        background: $gray;
-        border-radius: 3px;
-        overflow: hidden;
+
+    h6 {
+        line-height: 44px;
+        display: inline-block;
+        margin: 0;
     }
 
-    .post-thumbnail {
-        height: 200px;
-        width: 20%;
+    .favorites, .uploads {
+        width: calc(50% - 30px);
+        margin: 15px;
+        border-radius: 3px;
+        background: $gray;
     }
 
     a {
         float: right;
-        margin-top: 15px;
     }
 }
 
@@ -176,7 +177,7 @@
         }
 
         span {
-            color: #fff;
+            color: $white;
             padding: 10px;
             line-height: 30px;
         }
@@ -188,7 +189,7 @@
 
 
     .tooltip {
-        color: #AAA;
+        color: $gray-white;
         margin: 10px;
         cursor: help;
     }
@@ -200,7 +201,7 @@
     #avatar-img {
         display: inline;
         border-radius: 3px;
-        box-shadow: 0 1px 3px rgba(0,0,0,.25);
+        box-shadow: 0 2px 6px rgba(0,0,0,.35);
         float: left;
         position: relative;
         width: 120px;
@@ -229,7 +230,7 @@
         .message {
             border-radius: 3px;
             width: 100%;
-            color: #FFF;
+            color: $white;
             text-align: center;
             padding: 0 20px;
             float: left;
@@ -252,7 +253,7 @@
         background-position: center center;
         background-size: cover;
         border-radius: 3px;
-        box-shadow: 0 1px 3px rgba(0,0,0,.25);
+        box-shadow: 0 2px 6px rgba(0,0,0,.35);
         height: 300px;
         left: 0;
         max-height: 300px;
@@ -270,7 +271,7 @@
 
             span {
                 padding: 10px 13px;
-                background: #fff;
+                background: $white;
                 border-radius: 3px;
                 transition: 170ms box-shadow ease-in-out;
             }

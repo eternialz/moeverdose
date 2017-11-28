@@ -1,3 +1,23 @@
-.cookies_disclaimer {
+#cookies_disclaimer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    background: $gray;
+    color: $white;
     text-align: center;
+
+    p {
+        display: inline-block;
+        padding: 20px;
+        width: calc(100% - 60px);
+    }
+
+    i {
+        cursor: pointer;
+        padding: 20px;
+        float: right;
+    }
+
+    a { color: $pink }
 }

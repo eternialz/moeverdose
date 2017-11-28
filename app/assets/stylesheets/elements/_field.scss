@@ -13,7 +13,7 @@ textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
-    -webkit-box-shadow: 0 0 0px 1000px #000 inset;
+    -webkit-box-shadow: 0 0 0px 1000px $black inset;
     -webkit-text-fill-color: white;
     border: 3px solid transparent;
     transition: background-color 5000s ease-in-out 0s;
@@ -29,14 +29,15 @@ select:-webkit-autofill:focus {
     }
 
     input[type="text"], input[type="email"], input[type="password"], textarea {
-        background: none;
-        background: rgba(0,0,0,.7);
+        background: $gray;
         border-radius: 3px;
         border: 3px solid transparent;
         box-shadow: none;
-        color: #FFF;
+        color: $white;
+        outline: none;
         padding: 10px;
         width: 100%;
+        transition: all 170ms ease-in-out;
     }
 
     input[type="text"], input[type="email"], input[type="password"] {
@@ -47,19 +48,19 @@ select:-webkit-autofill:focus {
     }
 
     input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, textarea:focus {
-        border: 3px solid $blue;
+        box-shadow: 0 0 0 3px $blue;
     }
 
     p {
-        color: #FFF;
-        font-weight: 900;
+        color: $white;
+        font-weight: bold;
         margin-bottom: 10px;
     }
 
     span {
-        color: #FFF;
+        color: $white;
         display: inline-block;
-        font-weight: 900;
+        font-weight: bold;
         padding: 12px 0;
         pointer-events: none;
         position: absolute;

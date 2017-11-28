@@ -1,6 +1,6 @@
 .general_pagination {
-    background: #000;
-    color: #FFF;
+    background: $gray-black;
+    color: $white;
     margin: 0;
     padding: 10px;
     text-align: center;
@@ -21,12 +21,12 @@
         input[type="submit"] {
             background: none;
             border: none;
-            color: #FFF;
+            color: $white;
         }
     }
 
     .pagination {
-        background: #FFF;
+        background: $white;
         border-radius: 3px;
         display: inline-block;
         overflow: hidden;
@@ -41,12 +41,12 @@
 
         span.current {
             background: $pink;
-            color: #FFF;
+            color: $white;
             padding: 10px 17px;
         }
 
         span a {
-            color: #444;
+            color: $gray;
             display: inline-block;
             padding: 10px 17px;
             width: 100%;

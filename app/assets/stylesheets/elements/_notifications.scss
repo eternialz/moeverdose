@@ -14,7 +14,7 @@
     z-index: 150;
 
     .notifications_container {
-        color: #FFF;
+        color: $white;
         margin: auto;
         max-height: calc( 100vh - 96px);
         max-width: 800px;
@@ -26,7 +26,7 @@
     .notification {
         animation-duration: 6s;
         animation-name: opacity;
-        background: #444;
+        background: $gray-dark;
         border-radius: 3px;
         box-shadow: 0 3px 10px rgba(0,0,0,.5);
         margin: 3px auto;

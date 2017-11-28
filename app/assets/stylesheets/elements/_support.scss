@@ -1,7 +1,7 @@
 .btn-support {
     border-radius: 3px;
     border: 3px solid transparent;
-    color: #FFF;
+    color: $white;
     display: block;
     line-height: 20px;
     margin: 30px auto;
@@ -11,7 +11,7 @@
 
     i {
         border-radius: 50%;
-        border: 3px solid #FFF;
+        border: 3px solid $white;
         padding: 5px 4px 3px;
     }
 }

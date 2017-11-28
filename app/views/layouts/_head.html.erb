@@ -4,13 +4,15 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <link href="https://fonts.googleapis.com/css?family=Exo+2:400,600" rel="stylesheet">
-    <%= javascript_include_tag 'application', async: Rails.env.production?, :defer => Rails.env.production?, 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Exo+2:400,500,600" rel="stylesheet">
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <%= csrf_meta_tags %>
 
     <title><%= defined?(@title) ? @title : site_name %></title>
+
+    <meta name="theme-color" content="#50C" />
 
     <%= yield(:cards) %>
 

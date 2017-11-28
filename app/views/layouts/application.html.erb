@@ -4,14 +4,16 @@
 
     <body>
         <%= render "layouts/menu" %>
-        
+
         <%= render "layouts/notifications" %>
 
-        <div class="row">
+        <div class="row content">
             <%= yield %>
         </div>
 
         <%= render "layouts/footer" %>
 
+
+        <%= render "layouts/cookies_disclaimer" %>
     </body>
 </html>

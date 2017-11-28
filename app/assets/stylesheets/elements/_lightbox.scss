@@ -8,9 +8,9 @@
 
 .lightbox {
     background: rgba(0,0,0,.8);
-    color: #FFF;
+    color: $white;
     display: none;
-    font-weight: 900;
+    font-weight: bold;
     height: 100%;
     left: 0;
     line-height: calc(100vh - 80px);

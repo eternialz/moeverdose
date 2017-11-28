@@ -1,15 +1,15 @@
 .admin {
-    background: #FFF;
-    box-shadow: 0 1px 3px rgba(0,0,0,.25), inset 200px 0 #000;
+    background: $white;
+    box-shadow: 0 1px 3px rgba(0,0,0,.25), inset 200px 0 $black;
 
     .navigation {
-        color: #FFF;
+        color: $white;
         float: left;
         min-width: 200px;
         padding: 20px 0;
 
         a {
-            color: #FFF;
+            color: $white;
             display: inline-block;
             padding: 10px;
             width: 100%;
@@ -29,7 +29,7 @@
         }
 
         li ul {
-            background: #222;
+            background: $gray-dark;
             height: 0;
             left: 100%;
             overflow: hidden;
@@ -41,7 +41,7 @@
         }
 
         li:hover a{
-            background: #222;
+            background: $gray-dark;
         }
 
         li:hover ul{
@@ -64,14 +64,14 @@
     }
 
     .admin_list {
-        box-shadow: 0 1px 3px rgba(0,0,0,.25);
+        box-shadow: 0 2px 6px rgba(0,0,0,.35);
 
         li {
-            border-bottom: 1px solid #EEE;
+            border-bottom: 1px solid $white-break;
 
             img.avatar {
                 border-radius: 3px;
-                border: 1px solid #EEE;
+                border: 1px solid $white-break;
                 margin: 10px;
             }
 
@@ -116,7 +116,7 @@
 
     .admin_zone {
         border-radius: 3px;
-        border: 1px solid #EEE;
+        border: 1px solid $white-break;
         margin-bottom: 10px;
         padding: 10px;
 
@@ -131,7 +131,7 @@
         }
 
         .text {
-            background: #EEE;
+            background: $white-break;
             margin-right: 20px;
             max-height: 200px;
             overflow-y: auto;
@@ -150,7 +150,7 @@
 
     .input_zone {
         border-radius: 3px;
-        border: 1px solid #EEE;
+        border: 1px solid $white-break;
         margin-bottom: 10px;
         padding: 15px;
     }
