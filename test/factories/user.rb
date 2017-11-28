@@ -15,7 +15,11 @@ FactoryBot.define do
                 user.posts << build(:post)
             end
 
+            after(:create) do |user|
+                user.posts.each do |p|
+                    p.save
+                end
+            end
         end
     end
 end
-
