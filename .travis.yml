@@ -5,5 +5,7 @@ bundler_args: --without production
 group: stable
 dist: precise
 os: linux
+services:
+    - mongodb
 env:
   - MOEVERDOSE_DEV_HOST=localhost MOEVERDOSE_DEV_PORT=3000
