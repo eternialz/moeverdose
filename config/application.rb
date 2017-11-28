@@ -29,3 +29,7 @@ module Moeverdose
         end
     end
 end
+
+Moeverdose::Application.configure do
+    Paperclip.options[:log] = false
+end
