@@ -3,7 +3,7 @@ require 'config_helper'
 
 class ApplicationControllerTest < ActionDispatch::IntegrationTest
     include ConfigHelper
-    
+
     test 'Home Page' do
         get root_path
         assert_response :success

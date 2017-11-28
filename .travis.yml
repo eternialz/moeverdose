@@ -11,11 +11,11 @@ env:
   - MOEVERDOSE_DEV_HOST=localhost MOEVERDOSE_DEV_PORT=3000
 
 after_success:
-  - wget https://raw.githubusercontent.com/snkrsnkampa/travis-ci-discord-webhook/master/send.sh
+  - wget https://raw.githubusercontent.com/eternialz/travis-ci-discord-webhook/master/send.sh
   - chmod +x send.sh
   - ./send.sh success
 
 after_failure:
-  - wget https://raw.githubusercontent.com/snkrsnkampa/travis-ci-discord-webhook/master/send.sh
+  - wget https://raw.githubusercontent.com/eternialz/travis-ci-discord-webhook/master/send.sh
   - chmod +x send.sh
   - ./send.sh failure

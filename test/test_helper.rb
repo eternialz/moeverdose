@@ -19,6 +19,10 @@ end
 class ActiveSupport::TestCase
 end
 
+def sample_path(name='sample.png')
+    "#{Rails.root}/test/images/#{name}"
+end
+
 def sample_file(name='sample.png')
-    File.new("#{Rails.root}/test/images/#{name}")
+    File.new(sample_path)
 end
