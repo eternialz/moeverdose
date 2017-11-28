@@ -88,7 +88,7 @@ class PostsController < ApplicationController
             @posts_per_page = params[:posts_per_page].to_i < @permited_posts_per_page.last ? params[:posts_per_page] : @permited_posts_per_page.last
         end
 
-        if params[:query] && !params[:query]&.empty?
+        unless params[:query].blank?
             if user_signed_in?
                 @posts, ignored = PostLogic.query_with_blacklist(params[:query], current_user.blacklisted_tags, params[:page], @posts_per_page)
             else

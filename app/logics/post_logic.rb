@@ -74,12 +74,12 @@ class PostLogic < SimpleDelegator
     def self.set_post_tags(params, post)
         tags = params[:tags].downcase.split(" ")
         tags.each do |tag|
-            self.find_or_create(tag, :content, post)
+            TagLogic.find_or_create(tag, :content, post)
         end
 
         characters = params[:characters].downcase.split(" ")
         characters.each do |character|
-            self.find_or_create(character, :character, post)
+            TagLogic.find_or_create(character, :character, post)
         end
     end
 

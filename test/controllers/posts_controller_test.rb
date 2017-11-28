@@ -3,12 +3,15 @@ require "test_helper"
 class PostsControllerTest < ActionDispatch::IntegrationTest
 
     setup do
+        binding.pry
         @user = create(:user_with_post)
-
     end
 
-    test 'index' do
-        assert true
+    test 'all_posts_index' do
+        get posts_path
 
+        assert_response :success
+
+        assert_select 'title', 'All posts - Moeverdose'
     end
 end
