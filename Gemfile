@@ -8,7 +8,7 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0'
 # Use MongoDB as the database
-gem 'mongoid', '~> 6.0.0'
+gem 'mongoid', '~> 6.1.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
@@ -69,7 +69,6 @@ group :development, :test do
     # Gems for test
     gem 'factory_bot_rails'
     gem 'faker', github: 'stympy/faker'
-    gem 'minitest-rails'
 
     # PRY
     gem "pry"
@@ -90,4 +89,8 @@ group :development do
     gem 'flamegraph'
     gem 'bullet'
 
+end
+
+group :test do
+    gem 'minitest-rails'
 end
