@@ -3,7 +3,6 @@ require "test_helper"
 class PostsControllerTest < ActionDispatch::IntegrationTest
 
     setup do
-        binding.pry
         @user = create(:user_with_post)
     end
 
