@@ -23,7 +23,7 @@ module Moeverdose
         #Activate MongoDB Query Caching
         config.middleware.use "Mongoid::QueryCache::Middleware"
 
-        if !(Rails.env.development?) or ENV["FORCE_DISCORD_BOT_START"] == "True"
+        if Rails.env.production? or ENV["FORCE_DISCORD_BOT_START"] == "True"
             config.after_initialize do
             bot = DiscordBot.new()
                 bot.run()
