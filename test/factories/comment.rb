@@ -6,7 +6,7 @@ FactoryBot.define do
 
         factory :comment_reported, class: 'Comment' do
             report {true}
-            report_user {comment.user}
+            report_user {user}
             report_reason {Faker::LeagueOfLegends.quote}
         end
 

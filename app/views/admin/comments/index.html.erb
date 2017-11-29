@@ -1,7 +1,7 @@
 <h2> All Reported Comments </h2>
 <p>List of all reported comments</p>
 <ul class="admin_list comments">
-    <% @comments.each do |comment| %>
+    <% @comments&.each do |comment| %>
         <li>
             <span class="button_list">
                 <a href="<%= admin_comment_unreport_path(comment)%>" class="btn btn-blue">Unreport comment</a>
