@@ -7,7 +7,6 @@ class Admin::CommentsControllerTest < ActionDispatch::IntegrationTest
         @admin = create(:admin)
         sign_in @admin
         @comment = create(:comment_reported)
-        create(:comment_reported)
     end
 
     test 'index' do
