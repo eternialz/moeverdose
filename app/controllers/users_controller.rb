@@ -1,9 +1,13 @@
 class UsersController < ApplicationController
+    before_action :authenticate_user!, only: [:edit, :update]
     before_action :set_user, except: [:index]
+    before_action :check_user, only: [:edit, :update]
     before_action :permitted_per_page, only: [:favorites, :uploads]
 
     def show
         if @user.banned?
+            title("Banned User")
+
             render 'users/banned'
         else
             @current = (current_user == @user)
@@ -17,6 +21,10 @@ class UsersController < ApplicationController
         end
 
         title(@user.name + " profile")
+    end
+
+    def edit
+        title("Edit my profile")
     end
 
     def favorites
@@ -51,12 +59,16 @@ class UsersController < ApplicationController
         end
     end
 
-    def destroy
-    end
-
     private
     def set_user
         @user = User.find_by(name: params[:id])
+    end
+
+    def check_user
+        if current_user != @user
+            flash[:error] = "The user you tried to edit isn't yourself"
+            redirect_to edit_user_path(current_user.name)
+        end
     end
 
     def permitted_per_page
