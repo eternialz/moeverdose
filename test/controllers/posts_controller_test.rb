@@ -120,6 +120,50 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
         end
     end
 
+    test 'all_posts_blacklist_index' do
+        10.times do
+            create(:post, user: @user)
+        end
+
+        sign_in @user
+
+        tag = @post.tags.first.names.first
+        @user.update_attributes(blacklisted_tags: tag)
+
+        get posts_path
+        assert_response :success
+
+        posts = @controller.instance_variable_get(:@posts)
+        posts.each do |post|
+            assert_not post.tags.include?(tag)
+        end
+    end
+
+    test 'query_blacklist_index' do
+        10.times do
+            create(:post, user: @user)
+        end
+
+        sign_in @user
+
+        black_tag = @post.tags.first.names.first
+        @user.update_attributes(blacklisted_tags: black_tag)
+        tag = Tag.where(:names.ne => black_tag).last
+        query = tag.names.first
+        params = {
+            query: query
+        }
+
+        get posts_path, params: params
+        assert_response :success
+
+        posts = @controller.instance_variable_get(:@posts)
+        posts.each do |post|
+            assert_not post.tags.include?(black_tag)
+            assert post.tags.include?(tag)
+        end
+    end
+
     test 'new post' do
         sign_in @user
 
@@ -167,15 +211,15 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     end
 
     test 'Can\'t create post unlogged' do
-        post_count = Post.count
 
-        post posts_path(
-            post: {
-                "post_image" => "1"
-            }
-        )
+        assert_no_difference -> {Post.count} do
+            post posts_path(
+                post: {
+                    "post_image" => "1"
+                }
+            )
+        end
 
-        assert_equal Post.count, post_count
         assert_redirected_to new_user_session_path
     end
 
