@@ -1,5 +1,5 @@
 FactoryBot.define do
-    factory :news do
+    factory :new do
         title {Faker::Witcher.witcher}
         text {Faker::Witcher.quote}
     end
