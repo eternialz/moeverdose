@@ -26,7 +26,7 @@ Rails.application.routes.draw do
 
     patch "/posts/:id/report" => "posts#report", as: 'report_post'
     patch "/posts/:id/dose/:dose" => "posts#dose", as: 'post_dose'
-    patch "/posts/:id/favorite" => "posts#favorite"
+    patch "/posts/:id/favorite" => "posts#favorite", as: 'post_favorite'
 
     #Admin Section
     scope :admin, as: :admin do

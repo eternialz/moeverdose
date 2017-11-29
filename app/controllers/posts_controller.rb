@@ -14,7 +14,11 @@ class PostsController < ApplicationController
         @characters = results[:characters]
         @authors = results[:authors]
 
-        title(@post.title)
+        unless @post.title.blank?
+            title(@post.title)
+        else
+            title("Post")
+        end
     end
 
     def report

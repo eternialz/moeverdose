@@ -8,6 +8,62 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
         @post = @user.posts.first
     end
 
+    test 'show post' do
+        get post_path(@post.number)
+
+        assert_response :success
+
+        unless @post.title.blank?
+            assert_select 'title', @post.title + " - Moeverdose"
+        else
+            assert_select 'title', "Post - Moeverdose"
+        end
+    end
+
+    test 'report post' do
+        @post.report = false
+        @post.save
+
+        sign_in @user
+
+        patch report_post_path @post.number, post: {report_reason: Faker::HowIMetYourMother.catch_phrase}
+
+        @updated_post = Post.find(@post)
+
+        assert_equal true, @updated_post.report?
+        assert_redirected_to post_path(@post.number)
+    end
+
+    test 'Can\'t report post unlogged' do
+        @post.report = false
+        @post.save
+
+        patch report_post_path @post.number, post: {report_reason: Faker::HowIMetYourMother.catch_phrase}
+
+        @updated_post = Post.find(@post)
+
+        assert_equal false, @updated_post.report?
+        assert_redirected_to new_user_session_path
+    end
+
+    test 'favorite post' do
+        sign_in @user
+        fav_count = @user.favorites.count
+
+        patch post_favorite_path @post.number
+
+        @updated_user = User.find(@user)
+
+        assert_not_equal fav_count, @updated_user.favorites.count
+        assert_response :success
+    end
+
+    test 'Can\'t add favorite post unlogged' do
+        patch post_favorite_path @post.number
+
+        assert_redirected_to new_user_session_path
+    end
+
     test 'dose - add overdose' do
         sign_in @user
 
