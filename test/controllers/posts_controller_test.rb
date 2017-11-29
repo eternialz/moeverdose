@@ -8,6 +8,34 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
         @post = @user.posts.first
     end
 
+    test 'dose - add overdose' do
+        sign_in @user
+
+        patch post_dose_path @post.number, dose: "overdose"
+
+        @updated_post = Post.find(@post)
+
+        assert_not_equal @post.overdose, @updated_post.overdose
+    end
+
+    test 'dose - add shortage' do
+        sign_in @user
+
+        patch post_dose_path @post.number, dose: "shortage"
+
+        @updated_post = Post.find(@post)
+
+        assert_not_equal @post.moe_shortage, @updated_post.moe_shortage
+    end
+
+    test 'Can\'t add shortage/overdose unlogged' do
+        post_dose_path @post, ['shortage', 'overdose']
+
+        @updated_post = Post.find(@post)
+
+        assert_equal @post.moe_shortage, @updated_post.moe_shortage
+    end
+
     test 'all_posts_index' do
         get posts_path
 
@@ -36,14 +64,16 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
         end
     end
 
-    test 'post not found' do
-        get post_path(-1)
-        assert_response 404
+    test 'new post' do
+        sign_in @user
+
+        get new_post_path
+        assert_select 'title', 'Upload - Moeverdose'
     end
 
-    test 'random post' do
-        get random_path
-        assert_response 302
+    test 'Can\'t access new post unlogged' do
+        get new_post_path
+        assert_redirected_to new_user_session_path
     end
 
     test 'create post' do
@@ -116,5 +146,15 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
         assert_not_equal @updated_post.source, @post.source
         assert_not_equal @updated_post.description, @post.description
         assert_redirected_to post_path(@post.number)
+    end
+
+    test 'post not found' do
+        get post_path(-1)
+        assert_response 404
+    end
+
+    test 'random post' do
+        get random_path
+        assert_response 302
     end
 end
