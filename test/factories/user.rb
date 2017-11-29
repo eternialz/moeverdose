@@ -23,5 +23,9 @@ FactoryBot.define do
                 end
             end
         end
+
+        factory :user_banned, class: 'User' do
+            banned true
+        end
     end
 end
