@@ -177,7 +177,7 @@ class PostsController < ApplicationController
 
         PostLogic.set_post_tags({tags: params[:tags], characters: params[:characters]}, @post)
 
-        if params[:author_tag] != "" && params[:author_tag] != nil
+        unless params[:author_tag].blank?
             author = TagLogic.find_or_create_author(params[:author_tag], @post)
         end
 
