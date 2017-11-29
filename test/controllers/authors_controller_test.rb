@@ -66,7 +66,21 @@ class AuthorsControllerTest < ActionDispatch::IntegrationTest
     end
 
     test 'Can\'t update author unlogged' do
+        author_params = {
+            name: Faker::FamilyGuy.character + @author.name,
+            biography: Faker::FamilyGuy.quote + @author.name,
+        }
 
-        assert true
+        website_count = @author.websites.count
+
+        patch author_path(
+            @author,
+            author: author_params,
+            websites: Faker::Internet.url + " " + @author.websites.join(" ")
+        )
+
+        @updated_author = Author.find(@author)
+        assert_equal @updated_author.name, @author.name
+        assert_redirected_to new_user_session_path
     end
 end
