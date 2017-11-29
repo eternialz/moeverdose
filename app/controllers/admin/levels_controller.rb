@@ -5,9 +5,6 @@ class Admin::LevelsController < Admin::BaseController
         @levels = Kaminari.paginate_array(Level.all).page(params[:page]).per(20)
     end
 
-    def show
-    end
-
     def new
     end
 
