@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class Admin::LevelsControllerTest < ActionDispatch::IntegrationTest
+class Admin::NewsControllerTest < ActionDispatch::IntegrationTest
     include Devise::Test::IntegrationHelpers
 
     setup do
