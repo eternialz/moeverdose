@@ -2,7 +2,9 @@ require_relative '../factory_helpers'
 FactoryBot.define do
     factory :user do
         email {Faker::Internet.email}
-        name {Faker::HitchhikersGuideToTheGalaxy.character}
+        sequence(:name) do |n|
+            "#{Faker::HitchhikersGuideToTheGalaxy.character}#{n}"
+        end
         password "password"
         association :level, factory: :level
 
