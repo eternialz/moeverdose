@@ -39,7 +39,7 @@ class AuthorsController < ApplicationController
             if index
                 @author.tag.names[0] = @author.tag.names.delete_at(index)
             else
-                @author.tag.names[0] = new_name
+                @author.tag.names[0] = new_name.downcase.tr(' ', '_')
             end
         end
 
@@ -53,7 +53,7 @@ class AuthorsController < ApplicationController
             end
         end
 
-        if flash.now[:error] == nil && @author.save
+        if flash.now[:error] == nil && @author.save && @author.tag.save
             flash.now[:success] = "The author page was updated!"
             redirect_to author_path(@author)
         else
@@ -71,7 +71,7 @@ class AuthorsController < ApplicationController
 
     def author_params
         params.require(:author).permit(
-            :name ,:websites, :biography
+            :name, :biography
         )
     end
 end
