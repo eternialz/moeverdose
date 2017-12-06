@@ -7,8 +7,8 @@ Online soon.
 
 # Requirements
 
-* Rails < 5
-* Ruby <= 2.3.1
+* Rails > 5
+* Ruby >= 2.3.1
 * MongoDB
 * ImageMagick
 
