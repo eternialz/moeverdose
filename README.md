@@ -2,15 +2,18 @@
 
 http://moeverdose.moe | https://twitter.com/moeverdose
 
-A booru made from scratch with Rails 5 and MongoDB
+A taggable image board made from scratch with Rails 5 and MongoDB.
+Online soon.
 
+# Requirements
 
-# Installation
-
-We currently don't provide help for installing and deploying Moeverdose
+* Rails < 5
+* Ruby <= 2.3.1
+* MongoDB
+* ImageMagick
 
 # PLANNED FEATURES
-* Code testing
+
 * Install and Deployment script
 * Possible and better duplicate finder with perceptual hashes instead of md5
 * Better admin features
@@ -26,9 +29,11 @@ We currently don't provide help for installing and deploying Moeverdose
   * Custom banner
   * Avatar GIF
   * No Ads
-* Discord Bot
-* Twitter Bot
 * Ad Sense
+
+# Contributing
+
+See [CONTRIBUTING.md](https://github.com/eternialz/moeverdose/blob/master/CONTRIBUTING.md)
 
 # Licence
 
