@@ -7,15 +7,11 @@
     height: 200px;
     overflow: hidden;
     position: relative;
-    transition:all 100ms linear;
+    transition: opacity 100ms ease-in-out;
     width: 200px;
 
-    img {
-        float: left;
-    }
-
     .informations {
-        background-image: linear-gradient(rgba(0,0,0,.25) 0%, $gray-black 130%);
+        background-image: linear-gradient(rgba(0,0,0,.25) 0%, $gray7 130%);
         color: $white;
         height: 100%;
         left: 0;
@@ -32,13 +28,11 @@
             font-weight: bold;
         }
 
-        h3  {
+        h5  {
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-        }
-
-        h3 {
+            line-height: 1em;
             color: $white;
             width: 180px;
         }
@@ -50,9 +44,34 @@
 
     &:focus {
         outline: none;
-        
+
         .informations {
             opacity: 1;
+        }
+    }
+}
+
+@media only screen and (max-width: $large) {
+    .post-thumbnail {
+        height: 16.666vw;
+        width: 16.666%;
+    }
+}
+
+@media only screen and (max-width: $normal) {
+    .post-thumbnail {
+        height: 20vw;
+        width: 20%;
+    }
+}
+
+@media only screen and (max-width: $small) {
+    .post-thumbnail {
+        height: 25vw;
+        width: 25%;
+
+        .informations {
+            display: none;
         }
     }
 }
@@ -61,26 +80,5 @@
     .post-thumbnail {
         height: 33.333vw;
         width: 33.333%;
-    }
-}
-
-@media only screen and (min-width: $xsmall) and (max-width: $small) {
-    .post-thumbnail {
-        height: 25vw;
-        width: 25%;
-    }
-}
-
-@media only screen and (min-width: $small) and (max-width: $normal) {
-    .post-thumbnail {
-        height: 20vw;
-        width: 20%;
-    }
-}
-
-@media only screen and (min-width: $normal) and (max-width: $large) {
-    .post-thumbnail {
-        height: 16.666vw;
-        width: 16.666%;
     }
 }

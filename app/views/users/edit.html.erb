@@ -1,4 +1,4 @@
-<%= form_for current_user, url: user_path(current_user.name), html: {class: "row userprofile edit", method: :patch } do |f| %>
+<%= form_for current_user, url: user_path(current_user.name), html: {class: "userprofile edit", method: :patch } do |f| %>
     <div class="user_header clearfix" style="background-image: url(<%= @user.banner %>)">
         <img class="avatar" src="<%= @user.avatar %>" width="120" height="120" />
         <div class="user_banner">
@@ -7,16 +7,16 @@
         </div>
     </div>
 
-    <div class="row" id="edit-zone">
+    <div id="edit-zone">
         <div id="edit-title" class="clearfix">
             <span>Careful - unsaved changes</span><button for="submit" class="btn btn-green">Save changes <%= fa_icon "save" %></span></button>
         </div>
     </div>
 
-    <div class="row user_option">
+    <div class="user_option">
         <div class="zone">
             <h3>Profile</h3>
-            <div class="row clearfix">
+            <div class="clearfix">
                 <div class="col-6">
                     <h6><%= fa_icon "user" %> About me</h6>
                     <span class="tooltip"><%= fa_icon "question-circle" %><span class="tip">
@@ -48,7 +48,7 @@
         </div>
 
         <div class="zone">
-            <div class="row image">
+            <div class="image">
                 <h3>Avatar</h3>
                 <span class="tooltip"><%= fa_icon "question-circle" %><span class="tip">
                     Avatars are resized and cropped to 120x120px
@@ -67,7 +67,7 @@
         </div>
 
         <div class="zone">
-            <div class="row image">
+            <div class="image">
                 <h3>Banner</h3>
                 <span class="tooltip"><%= fa_icon "question-circle" %><span class="tip">
                     Banners are resized and cropped to 1600x300px

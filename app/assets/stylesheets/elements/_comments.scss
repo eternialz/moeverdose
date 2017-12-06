@@ -1,8 +1,4 @@
 
-.comments {
-    padding: 20px;
-}
-
 .comment {
     clear: both;
     min-height: 80px;
@@ -31,19 +27,18 @@
         position: relative;
 
         h5 {
-            color: $pink;
             display: block;
             float:left;
             margin: 0 5px 0 0;
         }
 
         h5:after {
-            color: $gray-light;
+            color: $gray3;
             font-size: 0.8em;
         }
 
-        a.comment_number {
-            color: $white-break;
+        .comment_number {
+            color: $gray2;
             float: right;
             font-size: 0.8em;
             margin-left: 20px;
@@ -51,9 +46,9 @@
             z-index: 1000;
         }
 
-        a.report {
+        .report {
             float: right;
-            color: $white-break;
+            color: $gray2;
             font-size: 0.8em;
         }
 
@@ -91,69 +86,34 @@
     }
 }
 
-h5.administrator {
-    color: $blue !important;
+.administrator {
+    color: $green;
 
     &:after {
         content: " (administrator)"
     }
 }
 
-h5.moderator {
-    color: $blue !important;
+.moderator {
+    color: $orange;
 
     &:after {
         content: " (moderator)"
     }
 }
 
-h5.contributor {
-    color: $yellow !important;
+.contributor {
+    color: $yellow;
 
     &:after {
         content: " (contributor)"
     }
 }
 
-h5.developper {
-    color: $orange !important;
-
-    &:after {
-        content: " (developper)"
-    }
-}
-
-h5.banned {
-    color: $gray-white !important;
+.banned {
+    color: $gray2;
 
     &:after {
         content: " (banned)"
-    }
-}
-
-.comment-form {
-    h3 {
-        display: inline-block;
-        margin: 0;
-        padding: 10px;
-    }
-
-    #char_count {
-        color: $white-break;
-        font-size: 0.7em;
-        margin-left: 20px;
-    }
-
-    textarea {
-        box-shadow: none;
-    }
-
-    .button-zone {
-        border-top: 1px solid rgba(0,0,0,.1);
-        text-align: center;
-    }
-
-    input[type="submit"] {
-        margin: 5px;
     }
 }

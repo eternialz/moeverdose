@@ -1,33 +1,31 @@
 
 .search-form {
-    background: image_url($header-image) no-repeat center center;
+    background: $gray6;
     background-size: cover;
-    box-shadow: 0 2px 6px rgba(0,0,0,.35), inset 0 0 0 23px rgba(0,0,0,.5);
-    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07), 0 1px 3px rgba(0,0,0,.25);
+    padding: 1em;
 
     #search {
-        background: $gray;
+        background: $gray4;
         position: relative;
         border-radius: 3px;
-        box-shadow: 0 2px 6px rgba($black, .35);
     }
 
-    input[type=text] {
+    input {
         background: none;
         border: 0;
         box-shadow: none;
         color: $white;
         font-weight: bold;
         float: left;
-        height: 49px;
-        padding: 10px 102px 10px 10px;
+        line-height: 49px;
+        padding: 0 102px 0 10px;
         transition: all 170ms ease-in-out;
-        width: 100%;
     }
 
-    input[type=text]:focus {
+    input:focus {
         box-shadow: 0 0 0 3px $blue;
-        background: mix($gray, $black, 90%);
+        background: $gray5;
         outline: none;
     }
 
@@ -65,7 +63,7 @@
     .tag_list {
         border-radius: 3px;
         overflow: hidden;
-        background: $gray;
+        background: $gray4;
         float: left;
         height: 0;
         transition: all 170ms ease-in-out;
@@ -73,7 +71,7 @@
         top: calc(100% + 10px);
         position: absolute;
         z-index: 1000;
-        box-shadow: 0 2px 6px rgba($black, .5);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2), 0 3px 10px rgba(0,0,0,.07), 0 1px 3px rgba(0,0,0,.5);
     }
 
     .tag_list .scroll {

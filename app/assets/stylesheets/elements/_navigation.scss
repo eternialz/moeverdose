@@ -1,105 +1,86 @@
-nav.menu {
-    background: $gray-dark;
+.menu {
+    background: $gray5;
     box-shadow: 0 -3px 6px 5px rgba($black, .35);
     color: $white;
-    height: 96px;
+    height: 5em;
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 20000;
 
+    #site {
+        font-size: 1em;
+        color: $white;
+        display: inline-block;
+        line-height: 1em;
+    }
+
     .container {
-        background: $gray-dark;
-        height: 96px;
-        padding: 10px 0 0 0;
+        background: $gray5;
+        height: 5em;
+        padding: 1em;
         position: relative;
         z-index: 5000;
+    }
 
-        h1 {
-            color: $white;
+    ul {
+        display: inline-block;
+        margin-bottom: 0.5em;
+        padding: 0 1em;
+
+        li {
             display: inline-block;
-            padding-left: 10px;
         }
 
-        span {
-            margin-left: 20px;
-            padding: 10px;
+        a {
+            color: $gray2;
+            padding: 5px 10px;
+            text-align: center;
+            transition:all 100ms linear;
+            font-weight: 500;
         }
 
         @media only screen and (max-width: $small) {
-            .user .avatar, .user img {
-                width: 46px;
-                height: 46px;
-            }
-
-            .user a.avatar {
-                margin: 0 !important;
-            }
-
-            .user img {
-                width: 40px;
-                height: 40px;
-            }
-
-            #username {
+            a {
                 display: none;
             }
         }
 
-        .user {
-            float: right;
-
-            #username {
-                font-size: 1.1em;
-                text-transform: capitalize;
-                margin-top: 40px;
-            }
-
-            a {
-                color: $white;
-                display: inline-block;
-                margin: 0 0 8px 0;
-            }
-
-            span {
-                float: right;
-            }
-
-            a.avatar {
-                border-radius: 6px;
-                border: 3px solid rgba(0,0,0,0);
-                float: right;
-                overflow: hidden;
-                padding: 0;
-                margin: 5px 10px;
-
-                img {
-                    float: left;
-                }
-            }
-
-            a.avatar:hover {
-                border-color: $blue;
-                border-radius: 3px;
-            }
+        i {
+            margin-right: 10px;
         }
     }
 
-    @media only screen and (max-width: $small) {
-        height: 65px;
+    a:hover {
+        color: $white;
+    }
 
-        .container {
-            height: 65px;
+    .user {
+        float: right;
+
+        #username {
+            color: $white;
+            font-size: 1em;
+            text-transform: capitalize;
+            line-height: 3em;
+            margin-right: 1em;
         }
 
-        #random {
-            display: none;
+        .avatar {
+            border-radius: 3px;
+            float: right;
+            overflow: hidden;
+            padding: 0;
+
+            img {
+                width: 3em;
+                height: 3em;
+                float: left;
+            }
         }
 
-        h1 {
-            line-height: 45px;
-            font-size: 1.2em;
-            margin: 0;
+        .avatar:hover {
+            box-shadow: 0 0 0 3px $blue;
         }
     }
 
@@ -108,51 +89,46 @@ nav.menu {
         border-radius: 3px;
         color: $white;
         background: rgba($white, 0.5);
-        font-size: 24px;
-        line-height: 40px;
-        width: 40px;
+        font-size: 1em;
+        line-height: 3em;
+        width: 3em;
         text-align: center;
         float: right;
-        margin: 3px 10px;
+        margin-left: 0.5em;
     }
 
     @media only screen and (max-width: $small) {
+        position: static;
+        height: 5em;
+
+        #random {
+            display: none;
+        }
+
+        #site {
+            line-height: 3em;
+        }
+
+        .user .avatar, .user img {
+            width: 3em;
+            height: 3em;
+        }
+
+        .user a.avatar {
+            margin: 0 !important;
+        }
+
+        .user img {
+            width: 100%;
+            height: 100%;
+        }
+
+        #username {
+            display: none;
+        }
+
         a#menu_label {
             display: inline-block;
         }
-    }
-
-    ul {
-        display: block;
-        margin-bottom: 10px;
-        padding: 10px 0;
-
-        li {
-            display: inline-block;
-
-            a {
-                color: $white-break;
-                padding: 5px 10px;
-                text-align: center;
-                transition:all 100ms linear;
-                font-weight: 500;
-            }
-
-            @media only screen and (max-width: $small) {
-                a {
-                    display: none;
-                }
-            }
-
-            i {
-                margin-right: 10px;
-            }
-
-        }
-    }
-
-
-    a:hover {
-        color: $white;
     }
 }

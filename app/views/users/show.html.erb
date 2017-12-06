@@ -18,7 +18,7 @@
         </div>
     </div>
 
-    <div class="zone biography row">
+    <div class="zone biography">
         <h3 class="zone_title">About me</h3>
         <div class="col-6">
             <h6>biography</h6>
@@ -47,7 +47,7 @@
     </div>
 
     <% cache @user do %>
-        <div class="zone tags row">
+        <div class="zone tags">
             <h3 class="zone_title">My Tags</h3>
             <div class="col-6">
                 <h6>Favorites Tags</h6>
@@ -71,7 +71,7 @@
             </div>
         </div>
 
-        <div class="zone row user_posts">
+        <div class="zone user_posts">
             <h3 class="zone_title">Posts</h3>
             <div class="col-6 favorites">
                 <% if @user.favorites.any? %>

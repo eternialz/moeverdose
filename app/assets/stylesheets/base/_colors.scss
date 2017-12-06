@@ -1,59 +1,43 @@
 $default: #50C;
 $default_light: lighten($default, 15%);
 $default_dark: darken($default, 9%);
-.default {
-    color: $default;
-}
 
-$pink: #f09;
+$pink: #ef34a4;
 $pink_light: lighten($pink, 20%);
 $pink_dark: darken($pink, 9%);
-.pink {
-    color: $pink;
-}
 
 $blue: #1AB;
 $blue_light: lighten($blue, 10%);
 $blue_dark: darken($blue, 9%);
-.blue {
-    color: $blue;
-}
 
-$green: #1B2;
+$green: #3cc94a;
 $green_light: lighten($green, 15%);
 $green_dark: darken($green, 9%);
-.green {
-    color: $green;
-}
 
-$yellow: #fc2;
+$yellow: #e9b32a;
 $yellow_light: lighten($yellow, 15%);
 $yellow_dark: darken($yellow, 9%);
-.yellow {
-    color: $yellow;
-}
 
 $orange: #F60;
 $orange_light: lighten($orange, 15%);
 $orange_dark: darken($orange, 9%);
-.orange {
-    color: $orange;
-}
 
 $red: #F33;
 $red_light: lighten($red, 7%);
 $red_dark: darken($red, 9%);
 
-$white: #FFF;
-$white-break: #a2acb7;
-$gray-white: #949fac;
-$gray-light: #6a7989;
-$gray: #49535e;
-$gray-dark: #333a41;
-$gray-black: #1d2025;
-$black: #000;
-
-$background: #eaedee;
+$white: #FDFDFD;
+$gray0: #DFE3E8;
+$gray1: #CED4DB;
+$gray2: #949FA9;
+$gray3: #6a7982;
+$gray4: #49535e;
+$gray5: #333a41;
+$gray6: #282d33;
+$gray7: #1d2025;
+$gray8: #121417;
+$gray9: #070809;
+$black: #030307;
 
 $buffer: #323b43;
 $twitter: #00aced;

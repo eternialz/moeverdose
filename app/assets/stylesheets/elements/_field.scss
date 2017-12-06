@@ -13,7 +13,7 @@ textarea:-webkit-autofill:focus,
 select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus {
-    -webkit-box-shadow: 0 0 0px 1000px $black inset;
+    -webkit-box-shadow: 0 0 0 1000px $black inset;
     -webkit-text-fill-color: white;
     border: 3px solid transparent;
     transition: background-color 5000s ease-in-out 0s;
@@ -29,7 +29,7 @@ select:-webkit-autofill:focus {
     }
 
     input[type="text"], input[type="email"], input[type="password"], textarea {
-        background: $gray;
+        background: $gray4;
         border-radius: 3px;
         border: 3px solid transparent;
         box-shadow: none;

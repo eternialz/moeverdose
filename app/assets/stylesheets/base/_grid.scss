@@ -1,85 +1,56 @@
 
 $width: 100%;
-$gutter: 30px;
-
-.row {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 1400px;
-    position: relative;
-    width: 100%;
-}
-
-@media only screen and (min-width: $xlarge) {
-    .row {
-        max-width: 1600px;
-    }
-}
-
-@media only screen and (min-width: $xxlarge) {
-    .row {
-        max-width: 1800px;
-    }
-}
+$gutter: 2em;
 
 .row [class^="col-"] {
     float: left;
     min-height: 0.125rem;
     padding: $gutter / 2;
     text-align: left;
-}
-
-[class^="col-"] {
     width: 100%;
 }
 
-.row .col-sm {
+.row .no-pad {
     padding: 0;
+}
 
-    &:first-child {
-        padding-right: $gutter / 2;
+.row {
+    @extend %clearfix;
+
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1400px;
+    position: relative;
+    width: 100%;
+
+    @media only screen and (min-width: $xsmall) {
+        .col-1 { width:($width / 12) }
+        .col-2 { width: ($width / 6) }
+        .col-3 { width: ($width / 4) }
+        .col-4 { width: ($width / 3) }
+        .col-5 { width: ($width / (12 / 5)) }
+        .col-6 { width: ($width / 2) }
+        .col-7 { width: ($width / (12 / 7)) }
+        .col-8 { width: ($width / (12 / 8)) }
+        .col-9 { width: ($width / (12 / 9)) }
+        .col-10 { width: ($width / (12 / 10)) }
+        .col-11 { width: ($width / (12 / 11)) }
+        .col-12 { width: $width; }
     }
 
-    &:last-child {
-        padding-left: $gutter / 2;
+    @media only screen and (min-width: $large) {
+        max-width: 80%;
     }
 
-    @media only screen and (max-width: $xsmall) {
-        &:first-child, &:last-child {
-            padding: 0 !important;
-        }
+    @media only screen and (min-width: $xlarge) {
+        max-width: 73%;
     }
-}
 
-.row::after {
-    content: "";
-    display: table;
-    clear: both;
-}
+    @media only screen and (min-width: $xxlarge) {
+        max-width: 66.5%;
+    }
 
-@media only screen and (min-width: $xsmall) {
-    .col-1 { width:($width / 12) }
-    .col-2 { width: ($width / 6) }
-    .col-3 { width: ($width / 4) }
-    .col-4 { width: ($width / 3) }
-    .col-5 { width: ($width / (12 / 5)) }
-    .col-6 { width: ($width / 2) }
-    .col-7 { width: ($width / (12 / 7)) }
-    .col-8 { width: ($width / (12 / 8)) }
-    .col-9 { width: ($width / (12 / 9)) }
-    .col-10 { width: ($width / (12 / 10)) }
-    .col-11 { width: ($width / (12 / 11)) }
-    .col-12 { width: $width; }
-}
-
-/* Global Elements */
-.clearfix:after {
-    clear: both;
-    content: " ";
-    display: block;
-    height: 0;
-}
-
-.hide {
-    display: none;
+    @media only screen and (min-width: $xxxlarge) {
+        max-width: 60%;
+    }
 }
