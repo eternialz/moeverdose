@@ -21,7 +21,7 @@ class Admin::UsersController < Admin::BaseController
         )
         @user.assign_attributes(user_params)
         if @user.save
-            render @user
+            redirect_to admin_user_path(@user)
         else
             render :edit
         end
