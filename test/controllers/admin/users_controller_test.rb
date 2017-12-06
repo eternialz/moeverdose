@@ -13,11 +13,6 @@ class Admin::UsersControllerTest < ActionDispatch::IntegrationTest
         assert_response :success
     end
 
-    test 'show' do
-        get admin_user_path(@admin)
-        assert_response :success
-    end
-
     test 'edit' do
         get edit_admin_user_path(@admin)
         assert_response :success
@@ -30,10 +25,10 @@ class Admin::UsersControllerTest < ActionDispatch::IntegrationTest
                 role: :administrator
             }
         }
-        patch admin_user_role(user), params: params
+        patch admin_user_path(user), params: params
         user.reload
         assert_equal :administrator, user.role
-        assert_redirected_to admin_user_role(user)
+        assert_redirected_to admin_users_path
     end
 
     test 'update_report' do
@@ -43,10 +38,10 @@ class Admin::UsersControllerTest < ActionDispatch::IntegrationTest
                 report: false
             }
         }
-        patch admin_user_role(user), params: params
+        patch admin_user_path(user), params: params
         user.reload
         assert_not user.report
-        assert_redirected_to admin_user_role(user)
+        assert_redirected_to admin_user_path(user)
     end
 
     test 'ban' do

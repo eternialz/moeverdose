@@ -33,7 +33,7 @@ Rails.application.routes.draw do
         root 'admin/dashboard#index', as: 'dashboard'
 
         get "stats" => "admin/dashboard#stats", as: 'stats'
-        resources :users, controller: "admin/users", except: [:new, :create]
+        resources :users, controller: "admin/users", except: [:new, :create, :show]
         patch 'ban_user/:id', controller: "admin/users", action: :ban, as: 'user_ban'
         resources :news, controller: "admin/news"
         resources :posts, controller:"admin/posts", except: [:new, :create]

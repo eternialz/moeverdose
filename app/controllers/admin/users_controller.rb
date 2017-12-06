@@ -9,9 +9,6 @@ class Admin::UsersController < Admin::BaseController
         end
     end
 
-    def show
-    end
-
     def edit
     end
 
@@ -21,7 +18,7 @@ class Admin::UsersController < Admin::BaseController
         )
         @user.assign_attributes(user_params)
         if @user.save
-            redirect_to admin_user_path(@user)
+            redirect_to admin_users_path
         else
             render :edit
         end
