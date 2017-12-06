@@ -14,7 +14,11 @@ class PostsController < ApplicationController
         @characters = results[:characters]
         @authors = results[:authors]
 
-        title(@post.title)
+        unless @post.title.blank?
+            title(@post.title)
+        else
+            title("Post")
+        end
     end
 
     def index
@@ -24,7 +28,7 @@ class PostsController < ApplicationController
             @posts_per_page = params[:posts_per_page].to_i < @permited_posts_per_page.last ? params[:posts_per_page] : @permited_posts_per_page.last
         end
 
-        if params[:query] && !params[:query]&.empty?
+        unless params[:query].blank?
             if user_signed_in?
                 @posts, ignored = PostLogic.query_with_blacklist(params[:query], current_user.blacklisted_tags, params[:page], @posts_per_page)
             else
@@ -123,7 +127,7 @@ class PostsController < ApplicationController
 
         PostLogic.set_post_tags({tags: params[:tags], characters: params[:characters]}, @post)
 
-        if params[:author_tag] != "" && params[:author_tag] != nil
+        unless params[:author_tag].blank?
             author = TagLogic.find_or_create_author(params[:author_tag], @post)
         end
 

@@ -1,7 +1,5 @@
 require_relative 'boot'
 
-
-
 require "action_controller/railtie"
 require "action_cable/engine"
 require "active_model/railtie"
@@ -21,13 +19,17 @@ module Moeverdose
         config.exceptions_app = self.routes
 
         #Activate MongoDB Query Caching
-        config.middleware.use "Mongoid::QueryCache::Middleware"
+        config.middleware.use Mongoid::QueryCache::Middleware
 
-        if !(Rails.env.development?) or ENV["FORCE_DISCORD_BOT_START"] == "True"
+        if Rails.env.production? or ENV["FORCE_DISCORD_BOT_START"] == "True"
             config.after_initialize do
             bot = DiscordBot.new()
                 bot.run()
             end
         end
     end
+end
+
+Moeverdose::Application.configure do
+    Paperclip.options[:log] = false
 end

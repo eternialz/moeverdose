@@ -9,6 +9,7 @@ class StaticPagesController < ApplicationController
     end
 
     def show
+        title(params[:page].capitalize)
         if user_signed_in?
             render "static/#{params[:page]}"
         elsif stale?(params[:page])

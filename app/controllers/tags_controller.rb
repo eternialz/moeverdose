@@ -33,7 +33,7 @@ class TagsController < ApplicationController
             redirect_to tags_path
         else
             flash.now[:error] = "The modifications you entered are invalid. Please verify the informations and try to save again."
-            edit
+            redirect_to edit_tag_path(@tag)
         end
     end
 

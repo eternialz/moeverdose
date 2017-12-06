@@ -6,8 +6,8 @@ Rails.application.routes.draw do
     root 'application#home'
 
     # Static contents
-    get "/pages/:page" => "static_pages#show"
-    get "/pages/help/:page" => "static_pages#help"
+    get "/pages/:page" => "static_pages#show", as: :static_page
+    get "/pages/help/:page" => "static_pages#help", as: :static_help_page
 
     # Posts
     get "/random" => "posts#random", as: :random

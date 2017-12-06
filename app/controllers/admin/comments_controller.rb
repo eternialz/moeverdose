@@ -18,10 +18,10 @@ class Admin::CommentsController < Admin::BaseController
         @comment.report_reason = ""
         if @comment.save
             flash[:notice] = "Comment unreported"
-            render :index
+            redirect_to admin_comments_path
         else
             flash[:error] = "An error occured"
-            render :index
+            redirect_to admin_comments_path
         end
     end
 
