@@ -1,29 +1,24 @@
-nav.menu .submenu {
-    background: rgba($gray-black, .92);
+.menu .submenu {
+    background: rgba($gray7, .92);
     box-shadow: 0 4px 0 $pink;
     height: 240px;
-    padding-left: 25px;
+    padding-left: 1em;
     position: absolute;
     text-shadow: none;
-    top: -148px;
+    top: calc(-244px + 5em);
     transition: all 130ms ease-out;
     visibility: visible;
     width: 100%;
     z-index: 200;
 
-    a {
-        color: $white;
-    }
-
     ul {
         border-top: 4px solid rgba(0,0,0,.0);
         float: left;
+        font-size: 0.9em;
         height: 240px;
-        margin-right: 25px;
-        margin: 0;
         min-width: 160px;
         overflow-y: hidden;
-        padding-top: 10px;
+        padding: 0.6em 0.5em 0 0;
         top: 0;
         transition: border 100ms linear;
 
@@ -36,9 +31,6 @@ nav.menu .submenu {
             display: none;
         }
 
-        div {
-            @extend %clearfix;
-        }
     }
 
     ul.login {
@@ -52,20 +44,20 @@ nav.menu .submenu {
         }
 
         p {
-            color: $white-break;
+            color: $gray2;
         }
 
-        input[type="email"], input[type="password"] {
-            background: $gray-dark;
+        input {
+            background: $gray5;
             border-radius: 3px;
             border: 0;
-            color: $white-break;
+            color: $gray2;
             margin-bottom: 5px;
             padding: 8px;
             width: 100%;
         }
 
-        input[type="email"]:invalid, input[type="password"]:invalid {
+        input:invalid {
             border: none;
             box-shadow: none;
         }
@@ -87,11 +79,11 @@ nav.menu .submenu {
     }
 
     ul.my-account, ul.login {
-        background: $gray;
+        background: $gray4;
+        box-shadow: 0 4px 0 $blue;
         float: right;
         margin-right: 0;
-        padding: 10px 20px;
-        box-shadow: 0 4px 0 $blue;
+        padding: 0.6em 1em;
 
         h3, h3 a, a:hover, a:hover:before {
             color: $blue,
@@ -106,19 +98,21 @@ nav.menu .submenu {
         }
     }
 
-
     ul.register {
-        background: $gray-dark;
+        background: $gray5;
         padding: 10px 20px;
         right: 219px;
     }
 
-    ul.login:hover {
-        border-top: 4px solid transparent;
-    }
 
-    ul:hover {
-        border-top: 4px solid $pink;
+    @media only screen and (min-width: $small) {
+        ul.login:hover {
+            border-top: 4px solid transparent;
+        }
+
+        ul:hover {
+            border-top: 4px solid $pink;
+        }
     }
 
     li {
@@ -126,6 +120,7 @@ nav.menu .submenu {
     }
 
     a {
+        color: $white;
         display: block;
         padding: 4px;
         text-align: left;
@@ -142,29 +137,23 @@ nav.menu .submenu {
     }
 }
 
-nav.menu .submenu.develop {
-    top: 96px;
+.menu .submenu.develop {
+    top: 5em;
     visibility: visible;
 }
 
-
-@media only screen and (min-width: $small) {
-    label {
-        cursor: auto;
-    }
-}
 @media only screen and (max-width: $small) {
-    nav.menu .submenu {
+    .menu .submenu {
+        display: none;
+        font-weight: lighter;
         overflow-y: scroll;
         padding: 0;
         transition: none;
-        font-size: 1.2em;
-        font-weight: lighter;
 
         label {
             display: block;
             opacity: 0.65;
-            padding: 10px 0;
+            padding: 0.5em 0;
 
             h3 {
                 font-weight: normal;
@@ -182,21 +171,20 @@ nav.menu .submenu.develop {
         }
 
         ul {
-            border: 0 !important;
             float: none;
             height: auto;
             padding: 0;
             position: static;
             width: 100%;
+            margin: 0;
         }
 
-        a {
-            color: $white !important;
-            padding: 7px 0;
+        a:hover:before , a:hover {
+            color: $white;
         }
 
         a::before {
-            color: $white !important;
+            color: $white;
             display: inline-block;
             text-align: center;
             width: 40px;
@@ -206,26 +194,16 @@ nav.menu .submenu.develop {
             margin: 0;
         }
 
-        .my-account,  ul.login, ul.register {
+        .my-account,  .login, .register {
             display: none;
         }
     }
 
-    nav.menu {
-        position: static;
-    }
-
-
-    nav.menu .submenu {
-        top: -180px;
-    }
-
-    nav.menu .submenu.develop {
-        background: $gray;
+    .menu .submenu.develop {
+        display: block;
+        background: $gray4;
         height: auto;
         padding-bottom: 15px;
-        top: 65px;
-        visibility: visible;
         z-index: 10000;
     }
 }

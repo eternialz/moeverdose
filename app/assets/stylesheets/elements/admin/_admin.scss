@@ -1,0 +1,31 @@
+.admin {
+    @import 'navigation';
+    @import 'list';
+    @import 'zone';
+    @import 'comments';
+    @import 'levels';
+
+    background: $white;
+    box-shadow: 0 1px 3px rgba(0,0,0,.25), inset 200px 0 $black;
+
+    .content {
+        float: left;
+        height: 100%;
+        padding: 50px;
+        width: calc( 100% - 200px );
+    }
+
+    &::after {
+        clear: both;
+        content: " ";
+        display: block;
+        width: 100%;
+    }
+
+    .input_zone {
+        border-radius: 3px;
+        border: 1px solid $gray2;
+        margin-bottom: 10px;
+        padding: 15px;
+    }
+}

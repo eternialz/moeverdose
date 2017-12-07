@@ -1,4 +1,4 @@
-<div class="row list">
+<div class="list">
     <% @authors.each do |a| %>
         <% cache ["author_index", a] do %>
             <ul>
@@ -6,6 +6,9 @@
                     <%= link_to author_path(a), class: "title" do %>
                         <h5><%= a.name %></h5>
                     <% end %>
+                    <a class="count" href="<%= edit_author_path(a) %>">
+                        <%= fa_icon "edit" %>
+                    </a>
                 </li>
             </ul>
         <% end %>

@@ -1,6 +1,6 @@
 <%= render 'tags/search' %>
 
-<div class="row list">
+<div class="list">
     <% @tags.each do |t| %>
         <% cache ["tag_index", t] do %>
             <ul>
@@ -8,7 +8,7 @@
                     <%= link_to posts_path(query: t.names[0]), class: "title " + t.type.to_s do %>
                         <h5><%= t.names[0] %></h5>
                     <% end %>
-                    <a class="count" href="<%= edit_tag_path(t) %>">
+                    <a class="edit" href="<%= edit_tag_path(t) %>">
                         <%= fa_icon "edit" %>
                     </a>
                     <div class="count">

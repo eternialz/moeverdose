@@ -1,0 +1,152 @@
+.userprofile.edit {
+    #edit-zone {
+        bottom: 10px;
+        left: 0;
+        position: fixed;
+        width: 100%;
+        z-index: 100;
+    }
+
+    #edit-title {
+        transition: 170ms transform ease-in-out;
+        background: $gray9;
+        box-shadow: 0 2px 5px rgba($black, .25);
+        border-radius: 3px;
+        padding: 9px;
+        width: 800px;
+        max-width: calc(100vw - 20px);
+        margin: auto;
+        transform: translateY(100px);
+
+        .btn {
+            width: auto;
+            margin: 0;
+            float: right;
+        }
+
+        span {
+            color: $white;
+            padding: 10px;
+            line-height: 30px;
+        }
+    }
+
+    #edit-title.modified {
+        transform: none;
+    }
+
+    .tooltip {
+        color: $gray2;
+        margin: 10px;
+        cursor: help;
+    }
+
+    h3, h6 {
+        display: inline-block;
+    }
+
+    #avatar-img {
+        display: inline;
+        border-radius: 3px;
+        box-shadow: 0 2px 6px rgba(0,0,0,.35);
+        float: left;
+        position: relative;
+        width: 120px;
+        height: 120px;
+        background-position: center;
+        background-size: cover;
+        margin: 0;
+
+        &:hover .message{
+            background: rgba($gray4, .2);
+        }
+    }
+
+    .avatar-upload {
+        line-height: 120px;
+
+        input {
+            position: absolute;
+            left: 0;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .message {
+            border-radius: 3px;
+            width: 100%;
+            color: $white;
+            text-align: center;
+            padding: 0 20px;
+            float: left;
+            transition: 170ms all ease-in-out;
+            background: rgba($gray4, .5);
+        }
+
+        .btn {
+            line-height: 1.4;
+            margin: 20px;
+        }
+
+        label {
+            float: left;
+        }
+    }
+
+    #banner_img {
+        background-position: center center;
+        background-size: cover;
+        border-radius: 3px;
+        box-shadow: 0 2px 6px rgba(0,0,0,.35);
+        height: 300px;
+        left: 0;
+        max-height: 300px;
+        position: relative;
+        margin: 0;
+        width: 100%;
+
+        label {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transition: 170ms all ease-in-out;
+            border-radius: 3px;
+            background: rgba($gray4, .5);
+
+            span {
+                padding: 10px 13px;
+                background: $white;
+                border-radius: 3px;
+                transition: 170ms box-shadow ease-in-out;
+            }
+        }
+
+        .message {
+            pointer-events: none;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            font-weight: bold;
+            font-size: 1.3em;
+            text-align: center;
+            line-height: 300px;
+        }
+
+        input[type="file"] {
+            opacity: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        label:hover {
+            background: rgba($gray4, 0.2);
+
+            span {
+                box-shadow: 0 0 0 5px rgba($blue, .8);
+            }
+
+        }
+    }
+}

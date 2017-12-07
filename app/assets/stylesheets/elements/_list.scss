@@ -7,19 +7,22 @@
         background: $white;
         box-shadow: 0 2px 6px rgba(0,0,0,.35);
         display: block;
-        height: 54px;
         margin: 6px 0;
         overflow: hidden;
         padding: 0;
 
-        .title, .count {
-            background: $background;
+        .title, .count, .edit {
+            background: $gray0;
             float: left;
-            height: 54px;
-            padding: 18px 16px;
+            line-height: 3em;
+            padding: 0 1em;
         }
 
-        .count {
+        .title {
+            border-right: 1px solid $white;
+        }
+
+        .edit {
             float: right;
         }
 
@@ -32,13 +35,13 @@
         }
 
         span {
-            border-left: 1px solid $background;
+            border-left: 1px solid $gray0;
             display: inline-block;
             float: left;
-            height: 54px;
+            line-height: 3em;
             max-width: 150px;
             overflow: hidden;
-            padding: 18px 16px;
+            padding: 0 1em;
             text-overflow: ellipsis;
             white-space: nowrap;
         }

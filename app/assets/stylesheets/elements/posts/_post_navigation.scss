@@ -1,0 +1,37 @@
+.post_navigation {
+    background: $white;
+    padding: 1em;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07), 0 1px 3px rgba(0,0,0,.25);
+
+    h2 {
+        display: inline-block;
+        line-height: 2em;
+        margin: 0;
+        font-size: 1em;
+        max-width: calc(100% - 400px);
+        overflow: hidden;
+        clear: both;
+        text-overflow: ellipsis;
+
+        @media only screen and (max-width: $xsmall) {
+            max-width: calc(100% - 30px);
+            overflow: visible;
+            text-overflow: clip;
+        }
+    }
+
+
+    .next {
+        float: right;
+    }
+
+    .previous {
+        float: left;
+
+        i {
+            float: left;
+            margin: 0 1em 0 0;
+        }
+    }
+}

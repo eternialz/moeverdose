@@ -14,7 +14,7 @@
     <meta property="og:image" content="<%= request.base_url + @post.post_image.url %>" />
 <% end %>
 
-<div class="row posts">
+<div class="posts">
     <%= render 'posts/search' %>
     <% cache @post do %>
         <div class="post-container">
@@ -46,23 +46,25 @@
                 </div>
             </div>
 
-            <div id="post-score" class="clearfix">
-                <div class="overdose_bar clearfix" style="width: 50%">
-                    <span class="overdose_score"><%= @post.overdose %></span>
+            <div id="doses">
+                <div id="post-score" class="clearfix">
+                    <div class="overdose_bar clearfix" style="width: 50%">
+                        <span class="overdose_score"><%= @post.overdose %></span>
+                    </div>
+                    <div class="shortage_bar clearfix" style="width: 50%">
+                        <span class="shortage_score"><%= @post.moe_shortage %></span>
+                    </div>
                 </div>
-                <div class="shortage_bar clearfix" style="width: 50%">
-                    <span class="shortage_score"><%= @post.moe_shortage %></span>
-                </div>
-            </div>
-            <div class="post-details">
-                <div class="post_vote clearfix">
-                    <button class="overdose dose btn btn-pink" data-dose="overdose"><%= fa_icon "heartbeat" %> OVERDOSE</button>
-                    <button class="shortage dose btn btn-blue" data-dose="shortage">SHORTAGE <%= fa_icon "thumbs-down" %></button>
+                <div class="post-details">
+                    <div class="post_vote clearfix">
+                        <button class="overdose dose btn btn-pink" data-dose="overdose"><%= fa_icon "heartbeat" %> OVERDOSE</button>
+                        <button class="shortage dose btn btn-blue" data-dose="shortage">SHORTAGE <%= fa_icon "thumbs-down" %></button>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="zone row post-details">
+        <div class="zone post-details">
             <div class="col-6">
                 <h5><%= fa_icon "book" %> Description</h5>
                 <% if @post.description != "" %>
@@ -94,76 +96,20 @@
 
             <div class="col-3 actions">
                 <h5><%= fa_icon "bolt" %> Actions</h5>
-                <a class="action btn btn-pink" href="" id="add_to_favorites"><%= fa_icon "heart" %> Add Favorite</a>
-                <a class="action btn btn-green" href="<%= @post.post_image.url %>" download><%= fa_icon "download" %> Download</a>
-                <a class="action btn btn-yellow" target="_blank" href="https://www.google.fr/searchbyimage?site=search&image_url=<%= @post.post_image.url %>"><%= fa_icon "google" %>Search image</a>
+                <a class="btn btn-pink" href="" id="add_to_favorites"><%= fa_icon "heart" %> Add Favorite</a>
+                <a class="btn btn-green" href="<%= @post.post_image.url %>" download><%= fa_icon "download" %> Download</a>
+                <a class="btn btn-yellow" target="_blank" href="https://www.google.fr/searchbyimage?site=search&image_url=<%= @post.post_image.url %>"><%= fa_icon "google" %>Search image</a>
                 <% if user_signed_in? %>
-                    <label class="action btn btn-blue" for="post_edit"><%= fa_icon "edit" %> Edit post</label>
-                    <label class="action btn btn-red" for="report_form_input"><%= fa_icon "close" %> Report post</label>
+                    <a class="btn btn-blue" href="<%= edit_post_path(@post.number) %>"><%= fa_icon "edit" %> Edit post</a>
+                    <a class="btn btn-red" href="<%= edit_report_post_path(@post.number) %>"><%= fa_icon "close" %>Report post</a>
                 <% end %>
             </div>
         </div>
-    <% end %>
 
-    <% if user_signed_in? %>
-        <%= cell(:admin_toolbar, @post, role: current_user.role).(:show_post) %>
-    <% end %>
-
-    <% if user_signed_in? %>
-        <input type="checkbox" id="post_edit">
-        <%= form_for @post, as: "post", url: post_path(@post.number) do |post| %>
-            <div class="zone row">
-                <div class="col-12">
-                    <h5>Edit Post</h5>
-                    <p><%= fa_icon "list" %> Informations:</p>
-                    <div class="field">
-                        <span><%= fa_icon "header" %> Title:</span>
-                        <%= post.text_field :title, placeholder: "Title" %>
-                    </div>
-                    <div class="field">
-                        <span><%= fa_icon "user" %> Author:</span>
-                        <% unless @post.author.blank? %>
-                        <input name="author_tag" type="text" placeholder="Author name" value="<%= @post.author.name %>">
-                        <% else %>
-                        <input name="author_tag" type="text" placeholder="Author name">
-                        <% end %>
-                    </div>
-                    <div class="field">
-                        <span><%= fa_icon "rss" %> Source:</span>
-                        <%= post.text_field :source, placeholder: "Source" %>
-                    </div>
-                    <div class="field_area">
-                        <p><%= fa_icon "book" %> Description:</p>
-                        <%= post.text_area :description, placeholder: 'Description: short history, translations ...' %>
-                    </div>
-                    <div class="field_area">
-                        <p><%= fa_icon "tag" %> Tags:</p>
-                        <textarea name="tags" placeholder='Tags ("1girl glasses")'><% @tags.each do |tag| %><%= tag + " " %><% end %></textarea>
-                    </div>
-                    <div class="field_area">
-                        <p><%= fa_icon "group" %> Character(s):</p>
-                        <textarea name="characters" placeholder='Characters ("illyasviel_von_einzbern")'><% @characters.each do |character| %><%= character + " " %><% end %></textarea>
-                    </div>
-                    <button type="submit" form="edit_post" class="btn btn-pink">Update Post<%= fa_icon 'edit' %></button>
-                </div>
-            </div>
-        <% end %>
-
-        <input class="reported_input" id="report_form_input" type="checkbox">
-        <%= form_for @post, as: "post", url: report_post_path(@post.number), html: {class: "zone report_form field_area", id: 'report_post'} do |post| %>
-            <%= post.check_box :report, class: "hide", checked: true %>
-            <h2><%= fa_icon "exclamation-circle" %> Report post</h2>
-            <%= post.text_area :report_reason, placeholder: "Reason" %>
-            <button type="submit" form="report_post" class="btn btn-red" type="submit">Report <%= fa_icon 'exclamation' %></button>
-        <% end %>
-    <% end %>
-
-
-    <% cache "post-info-#{@post.updated_at}" do %>
-        <div class="zone row">
-            <div class="post-details row">
-                <div class="col-4 tags">
-                    <h3><%= fa_icon "tag" %> Tags</h3>
+        <div class="zone">
+            <div class="post-details">
+                <div class="col-4 no-pad tags">
+                    <h5><%= fa_icon "tag" %> Tags</h5>
                     <% if @tags.any? %>
                         <% @tags.each do |tag| %>
                             <a class="tag" href="<%= posts_path(query: tag ) %>"><%= tag %></a>
@@ -173,8 +119,8 @@
                     <% end %>
                 </div>
 
-                <div class="col-4 characters">
-                    <h3><%= fa_icon "group" %> Character(s)</h3>
+                <div class="col-4 no-pad characters">
+                    <h5><%= fa_icon "group" %> Character(s)</h5>
                     <% if @characters.any? %>
                         <% @characters.each do |character| %>
                             <a class="tag" href="<%= posts_path(query: character ) %>"><%= character %></a>
@@ -184,8 +130,8 @@
                     <% end %>
                 </div>
 
-                <ul class="col-4 infos">
-                    <h3><%= fa_icon "info-circle" %> Informations</h3>
+                <ul class="col-4 no-pad infos">
+                    <h5><%= fa_icon "info-circle" %> Informations</h5>
                     <li id="id"><span>id:</span><%= @post.number %></li>
 
                     <% unless @post.author.blank? %>
@@ -207,33 +153,36 @@
                 </ul>
             </div>
         </div>
-    <% end %>
 
-    <div class="comments zone">
+        <div class="comments zone">
+            <% if user_signed_in? %>
+                <%= form_tag post_comments_path(@post.number), id: "comment-form" ,class: "comment-form" do |comment| %>
+                    <label for="add_comment"><h3>Add a comment<span id="char_count">Maximum <%= max_comment_length %> characters</span></h3></label>
+                    <textarea id="add_comment" data-length="<%= max_comment_length %>" name="comment[text]" placeholder="Write your message here "></textarea>
+                    <div class="button-zone">
+                        <button type="submit" form="comment-form" class="btn btn-blue" type="submit">Send <%= fa_icon 'comment' %></button>
+                    </div>
+                <% end %>
+            <% else %>
+                <h3>Add a comment</h3>
+                <p><%= link_to "Sign up", new_user_registration_path %> or <%= link_to "log in", new_user_session_path %> to post a comment.</p>
+                <br />
+            <% end %>
 
-        <% if user_signed_in? %>
-            <%= form_tag post_comments_path(@post.number), id: "comment-form" ,class: "comment-form" do |comment| %>
-                <label for="add_comment"><h3>Add a comment<span id="char_count">Maximum <%= max_comment_length %> characters</span></h3></label>
-                <textarea id="add_comment" data-length="<%= max_comment_length %>" name="comment[text]" placeholder="Write your message here "></textarea>
-                <div class="button-zone">
-                    <button type="submit" form="comment-form" class="btn btn-blue" type="submit">Send <%= fa_icon 'comment' %></button>
+            <% if @post.comments.any? %>
+                <h3><%= fa_icon "comments-o" %> Comments</h3>
+                <div class="comments-zone">
+                    <% @post.comments.includes(:user).each_with_index do |comment,index| %>
+                        <%= cell(:comment, comment, post: @post, index: index).(:show) %>
+                    <% end %>
                 </div>
             <% end %>
-        <% else %>
-            <h3>Add a comment</h3>
-            <p><%= link_to "Sign up", new_user_registration_path %> or <%= link_to "log in", new_user_session_path %> to post a comment.</p>
-            <br />
-        <% end %>
+        </div>
+    <% end %>
 
-        <% if @post.comments.any? %>
-            <h3><%= fa_icon "comments-o" %> Comments</h3>
-            <div class="comments-zone">
-                <% @post.comments.includes(:user).each_with_index do |comment,index| %>
-                    <%= cell(:comment, comment, post: @post, index: index).(:show) %>
-                <% end %>
-            </div>
-        <% end %>
-    </div>
+    <% if user_signed_in? %>
+        <%= cell(:admin_toolbar, @post, role: current_user.role).(:show_post) %>
+    <% end %>
 </div>
 
 <input type="checkbox" class="lightbox_switch" id="zoom_post">

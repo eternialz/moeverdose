@@ -1,6 +1,6 @@
 footer {
-    background: $gray-dark;
-    color: $white-break;
+    background: $gray5;
+    color: $gray2;
     padding: 50px 0;
     text-align: center;
     width: 100%;
@@ -20,8 +20,7 @@ footer {
     }
 
     a {
-        display: block;
-        color: $white-break;
+        color: $gray2;
         display: inline-block;
         font-weight: bold;
         padding: 5px;

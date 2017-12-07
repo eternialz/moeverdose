@@ -1,0 +1,62 @@
+.post-details {
+    background: $white;
+    text-align: left;
+
+    @media only screen and (max-width: $xsmall) {
+        div { width: 100% }
+
+        ul {
+            display: block;
+            width: 100%;
+        }
+    }
+
+    .infos {
+        li {
+            overflow: hidden !important;
+            padding: 8px;
+            position: relative;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        li:last-child {
+            border: 0;
+        }
+
+        span {
+            display: inline-block;
+            min-width: 90px;
+            padding-right: 8px;
+        }
+    }
+
+    .post_vote {
+        padding: 14.5px 20px;
+
+        .btn {
+            margin: 5px 0;
+        }
+    }
+
+    h5 {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .shortage {
+        float: right;
+    }
+
+    .author > a {
+        padding: 10px;
+    }
+
+    .actions {
+        .btn {
+            width: 100%;
+            margin-bottom: 0.5em;
+        }
+    }
+}

@@ -1,0 +1,18 @@
+#edit_post {
+    input, textarea {
+        margin-bottom: 20px;
+    }
+
+    textarea:last-child {
+        margin: 0;
+    }
+
+    h3 {
+        color: $white;
+    }
+
+    p {
+        color: $gray4;
+        margin-bottom: 10px;
+    }
+}

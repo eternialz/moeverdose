@@ -11,13 +11,13 @@
         margin-top: 20px;
 
         li a {
-            background: $background;
+            background: $white;
             border-radius: 3px;
-            color: $gray;
+            color: $gray4;
             display: block;
             font-weight: bold;
             margin: 0 0 10px;
-            padding: 8px 10px 10px 10px;
+            padding: 8px 10px 10px;
         }
 
         li a:hover {
