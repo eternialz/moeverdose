@@ -3,7 +3,7 @@ FactoryBot.define do
     factory :level do
         name {Faker::BackToTheFuture.character}
         rank {generate :level_rank}
-        max_exp {[50..100].sample}
+        max_exp 100
         color {Faker::Color.hex_color}
 
         factory :level_final, class: 'Level' do

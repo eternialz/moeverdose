@@ -30,7 +30,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
         @updated_post = Post.find(@post)
 
-        assert_equal true, @updated_post.report?
+        assert @updated_post.report?
         assert_redirected_to post_path(@post.number)
     end
 
@@ -42,7 +42,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
         @updated_post = Post.find(@post)
 
-        assert_equal false, @updated_post.report?
+        assert_not @updated_post.report?
         assert_redirected_to new_user_session_path
     end
 
