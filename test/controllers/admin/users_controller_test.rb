@@ -41,7 +41,7 @@ class Admin::UsersControllerTest < ActionDispatch::IntegrationTest
         patch admin_user_path(user), params: params
         user.reload
         assert_not user.report
-        assert_redirected_to admin_user_path(user)
+        assert_redirected_to admin_users_path
     end
 
     test 'ban' do
