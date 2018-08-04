@@ -26,3 +26,4 @@ end
 def sample_file(name='sample.png')
     File.new(sample_path)
 end
+Minitest::Rails::TestUnit = Rails::TestUnit
