@@ -1,7 +1,4 @@
-class Post
-    include Mongoid::Document
-    include Mongoid::Timestamps
-    include Mongoid::Paperclip
+class Post < ApplicationRecord
 
     # Identification
     field :number, type: Integer, default: 1

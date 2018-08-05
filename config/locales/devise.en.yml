@@ -16,8 +16,6 @@ en:
       timeout: "Your session expired. Please sign in again to continue."
       unauthenticated: "You need to sign in or sign up before continuing."
       unconfirmed: "You have to confirm your email address before continuing."
-      user:
-          banned: "Your account has been banned."
     mailer:
       confirmation_instructions:
         subject: "Confirmation instructions"
@@ -25,6 +23,8 @@ en:
         subject: "Reset password instructions"
       unlock_instructions:
         subject: "Unlock instructions"
+      email_changed:
+        subject: "Email Changed"
       password_change:
         subject: "Password Changed"
     omniauth_callbacks:

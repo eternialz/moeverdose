@@ -6,7 +6,6 @@ require "minitest/rails"
 module AroundEachTest
   def before_setup
     super
-    Mongoid::Config.purge!
   end
 end
 

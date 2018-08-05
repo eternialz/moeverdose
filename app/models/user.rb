@@ -1,8 +1,9 @@
-class User
-    include Mongoid::Document
-    include Mongoid::Timestamps
-    include Mongoid::Paperclip
-
+class User < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable, :confirmable
+         :recoverable, :rememberable, :trackable, :validatable
+=begin
     # Include default devise modules. Others available are:
     # :confirmable, :lockable, :timeoutable and :omniauthable
     devise :database_authenticatable, :registerable,
@@ -152,4 +153,5 @@ class User
     end
     include User::Role
     validates :role, inclusion: {in: User::Role.all}
+=end
 end

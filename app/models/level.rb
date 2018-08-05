@@ -1,6 +1,4 @@
-class Level
-  include Mongoid::Document
-
+class Level < ApplicationRecord
   has_many :user, class_name: "User", inverse_of: :levels
 
   # Identification

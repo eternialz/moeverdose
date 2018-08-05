@@ -1,6 +1,4 @@
-class Comment
-    include Mongoid::Document
-    include Mongoid::Timestamps
+class Comment < ApplicationRecord
 
     belongs_to :user, class_name: "User", inverse_of: :comment
 

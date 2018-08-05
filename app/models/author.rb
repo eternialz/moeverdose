@@ -1,6 +1,4 @@
-class Author
-    include Mongoid::Document
-    include Mongoid::Timestamps
+class Author < ApplicationRecord
 
     field :name, type: String
     validates :name, presence: true

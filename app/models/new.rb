@@ -1,6 +1,4 @@
-class New
-  include Mongoid::Document
-  include Mongoid::Timestamps
+class New < ApplicationRecord
 
   field :title, type: String
   validates :title, presence: true

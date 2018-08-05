@@ -30,3 +30,4 @@ public/system/
 
 # Ignore environnement variables with secrets and tokens
 source.sh
+config/master.key
