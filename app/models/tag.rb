@@ -1,20 +1,14 @@
-class Tag
-    include Mongoid::Document
-    include Mongoid::Timestamps
+class Tag < ApplicationRecord
 
-    field :names, type: Array, default: []
-    validates :names, presence: true
+    has_many :aliases
 
-    field :posts_count, type: Integer, default: 0
     has_and_belongs_to_many :posts, class_name: "Post", inverse_of: :tags
 
-    field :type, type: Symbol
-
-    has_one :author, class_name: "Tag", inverse_of: :tag
+    has_one :author, class_name: "Author", inverse_of: :tag
 
     module Type
         def self.all
-            [:content, :character, :author]
+            ['content', 'character', 'author']
         end
 
         self.all.each do |type|

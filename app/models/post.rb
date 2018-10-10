@@ -2,7 +2,7 @@ class Post < ApplicationRecord
 
     # Identification
     field :number, type: Integer, default: 1
-    validates :number, uniqueness: true
+    alias_method :number, :id #Temporary fix
 
     # File
     has_mongoid_attached_file :post_image,

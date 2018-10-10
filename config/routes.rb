@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  devise_for :users
     # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
     get 'home/show'
 
@@ -30,7 +29,7 @@ Rails.application.routes.draw do
     patch "/posts/:post_id/comments/:comment_id/report" => "comments#report", as: "comment_report"
 
     #Admin Section
-    scope :admin, as: :admin do
+    namespace :admin do
         root 'admin/dashboard#index', as: 'dashboard'
 
         get "stats" => "admin/dashboard#stats", as: 'stats'
