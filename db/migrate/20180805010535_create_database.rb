@@ -80,7 +80,7 @@ class CreateDatabase < ActiveRecord::Migration[5.2]
         end
 
         add_reference :authors, :tag, {to_table: :tags}
-        create_join_table :authors, :posts
+        add_reference :posts, :author, {to_table: :authors}
 
     end
 end
