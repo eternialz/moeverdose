@@ -5,9 +5,10 @@ class TagLogic < SimpleDelegator
 
         type = type.to_sym
 
-        tag = Tag.where(names: name, type: type)
+        tag = Tag.includes(:aliases).where(aliases: {name: name}, type: type)
         if tag.empty?
-            tag = Tag.create(names: [name], type: type)
+            tag = Tag.create(type: type)
+            a = Alias.create(tag_id: tag.id, name: name, main: true)
         end
 
         post.tags << tag
@@ -22,9 +23,10 @@ class TagLogic < SimpleDelegator
 
     def self.find_or_create_author(name, post)
         name = name.downcase.tr(" ", "_")
-        tag = Tag.where(names: name, type: :author)
+        tag = Tag.includes(:aliases).where(aliases: {name: name}, type: :author)
         if tag.empty?
-            tag = Tag.create(names: [name], type: :author)
+            tag = Tag.create(type: :author)
+            a = Alias.create(tag_id: tag.id, name: name, main: true)
             author = Author.new(name: name, tag: tag)
         else
             begin

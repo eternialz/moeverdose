@@ -7,12 +7,12 @@ class User < ApplicationRecord
 
     validates :email, presence: true
     # Banner and Avatar
-    has_one_attcahed :avatar
+    has_one_attached :avatar
 
     validates :avatar, image: true,
         image_size: { range: 0..0.5.megabytes }
 
-    has_one_attached :banner,
+    has_one_attached :banner
 
     validates :banner, image: true,
         image_size: { range: 0..1.megabytes }
@@ -32,9 +32,9 @@ class User < ApplicationRecord
     has_many :comments, class_name: "Comment", inverse_of: :user
 
     # User security
-    alias_method :report?, :report
+    alias_attribute :report?, :report
 
-    alias_method :banned?, :banned
+    alias_attribute :banned?, :banned
 
     def active_for_authentication? # Prevent banned user authentications
         super && !self.banned?
@@ -62,5 +62,4 @@ class User < ApplicationRecord
     end
     include User::Role
     validates :role, inclusion: {in: User::Role.all}
-=end
 end

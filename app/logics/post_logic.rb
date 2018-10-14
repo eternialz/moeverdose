@@ -7,11 +7,11 @@ class PostLogic < SimpleDelegator
         tag = []
         self.__getobj__.tags.each do |t|
             if t.content?
-                tag << t.names[0]
+                tag << t.name
             elsif t.character?
-                character << t.names[0]
+                character << t.name
             elsif t.author?
-                author << t.names[0]
+                author << t.name
             end
         end
 
@@ -32,9 +32,10 @@ class PostLogic < SimpleDelegator
 
         return [Kaminari.paginate_array(Post.includes(:tags, :comments).where(
             report: :false,
-            :tag_ids.all => posts_tags_ids,
-        ).order('created_at DESC')).page(page).per(posts_per_page),
-        ignored]
+            tags: {id: posts_tags_ids},
+          ).group(:id).having('COUNT(posts.id) = ?', posts_tags_ids.length)
+            .order('created_at DESC')).page(page).per(posts_per_page),
+          ignored]
     end
 
     def self.query_with_blacklist(query, blacklist, page, posts_per_page)
@@ -43,10 +44,11 @@ class PostLogic < SimpleDelegator
 
         return [Kaminari.paginate_array(Post.includes(:tags, :comments).where(
             report: :false,
-            :tag_ids.all => posts_tags_ids,
-            :tag_ids.nin => blacklisted_posts_tags_ids
-        ).order('created_at DESC')).page(page).per(posts_per_page),
-        ignored]
+            tags: {id: posts_tags_ids},
+          ).where.not(tags: {id: blacklisted_posts_tags_ids})
+            .group(:id).having('COUNT(posts.id) = ?', posts_tags_ids.length)
+            .order('created_at DESC')).page(page).per(posts_per_page),
+          ignored]
     end
 
     def self.all_posts(page, posts_per_page)
@@ -60,13 +62,13 @@ class PostLogic < SimpleDelegator
 
         return Kaminari.paginate_array(Post.includes(:tags, :comments).where(
             report: :false,
-            :tag_ids.nin => blacklisted_posts_tags_ids
-        ).order('created_at DESC')).page(page).per(posts_per_page)
+          ).where.not(tags: {id: blacklisted_posts_tags_ids}).group(:id)
+            .order('created_at DESC')).page(page).per(posts_per_page)
     end
 
     def self.posts_tags(query)
         query = query.downcase.split.uniq # Change query into an array and remove duplicates
-        tags = Tag.where(:names.in => query).map do |t| t.id end
+        tags = Tag.includes(:aliases).where(aliases: {name: query}).map do |t| t.id end
         return [tags, query.length() != tags.length()]
         # [0] = all found tags, [1] true if one or more nonexisting tags were ignored
     end

@@ -4,7 +4,7 @@ class TagsController < ApplicationController
 
     def index
         if params[:query]
-            @tag = Tag.where(:names.in => [params[:query]])
+          @tag = Tag.includes(:aliases).where(aliases: {name: params[:query]})
             if @tag.exists?
                 redirect_to edit_tag_path(@tag[0])
             else
@@ -18,9 +18,9 @@ class TagsController < ApplicationController
     end
 
     def edit
-        @names = @tag.names[1..-1].map {|str| "#{str}"}.join(' ')
+        @names = @tag.opt_names[1..-1].map {|str| "#{str}"}.join(' ')
 
-        title("Edit tag " + @tag.names[0])
+        title("Edit tag " + @tag.name)
     end
 
     def update
@@ -40,6 +40,6 @@ class TagsController < ApplicationController
     private
 
     def set_tag
-        @tag = Tag.find_by(id: params[:id])
+      @tag = Tag.includes(:aliases).find_by(id: params[:id])
     end
 end

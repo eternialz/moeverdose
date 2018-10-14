@@ -4,6 +4,6 @@ class Comment < ApplicationRecord
     belongs_to :report_user, class_name: "User", optional: true
     belongs_to :post, class_name: "Post", inverse_of: :comment, touch: true
 
-    alias_method :report?, :report
+    alias_attribute :report?, :report
 
 end

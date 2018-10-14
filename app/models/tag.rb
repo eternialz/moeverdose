@@ -20,4 +20,20 @@ class Tag < ApplicationRecord
     include Tag::Type
     validates :type, inclusion: {in: Tag::Type.all}
 
+    def name
+        Alias.where(tag_id: self.id, main: true).first&.name
+    end
+
+    def names
+        self.aliases.map do |a|
+          a.name
+        end
+    end
+
+    def opt_names
+      # Optionnal names (alias.main = false)
+      self.aliases.where(main: false).map do |a|
+          a.name
+        end
+    end
 end

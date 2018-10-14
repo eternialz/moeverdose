@@ -3,7 +3,7 @@ class Post < ApplicationRecord
     # File
     has_one_attached :post_image
 
-    validates_attachment :post_image, presence: true,
+    validates :post_image, presence: true,
         image: true,
         image_size: { range: 0..50.megabytes }
 
