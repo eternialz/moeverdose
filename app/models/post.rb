@@ -3,9 +3,9 @@ class Post < ApplicationRecord
     # File
     has_one_attached :post_image
 
-    validates :post_image, presence: true,
-        image: true,
-        image_size: { range: 0..50.megabytes }
+    validates :post_image, attached: true,
+        content_type: /\Aimage\/.*\Z/,
+        size: { less_than_or_equal_to: 50.megabytes }
 
     validates :md5, uniqueness: { message: ": The file already exists (MD5 already exists in our base)" }, presence: true
 

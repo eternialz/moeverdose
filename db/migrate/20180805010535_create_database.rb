@@ -82,5 +82,12 @@ class CreateDatabase < ActiveRecord::Migration[5.2]
         add_reference :authors, :tag, {to_table: :tags}
         add_reference :posts, :author, {to_table: :authors}
 
+        create_join_table :users, :posts, table_name: :favorites_posts_users
+        add_index :favorites_posts_users, [:user_id, :post_id]
+        create_join_table :users, :posts, table_name: :liked_posts_users
+        add_index :liked_posts_users, [:user_id, :post_id]
+        create_join_table :users, :posts, table_name: :disliked_posts_users
+        add_index :disliked_posts_users, [:user_id, :post_id]
+        create_join_table :users, :posts, table_name: :reported_posts_users
     end
 end

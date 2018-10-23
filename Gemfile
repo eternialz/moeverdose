@@ -30,7 +30,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
+gem 'mini_magick', '~> 4.8'
+gem 'active_storage_validations'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -38,9 +39,6 @@ gem 'jbuilder', '~> 2.5'
 # Rails cells
 gem "cells-rails"
 gem "cells-erb"
-
-# Paperclip File attachments
-gem "paperclip", "~> 5.0.0"
 
 # Devise for user authentications
 gem "devise"

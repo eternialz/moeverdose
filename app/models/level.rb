@@ -6,5 +6,5 @@ class Level < ApplicationRecord
 
   # Data
   validates :final, uniqueness: true, if: :final?
-  alias_method :final?, :final
+  alias_attribute :final?, :final
 end

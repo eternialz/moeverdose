@@ -6,16 +6,11 @@ class User < ApplicationRecord
     validates :name,  uniqueness: true, presence: true
 
     validates :email, presence: true
-    # Banner and Avatar
+    # Avatar
     has_one_attached :avatar
 
-    validates :avatar, image: true,
-        image_size: { range: 0..0.5.megabytes }
-
-    has_one_attached :banner
-
-    validates :banner, image: true,
-        image_size: { range: 0..1.megabytes }
+    validates :avatar, content_type: /\Aimage\/.*\Z/,
+        size: { less_than_or_equal_to: 0.5.megabytes }
 
     # Posts
     has_many :posts, class_name: "Post", inverse_of: :user
@@ -24,9 +19,9 @@ class User < ApplicationRecord
     belongs_to :level, class_name: "Level", inverse_of: :user
 
     # Posts marked as favorite of the user
-    has_and_belongs_to_many :favorites, class_name: "Post", inverse_of: nil
-    has_and_belongs_to_many :liked_posts, class_name: "Post", inverse_of: nil
-    has_and_belongs_to_many :disliked_posts, class_name: "Post", inverse_of: nil
+    has_and_belongs_to_many :favorites, class_name: "Post", inverse_of: nil, join_table: :favorites_posts_users
+    has_and_belongs_to_many :liked_posts, class_name: "Post", inverse_of: nil, join_table: :liked_posts_users
+    has_and_belongs_to_many :disliked_posts, class_name: "Post", inverse_of: nil, join_table: :disliked_posts_users
 
     # Comments
     has_many :comments, class_name: "Comment", inverse_of: :user
@@ -45,7 +40,7 @@ class User < ApplicationRecord
     end
 
     # Reported posts
-    has_and_belongs_to_many :reported_posts, class_name: "Post", inverse_of: nil
+    has_and_belongs_to_many :reported_posts, class_name: "Post", inverse_of: nil, join_table: :reported_posts_users
 
     # Roles
 
