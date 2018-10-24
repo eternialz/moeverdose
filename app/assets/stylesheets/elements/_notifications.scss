@@ -1,3 +1,7 @@
+@import "base/_variables";
+@import "base/_extends";
+@import "base/_colors";
+
 @keyframes opacity {
     0% {opacity: 0;}
     8% {opacity: 1;} // Appeared

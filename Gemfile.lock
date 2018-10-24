@@ -345,6 +345,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   spring
   spring-watcher-listen (~> 2.0.0)
+  sprockets (~> 3.7.0)
   stackprof
   turbolinks (~> 5)
   twitter
@@ -353,7 +354,7 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 RUBY VERSION
-   ruby 2.5.1p57
+   ruby 2.5.3p105
 
 BUNDLED WITH
    1.16.3

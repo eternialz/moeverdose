@@ -1,3 +1,7 @@
+@import "base/_variables";
+@import "base/_extends";
+@import "base/_colors";
+
 .menu .submenu {
     background: rgba($gray7, .92);
     box-shadow: 0 4px 0 $pink;

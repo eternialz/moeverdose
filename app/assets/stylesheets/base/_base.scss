@@ -1,10 +1,13 @@
+@import "_colors";
+@import "_variables";
+@import "_extends";
 /* Header Image */
 $header-image: "header-img.jpg";
 
 /* Browser Styling */
 ::selection {
     background: $pink_light;
-    color: $white
+    color: $white;
 }
 
 ::placeholder {

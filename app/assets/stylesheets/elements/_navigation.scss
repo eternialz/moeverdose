@@ -1,3 +1,7 @@
+@import "base/_variables";
+@import "base/_extends";
+@import "base/_colors";
+
 .menu {
     background: $gray5;
     box-shadow: 0 -3px 6px 5px rgba($black, .35);
