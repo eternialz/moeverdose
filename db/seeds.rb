@@ -8,4 +8,4 @@
 
 level = Level.create(rank: 0, name: 'Rookie', final: true, max_exp: 100)
 User.create(email: 'admin@test.com', password: '123456789', role: 'administrator',
-            name: 'admin', level: level)
+            name: 'admin', level: level, confirmed_at: DateTime.now)

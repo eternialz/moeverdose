@@ -334,6 +334,7 @@ DEPENDENCIES
   jquery-turbolinks
   kaminari
   listen (>= 3.0.5, < 3.2)
+  mime-types
   mini_magick (~> 4.8)
   minitest-rails
   pg (>= 0.18, < 2.0)

@@ -1,4 +1,6 @@
 class Tag < ApplicationRecord
+    # Disable STI
+    self.inheritance_column = :_type_disabled
 
     has_many :aliases
 

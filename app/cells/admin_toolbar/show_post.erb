@@ -3,7 +3,7 @@
         <h3>Administration</h3>
         <a class="btn btn-red" href="<%= admin_post_path(model)%>" data-method="delete">Delete</a>
         <%= link_to "Edit", edit_admin_post_path(model.id), class: "btn btn-blue" %>
-        <%= if model.report? %>
+        <% if model.report? %>
             <a class="btn btn-blue" href="<%= admin_post_unreport_path(model) %>" data-method="patch">Unreport</a>
         <% end %>
     </div>

@@ -4,14 +4,14 @@
     <meta name="twitter:creator" content="@moeverdose" />
     <meta name="twitter:title" content="<%= @post.title %>" />
     <meta name="twitter:description" content="Post uploaded by <%= @post.user.name %>" />
-    <meta name="twitter:image" content="<%= request.base_url + @post.post_image.url %>" />
+    <meta name="twitter:image" content="<%= request.base_url + url_for(@post.post_image) %>" />
 
     <meta property="og:title" content="<%= @post.title %>" />
     <meta property="og:type" content="image" />
     <meta property="og:description" content="Post uploaded by <%= @post.user.name %>" />
     <meta property="og:site_name" content="Moeverdose" />
     <meta property="og:url" content="<%= request.original_url %>" />
-    <meta property="og:image" content="<%= request.base_url + @post.post_image.url %>" />
+    <meta property="og:image" content="<%= request.base_url + url_for(@post.post_image) %>" />
 <% end %>
 
 <div class="posts">
@@ -42,7 +42,7 @@
                     </div>
                 <% end %>
                 <div class="post-img">
-                    <%= image_tag @post.post_image.url %>
+                    <%= image_tag @post.post_image %>
                 </div>
             </div>
 
@@ -97,8 +97,8 @@
             <div class="col-3 actions">
                 <h5><%= fa_icon "bolt" %> Actions</h5>
                 <a class="btn btn-pink" href="" id="add_to_favorites"><%= fa_icon "heart" %> Add Favorite</a>
-                <a class="btn btn-green" href="<%= @post.post_image.url %>" download><%= fa_icon "download" %> Download</a>
-                <a class="btn btn-yellow" target="_blank" href="https://www.google.fr/searchbyimage?site=search&image_url=<%= @post.post_image.url %>"><%= fa_icon "google" %>Search image</a>
+                <a class="btn btn-green" href="<%= url_for(@post.post_image) %>" download><%= fa_icon "download" %> Download</a>
+                <a class="btn btn-yellow" target="_blank" href="https://www.google.fr/searchbyimage?site=search&image_url=<%= url_for(@post.post_image) %>"><%= fa_icon "google" %>Search image</a>
                 <% if user_signed_in? %>
                     <a class="btn btn-blue" href="<%= edit_post_path(@post.number) %>"><%= fa_icon "edit" %> Edit post</a>
                     <a class="btn btn-red" href="<%= edit_report_post_path(@post.number) %>"><%= fa_icon "close" %>Report post</a>
@@ -146,9 +146,9 @@
 
                     <li id="user"><span>user:</span><%= link_to @post.user.name, user_path(@post.user.name) %></li>
                     <li id="width-height"><span>dimension:</span><%= @post.width.to_s + " x " + @post.height.to_s %>px</li>
-                    <li id="type"><span>type:</span><%= @post.post_image_content_type.split("/")[-1].upcase %></li>
-                    <li id="size"><span>size:</span><%= '%.3f' % (@post.post_image_file_size.to_f / 1048576).to_s + ' MB' %></li>
-                    <li id="date"><span>date:</span><%= @post.post_image_updated_at.to_time.strftime('%B %e at %l:%M %p') %></li>
+                    <li id="type"><span>type:</span><%= @post.post_image.blob.content_type.split("/")[-1].upcase %></li>
+                    <li id="size"><span>size:</span><%= '%.3f' % (@post.post_image.blob.byte_size.to_f / 1048576).to_s + ' MB' %></li>
+                    <li id="date"><span>date:</span><%= @post.post_image.created_at.to_time.strftime('%B %e at %l:%M %p') %></li>
                     <li id="date"><span>MD5:</span><%= @post.md5 %></li>
                 </ul>
             </div>
@@ -188,5 +188,5 @@
 <input type="checkbox" class="lightbox_switch" id="zoom_post">
 <label for="zoom_post" class="lightbox">
     <label for="zoom_post" class="close">close</label>
-    <img src='<%= @post.post_image.url %>' title="Clic to close">
+    <img src='<%= url_for(@post.post_image) %>' title="Clic to close">
 </label>

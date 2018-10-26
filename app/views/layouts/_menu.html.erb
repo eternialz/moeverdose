@@ -5,7 +5,11 @@
             <a id="menu_label"><%= fa_icon 'bars' %></a>
             <div class="user">
                 <% if user_signed_in? %>
-                    <a class="avatar" href="<%= user_path(current_user.name) %>" id="my_account"><%= image_tag current_user.avatar(:original), width: 60, height: 60 %></a>
+                    <% if current_user.avatar.attached? %>
+                      <a class="avatar" href="<%= user_path(current_user.name) %>" id="my_account"><%= image_tag url_for(current_user.avatar), width: 60, height: 60 %></a>
+                    <% else %>
+                      <a class="avatar" href="<%= user_path(current_user.name) %>" id="my_account"><%= image_tag image_path('default_user.png'), width: 60, height: 60 %></a>
+                    <% end%>
                     <a href="<%= user_path(current_user.name) %>" id="username"><%= current_user.name %></a>
                 <% else %>
                     <a class="avatar" href="<%= new_user_registration_path %>"><%= image_tag image_path('default_user.png'), width: 60, height: 60 %></a>

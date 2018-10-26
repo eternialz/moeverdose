@@ -33,6 +33,7 @@ gem 'jbuilder', '~> 2.5'
 # Use ActiveStorage variant
 gem 'mini_magick', '~> 4.8'
 gem 'active_storage_validations'
+gem 'mime-types', require: 'mime/types/full'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

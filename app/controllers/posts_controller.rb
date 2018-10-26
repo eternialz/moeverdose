@@ -70,7 +70,7 @@ class PostsController < ApplicationController
 
     def new
         @post ||= Post.new
-        @favorites_tags = current_user.favorites_tags.split
+        @favorites_tags = current_user.favorites_tags&.split
 
         title("Upload")
     end
@@ -80,11 +80,12 @@ class PostsController < ApplicationController
 
         PostLogic.set_id(@post)
 
-        @post.md5 = Digest::MD5.file(@post.post_image.queued_for_write[:original].path).hexdigest
+        @post.post_image.attach(post_params[:post_image])
+
+        @post.md5 = Digest::MD5.file(@post.post_image_path).hexdigest
 
         PostLogic.set_post_tags({tags: params[:tags], characters: params[:characters]}, @post)
 
-        PostLogic.set_post_dimensions(@post)
 
         PostLogic.set_post_user(@post, current_user)
 
@@ -240,7 +241,6 @@ class PostsController < ApplicationController
 
     def try_set_post
         if params[:id]
-            Mongoid.raise_not_found_error = false
             @post = Post.includes(:comments, :tags).find_by(number: params[:id])
 
             unless @post
@@ -251,7 +251,7 @@ class PostsController < ApplicationController
 
     def post_params
         params.require(:post).permit(
-            :title, :source, :post_image, :description
+            :title, :source, :post_image, :description, :width, :height
         )
     end
 

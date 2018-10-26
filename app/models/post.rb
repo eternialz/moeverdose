@@ -1,10 +1,20 @@
 class Post < ApplicationRecord
 
+    def self.image_types
+      MIME::Types.select do |t|
+        t.media_type == "image"
+      end.map do |t|
+        t.content_type
+      end
+    end
+
+    alias_attribute :number, :id
+
     # File
     has_one_attached :post_image
 
     validates :post_image, attached: true,
-        content_type: /\Aimage\/.*\Z/,
+        content_type: {in: Post.image_types},
         size: { less_than_or_equal_to: 50.megabytes }
 
     validates :md5, uniqueness: { message: ": The file already exists (MD5 already exists in our base)" }, presence: true
@@ -18,6 +28,10 @@ class Post < ApplicationRecord
     has_many :comments, class_name: "Comment", inverse_of: :post
 
     has_and_belongs_to_many :tags, class_name: "Tag", inverse_of: :posts
+
+    def post_image_path
+      ActiveStorage::Blob.service.send(:path_for, post_image.key)
+    end
 
     private
     def image_dimensions

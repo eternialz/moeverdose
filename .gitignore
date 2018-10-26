@@ -27,6 +27,7 @@
 *.swp
 *.swo
 public/system/
+storage/
 
 # Ignore environnement variables with secrets and tokens
 source.sh

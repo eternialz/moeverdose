@@ -6,8 +6,8 @@ class CreateDatabase < ActiveRecord::Migration[5.2]
             t.string :website
             t.string :twitter
             t.string :facebook
-            t.integer :upload_count
-            t.integer :exp
+            t.integer :upload_count, default: 0
+            t.integer :exp, default: 0
             t.boolean :report
             t.boolean :banned
             t.string :role
@@ -33,14 +33,14 @@ class CreateDatabase < ActiveRecord::Migration[5.2]
 
         create_table :posts do |t|
             t.string :md5
-            t.integer :height
-            t.integer :width
-            t.integer :overdose
-            t.integer :moe_shortage
+            t.integer :height, default: 0
+            t.integer :width, default: 0
+            t.integer :overdose, default: 0
+            t.integer :moe_shortage, default: 0
             t.string :title
             t.string :source
             t.text :description
-            t.boolean :report
+            t.boolean :report, default: false
             t.text :report_reason
             t.timestamps
         end
@@ -54,7 +54,7 @@ class CreateDatabase < ActiveRecord::Migration[5.2]
 
         create_table :tags do |t|
             t.string :type
-            t.integer :posts_count
+            t.integer :posts_count, default: 0
             t.timestamps
         end
 
@@ -63,7 +63,7 @@ class CreateDatabase < ActiveRecord::Migration[5.2]
 
         create_table :comments do |t|
             t.text :text
-            t.boolean :report
+            t.boolean :report, default: false
             t.text :report_reason
             t.timestamps
         end
@@ -89,5 +89,11 @@ class CreateDatabase < ActiveRecord::Migration[5.2]
         create_join_table :users, :posts, table_name: :disliked_posts_users
         add_index :disliked_posts_users, [:user_id, :post_id]
         create_join_table :users, :posts, table_name: :reported_posts_users
+
+        create_join_table :users, :tags, table_name: :favorites_tags_users
+        add_index :favorites_tags_users, [:user_id, :tag_id]
+        create_join_table :users, :tags, table_name: :blacklisted_tags_users
+        add_index :blacklisted_tags_users, [:user_id, :tag_id]
+
     end
 end

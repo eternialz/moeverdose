@@ -53,9 +53,15 @@ ActiveRecord::Schema.define(version: 2018_10_15_215858) do
     t.index ["tag_id"], name: "index_authors_on_tag_id"
   end
 
+  create_table "blacklisted_tags_users", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "tag_id", null: false
+    t.index ["user_id", "tag_id"], name: "index_blacklisted_tags_users_on_user_id_and_tag_id"
+  end
+
   create_table "comments", force: :cascade do |t|
     t.text "text"
-    t.boolean "report"
+    t.boolean "report", default: false
     t.text "report_reason"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -77,6 +83,12 @@ ActiveRecord::Schema.define(version: 2018_10_15_215858) do
     t.bigint "user_id", null: false
     t.bigint "post_id", null: false
     t.index ["user_id", "post_id"], name: "index_favorites_posts_users_on_user_id_and_post_id"
+  end
+
+  create_table "favorites_tags_users", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "tag_id", null: false
+    t.index ["user_id", "tag_id"], name: "index_favorites_tags_users_on_user_id_and_tag_id"
   end
 
   create_table "levels", force: :cascade do |t|
@@ -104,14 +116,14 @@ ActiveRecord::Schema.define(version: 2018_10_15_215858) do
 
   create_table "posts", force: :cascade do |t|
     t.string "md5"
-    t.integer "height"
-    t.integer "width"
-    t.integer "overdose"
-    t.integer "moe_shortage"
+    t.integer "height", default: 0
+    t.integer "width", default: 0
+    t.integer "overdose", default: 0
+    t.integer "moe_shortage", default: 0
     t.string "title"
     t.string "source"
     t.text "description"
-    t.boolean "report"
+    t.boolean "report", default: false
     t.text "report_reason"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -135,7 +147,7 @@ ActiveRecord::Schema.define(version: 2018_10_15_215858) do
 
   create_table "tags", force: :cascade do |t|
     t.string "type"
-    t.integer "posts_count"
+    t.integer "posts_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -162,8 +174,8 @@ ActiveRecord::Schema.define(version: 2018_10_15_215858) do
     t.string "website"
     t.string "twitter"
     t.string "facebook"
-    t.integer "upload_count"
-    t.integer "exp"
+    t.integer "upload_count", default: 0
+    t.integer "exp", default: 0
     t.boolean "report"
     t.boolean "banned"
     t.string "role"
