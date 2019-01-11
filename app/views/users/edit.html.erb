@@ -1,5 +1,5 @@
 <%= form_for @user, url: user_path(@user.name), html: {class: "row userprofile edit", method: :patch } do |f| %>
-    <div class="user_header clearfix" style="background-image: url(<%= @user.banner %>)">
+    <div class="user_header clearfix" style="background-image: url()">
         <img class="avatar" src="<%= @user.avatar %>" width="120" height="120" />
         <div class="user_banner">
             <h3 class="username"><%= @user.name %></h3>
@@ -67,22 +67,6 @@
         </div>
 
         <div class="zone">
-            <div class="image">
-                <h3>Banner</h3>
-                <span class="tooltip"><%= fa_icon "question-circle" %><span class="tip">
-                    Banners are resized and cropped to 1600x300px
-                </span></span>
-                <div class="tooltip" id="banner_img" style="background-image: url(<%= @user.banner %>)">
-                    <%= f.label :banner do %>
-                        <div class="message"><span><%= fa_icon "upload" %></span></div>
-                        <%= f.file_field :banner %>
-                    <% end %>
-                    <span class="tip">Drag and drop banner here</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="zone">
             <div class="clearfix">
                 <h3>Tags</h3>
                 <span class="tooltip"><%= fa_icon "question-circle" %><span class="tip">
@@ -95,7 +79,7 @@
                             Displayed in the upload page to make the upload process faster
                         </span></span>
                         <div class="field_area">
-                            <%= text_area :tags, :favorites, placeholder: "1girl brown_hair", value: @user.favorites_tags  %>
+                            <%= text_area :tags, :favorites, placeholder: "1girl brown_hair", value: @favorites_tags  %>
                         </div>
                     </div>
 
@@ -105,7 +89,7 @@
                             Posts containing a blaklisted tag don't appear in posts index or searches
                         </span></span>
                         <div class="field_area">
-                            <%= text_area :tags, :blacklisted, placeholder: "1boy", value: @user.blacklisted_tags %>
+                            <%= text_area :tags, :blacklisted, placeholder: "1boy", value: @blacklisted_tags %>
                         </div>
                     </div>
                 </div>

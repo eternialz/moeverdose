@@ -4,7 +4,7 @@ class DiscordBot
 
     def run
         require 'discordrb'
-
+=begin
         prefix = "$"
 
         bot = Discordrb::Commands::CommandBot.new token: ENV["DISCORD_BOT_USER_TOKEN"], client_id: ENV["DISCORD_CLIENT_ID"].to_i, prefix: prefix
@@ -37,5 +37,6 @@ class DiscordBot
         end
 
         bot.run :async
+=end
     end
 end

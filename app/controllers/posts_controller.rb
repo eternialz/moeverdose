@@ -262,7 +262,7 @@ class PostsController < ApplicationController
     end
 
     def set_user
-        @user = User.find(current_user.id)
+      @user = User.includes(blacklisted_tags: :aliases).find(current_user.id)
     end
 
     def notify(text)

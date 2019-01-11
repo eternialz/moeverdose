@@ -1,5 +1,5 @@
 <div class="userprofile">
-    <div class="user_header clearfix" style="background-image: url(<%= @user.banner %>)">
+    <div class="user_header clearfix" style="background-image: url()">
         <img class="avatar" src="<%= @user.avatar %>" width="120" height="120" />
         <% if @user.twitter != "" %>
             <a href="<%= @user.twitter %>" class="icon tooltip"><%= fa_icon "twitter" %><span class="tip">@<%= @user.twitter %></span></a>
@@ -22,7 +22,7 @@
         <h3 class="zone_title">About me</h3>
         <div class="col-6">
             <h6>biography</h6>
-            <% if !@user.biography.empty? %>
+            <% if !@user.biography.blank? %>
                 <p><%= @user.biography %></p>
             <% else %>
                 <% if current_user == @user %>

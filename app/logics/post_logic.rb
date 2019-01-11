@@ -30,40 +30,42 @@ class PostLogic < SimpleDelegator
     def self.query(query, page, posts_per_page)
         posts_tags_ids, ignored = posts_tags(query)
 
-        return [Kaminari.paginate_array(Post.includes(:tags, :comments).where(
-            report: :false,
+        return [Kaminari.paginate_array(Post.includes(tags: :aliases).where(
+            report: false,
             tags: {id: posts_tags_ids},
-          ).group(:id).having('COUNT(posts.id) = ?', posts_tags_ids.length)
-            .order('created_at DESC')).page(page).per(posts_per_page),
+          ).order(created_at: :desc).with_attached_post_image)
+          .page(page).per(posts_per_page),
           ignored]
     end
 
     def self.query_with_blacklist(query, blacklist, page, posts_per_page)
         posts_tags_ids, ignored = posts_tags(query)
-        blacklisted_posts_tags_ids = posts_tags(blacklist)[0]
+        blacklisted_posts_tags_ids = blacklist.map {|t| t.id}
 
-        return [Kaminari.paginate_array(Post.includes(:tags, :comments).where(
-            report: :false,
+        return [Kaminari.paginate_array(Post.includes(tags: :aliases).where(
+            report: false,
             tags: {id: posts_tags_ids},
           ).where.not(tags: {id: blacklisted_posts_tags_ids})
-            .group(:id).having('COUNT(posts.id) = ?', posts_tags_ids.length)
-            .order('created_at DESC')).page(page).per(posts_per_page),
+            .order(created_at: :desc).with_attached_post_image)
+            .page(page).per(posts_per_page),
           ignored]
     end
 
     def self.all_posts(page, posts_per_page)
-        return Kaminari.paginate_array(Post.includes(:tags, :comments).where(
-            report: :false
-        ).order('created_at DESC')).page(page).per(posts_per_page)
+      return Kaminari.paginate_array(Post.includes(tags: :aliases).where(
+            report: false
+        ).order(created_at: :desc).with_attached_post_image)
+          .page(page).per(posts_per_page)
     end
 
     def self.all_posts_with_blacklist(blacklist, page, posts_per_page)
-        blacklisted_posts_tags_ids = posts_tags(blacklist)
+      blacklisted_posts_tags_ids = blacklist.map {|t| t.id}
 
-        return Kaminari.paginate_array(Post.includes(:tags, :comments).where(
-            report: :false,
-          ).where.not(tags: {id: blacklisted_posts_tags_ids}).group(:id)
-            .order('created_at DESC')).page(page).per(posts_per_page)
+      return Kaminari.paginate_array(Post.includes(tags: :aliases).where(
+            report: false,
+          ).where.not(tags: {id: blacklisted_posts_tags_ids})
+            .order(created_at: :desc).with_attached_post_image)
+            .page(page).per(posts_per_page)
     end
 
     def self.posts_tags(query)

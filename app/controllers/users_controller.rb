@@ -11,8 +11,12 @@ class UsersController < ApplicationController
             render 'users/banned'
         else
             @current = (current_user == @user)
-            @favorites_tags = @user.favorites_tags.split(" ")
-            @blacklisted_tags = @user.blacklisted_tags.split(" ")
+            @favorites_tags = @user.favorites_tags.map do |t|
+              t.name
+            end
+            @blacklisted_tags = @user.blacklisted_tags.map do |t|
+              t.name
+            end
 
             @level = @user.level
             if (!@level.final)
@@ -24,6 +28,12 @@ class UsersController < ApplicationController
     end
 
     def edit
+        @favorites_tags = @user.favorites_tags.map do |t|
+          t.name
+        end.join(' ')
+        @blacklisted_tags = @user.blacklisted_tags.map do |t|
+          t.name
+        end.join(' ')
         title("Edit my profile")
     end
 
@@ -45,8 +55,11 @@ class UsersController < ApplicationController
         @user.update_attributes(account_update_params)
         tags = params[:tags]
 
-        @user.favorites_tags = tags[:favorites].split().uniq().join(' ') # remove duplicates
-        @user.blacklisted_tags = tags[:blacklisted].split().uniq().join(' ')
+        favorites_tags = Tag.includes(:aliases).where(aliases: { name: tags[:favorites].split().uniq() }) # remove duplicates
+        blacklisted_tags = Tag.includes(:aliases).where(aliases: { name: tags[:blacklisted].split().uniq() })
+
+        @user.favorites_tags = favorites_tags
+        @user.blacklisted_tags = blacklisted_tags
 
         if @user.save
             flash[:success] = "Profile saved."
@@ -61,7 +74,7 @@ class UsersController < ApplicationController
 
     private
     def set_user
-        @user = User.find_by(name: params[:id])
+        @user = User.includes(favorites_tags: :aliases, blacklisted_tags: :aliases).find_by(name: params[:id])
     end
 
     def check_user

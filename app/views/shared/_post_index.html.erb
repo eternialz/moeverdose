@@ -3,7 +3,7 @@
         <% if !@posts.empty? %>
             <% @posts.each do |post| %>
                 <% if params[:query] %>
-                    <a title="<%= post.title %>" href="<%= post_path(post.number, query: params[:query]) %>" class="post-thumbnail clearfix" style="background-image: url(<%= post.post_image.url(:thumb).dump %> )">
+                    <a title="<%= post.title %>" href="<%= post_path(post.number, query: params[:query]) %>" class="post-thumbnail clearfix" style="background-image: url(<%= url_for(post.post_image)%> )">
                         <div class="informations">
                             <h5><%= post.title %></h5>
                             <span class="post-stats">
@@ -16,7 +16,7 @@
                     </a>
                 <% else %>
                     <% cache ["index", post] do %>
-                        <a title="<%= post.title %>" href="<%= post_path(post.number) %>" class="post-thumbnail clearfix" style="background-image: url(<%= post.post_image.url(:thumb)%> )">
+                        <a title="<%= post.title %>" href="<%= post_path(post.number) %>" class="post-thumbnail clearfix" style="background-image: url(<%= url_for(post.post_image)%> )">
                             <div class="informations">
                                 <h5><%= post.title %></h5>
                                 <span class="post-stats">
