@@ -30,40 +30,46 @@ class PostLogic < SimpleDelegator
     def self.query(query, page, posts_per_page)
         posts_tags_ids, ignored = posts_tags(query)
 
-        return [Kaminari.paginate_array(Post.includes(tags: :aliases).where(
-            report: false,
-            tags: {id: posts_tags_ids},
-          ).order(created_at: :desc).with_attached_post_image)
-          .page(page).per(posts_per_page),
-          ignored]
+        return [Kaminari.paginate_array(Post.select(:tags_list)
+            .eager_load(tags: :aliases)
+            .joins("LEFT OUTER JOIN(#{RawSqlLogic.get_tags_array}) as \"array_tags\" ON \"array_tags\".\"id\" = \"posts\".\"id\"")
+            .where(report: false)
+            .where("array_tags.tags_list @> cast(array[?] as bigint[])", posts_tags_ids)
+            .order(created_at: :desc).with_attached_post_image)
+            .page(page).per(posts_per_page),
+        ignored]
     end
 
     def self.query_with_blacklist(query, blacklist, page, posts_per_page)
         posts_tags_ids, ignored = posts_tags(query)
         blacklisted_posts_tags_ids = blacklist.map {|t| t.id}
 
-        return [Kaminari.paginate_array(Post.includes(tags: :aliases).where(
-            report: false,
-            tags: {id: posts_tags_ids},
-          ).where.not(tags: {id: blacklisted_posts_tags_ids})
+        return [Kaminari.paginate_array(Post.select(:tags_list)
+            .eager_load(tags: :aliases)
+            .joins("LEFT OUTER JOIN(#{RawSqlLogic.get_tags_array}) as \"array_tags\" ON \"array_tags\".\"id\" = \"posts\".\"id\"")
+            .where(report: false)
+            .where("array_tags.tags_list @> cast(array[?] as bigint[])", posts_tags_ids)
+            .where.not("array_tags.tags_list && cast(array[?] as bigint[])", blacklisted_posts_tags_ids)
             .order(created_at: :desc).with_attached_post_image)
             .page(page).per(posts_per_page),
-          ignored]
+        ignored]
     end
 
     def self.all_posts(page, posts_per_page)
-      return Kaminari.paginate_array(Post.includes(tags: :aliases).where(
-            report: false
-        ).order(created_at: :desc).with_attached_post_image)
-          .page(page).per(posts_per_page)
+      return Kaminari.paginate_array(Post.eager_load(tags: :aliases)
+            .where(report: false)
+            .order(created_at: :desc).with_attached_post_image)
+            .page(page).per(posts_per_page)
     end
 
     def self.all_posts_with_blacklist(blacklist, page, posts_per_page)
       blacklisted_posts_tags_ids = blacklist.map {|t| t.id}
 
-      return Kaminari.paginate_array(Post.includes(tags: :aliases).where(
-            report: false,
-          ).where.not(tags: {id: blacklisted_posts_tags_ids})
+      return Kaminari.paginate_array(Post.select(:tags_list)
+            .eager_load(tags: :aliases)
+            .joins("LEFT OUTER JOIN(#{RawSqlLogic.get_tags_array}) as \"array_tags\" ON \"array_tags\".\"id\" = \"posts\".\"id\"")
+            .where(report: false)
+            .where.not("array_tags.tags_list && cast(array[?] as bigint[])", blacklisted_posts_tags_ids)
             .order(created_at: :desc).with_attached_post_image)
             .page(page).per(posts_per_page)
     end
