@@ -13,11 +13,9 @@
             <div class="field_area">
                 <%= f.text_area :biography, placeholder: "Biography" %>
             </div>
-            <p><%= fa_icon "link" %> Websites:
-            <span class="tooltip"><%= fa_icon "question-circle" %><span class="tip">One url per line.<br />Each url must be valid.<br />(example: http(s)://validurl.com)</span></p>
-            <br />
-            <div class="field_area">
-                <textarea name="websites" id="author_websites" placeholder="Websites"><%= @websites %></textarea>
+            <div class="field">
+                <span><%= fa_icon "link" %> Website: </span>
+                <input type="text" name="website" id="author_websites" placeholder="Website" value="<%= @website %>"/>
             </div>
             <button type="submit" form="edit_author" class="btn btn-pink">Update Author <%= fa_icon 'edit' %></button>
         </div>

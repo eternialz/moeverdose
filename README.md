@@ -16,6 +16,9 @@ Online soon.
 
 * Install and Deployment script
 * Possible and better duplicate finder with perceptual hashes instead of md5
+* Finish all helps pages
+  * Registration help section
+  * Editing posts help page
 * Better admin features
   * Batch Delete
   * Admin: stats

@@ -5,7 +5,7 @@ class AuthorsController < ApplicationController
     before_action :authenticate_user!, only: [:update, :edit]
 
     def index
-        @authors = Kaminari.paginate_array(Author.includes(:tag).all.order_by(:name => 'asc')).page(params[:page]).per(20)
+        @authors = Kaminari.paginate_array(Author.includes(:tag).all.order(:name => 'asc')).page(params[:page]).per(20)
 
         title("All Authors")
     end
@@ -17,13 +17,13 @@ class AuthorsController < ApplicationController
 
         @names = @tag.names
 
-        @websites = @author.websites
+        @website = @author.website
 
         title(@author.name + "'s author page")
     end
 
     def edit
-        @websites = @author.websites.join("\n")
+        @website = @author.website
 
         title("Edit " + @author.name + "'s author page")
     end
@@ -45,12 +45,10 @@ class AuthorsController < ApplicationController
 
         @author.assign_attributes(author_params)
 
-        @author.websites = params[:websites].split(" ")
+        @author.website = params[:website]
 
-        @author.websites.each do |url|
-            unless url =~ URI::DEFAULT_PARSER.make_regexp
-                flash.now[:error] = "Modifications could not be saved! Please verify website(s) url provided"
-            end
+        unless @author.website =~ URI::DEFAULT_PARSER.make_regexp
+            flash.now[:error] = "Modifications could not be saved! Please verify website(s) url provided"
         end
 
         if flash.now[:error] == nil && @author.save && @author.tag.save
@@ -59,7 +57,7 @@ class AuthorsController < ApplicationController
         else
             flash.now[:error] = "Modifications could not be saved! Please verify informations provided"
 
-            @websites = @author.websites.join("\n")
+            @website = @author.website
             render "authors/edit"
         end
     end
