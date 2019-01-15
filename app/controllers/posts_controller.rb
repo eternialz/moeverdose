@@ -57,6 +57,8 @@ class PostsController < ApplicationController
             @authors += results[:authors]
         end
 
+        @comments_counts = Comment.where(post: @posts).group(:post_id).count
+
         @tags.uniq!
         @characters.uniq!
         @authors.uniq!

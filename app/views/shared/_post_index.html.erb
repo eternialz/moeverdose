@@ -10,7 +10,7 @@
                                 <span title="overdose(s)"><%= post.overdose %> <%= fa_icon "heartbeat" %> </span>
                                 <span title="shortage(s)"><%= post.moe_shortage %> <%= fa_icon "thumbs-down" %> </span>
                                 <!-- TODO integrate post comment count -->
-                                <span title="comment(s)"><%= post.comments.count %> <%= fa_icon "comment" %></span>
+                                <span title="comment(s)"><%= @comments_counts[post.id] || 0 %> <%= fa_icon "comment" %></span>
                             </span>
                         </div>
                     </a>
@@ -23,7 +23,7 @@
                                     <span title="overdose(s)"><%= post.overdose %> <%= fa_icon "heartbeat" %> </span>
                                     <span title="shortage(s)"><%= post.moe_shortage %> <%= fa_icon "thumbs-down" %> </span>
                                     <!-- TODO integrate post comment count -->
-                                    <span title="comment(s)"><%= post.comments.count %> <%= fa_icon "comment" %></span>
+                                    <span title="comment(s)"><%= @comments_counts[post.id] || 0 %> <%= fa_icon "comment" %></span>
                                 </span>
                             </div>
                         </a>

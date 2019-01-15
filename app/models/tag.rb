@@ -3,6 +3,7 @@ class Tag < ApplicationRecord
     self.inheritance_column = :_type_disabled
 
     has_many :aliases
+    has_many :main_alias, -> { where(main: true) }, class_name: "Alias"
 
     has_and_belongs_to_many :posts, class_name: "Post", inverse_of: :tags
 
@@ -23,7 +24,7 @@ class Tag < ApplicationRecord
     validates :type, inclusion: {in: Tag::Type.all}
 
     def name
-        Alias.where(tag_id: self.id, main: true).first&.name
+        self.main_alias.first&.name
     end
 
     def names

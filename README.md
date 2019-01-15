@@ -2,14 +2,14 @@
 
 http://moeverdose.moe | https://twitter.com/moeverdose
 
-A taggable image board made from scratch with Rails 5 and MongoDB.
+A taggable image board made from scratch with Rails 5 and PostGreSQL.
 Online soon.
 
 # Requirements
 
-* Rails > 5
-* Ruby >= 2.3.1
-* MongoDB
+* Rails > 5.2
+* Ruby >= 2.5.3
+* PostGreSQL
 * ImageMagick
 
 # PLANNED FEATURES
