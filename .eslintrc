@@ -1,0 +1,27 @@
+{
+  "extends": ["prettier"],
+  "plugins": ["prettier"],
+  "env": {
+    "browser": true
+  },
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true
+      }
+    ]
+  },
+  "parser": "babel-eslint",
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": {
+          "resolve": {
+            "modules": ["frontend", "node_modules"]
+          }
+        }
+      }
+    }
+  }
+}

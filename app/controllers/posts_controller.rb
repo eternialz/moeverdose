@@ -72,7 +72,9 @@ class PostsController < ApplicationController
 
     def new
         @post ||= Post.new
-        @favorites_tags = current_user.favorites_tags&.split
+        @favorites_tags = current_user.favorites_tags&.map do |t|
+            t.name
+        end
 
         title("Upload")
     end
