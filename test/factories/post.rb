@@ -6,8 +6,8 @@ FactoryBot.define do
         title {Faker::Lovecraft.deity}
         source {Faker::ElderScrolls.race}
         description {Faker::DrWho.quote}
-        width 500
-        height 500
+        width {500}
+        height {500}
         md5 {SecureRandom.hex(32)}
         post_image {sample_file}
 

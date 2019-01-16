@@ -43,6 +43,7 @@ class UsersController < ApplicationController
 
     def uploads
         @posts = Kaminari.paginate_array(@user.posts).page(params[:page]).per(@posts_per_page)
+        @comments_counts = Comment.where(post: @posts).group(:post_id).count
     end
 
     def index

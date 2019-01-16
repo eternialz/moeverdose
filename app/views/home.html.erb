@@ -43,7 +43,11 @@
             <% @news.each do |n| %>
                 <div class="new clearfix">
                     <h3><%= n.title %><span><%= n.created_at.strftime("%Y/%m/%d") %></span></h3>
-                    <p><%= n.text %></p>
+                    <% if n.text.length > 200 %>
+                        <p><%= n.text[0..200] %>...</p>
+                    <% else %>
+                        <p><%= n.text %></p>
+                    <% end %>
                 </div>
             <% end %>
         </div>

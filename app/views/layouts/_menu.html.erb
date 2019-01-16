@@ -85,7 +85,7 @@
                     <li><%= link_to "Options", edit_user_path(current_user.name) %></li>
                     <li><%= link_to 'Favorites', favorites_path(current_user.name) %></span></li>
                     <li><%= link_to 'Uploads', uploads_path(current_user.name) %></span></li>
-                    <li><%= link_to 'Logout', destroy_user_session_path %></span></li>
+                    <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></span></li>
                 </ul>
             <% else %>
                 <ul class="login register">

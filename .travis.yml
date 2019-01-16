@@ -1,12 +1,12 @@
 language: ruby
 rvm:
-  - 2.5.1
+  - 2.5.3
 bundler_args: --without production
 group: stable
 dist: precise
 os: linux
 services:
-    - mongodb
+    - postgresql
 env:
   - MOEVERDOSE_DEV_HOST=localhost MOEVERDOSE_DEV_PORT=3000
 

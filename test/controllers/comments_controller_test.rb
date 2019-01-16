@@ -42,7 +42,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
 
         patch comment_report_path(post.number, comment)
 
-        assert Comment.find(comment).report?
+        assert Comment.find(comment.id).report?
 
         assert_redirected_to post_path(post.number)
     end
@@ -55,7 +55,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
 
         patch comment_report_path(post.number, comment)
 
-        assert_not Comment.find(comment).report?
+        assert_not Comment.find(comment.id).report?
         assert_redirected_to new_user_session_path
     end
 end

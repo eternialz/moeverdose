@@ -76,6 +76,8 @@ class PostsController < ApplicationController
             t.name
         end
 
+        @comments_counts = Comment.where(post: @posts).group(:post_id).count
+
         title("Upload")
     end
 
@@ -107,8 +109,7 @@ class PostsController < ApplicationController
             redirect_to post_path(@post.number)
         else
             flash.now[:error] = "The post could not be created."
-
-            render template: new_post_path
+            redirect_to new_post_path
         end
     end
 

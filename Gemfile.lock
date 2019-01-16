@@ -80,6 +80,7 @@ GEM
     coderay (1.1.2)
     concurrent-ruby (1.0.5)
     crass (1.0.4)
+    database_cleaner (1.7.0)
     declarative-builder (0.1.0)
       declarative-option (< 0.2.0)
     declarative-option (0.1.0)
@@ -324,6 +325,7 @@ DEPENDENCIES
   byebug
   cells-erb
   cells-rails
+  database_cleaner
   devise
   discordrb
   factory_bot_rails

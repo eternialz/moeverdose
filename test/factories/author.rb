@@ -3,6 +3,6 @@ FactoryBot.define do
         name {Faker::FamilyGuy.character}
         biography {Faker::FamilyGuy.quote}
         tag {build(:tag_author)}
-        websites {[Faker::Internet.url]}
+        website {Faker::Internet.url}
     end
 end

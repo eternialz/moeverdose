@@ -5,11 +5,14 @@ FactoryBot.define do
         sequence(:name) do |n|
             "#{Faker::HitchhikersGuideToTheGalaxy.character}#{n}"
         end
-        password "password"
+        password {"password"}
+        biography {"test"}
         association :level, factory: :level
+        role {'user'}
+        confirmed_at {Time.zone.now}
 
         factory :admin, class: 'User' do
-            role :administrator
+            role {'administrator'}
         end
 
         factory :user_with_post, class: 'User' do
@@ -25,11 +28,11 @@ FactoryBot.define do
         end
 
         factory :user_banned, class: 'User' do
-            banned true
+            banned {true}
         end
 
         factory :user_reported, class: 'User' do
-            report true
+            report {true}
         end
     end
 end

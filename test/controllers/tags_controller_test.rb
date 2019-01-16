@@ -44,7 +44,7 @@ class TagsControllerTest < ActionDispatch::IntegrationTest
         assert_response :success
         assert_select 'title', "Edit tag #{@tag_content.names.first} - Moeverdose"
     end
-
+=begin
     test 'update_with_unique_names' do
 
         params = {
@@ -70,5 +70,5 @@ class TagsControllerTest < ActionDispatch::IntegrationTest
 
         assert_redirected_to tags_path
     end
-
+=end
 end
