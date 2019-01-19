@@ -1,4 +1,4 @@
-# Moeverdose [![CodeFactor](https://www.codefactor.io/repository/github/eternialz/moeverdose/badge)](https://www.codefactor.io/repository/github/eternialz/moeverdose/) [![CodeFactor](https://travis-ci.org/eternialz/moeverdose.svg?branch=master)](https://travis-ci.org/eternialz/moeverdose) [![dev chat](https://discordapp.com/api/guilds/163371003366342657/widget.png?style=shield)](https://discord.me/moeverdose)[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat)](https://github.com/prettier/prettier)
+# Moeverdose [![CodeFactor](https://www.codefactor.io/repository/github/eternialz/moeverdose/badge)](https://www.codefactor.io/repository/github/eternialz/moeverdose/) [![CodeFactor](https://travis-ci.org/eternialz/moeverdose.svg?branch=master)](https://travis-ci.org/eternialz/moeverdose) [![dev chat](https://discordapp.com/api/guilds/163371003366342657/widget.png?style=shield)](https://discord.me/moeverdose) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat)](https://github.com/prettier/prettier)
 
 http://moeverdose.moe | https://twitter.com/moeverdose
 
@@ -25,7 +25,7 @@ Online soon.
 - Create dev database
   `rails db:create db:migrate db:seed`
 
-- Set environment vars in .env
+- Set your environment vars in .env
 
 - Launch server
   `foreman start`

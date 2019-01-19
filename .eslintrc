@@ -5,12 +5,7 @@
     "browser": true
   },
   "rules": {
-    "prettier/prettier": [
-      "error",
-      {
-        "singleQuote": true
-      }
-    ]
+    "prettier/prettier": "error"
   },
   "parser": "babel-eslint",
   "settings": {

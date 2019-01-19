@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
     def home
         @news = New.all.order('created_at DESC').limit(2)
-        render "/home"
+        render helpers.componentPath("home")
     end
 
     private
