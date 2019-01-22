@@ -6,6 +6,10 @@ class ApplicationController < ActionController::Base
         render "/home"
     end
 
+    def current_user
+        @current_user ||= super && User.includes(favorites_tags: [:aliases, :main_alias], blacklisted_tags: [:aliases, :main_alias]).find(@current_user.id)
+    end
+
     private
     def title(page_title)
         if page_title.to_s != ""

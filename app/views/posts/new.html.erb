@@ -43,8 +43,8 @@
                 Favorites tags will be displayed here; once you click them the tag will be added to the post you are currently uploading.</p><br />
             <% else %>
                 <h6>FAVORITES TAGS:</h6>
-                <% current_user.favorites_tags.split.each do |tag| %>
-                    <span class="tag"><%= tag %></span>
+                <% current_user.favorites_tags.each do |tag| %>
+                    <span class="tag"><%= tag.name %></span>
                 <% end %>
             <% end %>
         </div>
