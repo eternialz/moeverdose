@@ -17,6 +17,7 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'mini_racer', platforms: :ruby
 gem "sprockets", "~>3.7.0"
 
+gem 'mini_racer'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Jquery Turbolinks Compatibility
@@ -94,7 +95,7 @@ group :test do
     # Gems for test
     gem 'factory_bot_rails'
     gem 'faker', github: 'stympy/faker'
-    gem 'minitest-rails'
+    gem 'minitest-rails', '>= 2.0'
     gem 'database_cleaner'
 end
 

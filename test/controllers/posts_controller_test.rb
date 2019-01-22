@@ -26,7 +26,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
         sign_in @user
 
-        patch report_post_path @post.number, post: {report_reason: Faker::HowIMetYourMother.catch_phrase}
+        patch report_post_path @post.number, post: {report_reason: Faker::TvShows::HowIMetYourMother.catch_phrase}
 
         @updated_post = Post.find(@post.id)
 
@@ -38,7 +38,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
         @post.report = false
         @post.save
 
-        patch report_post_path @post.number, post: {report_reason: Faker::HowIMetYourMother.catch_phrase}
+        patch report_post_path @post.number, post: {report_reason: Faker::TvShows::HowIMetYourMother.catch_phrase}
 
         @updated_post = Post.find(@post.id)
 
@@ -227,9 +227,9 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
         sign_in @user
 
         post_params = {
-            title: Faker::Fallout.character + @post.title, # Adding current informations to force a different one
-            source: Faker::Fallout.faction + @post.source,
-            description: Faker::Fallout.quote + @post.description
+            title: Faker::Games::Fallout.character + @post.title, # Adding current informations to force a different one
+            source: Faker::Games::Fallout.faction + @post.source,
+            description: Faker::Games::Fallout.quote + @post.description
         }
 
         patch post_path(

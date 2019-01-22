@@ -3,9 +3,9 @@ require 'digest/md5'
 FactoryBot.define do
     factory :post do
         sequence(:number, 1)
-        title {Faker::Lovecraft.deity}
-        source {Faker::ElderScrolls.race}
-        description {Faker::DrWho.quote}
+        title {Faker::Books::Lovecraft.deity}
+        source {Faker::Games::ElderScrolls.race}
+        description {Faker::TvShows::DrWho.quote}
         width {500}
         height {500}
         md5 {SecureRandom.hex(32)}

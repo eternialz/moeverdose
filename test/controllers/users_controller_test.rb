@@ -133,7 +133,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
             website: Faker::Internet.url,
             facebook: Faker::Internet.url,
             twitter: Faker::Internet.url,
-            biography: Faker::Hobbit.quote + user.biography
+            biography: Faker::Movies::Hobbit.quote + user.biography
         }
     end
 end

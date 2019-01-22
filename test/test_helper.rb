@@ -1,6 +1,5 @@
 ENV["RAILS_ENV"] = "test"
-require File.expand_path("../../config/environment", __FILE__)
-require "rails/test_help"
+require "rails/generators/test_case"
 require "minitest/rails"
 require "minitest/pride"
 require 'database_cleaner'
@@ -9,7 +8,31 @@ require 'database_cleaner'
 # to the test group in the Gemfile and uncomment the following:
 # require "minitest/rails/capybara"
 
-# Uncomment for awesome colorful output
+### rails/test_help
+abort("Abort testing: Your Rails environment is running in production mode!") if Rails.env.production?
+
+require "active_support/test_case"
+require "action_controller"
+require "action_controller/test_case"
+require "action_dispatch/testing/integration"
+
+require "active_support/testing/autorun"
+
+ActiveSupport.on_load(:action_controller_test_case) do
+  def before_setup # :nodoc:
+    @routes = Rails.application.routes
+    super
+  end
+end
+
+ActiveSupport.on_load(:action_dispatch_integration_test) do
+  def before_setup # :nodoc:
+    @routes = Rails.application.routes
+    super
+  end
+end
+
+### end rails/test_help
 
 DatabaseCleaner.strategy = :transaction
 
@@ -30,10 +53,6 @@ class ActiveSupport::TestCase
   include FactoryBot::Syntax::Methods
   include AroundEachTest
   # Add more helper methods to be used by all tests here...
-end
-
-(ActiveRecord::Base.connection.tables - %w{schema_migrations}).each do |table_name|
-  ActiveRecord::Base.connection.execute "TRUNCATE TABLE #{table_name};"
 end
 
 def sample_path(name='sample.png')

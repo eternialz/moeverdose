@@ -43,9 +43,11 @@ class AuthorsControllerTest < ActionDispatch::IntegrationTest
         sign_in @user
 
         author_params = {
-            name: Faker::FamilyGuy.character + @author.name,
-            biography: Faker::FamilyGuy.quote + @author.name,
+            name: Faker::TvShows::FamilyGuy.character + @author.name,
+            biography: Faker::TvShows::FamilyGuy.quote + @author.name,
         }
+
+        old_name = @author.tag.name
 
         patch author_path(
             @author,
@@ -57,15 +59,14 @@ class AuthorsControllerTest < ActionDispatch::IntegrationTest
         @updated_tag = @updated_author.tag
 
         assert_not_equal @updated_author.name, @author.name
-        assert_not_equal @updated_author.name, @author.name
-        assert_equal @author.tag.names[0], @updated_tag.names.last
-        assert_equal @updated_author.name.downcase.tr(' ', '_'), @updated_tag.names[0]
+        assert_equal @updated_author.name.downcase.tr(' ', '_'), @updated_tag.name
+        assert_includes @updated_tag.names, old_name
     end
 
     test 'Can\'t update author unlogged' do
         author_params = {
-            name: Faker::FamilyGuy.character + @author.name,
-            biography: Faker::FamilyGuy.quote + @author.name,
+            name: Faker::TvShows::FamilyGuy.character,
+            biography: Faker::TvShows::FamilyGuy.quote,
         }
 
         patch author_path(

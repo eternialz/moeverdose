@@ -29,7 +29,7 @@ class Admin::LevelsControllerTest < ActionDispatch::IntegrationTest
             level: {
                 max_exp: 200,
                 color: Faker::Color.hex_color,
-                name: Faker::HarryPotter.character
+                name: Faker::Movies::HarryPotter.character
             }
         }
 

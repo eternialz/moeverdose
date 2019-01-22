@@ -1,7 +1,4 @@
 class PostsController < ApplicationController
-    require 'digest/md5'
-    require 'httparty'
-    require 'json'
 
     before_action :try_set_post, only: [:show]
     before_action :set_post, only: [:edit, :update, :dose, :favorite, :report, :report_update]

@@ -1,8 +1,8 @@
 FactoryBot.define do
     factory :author do
-        name {Faker::FamilyGuy.character}
-        biography {Faker::FamilyGuy.quote}
-        tag {build(:tag_author)}
+        name {Faker::TvShows::FamilyGuy.character}
+        biography {Faker::TvShows::FamilyGuy.quote}
+        association :tag, factory: :tag_author
         website {Faker::Internet.url}
     end
 end
