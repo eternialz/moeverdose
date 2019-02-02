@@ -1,0 +1,47 @@
+@mixin shadow-1 {
+    box-shadow: 0 0.05rem 0.15rem rgba($shadow-color, 0.25), 0 0 0 0.05rem rgba($shadow-color, 0.01);
+}
+
+@mixin shadow-control-1 {
+    @include shadow-1();
+
+    &:hover, &:focus {
+        box-shadow: 0 0.05rem 0.15rem rgba($shadow-color, 0.25), 0 0 0 0.05rem rgba($shadow-color, 0.05);
+    }
+
+    &:active {
+        box-shadow: 0 0.05rem 0.10rem rgba($shadow-color, 0.15), 0 0 0 0.05rem rgba($shadow-color, 0.05);
+    }
+}
+
+@mixin shadow-2 {
+    box-shadow: 0 0.05rem 0.15rem rgba($shadow-color, 0.25), 0 0 0 0.05rem rgba($shadow-color, 0.01);
+}
+
+@mixin shadow-control-2 {
+    @include shadow-2();
+
+    &:hover, &:focus {
+        box-shadow: 0 0.05rem 0.15rem rgba($shadow-color, 0.25), 0 0 0 0.05rem rgba($shadow-color, 0.05);
+    }
+
+    &:active {
+        box-shadow: 0 0.05rem 0.10rem rgba($shadow-color, 0.15), 0 0 0 0.05rem rgba($shadow-color, 0.05);
+    }
+}
+
+@mixin shadow-3 {
+    box-shadow: 0 0.6rem 1.8rem -0.25rem rgba($shadow-color,.2), 0 0.4rem 0.8rem -0.4rem rgba($shadow-color,.05), 0 0 0 0.05rem rgba($shadow-color, 0.01);
+}
+
+@mixin shadow-control-3 {
+    @include shadow-3();
+
+    &:hover, &:focus {
+        box-shadow: 0 0.05rem 0.15rem rgba($shadow-color, 0.25), 0 0 0 0.05rem rgba($shadow-color, 0.2);
+    }
+
+    &:active {
+        box-shadow: 0 0.05rem 0.10rem rgba($shadow-color, 0.15), 0 0 0 0.05rem rgba($shadow-color, 0.2);
+    }
+}

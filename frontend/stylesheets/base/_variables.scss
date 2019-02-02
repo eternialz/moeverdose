@@ -1,0 +1,33 @@
+// Layout
+$body-font-size: 0.8rem;
+$default-font-size: 20px;
+$default-line-height: 1.4;
+$layout-spacing: 1rem;
+
+// Breakpoints
+// sm
+$small: 736px;
+$content-width-small: 100%;
+
+//md
+$medium: 1280px;
+$content-width-medium: 100%;
+
+//nm
+$normal: 1400px;
+$content-width-normal: 90%;
+
+//lg
+$large: 1680px;
+$content-width-large: 85%;
+
+//hd
+$hdpi: 2000px;
+$content-width-hdpi: 80%;
+
+// Z-index depth levels
+$depth-0: 0;
+$depth-1: 100;
+$depth-2: 200;
+$depth-3: 300;
+$depth-4: 400;

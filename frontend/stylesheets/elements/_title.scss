@@ -1,0 +1,14 @@
+.title {
+    letter-spacing: .05rem;
+    margin: 0 0 1rem;
+    text-transform: uppercase;
+
+    &.title-case-sensitive {
+        text-transform: none;
+    }
+
+    &.title-compact {
+        margin: 0;
+        line-height: 1em;
+    }
+}

@@ -30,6 +30,10 @@ Online soon.
 - Launch server
   `foreman start`
 
+# Browser support
+
+Browser support is defined in [.browserlistrc](https://github.com/eternialz/moeverdose/blob/master/.browserlistrc)
+
 # PLANNED FEATURES
 
 - Install and Deployment script

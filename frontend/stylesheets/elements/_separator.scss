@@ -1,0 +1,7 @@
+hr.separator {
+    border: .1rem solid $gray-light;
+    border-radius: .1rem;
+    display: block;
+    width: calc(100% - 2rem);
+    margin: 1rem;
+}

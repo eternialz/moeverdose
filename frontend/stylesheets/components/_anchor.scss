@@ -1,0 +1,25 @@
+.anchor {
+    position: relative;
+
+    .link {
+        opacity: 0;
+        position: absolute;
+        right: 100%;
+        font-size: 1rem;
+        line-height: calc(1em * $default-line-height);
+        top: 0;
+        cursor: pointer;
+        margin-right: 0.1rem;
+        transition: opacity 120ms ease-in-out;
+
+        &:hover {
+            color: $primary-color;
+        }
+    }
+
+    &:hover {
+        .link {
+            opacity: 1;
+        }
+    }
+}

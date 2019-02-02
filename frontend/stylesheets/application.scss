@@ -1,7 +1,46 @@
-@import "normalize.css/normalize.css";
+@import 'normalize.css/normalize.css';
 
-body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-}
+// Base
+@import 'base/colors';
+@import 'base/extends';
+@import 'base/functions';
+@import 'base/mixins';
+@import 'base/variables';
+
+// Elements
+@import 'elements/browser';
+@import 'elements/button-primary';
+@import 'elements/button-secondary';
+@import 'elements/button-social';
+@import 'elements/card';
+@import 'elements/comment';
+@import 'elements/cookie-banner';
+@import 'elements/document';
+@import 'elements/grid';
+@import 'elements/grid.mobile';
+@import 'elements/image';
+@import 'elements/input';
+@import 'elements/keyboard-key';
+@import 'elements/lightbox';
+@import 'elements/notification';
+@import 'elements/number-unit';
+@import 'elements/pagination';
+@import 'elements/paragraph';
+@import 'elements/popover';
+@import 'elements/progress-bar';
+@import 'elements/separator';
+@import 'elements/spoiler';
+@import 'elements/subtitle';
+@import 'elements/tag';
+@import 'elements/textarea';
+@import 'elements/title';
+@import 'elements/tooltip';
+@import 'elements/zone';
+
+// Components
+@import 'components/anchor';
+@import 'components/main-footer';
+@import 'components/main-menu';
+
+// Helpers
+@import 'helpers/padding'

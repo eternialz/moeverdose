@@ -1,4 +1,4 @@
-import 'normalize.css/normalize.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import '../stylesheets/application.scss';
 
 import { Application } from 'stimulus';

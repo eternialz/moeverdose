@@ -1,0 +1,12 @@
+p, .paragraph {
+    margin: .5rem 0;
+
+    &.p-lead, &.paragraph-lead {
+        font-size: 1.2em;
+        margin: .35rem 0;
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
