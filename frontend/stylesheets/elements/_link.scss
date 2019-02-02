@@ -1,0 +1,15 @@
+a {
+    color: $base-color;
+    text-decoration: none;
+    transition: color 70ms linear;
+
+    &:hover {
+        color: rgba($base-color, .8);
+    }
+}
+
+.link {
+    color: $base-color;
+    border-bottom: 1px solid transparent;
+
+}

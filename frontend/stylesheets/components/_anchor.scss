@@ -1,24 +1,27 @@
 .anchor {
+    display: inline-block;
     position: relative;
 
-    .link {
+    .anchor-link {
+        color: $text-color-dark;
+        cursor: pointer;
+        font-size: 0.5em;
+        line-height: 1;
         opacity: 0;
+        padding-right: .2em;
+        padding: .5em;
         position: absolute;
         right: 100%;
-        font-size: 1rem;
-        line-height: calc(1em * $default-line-height);
         top: 0;
-        cursor: pointer;
-        margin-right: 0.1rem;
-        transition: opacity 120ms ease-in-out;
+        transition: opacity 120ms ease-in-out, color 70ms ease-in-out;
 
         &:hover {
-            color: $primary-color;
+            color: rgba($primary-color, .8);
         }
     }
 
     &:hover {
-        .link {
+        .anchor-link {
             opacity: 1;
         }
     }

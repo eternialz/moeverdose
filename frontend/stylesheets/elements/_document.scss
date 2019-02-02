@@ -1,7 +1,6 @@
 html {
     background: $white;
     box-sizing: border-box;
-    color: $text-color-dark;
     font-family: 'Lato', Arial Grande, Tahoma, Helvetica, Arial, sans-serif;
     font-size: $default-font-size;
     line-height: $default-line-height;
@@ -13,14 +12,6 @@ html {
 }
 
 body {
+    color: $text-color-dark;
     font-size: $body-font-size;
-}
-
-* {
-    // Prevent highlight in webkit mobile browsers
-    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-
-    // Add anti-alias for fonts
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
 }
