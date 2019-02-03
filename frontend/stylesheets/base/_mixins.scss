@@ -45,3 +45,35 @@
         box-shadow: 0 0.05rem 0.10rem rgba($shadow-color, 0.15), 0 0 0 0.05rem rgba($shadow-color, 0.2);
     }
 }
+
+@mixin button-base() {
+    border-radius: .15rem;
+    border: none;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: bold;
+    letter-spacing: .05rem;
+    line-height: 1;
+    padding: .45rem .5rem;
+    text-align: left;
+    text-transform: uppercase;
+
+    i {
+        margin-left: .25rem;
+        padding: 0 .1rem;
+    }
+}
+
+@mixin button-color($color) {
+    &.button-secondary {
+        color: $color;
+
+        &:hover {
+            color: $color;
+        }
+    }
+    
+    &.button-primary, &.button-icon {
+        background: $color;
+    }
+}

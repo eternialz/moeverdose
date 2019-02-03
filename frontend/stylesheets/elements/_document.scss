@@ -14,4 +14,8 @@ html {
 body {
     color: $text-color-dark;
     font-size: $body-font-size;
+
+    .view-content {
+        padding-top: 4rem;
+    }
 }

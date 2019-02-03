@@ -18,13 +18,15 @@ $text-color-dark:  #446;
 $code-color: $blue !default;
 
 // Gray levels
-$true-white: #FFF;
-$white:      #FBFBFF;
-$gray-light: #E6E6F8;
-$gray:       #8989A4;
-$gray-dark:  #4B4B5D;
-$black:      #1B1B26;
-$true-black: #000;
+$true-white:   #FFF;
+$white:        #FBFBFF;
+$gray-lighter: #E6E6F8;
+$gray-light:   #b4b4c5;
+$gray:         #89899D;
+$gray-dark:    #4B4B5D;
+$gray-darker:  #343441;
+$black:        #1B1B26;
+$true-black:   #000;
 
 // Error levels color
 $success-color: $green;

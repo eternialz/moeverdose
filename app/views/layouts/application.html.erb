@@ -3,11 +3,11 @@
     <%= render "layouts/head" %>
 
     <body>
-        <%= render "layouts/menu" %>
+        <%= component "main-menu" %>
 
         <%= render "layouts/notifications" %>
 
-        <div class="row content">
+        <div class="row view-content">
             <%= yield %>
         </div>
 

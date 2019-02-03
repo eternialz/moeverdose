@@ -2,6 +2,11 @@
     display: inline-block;
     position: relative;
 
+    .anchor-id {
+        position: absolute;
+        top: -5rem;
+    }
+
     .anchor-link {
         color: $text-color-dark;
         cursor: pointer;
