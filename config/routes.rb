@@ -36,7 +36,6 @@ Rails.application.routes.draw do
         resources :levels, controller: "levels", except: [:destroy, :show]
         resources :comments, controller: "comments", only: [:index, :destroy]
         patch "/comments/:id/unreport" => "comments#unreport", as: "comment_unreport"
-
     end
 
     devise_for :users, path: 'account', :controllers => { registrations: 'user_registrations' }
@@ -44,6 +43,8 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :edit, :update, :index]
     get "/users/:id/favorites" => "users#favorites", as: 'favorites'
     get "/users/:id/uploads" => "users#uploads", as: 'uploads'
+
+    resources :news, only: [:show]
 
     match "/404", :to => "errors#not_found", :via => :all
     match "/500", :to => "errors#internal_server_error", :via => :all

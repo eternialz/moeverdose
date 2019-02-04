@@ -1,13 +1,12 @@
-<!DOCTYPE html>
 <html>
     <%= render "layouts/head" %>
 
     <body>
-        <%= render "layouts/menu" %>
+        <%= component "main-menu" %>
 
         <%= render "layouts/notifications" %>
 
-        <div class="row">
+        <div class="view-content-admin">
             <div class="admin">
                 <ul class="navigation">
                     <li><a href="<%= admin_dashboard_path %>"><%= fa_icon 'dashboard' %> Dashboard</a></li>
@@ -32,11 +31,12 @@
 
                 </ul>
                 <div class="content">
+                    <%= component "breadcrumbs" %>
                     <%= yield %>
                 </div>
             </div>
         </div>
 
-        <%= render "layouts/footer" %>
+        <%= component "main-footer" %>
     </body>
 </html>

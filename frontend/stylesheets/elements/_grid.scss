@@ -26,9 +26,9 @@ section {
 .col {
   flex: 0 0 auto;
 
-  &.-centered,
-  &.-right,
-  &.-left {
+  &.col-centered,
+  &.col-right,
+  &.col-left {
     flex: none;
   }
 
@@ -39,16 +39,16 @@ section {
     width: auto;
   }
 
-  &.-centered {
+  &.col-centered {
     margin-left: auto;
     margin-right: auto;
   }
 
-  &.-right {
+  &.col-right {
     margin-left: auto;
   }
 
-  &.-left {
+  &.col-left {
     margin-right: auto;
   }
 

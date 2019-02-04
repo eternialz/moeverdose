@@ -3,7 +3,7 @@
         <% if @user.avatar.attached? %>
             <img class="avatar" src="<%= url_for @user.avatar %>" width="120" height="120" />
         <% else %>
-            <%= image_tag "default_user.png", class: "avatar" %>
+            <%= image_tag "/images/default_user.png", class: "avatar" %>
         <% end %>
         <% if @user.twitter != "" %>
             <a href="<%= @user.twitter %>" class="icon tooltip"><%= fa_icon "twitter" %><span class="tip">@<%= @user.twitter %></span></a>

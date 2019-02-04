@@ -1,6 +1,6 @@
 <div class="userprofile">
-    <div class="user_header clearfix" style="background-image: url(<%= image_url('header-img.jpg') %>)">
-        <img class="avatar" src="<%= image_url('default_user.png') %>" width="120" height="120" />
+    <div class="user_header clearfix">
+        <img class="avatar" src="<%= image_url('/images/default_user.png') %>" width="120" height="120" />
         <div class="user_banner">
             <h3 class="username"><%= @user.name %></h3><span class="role"><%= @user.role %></span>
             <% if @current %>

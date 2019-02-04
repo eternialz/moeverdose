@@ -1,7 +1,9 @@
 <div class="home-about">
+    <div class="padding">
+    <h2 class="title align-center"><%= site_name %></h2>
+    </div>
     <div class="col-12 zone">
-        <h2>About <%= site_name %></h2>
-        <p>
+        <p class="p-lead">
             <%= site_name %> is a safe for work image board for cute anime style characters.
             If you need help using our website, you can find informations on the <a href="/pages/help/index">Help page</a>.
         </p>
@@ -13,13 +15,13 @@
                 <a href="<%= chat_url %>" class="button-icon button-discord" target="_blank">
                     <i class="fab fa-discord"></i>
                 </a>
-                <p>
+                <p class="p-lead">
                     Join our Discord Chat and get automatic updates, moeverdose bots and more
                 </p>
             </div>
             <div class="col-6">
                 <a href="https://github.com/eternialz/moeverdose" class="button-icon button-github" target="_blank"><i class="fab fa-github"></i></a>
-                <p>
+                <p class="p-lead">
                     Moeverdose is an open source project under the Mozilla Public Licence 2.0
                 </p>
             </div>
@@ -27,45 +29,52 @@
     </div>
 </div>
 
-<div class="zone">
-    <h2 class="title">
-        <%= component "anchor", {anchor: 'name'} do %>
-            <%= site_name %> is currently in open beta
-        <% end %>
-    </h2>
-    <p>
-        The current database will most probably be deleted or have some parts removed at the end of the beta test.<br />
-        If you encounter bugs (graphical glitch, slow speed, error 500, ...), please help us by reporting them in the discord chat, under the #bug_report channel.
-    </p>
-</div>
+<div class="zone padding padding-sm">
+    <div class="columns">
+        <div class="col-6 col-12-medium padding padding-sm">
+            <h2 class="title">
+                <%= component "anchor", {anchor: 'name'} do %>
+                    <%= site_name %> is currently in open beta
+                <% end %>
+            </h2>
+            <p class="p-lead">
+                The current database will most probably be deleted or have some parts removed at the end of the beta test.<br />
+                If you encounter bugs (graphical glitch, slow speed, error 500, ...), please help us by reporting them in the discord chat, under the #bug_report channel.
+            </p>
+        </div>
 
-<div class="zone">
-    <h2 class="title title-compact"><%= site_name %> is currently in open beta</h2>
-    <h6 class="subtitle subtitle-important"><%= site_name %> is currently in open beta</h6>
-    <p>
-        The current database will most probably be deleted or have some parts removed at the end of the beta test.<br />
-        If you encounter bugs (graphical glitch, slow speed, error 500, ...), please help us by reporting them in the discord chat, under the #bug_report channel.
-    </p>
-</div>
-
-<% if !@news.empty? %>
-    <div class="zone news">
-        <h2 class="zone_title">NEWS</h2>
-        <div class="col-12">
-            <% @news.each do |n| %>
-                <div class="new clearfix">
-                    <h3><%= n.title %><span><%= n.created_at.strftime("%Y/%m/%d") %></span></h3>
+        <div class="col-6 col-12-medium padding padding-sm">
+            <h2 class="title">
+                <%= component "anchor", {anchor: 'news'} do %>
+                    news
+                <% end %>
+            </h2>
+            <% if !@news.empty? %>
+                <% @news.each do |n| %>
                     <% if n.text.length > 200 %>
-                        <p><%= n.text[0..200] %>...</p>
+                        <div class="card">
+                            <h4 class="subtitle"><%= n.title %></h4>
+                            <h6>
+                                <span><%= n.created_at.strftime("%Y/%m/%d") %></span>
+                            </h6>
+                            <p class="p-lead"><%= n.text[0..200] %>...</p>
+                            <%= link_to news_path(n), class: "button button-secondary" do %>
+                                Read more
+                            <% end %>
+                        </div>
                     <% else %>
-                        <p><%= n.text %></p>
+                        <div class="card">
+                            <h4 class="subtitle"><%= n.title %></h4>
+                            <h6>
+                                <span><%= n.created_at.strftime("%Y/%m/%d") %></span>
+                            </h6>
+                            <p class="p-lead"><%= n.text %></p>
+                        </div>
                     <% end %>
-                </div>
+                <% end %>
+            <% else %>
+                <p class="title">No news</p>
             <% end %>
         </div>
     </div>
-<% else %>
-    <div class="zone news">
-        <p class="small-title">No news</p>
-    </div>
-<% end %>
+</div>

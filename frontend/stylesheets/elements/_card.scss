@@ -1,0 +1,10 @@
+.card {
+    @include shadow-1();
+
+    background: $true-white;
+    border-bottom: 1px solid $gray-lighter;
+    border-radius: $border-radius;
+    display: block;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}

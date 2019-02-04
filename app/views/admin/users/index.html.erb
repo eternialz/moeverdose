@@ -15,7 +15,7 @@
             <% if user.avatar.attached? %>
                 <img class="avatar" src='<%= url_for user.avatar %>'>
             <% else %>
-                <%= image_tag "default_user.png", class: "avatar" %>
+                <%= image_tag "/images/default_user.png", class: "avatar" %>
             <% end %>
             <h3><%= user.name %></h3><br /><br />
             <span><%= user.role %></span>
