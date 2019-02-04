@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
     def home
         @news = New.all.order('created_at DESC').limit(2)
-        render helpers.componentPath("home")
+        render component "home"
     end
 
     private
@@ -12,5 +12,12 @@ class ApplicationController < ActionController::Base
         if page_title.to_s != ""
             @title = page_title.to_s + ' - ' + helpers.site_name
         end
+    end
+
+    def component(component_path)
+        path_array = component_path.downcase.split('/')
+        name = path_array.pop
+        component_name = path_array.join('/')
+        return "components/#{component_name}/#{name}/_#{name}"
     end
 end

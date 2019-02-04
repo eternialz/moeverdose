@@ -1,0 +1,36 @@
+<% cache "footer" do %>
+    <footer class="main-footer">
+        <section>
+            <div class="row">
+                <div class="columns">
+                    <div class="col col-6 col-12-small padding">
+                        <h5 class="title main-footer-title">Advertisement</h5>
+                    </div>
+
+                    <div class="col col-3 col-6-medium col-12-small padding">
+                        <h5 class="title main-footer-title">About</h5>
+                        <p>
+                        <%= site_name %> is a safe for work taggable image board/booru for cute anime style characters made with Ruby on Rails and PostGreSQL.
+                        </p>
+                    </div>
+                    <div class="col col-3 col-6-medium col-12-small padding">
+                        <nav>
+                            <h5 class="title main-footer-title">Navigation</h5>
+                            <%= link_to "Home", root_path %>
+                            <%= link_to "All Posts", posts_path %>
+                            <%= link_to "Upload", new_post_path %>
+                            <%= link_to "Random", random_path %>
+                            <%= link_to "Help", "/pages/help/index" %>
+                            <%= link_to "Terms of Service", "/pages/tos" %>
+                        </nav>
+                    </div>
+                </div>
+                <div class="columns">
+                    <div class="col col-12 padding">
+                        <p class="center copyright">© <%= site_name %> - <a href="/pages/tos">Terms of Services</a> - <a href="/pages/legal">Legal notice</a> - <a href="https://github.com/eternialz/moeverdose/blob/master/LICENCE.txt" target="_blank">Licence</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </footer>
+<% end %>

@@ -1,9 +1,9 @@
-<div class="help_nav">
-    <h2><%= link_to 'Help', '/pages/help/index' %></h2><%= fa_icon "chevron-right"%><h3>Posts Rules</h3>
-</div>
-
-<div class="help_page zone">
-    <h2 id="help">Help when uploading</h2>
+<div class="zone">
+    <h4 class="title">
+        <%= component "anchor", {anchor: "uploading"} do %>
+            Help for uploading
+        <% end %>
+    </h4>
     <p>To upload a media, go to the <%= link_to "upload page", new_post_path %></p>
     <ol>
         <li>Select the file by clicking the first field or drag and drop the file in it.</li>
@@ -35,3 +35,7 @@
     <p><strong>This list is non-exhaustive, if a staff member judge your content to be inappropriate, the content will be deleted without notice or compensation.</strong></p><br />
     <p>This list may be modified at any moment.</p>
 </div>
+
+    <p>
+        If you see a post that is not respecting the rules, please report it as soon as you can, using the report button on the post or using the chat.
+    </p>

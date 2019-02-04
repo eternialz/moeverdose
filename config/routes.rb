@@ -1,13 +1,8 @@
 Rails.application.routes.draw do
-    # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
     get 'home/show'
 
     # Homepage
     root 'application#home'
-
-    # Static contents
-    get "/pages/:page" => "static_pages#show", as: :static_page
-    get "/pages/help/:page" => "static_pages#help", as: :static_help_page
 
     # Posts
     get "/random" => "posts#random", as: :random
@@ -57,4 +52,7 @@ Rails.application.routes.draw do
         match code, :to => "errors#error", :via => :all, :code => code
     end
 
+    # Static contents
+    get "/wiki/:page" => "static_pages#wiki", as: :wiki_static_page
+    get "/:page" => "static_pages#static", as: :static_page
 end

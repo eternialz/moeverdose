@@ -1,0 +1,68 @@
+<div class="zone">
+    <h4 class="title title-compact">
+        <%= component "anchor", {anchor: "tags"} do %>
+            Tags
+        <% end %>
+    </h4>
+    <p class="p-lead">Tags are keywords that describes posts, allowing them to be easily searched based on their content.</p>
+</div>
+<div class="zone">
+    <h4 class="title title-compact">
+        <%= component "anchor", {anchor: "naming-tags"} do %>
+            Naming convention
+        <% end %>
+    </h4>
+    <p class="p-lead">Every space should be replaced by an underscore and hyphens stay as they are. Tags are all lowercase.</p>
+    <p>
+        "<strong>Fushigi Neko no Kyuu-chan</strong>" become <span class="tag tag-copyright">fushigi_neko_no_kyuu-chan</span>
+    </p>
+    <p>
+        Ask in the discord server if you are not sure how to name a tag.
+    </p>
+</div>
+<div class="zone">
+    <h4 class="title title-compact">
+        <%= component "anchor", {anchor: "content-tags"} do %>
+            Content tags
+        <% end %>
+    </h4>
+    <p class="p-lead">Content tags are displayed in pink: <span class="tag">cat</span></p>
+    <p>Objectively describe the content of the post.</p>
+</div>
+<div class="zone">
+    <h4 class="title title-compact">
+        <%= component "anchor", {anchor: "character-tags"} do %>
+            Character tags
+        <% end %>
+    </h4>
+    <p class="p-lead">Character tags are displayed in green: <span class="tag tag-character">kyuu-chan</span></p>
+    <p>Identify character(s) represented in the post.</p>
+</div>
+<div class="zone">
+    <h4 class="title title-compact">
+        <%= component "anchor", {anchor: "author-tags"} do %>
+            Author tags
+        <% end %>
+    </h4>
+    <p class="p-lead">Author tags are displayed in orange: <span class="tag tag-author">nitori_sasami</span></p>
+    <p>Identify the author(s) of the post, who may not be the uploader.</p>
+</div>
+<div class="zone">
+    <h4 class="title title-compact">
+        <%= component "anchor", {anchor: "copyright-tags"} do %>
+            Copyright tags
+        <% end %>
+    </h4>
+    <p class="p-lead">Copyright tags are displayed in purple: <span class="tag tag-copyright">fushigi_neko_no_kyuu-chan</span></p>
+    <p>Identify the source material(s) of the post.</p>
+</div>
+<div class="zone">
+    <h4 class="title title-compact">
+        <%= component "anchor", {anchor: "aliases"} do %>
+            Aliases
+        <% end %>
+    </h4>
+    <p class="p-lead">Aliases are another name for the same tag</p>
+    <p>They may be used when an artist change their name or when there is an ambiguity when describing something.</p>
+    <p>For exemple <span class="tag">cat</span> and <span class="tag">neko</span> will be the same tag but <span class="tag">cat</span> and <span class="tag">feline</span> wont.
+</div>

@@ -1,6 +1,6 @@
 .padding {
     --padding: #{$layout-spacing};
-    padding: 0;
+    padding: var(--padding);
 
     // directions
     &.padding-horizontal {
@@ -12,18 +12,22 @@
     }
 
     &.padding-bottom {
+        padding: 0;
         padding-bottom: var(--padding);
     }
 
     &.padding-left {
+        padding: 0;
         padding-left: var(--padding);
     }
 
     &.padding-right {
+        padding: 0;
         padding-right: var(--padding);
     }
 
     &.padding-top {
+        padding: 0;
         padding-top: var(--padding);
     }
 

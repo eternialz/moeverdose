@@ -5,11 +5,11 @@ import { Controller } from 'stimulus';
 class MainMenuController extends Controller {
     static targets = ['submenu'];
 
-    connect() {
-        this.submenuTarget.classList.remove('active');
+    over() {
+        this.submenuTarget.classList.add('active');
     }
 
-    hoverSwitch() {
-        this.submenuTarget.classList.toggle('active');
+    out() {
+        this.submenuTarget.classList.remove('active');
     }
 }

@@ -1,0 +1,27 @@
+.tag {
+    font-weight: bold;
+    display: inline-block;
+    border-radius: $border-radius;
+    padding: 0 .2rem;
+    box-shadow: inset 0 0 0 1px rgba($black, .05);
+
+    &, &.tag-content {
+        background: rgba($pink, .075);
+        color: $pink;
+    }
+
+    &.tag-copyright {
+        background: rgba($purple, .075);
+        color: $purple;
+    }
+
+    &.tag-author {
+        background: rgba($orange, .075);
+        color: $orange;
+    }
+
+    &.tag-character {
+        background: rgba($green, .075);
+        color: $green;
+    }
+}

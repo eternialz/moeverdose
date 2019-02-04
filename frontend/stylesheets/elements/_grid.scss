@@ -1,171 +1,97 @@
-/* Snippets
-
-<section>
-    <div class="row">
-        <div class="columns">
-            <div class="col col-3"></div>
-            <div class="col col-4"></div>
-            <div class="col col-5"></div>
-        </div>
-    </div>
-<section>
-
-section: partie de page qui prend la largeur entière
-row: inclue dans section, adaptée au écran mobiles
-col: colonnes de largeur: 12 max et 2 min
-
-*/
-
 section {
-    padding: 2rem 0;
-    width: 100%;
+  padding: 3rem 0;
+  width: 100%;
 }
 
 .row {
-    display: block;
-    margin: 0 auto;
-    max-width: $content-width-large;
-    padding: 0 1rem;
-    width: 100%;
+  display: block;
+  margin: 0 auto;
+  max-width: $content-width-large;
+  padding: 0 1rem;
+  width: 100%;
 }
 
 .columns {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    padding-left: -#{$layout-spacing};
-    padding-right: -$layout-spacing;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  padding-left: -#{$layout-spacing};
+  padding-right: -$layout-spacing;
 
-    &.-one-line {
-        flex-wrap: nowrap;
-    }
+  &.-one-line {
+    flex-wrap: nowrap;
+  }
 }
 
 .col {
-  --padding: #{$layout-spacing};
-  flex: 1;
-  padding: var(--padding);
+  flex: 0 0 auto;
 
-    &.-centered,
-    &.-right,
-    &.-left {
-        flex: none;
-    }
+  &.-centered,
+  &.-right,
+  &.-left {
+    flex: none;
+  }
 
-    // Padding values
-    &.-pad-0x {
-        padding: 0;
-    }
+  // Alignment
+  &.-auto-width {
+    flex: 0 0 auto;
+    max-width: none;
+    width: auto;
+  }
 
-    &.-pad-xs {
-        --padding: #{$layout-spacing * 0.5};
-    }
+  &.-centered {
+    margin-left: auto;
+    margin-right: auto;
+  }
 
-    &.-pad-lg {
-        --padding: #{$layout-spacing * 1.5};
-    }
+  &.-right {
+    margin-left: auto;
+  }
 
-    &.-pad-2x {
-        --padding: #{$layout-spacing * 2};
-    }
+  &.-left {
+    margin-right: auto;
+  }
 
-    &.-pad-3x {
-        --padding: #{$layout-spacing * 3};
-    }
+  // Borders
+  &.-border-right {
+    border-right: 1px solid $gray-light;
+  }
 
-    &.-pad-4x {
-        --padding: #{$layout-spacing * 4};
-    }
-
-    // Padding directions
-    &.-pad-horizontal {
-        padding: 0 var(--padding);
-    }
-
-    &.-pad-vertical {
-        padding: var(--padding) 0;
-    }
-
-    &.-pad-top {
-        padding: 0;
-        padding-top: var(--padding);
-    }
-
-    &.-pad-bottom {
-        padding: 0;
-        padding-bottom: var(--padding);
-    }
-
-    &.-pad-left {
-        padding: 0;
-        padding-left: var(--padding);
-    }
-
-    &.-pad-right {
-        padding: 0;
-        padding-right: var(--padding);
-    }
-
-    // Alignment
-    &.-auto-width {
-        flex: 0 0 auto;
-        max-width: none;
-        width: auto;
-    }
-
-    &.-centered {
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    &.-right {
-        margin-left: auto;
-    }
-
-    &.-left {
-        margin-right: auto;
-    }
-
-    // Borders
-    &.-border-right {
-        border-right: 1px solid $gray-light;
-    }
-
-    &.-border-left {
-        border-left: 1px solid $gray-light;
-    }
+  &.-border-left {
+    border-left: 1px solid $gray-light;
+  }
 }
 
 .col-1 {
-    width: (100% / 12);
+  width: (100% / 12);
 }
 .col-2 {
-    width: (100% / 6);
+  width: (100% / 6);
 }
 .col-3 {
-    width: (100% / 4);
+  width: (100% / 4);
 }
 .col-4 {
-    width: (100% / 3);
+  width: (100% / 3);
 }
 .col-5 {
-    width: (100% / (12 / 5));
+  width: (100% / (12 / 5));
 }
 .col-6 {
-    width: (100% / 2);
+  width: (100% / 2);
 }
 .col-7 {
-    width: (100% / (12 / 7));
+  width: (100% / (12 / 7));
 }
 .col-8 {
-    width: (100% / (12 / 8));
+  width: (100% / (12 / 8));
 }
 .col-9 {
-    width: (100% / (12 / 9));
+  width: (100% / (12 / 9));
 }
 .col-10 {
-    width: (100% / (12 / 10));
+  width: (100% / (12 / 10));
 }
 .col-12 {
-    width: 100%;
+  width: 100%;
 }

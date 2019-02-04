@@ -9,14 +9,9 @@
 
     .main-menu-link {
         color: $gray-lighter;
-        text-transform: lowercase;
 
         &:hover {
             color: $true-white;
-        }
-
-        &.active {
-            
         }
     }
 
@@ -81,16 +76,29 @@
                         background: $true-black;
                         color: $true-white;
                     }
+
+                    &.main-menu-support {
+                        i {
+                            margin-left: .25rem;
+                            font-size: .75em;
+                        }
+
+                        &:hover {
+                            color: $primary-color;
+                        }
+                    }
                 }
 
                 &.main-menu-account-nav {
                     left: auto;
-                    right: -1.5rem;
+                    right: 0;
                     white-space: normal;
 
                     .main-menu-block {
                         display: flex;
                         width: 22rem;
+                        position: relative;
+                        right: -2.25rem;
                     }
 
                     .main-menu-login, .main-menu-register {
@@ -174,6 +182,15 @@
             align-items: center;
             display: flex;
             height: 100%;
+        }
+
+        .main-menu-subnav .main-menu-account-links {
+            position: relative;
+            right: 0.35rem;
+
+            .main-menu-link {
+                text-align: right;
+            }
         }
     }
 }

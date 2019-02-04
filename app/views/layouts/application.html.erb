@@ -1,19 +1,16 @@
 <!DOCTYPE html>
 <html>
     <%= render "layouts/head" %>
-
     <body>
         <%= component "main-menu" %>
 
         <%= render "layouts/notifications" %>
 
         <div class="row view-content">
+            <%= component "breadcrumbs" %>
             <%= yield %>
         </div>
 
-        <%= render "layouts/footer" %>
-
-
-        <%= render "layouts/cookies_disclaimer" %>
+        <%= component "main-footer" %>
     </body>
 </html>
