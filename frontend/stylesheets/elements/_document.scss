@@ -7,7 +7,9 @@ html {
     text-rendering: optimizeLegibility;
 }
 
-*, *:before, *:after {
+*,
+*::before,
+*::after {
     box-sizing: inherit;
 }
 

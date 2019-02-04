@@ -97,34 +97,10 @@
                 transition: opacity 100ms ease-in-out;
                 white-space: nowrap;
                 z-index: $depth-2;
-
-                .main-menu-link {
-                    border-radius: 0.15rem;
-                    color: $gray-light;
-                    display: block;
-                    margin: 0.15rem 0.25rem;
-                    padding: 0.15rem 0.5rem 0.15rem;
-
-                    &:hover {
-                        background: $true-black;
-                        color: $true-white;
-                    }
-
-                    &.main-menu-support {
-                        i {
-                            margin-left: 0.25rem;
-                            font-size: 0.75em;
-                        }
-
-                        &:hover {
-                            color: $primary-color;
-                        }
-                    }
-                }
             }
 
             &:hover {
-                & > .main-menu-link {
+                .main-menu-link {
                     color: $true-white;
                 }
 
@@ -132,6 +108,30 @@
                     height: auto;
                     opacity: 1;
                     pointer-events: all;
+                }
+            }
+
+            .main-menu-subnav .main-menu-link {
+                border-radius: 0.15rem;
+                color: $gray-light;
+                display: block;
+                margin: 0.15rem 0.25rem;
+                padding: 0.15rem 0.5rem 0.15rem;
+
+                &:hover {
+                    background: $true-black;
+                    color: $true-white;
+                }
+
+                &.main-menu-support {
+                    i {
+                        margin-left: 0.25rem;
+                        font-size: 0.75em;
+                    }
+
+                    &:hover {
+                        color: $primary-color;
+                    }
                 }
             }
         }
@@ -156,7 +156,7 @@
                 }
             }
 
-            .main-menu-subnav {
+            .main-menu-subnav-container .main-menu-subnav {
                 left: auto;
                 right: 0;
                 white-space: normal;
