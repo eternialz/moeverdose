@@ -1,196 +1,199 @@
 .main-menu {
-    @include shadow-3();
-    background: $gray-darker;
-    color: $white;
-    font-size: 1rem;
-    position: fixed;
-    width: 100%;
-    z-index: $depth-3;
+  @include shadow-3();
 
-    .main-menu-link {
-        color: $gray-lighter;
+  background: $gray-darker;
+  color: $white;
+  font-size: 1rem;
+  position: fixed;
+  width: 100%;
+  z-index: $depth-3;
 
-        &:hover {
-            color: $true-white;
+  .main-menu-link {
+    color: $gray-lighter;
+
+    &:hover {
+      color: $true-white;
+    }
+  }
+
+  .main-menu-content {
+    align-items: center;
+    display: flex;
+    height: 3rem;
+  }
+
+  #main-menu-logo {
+    color: $true-white;
+
+    h1 {
+      margin: 0;
+    }
+  }
+
+  .main-menu-nav {
+    padding: 0 1rem;
+
+    .main-menu-subnav-container {
+      display: inline-block;
+      position: relative;
+
+      .main-menu-link {
+        display: inline-block;
+        margin: 0.25rem;
+        padding: 0.25rem;
+      }
+
+      &:hover {
+        & > .main-menu-link {
+          color: $true-white;
         }
-    }
 
-    .main-menu-content {
-        align-items: center;
-        display: flex;
-        height: 3rem;
-    }
-    
-    #main-menu-logo {
-        color: $true-white;
-        
-        h1 {
-            margin: 0;
+        .main-menu-subnav {
+          height: auto;
+          opacity: 1;
+          pointer-events: all;
         }
-    }
+      }
 
-    .main-menu-nav {
-        padding: 0 1rem;
-        .main-menu-subnav-container {
-            display: inline-block;
-            position: relative;
-            
-            .main-menu-link {
-                display: inline-block;
-                margin: .25rem;
-                padding: .25rem;
-            }
-
-            &:hover {
-                & > .main-menu-link {
-                    color: $true-white;
-                }
-
-                .main-menu-subnav {
-                    height: auto;
-                    opacity: 1;
-                    pointer-events: all;
-                }
-            }
-
-            .main-menu-subnav {
-                height: 0;
-                left: -2.25rem;
-                opacity: 0;
-                padding: 1rem 2rem 0;
-                pointer-events: none;
-                position: absolute;
-                top: 100%;
-                transition: opacity 100ms ease-in-out;
-                white-space: nowrap;
-                z-index: $depth-2;
-
-                .main-menu-link {
-                    border-radius: .15rem;   
-                    color: $gray-light;
-                    display: block;
-                    margin: .15rem .25rem;
-                    padding: .15rem .5rem .15rem;
-                    
-                    &:hover {
-                        background: $true-black;
-                        color: $true-white;
-                    }
-
-                    &.main-menu-support {
-                        i {
-                            margin-left: .25rem;
-                            font-size: .75em;
-                        }
-
-                        &:hover {
-                            color: $primary-color;
-                        }
-                    }
-                }
-
-                &.main-menu-account-nav {
-                    left: auto;
-                    right: 0;
-                    white-space: normal;
-
-                    .main-menu-block {
-                        display: flex;
-                        width: 22rem;
-                        position: relative;
-                        right: -2.25rem;
-                    }
-
-                    .main-menu-login, .main-menu-register {
-                        display: inline-block;
-                        height: 13rem;
-                        font-size: 0.8rem;
-                        width: 12rem;
-                        padding: .5rem 1rem;
-                        display: flex;
-                        flex-direction: column;
-                    }
-
-                    .main-menu-register {
-                        padding-left: 0;
-
-                        .button-primary {
-                            margin-top: auto;
-                        }
-                    }
-
-                    .main-menu-login {
-                        padding-right: 0;
-                        
-                        .form {
-                            display: flex;
-                            flex-direction: column;
-                            height: 100%;
-                            padding-bottom: 0;
-
-                            .main-menu-block-content {
-                                flex-grow: 1;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    .submenu {
-        @include shadow-3();
-
-        background: $true-black;
-        height: 15rem;
-        left: 0;
+      .main-menu-subnav {
+        height: 0;
+        left: -2.25rem;
         opacity: 0;
-        overflow: hidden;
+        padding: 1rem 2rem 0;
         pointer-events: none;
         position: absolute;
         top: 100%;
         transition: opacity 100ms ease-in-out;
-        width: 100%;
+        white-space: nowrap;
+        z-index: $depth-2;
 
-        &.active {
-            border-bottom: 3px solid $primary-color;
-            opacity: 0.9;
-        }
-    }
+        .main-menu-link {
+          border-radius: 0.15rem;
+          color: $gray-light;
+          display: block;
+          margin: 0.15rem 0.25rem;
+          padding: 0.15rem 0.5rem 0.15rem;
 
-    .user {
-        align-items: center;
-        display: flex;
-        height: 3rem;
-        margin-left: auto;
-        
-        .avatar {
-            border-radius: 50%;
-            display: inline-block;
-            margin-left: .5rem;
-            max-height: 2rem;
-            max-width: 2rem;
-            overflow: hidden;
+          &:hover {
+            background: $true-black;
+            color: $true-white;
+          }
 
-            img {
-                height: 2rem;
-                width: 2rem;
+          &.main-menu-support {
+            i {
+              margin-left: 0.25rem;
+              font-size: 0.75em;
             }
+
+            &:hover {
+              color: $primary-color;
+            }
+          }
         }
 
-        .main-menu-subnav-container {
-            align-items: center;
+        &.main-menu-account-nav {
+          left: auto;
+          right: 0;
+          white-space: normal;
+
+          .main-menu-block {
             display: flex;
-            height: 100%;
-        }
-
-        .main-menu-subnav .main-menu-account-links {
+            width: 22rem;
             position: relative;
-            right: 0.35rem;
+            right: -2.25rem;
+          }
 
-            .main-menu-link {
-                text-align: right;
+          .main-menu-login,
+          .main-menu-register {
+            display: inline-block;
+            height: 13rem;
+            font-size: 0.8rem;
+            width: 12rem;
+            padding: 0.5rem 1rem;
+            display: flex;
+            flex-direction: column;
+          }
+
+          .main-menu-register {
+            padding-left: 0;
+
+            .button-primary {
+              margin-top: auto;
             }
+          }
+
+          .main-menu-login {
+            padding-right: 0;
+
+            .form {
+              display: flex;
+              flex-direction: column;
+              height: 100%;
+              padding-bottom: 0;
+
+              .main-menu-block-content {
+                flex-grow: 1;
+              }
+            }
+          }
         }
+      }
     }
+  }
+
+  .submenu {
+    @include shadow-3();
+
+    background: $true-black;
+    height: 15rem;
+    left: 0;
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+    position: absolute;
+    top: 100%;
+    transition: opacity 100ms ease-in-out;
+    width: 100%;
+
+    &.active {
+      border-bottom: 3px solid $primary-color;
+      opacity: 0.9;
+    }
+  }
+
+  .user {
+    align-items: center;
+    display: flex;
+    height: 3rem;
+    margin-left: auto;
+
+    .avatar {
+      border-radius: 50%;
+      display: inline-block;
+      margin-left: 0.5rem;
+      max-height: 2rem;
+      max-width: 2rem;
+      overflow: hidden;
+
+      img {
+        height: 2rem;
+        width: 2rem;
+      }
+    }
+
+    .main-menu-subnav-container {
+      align-items: center;
+      display: flex;
+      height: 100%;
+    }
+
+    .main-menu-subnav .main-menu-account-links {
+      position: relative;
+      right: 0.35rem;
+
+      .main-menu-link {
+        text-align: right;
+      }
+    }
+  }
 }

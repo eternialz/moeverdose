@@ -1,21 +1,23 @@
 html {
-    background: $white;
-    box-sizing: border-box;
-    font-family: 'Lato', Arial Grande, Tahoma, Helvetica, Arial, sans-serif;
-    font-size: $default-font-size;
-    line-height: $default-line-height;
-    text-rendering: optimizeLegibility;
+  background: $white;
+  box-sizing: border-box;
+  font-family: 'Lato', Arial Grande, Tahoma, Helvetica, Arial, sans-serif;
+  font-size: $default-font-size;
+  line-height: $default-line-height;
+  text-rendering: optimizeLegibility;
 }
 
-*, *:before, *:after {
-    box-sizing: inherit;
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
 }
 
 body {
-    color: $text-color-dark;
-    font-size: $body-font-size;
+  color: $text-color-dark;
+  font-size: $body-font-size;
 
-    .view-content {
-        padding-top: 4rem;
-    }
+  .view-content {
+    padding-top: 4rem;
+  }
 }

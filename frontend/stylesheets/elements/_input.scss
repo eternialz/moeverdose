@@ -1,28 +1,28 @@
 .form {
-    padding: .35rem 0;
+  padding: 0.35rem 0;
 }
 
 .form-field {
-    margin: .35rem 0;
+  margin: 0.35rem 0;
 }
 
 .form-label {
-    padding-bottom: .2rem; 
+  padding-bottom: 0.2rem;
 }
 
 .form-input {
-    appearance: none;
-    background: $gray-darker;
-    background-image: none;
-    border-radius: $border-radius;
-    color: $text-color-light;
-    display: block;
-    font-size: $body-font-size;
-    line-height: 1;
-    max-width: 100%;
-    outline: none;
-    padding: .4em .5em;
-    position: relative;
-    transition: background .2s, border .2s, box-shadow .2s, color .2s;
-    width: 100%;
+  appearance: none;
+  background: $gray-darker;
+  background-image: none;
+  border-radius: $border-radius;
+  color: $text-color-light;
+  display: block;
+  font-size: $body-font-size;
+  line-height: 1;
+  max-width: 100%;
+  outline: none;
+  padding: 0.4em 0.5em;
+  position: relative;
+  transition: background 0.2s, border 0.2s, box-shadow 0.2s, color 0.2s;
+  width: 100%;
 }

@@ -1,18 +1,18 @@
 .subtitle {
-    color: $gray;
-    font-weight: bold;
-    margin: 0.25rem 0;
+  color: $gray;
+  font-weight: bold;
+  margin: 0.25rem 0;
 
-    &.subtitle-compact {
-        line-height: 1em;
-        margin: 0;
-    }
+  &.subtitle-compact {
+    line-height: 1em;
+    margin: 0;
+  }
 
-    &.subtitle-important {
-        text-transform: uppercase;
-    }
+  &.subtitle-important {
+    text-transform: uppercase;
+  }
 
-    &.subtitle-inline {
-        display: inline-block;
-    }
+  &.subtitle-inline {
+    display: inline-block;
+  }
 }

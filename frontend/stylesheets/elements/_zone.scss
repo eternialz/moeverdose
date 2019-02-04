@@ -1,8 +1,8 @@
 .zone {
-    @include shadow-3;
+  @include shadow-3;
 
-    background: $true-white;
-    border-radius: .25rem;
-    margin-bottom: 1rem;
-    padding: 1rem;
+  background: $true-white;
+  border-radius: 0.25rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
 }

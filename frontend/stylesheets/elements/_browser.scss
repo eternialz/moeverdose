@@ -1,17 +1,18 @@
 ::selection {
-    background-color: rgba($secondary-color, .75) !important;
-    color: $true-white !important;
+  background-color: rgba($secondary-color, 0.75) !important;
+  color: $true-white !important;
 }
 
 * {
-    // Prevent highlight in webkit mobile browsers
-    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  // Prevent highlight in webkit mobile browsers
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 
-    // Add anti-alias for fonts
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
+  // Add anti-alias for fonts
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
 }
 
-button, input {
-    border: 0;
+button,
+input {
+  border: 0;
 }

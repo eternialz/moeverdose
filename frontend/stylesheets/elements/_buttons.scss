@@ -1,65 +1,65 @@
 .button-primary {
-    @include button-base();
+  @include button-base();
 
-    background: $primary-color;
+  background: $primary-color;
+  color: $true-white;
+  transition: filter 70ms linear;
+
+  &:hover {
     color: $true-white;
-    transition: filter 70ms linear;
+    filter: brightness(0.92);
+  }
 
-    &:hover {
-        color: $true-white;
-        filter: brightness(0.92);
-    }
-
-    &.button-primary-compact {
-        margin: 0;
-    }
+  &.button-primary-compact {
+    margin: 0;
+  }
 }
 
 .button-secondary {
-    @include button-base();
+  @include button-base();
 
-    background: rgba($black, .1);
+  background: rgba($black, 0.1);
+  color: $gray-dark;
+  transition: background-color 70ms linear;
+
+  i {
+    margin-left: 0.25rem;
+    padding: 0 0.1rem;
+  }
+
+  &:hover {
+    background: rgba($black, 0.17);
     color: $gray-dark;
-    transition: background-color 70ms linear;
+  }
 
-    i {
-        margin-left: .25rem;
-        padding: 0 .1rem;
-    }
-
-    &:hover {
-        background: rgba($black, .17);
-        color: $gray-dark;
-    }
-
-    &.button-primary-compact {
-        margin: 0;
-    }
+  &.button-primary-compact {
+    margin: 0;
+  }
 }
 
 .button-icon {
-    @include button-base();
+  @include button-base();
 
-    background: $primary-color;
+  background: $primary-color;
+  color: $true-white;
+  padding: 0.45rem 0.4rem;
+  transition: filter 70ms linear;
+
+  i {
+    margin: 0;
+    padding: 0 0.1rem;
+  }
+
+  &:hover {
     color: $true-white;
-    padding: .45rem .4rem;
-    transition: filter 70ms linear;
-
-    i {
-        margin: 0;
-        padding: 0 .1rem;
-    }
-
-    &:hover {
-        color: $true-white;
-        filter: brightness(0.92);
-    }
+    filter: brightness(0.92);
+  }
 }
 
 .button-discord {
-    @include button-color($discord-color);
+  @include button-color($discord-color);
 }
 
 .button-github {
-    @include button-color($github-color);
+  @include button-color($github-color);
 }

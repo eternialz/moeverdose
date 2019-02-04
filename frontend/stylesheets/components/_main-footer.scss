@@ -1,24 +1,24 @@
 .main-footer {
-    background: $gray-darker;
-    margin-top: 2rem;
-    color: $white;
+  background: $gray-darker;
+  margin-top: 2rem;
+  color: $white;
 
-    .title {
-        padding-bottom: .5rem;
-        border-bottom: 1px solid $gray-dark;
+  .title {
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid $gray-dark;
+  }
+
+  nav a {
+    display: block;
+  }
+
+  a {
+    color: $gray-light;
+    padding: 0.1rem 0;
+    margin: 0.1rem 0;
+
+    &:hover {
+      color: $true-white;
     }
-
-    nav a {
-        display: block;
-    }
-
-    a {
-        color: $gray-light;
-        padding: .1rem 0;
-        margin: .1rem 0;
-
-        &:hover {
-            color: $true-white;
-        }
-    }
+  }
 }
