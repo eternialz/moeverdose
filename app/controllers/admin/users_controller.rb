@@ -10,6 +10,7 @@ class Admin::UsersController < Admin::BaseController
     end
 
     def edit
+        render
     end
 
     def update
@@ -20,7 +21,7 @@ class Admin::UsersController < Admin::BaseController
         if @user.save
             redirect_to admin_users_path
         else
-            render :edit
+            redirect_to edit_admin_users_path(@user)
         end
     end
 
@@ -30,7 +31,7 @@ class Admin::UsersController < Admin::BaseController
             @user.save
             flash[:success] = "User unbanned."
         else
-            if @user.role == :user
+            if @user.role == 'user'
                 @user.banned = true
                 @user.save
                 flash[:success] = "User banned."

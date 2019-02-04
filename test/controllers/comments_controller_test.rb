@@ -13,7 +13,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
 
         comment_count = Comment.count
 
-        post post_comments_path(post.number, comment: {text: Faker::Hobbit.quote[0..max_comment_length]})
+        post post_comments_path(post.number, comment: {text: Faker::Movies::Hobbit.quote[0..max_comment_length]})
 
         assert_equal comment_count + 1, Comment.count
         assert_redirected_to post_path(post.number)
@@ -26,7 +26,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
 
         comment_count = Comment.count
 
-        post post_comments_path(post.number, comment: {text: Faker::Hobbit.quote[0..max_comment_length]})
+        post post_comments_path(post.number, comment: {text: Faker::Movies::Hobbit.quote[0..max_comment_length]})
 
         assert_equal Comment.count, comment_count
         assert_redirected_to new_user_session_path
@@ -42,7 +42,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
 
         patch comment_report_path(post.number, comment)
 
-        assert Comment.find(comment).report?
+        assert Comment.find(comment.id).report?
 
         assert_redirected_to post_path(post.number)
     end
@@ -55,7 +55,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
 
         patch comment_report_path(post.number, comment)
 
-        assert_not Comment.find(comment).report?
+        assert_not Comment.find(comment.id).report?
         assert_redirected_to new_user_session_path
     end
 end

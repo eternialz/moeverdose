@@ -18,7 +18,7 @@ class TagsController < ApplicationController
     end
 
     def edit
-        @names = @tag.opt_names[1..-1].map {|str| "#{str}"}.join(' ')
+        @names = @tag.opt_names.map {|str| "#{str}"}.join(' ')
 
         title("Edit tag " + @tag.name)
     end

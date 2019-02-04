@@ -69,7 +69,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
             }
         )
 
-        @updated_user = User.find(@user)
+        @updated_user = User.find(@user.id)
 
         assert_not_equal @updated_user.biography, @user.biography
         assert_redirected_to user_path(@user.name)
@@ -87,7 +87,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
             }
         )
 
-        @updated_user = User.find(@user)
+        @updated_user = User.find(@user.id)
 
         assert_equal @updated_user, @user
         assert_redirected_to edit_user_path(@user_secondary.name)
@@ -103,7 +103,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
             }
         )
 
-        @updated_user = User.find(@user)
+        @updated_user = User.find(@user.id)
 
         assert_equal @updated_user, @user
         assert_redirected_to new_user_session_path
@@ -133,7 +133,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
             website: Faker::Internet.url,
             facebook: Faker::Internet.url,
             twitter: Faker::Internet.url,
-            biography: Faker::Hobbit.quote + user.biography
+            biography: Faker::Movies::Hobbit.quote + user.biography
         }
     end
 end

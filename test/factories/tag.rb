@@ -1,16 +1,30 @@
 FactoryBot.define do
+    to_create do |instance|
+        unless instance.save
+            raise "Invalid record: " + instance.errors.full_messages.join(", ")
+        end
+    end
     factory :tag_content, class: 'Tag' do
-        names {[Faker::Cat.breed.downcase.gsub(' ', '_')]}
-        type {:content}
+        type {'content'}
+        after(:build) do |tag|
+            tag.aliases << create(:main_alias)
+            tag.aliases << create(:alias)
+        end
     end
 
     factory :tag_character, class: 'Tag' do
-        names {[Faker::Cat.name.downcase.gsub(' ', '_')]}
-        type {:character}
+        type {'character'}
+        after(:build) do |tag|
+            tag.aliases << create(:main_alias)
+            tag.aliases << create(:alias)
+        end
     end
 
     factory :tag_author, class: 'Tag' do
-        names {[Faker::Cat.registry.downcase.gsub(' ', '_')]}
-        type {:author}
+        type {'author'}
+        after(:build) do |tag|
+            tag.aliases << create(:main_alias)
+            tag.aliases << create(:alias)
+        end
     end
 end

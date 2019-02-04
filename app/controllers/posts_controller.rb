@@ -1,7 +1,4 @@
 class PostsController < ApplicationController
-    require 'digest/md5'
-    require 'httparty'
-    require 'json'
 
     before_action :try_set_post, only: [:show]
     before_action :set_post, only: [:edit, :update, :dose, :favorite, :report, :report_update]
@@ -107,8 +104,7 @@ class PostsController < ApplicationController
             redirect_to post_path(@post.number)
         else
             flash.now[:error] = "The post could not be created."
-
-            render template: new_post_path
+            redirect_to new_post_path
         end
     end
 

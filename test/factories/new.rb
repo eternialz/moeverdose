@@ -1,6 +1,6 @@
 FactoryBot.define do
     factory :new do
-        title {Faker::Witcher.witcher}
-        text {Faker::Witcher.quote}
+        title {Faker::Games::Witcher.witcher}
+        text {Faker::Games::Witcher.quote}
     end
 end

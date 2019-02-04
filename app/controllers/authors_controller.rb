@@ -30,16 +30,15 @@ class AuthorsController < ApplicationController
 
     def update
         new_name = params[:author][:name]
+        main_alias = Alias.where(tag: @author.tag, main: true).first
 
         if @author.name != new_name
-            index = @author.tag.names.find_index(new_name)
-
-            @author.tag.names << @author.tag.names[0]
-
-            if index
-                @author.tag.names[0] = @author.tag.names.delete_at(index)
+            existing_alias = @author.tag.aliases.where(name: new_name).first
+            main_alias.update_attributes(main: false)
+            if existing_alias.present?
+                existing_alias.update_attributes(main: true)
             else
-                @author.tag.names[0] = new_name.downcase.tr(' ', '_')
+                Alias.create(name: new_name.downcase.tr(' ', '_'), tag: @author.tag, main: true)
             end
         end
 

@@ -26,9 +26,9 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
         sign_in @user
 
-        patch report_post_path @post.number, post: {report_reason: Faker::HowIMetYourMother.catch_phrase}
+        patch report_post_path @post.number, post: {report_reason: Faker::TvShows::HowIMetYourMother.catch_phrase}
 
-        @updated_post = Post.find(@post)
+        @updated_post = Post.find(@post.id)
 
         assert @updated_post.report?
         assert_redirected_to post_path(@post.number)
@@ -38,9 +38,9 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
         @post.report = false
         @post.save
 
-        patch report_post_path @post.number, post: {report_reason: Faker::HowIMetYourMother.catch_phrase}
+        patch report_post_path @post.number, post: {report_reason: Faker::TvShows::HowIMetYourMother.catch_phrase}
 
-        @updated_post = Post.find(@post)
+        @updated_post = Post.find(@post.id)
 
         assert_not @updated_post.report?
         assert_redirected_to new_user_session_path
@@ -52,7 +52,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
         patch post_favorite_path @post.number
 
-        @updated_user = User.find(@user)
+        @updated_user = User.find(@user.id)
 
         assert_not_equal fav_count, @updated_user.favorites.count
         assert_response :success
@@ -69,7 +69,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
         patch post_dose_path @post.number, dose: "overdose"
 
-        @updated_post = Post.find(@post)
+        @updated_post = Post.find(@post.id)
 
         assert_not_equal @post.overdose, @updated_post.overdose
     end
@@ -79,7 +79,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
         patch post_dose_path @post.number, dose: "shortage"
 
-        @updated_post = Post.find(@post)
+        @updated_post = Post.find(@post.id)
 
         assert_not_equal @post.moe_shortage, @updated_post.moe_shortage
     end
@@ -87,7 +87,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     test 'Can\'t add shortage/overdose unlogged' do
         post_dose_path @post, ['shortage', 'overdose']
 
-        @updated_post = Post.find(@post)
+        @updated_post = Post.find(@post.id)
 
         assert_equal @post.moe_shortage, @updated_post.moe_shortage
     end
@@ -127,8 +127,8 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
         sign_in @user
 
-        tag = @post.tags.first.names.first
-        @user.update_attributes(blacklisted_tags: tag)
+        tag = @post.tags.first
+        @user.update_attributes(blacklisted_tags: [tag])
 
         get posts_path
         assert_response :success
@@ -146,9 +146,9 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
         sign_in @user
 
-        black_tag = @post.tags.first.names.first
-        @user.update_attributes(blacklisted_tags: black_tag)
-        tag = Tag.where(:names.ne => black_tag).last
+        black_tag = @post.tags.first
+        @user.update_attributes(blacklisted_tags: [black_tag])
+        tag = Tag.where.not(id: black_tag.id).last
         query = tag.names.first
         params = {
             query: query
@@ -227,9 +227,9 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
         sign_in @user
 
         post_params = {
-            title: Faker::Fallout.character + @post.title, # Adding current informations to force a different one
-            source: Faker::Fallout.faction + @post.source,
-            description: Faker::Fallout.quote + @post.description
+            title: Faker::Games::Fallout.character + @post.title, # Adding current informations to force a different one
+            source: Faker::Games::Fallout.faction + @post.source,
+            description: Faker::Games::Fallout.quote + @post.description
         }
 
         patch post_path(
@@ -240,7 +240,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
             author_tag: ""
         )
 
-        @updated_post = Post.find(@post)
+        @updated_post = Post.find(@post.id)
 
         assert_not_equal @updated_post.title, @post.title
         assert_not_equal @updated_post.source, @post.source

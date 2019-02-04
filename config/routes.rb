@@ -25,17 +25,17 @@ Rails.application.routes.draw do
 
     #Admin Section
     namespace :admin do
-        root 'admin/dashboard#index', as: 'dashboard'
+        root 'dashboard#index', as: 'dashboard'
 
-        get "stats" => "admin/dashboard#stats", as: 'stats'
-        resources :users, controller: "admin/users", except: [:new, :create, :show]
-        patch 'ban_user/:id', controller: "admin/users", action: :ban, as: 'user_ban'
-        resources :news, controller: "admin/news"
-        resources :posts, controller:"admin/posts", except: [:new, :create]
-        patch "/posts/:id/unreport" => "admin/posts#unreport", as: "post_unreport"
-        resources :levels, controller: "admin/levels", except: [:destroy, :show]
-        resources :comments, controller: "admin/comments", only: [:index, :destroy]
-        patch "/comments/:id/unreport" => "admin/comments#unreport", as: "comment_unreport"
+        get "stats" => "dashboard#stats", as: 'stats'
+        resources :users, controller: "users", except: [:new, :create, :show]
+        patch 'ban_user/:id', controller: "users", action: :ban, as: 'user_ban'
+        resources :news, controller: "news"
+        resources :posts, controller:"posts", except: [:new, :create]
+        patch "/posts/:id/unreport" => "posts#unreport", as: "post_unreport"
+        resources :levels, controller: "levels", except: [:destroy, :show]
+        resources :comments, controller: "comments", only: [:index, :destroy]
+        patch "/comments/:id/unreport" => "comments#unreport", as: "comment_unreport"
 
     end
 

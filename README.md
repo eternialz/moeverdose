@@ -36,8 +36,7 @@ Browser support is defined in [.browserlistrc](https://github.com/eternialz/moev
 
 # PLANNED FEATURES
 
-- Install and Deployment script
-- Possible and better duplicate finder with perceptual hashes instead of md5
+- Duplicate finder with perceptual hashes instead of md5
 - Finish all helps pages
   - Registration help section
   - Editing posts help page

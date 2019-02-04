@@ -1,14 +1,16 @@
-class Admin::BaseController < ApplicationController
+module Admin
+    class BaseController < ApplicationController
 
-    before_action :admin_user?
-    layout 'admin'
+        before_action :admin_user?
+        layout 'admin'
 
-    protected
+        protected
 
-    def admin_user?
-        authenticate_user!
-        if !current_user&.administrator?
-            redirect_to root_path
+        def admin_user?
+            authenticate_user!
+            if !current_user&.administrator?
+                redirect_to root_path
+            end
         end
     end
 end

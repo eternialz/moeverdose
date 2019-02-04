@@ -88,7 +88,8 @@ group :test do
     # Gems for test
     gem 'factory_bot_rails'
     gem 'faker', github: 'stympy/faker'
-    gem 'minitest-rails'
+    gem 'minitest-rails', '>= 2.0'
+    gem 'database_cleaner'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

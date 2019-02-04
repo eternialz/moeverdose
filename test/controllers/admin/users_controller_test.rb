@@ -22,12 +22,12 @@ class Admin::UsersControllerTest < ActionDispatch::IntegrationTest
         user = create(:user)
         params = {
             user: {
-                role: :administrator
+                role: 'administrator'
             }
         }
         patch admin_user_path(user), params: params
         user.reload
-        assert_equal :administrator, user.role
+        assert_equal 'administrator', user.role
         assert_redirected_to admin_users_path
     end
 
