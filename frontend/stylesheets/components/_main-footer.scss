@@ -4,21 +4,21 @@
     color: $white;
 
     .title {
-        padding-bottom: .5rem;
+        padding-bottom: 0.5rem;
         border-bottom: 1px solid $gray-dark;
+    }
+
+    a {
+        color: $gray-light;
+        padding: 0.1rem 0;
+        margin: 0.1rem 0;
     }
 
     nav a {
         display: block;
     }
 
-    a {
-        color: $gray-light;
-        padding: .1rem 0;
-        margin: .1rem 0;
-
-        &:hover {
-            color: $true-white;
-        }
+    a:hover {
+        color: $true-white;
     }
 }
