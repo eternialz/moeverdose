@@ -4,12 +4,11 @@ a {
     transition: color 70ms linear;
 
     &:hover {
-        color: rgba($base-color, .8);
+        color: rgba($base-color, 0.8);
     }
 }
 
 .link {
     color: $base-color;
     border-bottom: 1px solid transparent;
-
 }

@@ -1,9 +1,14 @@
-h1,.h1,
-h2,.h2
-h3,.h3,
-h4,.h4,
-h5,.h5,
-h6,.h6,
+h1,
+.h1,
+h2,
+.h2 h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6,
 .title {
     margin: 0 0 1rem;
     line-height: 1em;
@@ -11,14 +16,15 @@ h6,.h6,
 }
 
 @for $i from 1 through 7 {
-    h#{$i}, .h#{$i} {
-        font-size: $body-font-size * 2.5 - 0.175rem * ($i + 1)
+    h#{$i},
+    .h#{$i} {
+        font-size: $body-font-size * 2.5 - 0.175rem * ($i + 1);
     }
 }
 
 .title {
     color: $primary-color;
-    letter-spacing: .025rem;
+    letter-spacing: 0.025rem;
     text-transform: uppercase;
 
     &.title-case-sensitive {

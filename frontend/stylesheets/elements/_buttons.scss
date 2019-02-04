@@ -18,17 +18,17 @@
 .button-secondary {
     @include button-base();
 
-    background: rgba($black, .1);
+    background: rgba($black, 0.1);
     color: $gray-dark;
     transition: background-color 70ms linear;
 
     i {
-        margin-left: .25rem;
-        padding: 0 .1rem;
+        margin-left: 0.25rem;
+        padding: 0 0.1rem;
     }
 
     &:hover {
-        background: rgba($black, .17);
+        background: rgba($black, 0.17);
         color: $gray-dark;
     }
 
@@ -42,12 +42,12 @@
 
     background: $primary-color;
     color: $true-white;
-    padding: .45rem .4rem;
+    padding: 0.45rem 0.4rem;
     transition: filter 70ms linear;
 
     i {
         margin: 0;
-        padding: 0 .1rem;
+        padding: 0 0.1rem;
     }
 
     &:hover {

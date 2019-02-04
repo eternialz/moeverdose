@@ -2,26 +2,27 @@
     font-weight: bold;
     display: inline-block;
     border-radius: $border-radius;
-    padding: 0 .2rem;
-    box-shadow: inset 0 0 0 1px rgba($black, .05);
+    padding: 0 0.2rem;
+    box-shadow: inset 0 0 0 1px rgba($black, 0.05);
 
-    &, &.tag-content {
-        background: rgba($pink, .075);
+    &,
+    &.tag-content {
+        background: rgba($pink, 0.075);
         color: $pink;
     }
 
     &.tag-copyright {
-        background: rgba($purple, .075);
+        background: rgba($purple, 0.075);
         color: $purple;
     }
 
     &.tag-author {
-        background: rgba($orange, .075);
+        background: rgba($orange, 0.075);
         color: $orange;
     }
 
     &.tag-character {
-        background: rgba($green, .075);
+        background: rgba($green, 0.075);
         color: $green;
     }
 }

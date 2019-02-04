@@ -1,6 +1,6 @@
 class StaticPagesController < ApplicationController
     def static
-        title("#{params[:page].capitalize}")
+        title((params[:page].capitalize).to_s)
         @breadcrumbs = static_breadcrumbs().push({
             name: params[:page],
             path: "/#{params[:page]}"
