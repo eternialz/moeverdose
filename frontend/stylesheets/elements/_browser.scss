@@ -1,5 +1,5 @@
 ::selection {
-    background-color: rgba($secondary-color, .75) !important;
+    background-color: rgba($secondary-color, 0.75) !important;
     color: $true-white !important;
 }
 
@@ -12,6 +12,7 @@
     -webkit-font-smoothing: antialiased;
 }
 
-button, input {
+button,
+input {
     border: 0;
 }

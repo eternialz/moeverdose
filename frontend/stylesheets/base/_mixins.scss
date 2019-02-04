@@ -5,12 +5,13 @@
 @mixin shadow-control-1 {
     @include shadow-1();
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
         box-shadow: 0 0.05rem 0.15rem rgba($shadow-color, 0.25), 0 0 0 0.05rem rgba($shadow-color, 0.05);
     }
 
     &:active {
-        box-shadow: 0 0.05rem 0.10rem rgba($shadow-color, 0.15), 0 0 0 0.05rem rgba($shadow-color, 0.05);
+        box-shadow: 0 0.05rem 0.1rem rgba($shadow-color, 0.15), 0 0 0 0.05rem rgba($shadow-color, 0.05);
     }
 }
 
@@ -21,46 +22,48 @@
 @mixin shadow-control-2 {
     @include shadow-2();
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
         box-shadow: 0 0.05rem 0.15rem rgba($shadow-color, 0.25), 0 0 0 0.05rem rgba($shadow-color, 0.05);
     }
 
     &:active {
-        box-shadow: 0 0.05rem 0.10rem rgba($shadow-color, 0.15), 0 0 0 0.05rem rgba($shadow-color, 0.05);
+        box-shadow: 0 0.05rem 0.1rem rgba($shadow-color, 0.15), 0 0 0 0.05rem rgba($shadow-color, 0.05);
     }
 }
 
 @mixin shadow-3 {
-    box-shadow: 0 0.6rem 1.8rem -0.25rem rgba($shadow-color,.2), 0 0.4rem 0.8rem -0.4rem rgba($shadow-color,.05), 0 0 0 0.05rem rgba($shadow-color, 0.05);
+    box-shadow: 0 0.6rem 1.8rem -0.25rem rgba($shadow-color, 0.2), 0 0.4rem 0.8rem -0.4rem rgba($shadow-color, 0.05), 0 0 0 0.05rem rgba($shadow-color, 0.05);
 }
 
 @mixin shadow-control-3 {
     @include shadow-3();
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
         box-shadow: 0 0.05rem 0.15rem rgba($shadow-color, 0.25), 0 0 0 0.05rem rgba($shadow-color, 0.2);
     }
 
     &:active {
-        box-shadow: 0 0.05rem 0.10rem rgba($shadow-color, 0.15), 0 0 0 0.05rem rgba($shadow-color, 0.2);
+        box-shadow: 0 0.05rem 0.1rem rgba($shadow-color, 0.15), 0 0 0 0.05rem rgba($shadow-color, 0.2);
     }
 }
 
 @mixin button-base() {
-    border-radius: .15rem;
+    border-radius: 0.15rem;
     border: none;
     cursor: pointer;
     display: inline-block;
     font-weight: bold;
-    letter-spacing: .05rem;
+    letter-spacing: 0.05rem;
     line-height: 1;
-    padding: .45rem .5rem;
+    padding: 0.45rem 0.5rem;
     text-align: left;
     text-transform: uppercase;
 
     i {
-        margin-left: .25rem;
-        padding: 0 .1rem;
+        margin-left: 0.25rem;
+        padding: 0 0.1rem;
     }
 }
 
@@ -72,8 +75,9 @@
             color: $color;
         }
     }
-    
-    &.button-primary, &.button-icon {
+
+    &.button-primary,
+    &.button-icon {
         background: $color;
     }
 }
