@@ -1,0 +1,15 @@
+.item-list {
+    .item {
+        @include shadow-1;
+
+        background: $true-white;
+        border-radius: $border-radius;
+        display: block;
+        padding: 0.5rem;
+        margin-bottom: 0.4rem;
+
+        &:hover {
+            @include shadow-control-1();
+        }
+    }
+}

@@ -1,14 +1,20 @@
 .tag {
-    font-weight: bold;
-    display: inline-block;
     border-radius: $border-radius;
-    padding: 0 0.2rem;
     box-shadow: inset 0 0 0 1px rgba($black, 0.05);
+    display: inline-block;
+    font-weight: bold;
+    padding: 0 0.2rem;
+    margin-right: 0.2rem;
 
     &,
     &.tag-content {
         background: rgba($pink, 0.075);
         color: $pink;
+    }
+
+    &.tag-alias {
+        background: rgba($text-color-dark, 0.075);
+        color: rgba($text-color-dark, 0.5);
     }
 
     &.tag-copyright {

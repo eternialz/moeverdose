@@ -4,35 +4,46 @@ class TagsController < ApplicationController
 
     def index
         if params[:query]
-          @tag = Tag.includes(:aliases).where(aliases: {name: params[:query]})
-            if @tag.exists?
-                redirect_to edit_tag_path(@tag[0])
-            else
-                flash.now[:error] = "The specified tag wasn't found"
-            end
+            @tags = Kaminari.paginate_array(
+                Tag.popular.joins(:aliases).where('aliases.name LIKE ?', "%#{params[:query]}%" ).uniq)
+                    .page(params[:page]).per(20)
+        else
+            @tags = Kaminari.paginate_array(Tag.popular.joins(:aliases)).page(params[:page]).per(20)
         end
 
-        @tags = Kaminari.paginate_array(Tag.all).page(params[:page]).per(20)
-
         title("All Tags")
+        render component "tags/index"
     end
 
     def edit
         @names = @tag.opt_names.map {|str| str.to_s}.join(' ')
 
         title("Edit tag " + @tag.name)
+        render component "tags/edit"
     end
 
     def update
-        @tag.names = params[:names].downcase.split(" ").insert(0, @tag.names[0])
+        # Get new aliases array without duplicates
+        names = params[:names].downcase.split(" ").uniq
 
-        @tag.names = @tag.names.uniq # remove duplicates
+        if names.any?
+            aliases = [@tag.main_alias.first]
+            names.each do |name|
+                # Get alias or create a new one
+                aliases.push(@tag.aliases.find_by(name: name) || Alias.new({name: name, tag_id: @tag.id}))
+            end
 
-        if @tag.save
+            binding.pry
+            @tag.aliases = aliases
+        else
+            flash.now[:error] = "You didn't provide any aliases."
+        end
+
+        if !flash.now[:error] && @tag.save
             flash.now[:success] = "Modifications for #{@tag.names[0]} saved!"
             redirect_to tags_path
         else
-            flash.now[:error] = "The modifications you entered are invalid. Please verify the informations and try to save again."
+            flash.now[:error] ||= "The modifications you entered are invalid. Please verify the informations and try to save again."
             redirect_to edit_tag_path(@tag)
         end
     end

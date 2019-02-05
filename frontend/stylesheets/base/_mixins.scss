@@ -2,16 +2,21 @@
     box-shadow: 0 0.05rem 0.15rem rgba($shadow-color, 0.25), 0 0 0 0.05rem rgba($shadow-color, 0.05);
 }
 
+@mixin shadow-transition {
+    transition: box-shadow 100ms ease-in-out;
+}
+
 @mixin shadow-control-1 {
+    @include shadow-transition();
     @include shadow-1();
 
     &:hover,
     &:focus {
-        box-shadow: 0 0.05rem 0.15rem rgba($shadow-color, 0.25), 0 0 0 0.05rem rgba($shadow-color, 0.05);
+        box-shadow: 0 0.1rem 0.25rem rgba($shadow-color, 0.27), 0 0 0 0.05rem rgba($shadow-color, 0.05);
     }
 
     &:active {
-        box-shadow: 0 0.05rem 0.1rem rgba($shadow-color, 0.15), 0 0 0 0.05rem rgba($shadow-color, 0.05);
+        box-shadow: 0 0.05rem 0.1rem rgba($shadow-color, 0.17), 0 0 0 0.05rem rgba($shadow-color, 0.05);
     }
 }
 
@@ -20,6 +25,7 @@
 }
 
 @mixin shadow-control-2 {
+    @include shadow-transition();
     @include shadow-2();
 
     &:hover,
@@ -37,6 +43,7 @@
 }
 
 @mixin shadow-control-3 {
+    @include shadow-transition();
     @include shadow-3();
 
     &:hover,

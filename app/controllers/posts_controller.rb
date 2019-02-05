@@ -87,7 +87,6 @@ class PostsController < ApplicationController
 
         PostLogic.set_post_tags({tags: params[:tags], characters: params[:characters]}, @post)
 
-
         PostLogic.set_post_user(@post, current_user)
 
         if params[:author] != "" && params[:author] != nil

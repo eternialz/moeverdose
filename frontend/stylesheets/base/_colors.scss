@@ -1,38 +1,38 @@
 // Theme colors
-$purple: #63d;
-$blue:   #67f;
-$cyan:   #2bd;
-$green:  #3c3;
-$yellow: #fc3;
-$orange: #f70;
-$red:    #f33;
-$pink:   #f4a;
+$purple: #63d !default;
+$blue:   #67f !default;
+$cyan:   #2bd !default;
+$green:  #3c3 !default;
+$yellow: #fc3 !default;
+$orange: #f70 !default;
+$red:    #f33 !default;
+$pink:   #f4a !default;
 
-$primary-color:   $pink;
-$secondary-color: $purple;
-$base-color:      $blue;
+$primary-color:   $pink !default;
+$secondary-color: $purple !default;
+$base-color:      $blue !default;
 
-$shadow-color:     #22223c;
-$text-color-light: #bbc;
-$text-color-dark:  #446;
-$code-color: $blue !default;
+$shadow-color:     #22223c !default;
+$text-color-light: #bbc !default;
+$text-color-dark:  #446 !default;
+$code-color:       $blue !default;
 
 // Gray levels
-$true-white:   #fff;
-$white:        #fbfbff;
-$gray-lighter: #e6e6f8;
-$gray-light:   #b4b4c5;
-$gray:         #89899d;
-$gray-dark:    #4b4b5d;
-$gray-darker:  #343441;
-$black:        #1b1b26;
-$true-black:   #000;
+$true-white:   #fff !default;
+$white:        #fbfbff !default;
+$gray-lighter: #e6e6f8 !default;
+$gray-light:   #b4b4c5 !default;
+$gray:         #89899d !default;
+$gray-dark:    #4b4b5d !default;
+$gray-darker:  #343441 !default;
+$black:        #1b1b26 !default;
+$true-black:   #000 !default;
 
 // Error levels color
-$success-color: $green;
-$info-color:    $blue;
-$warning-color: $orange;
-$error-color:   $red;
+$success-color: $green !default;
+$info-color:    $blue !default;
+$warning-color: $orange !default;
+$error-color:   $red !default;
 
 // Social colors
 $amazon-color: #f90 !default;

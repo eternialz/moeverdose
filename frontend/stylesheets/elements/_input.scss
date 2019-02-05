@@ -10,19 +10,40 @@
     padding-bottom: 0.2rem;
 }
 
-.form-input {
+.form-input,
+.form-textarea {
     appearance: none;
     background: $gray-darker;
     background-image: none;
     border-radius: $border-radius;
-    color: $text-color-light;
+    color: $white;
     display: block;
     font-size: $body-font-size;
     line-height: 1;
+    margin: 0.2rem 0;
     max-width: 100%;
     outline: none;
-    padding: 0.4em 0.5em;
+    padding: 0.6em 0.5em;
     position: relative;
     transition: background 0.2s, border 0.2s, box-shadow 0.2s, color 0.2s;
     width: 100%;
+}
+
+.form-textarea {
+    min-height: 10rem;
+}
+
+.form-input-group {
+    border-radius: $border-radius;
+    display: flex;
+    overflow: hidden;
+
+    .form-input,
+    .form-textarea {
+        margin: 0;
+    }
+
+    * {
+        border-radius: 0;
+    }
 }

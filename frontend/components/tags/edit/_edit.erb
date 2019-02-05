@@ -1,0 +1,9 @@
+<%= form_for @tag, as: "tag", :url => { :action => "update" }, html: { class: "zone" } do |f| %>
+    <h4 class="title title-compact">Aliases of tag "<%= @tag.name %>"</h4>
+    <h6>type: <span class="tag tag-<%= @tag.type %>"><%= @tag.type %></span></h6>
+    <textarea name="names" class="form-textarea"><%= @tag.opt_names.join(' ') %></textarea>
+
+    <button form="edit_tag" class="button-primary" type="submit">
+        Save <i class="fas fa-save"></i>
+    </button>
+<% end %>

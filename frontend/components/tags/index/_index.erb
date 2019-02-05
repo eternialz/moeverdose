@@ -1,0 +1,17 @@
+<ul class="item-list">
+    <form class="form">
+        <div class="form-input-group">
+            <input type="text" name="query" class="form-input" placeholder="Search" value="<%= params[:query] %>"/>
+            <button type="submit" class="button-icon">Search</button>
+        </div>
+    </form>
+    <% @tags.each do |t| %>
+        <%= link_to edit_tag_path(t), class: "item" do %>
+            <span class="tag tag-<%= t.type %>"><%= t.name %></span>
+            <% t.opt_names.each do |a| %>
+                <span class="tag tag-alias"><%= a %></span>
+            <% end %>
+            <span class="number float-right"><%= t.posts_count %><span class="number-unit"> posts</span></span>
+        <% end %>
+    <% end %>
+</ul>

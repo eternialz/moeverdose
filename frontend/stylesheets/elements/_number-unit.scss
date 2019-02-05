@@ -1,0 +1,9 @@
+.number {
+    color: $secondary-color;
+    font-weight: bolder;
+
+    .number-unit {
+        color: $gray;
+        font-size: 0.8em;
+    }
+}
