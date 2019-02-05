@@ -46,10 +46,12 @@ class PostsController < ApplicationController
         @tags = []
         @characters = []
         @authors = []
+        @copyrights = []
         @posts.each do |post|
             post_logic = PostLogic.new(post)
             results = post_logic.get_different_tags
             @tags += results[:tags]
+            @tags += results[:copyrights]
             @characters += results[:characters]
             @authors += results[:authors]
         end
@@ -65,6 +67,7 @@ class PostsController < ApplicationController
         @authors.sort_by!{ |author| author }
 
         title("All posts")
+        render component "posts/index"
     end
 
     def new
@@ -92,6 +95,9 @@ class PostsController < ApplicationController
         if params[:author] != "" && params[:author] != nil
             author = TagLogic.find_or_create_author(params[:author], @post)
         end
+
+        @post.width = 400;
+        @post.height = 400;
 
         if @post.save
             author&.save

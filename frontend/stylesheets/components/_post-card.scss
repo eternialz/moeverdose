@@ -1,0 +1,55 @@
+.post-card {
+    @include shadow-2();
+
+    background-origin: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border-radius: $border-radius-2;
+    color: $true-white;
+    font-weight: bold;
+    margin: 0.5rem 0.5rem 0 0;
+    min-height: 200px;
+    min-width: 200px;
+    overflow: hidden;
+    position: relative;
+    text-shadow: 0 0.1rem 0.1rem rgba($shadow-color, 0.3), 0 0 1px rgba($black, 0.5);
+
+    .fa {
+        font-size: 0.8em;
+    }
+
+    .post-card-info {
+        background: linear-gradient(rgba($black, 0) 50%, $true-black);
+        bottom: 0;
+        height: 100%;
+        position: absolute;
+        transition: opacity 100ms ease-in-out;
+        width: 100%;
+    }
+
+    &:hover {
+        color: $true-white;
+
+        .post-card-info {
+            opacity: 0.2;
+        }
+    }
+
+    .post-card-stats {
+        bottom: 0;
+        max-width: 100%;
+        padding: 0.5rem 0.7rem;
+        position: absolute;
+
+        i {
+            margin: 0 0.4rem 0 0.1rem;
+        }
+    }
+
+    .post-card-title {
+        margin-bottom: 0.3rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}

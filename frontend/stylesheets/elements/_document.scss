@@ -5,6 +5,7 @@ html {
     font-size: $default-font-size;
     line-height: $default-line-height;
     text-rendering: optimizeLegibility;
+    overflow-y: scroll;
 }
 
 *,

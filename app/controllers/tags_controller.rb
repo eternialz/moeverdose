@@ -8,7 +8,7 @@ class TagsController < ApplicationController
                 Tag.popular.joins(:aliases).where('aliases.name LIKE ?', "%#{params[:query]}%" ).uniq)
                     .page(params[:page]).per(20)
         else
-            @tags = Kaminari.paginate_array(Tag.popular.joins(:aliases)).page(params[:page]).per(20)
+            @tags = Kaminari.paginate_array(Tag.popular).page(params[:page]).per(20)
         end
 
         title("All Tags")

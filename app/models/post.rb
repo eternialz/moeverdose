@@ -29,6 +29,22 @@ class Post < ApplicationRecord
 
     has_and_belongs_to_many :tags, class_name: "Tag", inverse_of: :posts
 
+    def self.sizes
+        return {
+            thumbnail: "200x200"
+        }
+    end
+
+    def post_image_thumbnail()
+        return self.post_image.variant(
+            combine_options: {
+                resize: "#{Post.sizes[:thumbnail]}^",
+                extent: Post.sizes[:thumbnail],
+                gravity: "center"
+            }
+        ).processed
+    end
+
     def post_image_path
       ActiveStorage::Blob.service.send(:path_for, post_image.key)
     end

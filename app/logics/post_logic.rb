@@ -4,6 +4,7 @@ class PostLogic < SimpleDelegator
     def get_different_tags
         character = []
         author = []
+        copyright = []
         tag = []
         self.__getobj__.tags.each do |t|
             if t.content?
@@ -12,10 +13,12 @@ class PostLogic < SimpleDelegator
                 character << t.name
             elsif t.author?
                 author << t.name
+            elsif t.copyright?
+                copyright << t.name
             end
         end
 
-        return {tags: tag, characters: character, authors: author}
+        return {tags: tag, characters: character, authors: author, copyrights: copyright}
     end
 
     def self.set_id(new_post)

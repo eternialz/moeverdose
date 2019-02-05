@@ -1,0 +1,43 @@
+<div class="main-search" data-controller="main-search">
+    <div class="main-search-input-container">
+        <div class="main-search-input" contenteditable="true" data-target="main-search.input" data-action="mousedown->main-search#moveCursorToEnd keydown->main-search#input paste->main-search#paste"></div>
+        <button class="button-secondary" data-action="click->main-search#toggleTagsPanel"><span class="hide-small">Tags</span><i data-target="main-search.tagIcon" class="fa fa-chevron-down"></i></button>
+        <button class="button-secondary"><span class="hide-small">Search</span><i class="fa fa-search"></i></button>
+    </div>
+    <div class="main-search-tags" data-target="main-search.tags">
+        <div class="columns padding padding-sm">
+            <div class="col col-3 col-12-small padding padding-sm">
+                <h6 class="subtitle subtitle-important"><span class="color-pink"><i class="far fa-circle"></i></span> Content</h6>
+                <div class="tag-list">
+                    <% @tags.each do |t| %>
+                        <span class="tag tag-content" data-action="click->main-search#toggleTag"><%= t %></span>
+                    <% end %>
+                </div>
+            </div>
+            <div class="col col-3 col-12-small padding padding-sm">
+                <h6 class="subtitle subtitle-important"><span class="color-green"><i class="far fa-circle"></i></span> Character</h6>
+                <div class="tag-list">
+                    <% @characters.each do |t| %>
+                        <span class="tag tag-character" data-action="click->main-search#toggleTag"><%= t %></span>
+                    <% end %>
+                </div>
+            </div>
+            <div class="col col-3 col-12-small padding padding-sm">
+                <h6 class="subtitle subtitle-important"><span class="color-purple"><i class="far fa-circle"></i></span> Copyright</h6>
+                <div class="tag-list">
+                    <% @copyrights.each do |t| %>
+                        <span class="tag tag-copyright" data-action="click->main-search#toggleTag"><%= t %></span>
+                    <% end %>
+                </div>
+            </div>
+            <div class="col col-3 col-12-small padding padding-sm">
+                <h6 class="subtitle subtitle-important"><span class="color-orange"><i class="far fa-circle"></i></span> Author</h6>
+                <div class="tag-list">
+                    <% @authors.each do |t| %>
+                        <span class="tag tag-author" data-action="click->main-search#toggleTag"><%= t %></span>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
