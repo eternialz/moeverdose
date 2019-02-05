@@ -7,4 +7,32 @@
             margin: 0.2rem 0;
         }
     }
+
+    &.list-detailed {
+        li {
+            border-radius: $border-radius;
+            display: flex;
+            justify-content: space-between;
+            padding: 0.1rem 0.3rem;
+            transition: box-shadow 20ms ease-in-out, background 20ms ease-in-out;
+
+            .list-detailed-key {
+                font-weight: bold;
+                color: $gray;
+            }
+
+            .list-detailed-value {
+                font-weight: bold;
+                flex-shrink: 1;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                margin-left: 1rem;
+            }
+
+            &:hover {
+                background: rgba($gray, 0.1);
+            }
+        }
+    }
 }

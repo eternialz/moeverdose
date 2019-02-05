@@ -1,0 +1,14 @@
+<div class="zone post-show-score padding padding-0" data-controller="post-score">
+    <div class="post-show-score-bars">
+        <div class="post-show-bar overdose" data-score="<%= @post.overdose %>" data-target="post-score.overdose">
+            <span class="overdose-score"><%= @post.overdose %></span>
+        </div>
+        <div class="post-show-bar shortage" data-score="<%= @post.moe_shortage %>" data-target="post-score.shortage">
+            <span class="shortage-score"><%= @post.moe_shortage %></span>
+        </div>
+    </div>
+    <div class="post-show-score-buttons">
+        <button class="button-primary button-overdose button-icon-left" data-dose="overdose"><%= fa_icon "heartbeat" %> overdose</button>
+        <button class="button-primary button-shortage" data-dose="shortage">shortage <%= fa_icon "thumbs-down" %></button>
+    </div>
+</div>

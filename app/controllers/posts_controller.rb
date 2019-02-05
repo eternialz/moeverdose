@@ -10,12 +10,15 @@ class PostsController < ApplicationController
         @tags = results[:tags]
         @characters = results[:characters]
         @authors = results[:authors]
+        @copyrights = results[:copyrights]
 
         unless @post.title.blank?
             title(@post.title)
         else
             title("Post")
         end
+
+        render component "posts/show"
     end
 
     def index

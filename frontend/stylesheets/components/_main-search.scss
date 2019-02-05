@@ -8,11 +8,10 @@
     .main-search-tags {
         box-shadow: 0 -1px 0 $gray-dark;
         background: $black;
-        overflow-y: scroll;
         height: 0;
 
         &.active {
-            height: 200px;
+            height: auto;
         }
 
         .tag {

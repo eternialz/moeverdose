@@ -18,32 +18,22 @@
 
     &,
     &.tag-content {
-        background: rgba($pink, 0.075);
-        box-shadow: inset 0 0 0 1px rgba($pink, 0.5);
-        color: $pink;
+        @include tag-color($pink);
     }
 
     &.tag-alias {
-        background: rgba($text-color-dark, 0.075);
-        box-shadow: inset 0 0 0 1px rgba($text-color-dark, 0.5);
-        color: rgba($text-color-dark, 0.5);
+        @include tag-color($text-color-dark);
     }
 
     &.tag-copyright {
-        background: rgba($purple, 0.075);
-        box-shadow: inset 0 0 0 1px rgba($purple, 0.5);
-        color: $purple;
+        @include tag-color($purple);
     }
 
     &.tag-author {
-        background: rgba($orange, 0.075);
-        box-shadow: inset 0 0 0 1px rgba($orange, 0.5);
-        color: $orange;
+        @include tag-color($orange);
     }
 
     &.tag-character {
-        background: rgba($green, 0.075);
-        box-shadow: inset 0 0 0 1px rgba($green, 0.5);
-        color: $green;
+        @include tag-color($green);
     }
 }

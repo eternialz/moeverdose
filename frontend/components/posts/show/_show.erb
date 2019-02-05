@@ -1,0 +1,172 @@
+<%= content_for :cards do %>
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@moeverdose" />
+    <meta name="twitter:creator" content="@moeverdose" />
+    <meta name="twitter:title" content="<%= @post.title %>" />
+    <meta name="twitter:description" content="Post uploaded by <%= @post.user.name %>" />
+    <meta name="twitter:image" content="<%= request.base_url + url_for(@post.post_image) %>" />
+
+    <meta property="og:title" content="<%= @post.title %>" />
+    <meta property="og:type" content="image" />
+    <meta property="og:description" content="Post uploaded by <%= @post.user.name %>" />
+    <meta property="og:site_name" content="Moeverdose" />
+    <meta property="og:url" content="<%= request.original_url %>" />
+    <meta property="og:image" content="<%= request.base_url + url_for(@post.post_image) %>" />
+<% end %>
+
+<%= component 'shared/main-search' %>
+
+<% cache @post do %>
+    <div class="post-show">
+        <div class="zone margin margin-top padding padding-sm post-show-navigation">
+            <a href="/posts/<%= @post.number + 1 %>"class="button-primary previous"><%= fa_icon "arrow-circle-left" %> Previous</a>
+            <div class="align-center">
+                <% if @post.title != '' %>
+                    <h4 class="title title-compact"><%= @post.title %></h4>
+                    <h6 class="subtitle subtitle-compact">Post id: <span class="number"><%= @post.number %></span></h6>
+                <% else %>
+                    <h4 class="title title-compact">Post id: <span class="number"><%= @post.number %></span></h4>
+                <% end %>
+            </div>
+            <a href="/posts/<%= @post.number - 1 %>" class="button-primary next">Next <%= fa_icon "arrow-circle-right" %></a>
+        </div>
+
+        <div class="post-show-content">
+            <% if @post.report == true %>
+                <input class="reported_input" id="report_form_input" type="checkbox">
+                <div class="reported">
+                    <p>This post have been reported by <%= link_to @post.report_user.name, user_path(id: @post.report_user.name) %> for:</p>
+                    <br />
+                    <p><%= @post.report_reason.empty? ? "no reason given by the user" : @post.report_reason %></p>
+                    <br />
+                    <label for="report_form_input" class="btn btn-pink">Show post <%= fa_icon 'eye' %></label>
+                </div>
+            <% end %>
+            <div class="post-show-image">
+                <%= image_tag @post.post_image %>
+            </div>
+        </div>
+
+        <%= component "posts/score" %>
+    </div>
+
+    <div class="zone">
+        <div class="columns">
+            <div class="col col-3 col-6-medium col-12-small">
+                <h5 class="title">
+                    <%= component "anchor", {anchor: 'description'} do %>
+                        <i class="fa fa-book"></i> Description
+                    <% end %>
+                </h5>
+                <% if @post.description != "" %>
+                    <p><%= @post.description %></p>
+                <% else %>
+                    <p>No description added</p>
+                <% end %>
+            </div>
+            <div class="col col-3 col-6-medium col-12-small">
+                <h5 class="title">
+                    <%= component "anchor", {anchor: 'tags'} do %>
+                        <i class="fa fa-tag"></i> Tags
+                    <% end %>
+                </h5>
+                <% if @tags.any? %>
+                    <% @tags.each do |tag| %>
+                        <a class="tag" href="<%= posts_path(query: tag ) %>"><%= tag %></a>
+                    <% end %>
+                <% else %>
+                    <p>no tags specified </p>
+                <% end %>
+            </div>
+            <div class="col col-3 col-6-medium col-12-small">
+                <h5 class="title">
+                    <%= component "anchor", {anchor: 'characters'} do %>
+                        <i class="fa fa-user"></i> Characters
+                    <% end %>
+                </h5>
+                <% if @characters.any? %>
+                    <% @characters.each do |character| %>
+                        <a class="tag" href="<%= posts_path(query: character ) %>"><%= character %></a>
+                    <% end %>
+                <% else %>
+                    <p>no characters specified </p>
+                <% end %>
+            </div>
+            <div class="col col-3 col-6-medium col-12-small">
+                <h5 class="title">
+                    <%= component "anchor", {anchor: 'informations'} do %>
+                        <i class="fa fa-info-circle"></i> Informations
+                    <% end %>
+                </h5>
+                <ul class="list list-detailed">
+                    <li><span class="list-detailed-key">Id:</span><span class="list-detailed-value"><%= @post.number %></span></li>
+
+                    <% unless @post.author.blank? %>
+                        <li><span class="list-detailed-key">Author:</span><span class="list-detailed-value"><a  href="<%= author_path(@post.author)%>" title="Search on google"><%= @post.author.name %></a></span></li>
+                    <% else %>
+                        <li><span class="list-detailed-key">Author:</span><span class="list-detailed-value">unknown author</span></li>
+                    <% end %>
+
+                    <% unless @post.source.blank? %>
+                        <li><span class="list-detailed-key">Source:</span><span class="list-detailed-value"><a href="http://www.google.fr/search?q=<%= @post.source %>" title="Search on google"><%= @post.source %></a></span></li>
+                    <% else %>
+                        <li><span class="list-detailed-key">Source:</span><span class="list-detailed-value">unknown source</span></li>
+                    <% end %>
+
+                    <li><span class="list-detailed-key">User:</span><span class="list-detailed-value"><%= link_to @post.user.name, user_path(@post.user.name) %></span></li>
+                    <li><span class="list-detailed-key">Dimension:</span><span class="list-detailed-value"><%= @post.width.to_s + " x " + @post.height.to_s %>px</span></li>
+                    <li><span class="list-detailed-key">Type:</span><span class="list-detailed-value"><%= @post.post_image.blob.content_type.split("/")[-1].upcase %></span></li>
+                    <li><span class="list-detailed-key">Size:</span><span class="list-detailed-value"><%= '%.3f' % (@post.post_image.blob.byte_size.to_f / 1048576).to_s + ' MB' %></span></li>
+                    <li><span class="list-detailed-key">Date:</span><span class="list-detailed-value"><%= @post.post_image.created_at.to_time.strftime('%B %e at %l:%M %p') %></span></li>
+                    <li><span class="list-detailed-key">MD5:</span><span class="list-detailed-value"><%= @post.md5 %></span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="button-list margin margin-top">
+            <a class="button-secondary button-icon-left" href="" id="add_to_favorites"><i class="fa fa-heart"></i> Add Favorite</a>
+            <a class="button-secondary button-icon-left" href="<%= url_for(@post.post_image) %>" download><i class="fa fa-download"></i> Download</a>
+            <a class="button-secondary button-icon-left" target="_blank" href="https://www.google.fr/searchbyimage?site=search&image_url=<%= url_for(@post.post_image) %>"><i class="fab fa-google"></i>Search image</a>
+            <% if user_signed_in? %>
+                <a class="button-secondary button-icon-left" href="<%= edit_post_path(@post.number) %>"><i class="fa fa-edit"></i> Edit post</a>
+                <a class="button-secondary button-icon-left" href="<%= edit_report_post_path(@post.number) %>"><i class="fa fa-times"></i> Report post</a>
+            <% end %>
+        </div>
+    </div>
+
+    <% if @post.comments.any? %>
+        <div class="zone">
+            <h5 class="title"><i class="fa fa-comments"></i> Comments</h5>
+            <div class="comments-zone">
+                <% @post.comments.includes(:user).each_with_index do |comment,index| %>
+                    <%= component "shared/comment", {comment: comment, index: index} %>
+                <% end %>
+            </div>
+        </div>
+    <% end %>
+
+    <div class="zone">
+        <% if user_signed_in? %>
+            <%= form_tag post_comments_path(@post.number), id: "comment-form" ,class: "comment-form" do |comment| %>
+                <h5 class="title title-compact">
+                    <%= component "anchor", {anchor: 'comment'} do %>
+                        <i class="fa fa-comment"></i> Add a comment
+                    <% end %>
+                </h5>
+                <h6 class="subtitle">Maximum <%= max_comment_length %> characters</h6>
+                <div class="form">
+                    <textarea class="form-textarea" data-length="<%= max_comment_length %>" name="comment[text]" placeholder="Write your message here "></textarea>
+                </div>
+                <button type="submit" form="comment-form" class="button-primary">Send <i class="fa fa-comment"></i></button>
+            <% end %>
+        <% else %>
+            <h3>Add a comment</h3>
+            <p><%= link_to "Sign up", new_user_registration_path %> or <%= link_to "log in", new_user_session_path %> to post a comment.</p>
+            <br />
+        <% end %>
+    </div>
+<% end %>
+
+<% if user_signed_in? %>
+    <%= cell(:admin_toolbar, @post, role: current_user.role).(:show_post) %>
+<% end %>

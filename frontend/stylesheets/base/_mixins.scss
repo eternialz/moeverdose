@@ -72,6 +72,10 @@
         margin-left: 0.25rem;
         padding: 0 0.1rem;
     }
+
+    &.button-icon-left i {
+        margin: 0 0.25rem 0 0;
+    }
 }
 
 @mixin button-color($color) {
@@ -86,5 +90,15 @@
     &.button-primary,
     &.button-icon {
         background: $color;
+    }
+}
+
+@mixin tag-color($color) {
+    background: rgba($color, 0.075);
+    box-shadow: inset 0 0 0 1px rgba($color, 0.5);
+    color: $color;
+
+    &:hover {
+        color: $color !important;
     }
 }

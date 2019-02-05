@@ -7,4 +7,9 @@
     display: block;
     padding: 1rem;
     margin-bottom: 1rem;
+
+    &.card-dark {
+        background: $gray-darker;
+        color: $text-color-light;
+    }
 }

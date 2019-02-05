@@ -1,0 +1,25 @@
+<div class="comment">
+    <a class="anchor-id" id="comment_<%= index + 1 %>"></a>
+    <div class="card comment-container">
+        <div class="comment-metadata">
+            <a href="<%= user_path(comment.user.name) %>" class="comment-avatar">
+                <% if comment.user.avatar %>
+                    <img src="/images/default-user.png" height="60" width="60"/>
+                <% else %>
+                    <img src="<%= comment.user.avatar %>" height="60" width="60"/>
+                <% end %>
+            </a>
+            <a href="#comment_<%= index + 1 %>" class="comment-index">#<%= index + 1 %></a>
+        </div>
+        <div class="comment-content">
+            <a href="<%= user_path(comment.user.name) %>">
+                <h5 class="comment-username"><%= comment.user.name %></h5>
+                <h6 class="comment-role subtitle subtitle-compact"><%= comment.user.role %></h6>
+            </a>
+            <p class="comment-text"><%= comment.text %></p>
+            <div class="comment-links">
+            <%= link_to "report", comment_report_path(@post.number, comment), class:"report", method: :patch %>
+            </div>
+        </div>
+    </div>
+</div>

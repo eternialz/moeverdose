@@ -63,3 +63,7 @@
 .button-github {
     @include button-color($github-color);
 }
+
+.button-shortage {
+    @include button-color($cyan);
+}
