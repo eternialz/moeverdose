@@ -1,4 +1,4 @@
-import { RegisterController } from '../../decorators/register_controller_decorator';
+import { RegisterController } from '../../../decorators/register_controller_decorator';
 import { Controller } from 'stimulus';
 
 @RegisterController

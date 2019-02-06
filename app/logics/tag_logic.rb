@@ -21,6 +21,26 @@ class TagLogic < SimpleDelegator
         end
     end
 
+    def self.differenciate_tags(tags)
+        character = []
+        author = []
+        copyright = []
+        tag = []
+        tags.each do |t|
+            if t.content?
+                tag << t.name
+            elsif t.character?
+                character << t.name
+            elsif t.author?
+                author << t.name
+            elsif t.copyright?
+                copyright << t.name
+            end
+        end
+
+        return {tags: tag, characters: character, authors: author, copyrights: copyright}
+    end
+
     def self.find_or_create_author(name, post)
         name = name.downcase.tr(" ", "_")
         tag = Tag.includes(:aliases).where(aliases: {name: name}, type: :author)

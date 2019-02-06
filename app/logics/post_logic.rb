@@ -1,26 +1,6 @@
 require 'delegate'
 
 class PostLogic < SimpleDelegator
-    def get_different_tags
-        character = []
-        author = []
-        copyright = []
-        tag = []
-        self.__getobj__.tags.each do |t|
-            if t.content?
-                tag << t.name
-            elsif t.character?
-                character << t.name
-            elsif t.author?
-                author << t.name
-            elsif t.copyright?
-                copyright << t.name
-            end
-        end
-
-        return {tags: tag, characters: character, authors: author, copyrights: copyright}
-    end
-
     def self.set_id(new_post)
         last_post = Post.last
         if !last_post.nil?

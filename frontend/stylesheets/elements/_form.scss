@@ -7,7 +7,12 @@
 }
 
 .form-label {
+    font-weight: bold;
     padding-bottom: 0.2rem;
+
+    i {
+        margin-right: 0.2rem;
+    }
 }
 
 .form-input,
@@ -31,7 +36,7 @@
 }
 
 .form-textarea {
-    min-height: 10rem;
+    min-height: 5rem;
 }
 
 .form-input-group {

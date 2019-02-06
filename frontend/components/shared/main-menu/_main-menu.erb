@@ -52,7 +52,7 @@
                         <div class="avatar">
                             <% if current_user.avatar.attached? %>
                                 <%= link_to user_path(current_user.name) do %>
-                                    <%= image_tag url_for(current_user.avatar), width: 40, height: 40 %>
+                                    <%= image_tag current_user.avatar, width: 40, height: 40 %>
                                 <% end %>
                             <% else %>
                                 <%= link_to user_path(current_user.name) do %>

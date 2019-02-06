@@ -5,8 +5,8 @@ class PostsController < ApplicationController
     before_action :authenticate_user!, except: [:show, :index, :not_found, :random]
 
     def show
-        post_logic = PostLogic.new(@post)
-        results = post_logic.get_different_tags
+        results = TagLogic.differenciate_tags(@post.tags)
+
         @tags = results[:tags]
         @characters = results[:characters]
         @authors = results[:authors]
@@ -51,8 +51,7 @@ class PostsController < ApplicationController
         @authors = []
         @copyrights = []
         @posts.each do |post|
-            post_logic = PostLogic.new(post)
-            results = post_logic.get_different_tags
+            results = TagLogic.differenciate_tags(post.tags)
             @tags += results[:tags]
             @tags += results[:copyrights]
             @characters += results[:characters]
@@ -80,6 +79,8 @@ class PostsController < ApplicationController
         end
 
         title("Upload")
+
+        render component "posts/new"
     end
 
     def create
@@ -95,8 +96,12 @@ class PostsController < ApplicationController
 
         PostLogic.set_post_user(@post, current_user)
 
-        if params[:author] != "" && params[:author] != nil
+        unless params[:author].blank?
             author = TagLogic.find_or_create_author(params[:author], @post)
+        end
+
+        unless params[:source].blank?
+            source = TagLogic.find_or_create_author(params[:source], @post)
         end
 
         @post.width = 400;
@@ -104,6 +109,7 @@ class PostsController < ApplicationController
 
         if @post.save
             author&.save
+            source&.save
             TagLogic.change_counts(@post.tags, 1)
 
             flash[:success] = "Post #{@post.title} created!"
@@ -117,8 +123,7 @@ class PostsController < ApplicationController
     end
 
     def edit
-        post_logic = PostLogic.new(@post)
-        results = post_logic.get_different_tags
+        results = TagLogic.differenciate_tags(@post.tags)
         @tags = results[:tags]
         @characters = results[:characters]
         @authors = results[:authors]

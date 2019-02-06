@@ -1,6 +1,10 @@
+
 <div class="home-about">
     <div class="padding">
-    <h1 class="title align-center"><%= site_name %></h1>
+        <h1 class="title align-center"><%= site_name %></h1>
+    </div>
+    <div class="margin margin-bottom">
+        <%= component "shared/main-search" %>
     </div>
     <div class="col-12 zone">
         <p class="p-lead">
@@ -33,7 +37,7 @@
     <div class="columns">
         <div class="col-6 col-12-medium padding padding-sm">
             <h2 class="title">
-                <%= component "anchor", {anchor: 'name'} do %>
+                <%= component "/shared/anchor", {anchor: 'name'} do %>
                     <%= site_name %> is currently in open beta
                 <% end %>
             </h2>
@@ -45,7 +49,7 @@
 
         <div class="col-6 col-12-medium padding padding-sm">
             <h2 class="title">
-                <%= component "anchor", {anchor: 'news'} do %>
+                <%= component "/shared/anchor", {anchor: 'news'} do %>
                     news
                 <% end %>
             </h2>

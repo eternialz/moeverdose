@@ -2,18 +2,17 @@
 <html>
     <%= render "layouts/head" %>
     <body>
-        <%= component "main-menu" %>
+        <%= component "/shared/main-menu" %>
 
-
-        <%= component "lightbox" %>
+        <%= component "/shared/lightbox" %>
 
         <div class="row view-content">
-            <%= component "breadcrumbs" %>
+            <%= component "/shared/breadcrumbs" %>
             <%= yield %>
         </div>
 
-        <%= component "main-footer" %>
+        <%= component "/shared/main-footer" %>
 
-        <%= component "notification" %>
+        <%= component "/shared/notification" %>
     </body>
 </html>

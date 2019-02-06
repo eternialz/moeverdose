@@ -64,47 +64,7 @@
         <div class="columns">
             <div class="col col-3 col-6-medium col-12-small padding">
                 <h5 class="title">
-                    <%= component "anchor", {anchor: 'description'} do %>
-                        <i class="fa fa-book"></i> Description
-                    <% end %>
-                </h5>
-                <% if @post.description != "" %>
-                    <p><%= @post.description %></p>
-                <% else %>
-                    <p>No description added</p>
-                <% end %>
-            </div>
-            <div class="col col-3 col-6-medium col-12-small padding">
-                <h5 class="title">
-                    <%= component "anchor", {anchor: 'tags'} do %>
-                        <i class="fa fa-tag"></i> Tags
-                    <% end %>
-                </h5>
-                <% if @tags.any? %>
-                    <% @tags.each do |tag| %>
-                        <a class="tag" href="<%= posts_path(query: tag ) %>"><%= tag %></a>
-                    <% end %>
-                <% else %>
-                    <p>No tags specified</p>
-                <% end %>
-            </div>
-            <div class="col col-3 col-6-medium col-12-small padding">
-                <h5 class="title">
-                    <%= component "anchor", {anchor: 'characters'} do %>
-                        <i class="fa fa-user"></i> Characters
-                    <% end %>
-                </h5>
-                <% if @characters.any? %>
-                    <% @characters.each do |character| %>
-                        <a class="tag" href="<%= posts_path(query: character ) %>"><%= character %></a>
-                    <% end %>
-                <% else %>
-                    <p>No characters specified</p>
-                <% end %>
-            </div>
-            <div class="col col-3 col-6-medium col-12-small padding">
-                <h5 class="title">
-                    <%= component "anchor", {anchor: 'informations'} do %>
+                    <%= component "/shared/anchor", {anchor: 'informations'} do %>
                         <i class="fa fa-info-circle"></i> Informations
                     <% end %>
                 </h5>
@@ -131,13 +91,58 @@
                     <li><span class="list-detailed-key">MD5:</span><span class="list-detailed-value"><%= @post.md5 %></span></li>
                 </ul>
             </div>
+            <div class="col col-6 col-12-small padding">
+                <div class="columns">
+                    <div class="col col-6 col-12-medium">
+                    </div>
+                    <div class="col col-6 col-12-medium">
+                    </div>
+                    <div class="col col-6 col-12-medium">
+                    </div>
+                    <div class="col col-6 col-12-medium">
+                    </div>
+                </div>
+                <h5 class="title">
+                    <%= component "/shared/anchor", {anchor: 'tags'} do %>
+                        <i class="fa fa-tag"></i> Tags
+                    <% end %>
+                </h5>
+                <% if @post.tags.any? %>
+                    <% @tags.each do |tag| %>
+                        <a class="tag tag-content" href="<%= posts_path(query: tag ) %>"><%= tag %></a>
+                    <% end %>
+                    <% @characters.each do |character| %>
+                        <a class="tag tag-character" href="<%= posts_path(query: character ) %>"><%= character %></a>
+                    <% end %>
+                    <% @copyrights.each do |copyright| %>
+                        <a class="tag tag-copyright" href="<%= posts_path(query: copyright ) %>"><%= copyright %></a>
+                    <% end %>
+                    <% @authors.each do |author| %>
+                        <a class="tag tag-author" href="<%= posts_path(query: author ) %>"><%= author %></a>
+                    <% end %>
+                <% else %>
+                    <p>No tags specified</p>
+                <% end %>
+            </div>
+            <div class="col col-3 col-6-medium col-12-small padding">
+                <h5 class="title">
+                    <%= component "/shared/anchor", {anchor: 'description'} do %>
+                        <i class="fa fa-book"></i> Description
+                    <% end %>
+                </h5>
+                <% if @post.description != "" %>
+                    <p><%= @post.description %></p>
+                <% else %>
+                    <p>No description added</p>
+                <% end %>
+            </div>
         </div>
     </div>
 
     <% if @post.comments.any? %>
         <div class="zone">
             <h5 class="title">
-                <%= component "anchor", {anchor: 'comment'} do %>
+                <%= component "/shared/anchor", {anchor: 'comment'} do %>
                     <i class="fa fa-comments"></i> Comments
                 <% end %>
             </h5>

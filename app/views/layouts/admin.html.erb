@@ -2,9 +2,7 @@
     <%= render "layouts/head" %>
 
     <body>
-        <%= component "main-menu" %>
-
-        <%= render "layouts/notifications" %>
+        <%= component "/shared/main-menu" %>
 
         <div class="view-content-admin">
             <div class="admin">
@@ -31,12 +29,14 @@
 
                 </ul>
                 <div class="content">
-                    <%= component "breadcrumbs" %>
+                    <%= component "/shared/breadcrumbs" %>
                     <%= yield %>
                 </div>
             </div>
         </div>
 
-        <%= component "main-footer" %>
+        <%= component "/shared/main-footer" %>
+
+        <%= component "/shared/notification" %>
     </body>
 </html>

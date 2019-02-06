@@ -10,8 +10,8 @@ class User < ApplicationRecord
     # Avatar
     has_one_attached :avatar
 
-    validates :avatar, content_type: /\Aimage\/.*\Z/,
-        size: { less_than_or_equal_to: 0.5.megabytes }
+    validates :avatar, content_type: ["image/png", "image/jpeg"],
+        size: { less_than: 500.kilobytes }
 
     # Posts
     has_many :posts, class_name: "Post", inverse_of: :user

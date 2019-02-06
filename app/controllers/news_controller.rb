@@ -18,6 +18,6 @@ class NewsController < ApplicationController
             }
         ]
 
-        render component "new"
+        render component "/shared/new"
     end
 end

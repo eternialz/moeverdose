@@ -4,6 +4,19 @@ class ApplicationController < ActionController::Base
 
     def home
         @news = New.all.order('created_at DESC').limit(2)
+
+        @tags = Tag.popular.limit(20)
+        if user_signed_in?
+            @tags += current_user.favorites_tags
+        end
+
+        results = TagLogic.differenciate_tags(@tags)
+
+        @tags = results[:tags]
+        @characters = results[:characters]
+        @authors = results[:authors]
+        @copyrights = results[:copyrights]
+
         render component "home"
     end
 

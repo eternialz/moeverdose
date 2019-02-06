@@ -41,6 +41,13 @@
             padding: 0.8rem 0.8rem 0.5rem;
             min-height: 2.7rem;
 
+            // Placeholder support for contenteditable
+            &:empty::before {
+                color: $gray;
+                content: attr(placeholder);
+                display: block;
+            }
+
             br {
                 display: none;
             }

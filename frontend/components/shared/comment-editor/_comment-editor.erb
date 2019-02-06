@@ -2,7 +2,7 @@
     <% if user_signed_in? %>
         <%= form_tag post_comments_path(@post.number), id: "comment-form", class: "comment-form" do |comment| %>
             <h5 class="title title-compact">
-                <%= component "anchor", {anchor: 'comment-editor'} do %>
+                <%= component "/shared/anchor", {anchor: 'comment-editor'} do %>
                     <i class="fa fa-comment"></i> Add a comment
                 <% end %>
             </h5>

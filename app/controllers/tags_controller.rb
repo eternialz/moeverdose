@@ -33,7 +33,6 @@ class TagsController < ApplicationController
                 aliases.push(@tag.aliases.find_by(name: name) || Alias.new({name: name, tag_id: @tag.id}))
             end
 
-            binding.pry
             @tag.aliases = aliases
         else
             flash.now[:error] = "You didn't provide any aliases."

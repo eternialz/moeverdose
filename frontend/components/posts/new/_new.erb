@@ -1,0 +1,59 @@
+
+<%= form_for @post, url: posts_path, html: {class: "zone post-new"} do |f| %>
+    <div class="post-new-upload" data-controller="post-new" class="col-6">
+        <h4 class="subtitle margin margin-bottom">
+            Please, read and understand <a href="/wiki/rules">the rules</a> before posting anything.
+        </h4>
+        <%= f.file_field :post_image,
+            required: "required",
+            title: "File input",
+            "data-target": 'post-new.input',
+            "data-action": 'change->post-new#input'
+        %>
+        <div class="post-new-dummy">
+            <label class="button-primary" for="post_post_image">Browse <i class="fa fa-folder-open"></i></label>
+            <span class="post-new-invalid">
+                No file selected
+            </span>
+            <span class="post-new-valid">Succesfully selected image</span>
+        </div>
+        <div class="post-new-file">
+            <img data-target="post-new.file" />
+        </div>
+    </div>
+    <div class="columns">
+        <div class="col col-6 col-12-small padding">
+            <div class="form">
+                <h5 class="title"><%= fa_icon "tag" %> Tags</h5>
+                <div class="form-field">
+                    <label class="form-label">Content</label>
+                    <textarea class="form-textarea" name="tags" id="tags" placeholder='Tags ("1girl glasses ...")' autocomplete="off"></textarea>
+                </div>
+                <div class="form-field">
+                    <label class="form-label">Character</label>
+                    <textarea class="form-textarea" name="characters" placeholder='Characters ("illyasviel_von_einzbern ...")' autocomplete="off"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="col col-6 col-12-small padding">
+            <div class="form">
+                <h5 class="title"><i class="fa fa-info-circle"></i> Metadatas</h5>
+                <div class="form-field">
+                    <label class="form-label"><%= fa_icon "heading" %> Title</label>
+                    <input class="form-input" type="text" name="post[title]" placeholder='Title' autocomplete="off">
+                </div>
+                <div class="form-field">
+                    <label class="form-label"><%= fa_icon "user" %> Author</label>
+                    <input class="form-input" type="text" name="author" placeholder='Author' autocomplete="off"></textarea>
+                </div>
+                <div class="form-field">
+                    <label class="form-label"><%= fa_icon "rss" %> Source</label>
+                    <input class="form-input" type="text" name="source" placeholder='Source' autocomplete="off"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12" style="text-align:right;">
+        <button form="new_post" class="button-primary" type="submit">Upload <i class="fa fa-upload"></i></button>
+    </div>
+<% end %>

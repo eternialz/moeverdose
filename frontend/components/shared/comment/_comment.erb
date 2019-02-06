@@ -3,8 +3,8 @@
     <div class="card comment-container">
         <div class="comment-metadata">
             <a href="<%= user_path(comment.user.name) %>" class="comment-avatar">
-                <% if comment.user.avatar %>
-                    <img src="<%= comment.user.avatar %>" height="60" width="60"/>
+                <% if comment.user.avatar.attached? %>
+                    <%= image_tag comment.user.avatar, height: "60", width: "60" %>
                 <% else %>
                     <img src="/images/default-user.png" height="60" width="60"/>
                 <% end %>
