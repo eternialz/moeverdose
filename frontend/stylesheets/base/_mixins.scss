@@ -102,3 +102,11 @@
         color: $color !important;
     }
 }
+
+@mixin notification-color($color) {
+    border-color: $color;
+
+    &::before {
+        color: $color;
+    }
+}

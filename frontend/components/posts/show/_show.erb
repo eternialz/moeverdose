@@ -136,7 +136,11 @@
 
     <% if @post.comments.any? %>
         <div class="zone">
-            <h5 class="title"><i class="fa fa-comments"></i> Comments</h5>
+            <h5 class="title">
+                <%= component "anchor", {anchor: 'comment'} do %>
+                    <i class="fa fa-comments"></i> Comments
+                <% end %>
+            </h5>
             <div class="comments-zone">
                 <% @post.comments.includes(:user).each_with_index do |comment,index| %>
                     <%= component "shared/comment", {comment: comment, index: index} %>
@@ -145,26 +149,7 @@
         </div>
     <% end %>
 
-    <div class="zone">
-        <% if user_signed_in? %>
-            <%= form_tag post_comments_path(@post.number), id: "comment-form" ,class: "comment-form" do |comment| %>
-                <h5 class="title title-compact">
-                    <%= component "anchor", {anchor: 'comment'} do %>
-                        <i class="fa fa-comment"></i> Add a comment
-                    <% end %>
-                </h5>
-                <h6 class="subtitle">Maximum <%= max_comment_length %> characters</h6>
-                <div class="form">
-                    <textarea class="form-textarea" data-length="<%= max_comment_length %>" name="comment[text]" placeholder="Write your message here "></textarea>
-                </div>
-                <button type="submit" form="comment-form" class="button-primary">Send <i class="fa fa-comment"></i></button>
-            <% end %>
-        <% else %>
-            <h3>Add a comment</h3>
-            <p><%= link_to "Sign up", new_user_registration_path %> or <%= link_to "log in", new_user_session_path %> to post a comment.</p>
-            <br />
-        <% end %>
-    </div>
+    <%= component "shared/comment-editor" %>
 </div>
 
 <% if user_signed_in? %>

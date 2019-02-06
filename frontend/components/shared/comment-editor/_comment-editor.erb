@@ -1,0 +1,20 @@
+<div class="zone" data-controller="comment-editor">
+    <% if user_signed_in? %>
+        <%= form_tag post_comments_path(@post.number), id: "comment-form", class: "comment-form" do |comment| %>
+            <h5 class="title title-compact">
+                <%= component "anchor", {anchor: 'comment-editor'} do %>
+                    <i class="fa fa-comment"></i> Add a comment
+                <% end %>
+            </h5>
+            <h6 class="subtitle"><span class="number" data-maxlength="<%= max_comment_length %>" data-target="comment-editor.length"></span>/<%= max_comment_length %> characters</h6>
+            <div class="form">
+                <textarea class="form-textarea" data-target="comment-editor.input" data-action="input->comment-editor#input" name="comment[text]" placeholder="Write your message here "></textarea>
+            </div>
+            <button type="submit" form="comment-form" class="button-primary">Send <i class="fa fa-comment"></i></button>
+        <% end %>
+    <% else %>
+        <h3>Add a comment</h3>
+        <p><%= link_to "Sign up", new_user_registration_path %> or <%= link_to "log in", new_user_session_path %> to post a comment.</p>
+        <br />
+    <% end %>
+</div>

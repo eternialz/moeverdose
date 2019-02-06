@@ -1,0 +1,72 @@
+.notifications-overlay {
+    position: fixed;
+    z-index: $depth-3;
+    bottom: 0;
+    right: 0;
+
+    .notifications-container {
+        padding: 1rem;
+        width: 25rem;
+        max-width: 100%;
+    }
+
+    .notification {
+        @include shadow-control-3();
+
+        background: $black;
+        border-left: 4px solid;
+        border-radius: $border-radius;
+        color: $white;
+        font-weight: bold;
+        padding: 0.66rem 0.66rem;
+        margin-top: 0.5rem;
+        text-shadow: 0 0.05rem 0.1rem rgba($black, 0.2);
+        width: 100%;
+        word-break: break-all;
+        transition: opacity 100ms ease-in-out;
+
+        &::before {
+            font-family: "Font Awesome 5 Free", monospace;
+            width: 1rem;
+            text-align: center;
+            display: inline-block;
+            margin-right: 0.4rem;
+        }
+
+        &.notification-disappear {
+            opacity: 0;
+        }
+
+        &.notification-success {
+            @include notification-color($green);
+
+            &::before {
+                content: "\f00c";
+            }
+        }
+
+        &.notification-information {
+            @include notification-color($blue);
+
+            &::before {
+                content: "\f129";
+            }
+        }
+
+        &.notification-warning {
+            @include notification-color($orange);
+
+            &::before {
+                content: "\f12a";
+            }
+        }
+
+        &.notification-error {
+            @include notification-color($red);
+
+            &::before {
+                content: "\f05e";
+            }
+        }
+    }
+}

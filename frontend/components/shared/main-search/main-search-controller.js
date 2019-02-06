@@ -6,8 +6,8 @@ class MainSearchController extends Controller {
     static targets = ['tags', 'input', 'tagIcon'];
 
     input(event) {
-        // If key pressed is space
         if (event.keyCode === 32 || event.key === ' ') {
+            // If key pressed is space
             event.preventDefault();
             event.target.innerHTML = this.processInput(event.target.innerHTML);
         } else if (event.keyCode === 8 || event.key === 'Backspace') {

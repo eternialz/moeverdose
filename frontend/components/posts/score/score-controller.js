@@ -2,6 +2,7 @@ import { RegisterController } from '../../../decorators/register_controller_deco
 import { Controller } from 'stimulus';
 import { PostService } from '../../../services/post-service';
 import { RouteService } from '../../../services/route-service';
+import { NotificationService } from '../../../services/notification-service';
 
 @RegisterController
 class PostScoreController extends Controller {
@@ -38,6 +39,7 @@ class PostScoreController extends Controller {
                 let response = JSON.parse(success);
                 this.overdoseBarTarget.setAttribute('data-score', response.overdose);
                 this.shortageBarTarget.setAttribute('data-score', response.shortage);
+                NotificationService.newNotification('Success', 'success');
                 this.computeScore();
             })
             .catch(error => {
