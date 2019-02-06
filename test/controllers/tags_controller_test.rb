@@ -24,18 +24,10 @@ class TagsControllerTest < ActionDispatch::IntegrationTest
         }
 
         get tags_path, params: params
+        @tags = @controller.instance_variable_get(:@tags)
 
-        assert_redirected_to edit_tag_path(@tag_author)
-    end
-
-    test 'index_with_bad_query' do
-        params = {
-            query: @tag_author.names.first + "kuvdzkfhuver"
-        }
-
-        get tags_path, params: params
         assert_response :success
-        assert_not flash[:error].blank?
+        assert_not @tags.empty?
     end
 
     test 'edit' do

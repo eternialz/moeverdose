@@ -33,6 +33,8 @@ storage/
 source.sh
 .env
 config/master.key
+
+# Webpacker and yarn
 /public/packs
 /public/packs-test
 /node_modules
