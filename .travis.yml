@@ -1,6 +1,9 @@
 language: ruby
 rvm:
   - 2.5.3
+cache:
+  - bundler
+  - yarn
 bundler_args: --without production
 group: stable
 dist: xenial
