@@ -6,7 +6,6 @@ class AnchorController extends Controller {
     static targets = ['name'];
 
     copy() {
-        console.log('aaa');
         navigator.permissions.query({ name: 'clipboard-write' }).then(result => {
             if (result.state == 'granted' || result.state == 'prompt') {
                 let location = window.location.toString().split('#')[0];

@@ -6,6 +6,7 @@ class User < ApplicationRecord
     validates :name,  uniqueness: true, presence: true
 
     validates :email, presence: true
+
     # Avatar
     has_one_attached :avatar
 
@@ -25,12 +26,12 @@ class User < ApplicationRecord
 
     has_and_belongs_to_many :favorites_tags, class_name: "Tag", inverse_of: nil, join_table: :favorites_tags_users
     has_and_belongs_to_many :blacklisted_tags, class_name: "Tag", inverse_of: nil, join_table: :blacklisted_tags_users
+
     # Comments
     has_many :comments, class_name: "Comment", inverse_of: :user
 
     # User security
     alias_attribute :report?, :report
-
     alias_attribute :banned?, :banned
 
     def active_for_authentication? # Prevent banned user authentications

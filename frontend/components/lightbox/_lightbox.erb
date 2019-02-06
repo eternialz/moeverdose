@@ -1,0 +1,9 @@
+
+<% if content_for?(:lightbox_content) %>
+    <div class="lightbox">
+        <input class="lightbox-show" type="checkbox" name="lightbox" hidden>
+        <div class="lightbox-overlay">
+            <%= yield :lightbox_content %>
+        </div>
+    </div>
+<% end %>

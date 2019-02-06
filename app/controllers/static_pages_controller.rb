@@ -19,6 +19,17 @@ class StaticPagesController < ApplicationController
         render component "static/wiki/#{params[:page]}"
     end
 
+    def team
+        title("Team")
+        @users = User.where(role: ['administrator', 'moderator', 'developper'])
+        @breadcrumbs = static_breadcrumbs().push({
+            name: "Team",
+            path: "/team"
+        })
+
+        render component "team"
+    end
+
     private
     def static_breadcrumbs
         return [

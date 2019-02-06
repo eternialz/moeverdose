@@ -14,45 +14,55 @@
     <meta property="og:image" content="<%= request.base_url + url_for(@post.post_image) %>" />
 <% end %>
 
+<%= content_for :lightbox_content do %>
+    <%= image_tag @post.post_image %>
+<% end %>
+
 <%= component 'shared/main-search' %>
-
-<% cache @post do %>
-    <div class="post-show">
-        <div class="zone margin margin-top padding padding-sm post-show-navigation">
-            <a href="/posts/<%= @post.number + 1 %>"class="button-primary previous"><%= fa_icon "arrow-circle-left" %> Previous</a>
-            <div class="align-center">
-                <% if @post.title != '' %>
-                    <h4 class="title title-compact"><%= @post.title %></h4>
-                    <h6 class="subtitle subtitle-compact">Post id: <span class="number"><%= @post.number %></span></h6>
-                <% else %>
-                    <h4 class="title title-compact">Post id: <span class="number"><%= @post.number %></span></h4>
-                <% end %>
-            </div>
-            <a href="/posts/<%= @post.number - 1 %>" class="button-primary next">Next <%= fa_icon "arrow-circle-right" %></a>
-        </div>
-
-        <div class="post-show-content">
-            <% if @post.report == true %>
-                <input class="reported_input" id="report_form_input" type="checkbox">
-                <div class="reported">
-                    <p>This post have been reported by <%= link_to @post.report_user.name, user_path(id: @post.report_user.name) %> for:</p>
-                    <br />
-                    <p><%= @post.report_reason.empty? ? "no reason given by the user" : @post.report_reason %></p>
-                    <br />
-                    <label for="report_form_input" class="btn btn-pink">Show post <%= fa_icon 'eye' %></label>
-                </div>
+<div class="post-show">
+    <div class="zone margin margin-top padding padding-sm post-show-navigation">
+        <a href="/posts/<%= @post.number + 1 %>"class="button-primary previous"><%= fa_icon "arrow-circle-left" %> Previous</a>
+        <div class="align-center">
+            <% if @post.title != '' %>
+                <h4 class="title title-compact"><%= @post.title %></h4>
+                <h6 class="subtitle subtitle-compact">Post id: <span class="number"><%= @post.number %></span></h6>
+            <% else %>
+                <h4 class="title title-compact">Post id: <span class="number"><%= @post.number %></span></h4>
             <% end %>
-            <div class="post-show-image">
-                <%= image_tag @post.post_image %>
-            </div>
         </div>
-
-        <%= component "posts/score" %>
+        <a href="/posts/<%= @post.number - 1 %>" class="button-primary next">Next <%= fa_icon "arrow-circle-right" %></a>
     </div>
 
-    <div class="zone">
+    <div class="post-show-content">
+        <% if @post.report == true %>
+            <input class="reported_input" id="report_form_input" type="checkbox">
+            <div class="reported">
+                <p>This post have been reported by <%= link_to @post.report_user.name, user_path(id: @post.report_user.name) %> for:</p>
+                <br />
+                <p><%= @post.report_reason.empty? ? "no reason given by the user" : @post.report_reason %></p>
+                <br />
+                <label for="report_form_input" class="btn btn-pink">Show post <%= fa_icon 'eye' %></label>
+            </div>
+        <% end %>
+        <div class="post-show-image">
+            <%= image_tag @post.post_image %>
+        </div>
+    </div>
+
+    <%= component "posts/score" %>
+
+    <div class="zone" data-controller="post-show">
+        <div class="button-list padding padding-bottom">
+            <a class="button-secondary button-icon-left" data-action="click->post-show#addFavorite"><i class="fa fa-heart"></i> Favorite</a>
+            <a class="button-secondary button-icon-left" href="<%= url_for(@post.post_image) %>" download><i class="fa fa-download"></i> Download</a>
+            <a class="button-secondary button-icon-left" target="_blank" href="https://www.google.fr/searchbyimage?site=search&image_url=<%= url_for(@post.post_image) %>"><i class="fab fa-google"></i>Search</a>
+            <% if user_signed_in? %>
+                <a class="button-secondary button-icon-left" href="<%= edit_post_path(@post.number) %>"><i class="fa fa-edit"></i> Edit</a>
+                <a class="button-secondary button-icon-left" href="<%= edit_report_post_path(@post.number) %>"><i class="fa fa-times"></i> Report</a>
+            <% end %>
+        </div>
         <div class="columns">
-            <div class="col col-3 col-6-medium col-12-small">
+            <div class="col col-3 col-6-medium col-12-small padding">
                 <h5 class="title">
                     <%= component "anchor", {anchor: 'description'} do %>
                         <i class="fa fa-book"></i> Description
@@ -64,7 +74,7 @@
                     <p>No description added</p>
                 <% end %>
             </div>
-            <div class="col col-3 col-6-medium col-12-small">
+            <div class="col col-3 col-6-medium col-12-small padding">
                 <h5 class="title">
                     <%= component "anchor", {anchor: 'tags'} do %>
                         <i class="fa fa-tag"></i> Tags
@@ -75,10 +85,10 @@
                         <a class="tag" href="<%= posts_path(query: tag ) %>"><%= tag %></a>
                     <% end %>
                 <% else %>
-                    <p>no tags specified </p>
+                    <p>No tags specified</p>
                 <% end %>
             </div>
-            <div class="col col-3 col-6-medium col-12-small">
+            <div class="col col-3 col-6-medium col-12-small padding">
                 <h5 class="title">
                     <%= component "anchor", {anchor: 'characters'} do %>
                         <i class="fa fa-user"></i> Characters
@@ -89,10 +99,10 @@
                         <a class="tag" href="<%= posts_path(query: character ) %>"><%= character %></a>
                     <% end %>
                 <% else %>
-                    <p>no characters specified </p>
+                    <p>No characters specified</p>
                 <% end %>
             </div>
-            <div class="col col-3 col-6-medium col-12-small">
+            <div class="col col-3 col-6-medium col-12-small padding">
                 <h5 class="title">
                     <%= component "anchor", {anchor: 'informations'} do %>
                         <i class="fa fa-info-circle"></i> Informations
@@ -121,16 +131,6 @@
                     <li><span class="list-detailed-key">MD5:</span><span class="list-detailed-value"><%= @post.md5 %></span></li>
                 </ul>
             </div>
-        </div>
-
-        <div class="button-list margin margin-top">
-            <a class="button-secondary button-icon-left" href="" id="add_to_favorites"><i class="fa fa-heart"></i> Add Favorite</a>
-            <a class="button-secondary button-icon-left" href="<%= url_for(@post.post_image) %>" download><i class="fa fa-download"></i> Download</a>
-            <a class="button-secondary button-icon-left" target="_blank" href="https://www.google.fr/searchbyimage?site=search&image_url=<%= url_for(@post.post_image) %>"><i class="fab fa-google"></i>Search image</a>
-            <% if user_signed_in? %>
-                <a class="button-secondary button-icon-left" href="<%= edit_post_path(@post.number) %>"><i class="fa fa-edit"></i> Edit post</a>
-                <a class="button-secondary button-icon-left" href="<%= edit_report_post_path(@post.number) %>"><i class="fa fa-times"></i> Report post</a>
-            <% end %>
         </div>
     </div>
 
@@ -165,7 +165,7 @@
             <br />
         <% end %>
     </div>
-<% end %>
+</div>
 
 <% if user_signed_in? %>
     <%= cell(:admin_toolbar, @post, role: current_user.role).(:show_post) %>

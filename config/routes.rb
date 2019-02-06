@@ -44,16 +44,18 @@ Rails.application.routes.draw do
     get "/users/:id/favorites" => "users#favorites", as: 'favorites'
     get "/users/:id/uploads" => "users#uploads", as: 'uploads'
 
+    
     resources :news, only: [:show]
-
+    
     match "/404", :to => "errors#not_found", :via => :all
     match "/500", :to => "errors#internal_server_error", :via => :all
-
+    
     %w(400 408 422 502 503 504).each do |code|
         match code, :to => "errors#error", :via => :all, :code => code
     end
-
+    
     # Static contents
+    get "/team" => "static_pages#team", as: :team_page
     get "/wiki/:page" => "static_pages#wiki", as: :wiki_static_page
     get "/:page" => "static_pages#static", as: :static_page
 end

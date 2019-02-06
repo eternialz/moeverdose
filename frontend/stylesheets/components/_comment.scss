@@ -62,9 +62,15 @@
             margin: 0;
         }
 
-        .comment-role {
+        .comment-subtitle {
             display: block;
             margin: 0;
+            font-size: 0.8em;
+            text-transform: capitalize;
+
+            * {
+                margin-right: 0.4rem;
+            }
         }
 
         .comment-text {
@@ -84,4 +90,4 @@
             }
         }
     }
-} 
+}

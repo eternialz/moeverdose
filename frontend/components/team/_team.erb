@@ -1,0 +1,7 @@
+<% @users.each do |u| %>
+    <div class="help_page zone">
+        <h4 class="title title-compact"><%= u.name %></h4>
+        <h6 class="subtitle"><%= u.role %></h6>
+        <p class="p-lead"><%= u.biography %></p>
+    </div>
+<% end %>
