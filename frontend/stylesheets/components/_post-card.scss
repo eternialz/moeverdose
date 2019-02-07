@@ -1,21 +1,29 @@
 .post-card {
-    @include shadow-2();
-
-    background-origin: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-    border-radius: $border-radius-2;
     color: $true-white;
     font-weight: bold;
-    margin: 0.5rem 0.5rem 0 0;
-    min-height: 200px;
-    min-width: 200px;
+    min-height: 10rem;
+    max-width: 100%;
     overflow: hidden;
-    position: relative;
-    text-shadow: 0 0.1rem 0.1rem rgba($shadow-color, 0.3), 0 0 1px rgba($black, 0.5);
+    padding: 0.25rem;
+    flex-basis: 20%;
 
     .fa {
         font-size: 0.8em;
+    }
+
+    .post-card-image {
+        @include shadow-2();
+
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: $border-radius-2;
+        display: inline-block;
+        height: 100%;
+        overflow: hidden;
+        position: relative;
+        text-shadow: 0 0.1rem 0.1rem rgba($shadow-color, 0.3), 0 0 1px rgba($black, 0.5);
+        width: 100%;
     }
 
     .post-card-info {

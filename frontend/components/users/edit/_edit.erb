@@ -1,0 +1,101 @@
+<%= form_for @user, url: user_path(@user.name), html: {method: :patch } do |f| %>
+    <div class="user-show">
+        <div class="zone user-show-header">
+            <div class="user-show-identity">
+                <div class="user-show-identity-section">
+                    <div class="user-show-avatar avatar">
+                        <% if @user.avatar.attached? %>
+                            <img src="<%= url_for @user.avatar %>" width="120" height="120" />
+                        <% else %>
+                            <%= image_tag "/images/default_user.png", class: "avatar" %>
+                        <% end %>
+                    </div>
+                    <h6 class="user-show-name role" data-role="<%= @user.role %>"><%= @user.name %></h6>
+                    <span class="user-show-item">
+                        joined<br />
+                        <%= @user.created_at.strftime('%Y/%m/%d') %>
+                    </span>
+                </div>
+                <div class="user-show-identity-section">
+                    <div class="user-show-level">
+                        <% if !@user.level.final %>
+                            <div class="progress-bar">
+                                <div class="progress-bar-indicator"><span><%= @user.level.name %></span><span>Rank <%= @user.level.rank %></span></div>
+                                <div class="progress-bar-fill" style="background: <%= @user.level.color %>"></div>
+                            </div>
+                        <% else %>
+                            <div class="progress-bar">
+                                <div class="progress-bar-indicator"><span><%= @user.level.name %></span><span>Rank max</span></div>
+                                <div class="progress-bar-fill" style="background: <%= @user.level.color %>; width: 100%;"></div>
+                            </div>
+                        <% end %>
+                    </div>
+                </div>
+                <div class="user-show-identity-section">
+                    <button for="submit" class="button-primary">Save changes <i class="fa fa-save"></i></button>
+                </div>
+            </div>
+            <div class="user-show-informations padding">
+                <h5 class="title title-compact">
+                    <%= component "/shared/anchor", {anchor: "about"} do %>
+                        About me
+                    <% end %>
+                </h5>
+                <h6 class="subtitle">Biography</h6>
+                <div class="form-field margin margin-bottom">
+                    <%= f.text_area :biography, class: "form-textarea", placeholder: "Master of daruma otoshi" %>
+                </div>
+                <h6 class="subtitle">Avatar</h6>
+                <div class="avatar-upload margin margin-bottom">
+                    <div class="tooltip" id="avatar-img" style="background-image: url(<%= @user.avatar %>)">
+                        <span class="tip">Drag and drop avatar here</span>
+                        <p class="message"><i class="fa fa-upload"></i></p>
+                        <%= f.file_field :avatar %>
+                    </div>
+                    <%= f.label :avatar do %>
+                        <p class="btn btn-blue">Choisir mon avatar</p>
+                    <% end %>
+                </div>
+                <h6 class="subtitle">Links</h6>
+                <div class="form-field">
+                    <label class="form-label"><i class="fa fa-link"></i> Website</label>
+                    <%= f.text_field :website, class: "form-input", placeholder: "https://mywebsite.me" %>
+                </div>
+                <div class="form-field">
+                    <label class="form-label"><i class="fab fa-twitter"></i> Twitter</label>
+                    <%= f.text_field :twitter, class: "form-input", placeholder: "https://twitter.com/username" %>
+                </div>
+                <div class="form-field">
+                    <label class="form-label"><i class="fab fa-facebook"></i> Facebook</label>
+                    <%= f.text_field :facebook, class: "form-input", placeholder: "https://www.facebook.com/my.profile" %>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="zone">
+        <h5 class="title title-compact">
+            <%= component "/shared/anchor", {anchor: "tags"} do %>
+                My Tags
+            <% end %>
+        </h5>
+        <h6 class="subtitle">
+            Replace spaces in each tag with an underscore and add space to separate tags
+        </h6>
+        <div class="columns">
+            <div class="col col-6 col-12-small padding">
+                <label class="form-label"><%= fa_icon "tag" %> Favorites tags</label>
+                <div class="field_area">
+                    <%= text_area :tags, :favorites, class: "form-textarea", placeholder: "1girl brown_hair", value: @favorites_tags  %>
+                </div>
+            </div>
+
+            <div class="col col-6 col-12-small padding">
+                <label class="form-label"><%= fa_icon "tag" %> Blacklisted tags</label>
+                <div class="field_area">
+                    <%= text_area :tags, :blacklisted, class: "form-textarea", placeholder: "1boy", value: @blacklisted_tags %>
+                </div>
+            </div>
+        </div>
+    </div>
+<% end %>

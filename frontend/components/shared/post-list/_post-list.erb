@@ -1,15 +1,17 @@
 <div class="post-list ">
     <% if !@posts.empty? %>
         <% @posts.each do |post| %>
-            <a title="<%= post.title %>" href="<%= post_path(post.number, query: params[:query]) %>" class="post-card" style="background-image: url(<%= url_for(post.post_image_thumbnail)%> )">
-                <div class="post-card-info">
-                    <span class="post-card-stats">
-                        <h5 class="post-card-title"><%= post.title %></h5>
-                        <span title="overdose(s)"><%= post.overdose %> <%= fa_icon "heartbeat" %> </span>
-                        <span title="shortage(s)"><%= post.moe_shortage %> <%= fa_icon "thumbs-down" %> </span>
-                        <!-- TODO integrate post comment count -->
-                        <span title="comment(s)"><%= @comments_counts[post.id] || 0 %> <%= fa_icon "comment" %></span>
-                    </span>
+            <a title="<%= post.title %>" href="<%= post_path(post.number, query: params[:query]) %>" class="post-card">
+                <div class="post-card-image" style="background-image: url(<%= url_for(post.post_image_thumbnail)%> )">
+                    <div class="post-card-info">
+                        <span class="post-card-stats">
+                            <h5 class="post-card-title"><%= post.title %></h5>
+                            <span title="overdose(s)"><%= post.overdose %> <%= fa_icon "heartbeat" %> </span>
+                            <span title="shortage(s)"><%= post.moe_shortage %> <%= fa_icon "thumbs-down" %> </span>
+                            <!-- TODO integrate post comment count -->
+                            <span title="comment(s)"><%= @comments_counts[post.id] || 0 %> <%= fa_icon "comment" %></span>
+                        </span>
+                    </div>
                 </div>
             </a>
         <% end %>

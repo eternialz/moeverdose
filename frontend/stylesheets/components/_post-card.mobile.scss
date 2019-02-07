@@ -1,0 +1,56 @@
+@media only screen and (min-width: $hdpi) {
+    .post-card {
+        flex-basis: 100% * (3 / 24);
+        min-height: 12rem;
+    }
+}
+
+@media only screen and (max-width: $hdpi) {
+    .post-card {
+        flex-basis: 100% * (3 / 24);
+        min-height: 10rem;
+    }
+}
+
+@media only screen and (max-width: $large) {
+    .post-card {
+        flex-basis: 100% * (4 / 24);
+        min-height: 12rem;
+    }
+}
+
+@media only screen and (max-width: $normal) {
+    .post-card {
+        flex-basis: 100% * (4 / 24);
+        min-height: 10rem;
+    }
+}
+
+@media only screen and (max-width: $medium) {
+    .post-card {
+        flex-basis: 100% * (6 / 24);
+        min-height: 11rem;
+    }
+}
+
+@media only screen and (max-width: $small) {
+    .post-card {
+        flex-basis: 100% * (6 / 24);
+        min-height: 8rem;
+
+        .post-card-info {
+            display: none;
+        }
+    }
+}
+
+@media only screen and (max-width: $smallest) {
+    .post-card {
+        flex-basis: 100% * (8 / 24);
+        min-height: 8rem;
+
+        .post-card-info {
+            display: none;
+        }
+    }
+}

@@ -15,14 +15,18 @@
 @import 'components/main-search';
 @import 'components/notification';
 @import 'components/post-card';
+@import 'components/post-card.mobile';
 @import 'components/post-list';
 @import 'components/post-new';
 @import 'components/post-show';
+@import 'components/user-activity';
+@import 'components/user-show';
 @import 'components/wiki';
 
 // Elements
 @import 'elements/anchor';
 @import 'elements/anchor.mobile';
+@import 'elements/avatar';
 @import 'elements/breadcrumbs';
 @import 'elements/browser';
 @import 'elements/button-list';
@@ -46,6 +50,7 @@
 @import 'elements/paragraph';
 @import 'elements/popover';
 @import 'elements/progress-bar';
+@import 'elements/role';
 @import 'elements/spoiler';
 @import 'elements/subtitle';
 @import 'elements/tag';

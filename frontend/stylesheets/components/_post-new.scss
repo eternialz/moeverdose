@@ -5,10 +5,10 @@
         }
 
         .post-new-dummy {
-            padding: 1rem;
-            font-weight: bold;
-            width: 100%;
             display: block;
+            font-weight: bold;
+            padding: 1rem;
+            width: 100%;
 
             .post-new-valid {
                 display: none;
@@ -24,11 +24,11 @@
                 @include shadow-1;
 
                 display: block;
-                margin: auto;
                 height: auto;
-                width: auto;
-                max-width: 100%;
+                margin: auto;
                 max-height: 20rem;
+                max-width: 100%;
+                width: auto;
             }
         }
 

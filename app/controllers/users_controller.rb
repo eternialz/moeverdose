@@ -17,14 +17,11 @@ class UsersController < ApplicationController
             @blacklisted_tags = @user.blacklisted_tags.map do |t|
               t.name
             end
-
-            @level = @user.level
-            if (!@level.final)
-                @next_level = Level.find_by(rank: @user.level.rank + 1)
-            end
         end
 
         title(@user.name + " profile")
+
+        render component "users/show"
     end
 
     def edit
@@ -34,7 +31,10 @@ class UsersController < ApplicationController
         @blacklisted_tags = @user.blacklisted_tags.map do |t|
           t.name
         end.join(' ')
+
         title("Edit my profile")
+
+        render component "users/edit"
     end
 
     def favorites

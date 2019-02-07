@@ -1,0 +1,32 @@
+.progress-bar {
+    position: relative;
+
+    .progress-bar-fill {
+        background: $base-color;
+        border-radius: 0.15rem;
+        height: 0.3rem;
+        margin-top: 0.3rem 0;
+        position: relative;
+        width: 50%;
+        z-index: $depth-2;
+    }
+
+    &::after {
+        background: $gray-dark;
+        border-radius: 0.15rem;
+        bottom: 0;
+        content: " ";
+        display: inline-block;
+        height: 0.3rem;
+        position: absolute;
+        width: 100%;
+    }
+
+    .progress-bar-indicator {
+        display: flex;
+        font-size: 0.6rem;
+        justify-content: space-between;
+        letter-spacing: 0.05rem;
+        text-transform: uppercase;
+    }
+}

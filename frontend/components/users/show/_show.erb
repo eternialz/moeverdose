@@ -1,0 +1,134 @@
+<div class="user-show">
+    <div class="zone user-show-header" zone padding padding-0">
+        <div class="user-show-identity">
+            <div class="user-show-identity-section">
+                <div class="user-show-avatar avatar">
+                    <% if @user.avatar.attached? %>
+                        <img src="<%= url_for @user.avatar %>" width="120" height="120" />
+                    <% else %>
+                        <%= image_tag "/images/default_user.png", class: "avatar" %>
+                    <% end %>
+                </div>
+                <h6 class="user-show-name role" data-role="<%= @user.role %>"><%= @user.name %></h6>
+                <span class="user-show-item">
+                    joined<br />
+                    <%= @user.created_at.strftime('%Y/%m/%d') %>
+                </span>
+            </div>
+            <div class="user-show-identity-section">
+                <div class="user-show-level">
+                    <% if !@user.level.final %>
+                        <div class="progress-bar">
+                            <div class="progress-bar-indicator"><span><%= @user.level.name %></span><span>Rank <%= @user.level.rank %></span></div>
+                            <div class="progress-bar-fill" style="background: <%= @user.level.color %>"></div>
+                        </div>
+                    <% else %>
+                        <div class="progress-bar">
+                            <div class="progress-bar-indicator"><span><%= @user.level.name %></span><span>Rank max</span></div>
+                            <div class="progress-bar-fill" style="background: <%= @user.level.color %>; width: 100%;"></div>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+            <% if @current %>
+                <div class="user-show-identity-section">
+                    <a class="button-secondary" href="<%= edit_user_path(@user.name) %>"><%= fa_icon "edit" %> edit profile</a>
+                </div>
+            <% end %>
+        </div>
+        <div class="user-show-informations padding">
+            <h5 class="title title-compact">
+                <%= component "/shared/anchor", {anchor: "about"} do %>
+                    About <%= @user.name %>
+                <% end %>
+            </h5>
+            <h6 class="subtitle">Biography</h6>
+            <% if !@user.biography.blank? %>
+                <p><%= @user.biography %></p>
+            <% else %>
+                <% if current_user == @user %>
+                    <p>You can edit this text in your <%= link_to "account options", edit_user_path(id: @user.name) %>.</p>
+                <% else %>
+                    <p>No biography was provided by this user</p>
+                <% end %>
+            <% end %>
+            <div class="button-list button-list-right">
+                <% unless @user.twitter.blank? %>
+                    <a href="<%= @user.twitter %>" class="button-icon"><i class="fab fa-twitter"></i></a>
+                <% end %>
+                <% unless @user.facebook.blank? %>
+                    <a href="<%= @user.facebook %>" class="button-icon"><i class="fab fa-facebook"></i></a>
+                <% end %>
+                <% unless @user.website.blank? %>
+                    <a href="<%= @user.website %>" class="button-icon"><i class="fa fa-link"></i></a>
+                <% end %>
+            </div>
+        </div>
+    </div>
+
+    <% cache @user do %>
+        <div class="zone">
+            <h5 class="title title-compact">
+                <%= component "/shared/anchor", {anchor: "tags"} do %>
+                    My Tags
+                <% end %>
+            </h5>
+            <div class="columns">
+                <div class="col col-6 col-12-small">
+                    <h6 class="subtitle">Favorites Tags</h6>
+                    <% if @favorites_tags.empty? %>
+                        <p>Nothing here</p>
+                    <% else %>
+                        <% @favorites_tags.each do |tag| %>
+                            <span class="tag"><%= tag %></span>
+                        <% end %>
+                    <% end %>
+                </div>
+                <div class="col col-6">
+                    <h6 class="subtitle">Blacklisted Tags</h6>
+                    <% if @blacklisted_tags.empty? %>
+                        <p>Nothing here</p>
+                    <% else %>
+                        <% @blacklisted_tags.each do |tag| %>
+                            <span class="tag"><%= tag %></span>
+                        <% end %>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+
+        <div class="zone">
+            <h5 class="title title-compact">
+                <%= component "/shared/anchor", {anchor: "posts"} do %>
+                    My Posts
+                <% end %>
+            </h5>
+            <div class="columns">
+                <div class="col col-6 col-12-small">
+                    <% if @user.favorites.any? %>
+                        <h6 class="subtitle margin margin-vertical">
+                            <span class="number"><%= @user.favorites.count %></span> Favorited Posts
+                        </h6>
+                        <a class="button-secondary" href="<%= favorites_path(@user.name) %>">View Favorites <%= fa_icon "eye" %></a>
+                    <% else %>
+                        <h6 class="subtitle">No favorites yet</h6>
+                    <% end %>
+                </div>
+                <div class="col col-6 col-12-small">
+                    <% if @user.posts.any? %>
+                        <h6 class="subtitle margin margin-vertical">
+                            <span class="number"><%= @user.upload_count %></span> Uploaded Posts
+                        </h6>
+                        <a class="button-secondary" href="<%= uploads_path(@user.name) %>">View Uploads<%= fa_icon "eye" %></a>
+                    <% else %>
+                        <h6 class="subtitle">No uploads yet</h6>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    <% end %>
+
+    <% if user_signed_in? %>
+        <%= cell(:admin_toolbar, @user).(:show_user) %>
+    <% end %>
+</div>
