@@ -30,8 +30,8 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
         assert_response :success
         assert_select 'title', @user.name + ' profile - ' + site_name
-        assert_select '.user_banner' do |element|
-            assert_select 'a.btn[href=?]', edit_user_path(@user.name)
+        assert_select '.user-show' do |element|
+            assert_select 'a.button-secondary[href=?]', edit_user_path(@user.name)
         end
     end
 

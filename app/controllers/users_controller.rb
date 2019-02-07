@@ -17,11 +17,12 @@ class UsersController < ApplicationController
             @blacklisted_tags = @user.blacklisted_tags.map do |t|
               t.name
             end
+
+            title(@user.name + " profile")
+    
+            render component "users/show"
         end
 
-        title(@user.name + " profile")
-
-        render component "users/show"
     end
 
     def edit
