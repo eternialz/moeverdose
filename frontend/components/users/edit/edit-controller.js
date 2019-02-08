@@ -2,8 +2,20 @@ import { RegisterController } from '../../../decorators/register_controller_deco
 import { Controller } from 'stimulus';
 
 @RegisterController
-class PostNewController extends Controller {
-    static targets = ['input', 'file'];
+class UserEditController extends Controller {
+    static targets = ['input', 'file', 'alert'];
+
+    connect() {
+        let inputs = Array.from(this.element.querySelectorAll('input, textarea'));
+        inputs.forEach(e => {
+            console.log('b');
+
+            var self = this;
+            e.addEventListener('input', function(event) {
+                self.popAlert();
+            });
+        });
+    }
 
     input() {
         if (this.inputTarget.files && this.inputTarget.files[0]) {
@@ -23,5 +35,9 @@ class PostNewController extends Controller {
 
             reader.readAsDataURL(this.inputTarget.files[0]);
         }
+    }
+
+    popAlert() {
+        this.alertTarget.classList.add('active');
     }
 }

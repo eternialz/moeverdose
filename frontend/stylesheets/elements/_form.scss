@@ -37,6 +37,7 @@
 
 .form-textarea {
     min-height: 5rem;
+    resize: vertical;
 }
 
 .form-input-group {
@@ -51,5 +52,33 @@
 
     * {
         border-radius: 0;
+    }
+}
+
+.form-file {
+    .form-file-input {
+        display: none;
+    }
+
+    .form-file-label {
+        margin-right: 0.25rem;
+    }
+
+    .form-file-valid {
+        display: none;
+    }
+
+    .form-file-invalid {
+        display: inline-block;
+    }
+
+    .form-file-input:valid + .form-file-label {
+        .form-file-valid {
+            display: inline-block;
+        }
+
+        .form-file-invalid {
+            display: none;
+        }
     }
 }

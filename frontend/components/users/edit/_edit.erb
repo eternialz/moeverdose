@@ -1,11 +1,23 @@
-<%= form_for @user, url: user_path(@user.name), html: {method: :patch } do |f| %>
+<%= form_for @user,
+    url: user_path(@user.name),
+    html: {
+        method: :patch,
+        "data-controller": "user-edit"
+    } do |f| %>
     <div class="user-show">
+
+        <div class="user-show-alert" data-target="user-edit.alert">
+            <div class="user-show-alert-content">
+                Carefull — You have unsaved changes <a class="user-show-alert-reset" href="<%= user_path(@user.name) %>">Cancel</a> <button for="submit" class="button-primary">Save changes <i class="fa fa-save"></i></button>
+            </div>
+        </div>
+
         <div class="zone user-show-header">
             <div class="user-show-identity">
                 <div class="user-show-identity-section">
                     <div class="user-show-avatar avatar">
                         <% if @user.avatar.attached? %>
-                            <img src="<%= url_for @user.avatar %>" width="120" height="120" />
+                            <img data-target="user-edit.file" src="<%= url_for @user.avatar %>" width="120" height="120" />
                         <% else %>
                             <%= image_tag "/images/default_user.png", class: "avatar" %>
                         <% end %>
@@ -45,16 +57,20 @@
                 <div class="form-field margin margin-bottom">
                     <%= f.text_area :biography, class: "form-textarea", placeholder: "Master of daruma otoshi" %>
                 </div>
-                <h6 class="subtitle">Avatar</h6>
+                <h6 class="subtitle">Avatar (500kb max, 1:1)</h6>
                 <div class="avatar-upload margin margin-bottom">
-                    <div class="tooltip" id="avatar-img" style="background-image: url(<%= @user.avatar %>)">
-                        <span class="tip">Drag and drop avatar here</span>
-                        <p class="message"><i class="fa fa-upload"></i></p>
-                        <%= f.file_field :avatar %>
+                    <div class="form-file">
+                        <%= f.file_field :avatar,
+                            class: "form-file-input",
+                            "data-target": 'user-edit.input',
+                            "data-action": 'change->user-edit#input'
+                        %>
+                        <div class="form-file-label">
+                            <%= f.label :avatar, class: 'form-file-label' do %>
+                                <span class="button-primary">Browse <i class="fa fa-folder-open"></i></span>
+                            <% end %>
+                        </div>
                     </div>
-                    <%= f.label :avatar do %>
-                        <p class="btn btn-blue">Choisir mon avatar</p>
-                    <% end %>
                 </div>
                 <h6 class="subtitle">Links</h6>
                 <div class="form-field">
@@ -97,5 +113,43 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="zone">
+        <h5 class="title title-compact">
+            <%= component "/shared/anchor", {anchor: "parameters"} do %>
+                Parameters
+            <% end %>
+        </h5>
+        <h6 class="subtitle">
+            Consents
+        </h6>
+        <%= component "shared/parameters" %>
+    </div>
+
+    <div class="zone">
+        <h5 class="title title-compact">
+            <%= component "/shared/anchor", {anchor: "data"} do %>
+                My Data
+            <% end %>
+        </h5>
+        <h6 class="subtitle">
+            Export data
+        </h6>
+        <button class="button-primary margin margin-top">Download export <i class="fa fa-download"></i></button>
+    </div>
+
+    <div class="zone">
+        <h5 class="title title-compact color-red">
+            <%= component "/shared/anchor", {anchor: "danger"} do %>
+                <i class="fa fa-exclamation-triangle"></i> Danger zone
+            <% end %>
+        </h5>
+        <h6 class="subtitle">
+            Delete account
+        </h6>
+        <button class="button-primary background-red margin margin-top">Delete account<i class="fa fa-times"></i></button>
+        <p>After clicking on the button and confirming your password, the <strong>redemption period</strong> of <strong>30 days</strong> will start.<br />
+        Until the end of that period, you will be able to export your data and/or <strong>cancel the deletion</strong>.</p>
     </div>
 <% end %>

@@ -56,4 +56,44 @@
             flex-grow: 1;
         }
     }
+
+    .user-show-alert {
+        bottom: -5rem;
+        left: 0;
+        padding: 1rem;
+        position: fixed;
+        text-align: center;
+        width: 100%;
+        z-index: $depth-3;
+        transition: bottom 120ms ease-in-out;
+
+        .user-show-alert-content {
+            @include shadow-3();
+
+            display: inline-block;
+            padding: 0.5rem;
+            max-width: 100%;
+            color: $true-white;
+            font-weight: bold;
+            background: $black;
+            border-radius: $border-radius-2;
+        }
+
+        .user-show-alert-reset {
+            margin-left: 3rem;
+            color: $white;
+
+            &:hover {
+                color: rgba($white, 0.8);
+            }
+        }
+
+        &.active {
+            bottom: 0;
+        }
+
+        .button-primary {
+            margin-left: 1rem;
+        }
+    }
 }
