@@ -1,0 +1,40 @@
+.pagination {
+    display: block;
+    margin: 1rem auto;
+    text-align: center;
+    width: 20rem;
+
+    .page a,
+    .page.current,
+    .first a,
+    .prev a,
+    .next a,
+    .last a {
+        @include shadow-control-1();
+
+        background: $true-white;
+        border-radius: $border-radius;
+        color: $text-color-dark;
+        display: inline-block;
+        font-weight: bold;
+        margin: 0 0.1rem;
+        padding: 0.3rem 0;
+        width: 1.7rem;
+    }
+
+    .page.current {
+        background: $primary-color;
+        color: $white;
+        pointer-events: none;
+    }
+
+    .disabled {
+        opacity: 0.5;
+        pointer-events: none;
+
+        a {
+            background: rgba($black, 0.05);
+            color: $gray;
+        }
+    }
+}

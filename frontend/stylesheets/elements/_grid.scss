@@ -14,9 +14,8 @@ section {
 .columns {
     display: flex;
     flex-wrap: wrap;
-    width: 100%;
-    padding-left: -#{$layout-spacing};
-    padding-right: -$layout-spacing;
+    margin-left: -#{$layout-spacing};
+    margin-right: -#{$layout-spacing};
 
     &.-one-line {
         flex-wrap: nowrap;

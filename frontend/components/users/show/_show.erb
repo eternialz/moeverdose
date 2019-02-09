@@ -74,7 +74,7 @@
                 <% end %>
             </h5>
             <div class="columns">
-                <div class="col col-6 col-12-small">
+                <div class="col col-6 col-12-small padding padding-horizontal">
                     <h6 class="subtitle">Favorites Tags</h6>
                     <% if @favorites_tags.empty? %>
                         <p>Nothing here</p>
@@ -84,7 +84,7 @@
                         <% end %>
                     <% end %>
                 </div>
-                <div class="col col-6">
+                <div class="col col-6 col-12-small padding padding-horizontal">
                     <h6 class="subtitle">Blacklisted Tags</h6>
                     <% if @blacklisted_tags.empty? %>
                         <p>Nothing here</p>
@@ -104,7 +104,7 @@
                 <% end %>
             </h5>
             <div class="columns">
-                <div class="col col-6 col-12-small">
+                <div class="col col-6 col-12-small padding padding-horizontal">
                     <% if @user.favorites.any? %>
                         <h6 class="subtitle margin margin-vertical">
                             <span class="number"><%= @user.favorites.count %></span> Favorited Posts
@@ -114,7 +114,7 @@
                         <h6 class="subtitle">No favorites yet</h6>
                     <% end %>
                 </div>
-                <div class="col col-6 col-12-small">
+                <div class="col col-6 col-12-small padding padding-horizontal">
                     <% if @user.posts.any? %>
                         <h6 class="subtitle margin margin-vertical">
                             <span class="number"><%= @user.upload_count %></span> Uploaded Posts

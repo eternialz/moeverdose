@@ -22,10 +22,12 @@ class PostsController < ApplicationController
     end
 
     def index
-        @permited_posts_per_page = ['2', '8', '16', '32', '64']
+        @permited_posts_per_page = ['8', '16', '24', '32']
 
         unless params[:posts_per_page].nil?
-            @posts_per_page = params[:posts_per_page].to_i < @permited_posts_per_page.last ? params[:posts_per_page] : @permited_posts_per_page.last
+            @posts_per_page = params[:posts_per_page].to_i <= @permited_posts_per_page.last.to_i ? params[:posts_per_page] : '16'
+        else
+            @posts_per_page = '16'
         end
 
         unless params[:query].blank?
@@ -134,6 +136,7 @@ class PostsController < ApplicationController
         @authors = results[:authors]
 
         title("Edit post: " + @post.title)
+        render component "posts/edit"
     end
 
     def update

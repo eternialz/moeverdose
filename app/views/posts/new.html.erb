@@ -1,7 +1,0 @@
-<% if @post.errors.any? %>
-    <div class="flashes">
-        <% @post.errors.full_messages.each do |e| %>
-            <div class="alert alert-error"><%= e %></div>
-        <% end %>
-    </div>
-<% end %>

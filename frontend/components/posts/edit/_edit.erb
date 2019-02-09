@@ -1,0 +1,40 @@
+<%= form_for @post, as: "post", url: post_path(@post.number) do |post| %>
+    <div class="zone">
+        <h4 class="title title-compact">Edit Post</h4>
+        <h6 class="subtitle">Informations</h6>
+        <div class="form">
+            <div class="form-field">
+                <label class="form-label"><i class="fa fa-heading"></i> Title</label>
+                <%= post.text_field :title, class: "form-input", placeholder: "Title" %>
+            </div>
+            <div class="form-field">
+                <label class="form-label"><i class="fa fa-user"></i> Author</label>
+                <input name="author_tag" class="form-input" type="text" placeholder="Author name" value="<%= @post.author&.name %>">
+            </div>
+            <div class="form-field">
+                <label class="form-label"><i class="fa fa-rss"></i> Source</label>
+                <%= post.text_field :source, class: "form-input", placeholder: "Source" %>
+            </div>
+            <div class="form-field">
+                <p><i class="fa fa-book"></i> Description</p>
+                <%= post.text_area :description, class: "form-textarea", placeholder: 'Description: short history, translations ...' %>
+            </div>
+        </div>
+        <div class="form">
+            <h6 class="subtitle">Tags</h6>
+            <div class="columns">
+                <div class="col-6 col-12-medium form-field padding padding-horizontal">
+                    <label class="form-label"><i class="fa fa-tag"></i> Content</label>
+                    <textarea name="tags" class="form-textarea" placeholder='Tags ("1girl glasses")'><% @tags.each do |tag| %><%= tag + " " %><% end %></textarea>
+                </div>
+                <div class="col-6 col-12-medium form-field padding padding-horizontal">
+                    <label class="form-label"><i class="fa fa-users"></i> Character(s)</label>
+                    <textarea name="characters" class="form-textarea" placeholder='Characters ("illyasviel_von_einzbern")'><% @characters.each do |character| %><%= character + " " %><% end %></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="button-list button-list-right">
+            <button type="submit" form="edit_post" class="button-primary">Update Post<i class="fa fa-edit"></i></button>
+        </div>
+    </div>
+<% end %>

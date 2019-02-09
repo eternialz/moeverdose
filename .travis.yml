@@ -2,8 +2,10 @@ language: ruby
 rvm:
   - 2.5.3
 cache:
-  - bundler
-  - yarn
+  bundler: true
+  yarn: true
+  directories:
+  - node_modules
 bundler_args: --without production
 group: stable
 dist: xenial

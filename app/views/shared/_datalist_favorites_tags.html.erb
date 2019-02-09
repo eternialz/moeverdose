@@ -1,7 +1,0 @@
-<% if user_signed_in? %>
-    <datalist id="fav-tags">
-        <%= current_user.favorites_tags.each do |t| %>
-                <option value="<%= t.name %> "></option>
-        <% end %>
-     </datalist>
-<% end %>

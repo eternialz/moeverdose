@@ -9,7 +9,7 @@ class TeamsController < ApplicationController
             },
             {
                 name: "Team",
-                path: "/team"
+                path: "/teams"
             }
         ]
 
