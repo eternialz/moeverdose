@@ -12,6 +12,7 @@ class TagLogic < SimpleDelegator
         end
 
         post.tags << tag
+        return tag;
     end
 
     def self.change_counts(tags, num)
@@ -57,7 +58,6 @@ class TagLogic < SimpleDelegator
         end
 
         post.tags << tag
-        post.author = author
         return author
     end
 end

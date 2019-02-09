@@ -6,12 +6,14 @@
         </div>
     </form>
     <% @tags.each do |t| %>
-        <%= link_to edit_tag_path(t), class: "item" do %>
-            <span class="tag tag-<%= t.type %>"><%= t.name %></span>
-            <% t.opt_names.each do |a| %>
-                <span class="tag tag-alias"><%= a %></span>
-            <% end %>
-            <span class="number float-right"><%= t.posts_count %><span class="number-unit"> posts</span></span>
+        <%= link_to edit_tag_path(t), class: "item rm-padding-bottom" do %>
+            <div class="item-content tag-list">
+                <span class="tag tag-<%= t.type %>"><%= t.name %></span>
+                <% t.opt_names.each do |a| %>
+                    <span class="tag tag-alias"><%= a %></span>
+                <% end %>
+            </div>
+            <span class="number"><%= t.posts_count %><span class="number-unit"> posts</span></span>
         <% end %>
     <% end %>
 </ul>

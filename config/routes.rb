@@ -46,6 +46,8 @@ Rails.application.routes.draw do
 
     resources :news, only: [:show]
 
+    resources :teams, controller: "teams", only: [:index]
+
     match "/404", :to => "errors#not_found", :via => :all
     match "/500", :to => "errors#internal_server_error", :via => :all
 
@@ -54,7 +56,6 @@ Rails.application.routes.draw do
     end
 
     # Static contents
-    get "/team" => "static_pages#team", as: :team_page
     get "/wiki/:page" => "static_pages#wiki", as: :wiki_static_page
     get "/:page" => "static_pages#static", as: :static_page
 end

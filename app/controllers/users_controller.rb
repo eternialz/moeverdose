@@ -40,11 +40,38 @@ class UsersController < ApplicationController
 
     def favorites
         @posts = Kaminari.paginate_array(@user.favorites).page(params[:page]).per(@posts_per_page)
+        @comments_counts = Comment.where(post: @posts).group(:post_id).count
+
+        @breadcrumbs = [
+            {
+                name: @user.name,
+                path: user_path(@user.name)
+            },
+            {
+                name: "favorites",
+                path: favorites_path(@user.name)
+            }
+        ]
+
+        render component "users/favorites"
     end
 
     def uploads
         @posts = Kaminari.paginate_array(@user.posts).page(params[:page]).per(@posts_per_page)
         @comments_counts = Comment.where(post: @posts).group(:post_id).count
+
+        @breadcrumbs = [
+            {
+                name: @user.name,
+                path: user_path(@user.name)
+            },
+            {
+                name: "uploads",
+                path: uploads_path(@user.name)
+            }
+        ]
+
+        render component "users/uploads"
     end
 
     def index

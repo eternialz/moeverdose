@@ -1,0 +1,15 @@
+<div class="post-show">
+    <div class="zone margin margin-vertical padding padding-sm post-show-navigation">
+        <a href="/posts/<%= params[:id].to_i + 1 %>" class="button-primary previous"><i class="fa fa-arrow-circle-left"></i> Previous</a>
+        <div class="align-center">
+            <h4 class="title title-compact">Post id: <span class="number"><%= params[:id] %></span></h4>
+        </div>
+        <a href="/posts/<%= params[:id].to_i - 1 %>" class="button-primary next">Next <i class="fa fa-arrow-circle-right"></i></a>
+    </div>
+    <div class="zone">
+        <div class="col-12">
+            <h2 class="title color-red">404: Post id "<%= params[:id] %>" wasn't found</h2>
+            <p class="p-lead">The post you asked for wasn't found, maybe it was deleted from <%= site_name.downcase %> or the link you used was wrong.</p>
+        </div>
+    </div>
+</div>

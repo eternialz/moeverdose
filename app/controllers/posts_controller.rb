@@ -98,18 +98,23 @@ class PostsController < ApplicationController
 
         unless params[:author].blank?
             author = TagLogic.find_or_create_author(params[:author], @post)
+            @post.author = params[:author]
         end
 
         unless params[:source].blank?
-            source = TagLogic.find_or_create_author(params[:source], @post)
+            source = TagLogic.find_or_create(params[:source], :copyright, @post)
+            @post.source = params[:source]
         end
 
-        @post.width = 400;
-        @post.height = 400;
+        metadata = ActiveStorage::Analyzer::ImageAnalyzer.new(@post.post_image).metadata
+
+        @post.width = metadata[:width];
+        @post.height = metadata[:height];
 
         if @post.save
             author&.save
             source&.save
+ 
             TagLogic.change_counts(@post.tags, 1)
 
             flash[:success] = "Post #{@post.title} created!"
@@ -166,7 +171,7 @@ class PostsController < ApplicationController
         end
         title("404: Post id " + params[:id] + " not found")
 
-        render "posts/not_found", :status => 404
+        render component("posts/not-found"), status: 404
     end
 
     def random

@@ -21,7 +21,7 @@
 <%= component 'shared/main-search' %>
 <div class="post-show">
     <div class="zone margin margin-top padding padding-sm post-show-navigation">
-        <a href="/posts/<%= @post.number + 1 %>"class="button-primary previous"><%= fa_icon "arrow-circle-left" %> Previous</a>
+        <a href="/posts/<%= @post.number + 1 %>" class="button-primary previous"><%= fa_icon "arrow-circle-left" %> Previous</a>
         <div class="align-center">
             <% if @post.title != '' %>
                 <h4 class="title title-compact"><%= @post.title %></h4>
