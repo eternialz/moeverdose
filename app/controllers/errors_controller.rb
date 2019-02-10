@@ -10,7 +10,7 @@ class ErrorsController < ApplicationController
     end
 
     def error
-        title("Error" + (params[:code] || "500"))
+        title("Error " + (params[:code] || "500"))
         render component("errors/error"), status: params[:code] || 500
     end
 end

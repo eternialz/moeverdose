@@ -5,14 +5,14 @@ class ErrorsControllerTest < ActionDispatch::IntegrationTest
         get "/404"
 
         assert_response 404
-        assert_select "title", "404 - Moeverdose"
+        assert_select "title", "Error 404 - Moeverdose"
     end
 
     test "500 Internal Server Error" do
         get "/500"
 
         assert_response 500
-        assert_select "title", "500 - Moeverdose"
+        assert_select "title", "Error 500 - Moeverdose"
     end
 
     test "Other Errors Codes" do
@@ -20,6 +20,6 @@ class ErrorsControllerTest < ActionDispatch::IntegrationTest
         get "/" + error.to_s
 
         assert_response error
-        assert_select "title", error.to_s + " - Moeverdose"
+        assert_select "title", "Error " + error.to_s + " - Moeverdose"
     end
 end
