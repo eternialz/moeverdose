@@ -1,0 +1,20 @@
+<ul class="item-list">
+    <form class="form">
+        <div class="form-input-group">
+            <input type="text" name="query" class="form-input" placeholder="Search authors" value="<%= params[:query] %>"/>
+            <button type="submit" class="button-icon">Search</button>
+        </div>
+    </form>
+    <% @authors.each do |a| %>
+        <%= link_to author_path(a), class: "item" do %>
+            <div class="item-content tag-list">
+                <h6 class="subtitle color-orange"><%= a.name %></h6>
+            </div>
+            <div>
+                <span class="number"><%= a.tag.posts_count %> <span class="number-unit">posts</span></span>
+            </div>
+        <% end %>
+    <% end %>
+
+    <%= paginate @authors %>
+</ul>

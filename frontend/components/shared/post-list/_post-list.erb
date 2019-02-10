@@ -6,10 +6,12 @@
                     <div class="post-card-info">
                         <span class="post-card-stats">
                             <h5 class="post-card-title"><%= post.title %></h5>
-                            <span title="overdose(s)"><%= post.overdose %> <%= fa_icon "heartbeat" %> </span>
-                            <span title="shortage(s)"><%= post.moe_shortage %> <%= fa_icon "thumbs-down" %> </span>
+                            <span title="overdose(s)"><%= post.overdose %> <i class="fa fa-heart"></i> </span>
+                            <span title="shortage(s)"><%= post.moe_shortage %> <i class="fa fa-thumbs-down"></i> </span>
                             <!-- TODO integrate post comment count -->
-                            <span title="comment(s)"><%= @comments_counts[post.id] || 0 %> <%= fa_icon "comment" %></span>
+                            <% unless @comments_counts.blank? %>
+                                <span title="comment(s)"><%= @comments_counts[post.id] || 0 %> <i class="fa fa-comment"></i></span>
+                            <% end %>
                         </span>
                     </div>
                 </div>
