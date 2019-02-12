@@ -18,8 +18,6 @@ class PostsController < ApplicationController
             title("Post")
         end
 
-        @favs = current_user.favorites.map {|p| p.id}
-
         if current_user
             @favorited = current_user.favorites.where(id: @post.id).empty? ? false : true
         end

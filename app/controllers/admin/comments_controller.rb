@@ -6,6 +6,7 @@ module Admin
 
         def index
             @comments = Kaminari.paginate_array(Comment.where(report: true)).page(params[:page]).per(20)
+            render component "admin/comments/index"
         end
 
         def destroy

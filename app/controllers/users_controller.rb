@@ -4,11 +4,18 @@ class UsersController < ApplicationController
     before_action :check_user, only: [:edit, :update]
     before_action :permitted_per_page, only: [:favorites, :uploads]
 
+    def index
+        @users = Kaminari.paginate_array(User.order('upload_count DESC')).page(params[:page]).per(20)
+
+        title("All Users")
+        render component "users/index"
+    end
+
     def show
         if @user.banned?
             title("Banned User")
 
-            render 'users/banned'
+            render component 'users/banned'
         else
             @current = (current_user == @user)
             @favorites_tags = @user.favorites_tags.map do |t|
@@ -22,7 +29,6 @@ class UsersController < ApplicationController
     
             render component "users/show"
         end
-
     end
 
     def edit
@@ -72,12 +78,6 @@ class UsersController < ApplicationController
         ]
 
         render component "users/uploads"
-    end
-
-    def index
-        @users = Kaminari.paginate_array(User.order('upload_count DESC')).page(params[:page]).per(20)
-
-        title("All Users")
     end
 
     def update

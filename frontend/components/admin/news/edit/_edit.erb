@@ -3,7 +3,7 @@
 
 <%= form_for @new, as: :news, url: admin_news_path do |f| %>
 
-  <%= render partial: 'form', locals: {f: f} %>
+  <%= component "admin/news/form", {f: f} %>
 
   <div class="actions">
     <button class="btn btn-blue" type="submit"> Update the News</button>

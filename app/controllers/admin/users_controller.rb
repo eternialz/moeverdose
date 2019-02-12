@@ -7,10 +7,12 @@ class Admin::UsersController < Admin::BaseController
         if params[:report]
             @users = @users.where(report: params[:report])
         end
+
+        render component "admin/users/index"
     end
 
     def edit
-        render
+        render component "admin/users/edit"
     end
 
     def update
