@@ -39,7 +39,6 @@ class PostScoreController extends Controller {
                 let response = JSON.parse(success);
                 this.overdoseBarTarget.setAttribute('data-score', response.overdose);
                 this.shortageBarTarget.setAttribute('data-score', response.shortage);
-                NotificationService.newNotification('Success', 'success');
                 this.computeScore();
             })
             .catch(error => {

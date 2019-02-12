@@ -1,0 +1,12 @@
+<% if current_user.team? %>
+    <div class="zone">
+        <h4 class="title">Administration</h4>
+        <div class="button-list">
+            <a class="button-primary background-red" href="<%= admin_post_path(@post)%>" data-method="delete">Delete</a>
+            <%= link_to "Edit", edit_admin_post_path(@post.id), class: "button-primary" %>
+            <% if @post.report? %>
+                <a class="button-primary" href="<%= admin_post_unreport_path(@post) %>" data-method="patch">Unreport</a>
+            <% end %>
+        </div>
+    </div>
+<% end %>

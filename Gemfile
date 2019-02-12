@@ -32,10 +32,6 @@ gem 'mime-types', require: 'mime/types/full'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-# Rails cells
-gem "cells-rails"
-gem "cells-erb"
-
 # Devise for user authentications
 gem "devise"
 

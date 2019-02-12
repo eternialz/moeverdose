@@ -129,6 +129,6 @@
     <% end %>
 
     <% if user_signed_in? %>
-        <%= cell(:admin_toolbar, @user).(:show_user) %>
+        <%= component "admin/user-toolbar" %>
     <% end %>
 </div>

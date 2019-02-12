@@ -42,6 +42,10 @@ class User < ApplicationRecord
         !self.banned? ? super : :banned
     end
 
+    def team?
+        ['administrator', 'moderator'].include? self.role
+    end
+
     # Reported posts
     has_and_belongs_to_many :reported_posts, class_name: "Post", inverse_of: nil, join_table: :reported_posts_users
 

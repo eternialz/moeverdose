@@ -19,7 +19,8 @@
 <% end %>
 
 <%= component 'shared/main-search' %>
-<div class="post-show">
+
+<div class="post-show" data-controller="post-show">
     <div class="zone margin margin-top padding padding-sm post-show-navigation">
         <a href="/posts/<%= @post.number + 1 %>" class="button-primary previous"><%= fa_icon "arrow-circle-left" %> Previous</a>
         <div class="align-center">
@@ -34,26 +35,24 @@
     </div>
 
     <div class="post-show-content">
-        <% if @post.report == true %>
-            <input class="reported_input" id="report_form_input" type="checkbox">
-            <div class="reported">
-                <p>This post have been reported by <%= link_to @post.report_user.name, user_path(id: @post.report_user.name) %> for:</p>
-                <br />
-                <p><%= @post.report_reason.empty? ? "no reason given by the user" : @post.report_reason %></p>
-                <br />
-                <label for="report_form_input" class="btn btn-pink">Show post <%= fa_icon 'eye' %></label>
-            </div>
-        <% end %>
-        <div class="post-show-image">
+        <div class="post-show-image <%= @post.report ? "post-show-image-reported" : "" %>" data-target="post-show.image">
             <%= image_tag @post.post_image %>
         </div>
+        <% if @post.report %>
+            <div class="post-show-reported" data-target="post-show.report">
+                <p>This post has been reported by <%= link_to @post.report_user.name, user_path(id: @post.report_user.name) %> (<%= @post.report_user.role %>) for the following reason(s):</p>
+                <p class="p-lead"><%= @post.report_reason %></p>
+                <button for="report_form_input" data-action="click->post-show#showReport" class="button-primary background-red">Show post <%= fa_icon 'exclamation' %></button>
+            </div>
+        <% end %>
     </div>
 
     <%= component "posts/score" %>
 
-    <div class="zone" data-controller="post-show">
+    <div class="zone">
         <div class="button-list padding padding-bottom">
-            <a class="button-secondary button-icon-left" data-action="click->post-show#addFavorite"><i class="fa fa-heart"></i> Favorite</a>
+            <a class="button-secondary button-icon-left post-show-fav <%= @favorited ? 'hidden' : '' %>" data-target="post-show.favorite" data-action="click->post-show#addFavorite"><i class="fa fa-heart"></i> Favorite</a>
+            <a class="button-secondary button-icon-left post-show-unfav <%= @favorited ? '' : 'hidden' %>" data-target="post-show.unfavorite" data-action="click->post-show#addFavorite"><i class="fa fa-heart-broken"></i> Unfavorite</a>
             <a class="button-secondary button-icon-left" href="<%= url_for(@post.post_image) %>" download><i class="fa fa-download"></i> Download</a>
             <a class="button-secondary button-icon-left" target="_blank" href="https://www.google.fr/searchbyimage?site=search&image_url=<%= url_for(@post.post_image) %>"><i class="fab fa-google"></i>Search</a>
             <% if user_signed_in? %>
@@ -61,6 +60,7 @@
                 <a class="button-secondary button-icon-left" href="<%= edit_report_post_path(@post.number) %>"><i class="fa fa-times"></i> Report</a>
             <% end %>
         </div>
+
         <div class="columns">
             <div class="col col-3 col-6-medium col-12-small padding">
                 <h5 class="title">
@@ -91,6 +91,7 @@
                     <li><span class="list-detailed-key">MD5:</span><span class="list-detailed-value"><%= @post.md5 %></span></li>
                 </ul>
             </div>
+
             <div class="col col-6 col-12-small padding">
                 <div class="columns">
                     <div class="col col-6 col-12-medium">
@@ -124,6 +125,7 @@
                     <p>No tags specified</p>
                 <% end %>
             </div>
+
             <div class="col col-3 col-6-medium col-12-small padding">
                 <h5 class="title">
                     <%= component "/shared/anchor", {anchor: 'description'} do %>
@@ -148,15 +150,15 @@
             </h5>
             <div class="comments-zone">
                 <% @post.comments.includes(:user).each_with_index do |comment,index| %>
-                    <%= component "shared/comment", {comment: comment, index: index} %>
+                    <%= component "posts/comment", {comment: comment, index: index} %>
                 <% end %>
             </div>
         </div>
     <% end %>
 
-    <%= component "shared/comment-editor" %>
+    <%= component "posts/comment-editor" %>
 </div>
 
 <% if user_signed_in? %>
-    <%= cell(:admin_toolbar, @post, role: current_user.role).(:show_post) %>
+    <%= component "admin/post-toolbar" %>
 <% end %>

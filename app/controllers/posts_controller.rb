@@ -18,6 +18,12 @@ class PostsController < ApplicationController
             title("Post")
         end
 
+        @favs = current_user.favorites.map {|p| p.id}
+
+        if current_user
+            @favorited = current_user.favorites.where(id: @post.id).empty? ? false : true
+        end
+
         render component "posts/show"
     end
 
@@ -183,6 +189,7 @@ class PostsController < ApplicationController
     end
 
     def report
+        render component "posts/report"
     end
 
     def report_update
@@ -200,13 +207,13 @@ class PostsController < ApplicationController
         if user_signed_in?
             if current_user.favorites.exclude?(@post)
                 current_user.favorites << @post
-                head 200
+                render json: {message: "Post added to favorites", type: "success"}, status: 200
             else
                 current_user.favorites.delete(@post)
-                head 202
+                render json: {message: "Post removed from favorites", type: "information"}, status: 200
             end
         else
-            head 403
+            render json: {message: "You need an account to add favorites", type: "warning"}, status: 403
         end
     end
 
@@ -216,10 +223,24 @@ class PostsController < ApplicationController
 
             params[:dose] == "overdose" ? overdose : shortage
 
-            @post.save
-            render json: {overdose: @post.overdose, shortage: @post.moe_shortage, removed: @removed}, status: 200
+            if @post.save
+                render json: {
+                    message: params[:dose].capitalize + (@removed ? " removed" : " added"),
+                    type: @removed ? "information" : "success",
+                    overdose: @post.overdose,
+                    shortage: @post.moe_shortage
+                }, status: 200
+            else
+                render json: {
+                    message: "An internal error occured.",
+                    type: "error"
+                }, status: 500
+            end
         else
-            head 403
+            render json: {
+                message: "You need an account to add overdose and/or shortage",
+                type: "warning"
+            }, status: 403
         end
     end
 

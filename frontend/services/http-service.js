@@ -1,9 +1,32 @@
+import { NotificationService } from './notification-service';
+
 // https://stackoverflow.com/questions/30008114/how-do-i-promisify-native-xhr/30008115#30008115
 export const HttpService = {
     token: function() {
         return document.querySelector('meta[name="csrf-token"]').content;
     },
     makeRequest: function(opts) {
+        return new Promise(function(resolve, reject) {
+            let request = HttpService.executeRequest(opts);
+
+            // Intercept response to display notification if message and type are present
+            Promise.all([request]).then(values => {
+                let response = JSON.parse(values[0]);
+                let message = response.message;
+                let type = response.type;
+
+                if (message && type) {
+                    NotificationService.newNotification(message, type);
+                }
+            });
+
+            // Continue execution
+            request.then(success => resolve(success));
+            request.catch(error => reject(error));
+            return;
+        });
+    },
+    executeRequest: function(opts) {
         return new Promise(function(resolve, reject) {
             var xhr = new XMLHttpRequest();
             xhr.open(opts.method, opts.url);
