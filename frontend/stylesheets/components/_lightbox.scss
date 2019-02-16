@@ -1,23 +1,25 @@
 .lightbox {
+    cursor: pointer;
+
     .lightbox-overlay {
         align-items: center;
         background-color: $gray-lighter;
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 8 8'%3E%3Cg fill='%23FFFFFF' fill-opacity='1'%3E%3Cpath fill-rule='evenodd' d='M0 0h4v4H0V0zm4 4h4v4H4V4z'/%3E%3C/g%3E%3C/svg%3E");
         display: none;
-        height: 100vh;
-        justify-content: center;
-        padding: 2rem;
         position: fixed;
+        height: 100vh;
         width: 100vw;
+        overflow-y: auto;
         z-index: $depth-4;
 
         img {
-            max-height: 100%;
+            margin: auto;
             max-width: 100%;
+            z-index: $depth-4;
         }
     }
 
-    .lightbox-show:checked + .lightbox-overlay {
+    .lightbox-overlay.active {
         display: flex;
     }
 }

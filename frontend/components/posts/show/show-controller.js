@@ -2,7 +2,7 @@ import { RegisterController } from '../../../decorators/register_controller_deco
 import { Controller } from 'stimulus';
 import { PostService } from '../../../services/post-service';
 import { RouteService } from '../../../services/route-service';
-import { NotificationService } from '../../../services/notification-service';
+import { LightboxService } from '../../../services/lightbox-service';
 
 @RegisterController
 class PostShowController extends Controller {
@@ -22,5 +22,9 @@ class PostShowController extends Controller {
     showReport() {
         this.reportTarget.remove();
         this.imageTarget.classList.remove('post-show-image-reported');
+    }
+
+    showLightbox() {
+        LightboxService.display();
     }
 }

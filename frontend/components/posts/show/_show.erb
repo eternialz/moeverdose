@@ -35,7 +35,7 @@
     </div>
 
     <div class="post-show-content">
-        <div class="post-show-image <%= @post.report ? "post-show-image-reported" : "" %>" data-target="post-show.image">
+        <div class="post-show-image <%= @post.report ? "post-show-image-reported" : "" %>" data-action="click->post-show#showLightbox" data-target="post-show.image">
             <%= image_tag @post.post_image %>
         </div>
         <% if @post.report %>
@@ -109,18 +109,20 @@
                     <% end %>
                 </h5>
                 <% if @post.tags.any? %>
-                    <% @tags.each do |tag| %>
-                        <a class="tag tag-content" href="<%= posts_path(query: tag ) %>"><%= tag %></a>
-                    <% end %>
-                    <% @characters.each do |character| %>
-                        <a class="tag tag-character" href="<%= posts_path(query: character ) %>"><%= character %></a>
-                    <% end %>
-                    <% @copyrights.each do |copyright| %>
-                        <a class="tag tag-copyright" href="<%= posts_path(query: copyright ) %>"><%= copyright %></a>
-                    <% end %>
-                    <% @authors.each do |author| %>
-                        <a class="tag tag-author" href="<%= posts_path(query: author ) %>"><%= author %></a>
-                    <% end %>
+                    <div class="tag-list">
+                        <% @tags.each do |tag| %>
+                            <a class="tag tag-content" href="<%= posts_path(query: tag ) %>"><%= tag %></a>
+                        <% end %>
+                        <% @characters.each do |character| %>
+                            <a class="tag tag-character" href="<%= posts_path(query: character ) %>"><%= character %></a>
+                        <% end %>
+                        <% @copyrights.each do |copyright| %>
+                            <a class="tag tag-copyright" href="<%= posts_path(query: copyright ) %>"><%= copyright %></a>
+                        <% end %>
+                        <% @authors.each do |author| %>
+                            <a class="tag tag-author" href="<%= posts_path(query: author ) %>"><%= author %></a>
+                        <% end %>
+                    </div>
                 <% else %>
                     <p>No tags specified</p>
                 <% end %>
