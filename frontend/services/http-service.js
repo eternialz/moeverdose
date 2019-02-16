@@ -36,7 +36,7 @@ export const HttpService = {
                 if (this.status >= 200 && this.status < 300) {
                     resolve(xhr.response);
                 } else if (this.status >= 300 && this.status < 400) {
-                    let redirect_url = this.getResponseHeader('X-Ajax-Redirect-Url');
+                    let redirect_url = this.getResponseHeader('X-Xhr-Redirect-Url');
                     if (redirect_url != undefined) {
                         window.location.pathname = redirect_url;
                     }
