@@ -37,4 +37,8 @@ class ApplicationController < ActionController::Base
         component_name = path_array.join('/')
         return "components/#{component_name}/#{name}/_#{name}"
     end
+
+    def xhr_redirect_to(url)
+        head 302, x_ajax_redirect_url: url
+    end
 end

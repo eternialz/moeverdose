@@ -42,7 +42,7 @@ class Admin::UsersController < Admin::BaseController
             end
         end
 
-        redirect_to admin_users_path
+        xhr_redirect_to admin_users_path
     end
 
     private

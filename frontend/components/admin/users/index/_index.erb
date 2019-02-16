@@ -7,15 +7,15 @@
                 <a href="<%= user_path(user.name) %>"class="btn btn-yellow"><%= fa_icon "eye"%>profile</a>
                 <a class="btn btn-blue"><%= fa_icon "edit"%>manage role</a>
                 <% if user.banned? %>
-                    <a class="btn btn-green" href="<%= admin_user_ban_path(user)%>" data-method="patch"><%= fa_icon "exclamation"%>unban</a>
+                    <a class="btn btn-green" href="<%= admin_user_ban_path(user)%>" data-confirm="Unban user <%= user.name %>?" data-method="patch"><%= fa_icon "exclamation"%>unban</a>
                 <% else %>
-                    <a class="btn btn-red" href="<%= admin_user_ban_path(user)%>" data-method="patch"><%= fa_icon "exclamation"%>ban</a>
+                    <a class="btn btn-red" href="<%= admin_user_ban_path(user)%>" data-confirm="Ban user <%= user.name %>?"  data-method="patch"><%= fa_icon "exclamation"%>ban</a>
                 <% end %>
             </span>
             <% if user.avatar.attached? %>
                 <img class="avatar" src='<%= url_for user.avatar %>'>
             <% else %>
-                <%= image_tag "/images/default_user.png", class: "avatar" %>
+                <%= image_tag "/images/default-user.png", class: "avatar" %>
             <% end %>
             <h3><%= user.name %></h3><br /><br />
             <span><%= user.role %></span>

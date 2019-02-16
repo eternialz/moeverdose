@@ -19,7 +19,7 @@
                         <% if @user.avatar.attached? %>
                             <img data-target="user-edit.file" src="<%= url_for @user.avatar %>" width="120" height="120" />
                         <% else %>
-                            <%= image_tag "/images/default_user.png", class: "avatar" %>
+                            <%= image_tag "/images/default-user.png", class: "avatar" %>
                         <% end %>
                     </div>
                     <h6 class="user-show-name role" data-role="<%= @user.role %>"><%= @user.name %></h6>

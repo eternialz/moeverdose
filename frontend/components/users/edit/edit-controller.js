@@ -8,8 +8,6 @@ class UserEditController extends Controller {
     connect() {
         let inputs = Array.from(this.element.querySelectorAll('input, textarea'));
         inputs.forEach(e => {
-            console.log('b');
-
             var self = this;
             e.addEventListener('input', function(event) {
                 self.popAlert();

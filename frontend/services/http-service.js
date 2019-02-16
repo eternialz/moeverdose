@@ -31,9 +31,15 @@ export const HttpService = {
             var xhr = new XMLHttpRequest();
             xhr.open(opts.method, opts.url);
             xhr.setRequestHeader('X-CSRF-Token', HttpService.token());
+            xhr.setRequestHeader('Content-Type', 'application/html');
             xhr.onload = function() {
                 if (this.status >= 200 && this.status < 300) {
                     resolve(xhr.response);
+                } else if (this.status >= 300 && this.status < 400) {
+                    let redirect_url = this.getResponseHeader('X-Ajax-Redirect-Url');
+                    if (redirect_url != undefined) {
+                        window.location.pathname = redirect_url;
+                    }
                 } else {
                     reject({
                         status: this.status,
