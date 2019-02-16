@@ -1,4 +1,4 @@
-<ul class="item-list">
+<div class="item-list">
     <form class="form">
         <div class="form-input-group">
             <input type="text" name="query" class="form-input" placeholder="Search tags" value="<%= params[:query] %>"/>
@@ -16,4 +16,5 @@
             <span class="number"><%= t.posts_count %><span class="number-unit"> posts</span></span>
         <% end %>
     <% end %>
-</ul>
+    <%= paginate @tags %>
+</div>

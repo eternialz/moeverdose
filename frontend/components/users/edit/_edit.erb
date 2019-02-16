@@ -28,21 +28,9 @@
                         <%= @user.created_at.strftime('%Y/%m/%d') %>
                     </span>
                 </div>
-                <div class="user-show-identity-section">
-                    <div class="user-show-level">
-                        <% if !@user.level.final %>
-                            <div class="progress-bar">
-                                <div class="progress-bar-indicator"><span><%= @user.level.name %></span><span>Rank <%= @user.level.rank %></span></div>
-                                <div class="progress-bar-fill" style="background: <%= @user.level.color %>"></div>
-                            </div>
-                        <% else %>
-                            <div class="progress-bar">
-                                <div class="progress-bar-indicator"><span><%= @user.level.name %></span><span>Rank max</span></div>
-                                <div class="progress-bar-fill" style="background: <%= @user.level.color %>; width: 100%;"></div>
-                            </div>
-                        <% end %>
-                    </div>
-                </div>
+
+                <%= component "users/level" %>
+
                 <div class="user-show-identity-section">
                     <button for="submit" class="button-primary">Save changes <i class="fa fa-save"></i></button>
                 </div>

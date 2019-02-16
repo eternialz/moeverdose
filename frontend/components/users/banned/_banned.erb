@@ -1,22 +1,44 @@
-<div class="userprofile">
-    <div class="user_header clearfix">
-        <img class="avatar" src="<%= image_url('/images/default_user.png') %>" width="120" height="120" />
-        <div class="user_banner">
-            <h3 class="username"><%= @user.name %></h3><span class="role"><%= @user.role %></span>
+<div class="user-show">
+    <div class="zone user-show-header" zone padding padding-0">
+        <div class="user-show-identity">
+            <div class="user-show-identity-section">
+                <div class="user-show-avatar avatar">
+                    <%= image_tag "/images/default-user.png", class: "avatar" %>
+                </div>
+                <h6 class="user-show-name role" data-role="banned"><%= @user.name %></h6>
+                <span class="user-show-item">
+                    joined<br />
+                    <%= @user.created_at.strftime('%Y/%m/%d') %>
+                </span>
+            </div>
             <% if @current %>
-                <a class="btn btn-blue" href="<%= edit_user_path %>"><%= fa_icon "edit" %> edit profile</a>
+                <div class="user-show-identity-section">
+                    <a class="button-secondary" href="<%= edit_user_path(@user.name) %>"><%= fa_icon "edit" %> edit profile</a>
+                </div>
             <% end %>
         </div>
-    </div>
-
-    <div class="zone">
-        <h3 class="zone_title">Banned user</h3>
-        <div class="col-12">
-            <p>This user has been banned by a staff member.</p>
+        <div class="user-show-informations padding">
+            <h5 class="title title-compact">
+                <%= component "/shared/anchor", {anchor: "about"} do %>
+                    About <%= @user.name %>
+                <% end %>
+            </h5>
+            <p class="color-red">This user has been banned.</p>
+            <div class="button-list button-list-right">
+                <% unless @user.twitter.blank? %>
+                    <a href="<%= @user.twitter %>" class="button-icon"><i class="fab fa-twitter"></i></a>
+                <% end %>
+                <% unless @user.facebook.blank? %>
+                    <a href="<%= @user.facebook %>" class="button-icon"><i class="fab fa-facebook"></i></a>
+                <% end %>
+                <% unless @user.website.blank? %>
+                    <a href="<%= @user.website %>" class="button-icon"><i class="fa fa-link"></i></a>
+                <% end %>
+            </div>
         </div>
     </div>
-</div>
 
-<% if user_signed_in? %>
-    <%= cell(:admin_toolbar, @user).(:show_user) %>
-<% end %>
+    <% if user_signed_in? %>
+        <%= component "admin/toolbars/user-toolbar" %>
+    <% end %>
+</div>

@@ -12,6 +12,10 @@ class UsersController < ApplicationController
     end
 
     def show
+        unless @user 
+            raise ActionController::RoutingError.new('Not Found')
+        end
+
         if @user.banned?
             title("Banned User")
 

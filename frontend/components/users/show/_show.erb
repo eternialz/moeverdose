@@ -6,7 +6,7 @@
                     <% if @user.avatar.attached? %>
                         <img src="<%= url_for @user.avatar %>" width="120" height="120" />
                     <% else %>
-                        <%= image_tag "/images/default_user.png", class: "avatar" %>
+                        <%= image_tag "/images/default-user.png", class: "avatar" %>
                     <% end %>
                 </div>
                 <h6 class="user-show-name role" data-role="<%= @user.role %>"><%= @user.name %></h6>
@@ -15,21 +15,9 @@
                     <%= @user.created_at.strftime('%Y/%m/%d') %>
                 </span>
             </div>
-            <div class="user-show-identity-section">
-                <div class="user-show-level">
-                    <% if !@user.level.final %>
-                        <div class="progress-bar">
-                            <div class="progress-bar-indicator"><span><%= @user.level.name %></span><span>Rank <%= @user.level.rank %></span></div>
-                            <div class="progress-bar-fill" style="background: <%= @user.level.color %>"></div>
-                        </div>
-                    <% else %>
-                        <div class="progress-bar">
-                            <div class="progress-bar-indicator"><span><%= @user.level.name %></span><span>Rank max</span></div>
-                            <div class="progress-bar-fill" style="background: <%= @user.level.color %>; width: 100%;"></div>
-                        </div>
-                    <% end %>
-                </div>
-            </div>
+
+            <%= component "users/level" %>
+
             <% if @current %>
                 <div class="user-show-identity-section">
                     <a class="button-secondary" href="<%= edit_user_path(@user.name) %>"><%= fa_icon "edit" %> edit profile</a>

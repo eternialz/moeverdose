@@ -38,13 +38,8 @@
             .user-show-name {
                 color: $gray-darker;
                 max-width: 100%;
-                overflow: hidden;
                 text-overflow: ellipsis;
                 white-space: nowrap;
-
-                &:hover {
-                    overflow: visible;
-                }
             }
 
             .user-show-level {

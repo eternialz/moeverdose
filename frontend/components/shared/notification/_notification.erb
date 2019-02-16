@@ -1,13 +1,9 @@
-<% if flash.any? %>
-    <div class="row flashes">
-        <% flash.each do |key, value| %>
-            <div class="alert alert-<%= key %>"><%= value %></div>
-        <% end %>
-    </div>
-<% end %>
-
 <div class="notifications-overlay">
     <div class="notifications-container" id="notification-container" data-controller="notification">
-
+        <% if flash.any? %>
+            <% flash.each do |key, value| %>
+                <div data-action="click->notification#close" class="notification notification-<%= key %>"><%= value %></div>
+            <% end %>
+        <% end %>
     </div>
 </div>

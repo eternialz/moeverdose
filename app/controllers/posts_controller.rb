@@ -104,7 +104,7 @@ class PostsController < ApplicationController
 
         unless params[:author].blank?
             author = TagLogic.find_or_create_author(params[:author], @post)
-            @post.author = params[:author]
+            @post.author = author
         end
 
         unless params[:source].blank?
