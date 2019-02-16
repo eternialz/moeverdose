@@ -12,5 +12,10 @@ module Admin
                 redirect_to root_path
             end
         end
+
+        def admin_active_link?(path)
+            return helpers.current_page?(path) ? "active admin-menu-link" : "admin-menu-link"
+        end
+        helper_method :admin_active_link?
     end
 end

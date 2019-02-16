@@ -1,25 +1,37 @@
-<h2> All Reported Posts </h2>
-<p>List of all reported posts</p>
-<ul class="admin_list posts">
+<div class="card">
+    <h4 class="title">All Reported Posts </h4>
+    <p>List of all reported posts</p>
+</div>
+
+<div class="item-list">
+    <form class="form">
+        <div class="form-input-group">
+            <input type="text" name="query" class="form-input" placeholder="Search posts" value="<%= params[:query] %>"/>
+            <button type="submit" class="button-icon">Search</button>
+        </div>
+    </form>
     <% @posts.each do |post| %>
-        <li>
-            <span class="button_list">
-                <a class="btn btn-pink" href="<%= edit_admin_post_path(post) %>"><%= fa_icon "edit"%>Edit the Post</a>
-                <a class="btn btn-blue" href="<%= admin_post_unreport_path(post) %>" data-method="patch"><%= fa_icon "check"%>Unreport this post</a>
-                <a class="btn btn-red" href="<%= admin_post_path(post)%>" data-method="delete"><%= fa_icon "exclamation"%>Delete this Post</a>
-            </span>
-            <a href="<%= admin_post_path(post) %>">
-                <%= image_tag post.post_image.url, class: 'avatar' %>
-                <h3><%= post.title %></h3><br/><br/><br/>
-            </a>
-            <span div="text">
-                <p>Uploaded by: <a href="<%= user_path(post.user.name) %>"><%= post.user.name %></a></p>
-                <p>Reported by: <a href="<%= user_path(post.report_user.name) %>"><%= post.report_user.name %></a></p>
-                <p>Reason: <%= post.report_reason %></p>
-            </span>
-        </li>
+        <div class="card">
+            <div class="flex">
+                <div class="flex-auto">
+                    <a href="<%= admin_post_path(post) %>">
+                        <%= image_tag post.post_image_thumbnail() %>
+                    </a>
+                </div>
+                <div class="flex-grow padding padding-left">
+                    <p>Uploaded by: <a href="<%= user_path(post.user.name) %>"><%= post.user.name %></a></p>
+                    <p>Reported by: <a href="<%= user_path(post.report_user.name) %>"><%= post.report_user.name %></a></p>
+                    <p>Reason: <%= post.report_reason[0..250] %></p>
+                </div>
+            </div>
+            <div class="button-list margin margin-top margin-sm">
+                <a class="button-primary background-blue" href="<%= edit_admin_post_path(post) %>">Edit<i class="fa fa-edit"></i></a>
+                <a class="button-primary background-green" href="<%= admin_post_unreport_path(post) %>" data-method="patch">Unreport <i class="fa fa-check"></i></a>
+                <a class="button-primary background-red" href="<%= admin_post_path(post)%>" data-method="delete">Delete<i class="fa fa-exclamation"></i></a>
+            </div>
+        </div>
     <% end %>
-</ul>
+</div>
 
 <div class="general_pagination">
     <%= paginate @posts %>

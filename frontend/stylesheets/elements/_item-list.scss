@@ -1,6 +1,6 @@
 .item-list {
     .item {
-        @include shadow-control-1();
+        @include shadow-1();
 
         background: $true-white;
         border-radius: $border-radius;
@@ -11,5 +11,9 @@
         .item-content {
             flex-grow: 1;
         }
+    }
+
+    a.item {
+        @include shadow-control-1();
     }
 }

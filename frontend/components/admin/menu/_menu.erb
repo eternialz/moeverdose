@@ -1,0 +1,64 @@
+<nav class="admin-menu">
+    <div class="admin-menu-subnav">
+        <%= link_to admin_dashboard_path, class: admin_active_link?(admin_dashboard_path) do %>
+            <i class="fa fa-fw fa-tachometer-alt"></i>Dashboard
+        <% end %>
+    </div>
+
+    <div class="admin-menu-subnav">
+        <%= link_to admin_stats_path, class: admin_active_link?(admin_stats_path) do %>
+            <i class="fa fa-fw fa-chart-pie"></i>Stats
+        <% end %>
+    </div>
+
+    <div class="admin-menu-subnav">
+        <%= link_to admin_posts_path, class: admin_active_link?(admin_posts_path) do %>
+            <i class="fa fa-fw fa-image"></i>All Posts
+        <% end %>
+    </div>
+
+    <div class="admin-menu-subnav">
+        <%= link_to admin_comments_path, class: admin_active_link?(admin_comments_path) do %>
+            <i class="fa fa-fw fa-comments"></i>All Comments
+        <% end %>
+    </div>
+
+    <div class="admin-menu-subnav">
+        <%= link_to admin_users_path, class: admin_active_link?(admin_users_path) do %>
+            <i class="fa fa-fw fa-users"></i>All Users
+        <% end %>
+    </div>
+
+    <div class="admin-menu-subnav">
+        <%= link_to admin_posts_path, class: admin_active_link?(admin_posts_path) do %>
+            <i class="fa fa-fw fa-tag"></i>All Tags
+        <% end %>
+        <nav>
+            <%= link_to admin_posts_path, class: admin_active_link?(admin_posts_path) do %>
+                <i class="fa fa-fw fa-angle-right fa-xs"></i>Create tag
+            <% end %>
+        </nav>
+    </div>
+
+    <div class="admin-menu-subnav">
+        <%= link_to admin_news_index_path, class: admin_active_link?(admin_news_index_path) do %>
+            <i class="fa fa-fw fa-newspaper"></i>All News
+        <% end %>
+        <nav>
+            <%= link_to new_admin_news_path, class: admin_active_link?(new_admin_news_path) do %>
+                <i class="fa fa-fw fa-angle-right fa-xs"></i>Create News
+            <% end %>
+        </nav>
+    </div>
+    
+    <div class="admin-menu-subnav">
+        <%= link_to admin_levels_path, class: admin_active_link?(admin_levels_path) do %>
+            <i class="fa fa-fw fa-heartbeat"></i>All Levels
+        <% end %>
+        <nav>
+            <%= link_to new_admin_level_path, class: admin_active_link?(new_admin_level_path) do %>
+                <i class="fa fa-fw fa-angle-right fa-xs"></i>Create Level
+            <% end %>
+        </nav>
+    </div>
+</nav>

@@ -21,5 +21,22 @@ body {
 
     .view-content {
         padding-top: 4rem;
+        margin-bottom: 2rem;
+    }
+
+    .view-full-width {
+        display: flex;
+        padding-top: 3rem;
+
+        .view-full-width-content {
+            padding: 1rem;
+            flex-grow: 1;
+        }
+
+        .view-full-width-sidebar {
+            position: relative;
+            min-height: 10vh;
+            display: flex;
+        }
     }
 }
