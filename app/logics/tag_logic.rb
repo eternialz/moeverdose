@@ -8,7 +8,7 @@ class TagLogic < SimpleDelegator
         tag = Tag.includes(:aliases).where(aliases: {name: name}, type: type)
         if tag.empty?
             tag = Tag.create(type: type)
-            a = Alias.create(tag_id: tag.id, name: name, main: true)
+            Alias.create(tag_id: tag.id, name: name, main: true)
         end
 
         post.tags << tag
@@ -47,7 +47,7 @@ class TagLogic < SimpleDelegator
         tag = Tag.includes(:aliases).where(aliases: {name: name}, type: :author)
         if tag.empty?
             tag = Tag.create(type: :author)
-            a = Alias.create(tag_id: tag.id, name: name, main: true)
+            Alias.create(tag_id: tag.id, name: name, main: true)
             author = Author.new(name: name, tag: tag)
         else
             begin

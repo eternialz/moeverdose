@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     end
 
     def show
-        unless @user 
+        unless @user
             raise ActionController::RoutingError.new('Not Found')
         end
 
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
             end
 
             title(@user.name + " profile")
-    
+
             render component "users/show"
         end
     end

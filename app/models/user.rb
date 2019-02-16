@@ -37,7 +37,7 @@ class User < ApplicationRecord
     alias_attribute :banned?, :banned
 
     # Prevent banned user authentications
-    def active_for_authentication? 
+    def active_for_authentication?
         super && !self.banned?
     end
 
@@ -70,6 +70,6 @@ class User < ApplicationRecord
 
     private
     def set_default_role
-        self.role ||= 'user' 
+        self.role ||= 'user'
     end
 end
