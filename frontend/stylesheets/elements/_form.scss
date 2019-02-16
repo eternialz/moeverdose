@@ -15,6 +15,11 @@
     }
 }
 
+.form-textarea {
+    min-height: 5rem;
+    resize: vertical;
+}
+
 .form-input,
 .form-textarea {
     appearance: none;
@@ -33,11 +38,10 @@
     position: relative;
     transition: background 0.2s, border 0.2s, box-shadow 0.2s, color 0.2s;
     width: 100%;
-}
 
-.form-textarea {
-    min-height: 5rem;
-    resize: vertical;
+    &:focus {
+        box-shadow: 0 0 0 2px rgba($base-color, 0.8);
+    }
 }
 
 .form-input-group {
@@ -81,4 +85,59 @@
             display: none;
         }
     }
+}
+
+.form-checkbox {
+    margin: 0;
+    font-weight: bold;
+
+    input {
+        opacity: 0;
+        pointer-events: none;
+        position: fixed;
+        top: -100vh;
+    }
+
+    label {
+        cursor: pointer;
+        display: inline-block;
+        padding: 0.5rem 0;
+        border-radius: 2px;
+        transition: color 100ms ease-in-out, box-shadow 0.2s, color 0.2s;
+
+        &::before {
+            content: "\f0c8";
+            font-family: "Font Awesome 5 Free", sans-serif;
+            margin-right: 0.4rem;
+            transition: color 100ms ease-in-out;
+        }
+    }
+
+    input:checked + label {
+        color: $base-color;
+
+        &::before {
+            content: "\f14a";
+            color: $base-color;
+        }
+    }
+
+    input:focus + label {
+        box-shadow: 0 0 0 2px rgba($base-color, 0.8);
+    }
+}
+
+/* Change Autocomplete styles in Chrome */
+.form-input:-webkit-autofill,
+.form-input:-webkit-autofill:hover,
+.form-input:-webkit-autofill:focus,
+.form-textarea:-webkit-autofill,
+.form-textarea:-webkit-autofill:hover,
+.form-textarea:-webkit-autofill:focus,
+.form-select:-webkit-autofill,
+.form-select:-webkit-autofill:hover,
+.form-select:-webkit-autofill:focus {
+    -webkit-text-fill-color: $base-color;
+    box-shadow: inset 0 1px 3px rgba($true-black, 0.25), inset 0 0 0 10rem $gray-darker;
+    transition: background-color 5000s ease-in-out 0s;
 }

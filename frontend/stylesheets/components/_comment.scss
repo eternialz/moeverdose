@@ -19,15 +19,9 @@
         text-align: center;
         width: 5rem;
 
-        .comment-avatar {
-            @include shadow-1;
-
-            background: $true-white;
-            border-radius: 1.5rem;
-            display: inline-block;
+        .avatar {
             height: 3rem;
             margin-bottom: 0.4rem;
-            overflow: hidden;
             width: 3rem;
         }
 

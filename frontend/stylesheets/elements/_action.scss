@@ -1,0 +1,16 @@
+.action {
+    border-radius: $border-radius;
+    display: inline-block;
+    font-weight: bold;
+    color: $gray-dark;
+    padding: 0.35rem 0.4rem;
+    transition: background-color 100ms ease-in-out;
+
+    &:hover {
+        color: $blue;
+    }
+
+    i {
+        margin-right: 1rem;
+    }
+}

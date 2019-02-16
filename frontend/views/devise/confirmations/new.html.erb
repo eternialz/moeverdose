@@ -1,16 +1,23 @@
-<h2>Resend confirmation instructions</h2>
-
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Resend confirmation instructions" %>
-  </div>
+<%= link_to root_path, class: "action margin" do %>
+    <i class="fa fa-arrow-left"></i> Back To Home Screen
 <% end %>
 
-<%= render "devise/shared/links" %>
+<div class="user-form">
+    <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: {method: :post, class: "zone user-form-body form"}) do |f| %>
+        <%= devise_error_messages! %>
+            <div class="user-form-head">
+                <h4 class="title">Resend confirmation</h4>
+            </div>
+
+        <div class="form-field">
+            <%= f.label :email, class: "form-label" %>
+            <%= f.email_field :email, placeholder: "email", class: "form-input", autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+        </div>
+
+        <div class="button-list button-list-right">
+            <button class="button-primary button-base" type="submit">Resend<i class="fa fa-redo"></i></button>
+        </div>
+    <% end %>
+
+    <%= render "devise/shared/links" %>
+</div>

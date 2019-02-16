@@ -203,6 +203,9 @@
             }
 
             .main-menu-subnav .main-menu-account-links {
+                align-items: flex-end;
+                display: flex;
+                flex-direction: column;
                 position: relative;
                 right: 0.35rem;
 
@@ -222,7 +225,7 @@
     .submenu {
         @include shadow-3();
 
-        background: $true-black;
+        background: $black;
         height: 15rem;
         left: 0;
         opacity: 0;
@@ -235,7 +238,7 @@
 
         &.active {
             border-bottom: 3px solid $primary-color;
-            opacity: 0.9;
+            opacity: 1;
         }
     }
 }

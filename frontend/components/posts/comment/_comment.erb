@@ -2,7 +2,7 @@
     <a class="anchor-id" id="comment_<%= index + 1 %>"></a>
     <div class="card comment-container">
         <div class="comment-metadata">
-            <a href="<%= user_path(comment.user.name) %>" class="comment-avatar">
+            <a href="<%= user_path(comment.user.name) %>" class="avatar">
                 <% if comment.user.avatar.attached? %>
                     <%= image_tag comment.user.avatar, height: "60", width: "60" %>
                 <% else %>

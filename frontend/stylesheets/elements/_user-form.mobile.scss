@@ -1,0 +1,10 @@
+@media only screen and (max-width: $small) {
+    .user-form {
+        margin: 1rem;
+
+        .user-form-body {
+            margin-top: 0;
+            padding: 1.5rem;
+        }
+    }
+}

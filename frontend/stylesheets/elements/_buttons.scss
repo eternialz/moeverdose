@@ -56,12 +56,22 @@
     }
 }
 
+.button-link {
+    background: none;
+    border: 0;
+    cursor: pointer;
+}
+
 .button-discord {
     @include button-color($discord-color);
 }
 
 .button-github {
     @include button-color($github-color);
+}
+
+.button-base {
+    @include button-color($base-color);
 }
 
 .button-shortage {

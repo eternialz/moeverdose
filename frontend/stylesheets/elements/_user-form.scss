@@ -1,0 +1,38 @@
+.user-form {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin: 2rem;
+
+    .user-form-head {
+        margin-bottom: 3rem;
+        text-align: center;
+    }
+
+    .user-form-body {
+        @include shadow-3();
+
+        border-radius: $border-radius;
+        margin: 2rem 0;
+        max-width: 100%;
+        padding: 3rem;
+        padding-top: 2rem;
+        width: 26rem;
+    }
+
+    .title {
+        color: $base-color;
+        margin: 1rem 0;
+        position: relative;
+
+        &::after {
+            height: 2px;
+            background: $base-color;
+            content: " ";
+            position: absolute;
+            top: 2.5rem;
+            width: 5rem;
+            left: calc(50% - 2.5rem);
+        }
+    }
+}
