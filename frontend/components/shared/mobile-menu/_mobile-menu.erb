@@ -2,7 +2,11 @@
     <label class="mobile-menu-toggle" data-action="click->mobile-menu#toggle"><i class="fa fa-fw fa-bars"></i></label>
     <% if user_signed_in? %>
         <%= link_to user_path(current_user.name), class:"mobile-menu-avatar" do %>
-            <%= image_tag current_user.avatar %>
+            <% if current_user.avatar.attached? %>
+                <%= image_tag current_user.avatar, width: 40, height: 40 %>
+            <% else %>
+                <%= image_tag '/images/default-user.png', width: 40, height: 40 %>
+            <% end%>
         <% end %>
     <% else %>
         <a class="mobile-menu-avatar"><%= image_tag "/images/default-user.png" %></i></a>
