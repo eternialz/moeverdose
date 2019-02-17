@@ -14,16 +14,17 @@
 
         <div class="zone user-show-header">
             <div class="user-show-identity">
-                <div class="user-show-identity-section">
+                <div class="user-show-identity-section user-show-user">
                     <div class="user-show-avatar avatar">
                         <% if @user.avatar.attached? %>
-                            <img data-target="user-edit.file" src="<%= url_for @user.avatar %>" width="120" height="120" />
+                            <img src="<%= url_for @user.avatar %>" width="120" height="120" />
                         <% else %>
                             <%= image_tag "/images/default-user.png", class: "avatar" %>
                         <% end %>
                     </div>
-                    <h6 class="user-show-name role" data-role="<%= @user.role %>"><%= @user.name %></h6>
-                    <span class="user-show-item">
+                    <h6 class="user-show-name role hide-medium" data-role="<%= @user.role %>"><%= @user.name %></h6>
+                    <h6 class="user-show-name-mobile show-medium"><%= @user.name %></h6>
+                    <span class="user-show-item hide-medium">
                         joined<br />
                         <%= @user.created_at.strftime('%Y/%m/%d') %>
                     </span>
@@ -31,7 +32,7 @@
 
                 <%= component "users/level" %>
 
-                <div class="user-show-identity-section">
+                <div class="user-show-identity-section hide-medium">
                     <button for="submit" class="button-primary">Save changes <i class="fa fa-save"></i></button>
                 </div>
             </div>

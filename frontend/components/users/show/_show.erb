@@ -1,7 +1,7 @@
 <div class="user-show">
     <div class="zone user-show-header" zone padding padding-0">
         <div class="user-show-identity">
-            <div class="user-show-identity-section">
+            <div class="user-show-identity-section user-show-user">
                 <div class="user-show-avatar avatar">
                     <% if @user.avatar.attached? %>
                         <img src="<%= url_for @user.avatar %>" width="120" height="120" />
@@ -9,8 +9,9 @@
                         <%= image_tag "/images/default-user.png", class: "avatar" %>
                     <% end %>
                 </div>
-                <h6 class="user-show-name role" data-role="<%= @user.role %>"><%= @user.name %></h6>
-                <span class="user-show-item">
+                <h6 class="user-show-name role hide-medium" data-role="<%= @user.role %>"><%= @user.name %></h6>
+                <h6 class="user-show-name-mobile show-medium"><%= @user.name %></h6>
+                <span class="user-show-item hide-medium">
                     joined<br />
                     <%= @user.created_at.strftime('%Y/%m/%d') %>
                 </span>
@@ -19,7 +20,7 @@
             <%= component "users/level" %>
 
             <% if @current %>
-                <div class="user-show-identity-section">
+                <div class="user-show-identity-section hide-medium">
                     <a class="button-secondary" href="<%= edit_user_path(@user.name) %>"><%= fa_icon "edit" %> edit profile</a>
                 </div>
             <% end %>
@@ -41,6 +42,11 @@
                 <% end %>
             <% end %>
             <div class="button-list button-list-right">
+                <% if @current %>
+                    <div class="user-show-identity-section show-medium">
+                        <a class="button-secondary" href="<%= edit_user_path(@user.name) %>"><%= fa_icon "edit" %> edit profile</a>
+                    </div>
+                <% end %>
                 <% unless @user.twitter.blank? %>
                     <a href="<%= @user.twitter %>" class="button-icon"><i class="fab fa-twitter"></i></a>
                 <% end %>

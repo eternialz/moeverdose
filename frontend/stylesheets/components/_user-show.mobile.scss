@@ -1,0 +1,27 @@
+@media only screen and (max-width: $medium) {
+    .user-show {
+        .user-show-header {
+            flex-direction: column;
+
+            .user-show-identity {
+                font-size: 120%;
+                width: 100%;
+
+                .user-show-user {
+                    display: flex;
+                    flex-direction: row;
+                }
+
+                .user-show-avatar {
+                    height: 3rem;
+                    margin: 0 1rem 0 0;
+                    width: 3rem;
+                }
+
+                .user-show-name-mobile {
+                    margin: 0;
+                }
+            }
+        }
+    }
+}
