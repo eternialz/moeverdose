@@ -5,7 +5,15 @@ class UsersController < ApplicationController
     before_action :permitted_per_page, only: [:favorites, :uploads]
 
     def index
-        @users = Kaminari.paginate_array(User.order('upload_count DESC')).page(params[:page]).per(20)
+
+        if params[:query]
+            @users = Kaminari.paginate_array(
+                User.order('upload_count DESC').where('name LIKE ?', "%#{params[:query]}%" ))
+                .page(params[:page]).per(20)
+        else
+            @users = Kaminari.paginate_array(User.order('upload_count DESC')).page(params[:page]).per(20)
+        end
+
 
         title("All Users")
         render component "users/index"
