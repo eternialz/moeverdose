@@ -55,7 +55,7 @@
     }
 
     .hide-hdpi {
-        display: none;
+        display: none !important;
     }
 
     .row {
@@ -113,7 +113,7 @@
     }
 
     .hide-large {
-        display: none;
+        display: none !important;
     }
 
     .row {
@@ -127,7 +127,7 @@
     }
 
     .hide-normal {
-        display: none;
+        display: none !important;
     }
 
     .row {
@@ -185,7 +185,7 @@
     }
 
     .hide-medium {
-        display: none;
+        display: none !important;
     }
 
     .row {
@@ -244,7 +244,7 @@
     }
 
     .hide-small {
-        display: none;
+        display: none !important;
     }
 
     .row {

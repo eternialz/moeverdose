@@ -4,9 +4,12 @@
     <body>
         <%= component "/shared/main-menu" %>
 
+
         <%= component "/shared/lightbox" %>
 
         <div class="row view-content">
+            <%= component "/shared/noscript-alert" %>
+
             <%= component "/shared/breadcrumbs" %>
             <%= yield %>
         </div>

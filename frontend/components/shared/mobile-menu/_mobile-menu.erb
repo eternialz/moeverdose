@@ -1,0 +1,53 @@
+<div class="mobile-menu show-medium" data-controller="mobile-menu">
+    <label class="mobile-menu-toggle" data-action="click->mobile-menu#toggle"><i class="fa fa-fw fa-bars"></i></label>
+    <% if user_signed_in? %>
+        <%= link_to user_path(current_user.name), class:"mobile-menu-avatar" do %>
+            <%= image_tag current_user.avatar %>
+        <% end %>
+    <% else %>
+        <a class="mobile-menu-avatar"><%= image_tag "/images/default-user.png" %></i></a>
+    <% end %>
+    <div class="mobile-menu-content" data-target="mobile-menu.menu">
+        <div class="mobile-menu-subnav-container">
+            <label class="mobile-menu-link" data-action="click->mobile-menu#toggleSubnav">posts</label>
+            <nav class="mobile-menu-subnav">
+                <%= link_to 'all posts', posts_path, title: 'Index', class: 'mobile-menu-link' %>
+                <%= link_to 'random', random_path, title: 'Random', class: 'mobile-menu-link' %>
+                <%= link_to 'upload', new_post_path, title: 'Upload', class: 'mobile-menu-link' %>
+                <%= link_to 'tags', tags_path, title: 'Tags', class: 'mobile-menu-link' %>
+                <%= link_to 'authors', authors_path, title: 'Authors', class: 'mobile-menu-link' %>
+            </nav>
+        </div>
+        <div class="mobile-menu-subnav-container">
+            <label class="mobile-menu-link" data-action="click->mobile-menu#toggleSubnav">about</label>
+            <nav class="mobile-menu-subnav">
+                <%= link_to 'team', '/teams', title: 'Team', class: 'mobile-menu-link' %>
+                <%= link_to 'source code', '/source', title: 'Source code', class: 'mobile-menu-link' %>
+                <%= link_to 'terms of service', '/tos', title: 'Terms of service', class: 'mobile-menu-link' %>
+                <%= link_to 'cookies & privacy', '/cookies', title: 'Cookies & Privacy', class: 'mobile-menu-link' %>
+            </nav>
+        </div>
+        <div class="mobile-menu-subnav-container">
+            <label class="mobile-menu-link" data-action="click->mobile-menu#toggleSubnav">help</label>
+            <nav class="mobile-menu-subnav">
+                <%= link_to 'wiki', "/wiki/index", title: 'Wiki', class: 'mobile-menu-link' %>
+                <%= link_to 'faq', '/wiki/keyboard', title: '', class: 'mobile-menu-link' %>
+                <%= link_to 'keyboard shortcuts', '/wiki/keyboard', title: '', class: 'mobile-menu-link' %>
+                <%= link_to 'posts rules', '/wiki/rules', title: '', class: 'mobile-menu-link' %>
+                <%= link_to 'uploading', '/wiki/rules', title: '', class: 'mobile-menu-link' %>
+                <%= link_to 'copyright request', '/wiki/copyright', title: 'Copyright request', class: 'mobile-menu-link' %>
+            </nav>
+        </div>
+        <div class="mobile-menu-subnav-container">
+            <label class="mobile-menu-link" data-action="click->mobile-menu#toggleSubnav">community</label>
+            <nav class="mobile-menu-subnav">
+                <%= link_to 'twitter', twitter_url, target: "_blank", title: 'Twitter', class: 'mobile-menu-link' %>
+                <%= link_to 'discord server', chat_url, target: "_blank", title: 'Discord server', class: 'mobile-menu-link' %>
+                <%= link_to 'users', users_path, title: 'Users', class: 'mobile-menu-link' %>
+                <%= link_to static_page_path('support'), title: 'Support', class: 'mobile-menu-link main-menu-support' do %>
+                    Support us <i class="fa fa-heart"></i>
+                <% end %>
+            </nav>
+        </div>
+    </div>
+</div>

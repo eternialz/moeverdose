@@ -2,7 +2,7 @@
     <div class="row">
         <div class="main-menu-content">
             <a id="main-menu-logo" href="<%= root_path %>"><h1><%= site_name %></h1></a>
-            <nav class="main-menu-nav" data-action="mouseover->main-menu#over mouseout->main-menu#out">
+            <nav class="main-menu-nav hide-medium" data-action="mouseover->main-menu#over mouseout->main-menu#out">
                 <div class="main-menu-subnav-container">
                     <%= link_to 'Posts', posts_path, title: 'Posts', class: 'main-menu-link' %>
                     <nav class="main-menu-subnav">
@@ -45,7 +45,7 @@
                     </nav>
                 </div>
             </nav>
-            <div class="main-menu-nav user" data-action="mouseover->main-menu#over mouseout->main-menu#out">
+            <div class="main-menu-nav user hide-medium" data-action="mouseover->main-menu#over mouseout->main-menu#out">
                 <div class="main-menu-subnav-container">
                     <% if user_signed_in? %>
                         <%= link_to current_user.name, user_path(current_user.name), class: 'main-menu-link' %>
@@ -107,8 +107,9 @@
                 </div>
             </div>
 
-            <div class="submenu" data-target="main-menu.submenu"></div>
+            <div class="submenu hide-medium" data-target="main-menu.submenu"></div>
             
+            <%= component "shared/mobile-menu" %>
         </div>
     </div>
 </header>
