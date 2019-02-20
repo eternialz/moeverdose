@@ -1,18 +1,81 @@
-
 .color-primary {
     color: $primary-color;
+}
+
+.background-primary {
+    background-color: $primary-color;
 }
 
 .color-secondary {
     color: $secondary-color;
 }
 
+.background-secondary {
+    background-color: $secondary-color;
+}
+
 .color-base {
     color: $base-color;
 }
 
+.background-base {
+    background-color: $base-color;
+}
+
+.color-white {
+    color: $white;
+}
+
+.background-white {
+    background-color: $white;
+}
+
+.color-gray-lighter {
+    color: $gray-lighter;
+}
+
+.background-gray-lighter {
+    background-color: $gray-lighter;
+}
+
+.color-gray-light {
+    color: $gray-light;
+}
+
+.background-gray-light {
+    background-color: $gray-light;
+}
+
 .color-gray {
     color: $gray;
+}
+
+.background-gray {
+    background-color: $gray;
+}
+
+.color-gray-dark {
+    color: $gray-dark;
+}
+
+.background-gray-dark {
+    background-color: $gray-dark;
+}
+
+.color-gray-darker {
+    color: $gray-darker;
+}
+
+.background-gray-darker {
+    background-color: $gray-darker;
+}
+
+.color-black {
+    color: $black;
+}
+
+.background-black {
+    background-color: $black;
 }
 
 .color-pink {

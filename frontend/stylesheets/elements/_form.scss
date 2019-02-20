@@ -3,7 +3,7 @@
 }
 
 .form-field {
-    margin: 0.35rem 0;
+    margin: 0.5rem 0;
 }
 
 .form-label {
@@ -15,6 +15,11 @@
     }
 }
 
+.form-error {
+    display: none;
+    color: $error-color;
+}
+
 .form-textarea {
     min-height: 5rem;
     resize: vertical;
@@ -22,12 +27,15 @@
 
 .form-input,
 .form-textarea {
+    @include focusable();
+
     appearance: none;
-    background: $gray-darker;
+    background: $gray-lighter;
     background-image: none;
     border-radius: $border-radius;
     border: 0;
-    color: $white;
+    caret-color: $base-color;
+    color: $black;
     display: block;
     font-size: $body-font-size;
     line-height: 1;
@@ -39,8 +47,18 @@
     transition: background 0.2s, border 0.2s, box-shadow 0.2s, color 0.2s;
     width: 100%;
 
-    &:focus {
-        box-shadow: 0 0 0 2px rgba($base-color, 0.8);
+    &::placeholder {
+        color: $gray-light;
+        opacity: 1;
+    }
+
+    &.form-input-error {
+        caret-color: $error-color;
+        box-shadow: 0 0 0 2px rgba($error-color, 0.8);
+
+        & + .form-error {
+            display: block;
+        }
     }
 }
 
@@ -123,7 +141,7 @@
     }
 
     input:focus + label {
-        box-shadow: 0 0 0 2px rgba($base-color, 0.8);
+        @include focusable-property();
     }
 }
 
@@ -138,6 +156,10 @@
 .form-select:-webkit-autofill:hover,
 .form-select:-webkit-autofill:focus {
     -webkit-text-fill-color: $base-color;
-    box-shadow: inset 0 1px 3px rgba($true-black, 0.25), inset 0 0 0 10rem $gray-darker;
+    box-shadow: inset 0 0 0 10rem $gray-lighter;
     transition: background-color 5000s ease-in-out 0s;
+
+    &:focus {
+        box-shadow: inset 0 0 0 10rem $gray-lighter, 0 0 0 2px rgba($base-color, 0.75);
+    }
 }

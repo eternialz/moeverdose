@@ -13,11 +13,9 @@
         @include shadow-3();
 
         border-radius: $border-radius;
-        margin: 2rem 0;
-        max-width: 100%;
+        margin: 1rem 0 2rem;
         padding: 3rem;
         padding-top: 2rem;
-        width: 26rem;
     }
 
     .title {
@@ -34,5 +32,15 @@
             width: 5rem;
             left: calc(50% - 2.5rem);
         }
+    }
+
+    .user-form-errors {
+        padding: 1rem 3rem;
+    }
+
+    .user-form-errors,
+    .user-form-body {
+        max-width: 100%;
+        width: 26rem;
     }
 }

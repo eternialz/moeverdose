@@ -21,6 +21,7 @@ module Moeverdose
         end
         config.i18n.fallbacks = [I18n.default_locale]
 
+        # View path
         config.paths["app/views"] = "frontend/views"
 
         # Settings in config/environments/* take precedence over those specified here.

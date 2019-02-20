@@ -5,6 +5,9 @@
     margin-bottom: 1rem;
 
     a {
+        @include focusable();
+
+        border-radius: $border-radius;
         color: $gray;
         font-weight: bold;
         text-transform: capitalize;

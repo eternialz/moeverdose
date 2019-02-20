@@ -2,7 +2,7 @@
     <div class="row">
         <div class="main-menu-content">
             <a id="main-menu-logo" href="<%= root_path %>"><h1><%= site_name %></h1></a>
-            <nav class="main-menu-nav hide-medium" data-action="mouseover->main-menu#over mouseout->main-menu#out">
+            <nav class="main-menu-nav hide-medium" data-action="mouseover->main-menu#open mouseout->main-menu#close">
                 <div class="main-menu-subnav-container">
                     <%= link_to 'Posts', posts_path, title: 'Posts', class: 'main-menu-link' %>
                     <nav class="main-menu-subnav">
@@ -45,7 +45,7 @@
                     </nav>
                 </div>
             </nav>
-            <div class="main-menu-nav user hide-medium" data-action="mouseover->main-menu#over mouseout->main-menu#out">
+            <div class="main-menu-nav user hide-medium" data-action="mouseover->main-menu#open mouseout->main-menu#close">
                 <div class="main-menu-subnav-container">
                     <% if user_signed_in? %>
                         <%= link_to current_user.name, user_path(current_user.name), class: 'main-menu-link' %>
@@ -83,22 +83,15 @@
                                     <h5 class="title title-compact">Sign Up</h5>
                                     <p>With an account you can upload images, keep track of your favorites, blacklists tags and many more!</p>
                                     <%= link_to new_user_registration_path, class: 'button-primary' do %>
-                                        Sign up <%= fa_icon 'user-plus' %>
+                                        Sign up <i class="fa fa-user-plus"></i>
                                     <% end %>
                                 </div>
                                 <div class="main-menu-login">
                                     <h5 class="title title-compact">Log In</h5>
-                                    <%= form_for(:user, html: {id: 'login', class: 'form'}, :url => session_path(:user)) do |f| %>
-                                        <div class="main-menu-block-content">
-                                            <div class="form-field">
-                                                <%= f.email_field :email, class: 'form-input', placeholder: 'email', autocomplete: "off" %>
-                                            </div>
-                                            <div class="form-field">
-                                                <%= f.password_field :password, class: 'form-input', placeholder: 'password', autocomplete: "off" %>
-                                            </div>
-                                            <%= link_to "Forgot your password?", new_password_path(:user) %>
-                                        </div>
-                                        <button class="button-primary" type="submit">Sign in <%= fa_icon "sign-in" %></button>
+                                    <p>Connect using your email and password</p>
+                                    <%= link_to "Forgot your password?", new_password_path(:user) %>
+                                    <%= link_to new_session_path(:user), class: "button-primary" do %>
+                                        Login <i class="fa fa-sign-in-alt"></i>
                                     <% end %>
                                 </div>
                             </div>

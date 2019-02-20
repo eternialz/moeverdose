@@ -1,20 +1,23 @@
 <%= link_to root_path, class: "action margin" do %>
     <i class="fa fa-arrow-left"></i> Back To Home Screen
 <% end %>
-<div class="user-form">
+<div class="user-form" data-controller="form">
 
     <%= form_for(resource, as: resource_name, html: {class: "zone user-form-body form"}, url: session_path(resource_name)) do |f| %>
         <div class="user-form-head">
             <h4 class="title">Member Login</h4>
         </div>
+
         <div class="form-field">
-            <label class="form-label"><%= fa_icon "envelope" %> email:</label>
+            <%= f.label :email, class: "form-label" %>
             <%= f.email_field :email, class: "form-input", autofocus: true %>
+            <%= error f, :email %>
         </div>
 
         <div class="form-field">
-            <label class="form-label"><%= fa_icon "unlock-alt" %> password:</label>
+            <%= f.label :password, class: "form-label" %>
             <%= f.password_field :password, class: "form-input", autocomplete: "off" %>
+            <%= error f, :password %>
         </div>
 
         <% if devise_mapping.rememberable? -%>

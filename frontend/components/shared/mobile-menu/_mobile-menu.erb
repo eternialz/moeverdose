@@ -53,5 +53,22 @@
                 <% end %>
             </nav>
         </div>
+        <div class="mobile-menu-subnav-container">
+            <label class="mobile-menu-link" data-action="click->mobile-menu#toggleSubnav">my account</label>
+            <nav class="mobile-menu-subnav">
+                <% if user_signed_in? %>
+                    <%= link_to "profile", user_path(current_user.name), title: 'Profile', class: 'mobile-menu-link' %>
+                    <%= link_to "options", edit_user_path(current_user.name), title: 'Options', class: 'mobile-menu-link'  %>
+                    <%= link_to 'favorites', favorites_path(current_user.name), title: 'Favorites', class: 'mobile-menu-link'  %>
+                    <%= link_to 'uploads', uploads_path(current_user.name), title: 'Uploads', class: 'mobile-menu-link' %>
+                    <%= form_for current_user, url: destroy_user_session_path, method: "DELETE" do %>
+                        <button type="submit" title="Logout" class="mobile-menu-link button-link">logout</button>
+                    <% end %>
+                <% else %>
+                    <%= link_to "log in", new_session_path("user"), class: "mobile-menu-link" %>
+                    <%= link_to "sign up", new_registration_path("user"), class: "mobile-menu-link" %>
+                <% end %>
+            </nav>
+        </div>
     </div>
 </div>

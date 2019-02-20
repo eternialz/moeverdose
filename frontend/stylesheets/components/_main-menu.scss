@@ -45,6 +45,7 @@
     @include shadow-3();
 
     background: $gray-darker;
+    border-bottom: 1px solid $primary-color;
     color: $white;
     font-size: 1rem;
     position: fixed;
@@ -66,6 +67,9 @@
     }
 
     #main-menu-logo {
+        @include focusable();
+
+        border-radius: $border-radius;
         color: $true-white;
 
         h1 {
@@ -81,6 +85,9 @@
             position: relative;
 
             .main-menu-link {
+                @include focusable();
+
+                border-radius: $border-radius;
                 display: inline-block;
                 margin: 0.25rem;
                 padding: 0.25rem;
@@ -143,6 +150,8 @@
             margin-left: auto;
 
             .avatar {
+                @include focusable();
+
                 border-radius: 50%;
                 display: inline-block;
                 margin-left: 0.5rem;
@@ -176,14 +185,15 @@
                     padding: 0.5rem 1rem;
                     display: flex;
                     flex-direction: column;
+
+                    .button-primary {
+                        margin-top: auto;
+                        margin-left: auto;
+                    }
                 }
 
                 .main-menu-register {
                     padding-left: 0;
-
-                    .button-primary {
-                        margin-top: auto;
-                    }
                 }
 
                 .main-menu-login {

@@ -1,9 +1,8 @@
 .button-primary {
     @include button-base();
+    @include button-color($pink);
 
-    background: $primary-color;
     color: $true-white;
-    transition: filter 70ms linear;
 
     &:hover {
         color: $true-white;
@@ -17,10 +16,9 @@
 
 .button-secondary {
     @include button-base();
+    @include button-color($gray-darker);
 
     background: rgba($black, 0.1);
-    color: $gray-dark;
-    transition: background-color 70ms linear;
 
     i {
         margin-left: 0.25rem;
@@ -43,7 +41,6 @@
     background: $primary-color;
     color: $true-white;
     padding: 0.45rem 0.4rem;
-    transition: filter 70ms linear;
 
     i {
         margin: 0;

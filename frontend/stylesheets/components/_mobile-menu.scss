@@ -54,8 +54,10 @@
         .mobile-menu-link {
             color: $white;
             display: block;
+            text-align: left;
             padding: 0.7rem 0.5rem 0.7rem 0;
             transition: background-color 100ms ease-in-out;
+            width: 100%;
 
             &::before {
                 content: "\f105";

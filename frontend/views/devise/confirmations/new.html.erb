@@ -2,16 +2,16 @@
     <i class="fa fa-arrow-left"></i> Back To Home Screen
 <% end %>
 
-<div class="user-form">
+<div class="user-form" data-controller="form">
     <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: {method: :post, class: "zone user-form-body form"}) do |f| %>
-        <%= devise_error_messages! %>
-            <div class="user-form-head">
-                <h4 class="title">Resend confirmation</h4>
-            </div>
+        <div class="user-form-head">
+            <h4 class="title">Resend confirmation</h4>
+        </div>
 
         <div class="form-field">
-            <%= f.label :email, class: "form-label" %>
+            <%= f.label "Email:", class: "form-label" %>
             <%= f.email_field :email, placeholder: "email", class: "form-input", autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+            <%= error f, :email %>
         </div>
 
         <div class="button-list button-list-right">

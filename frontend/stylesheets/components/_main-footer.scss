@@ -8,9 +8,12 @@
     }
 
     a {
+        @include focusable();
+
+        border-radius: $border-radius;
         color: $gray-light;
-        padding: 0.1rem 0;
         margin: 0.1rem 0;
+        padding: 0.1rem 0;
     }
 
     nav a {

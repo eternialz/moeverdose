@@ -3,13 +3,25 @@ import { Controller } from 'stimulus';
 
 @RegisterController
 class MainMenuController extends Controller {
-    static targets = ['submenu'];
+    static targets = ['submenu', 'email', 'password'];
 
-    over() {
+    connect() {
+        this.lock = false;
+    }
+
+    open() {
         this.submenuTarget.classList.add('active');
     }
 
-    out() {
-        this.submenuTarget.classList.remove('active');
+    close() {
+        if (!this.lock) {
+            this.submenuTarget.classList.remove('active');
+        }
+    }
+
+    focusToggle() {
+        this.open();
+        this.lock = !this.lock;
+        console.log(this.lock);
     }
 }
