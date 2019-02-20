@@ -44,9 +44,6 @@ gem "autoprefixer-rails"
 # Font-awesome
 gem "font-awesome-rails"
 
-# Discord BOT
-gem "discordrb"
-
 # Httparty
 gem "httparty"
 

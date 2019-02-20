@@ -14,8 +14,10 @@
 
         border-radius: $border-radius;
         margin: 1rem 0 2rem;
+        max-width: 100%;
         padding: 3rem;
         padding-top: 2rem;
+        width: 26rem;
     }
 
     .title {
@@ -24,23 +26,13 @@
         position: relative;
 
         &::after {
-            height: 2px;
             background: $base-color;
             content: " ";
+            height: 2px;
+            left: calc(50% - 2.5rem);
             position: absolute;
             top: 2.5rem;
             width: 5rem;
-            left: calc(50% - 2.5rem);
         }
-    }
-
-    .user-form-errors {
-        padding: 1rem 3rem;
-    }
-
-    .user-form-errors,
-    .user-form-body {
-        max-width: 100%;
-        width: 26rem;
     }
 }

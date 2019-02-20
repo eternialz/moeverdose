@@ -23,16 +23,5 @@ module Moeverdose
 
         # View path
         config.paths["app/views"] = "frontend/views"
-
-        # Settings in config/environments/* take precedence over those specified here.
-        # Application configuration can go into files in config/initializers
-        # -- all .rb files in that directory are automatically loaded after loading
-        # the framework and any gems in your application.
-        if Rails.env.production? or ENV["FORCE_DISCORD_BOT_START"] == "True"
-            config.after_initialize do
-                bot = DiscordBot.new()
-                bot.run()
-            end
-        end
     end
 end
