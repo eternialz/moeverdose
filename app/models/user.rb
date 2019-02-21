@@ -36,6 +36,9 @@ class User < ApplicationRecord
     alias_attribute :report?, :report
     alias_attribute :banned?, :banned
 
+    # GDPR
+    has_many :permissions
+
     # Prevent banned user authentications
     def active_for_authentication?
         super && !self.banned?
