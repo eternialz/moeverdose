@@ -9,8 +9,10 @@ class Level < ApplicationRecord
     # color: String => color in hexa format for the level
     #
     # timestamps => yes
+    #
+    # users: Array<User> => User with the current level
     ####################################################################
-    has_many :users, inverse_of: :levels
+    has_many :users, inverse_of: :level
 
     # Identification
     validates :rank, uniqueness: true

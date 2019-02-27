@@ -1,4 +1,18 @@
 class Tag < ApplicationRecord
+    ####################################################################
+    # PROPERTIES: TYPE => PURPOSE
+    # ----------------------------
+    # type: String => Tag's type (see Tag::Type)
+    # posts_count: Integer => Number of posts with this tag
+    #
+    # timestamps => yes
+    #
+    # aliases: Array<Alias> => All tags aliases
+    # main_alias: Alias => Tag's displayed name. Useful for eager loading
+    # author: Author => If tag is of type 'author', linked to author
+    # posts: Array<Post> => All posts contening this tag
+    ####################################################################
+    
     # Disable STI
     self.inheritance_column = :_type_disabled
 
