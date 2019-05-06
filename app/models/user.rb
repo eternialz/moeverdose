@@ -63,7 +63,7 @@ class User < ApplicationRecord
     has_many :posts, class_name: "Post", inverse_of: :user
 
     # Stats
-    belongs_to :level, class_name: "Level", inverse_of: :user, default: -> {
+    belongs_to :level, class_name: "Level", inverse_of: :users, default: -> {
         Level.all.order("rank ASC").first
     }
 
