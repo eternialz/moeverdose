@@ -118,9 +118,6 @@ class PostsController < ApplicationController
         @post.height = metadata[:height];
 
         if @post.save
-            author&.save
-            source&.save
- 
             TagLogic.change_counts(@post.tags, 1)
 
             flash[:success] = "Post #{@post.title} created!"

@@ -1,4 +1,28 @@
 class Post < ApplicationRecord
+    ####################################################################
+    # PROPERTIES: TYPE => PURPOSE
+    # ----------------------------
+    # md5: String => MD5 hash of the image
+    # height: Integer => Image height
+    # width: Integer => Image width
+    # overdose: Integer => Number of overdose (like) for the post
+    # shortage: Integer => Number of shortage (dislike) for the post
+    # title: String => Self exp
+    # source: String => Image origin (can be URL)
+    # description: String => Description for the posts
+    # report: Boolean => true: post reported
+    # report_reason: String => Why is the post reported
+    # post_image: ActiveStorage::Attachment => Image attached to the post
+    #
+    # timestamps => yes
+    #
+    # author: Author : Post's image's author
+    # comments: Array<Comment> => All posts comments
+    # report_user: User => User who reported the post
+    # tags: Array<Tag> => Tags linked to posts
+    # user: User => User who posted the image
+    #
+    ####################################################################
 
     def self.image_types
       MIME::Types.select do |t|
