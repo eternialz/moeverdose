@@ -61,4 +61,15 @@
             <% end %>
         </nav>
     </div>
+    
+    <div class="admin-menu-subnav">
+        <%= link_to admin_permissions_types_path, class: admin_active_link?(admin_permissions_types_path) do %>
+            <i class="fa fa-fw fa-cogs"></i>All Processings
+        <% end %>
+        <nav>
+            <%= link_to new_admin_permissions_type_path, class: admin_active_link?(new_admin_permissions_type_path) do %>
+                <i class="fa fa-fw fa-angle-right fa-xs"></i>Create Processing
+            <% end %>
+        </nav>
+    </div>
 </nav>
