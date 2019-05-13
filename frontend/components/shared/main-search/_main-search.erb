@@ -1,9 +1,12 @@
 <div class="main-search" data-controller="main-search">
-    <div class="main-search-input-container">
-        <div class="main-search-input" placeholder="Search" contenteditable="true" data-target="main-search.input" data-action="mousedown->main-search#moveCursorToEnd keydown->main-search#input paste->main-search#paste"></div>
-        <button class="button-link" data-action="click->main-search#toggleTagsPanel"><span class="hide-small">Tags</span><i data-target="main-search.tagIcon" class="fa fa-chevron-down"></i></button>
-        <button class="button-link"><span class="hide-small">Search</span><i class="fa fa-search"></i></button>
-    </div>
+    <%= form_tag posts_path, class: "main-search-input-container", method: "GET" do |f| %>
+        <input type="text" autocomplete="off" name="query" value="<%= params[:query] %>" class="main-search-input" placeholder="Search" data-target="main-search.input" />
+        <button class="button-link" data-action="click->main-search#toggleTagsPanel">
+            <span class="hide-small">Tags</span>
+            <i data-target="main-search.tagButton" class="fa fa-chevron-down"></i>
+        </button>
+        <button type="submit" class="button-link" data-action="click->main-search#search"><span class="hide-small">Search</span><i class="fa fa-search"></i></button>
+    <% end %>
     <div class="main-search-tags" data-target="main-search.tags">
         <div class="columns padding padding-horizontal">
             <div class="col col-3 col-12-small padding">

@@ -21,7 +21,7 @@
 # Ignore Byebug command history file.
 .byebug_history
 
-#Ignore all temporary files create by vim
+# Ignore all temporary files create by vim
 *~
 .*~
 *.swp

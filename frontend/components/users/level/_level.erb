@@ -8,7 +8,7 @@
         <% else %>
             <div class="progress-bar">
                 <div class="progress-bar-indicator"><span><%= @user.level.name %></span><span>Rank max</span></div>
-                <div class="progress-bar-fill" style="background: <%= @user.level.color %>; width: 100%;"></div>
+                <div class="progress-bar-fill" data-target="level.bar" style="background: <%= @user.level.color %>; width: 100%;"></div>
             </div>
         <% end %>
     </div>

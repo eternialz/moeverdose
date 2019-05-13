@@ -36,20 +36,15 @@
         .main-search-input {
             @include focusable();
 
+            background: $gray-darker;
             border-radius: $border-radius;
             color: $true-white;
             display: flex;
             flex-grow: 1;
             flex-wrap: wrap;
             min-height: 2.7rem;
-            padding: 0.8rem 0.8rem 0.5rem;
-
-            // Placeholder support for contenteditable
-            &:empty::before {
-                color: $gray;
-                content: attr(placeholder);
-                display: block;
-            }
+            padding: 0.5rem 0.8rem;
+            border-bottom: 1px solid $gray-dark;
 
             br {
                 display: none;
@@ -70,10 +65,12 @@
         .button-link {
             @include focusable();
 
-            border: none;
-            border-radius: $border-radius;
+            border-left: 1px solid $gray-dark;
+            border-bottom: 1px solid $gray-dark;
             color: $text-color-light;
             cursor: pointer;
+            display: flex;
+            align-items: center;
             font-weight: bold;
             letter-spacing: 0.05rem;
             line-height: 1;
