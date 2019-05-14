@@ -36,6 +36,7 @@ Rails.application.routes.draw do
         resources :levels, controller: "levels", except: [:destroy, :show]
         resources :comments, controller: "comments", only: [:index, :destroy]
         patch "/comments/:id/unreport" => "comments#unreport", as: "comment_unreport"
+        resources :permissions_types, controller: "permissions_types", except: [:edit, :update, :show]
     end
 
     devise_for :users, path: 'account', :controllers => { registrations: 'user_registrations' }

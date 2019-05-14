@@ -2,7 +2,7 @@ import { HttpService } from '../services/http-service';
 
 export class CustomMethodLinkInitializer {
     run() {
-        let elements = document.querySelectorAll('a[data-method]');
+        let elements = document.querySelectorAll('[data-method]');
         Array.from(elements).forEach(el => {
             el.addEventListener('click', event => {
                 event.preventDefault();

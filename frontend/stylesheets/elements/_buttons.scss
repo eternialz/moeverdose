@@ -74,3 +74,11 @@
 .button-shortage {
     @include button-color($cyan);
 }
+
+.button-error {
+    @include button-color($error-color);
+}
+
+.button-success {
+    @include button-color($success-color);
+}

@@ -51,6 +51,15 @@ class UsersController < ApplicationController
           t.name
         end.join(' ')
 
+        @permissions = @user.permissions
+
+        @permissions_types = PermissionsType.all
+        @permissions_types.each do |pt|
+            if @permissions.select { |p| p.permissions_type_id == pt.id }.empty?
+                @user.permissions.build(consent: false, permissions_type_id: pt.id)
+            end
+        end
+
         title("Edit my profile")
 
         render component "users/edit"
@@ -115,7 +124,7 @@ class UsersController < ApplicationController
 
     private
     def set_user
-        @user = User.includes(favorites_tags: :aliases, blacklisted_tags: :aliases).find_by(name: params[:id])
+        @user = User.includes(favorites_tags: :aliases, blacklisted_tags: :aliases, permissions: :permissions_type).find_by(name: params[:id])
     end
 
     def check_user
@@ -138,6 +147,8 @@ class UsersController < ApplicationController
     end
 
     def account_update_params
-        params.require(:user).permit(:email, :avatar, :banner, :website, :facebook, :twitter, :biography)
+        params.require(:user).permit(:email, :avatar, :banner, :website,
+            :facebook, :twitter, :biography,
+            permissions_attributes: [:id, :consent, :permissions_type_id])
     end
 end
