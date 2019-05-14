@@ -1,0 +1,15 @@
+<h2> New Processing </h2>
+
+<%= form_for @permissions_type, url: admin_permissions_types_path do |f| %>
+  <div class="input_zone">
+    <p><%= f.label :name %>:</p>
+    <%= f.text_field :name %>
+  </div>
+  <div class="input_zone">
+      <p><%= f.label :description %>:</p>
+    <%= f.text_area :description %>
+  </div>
+  <div class="actions">
+    <button class="button-primary button-success" type="submit"> Create Processing</button>
+  </div>
+<% end %>

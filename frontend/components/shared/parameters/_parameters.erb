@@ -1,58 +1,19 @@
 <div class="parameters">
     <div class="parameters-section">
-        <div class="parameter">
-            <input class="parameter-checkbox" id="parameter-name1" type="checkbox" hidden>
-            <label class="parameter-label" for="parameter-name1">
-                <div class="parameter-name">
-                    <i class="far fa-square"></i> parameter name
-                </div>
-                <div class="parameter-purpose">Extremely cuuuuuute wow such tempt pats you are doing me a frighten sub woofer, lotsa pats long woofer length boy. Blop heckin good boys and girls pupperino floofs, shooberino. Stop it fren shoober long bois aqua doggo, adorable doggo. borkdrive many pats porgo. Waggy wags the neighborhood pupper borking doggo long woofer, snoot long woofer. Doggorino heckin lotsa pats very hand that feed shibe, ur givin me a spook.</div>
-            </label>
-        </div>
-        <div class="parameter">
-            <input class="parameter-checkbox" id="parameter-name2" type="checkbox" hidden>
-            <label class="parameter-label" for="parameter-name2">
-                <div class="parameter-name">
-                    <i class="far fa-square"></i> parameter name
-                </div>
-                <div class="parameter-purpose">Doggo ipsum heckin angery woofer heckin good boys.</div>
-            </label>
-        </div>
-        <div class="parameter">
-            <input class="parameter-checkbox" id="parameter-name3" type="checkbox" hidden>
-            <label class="parameter-label" for="parameter-name3">
-                <div class="parameter-name">
-                    <i class="far fa-square"></i> parameter name
-                </div>
-                <div class="parameter-purpose">Doggo ipsum heckin angery woofer heckin good boys.</div>
-            </label>
-        </div>
-        <div class="parameter">
-            <input class="parameter-checkbox" id="parameter-name4" type="checkbox" hidden>
-            <label class="parameter-label" for="parameter-name4">
-                <div class="parameter-name">
-                    <i class="far fa-square"></i> parameter name
-                </div>
-                <div class="parameter-purpose">Doggo ipsum heckin angery woofer heckin good boys.</div>
-            </label>
-        </div>
-        <div class="parameter">
-            <input class="parameter-checkbox" id="parameter-name5" type="checkbox" hidden>
-            <label class="parameter-label" for="parameter-name5">
-                <div class="parameter-name">
-                    <i class="far fa-square"></i> parameter name
-                </div>
-                <div class="parameter-purpose">Doggo ipsum heckin angery woofer heckin good boys.</div>
-            </label>
-        </div>
-        <div class="parameter">
-            <input class="parameter-checkbox" id="parameter-name6" type="checkbox" hidden>
-            <label class="parameter-label" for="parameter-name6">
-                <div class="parameter-name">
-                    <i class="far fa-square"></i> parameter name
-                </div>
-                <div class="parameter-purpose">Doggo ipsum heckin angery woofer heckin good boys.</div>
-            </label>
-        </div>
+        <%= f.fields_for :permissions do |p| %>
+            <div class="parameter">
+                <%= p.check_box :consent, class: "parameter-checkbox hidden" %>
+                <%= p.label :consent, class: "parameter-label" do %>
+                    <div class="parameter-name">
+                        <i class="far fa-square"></i> <%= p.object.permissions_type.name %>
+                    </div>
+                    <div class="parameter-purpose">
+                        <%= p.object.permissions_type.description %>
+                    </div>
+                <% end %>
+                <%= p.hidden_field :permissions_type_id %>
+                <%= p.hidden_field :id %>
+            </div>
+        <% end %>
     </div>
 </div>

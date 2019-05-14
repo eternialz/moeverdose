@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_15_215858) do
+ActiveRecord::Schema.define(version: 2019_02_27_005348) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -114,6 +114,23 @@ ActiveRecord::Schema.define(version: 2018_10_15_215858) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "permissions", force: :cascade do |t|
+    t.boolean "consent"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.bigint "permissions_type_id"
+    t.index ["permissions_type_id"], name: "index_permissions_on_permissions_type_id"
+    t.index ["user_id"], name: "index_permissions_on_user_id"
+  end
+
+  create_table "permissions_types", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string "md5"
     t.integer "height", default: 0
@@ -179,8 +196,6 @@ ActiveRecord::Schema.define(version: 2018_10_15_215858) do
     t.boolean "report"
     t.boolean "banned"
     t.string "role"
-    t.string "favorites_tags"
-    t.string "blacklisted_tags"
     t.bigint "level_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["level_id"], name: "index_users_on_level_id"

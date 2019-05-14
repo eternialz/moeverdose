@@ -1,14 +1,13 @@
-class New < ApplicationRecord
+class PermissionsType < ApplicationRecord
     ####################################################################
     # PROPERTIES: TYPE => PURPOSE
     # ----------------------------
-    # title: String => Self exp
-    # text: String => New's content
+    # name: String => Name of the processing
+    # description: String => Processing type description
     #
     # timestamps => yes
+    #
+    # permissions: Array<Permission> => All permissions of this type
     ####################################################################
-
-    validates :title, presence: true
-    validates :text, presence: true
-
+    has_many :permissions
 end
