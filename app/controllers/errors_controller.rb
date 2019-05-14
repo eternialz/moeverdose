@@ -1,16 +1,16 @@
 class ErrorsController < ApplicationController
     def not_found
-        title("404")
-        render(:status => 404)
+        title("Error 404")
+        render component("errors/not-found"), status: 404
     end
 
     def internal_server_error
-        title("500")
-        render(:status => 500)
+        title("Error 500")
+        render component("errors/internal-server-error"), status: 500
     end
 
     def error
-        title(params[:code].to_s || "500")
-        render(:status => params[:code] || 500)
+        title("Error " + (params[:code] || "500"))
+        render component("errors/error"), status: params[:code] || 500
     end
 end

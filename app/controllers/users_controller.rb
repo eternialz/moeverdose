@@ -4,11 +4,30 @@ class UsersController < ApplicationController
     before_action :check_user, only: [:edit, :update]
     before_action :permitted_per_page, only: [:favorites, :uploads]
 
+    def index
+
+        if params[:query]
+            @users = Kaminari.paginate_array(
+                User.order('upload_count DESC').where('name LIKE ?', "%#{params[:query]}%" ))
+                .page(params[:page]).per(20)
+        else
+            @users = Kaminari.paginate_array(User.order('upload_count DESC')).page(params[:page]).per(20)
+        end
+
+
+        title("All Users")
+        render component "users/index"
+    end
+
     def show
+        unless @user
+            raise ActionController::RoutingError.new('Not Found')
+        end
+
         if @user.banned?
             title("Banned User")
 
-            render 'users/banned'
+            render component 'users/banned'
         else
             @current = (current_user == @user)
             @favorites_tags = @user.favorites_tags.map do |t|
@@ -18,13 +37,10 @@ class UsersController < ApplicationController
               t.name
             end
 
-            @level = @user.level
-            if (!@level.final)
-                @next_level = Level.find_by(rank: @user.level.rank + 1)
-            end
-        end
+            title(@user.name + " profile")
 
-        title(@user.name + " profile")
+            render component "users/show"
+        end
     end
 
     def edit
@@ -34,22 +50,46 @@ class UsersController < ApplicationController
         @blacklisted_tags = @user.blacklisted_tags.map do |t|
           t.name
         end.join(' ')
+
         title("Edit my profile")
+
+        render component "users/edit"
     end
 
     def favorites
         @posts = Kaminari.paginate_array(@user.favorites).page(params[:page]).per(@posts_per_page)
+        @comments_counts = Comment.where(post: @posts).group(:post_id).count
+
+        @breadcrumbs = [
+            {
+                name: @user.name,
+                path: user_path(@user.name)
+            },
+            {
+                name: "favorites",
+                path: favorites_path(@user.name)
+            }
+        ]
+
+        render component "users/favorites"
     end
 
     def uploads
         @posts = Kaminari.paginate_array(@user.posts).page(params[:page]).per(@posts_per_page)
         @comments_counts = Comment.where(post: @posts).group(:post_id).count
-    end
 
-    def index
-        @users = Kaminari.paginate_array(User.order('upload_count DESC')).page(params[:page]).per(20)
+        @breadcrumbs = [
+            {
+                name: @user.name,
+                path: user_path(@user.name)
+            },
+            {
+                name: "uploads",
+                path: uploads_path(@user.name)
+            }
+        ]
 
-        title("All Users")
+        render component "users/uploads"
     end
 
     def update

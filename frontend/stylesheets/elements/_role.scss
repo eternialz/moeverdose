@@ -1,0 +1,18 @@
+.role {
+    position: relative;
+
+    &::after {
+        color: rgba($true-black, 0.33);
+        content: attr(data-role);
+        font-size: 0.5em;
+        left: calc(50% - 5rem);
+        letter-spacing: -0.05em;
+        pointer-events: none;
+        position: absolute;
+        text-align: center;
+        text-transform: uppercase;
+        top: 100%;
+        width: 10rem;
+        word-break: keep-all;
+    }
+}

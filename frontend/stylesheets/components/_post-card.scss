@@ -1,0 +1,63 @@
+.post-card {
+    color: $true-white;
+    font-weight: bold;
+    min-height: 10rem;
+    max-width: 100%;
+    overflow: hidden;
+    padding: 0.25rem;
+    flex-basis: 20%;
+
+    .fa {
+        font-size: 0.8em;
+    }
+
+    .post-card-image {
+        @include shadow-2();
+
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        border-radius: $border-radius-2;
+        display: inline-block;
+        height: 100%;
+        overflow: hidden;
+        position: relative;
+        text-shadow: 0 0.1rem 0.1rem rgba($shadow-color, 0.3), 0 0 1px rgba($black, 0.5);
+        width: 100%;
+    }
+
+    .post-card-info {
+        background: linear-gradient(rgba($black, 0) 50%, $true-black);
+        bottom: 0;
+        height: 100%;
+        position: absolute;
+        transition: opacity 100ms ease-in-out;
+        width: 100%;
+    }
+
+    &:hover {
+        color: $true-white;
+
+        .post-card-info {
+            opacity: 0.2;
+        }
+    }
+
+    .post-card-stats {
+        bottom: 0;
+        max-width: 100%;
+        padding: 0.5rem 0.7rem;
+        position: absolute;
+
+        i {
+            margin: 0 0.4rem 0 0.1rem;
+        }
+    }
+
+    .post-card-title {
+        margin-bottom: 0.3rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}

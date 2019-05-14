@@ -1,0 +1,33 @@
+.breadcrumbs {
+    background: rgba($black, 0.05);
+    border-radius: $border-radius;
+    padding: 0.25rem 0.5rem;
+    margin-bottom: 1rem;
+
+    a {
+        @include focusable();
+
+        border-radius: $border-radius;
+        color: $gray;
+        font-weight: bold;
+        text-transform: capitalize;
+
+        &::after {
+            color: $gray;
+            content: "\203A"; // "›"
+            margin: 0 0.4rem 0 0.5rem;
+        }
+
+        &:last-child {
+            color: $base-color;
+
+            &:hover {
+                color: rgba($base-color, 0.9);
+            }
+
+            &::after {
+                content: none;
+            }
+        }
+    }
+}

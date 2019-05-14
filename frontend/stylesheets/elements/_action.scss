@@ -1,0 +1,18 @@
+.action {
+    @include focusable();
+
+    border-radius: $border-radius;
+    color: $gray-dark;
+    display: inline-block;
+    font-weight: bold;
+    padding: 0.35rem 0.4rem;
+    transition: color 100ms linear, box-shadow 100ms linear;
+
+    &:hover {
+        color: $blue;
+    }
+
+    i {
+        margin-right: 1rem;
+    }
+}

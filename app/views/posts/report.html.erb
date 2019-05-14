@@ -1,6 +1,0 @@
-<%= form_for @post, as: "post", url: report_post_path(@post.number), html: {class: "zone report_form field_area", id: 'report_post'} do |post| %>
-    <%= post.check_box :report, class: "hide", checked: true %>
-    <h2><%= fa_icon "exclamation-circle" %> Report post</h2>
-    <%= post.text_area :report_reason, placeholder: "Reason" %>
-    <button type="submit" form="report_post" class="btn btn-red" type="submit">Report <%= fa_icon 'exclamation' %></button>
-<% end %>

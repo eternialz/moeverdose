@@ -1,0 +1,108 @@
+<header class="main-menu" data-controller="main-menu">
+    <div class="row">
+        <div class="main-menu-content">
+            <a id="main-menu-logo" href="<%= root_path %>"><h1><%= site_name %></h1></a>
+            <nav class="main-menu-nav hide-medium" data-action="mouseover->main-menu#open mouseout->main-menu#close">
+                <div class="main-menu-subnav-container">
+                    <%= link_to 'Posts', posts_path, title: 'Posts', class: 'main-menu-link' %>
+                    <nav class="main-menu-subnav">
+                        <%= link_to 'All posts', posts_path, title: 'Index', class: 'main-menu-link' %>
+                        <%= link_to 'Random', random_path, title: 'Random', class: 'main-menu-link' %>
+                        <%= link_to 'Upload', new_post_path, title: 'Upload', class: 'main-menu-link' %>
+                        <%= link_to 'Tags', tags_path, title: 'Tags', class: 'main-menu-link' %>
+                        <%= link_to 'Authors', authors_path, title: 'Authors', class: 'main-menu-link' %>
+                    </nav>
+                </div>
+                <div class="main-menu-subnav-container">
+                    <%= link_to 'About', "/about", title: 'moeverdose', class: 'main-menu-link' %>
+                    <nav class="main-menu-subnav">
+                        <%= link_to 'Team', '/teams', title: 'Team', class: 'main-menu-link' %>
+                        <%= link_to 'Source code', '/source', title: 'Source code', class: 'main-menu-link' %>
+                        <%= link_to 'Terms of service', '/tos', title: 'Terms of service', class: 'main-menu-link' %>
+                        <%= link_to 'Cookies & privacy', '/cookies', title: 'Cookies & Privacy', class: 'main-menu-link' %>
+                    </nav>
+                </div>
+                <div class="main-menu-subnav-container">
+                    <%= link_to 'Help', "/wiki/index", title: 'Help', class: 'main-menu-link' %>
+                    <nav class="main-menu-subnav">
+                        <%= link_to 'Wiki', "/wiki/index", title: 'Wiki', class: 'main-menu-link' %>
+                        <%= link_to 'Faq', '/wiki/keyboard', title: '', class: 'main-menu-link' %>
+                        <%= link_to 'Keyboard shortcuts', '/wiki/keyboard', title: '', class: 'main-menu-link' %>
+                        <%= link_to 'Posts rules', '/wiki/rules', title: '', class: 'main-menu-link' %>
+                        <%= link_to 'Uploading', '/wiki/rules', title: '', class: 'main-menu-link' %>
+                        <%= link_to 'Copyright request', '/wiki/copyright', title: 'Copyright request', class: 'main-menu-link' %>
+                    </nav>
+                </div>
+                <div class="main-menu-subnav-container">
+                    <%= link_to 'Community', chat_url, target: "_blank", title: 'Community', class: 'main-menu-link' %>
+                    <nav class="main-menu-subnav">
+                        <%= link_to 'Twitter', twitter_url, target: "_blank", title: 'Twitter', class: 'main-menu-link' %>
+                        <%= link_to 'Discord server', chat_url, target: "_blank", title: 'Discord server', class: 'main-menu-link' %>
+                        <%= link_to 'Users', users_path, title: 'Users', class: 'main-menu-link' %>
+                        <%= link_to static_page_path('support'), title: 'Support', class: 'main-menu-link main-menu-support' do %>
+                            Support us <i class="fa fa-heart"></i>
+                        <% end %>
+                    </nav>
+                </div>
+            </nav>
+            <div class="main-menu-nav user hide-medium" data-action="mouseover->main-menu#open mouseout->main-menu#close">
+                <div class="main-menu-subnav-container">
+                    <% if user_signed_in? %>
+                        <%= link_to current_user.name, user_path(current_user.name), class: 'main-menu-link' %>
+                        <div class="avatar">
+                            <% if current_user.avatar.attached? %>
+                                <%= link_to user_path(current_user.name) do %>
+                                    <%= image_tag current_user.avatar, width: 40, height: 40 %>
+                                <% end %>
+                            <% else %>
+                                <%= link_to user_path(current_user.name) do %>
+                                    <%= image_tag '/images/default-user.png', width: 40, height: 40 %>
+                                <% end %>
+                            <% end%>
+                        </div>
+                    <% else %>
+                        <%= link_to 'Guest', new_user_session_path, class: 'main-menu-link' %>
+                        <%= link_to new_user_session_path, class: "avatar" do %>
+                            <%= image_tag "/images/default-user.png" %>
+                        <% end %>
+                    <% end %>
+                    <nav class="main-menu-subnav main-menu-account-nav">
+                        <% if user_signed_in? %>
+                            <div class="main-menu-account-links">
+                                <%= link_to "Profile", user_path(current_user.name), title: 'Profile', class: 'main-menu-link' %>
+                                <%= link_to "Options", edit_user_path(current_user.name), title: 'Options', class: 'main-menu-link'  %>
+                                <%= link_to 'Favorites', favorites_path(current_user.name), title: 'Favorites', class: 'main-menu-link'  %>
+                                <%= link_to 'Uploads', uploads_path(current_user.name), title: 'Uploads', class: 'main-menu-link' %>
+                                <%= form_for current_user, url: destroy_user_session_path, method: "DELETE" do %>
+                                    <button type="submit" title="Logout" class="main-menu-link button-link">Logout</button>
+                                <% end %>
+                            </div>
+                        <% else %>
+                            <div class="main-menu-block">
+                                <div class="main-menu-register">
+                                    <h5 class="title title-compact">Sign Up</h5>
+                                    <p>With an account you can upload images, keep track of your favorites, blacklists tags and many more!</p>
+                                    <%= link_to new_user_registration_path, class: 'button-primary' do %>
+                                        Sign up <i class="fa fa-user-plus"></i>
+                                    <% end %>
+                                </div>
+                                <div class="main-menu-login">
+                                    <h5 class="title title-compact">Log In</h5>
+                                    <p>Connect using your email and password</p>
+                                    <%= link_to "Forgot your password?", new_password_path(:user) %>
+                                    <%= link_to new_session_path(:user), class: "button-primary" do %>
+                                        Login <i class="fa fa-sign-in-alt"></i>
+                                    <% end %>
+                                </div>
+                            </div>
+                        <% end %>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="submenu hide-medium" data-target="main-menu.submenu"></div>
+            
+            <%= component "shared/mobile-menu" %>
+        </div>
+    </div>
+</header>

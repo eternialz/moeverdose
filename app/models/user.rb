@@ -1,44 +1,52 @@
 class User < ApplicationRecord
-    # Include default devise modules. Others available are:
-    # :confirmable, :lockable, :timeoutable and :omniauthable
     devise :database_authenticatable, :registerable, :confirmable,
         :recoverable, :rememberable, :trackable, :validatable
-    validates :name,  uniqueness: true, presence: true
+    after_initialize :set_default_role, if: :new_record?
 
+    # Base properties
+    validates :name,  uniqueness: true, presence: true
     validates :email, presence: true
+
     # Avatar
     has_one_attached :avatar
-
-    validates :avatar, content_type: /\Aimage\/.*\Z/,
-        size: { less_than_or_equal_to: 0.5.megabytes }
+    validates :avatar, content_type: ["image/png", "image/jpeg"],
+        size: { less_than: 500.kilobytes }
 
     # Posts
     has_many :posts, class_name: "Post", inverse_of: :user
 
     # Stats
-    belongs_to :level, class_name: "Level", inverse_of: :user
+    belongs_to :level, class_name: "Level", inverse_of: :user, default: -> {
+        Level.all.order("rank ASC").first
+    }
 
-    # Posts marked as favorite of the user
+    # Posts marked the user
     has_and_belongs_to_many :favorites, class_name: "Post", inverse_of: nil, join_table: :favorites_posts_users
     has_and_belongs_to_many :liked_posts, class_name: "Post", inverse_of: nil, join_table: :liked_posts_users
     has_and_belongs_to_many :disliked_posts, class_name: "Post", inverse_of: nil, join_table: :disliked_posts_users
 
+    # Tags marked by the user
     has_and_belongs_to_many :favorites_tags, class_name: "Tag", inverse_of: nil, join_table: :favorites_tags_users
     has_and_belongs_to_many :blacklisted_tags, class_name: "Tag", inverse_of: nil, join_table: :blacklisted_tags_users
+
     # Comments
     has_many :comments, class_name: "Comment", inverse_of: :user
 
     # User security
     alias_attribute :report?, :report
-
     alias_attribute :banned?, :banned
 
-    def active_for_authentication? # Prevent banned user authentications
+    # Prevent banned user authentications
+    def active_for_authentication?
         super && !self.banned?
     end
 
     def inactive_message # Custom error message for banned user
         !self.banned? ? super : :banned
+    end
+
+    def team?
+        ['administrator', 'moderator'].include? self.role
     end
 
     # Reported posts
@@ -59,4 +67,9 @@ class User < ApplicationRecord
     end
     include User::Role
     validates :role, inclusion: {in: User::Role.all}
+
+    private
+    def set_default_role
+        self.role ||= 'user'
+    end
 end

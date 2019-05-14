@@ -9,9 +9,13 @@ class Tag < ApplicationRecord
 
     has_one :author, class_name: "Author", inverse_of: :tag
 
+    scope :popular, -> {
+        order('posts_count DESC')
+    }
+
     module Type
         def self.all
-            ['content', 'character', 'author']
+            ['content', 'character', 'author', 'copyright']
         end
 
         self.all.each do |type|
@@ -34,9 +38,9 @@ class Tag < ApplicationRecord
     end
 
     def opt_names
-      # Optionnal names (alias.main = false)
-      self.aliases.where(main: false).map do |a|
-          a.name
+        # Optionnal names (alias.main = false)
+        self.aliases.where(main: false).map do |a|
+            a.name
         end
     end
 end

@@ -6,6 +6,7 @@ module Admin
 
         def index
             @comments = Kaminari.paginate_array(Comment.where(report: true)).page(params[:page]).per(20)
+            render component "admin/comments/index"
         end
 
         def destroy
@@ -19,11 +20,10 @@ module Admin
             @comment.report_reason = ""
             if @comment.save
                 flash[:notice] = "Comment unreported"
-                redirect_to admin_comments_path
             else
                 flash[:error] = "An error occured"
-                redirect_to admin_comments_path
             end
+            redirect_to admin_comments_path
         end
 
         protected

@@ -5,7 +5,11 @@ module ConfigHelper
     end
 
     def chat_url
-        "https://discord.me/moeverdose"
+        "https://discordapp.com/invite/xfCpyJY"
+    end
+
+    def source_url
+        "https://github.com/eternialz/moeverdose"
     end
 
     def twitter_url

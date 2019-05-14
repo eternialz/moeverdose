@@ -1,0 +1,53 @@
+.anchor-id {
+    position: absolute;
+    top: -5rem;
+}
+
+.anchor {
+    display: inline-block;
+    position: relative;
+
+    .anchor-link {
+        @include shadow-control-2;
+
+        background: $true-white;
+        border-radius: 1rem;
+        bottom: calc(100% + 0.4rem);
+        color: $text-color-dark;
+        cursor: pointer;
+        font-size: 0.8rem;
+        left: 0;
+        line-height: 1;
+        opacity: 0;
+        outline: none;
+        padding: 0.4em 0.3rem;
+        position: absolute;
+        transition: all 120ms ease-in-out;
+
+        &:hover {
+            color: rgba($primary-color, 0.8);
+            opacity: 1 !important;
+        }
+
+        &:focus {
+            background: $primary-color;
+            color: $white;
+            opacity: 1;
+        }
+    }
+
+    &::before {
+        position: absolute;
+        content: " ";
+        width: 3rem;
+        height: 2rem;
+        bottom: 100%;
+        left: -0.5rem;
+    }
+
+    &:hover {
+        .anchor-link {
+            opacity: 0.66;
+        }
+    }
+}

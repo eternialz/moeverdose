@@ -1,0 +1,10 @@
+.tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100%;
+
+    .tag {
+        word-break: break-all;
+        margin: 0 0.5rem 0.5rem 0;
+    }
+}

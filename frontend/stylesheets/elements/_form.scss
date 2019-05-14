@@ -1,0 +1,165 @@
+.form {
+    padding: 0.35rem 0;
+}
+
+.form-field {
+    margin: 0.5rem 0;
+}
+
+.form-label {
+    font-weight: bold;
+    padding-bottom: 0.2rem;
+
+    i {
+        margin-right: 0.2rem;
+    }
+}
+
+.form-error {
+    display: none;
+    color: $error-color;
+}
+
+.form-textarea {
+    min-height: 5rem;
+    resize: vertical;
+}
+
+.form-input,
+.form-textarea {
+    @include focusable();
+
+    appearance: none;
+    background: $gray-lighter;
+    background-image: none;
+    border-radius: $border-radius;
+    border: 0;
+    caret-color: $base-color;
+    color: $black;
+    display: block;
+    font-size: $body-font-size;
+    line-height: 1;
+    margin: 0.2rem 0;
+    max-width: 100%;
+    outline: none;
+    padding: 0.6em 0.5em;
+    position: relative;
+    transition: background 0.2s, border 0.2s, box-shadow 0.2s, color 0.2s;
+    width: 100%;
+
+    &::placeholder {
+        color: $gray-light;
+        opacity: 1;
+    }
+
+    &.form-input-error {
+        caret-color: $error-color;
+        box-shadow: 0 0 0 2px rgba($error-color, 0.8);
+
+        & + .form-error {
+            display: block;
+        }
+    }
+}
+
+.form-input-group {
+    border-radius: $border-radius;
+    display: flex;
+    overflow: hidden;
+
+    .form-input,
+    .form-textarea {
+        margin: 0;
+    }
+
+    * {
+        border-radius: 0;
+    }
+}
+
+.form-file {
+    .form-file-input {
+        display: none;
+    }
+
+    .form-file-label {
+        margin-right: 0.25rem;
+    }
+
+    .form-file-valid {
+        display: none;
+    }
+
+    .form-file-invalid {
+        display: inline-block;
+    }
+
+    .form-file-input:valid + .form-file-label {
+        .form-file-valid {
+            display: inline-block;
+        }
+
+        .form-file-invalid {
+            display: none;
+        }
+    }
+}
+
+.form-checkbox {
+    margin: 0;
+    font-weight: bold;
+
+    input {
+        opacity: 0;
+        pointer-events: none;
+        position: fixed;
+        top: -100vh;
+    }
+
+    label {
+        cursor: pointer;
+        display: inline-block;
+        padding: 0.5rem 0;
+        border-radius: 2px;
+        transition: color 100ms ease-in-out, box-shadow 0.2s, color 0.2s;
+
+        &::before {
+            content: "\f0c8";
+            font-family: "Font Awesome 5 Free", sans-serif;
+            margin-right: 0.4rem;
+            transition: color 100ms ease-in-out;
+        }
+    }
+
+    input:checked + label {
+        color: $base-color;
+
+        &::before {
+            content: "\f14a";
+            color: $base-color;
+        }
+    }
+
+    input:focus + label {
+        @include focusable-property();
+    }
+}
+
+/* Change Autocomplete styles in Chrome */
+.form-input:-webkit-autofill,
+.form-input:-webkit-autofill:hover,
+.form-input:-webkit-autofill:focus,
+.form-textarea:-webkit-autofill,
+.form-textarea:-webkit-autofill:hover,
+.form-textarea:-webkit-autofill:focus,
+.form-select:-webkit-autofill,
+.form-select:-webkit-autofill:hover,
+.form-select:-webkit-autofill:focus {
+    -webkit-text-fill-color: $base-color;
+    box-shadow: inset 0 0 0 10rem $gray-lighter;
+    transition: background-color 5000s ease-in-out 0s;
+
+    &:focus {
+        box-shadow: inset 0 0 0 10rem $gray-lighter, 0 0 0 2px rgba($base-color, 0.75);
+    }
+}

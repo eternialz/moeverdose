@@ -3,12 +3,16 @@ class Admin::PostsController < Admin::BaseController
 
     def index
         @posts = Kaminari.paginate_array(Post.where(report: true).order('created_at DESC')).page(params[:page]).per(20)
+
+        render component "admin/posts/index"
     end
 
     def show
+        render component "admin/posts/show"
     end
 
     def edit
+        render component "admin/posts/edit"
     end
 
     def update

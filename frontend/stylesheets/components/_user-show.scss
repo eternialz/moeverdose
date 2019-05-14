@@ -1,0 +1,95 @@
+.user-show {
+    .user-show-header {
+        display: flex;
+        padding: 0;
+
+        .user-show-identity {
+            background: rgba($shadow-color, 0.05);
+            border-right: 1px solid $gray-lighter;
+            width: 12rem;
+
+            .user-show-identity-section {
+                align-items: center;
+                border-bottom: 1px solid $gray-lighter;
+                display: flex;
+                flex-direction: column;
+                padding: 1rem;
+
+                &:last-child {
+                    border-bottom: none;
+                    flex-grow: 1;
+                }
+            }
+
+            .user-show-avatar {
+                height: 6rem;
+                margin-bottom: 1rem;
+                width: 6rem;
+            }
+
+            .user-show-item {
+                color: $gray;
+                line-height: 1;
+                text-align: center;
+                font-size: 0.8em;
+                margin-bottom: 0.2rem;
+            }
+
+            .user-show-name {
+                color: $gray-darker;
+                max-width: 100%;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+
+            .user-show-level {
+                width: 100%;
+            }
+        }
+
+        .user-show-informations {
+            flex-grow: 1;
+            word-break: break-all;
+        }
+    }
+
+    .user-show-alert {
+        bottom: -5rem;
+        left: 0;
+        padding: 1rem;
+        position: fixed;
+        text-align: center;
+        width: 100%;
+        z-index: $depth-3;
+        transition: bottom 120ms ease-in-out;
+
+        .user-show-alert-content {
+            @include shadow-3();
+
+            display: inline-block;
+            padding: 0.5rem 0.5rem 0.5rem 1rem;
+            max-width: 100%;
+            color: $true-white;
+            font-weight: bold;
+            background: $black;
+            border-radius: $border-radius-2;
+        }
+
+        .user-show-alert-reset {
+            margin-left: 3rem;
+            color: $white;
+
+            &:hover {
+                color: rgba($white, 0.8);
+            }
+        }
+
+        &.active {
+            bottom: 0;
+        }
+
+        .button-primary {
+            margin-left: 1rem;
+        }
+    }
+}

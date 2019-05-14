@@ -1,0 +1,7 @@
+<% if defined?(@breadcrumbs) && @breadcrumbs.any? %>
+    <div class="breadcrumbs">
+        <% @breadcrumbs.each do |b| %>
+            <%= link_to b[:name], b[:path] %>
+        <% end %>
+    </div>
+<% end %>

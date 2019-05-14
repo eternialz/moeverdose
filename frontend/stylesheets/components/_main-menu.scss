@@ -1,0 +1,254 @@
+/*
+    <header class="main-menu">
+        <div class="row">
+            <div class="main-menu-content">
+                <a id="main-menu-logo"></a>
+                <nav class="main-menu-nav">
+                    <div class="main-menu-subnav-container">
+                        <a class="main-menu-link"></a>
+                        <nav class="main-menu-subnav">
+                            <a class="main-menu-link"></a>
+                            <a class="main-menu-link"></a>
+                            ...
+                        </nav>
+                    </div>
+                </nav>
+                <div class="main-menu-nav user">
+                    <div class="main-menu-subnav-container">
+                        <a class="main-menu-link"></a>
+                        <div class="avatar">
+                            <img />
+                        </div>
+                        <nav class="main-menu-subnav">
+                            <div class="main-menu-account-links">
+                                <a class="main-menu-link"></a>
+                                <a class="main-menu-link"></a>
+                                ...
+                            </div>
+                            <div class="main-menu-block">
+                                <div class="main-menu-register">
+                                </div>
+                                <div class="main-menu-login">
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+                <div class="submenu" data-target="main-menu.submenu"></div>
+            </div>
+        </div>
+    </header>
+
+*/
+
+.main-menu {
+    @include shadow-3();
+
+    background: $gray-darker;
+    border-bottom: 1px solid $primary-color;
+    color: $white;
+    font-size: 1rem;
+    position: fixed;
+    width: 100%;
+    z-index: $depth-3;
+
+    .main-menu-link {
+        color: $gray-lighter;
+
+        &:hover {
+            color: $true-white;
+        }
+    }
+
+    .main-menu-content {
+        align-items: center;
+        display: flex;
+        height: 3rem;
+    }
+
+    #main-menu-logo {
+        @include focusable();
+
+        border-radius: $border-radius;
+        color: $true-white;
+
+        h1 {
+            margin: 0;
+        }
+    }
+
+    .main-menu-nav {
+        padding: 0 1rem;
+
+        .main-menu-subnav-container {
+            display: inline-block;
+            position: relative;
+
+            .main-menu-link {
+                @include focusable();
+
+                border-radius: $border-radius;
+                display: inline-block;
+                margin: 0.25rem;
+                padding: 0.25rem;
+            }
+
+            .main-menu-subnav {
+                height: 0;
+                left: -2.25rem;
+                opacity: 0;
+                padding: 1rem 2rem 0;
+                pointer-events: none;
+                position: absolute;
+                top: 100%;
+                transition: opacity 100ms ease-in-out;
+                white-space: nowrap;
+                z-index: $depth-2;
+            }
+
+            &:hover {
+                .main-menu-link {
+                    color: $true-white;
+                }
+
+                .main-menu-subnav {
+                    height: auto;
+                    opacity: 1;
+                    pointer-events: all;
+                }
+            }
+
+            .main-menu-subnav .main-menu-link {
+                border-radius: 0.15rem;
+                color: $gray-light;
+                display: block;
+                margin: 0.15rem 0.25rem;
+                padding: 0.15rem 0.5rem 0.15rem;
+
+                &:hover {
+                    background: $true-black;
+                    color: $true-white;
+                }
+
+                &.main-menu-support {
+                    i {
+                        margin-left: 0.25rem;
+                        font-size: 0.75em;
+                    }
+
+                    &:hover {
+                        color: $primary-color;
+                    }
+                }
+            }
+        }
+
+        &.user {
+            align-items: center;
+            display: flex;
+            height: 3rem;
+            margin-left: auto;
+
+            .avatar {
+                @include focusable();
+
+                border-radius: 50%;
+                display: inline-block;
+                margin-left: 0.5rem;
+                max-height: 2rem;
+                max-width: 2rem;
+                overflow: hidden;
+
+                img {
+                    height: 2rem;
+                    width: 2rem;
+                }
+            }
+
+            .main-menu-subnav-container .main-menu-subnav {
+                left: auto;
+                right: 0;
+                white-space: normal;
+
+                .main-menu-block {
+                    display: flex;
+                    width: 22rem;
+                    position: relative;
+                    right: -2.25rem;
+                }
+
+                .main-menu-login,
+                .main-menu-register {
+                    height: 13rem;
+                    font-size: 0.8rem;
+                    width: 12rem;
+                    padding: 0.5rem 1rem;
+                    display: flex;
+                    flex-direction: column;
+
+                    .button-primary {
+                        margin-top: auto;
+                        margin-left: auto;
+                    }
+                }
+
+                .main-menu-register {
+                    padding-left: 0;
+                }
+
+                .main-menu-login {
+                    padding-right: 0;
+
+                    .form {
+                        display: flex;
+                        flex-direction: column;
+                        height: 100%;
+                        padding-bottom: 0;
+
+                        .main-menu-block-content {
+                            flex-grow: 1;
+                        }
+                    }
+                }
+            }
+
+            .main-menu-subnav .main-menu-account-links {
+                align-items: flex-end;
+                display: flex;
+                flex-direction: column;
+                position: relative;
+                right: 0.35rem;
+
+                .main-menu-link {
+                    text-align: right;
+                }
+            }
+
+            .main-menu-subnav-container {
+                align-items: center;
+                display: flex;
+                height: 100%;
+            }
+        }
+    }
+
+    .submenu {
+        @include shadow-3();
+
+        background: $black;
+        height: 15rem;
+        left: 0;
+        opacity: 0;
+        overflow: hidden;
+        pointer-events: none;
+        position: absolute;
+        top: 100%;
+        transition: opacity 100ms ease-in-out;
+        width: 100%;
+
+        &.active {
+            border-bottom: 3px solid $primary-color;
+            opacity: 1;
+        }
+    }
+}

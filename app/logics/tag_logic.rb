@@ -8,10 +8,11 @@ class TagLogic < SimpleDelegator
         tag = Tag.includes(:aliases).where(aliases: {name: name}, type: type)
         if tag.empty?
             tag = Tag.create(type: type)
-            a = Alias.create(tag_id: tag.id, name: name, main: true)
+            Alias.create(tag_id: tag.id, name: name, main: true)
         end
 
         post.tags << tag
+        return tag;
     end
 
     def self.change_counts(tags, num)
@@ -21,12 +22,32 @@ class TagLogic < SimpleDelegator
         end
     end
 
+    def self.differenciate_tags(tags)
+        character = []
+        author = []
+        copyright = []
+        tag = []
+        tags.each do |t|
+            if t.content?
+                tag << t.name
+            elsif t.character?
+                character << t.name
+            elsif t.author?
+                author << t.name
+            elsif t.copyright?
+                copyright << t.name
+            end
+        end
+
+        return {tags: tag, characters: character, authors: author, copyrights: copyright}
+    end
+
     def self.find_or_create_author(name, post)
         name = name.downcase.tr(" ", "_")
         tag = Tag.includes(:aliases).where(aliases: {name: name}, type: :author)
         if tag.empty?
             tag = Tag.create(type: :author)
-            a = Alias.create(tag_id: tag.id, name: name, main: true)
+            Alias.create(tag_id: tag.id, name: name, main: true)
             author = Author.new(name: name, tag: tag)
         else
             begin
@@ -37,7 +58,6 @@ class TagLogic < SimpleDelegator
         end
 
         post.tags << tag
-        post.author = author
         return author
     end
 end

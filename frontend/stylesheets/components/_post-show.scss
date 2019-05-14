@@ -1,0 +1,133 @@
+.post-show {
+    .post-show-navigation {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+
+        .button-primary {
+            flex-basis: 7rem;
+        }
+
+        .previous i {
+            float: left;
+            margin: 0 0.2rem 0 0;
+        }
+
+        .next i {
+            float: right;
+        }
+    }
+
+    .post-show-content {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        margin: 3rem 0;
+        min-height: 10rem;
+        overflow: hidden;
+        position: relative;
+
+        .post-show-image {
+            background-color: $gray-lighter;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 8 8'%3E%3Cg fill='%23FFFFFF' fill-opacity='1'%3E%3Cpath fill-rule='evenodd' d='M0 0h4v4H0V0zm4 4h4v4H4V4z'/%3E%3C/g%3E%3C/svg%3E");
+            position: relative;
+
+            &.post-show-image-reported {
+                filter: blur(5rem);
+                transform: translate3d(0, 0, 0);
+            }
+
+            &::before {
+                border: 1px dashed $gray-light;
+                content: ' ';
+                height: 100%;
+                left: 0;
+                position: absolute;
+                top: 0;
+                width: 100%;
+                z-index: $depth-1;
+            }
+
+            img {
+                // pointer-events: none;
+                display: block;
+                max-width: 100%;
+                position: relative;
+                z-index: $depth-2;
+            }
+
+            // &::after {
+            //     content: ' ';
+            //     height: 100%;
+            //     left: 0;
+            //     position: absolute;
+            //     top: 0;
+            //     width: 100%;
+            //     z-index: $depth-3;
+            // }
+        }
+    }
+
+    .post-show-reported {
+        align-items: center;
+        background: rgba($black, 0.8);
+        color: $white;
+        display: flex;
+        flex-direction: column;
+        font-weight: bold;
+        height: 100%;
+        left: 0;
+        overflow-y: auto;
+        padding: 1rem 1rem;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: $depth-2;
+
+        p {
+            max-width: 40rem;
+        }
+
+        .button-primary {
+            margin-top: 2rem;
+        }
+    }
+
+    .post-show-score {
+        overflow: hidden;
+
+        .post-show-score-bars {
+            background: $gray-darker;
+            display: flex;
+            padding: 1rem;
+
+            .post-show-bar {
+                border-radius: $border-radius;
+                color: $true-white;
+                font-weight: bold;
+                padding: 0.1rem 0.4rem;
+                transition: flex-basis 400ms linear;
+
+                &.overdose {
+                    background: $pink;
+                    flex-basis: 50%;
+                    margin-right: 0.5rem;
+                    text-align: right;
+                }
+
+                &.shortage {
+                    background: $cyan;
+                    flex-basis: 50%;
+                    margin-left: 0.5rem;
+                    text-align: left;
+                }
+            }
+        }
+
+        .post-show-score-buttons {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem;
+        }
+    }
+}

@@ -1,0 +1,45 @@
+.post-new {
+    .post-new-upload {
+        input {
+            display: none;
+        }
+
+        .post-new-dummy {
+            display: block;
+            font-weight: bold;
+            padding: 1rem 0;
+            width: 100%;
+
+            .post-new-valid {
+                display: none;
+            }
+
+            .button-primary {
+                margin-right: 0.5rem;
+            }
+        }
+
+        .post-new-file {
+            img {
+                @include shadow-1;
+
+                display: block;
+                height: auto;
+                margin: auto;
+                max-height: 20rem;
+                max-width: 100%;
+                width: auto;
+            }
+        }
+
+        input:valid + .post-new-dummy {
+            .post-new-valid {
+                display: inline;
+            }
+
+            .post-new-invalid {
+                display: none;
+            }
+        }
+    }
+}

@@ -1,9 +1,23 @@
 class ApplicationController < ActionController::Base
     protect_from_forgery with: :exception
+    prepend_view_path Rails.root.join("frontend")
 
     def home
         @news = New.all.order('created_at DESC').limit(2)
-        render "/home"
+
+        @tags = Tag.popular.limit(20)
+        if user_signed_in?
+            @tags += current_user.favorites_tags
+        end
+
+        results = TagLogic.differenciate_tags(@tags)
+
+        @tags = results[:tags]
+        @characters = results[:characters]
+        @authors = results[:authors]
+        @copyrights = results[:copyrights]
+
+        render component "home"
     end
 
     def current_user
@@ -15,5 +29,16 @@ class ApplicationController < ActionController::Base
         if page_title.to_s != ""
             @title = page_title.to_s + ' - ' + helpers.site_name
         end
+    end
+
+    def component(component_path)
+        path_array = component_path.downcase.split('/')
+        name = path_array.pop
+        component_name = path_array.join('/')
+        return "components/#{component_name}/#{name}/_#{name}"
+    end
+
+    def xhr_redirect_to(url)
+        head 302, x_xhr_redirect_url: url
     end
 end

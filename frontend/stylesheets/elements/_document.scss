@@ -1,0 +1,49 @@
+html {
+    background: $white;
+    box-sizing: border-box;
+    font-family: 'Lato', Arial Grande, Tahoma, Helvetica, Arial, sans-serif;
+    font-size: $default-font-size;
+    line-height: $default-line-height;
+    text-rendering: optimizeLegibility;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+body {
+    color: $text-color-dark;
+    font-size: $body-font-size;
+    overflow: hidden scroll;
+
+    .view-content {
+        padding-top: 4rem;
+        margin-bottom: 2rem;
+    }
+
+    .view-full-width {
+        display: flex;
+        padding-top: 3rem;
+
+        .view-full-width-content {
+            padding: 1rem;
+            flex-grow: 1;
+        }
+
+        .view-full-width-sidebar {
+            position: relative;
+            min-height: 10vh;
+            display: flex;
+        }
+    }
+
+    &.disable-scroll {
+        overflow: hidden;
+
+        & > *:not(.lightbox) {
+            opacity: 0 !important;
+        }
+    }
+}

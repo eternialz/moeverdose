@@ -15,15 +15,8 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
-gem "sprockets", "~>3.7.0"
+gem 'webpacker', '~> 3.5'
 
-gem 'mini_racer'
-# Use jquery as the JavaScript library
-gem 'jquery-rails'
-# Jquery Turbolinks Compatibility
-gem 'jquery-turbolinks'
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
@@ -39,10 +32,6 @@ gem 'mime-types', require: 'mime/types/full'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-# Rails cells
-gem "cells-rails"
-gem "cells-erb"
-
 # Devise for user authentications
 gem "devise"
 
@@ -54,9 +43,6 @@ gem "autoprefixer-rails"
 
 # Font-awesome
 gem "font-awesome-rails"
-
-# Discord BOT
-gem "discordrb"
 
 # Httparty
 gem "httparty"
@@ -71,6 +57,9 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
     # Call 'byebug' anywhere in the code to stop execution and get a debugger console
     gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+
+    # Open mails in the browser 
+    gem "letter_opener"
 
     # PRY
     gem "rb-readline"

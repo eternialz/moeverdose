@@ -3,12 +3,16 @@ class Admin::LevelsController < Admin::BaseController
 
     def index
         @levels = Kaminari.paginate_array(Level.all).page(params[:page]).per(20)
+
+        render component "admin/levels/index"
     end
 
     def new
+        render component "admin/levels/new"
     end
 
     def edit
+        render component "admin/levels/edit"
     end
 
     def create

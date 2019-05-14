@@ -1,0 +1,95 @@
+.mobile-menu {
+    margin-left: auto;
+    padding-top: 0.25rem;
+
+    .mobile-menu-toggle {
+        background: $gray-dark;
+        border-radius: $border-radius;
+        cursor: pointer;
+        display: flex;
+        float: right;
+        height: 2rem;
+        margin-right: 0.3rem;
+        width: 2rem;
+
+        i {
+            margin: auto;
+        }
+    }
+
+    .mobile-menu-avatar {
+        background: $gray-dark;
+        border-radius: $border-radius;
+        display: inline-block;
+        height: 2rem;
+        margin-right: 0.5em;
+        overflow: hidden;
+        width: 2rem;
+
+        img {
+            height: 100%;
+            width: 100%;
+        }
+    }
+
+    .mobile-menu-content {
+        @include shadow-3();
+
+        background: $gray-dark;
+        display: none;
+        left: 0;
+        position: absolute;
+        top: 3rem;
+        max-height: calc(100vh - 3rem);
+        overflow-y: scroll;
+        width: 100%;
+        padding: 0.5rem 0;
+
+        &.active {
+            display: block;
+        }
+    }
+
+    .mobile-menu-subnav-container {
+        .mobile-menu-link {
+            color: $white;
+            display: block;
+            text-align: left;
+            padding: 0.7rem 0.5rem 0.7rem 0;
+            transition: background-color 100ms ease-in-out;
+            width: 100%;
+
+            &::before {
+                content: "\f105";
+                display: inline-block;
+                font-family: "Font Awesome 5 Free", sans-serif;
+                font-weight: 900;
+                text-align: center;
+                width: 3rem;
+            }
+
+            &:hover {
+                background: rgba($gray-darker, 0.5);
+            }
+        }
+
+        nav.mobile-menu-subnav {
+            display: none;
+
+            .mobile-menu-link {
+                border-bottom: none;
+                padding: 0.4rem 0.5rem 0.4rem 1.8rem;
+            }
+        }
+
+        &.active {
+            nav {
+                display: block;
+            }
+
+            & > .mobile-menu-link::before {
+                content: "\f107";
+            }
+        }
+    }
+}

@@ -1,8 +1,10 @@
 class Admin::DashboardController < Admin::BaseController
 
-  def index
-  end
+    def index
+        render component "admin/dashboard/index"
+    end
 
-  def stats
-  end
+    def stats
+        render component "admin/dashboard/stats"
+    end
 end

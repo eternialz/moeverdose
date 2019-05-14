@@ -1,0 +1,87 @@
+
+<div class="home-about">
+    <div class="padding align-center">
+        <h1 class="title"><%= site_name %></h1>
+        <h6 class="subtitle"><%= random_message %></h6>
+    </div>
+    <div class="margin margin-bottom">
+        <%= component "shared/main-search" %>
+    </div>
+    <div class="zone">
+        <p class="p-lead">
+            <%= site_name %> is a safe for work image board for cute anime style characters.
+            If you need help using our website, you can find informations on the <a href="/pages/help/index">Help page</a>.
+        </p>
+        <br />
+        <div class="columns">
+            <div class="col-6 col-12-small align-center padding padding-horizontal">
+                <a href="<%= chat_url %>" class="button-primary button-discord button-icon-left" target="_blank">
+                    <i class="fab fa-discord"></i>
+                    Join the Chat
+                </a>
+                <p class="p-lead">
+                    Join our Discord Chat and get automatic updates, moeverdose bots and more
+                </p>
+            </div>
+            <div class="col-6 col-12-small align-center padding padding-horizontal"">
+                <a href="<%= source_url %>" class="button-primary button-github button-icon-left" target="_blank">
+                    <i class="fab fa-github"></i>
+                    Source on github
+                </a>
+                <p class="p-lead">
+                    Moeverdose is an open source project under the Mozilla Public Licence 2.0
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="zone rm-padding">
+    <div class="columns padding padding-horizontal">
+        <div class="col-4 col-12-medium padding">
+            <h4 class="title">
+                <%= component "/shared/anchor", {anchor: 'name'} do %>
+                    <%= site_name %> is currently in open beta
+                <% end %>
+            </h4>
+            <p class="p-lead">
+                The current database will most probably be deleted or have some parts removed at the end of the beta test.<br />
+                If you encounter bugs (graphical glitch, slow speed, error 500, ...), please help us by reporting them in the discord chat, under the #bug_report channel.
+            </p>
+        </div>
+
+        <div class="col-8 col-12-medium padding">
+            <h4 class="title">
+                <%= component "/shared/anchor", {anchor: 'news'} do %>
+                    news
+                <% end %>
+            </h4>
+            <% if !@news.empty? %>
+                <% @news.each do |n| %>
+                    <% if n.text.length > 200 %>
+                        <div class="card">
+                            <h4 class="subtitle"><%= n.title %></h4>
+                            <h6>
+                                <span><%= n.created_at.strftime("%Y/%m/%d") %></span>
+                            </h6>
+                            <p class="p-lead"><%= n.text[0..200] %>...</p>
+                            <%= link_to news_path(n), class: "button button-secondary" do %>
+                                Read more
+                            <% end %>
+                        </div>
+                    <% else %>
+                        <div class="card">
+                            <h4 class="subtitle"><%= n.title %></h4>
+                            <h6>
+                                <span><%= n.created_at.strftime("%Y/%m/%d") %></span>
+                            </h6>
+                            <p class="p-lead"><%= n.text %></p>
+                        </div>
+                    <% end %>
+                <% end %>
+            <% else %>
+                <p class="title">No news</p>
+            <% end %>
+        </div>
+    </div>
+</div>

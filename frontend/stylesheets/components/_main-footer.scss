@@ -1,0 +1,26 @@
+.main-footer {
+    background: $gray-darker;
+    color: $white;
+
+    .title {
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid $gray-dark;
+    }
+
+    a {
+        @include focusable();
+
+        border-radius: $border-radius;
+        color: $gray-light;
+        margin: 0.1rem 0;
+        padding: 0.1rem 0;
+    }
+
+    nav a {
+        display: block;
+    }
+
+    a:hover {
+        color: $true-white;
+    }
+}

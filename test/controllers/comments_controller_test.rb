@@ -49,7 +49,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
 
     test "Can't Report Comment Unlogged" do
         comment = create(:comment)
-        user = create(:user)
+        create(:user)
 
         post = comment.post
 

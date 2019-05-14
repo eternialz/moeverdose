@@ -1,0 +1,11 @@
+.flex {
+    display: flex;
+
+    .flex-auto {
+        flex-basis: auto;
+    }
+
+    .flex-grow {
+        flex-grow: 1;
+    }
+}

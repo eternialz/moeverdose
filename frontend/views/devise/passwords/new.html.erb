@@ -1,0 +1,25 @@
+<%= link_to root_path, class: "action margin" do %>
+    <i class="fa fa-arrow-left"></i> Back To Home Screen
+<% end %>
+<div class="user-form" data-controller="form">
+    <%= form_for(resource, as: resource_name, html: {method: :post, class: "zone user-form-body form"}, url: password_path(resource_name)) do |f| %>
+        <div class="user-form-head">
+            <h4 class="title">Forgot your password?</h4>
+        </div>
+
+        <div class="form-field">
+            <label class="form-label">Email:</label class="form-label">
+            <%= f.email_field :email, class: "form-input", placeholder: "email", autofocus: true %>
+            <%= error f, :email %>
+        </div>
+
+        <p class="align-center">We will send you a link by mail to change your password</p>
+
+        <div class="button-list button-list-right">
+            <button class="button-primary button-base" type="submit">Reset<i class="fa fa-redo"></i></button>
+        </div>
+    <% end %>
+
+
+    <%= render "devise/shared/links" %>
+</div>

@@ -1,0 +1,23 @@
+<div class="zone">
+    <div class="tag-list">
+        <span class="tag tag-author"><%= @tag.name %></span>
+        <% @names.each do |n| %>
+            <span class="tag tag-alias"><%= n %></span>
+        <% end %>
+    </div>
+    <h2 class="title color-orange"><%= @author.name %></h2>
+    <h6 class="subtitle">Biography</h6>
+    <p class="p-lead margin margin-bottom"><%= @author.biography.blank? ? "none" : @author.biography %></p>
+    <% unless @website.blank? %>
+        <h6 class="subtitle">Website</h6>
+        <a href="<%= @website %>"><%= @website %></a>
+    <% end %>
+    <div class="button-list margin margin-top">
+        <a class="button-secondary" href="<%= posts_path(query: @tag.names[0]) %>">All Posts<%= fa_icon "eye" %></a>
+        <a class="button-secondary" href="<%= edit_author_path(@author) %>">Edit<%= fa_icon "edit" %></a>
+        <a class="button-secondary" href="<%= edit_tag_path(@tag) %>">Edit aliases<%= fa_icon "edit" %></a>
+    </div>
+</div>
+<%= component "shared/post-list" %>
+
+<%= paginate @posts %>

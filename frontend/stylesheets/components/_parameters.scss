@@ -1,0 +1,53 @@
+.parameters {
+    .parameters-section {
+        align-items: stretch;
+        display: flex;
+        flex-wrap: wrap;
+        margin-left: -0.5rem;
+        margin-right: -0.5rem;
+    }
+
+    .parameter {
+        display: flex;
+        flex-basis: 33.33%;
+        padding: 0.5rem;
+    }
+
+    .parameter-label {
+        @include shadow-control-1();
+
+        border-radius: $border-radius;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        .parameter-name {
+            background: rgba($black, 0.05);
+            border-bottom: 1px solid $gray-lighter;
+            font-weight: bold;
+            padding: 0.33rem 0.5rem;
+            text-transform: capitalize;
+
+            i {
+                margin-right: 0.3rem;
+            }
+        }
+
+        .parameter-purpose {
+            color: $gray;
+            flex: 1 0 auto;
+            padding: 0.5rem;
+        }
+    }
+
+    .parameter-checkbox {
+        display: none;
+
+        &:checked + .parameter-label {
+            i::before {
+                content: '\f14a';
+            }
+        }
+    }
+}

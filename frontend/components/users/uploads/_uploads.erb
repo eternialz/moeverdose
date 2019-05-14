@@ -1,0 +1,11 @@
+
+<div class="zone">
+    <h4 class="title"><%= @user.name %>'s uploads</h4>
+    <h6 class="subtitle">
+        <span class="number"><%= @user.upload_count %></span> uploaded posts
+    </h6>
+</div>
+
+<%= component "shared/post-list" %>
+
+<%= paginate @posts %>

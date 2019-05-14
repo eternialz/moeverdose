@@ -1,0 +1,26 @@
+<html>
+    <%= render "layouts/head" %>
+
+    <body>
+        <%= component "/shared/main-menu" %>
+
+        <%= component "/shared/noscript-alert" %>
+
+        <%= component "/shared/lightbox" %>
+
+        <div class="view-full-width">
+            <div class="view-full-width-sidebar">
+                <%= component "/admin/menu" %>
+            </div>
+
+            <div class="view-full-width-content">
+                <%= component "/shared/breadcrumbs" %>
+                <%= yield %>
+            </div>
+        </div>
+
+        <%= component "/shared/main-footer" %>
+
+        <%= component "/shared/notification" %>
+    </body>
+</html>

@@ -1,0 +1,15 @@
+<div class="user-show-identity-section">
+    <div class="user-show-level" data-controller="level">
+        <% if !@user.level.final %>
+            <div class="progress-bar">
+                <div class="progress-bar-indicator"><span><%= @user.level.name %></span><span>Rank <%= @user.level.rank %></span></div>
+                <div class="progress-bar-fill" data-target="level.bar" data-max="<%= @user.level.max_exp %>" data-current="<%= @user.exp %>" style="background: <%= @user.level.color %>"></div>
+            </div>
+        <% else %>
+            <div class="progress-bar">
+                <div class="progress-bar-indicator"><span><%= @user.level.name %></span><span>Rank max</span></div>
+                <div class="progress-bar-fill" style="background: <%= @user.level.color %>; width: 100%;"></div>
+            </div>
+        <% end %>
+    </div>
+</div>

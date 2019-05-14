@@ -1,0 +1,14 @@
+.key {
+    @include shadow-1();
+
+    background: $gray-darker;
+    border-radius: $border-radius;
+    color: $true-white;
+    display: inline-block;
+    font-family: "Lucida Console", Monaco, monospace;
+    font-weight: bold;
+    line-height: 1;
+    padding: 0.4rem 0 0.1rem;
+    text-align: center;
+    width: 1.4rem;
+}

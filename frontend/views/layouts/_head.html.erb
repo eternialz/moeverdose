@@ -1,0 +1,21 @@
+<head>
+
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <%= stylesheet_pack_tag 'application' %>
+    
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+
+    <%= javascript_pack_tag 'application' %>
+
+    <%= csrf_meta_tags %>
+
+    <title><%= defined?(@title) ? @title : site_name %></title>
+
+    <meta name="theme-color" content="#F4A" />
+
+    <%= yield(:cards) %>
+
+</head>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <%= render "layouts/head" %>
+    <body>
+        <%= component "/shared/main-menu" %>
+
+
+        <%= component "/shared/lightbox" %>
+
+        <div class="row view-content">
+            <%= component "/shared/noscript-alert" %>
+
+            <%= component "/shared/breadcrumbs" %>
+            <%= yield %>
+        </div>
+
+        <%= component "/shared/main-footer" %>
+
+        <%= component "/shared/notification" %>
+    </body>
+</html>

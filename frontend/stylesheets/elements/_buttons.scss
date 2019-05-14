@@ -1,0 +1,76 @@
+.button-primary {
+    @include button-base();
+    @include button-color($pink);
+
+    color: $true-white;
+
+    &:hover {
+        color: $true-white;
+        filter: brightness(0.92);
+    }
+
+    &.button-primary-compact {
+        margin: 0;
+    }
+}
+
+.button-secondary {
+    @include button-base();
+    @include button-color($gray-darker);
+
+    background: rgba($black, 0.1);
+
+    i {
+        margin-left: 0.25rem;
+        padding: 0 0.1rem;
+    }
+
+    &:hover {
+        background: rgba($black, 0.17);
+        color: $gray-dark;
+    }
+
+    &.button-primary-compact {
+        margin: 0;
+    }
+}
+
+.button-icon {
+    @include button-base();
+
+    background: $primary-color;
+    color: $true-white;
+    padding: 0.45rem 0.4rem;
+
+    i {
+        margin: 0;
+        padding: 0 0.1rem;
+    }
+
+    &:hover {
+        color: $true-white;
+        filter: brightness(0.92);
+    }
+}
+
+.button-link {
+    background: none;
+    border: 0;
+    cursor: pointer;
+}
+
+.button-discord {
+    @include button-color($discord-color);
+}
+
+.button-github {
+    @include button-color($github-color);
+}
+
+.button-base {
+    @include button-color($base-color);
+}
+
+.button-shortage {
+    @include button-color($cyan);
+}

@@ -1,0 +1,25 @@
+<div class="post-list ">
+    <% if !@posts.empty? %>
+        <% @posts.each do |post| %>
+            <a title="<%= post.title %>" href="<%= post_path(post.number, query: params[:query]) %>" class="post-card">
+                <div class="post-card-image" style="background-image: url(<%= url_for(post.post_image_thumbnail)%> )">
+                    <div class="post-card-info">
+                        <span class="post-card-stats">
+                            <h5 class="post-card-title"><%= post.title %></h5>
+                            <span title="overdose(s)"><%= post.overdose %> <i class="fa fa-heart"></i> </span>
+                            <span title="shortage(s)"><%= post.moe_shortage %> <i class="fa fa-thumbs-down"></i> </span>
+                            <!-- TODO integrate post comment count -->
+                            <% unless @comments_counts.blank? %>
+                                <span title="comment(s)"><%= @comments_counts[post.id] || 0 %> <i class="fa fa-comment"></i></span>
+                            <% end %>
+                        </span>
+                    </div>
+                </div>
+            </a>
+        <% end %>
+    <% else %>
+        <div class="col-12">
+            <h4 style="text-align: center;">No posts found</h4>
+        </div>
+    <% end %>
+</div>

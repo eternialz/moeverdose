@@ -31,4 +31,12 @@ storage/
 
 # Ignore environnement variables with secrets and tokens
 source.sh
+.env
 config/master.key
+
+# Webpacker and yarn
+/public/packs
+/public/packs-test
+/node_modules
+yarn-debug.log*
+.yarn-integrity

@@ -1,12 +1,12 @@
 require 'test_helper'
 
 class StaticPagesControllerTest < ActionDispatch::IntegrationTest
-    test "Sample Static Help Page" do
+    test "Sample Static wiki Page" do
         page = "index"
-        get static_help_page_path(page)
+        get wiki_static_page_path(page)
 
         assert_response 200
-        assert_select "title", "Help - " + page.capitalize + " - Moeverdose"
+        assert_select "title", "Wiki - " + page.capitalize + " - Moeverdose"
     end
 
     test "Sample Static Page" do

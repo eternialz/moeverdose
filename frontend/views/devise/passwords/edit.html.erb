@@ -1,0 +1,38 @@
+
+<%= link_to root_path, class: "action margin" do %>
+    <i class="fa fa-arrow-left"></i> Back To Home Screen
+<% end %>
+
+<div class="user-form" data-controller="form">
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: "zone user-form-body form"}) do |f| %>
+        <div class="user-form-head">
+            <h4 class="title">Change your password</h4>
+        </div>
+
+        <%= f.hidden_field :reset_password_token %>
+
+        <% if @minimum_password_length %>
+            <p class="align-center"><%= @minimum_password_length %> characters minimum</p>
+        <% end %>
+
+        <div class="form-field">
+            <label class="form-label">Password:</label>
+            <%= f.password_field :password, class: "form-input", autofocus: true, autocomplete: "off" %>
+            <%= error f, :password %>
+        </div>
+
+        <div class="form-field">
+            <label class="form-label">Confirmation:</label>
+            <%= f.password_field :password_confirmation, class: "form-input", autocomplete: "off" %>
+            <%= error f, :password_confirmation %>
+        </div>
+
+        <div class="button-list button-list-right">
+            <button type="submit" class="button-primary background-blue">
+                Change <i class="fa fa-edit"></i>
+            </button>
+        </div>
+    <% end %>
+
+    <%= render "devise/shared/links" %>
+</div>

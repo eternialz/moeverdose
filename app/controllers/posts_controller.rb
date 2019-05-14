@@ -5,24 +5,33 @@ class PostsController < ApplicationController
     before_action :authenticate_user!, except: [:show, :index, :not_found, :random]
 
     def show
-        post_logic = PostLogic.new(@post)
-        results = post_logic.get_different_tags
+        results = TagLogic.differenciate_tags(@post.tags)
+
         @tags = results[:tags]
         @characters = results[:characters]
         @authors = results[:authors]
+        @copyrights = results[:copyrights]
 
         unless @post.title.blank?
             title(@post.title)
         else
             title("Post")
         end
+
+        if current_user
+            @favorited = current_user.favorites.where(id: @post.id).empty? ? false : true
+        end
+
+        render component "posts/show"
     end
 
     def index
-        @permited_posts_per_page = ['2', '8', '16', '32', '64']
+        @permited_posts_per_page = ['8', '16', '24', '32']
 
         unless params[:posts_per_page].nil?
-            @posts_per_page = params[:posts_per_page].to_i < @permited_posts_per_page.last ? params[:posts_per_page] : @permited_posts_per_page.last
+            @posts_per_page = params[:posts_per_page].to_i <= @permited_posts_per_page.last.to_i ? params[:posts_per_page] : '16'
+        else
+            @posts_per_page = '16'
         end
 
         unless params[:query].blank?
@@ -46,10 +55,11 @@ class PostsController < ApplicationController
         @tags = []
         @characters = []
         @authors = []
+        @copyrights = []
         @posts.each do |post|
-            post_logic = PostLogic.new(post)
-            results = post_logic.get_different_tags
+            results = TagLogic.differenciate_tags(post.tags)
             @tags += results[:tags]
+            @tags += results[:copyrights]
             @characters += results[:characters]
             @authors += results[:authors]
         end
@@ -65,6 +75,7 @@ class PostsController < ApplicationController
         @authors.sort_by!{ |author| author }
 
         title("All posts")
+        render component "posts/index"
     end
 
     def new
@@ -73,9 +84,9 @@ class PostsController < ApplicationController
             t.name
         end
 
-        @comments_counts = Comment.where(post: @posts).group(:post_id).count
-
         title("Upload")
+
+        render component "posts/new"
     end
 
     def create
@@ -89,15 +100,27 @@ class PostsController < ApplicationController
 
         PostLogic.set_post_tags({tags: params[:tags], characters: params[:characters]}, @post)
 
-
         PostLogic.set_post_user(@post, current_user)
 
-        if params[:author] != "" && params[:author] != nil
+        unless params[:author].blank?
             author = TagLogic.find_or_create_author(params[:author], @post)
+            @post.author = author
         end
+
+        unless params[:source].blank?
+            source = TagLogic.find_or_create(params[:source], :copyright, @post)
+            @post.source = params[:source]
+        end
+
+        metadata = ActiveStorage::Analyzer::ImageAnalyzer.new(@post.post_image).metadata
+
+        @post.width = metadata[:width];
+        @post.height = metadata[:height];
 
         if @post.save
             author&.save
+            source&.save
+ 
             TagLogic.change_counts(@post.tags, 1)
 
             flash[:success] = "Post #{@post.title} created!"
@@ -111,13 +134,13 @@ class PostsController < ApplicationController
     end
 
     def edit
-        post_logic = PostLogic.new(@post)
-        results = post_logic.get_different_tags
+        results = TagLogic.differenciate_tags(@post.tags)
         @tags = results[:tags]
         @characters = results[:characters]
         @authors = results[:authors]
 
         title("Edit post: " + @post.title)
+        render component "posts/edit"
     end
 
     def update
@@ -155,7 +178,7 @@ class PostsController < ApplicationController
         end
         title("404: Post id " + params[:id] + " not found")
 
-        render "posts/not_found", :status => 404
+        render component("posts/not-found"), status: 404
     end
 
     def random
@@ -164,6 +187,7 @@ class PostsController < ApplicationController
     end
 
     def report
+        render component "posts/report"
     end
 
     def report_update
@@ -181,13 +205,13 @@ class PostsController < ApplicationController
         if user_signed_in?
             if current_user.favorites.exclude?(@post)
                 current_user.favorites << @post
-                head 200
+                render json: {message: "Post added to favorites", type: "success"}, status: 200
             else
                 current_user.favorites.delete(@post)
-                head 202
+                render json: {message: "Post removed from favorites", type: "information"}, status: 200
             end
         else
-            head 403
+            render json: {message: "You need an account to add favorites", type: "warning"}, status: 403
         end
     end
 
@@ -197,10 +221,24 @@ class PostsController < ApplicationController
 
             params[:dose] == "overdose" ? overdose : shortage
 
-            @post.save
-            render json: {overdose: @post.overdose, shortage: @post.moe_shortage, removed: @removed}, status: 200
+            if @post.save
+                render json: {
+                    message: params[:dose].capitalize + (@removed ? " removed" : " added"),
+                    type: @removed ? "information" : "success",
+                    overdose: @post.overdose,
+                    shortage: @post.moe_shortage
+                }, status: 200
+            else
+                render json: {
+                    message: "An internal error occured.",
+                    type: "error"
+                }, status: 500
+            end
         else
-            head 403
+            render json: {
+                message: "You need an account to add overdose and/or shortage",
+                type: "warning"
+            }, status: 403
         end
     end
 

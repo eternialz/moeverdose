@@ -1,0 +1,7 @@
+<% if content_for?(:lightbox_content) %>
+    <div class="lightbox" data-controller="lightbox">
+        <div class="lightbox-overlay" id="lightbox" data-action="click->lightbox#closeLightbox">
+            <%= yield :lightbox_content %>
+        </div>
+    </div>
+<% end %>

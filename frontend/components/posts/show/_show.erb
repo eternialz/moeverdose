@@ -1,0 +1,166 @@
+<%= content_for :cards do %>
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@moeverdose" />
+    <meta name="twitter:creator" content="@moeverdose" />
+    <meta name="twitter:title" content="<%= @post.title %>" />
+    <meta name="twitter:description" content="Post uploaded by <%= @post.user.name %>" />
+    <meta name="twitter:image" content="<%= request.base_url + url_for(@post.post_image) %>" />
+
+    <meta property="og:title" content="<%= @post.title %>" />
+    <meta property="og:type" content="image" />
+    <meta property="og:description" content="Post uploaded by <%= @post.user.name %>" />
+    <meta property="og:site_name" content="Moeverdose" />
+    <meta property="og:url" content="<%= request.original_url %>" />
+    <meta property="og:image" content="<%= request.base_url + url_for(@post.post_image) %>" />
+<% end %>
+
+<%= content_for :lightbox_content do %>
+    <%= image_tag @post.post_image %>
+<% end %>
+
+<%= component 'shared/main-search' %>
+
+<div class="post-show" data-controller="post-show">
+    <div class="zone margin margin-top padding padding-sm post-show-navigation">
+        <a href="/posts/<%= @post.number + 1 %>" class="button-primary previous"><%= fa_icon "arrow-circle-left" %> Previous</a>
+        <div class="align-center">
+            <% if @post.title != '' %>
+                <h4 class="title title-compact"><%= @post.title %></h4>
+                <h6 class="subtitle subtitle-compact">Post id: <span class="number"><%= @post.number %></span></h6>
+            <% else %>
+                <h4 class="title title-compact">Post id: <span class="number"><%= @post.number %></span></h4>
+            <% end %>
+        </div>
+        <a href="/posts/<%= @post.number - 1 %>" class="button-primary next">Next <%= fa_icon "arrow-circle-right" %></a>
+    </div>
+
+    <div class="post-show-content">
+        <div class="post-show-image <%= @post.report ? "post-show-image-reported" : "" %>" data-action="click->post-show#showLightbox" data-target="post-show.image">
+            <%= image_tag @post.post_image %>
+        </div>
+        <% if @post.report %>
+            <div class="post-show-reported" data-target="post-show.report">
+                <p>This post has been reported by <%= link_to @post.report_user.name, user_path(id: @post.report_user.name) %> (<%= @post.report_user.role %>) for the following reason(s):</p>
+                <p class="p-lead"><%= @post.report_reason %></p>
+                <button for="report_form_input" data-action="click->post-show#showReport" class="button-primary background-red">Show post <%= fa_icon 'exclamation' %></button>
+            </div>
+        <% end %>
+    </div>
+
+    <%= component "posts/score" %>
+
+    <div class="zone">
+        <div class="button-list padding padding-bottom">
+            <a class="button-secondary button-icon-left post-show-fav <%= @favorited ? 'hidden' : '' %>" data-target="post-show.favorite" data-action="click->post-show#addFavorite"><i class="fa fa-heart"></i> Favorite</a>
+            <a class="button-secondary button-icon-left post-show-unfav <%= @favorited ? '' : 'hidden' %>" data-target="post-show.unfavorite" data-action="click->post-show#addFavorite"><i class="fa fa-heart-broken"></i> Unfavorite</a>
+            <a class="button-secondary button-icon-left" href="<%= url_for(@post.post_image) %>" download><i class="fa fa-download"></i> Download</a>
+            <a class="button-secondary button-icon-left" target="_blank" href="https://www.google.fr/searchbyimage?site=search&image_url=<%= url_for(@post.post_image) %>"><i class="fab fa-google"></i>Search</a>
+            <% if user_signed_in? %>
+                <a class="button-secondary button-icon-left" href="<%= edit_post_path(@post.number) %>"><i class="fa fa-edit"></i> Edit</a>
+                <a class="button-secondary button-icon-left" href="<%= edit_report_post_path(@post.number) %>"><i class="fa fa-times"></i> Report</a>
+            <% end %>
+        </div>
+
+        <div class="columns">
+            <div class="col col-3 col-6-medium col-12-small padding">
+                <h5 class="title">
+                    <%= component "/shared/anchor", {anchor: 'informations'} do %>
+                        <i class="fa fa-info-circle"></i> Informations
+                    <% end %>
+                </h5>
+                <ul class="list list-detailed">
+                    <li><span class="list-detailed-key">Id:</span><span class="list-detailed-value"><%= @post.number %></span></li>
+
+                    <% unless @post.author.blank? %>
+                        <li><span class="list-detailed-key">Author:</span><span class="list-detailed-value"><a  href="<%= author_path(@post.author)%>" title="Search on google"><%= @post.author.name %></a></span></li>
+                    <% else %>
+                        <li><span class="list-detailed-key">Author:</span><span class="list-detailed-value">unknown author</span></li>
+                    <% end %>
+
+                    <% unless @post.source.blank? %>
+                        <li><span class="list-detailed-key">Source:</span><span class="list-detailed-value"><a href="http://www.google.fr/search?q=<%= @post.source %>" title="Search on google"><%= @post.source %></a></span></li>
+                    <% else %>
+                        <li><span class="list-detailed-key">Source:</span><span class="list-detailed-value">unknown source</span></li>
+                    <% end %>
+
+                    <li><span class="list-detailed-key">User:</span><span class="list-detailed-value"><%= link_to @post.user.name, user_path(@post.user.name) %></span></li>
+                    <li><span class="list-detailed-key">Dimension:</span><span class="list-detailed-value"><%= @post.width.to_s + " x " + @post.height.to_s %>px</span></li>
+                    <li><span class="list-detailed-key">Type:</span><span class="list-detailed-value"><%= @post.post_image.blob.content_type.split("/")[-1].upcase %></span></li>
+                    <li><span class="list-detailed-key">Size:</span><span class="list-detailed-value"><%= '%.3f' % (@post.post_image.blob.byte_size.to_f / 1048576).to_s + ' MB' %></span></li>
+                    <li><span class="list-detailed-key">Date:</span><span class="list-detailed-value"><%= @post.post_image.created_at.to_time.strftime('%B %e at %l:%M %p') %></span></li>
+                    <li><span class="list-detailed-key">MD5:</span><span class="list-detailed-value"><%= @post.md5 %></span></li>
+                </ul>
+            </div>
+
+            <div class="col col-6 col-12-small padding">
+                <div class="columns">
+                    <div class="col col-6 col-12-medium">
+                    </div>
+                    <div class="col col-6 col-12-medium">
+                    </div>
+                    <div class="col col-6 col-12-medium">
+                    </div>
+                    <div class="col col-6 col-12-medium">
+                    </div>
+                </div>
+                <h5 class="title">
+                    <%= component "/shared/anchor", {anchor: 'tags'} do %>
+                        <i class="fa fa-tag"></i> Tags
+                    <% end %>
+                </h5>
+                <% if @post.tags.any? %>
+                    <div class="tag-list">
+                        <% @tags.each do |tag| %>
+                            <a class="tag tag-content" href="<%= posts_path(query: tag ) %>"><%= tag %></a>
+                        <% end %>
+                        <% @characters.each do |character| %>
+                            <a class="tag tag-character" href="<%= posts_path(query: character ) %>"><%= character %></a>
+                        <% end %>
+                        <% @copyrights.each do |copyright| %>
+                            <a class="tag tag-copyright" href="<%= posts_path(query: copyright ) %>"><%= copyright %></a>
+                        <% end %>
+                        <% @authors.each do |author| %>
+                            <a class="tag tag-author" href="<%= posts_path(query: author ) %>"><%= author %></a>
+                        <% end %>
+                    </div>
+                <% else %>
+                    <p>No tags specified</p>
+                <% end %>
+            </div>
+
+            <div class="col col-3 col-6-medium col-12-small padding">
+                <h5 class="title">
+                    <%= component "/shared/anchor", {anchor: 'description'} do %>
+                        <i class="fa fa-book"></i> Description
+                    <% end %>
+                </h5>
+                <% if @post.description != "" %>
+                    <p><%= @post.description %></p>
+                <% else %>
+                    <p>No description added</p>
+                <% end %>
+            </div>
+        </div>
+    </div>
+
+    <% if @post.comments.any? %>
+        <div class="zone">
+            <h5 class="title color-blue">
+                <%= component "/shared/anchor", {anchor: 'comment'} do %>
+                    <i class="fa fa-comments"></i> Comments
+                <% end %>
+            </h5>
+            <div class="comments-zone">
+                <% @post.comments.includes(:user).each_with_index do |comment,index| %>
+                    <%= component "posts/comment", {comment: comment, index: index} %>
+                <% end %>
+            </div>
+        </div>
+    <% end %>
+
+    <%= component "posts/comment-editor" %>
+</div>
+
+<% if user_signed_in? %>
+    <%= component "admin/toolbars/post-toolbar" %>
+<% end %>
