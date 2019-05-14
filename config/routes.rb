@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :posts do
         resources :comments
     end
+    post '/posts/new' => "posts#create", as: 'create_post'
     patch "/posts/:id/report" => "posts#report_update", as: 'report_post'
     get "/posts/:id/report" => "posts#report", as: 'edit_report_post'
     patch "/posts/:id/dose/:dose" => "posts#dose", as: 'post_dose'

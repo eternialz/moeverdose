@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/stympy/faker.git
-  revision: cc9f09e287fea252339c485046fe99a9ff41df07
+  revision: a26e802f9e9d578e2b8df3d094f0a77a5c6b1f80
   specs:
     faker (1.9.3)
       i18n (>= 0.7)
@@ -61,7 +61,7 @@ GEM
     arel (9.0.0)
     autoprefixer-rails (9.5.1.1)
       execjs
-    bcrypt (3.1.12)
+    bcrypt (3.1.12-x64-mingw32)
     bindex (0.7.0)
     bootsnap (1.4.4)
       msgpack (~> 1.0)
@@ -94,10 +94,7 @@ GEM
     factory_bot_rails (5.0.2)
       factory_bot (~> 5.0.2)
       railties (>= 4.2.0)
-    ffi (1.10.0)
-    flamegraph (0.9.5)
-    font-awesome-rails (4.7.0.5)
-      railties (>= 3.2, < 6.1)
+    ffi (1.10.0-x64-mingw32)
     fugit (1.2.1)
       et-orbi (~> 1.1, >= 1.1.8)
       raabro (~> 1.1)
@@ -117,9 +114,8 @@ GEM
       multi_xml (>= 0.5.2)
     i18n (1.6.0)
       concurrent-ruby (~> 1.0)
-    jbuilder (2.8.0)
+    jbuilder (2.9.0)
       activesupport (>= 4.2.0)
-      multi_json (>= 1.2)
     kaminari (1.1.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.1.1)
@@ -161,19 +157,18 @@ GEM
     minitest-rails (3.0.0)
       minitest (~> 5.8)
       railties (~> 5.0)
-    msgpack (1.2.10)
-    multi_json (1.13.1)
+    msgpack (1.2.10-x64-mingw32)
     multi_xml (0.6.0)
-    multipart-post (2.0.0)
+    multipart-post (2.1.1)
     naught (1.1.0)
     nio4r (2.3.1)
-    nokogiri (1.10.3)
+    nokogiri (1.10.3-x64-mingw32)
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
     pastel (0.7.2)
       equatable (~> 0.5.0)
       tty-color (~> 0.4.0)
-    pg (1.1.4)
+    pg (1.1.4-x64-mingw32)
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -246,7 +241,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    stackprof (0.2.12)
     strings (0.1.5)
       strings-ansi (~> 0.1)
       unicode-display_width (~> 1.5)
@@ -276,12 +270,14 @@ GEM
       simple_oauth (~> 0.3.0)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
+    tzinfo-data (1.2019.1)
+      tzinfo (>= 1.0.0)
     uglifier (4.1.20)
       execjs (>= 0.3.0, < 3)
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.6)
-    unicode-display_width (1.5.0)
+    unicode-display_width (1.6.0)
     unicode_utils (1.4.0)
     uniform_notifier (1.12.1)
     warden (1.2.8)
@@ -300,7 +296,7 @@ GEM
     websocket-extensions (0.1.3)
 
 PLATFORMS
-  ruby
+  x64-mingw32
 
 DEPENDENCIES
   active_storage_validations
@@ -312,8 +308,6 @@ DEPENDENCIES
   devise
   factory_bot_rails
   faker!
-  flamegraph
-  font-awesome-rails
   httparty
   jbuilder (~> 2.5)
   kaminari
@@ -332,7 +326,6 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   spring
   spring-watcher-listen (~> 2.0.0)
-  stackprof
   twitter
   tzinfo-data
   uglifier (>= 1.3.0)
@@ -343,4 +336,4 @@ RUBY VERSION
    ruby 2.6.1p33
 
 BUNDLED WITH
-   1.17.3
+   1.17.2

@@ -89,14 +89,14 @@
         </h6>
         <div class="columns">
             <div class="col col-6 col-12-small padding">
-                <label class="form-label"><%= fa_icon "tag" %> Favorites tags</label>
+                <label class="form-label"><i class="fa fa-tag"></i> Favorites tags</label>
                 <div class="field_area">
                     <%= text_area :tags, :favorites, class: "form-textarea", placeholder: "1girl brown_hair", value: @favorites_tags  %>
                 </div>
             </div>
 
             <div class="col col-6 col-12-small padding">
-                <label class="form-label"><%= fa_icon "tag" %> Blacklisted tags</label>
+                <label class="form-label"><i class="fa fa-tag"></> Blacklisted tags</label>
                 <div class="field_area">
                     <%= text_area :tags, :blacklisted, class: "form-textarea", placeholder: "1boy", value: @blacklisted_tags %>
                 </div>

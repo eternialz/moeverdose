@@ -8,20 +8,15 @@ class PostNewController extends Controller {
     input() {
         if (this.inputTarget.files && this.inputTarget.files[0]) {
             let reader = new FileReader();
-            let img = new Image();
-            img.src = window.URL.createObjectURL(this.inputTarget.files[0]);
+            let fileTarget = this.fileTarget;
 
-            let target = this.fileTarget;
             reader.onload = function(e) {
-                target.setAttribute('src', e.target.result);
-            };
-
-            img.onload = function() {
-                target.setAttribute('width', img.naturalWidth);
-                target.setAttribute('height', img.naturalHeight);
+                fileTarget.setAttribute('src', e.target.result);
             };
 
             reader.readAsDataURL(this.inputTarget.files[0]);
         }
     }
+
+    reset() {}
 }

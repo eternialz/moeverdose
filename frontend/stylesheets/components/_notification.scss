@@ -65,6 +65,7 @@
         }
     }
 
+    &.notification-alert,
     &.notification-warning {
         @include notification-color($orange);
 

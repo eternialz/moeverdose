@@ -6,6 +6,7 @@
     "@rails/webpacker": "3.5",
     "normalize.css": "^8.0.1",
     "stimulus": "^1.1.1",
+    "turbolinks": "^5.2.0",
     "webpack-merge": "^4.2.1"
   },
   "devDependencies": {
@@ -44,6 +45,14 @@
     ],
     "frontend/**/*.css": [
       "prettier --write",
+      "stylelint --fix",
+      "git add"
+    ],
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.css": [
       "stylelint --fix",
       "git add"
     ]

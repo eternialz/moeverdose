@@ -41,9 +41,6 @@ gem 'kaminari'
 # autoprefixer plugin for css/sass
 gem "autoprefixer-rails"
 
-# Font-awesome
-gem "font-awesome-rails"
-
 # Httparty
 gem "httparty"
 
@@ -75,8 +72,6 @@ group :development do
     gem 'spring-watcher-listen', '~> 2.0.0'
     # Performance monitoring
     gem 'rack-mini-profiler'
-    gem 'stackprof'
-    gem 'flamegraph'
     gem 'bullet'
 end
 

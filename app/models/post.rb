@@ -41,7 +41,7 @@ class Post < ApplicationRecord
         content_type: {in: Post.image_types},
         size: { less_than_or_equal_to: 50.megabytes }
 
-    validates :md5, uniqueness: { message: ": The file already exists (MD5 already exists in our base)" }, presence: true
+    validates :md5, uniqueness: { message: "The file already exists (MD5 already exists in our base)" }, presence: true
 
     validate :image_dimensions, :on => :create
 

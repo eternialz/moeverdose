@@ -41,4 +41,11 @@ class ApplicationController < ActionController::Base
     def xhr_redirect_to(url)
         head 302, x_xhr_redirect_url: url
     end
+
+    def authenticate_user_xhr!
+        unless user_signed_in?
+            flash[:warning] = "You need to sign in or sign up before continuing."
+            xhr_redirect_to(new_user_session_path)
+        end
+    end
 end

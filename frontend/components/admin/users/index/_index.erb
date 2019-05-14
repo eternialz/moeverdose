@@ -4,12 +4,12 @@
     <% @users.each do |user| %>
         <li>
             <span class="button_list">
-                <a href="<%= user_path(user.name) %>"class="btn btn-yellow"><%= fa_icon "eye"%>profile</a>
-                <a class="btn btn-blue"><%= fa_icon "edit"%>manage role</a>
+                <a href="<%= user_path(user.name) %>"class="btn btn-yellow"><i class="fa fa-eye"></i>profile</a>
+                <a class="btn btn-blue"><i class="fa fa-edit"></i>manage role</a>
                 <% if user.banned? %>
-                    <a class="btn btn-green" href="<%= admin_user_ban_path(user)%>" data-confirm="Unban user <%= user.name %>?" data-method="patch"><%= fa_icon "exclamation"%>unban</a>
+                    <a class="btn btn-green" href="<%= admin_user_ban_path(user)%>" data-confirm="Unban user <%= user.name %>?" data-method="patch"><i class="fa fa-exclamation"></i>unban</a>
                 <% else %>
-                    <a class="btn btn-red" href="<%= admin_user_ban_path(user)%>" data-confirm="Ban user <%= user.name %>?"  data-method="patch"><%= fa_icon "exclamation"%>ban</a>
+                    <a class="btn btn-red" href="<%= admin_user_ban_path(user)%>" data-confirm="Ban user <%= user.name %>?"  data-method="patch"><i class="fa fa-exclamation"></i>ban</a>
                 <% end %>
             </span>
             <% if user.avatar.attached? %>

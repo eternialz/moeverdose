@@ -2,7 +2,8 @@ class PostsController < ApplicationController
 
     before_action :try_set_post, only: [:show]
     before_action :set_post, only: [:edit, :update, :dose, :favorite, :report, :report_update]
-    before_action :authenticate_user!, except: [:show, :index, :not_found, :random]
+    before_action :authenticate_user!, except: [:show, :index, :not_found, :random, :dose]
+    before_action :authenticate_user_xhr!, only: [:dose]
 
     def show
         results = TagLogic.differenciate_tags(@post.tags)
@@ -42,7 +43,7 @@ class PostsController < ApplicationController
             end
 
             if ignored
-                flash.now[:info] = "One or more tags were ignored. Your query contains at least one tag which doesn't exist in our database."
+                flash.now[:notice] = "One or more tags were ignored. Your query contains at least one tag which doesn't exist in our database."
             end
         else
             if user_signed_in?
@@ -96,7 +97,7 @@ class PostsController < ApplicationController
 
         @post.post_image.attach(post_params[:post_image])
 
-        @post.md5 = Digest::MD5.file(@post.post_image_path).hexdigest
+        @post.md5 = @post.post_image.checksum
 
         PostLogic.set_post_tags({tags: params[:tags], characters: params[:characters]}, @post)
 
@@ -107,9 +108,8 @@ class PostsController < ApplicationController
             @post.author = author
         end
 
-        unless params[:source].blank?
-            source = TagLogic.find_or_create(params[:source], :copyright, @post)
-            @post.source = params[:source]
+        unless @post.source.blank?
+            source = TagLogic.find_or_create(@post.source, :copyright, @post)
         end
 
         metadata = ActiveStorage::Analyzer::ImageAnalyzer.new(@post.post_image).metadata
@@ -126,7 +126,8 @@ class PostsController < ApplicationController
             redirect_to post_path(@post.number)
         else
             flash.now[:error] = "The post could not be created."
-            redirect_to new_post_path
+
+            render component "posts/new"
         end
     end
 
@@ -193,7 +194,7 @@ class PostsController < ApplicationController
         @post.report_user = current_user
         @post.save
 
-        flash[:info] = "Post reported"
+        flash[:notice] = "Post reported"
 
         redirect_to post_path(@post.number)
     end
