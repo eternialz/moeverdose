@@ -85,6 +85,7 @@ class User < ApplicationRecord
 
     # GDPR
     has_many :permissions
+    accepts_nested_attributes_for :permissions
 
     # Prevent banned user authentications
     def active_for_authentication?
