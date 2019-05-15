@@ -1,6 +1,6 @@
-.button-primary {
+.button-important {
     @include button-base();
-    @include button-color($pink);
+    @include button-color($base-color);
 
     color: $true-white;
 
@@ -67,8 +67,8 @@
     @include button-color($github-color);
 }
 
-.button-base {
-    @include button-color($base-color);
+.button-primary {
+    @include button-color($primary-color);
 }
 
 .button-shortage {

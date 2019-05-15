@@ -1,4 +1,4 @@
-<header class="main-menu" data-controller="main-menu">
+<header class="main-menu overflow-hidden" id="main-menu" data-turbolinks-permanent data-target="main-menu.menu" data-controller="main-menu">
     <div class="row">
         <div class="main-menu-content">
             <a id="main-menu-logo" href="<%= root_path %>" tabindex="-1">
@@ -10,7 +10,7 @@
                     <%= link_to 'Posts', posts_path, title: 'Posts', class: 'main-menu-link' %>
                     <nav class="main-menu-subnav">
                         <%= link_to 'All posts', posts_path, title: 'Index', class: 'main-menu-link' %>
-                        <%= link_to 'Random', random_path, title: 'Random', class: 'main-menu-link' %>
+                        <%= link_to 'Random', random_path, title: 'Random', data: { turbolinks: "false" }, class: 'main-menu-link' %>
                         <%= link_to 'Upload', new_post_path, title: 'Upload', class: 'main-menu-link' %>
                         <%= link_to 'Tags', tags_path, title: 'Tags', class: 'main-menu-link' %>
                         <%= link_to 'Authors', authors_path, title: 'Authors', class: 'main-menu-link' %>
@@ -93,7 +93,7 @@
                                     <h6 class="title title-compact color-blue">Log In</h6>
                                     <p>Connect using your email and password</p>
                                     <%= link_to "Forgot your password?", new_password_path(:user) %>
-                                    <%= link_to new_session_path(:user), class: "button-primary button-base" do %>
+                                    <%= link_to new_session_path(:user), class: "button-important button-base" do %>
                                         Login <i class="fa fa-sign-in-alt"></i>
                                     <% end %>
                                 </div>

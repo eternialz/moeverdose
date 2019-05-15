@@ -19,13 +19,13 @@ body {
     overflow: hidden scroll;
 
     .view-content {
-        padding-top: 4rem;
+        padding-top: 5rem;
         margin-bottom: 2rem;
     }
 
     .view-full-width {
         display: flex;
-        padding-top: 3rem;
+        padding-top: calc(3rem + 5px);
 
         .view-full-width-content {
             padding: 1rem;

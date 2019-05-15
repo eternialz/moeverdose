@@ -1,12 +1,12 @@
 .main-search {
-    @include shadow-3();
+    @include shadow-2();
 
-    background: $gray-darker;
+    background: $true-white;
     border-radius: $border-radius;
 
     .main-search-tags {
         background: $black;
-        box-shadow: 0 -1px 0 $gray-dark;
+        border-radius: 0 0 $border-radius $border-radius;
         height: 0;
         overflow: hidden;
 
@@ -36,15 +36,15 @@
         .main-search-input {
             @include focusable();
 
-            background: $gray-darker;
+            background: $true-white;
             border-radius: $border-radius;
-            color: $true-white;
+            box-shadow: 11px 0 0 (-10px) $gray-light;
+            color: $black;
             display: flex;
             flex-grow: 1;
             flex-wrap: wrap;
-            min-height: 2.7rem;
+            height: 2.7rem;
             padding: 0.5rem 0.8rem;
-            border-bottom: 1px solid $gray-dark;
 
             br {
                 display: none;
@@ -65,10 +65,9 @@
         .button-link {
             @include focusable();
 
-            border-left: 1px solid $gray-dark;
-            border-bottom: 1px solid $gray-dark;
-            color: $text-color-light;
+            color: $text-color-dark;
             cursor: pointer;
+            border-radius: $border-radius;
             display: flex;
             align-items: center;
             font-weight: bold;
@@ -76,9 +75,14 @@
             line-height: 1;
             padding: 0 0.7rem;
             text-transform: uppercase;
+            transition: background 100ms ease-in-out;
 
             i {
                 margin-left: 0.5rem;
+            }
+
+            &:hover {
+                background: rgba($gray, 0.1);
             }
         }
     }

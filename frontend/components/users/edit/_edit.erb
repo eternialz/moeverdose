@@ -8,7 +8,7 @@
 
         <div class="user-show-alert" data-target="user-edit.alert">
             <div class="user-show-alert-content">
-                Carefull — You have unsaved changes <a class="user-show-alert-reset" href="<%= user_path(@user.name) %>">Cancel</a> <button for="submit" class="button-primary">Save changes <i class="fa fa-save"></i></button>
+                Carefull — You have unsaved changes <a class="user-show-alert-reset" href="<%= user_path(@user.name) %>">Cancel</a> <button for="submit" class="button-important">Save changes <i class="fa fa-save"></i></button>
             </div>
         </div>
 
@@ -33,7 +33,7 @@
                 <%= component "users/level" %>
 
                 <div class="user-show-identity-section hide-medium">
-                    <button for="submit" class="button-primary">Save changes <i class="fa fa-save"></i></button>
+                    <button for="submit" class="button-important">Save changes <i class="fa fa-save"></i></button>
                 </div>
             </div>
             <div class="user-show-informations padding">
@@ -56,7 +56,7 @@
                         %>
                         <div class="form-file-label">
                             <%= f.label :avatar, class: 'form-file-label' do %>
-                                <span class="button-primary">Browse <i class="fa fa-folder-open"></i></span>
+                                <span class="button-important">Browse <i class="fa fa-folder-open"></i></span>
                             <% end %>
                         </div>
                     </div>
@@ -96,7 +96,7 @@
             </div>
 
             <div class="col col-6 col-12-small padding">
-                <label class="form-label"><i class="fa fa-tag"></> Blacklisted tags</label>
+                <label class="form-label"><i class="fa fa-tag"></i> Blacklisted tags</label>
                 <div class="field_area">
                     <%= text_area :tags, :blacklisted, class: "form-textarea", placeholder: "1boy", value: @blacklisted_tags %>
                 </div>
@@ -125,7 +125,7 @@
         <h6 class="subtitle">
             Export data
         </h6>
-        <button class="button-primary margin margin-top">Download export <i class="fa fa-download"></i></button>
+        <button class="button-important margin margin-top">Download export <i class="fa fa-download"></i></button>
     </div>
 
     <div class="zone">
@@ -137,7 +137,7 @@
         <h6 class="subtitle">
             Delete account
         </h6>
-        <button class="button-primary background-red margin margin-top">Delete account<i class="fa fa-times"></i></button>
+        <button class="button-important button-error margin margin-top">Delete account<i class="fa fa-times"></i></button>
         <p>After clicking on the button and confirming your password, the <strong>redemption period</strong> of <strong>30 days</strong> will start.<br />
         Until the end of that period, you will be able to export your data and/or <strong>cancel the deletion</strong>.</p>
     </div>

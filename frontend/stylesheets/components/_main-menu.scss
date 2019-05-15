@@ -113,11 +113,11 @@ $height: 3rem;
                 height: 0;
                 left: -1.5rem;
                 opacity: 0;
-                padding: 1rem 0;
+                overflow: hidden;
                 pointer-events: none;
                 position: absolute;
                 top: 100%;
-                transition: opacity 100ms ease-in-out;
+                transition: opacity 100ms ease-in-out, height 0 linear 100ms;
                 white-space: nowrap;
                 z-index: $depth-2;
             }
@@ -129,10 +129,12 @@ $height: 3rem;
                 }
 
                 .main-menu-subnav {
-                    height: calc(11.5rem - 3px);
                     box-shadow: 0 0 2rem -1rem $white;
+                    height: calc(11.5rem - 3px);
                     opacity: 1;
+                    padding: 1rem 0;
                     pointer-events: all;
+                    transition: opacity 100ms ease-in-out, height 0 linear;
                 }
             }
 
@@ -142,29 +144,29 @@ $height: 3rem;
                 display: block;
                 font-size: 0.9rem;
                 margin: 0 1rem;
-                position: relative;
                 padding: 0.15rem 0.5rem 0.15rem 1rem;
+                position: relative;
 
                 &::before {
                     color: $base-color;
-                    opacity: 0;
                     content: "\203A";
                     font-weight: 900;
                     left: 0.25rem;
+                    opacity: 0;
                     position: absolute;
                     transition: opacity 70ms ease-in-out, left 70ms ease-in-out;
                 }
 
                 &:hover::before,
                 &:focus::before {
-                    opacity: 1;
                     left: 0.35rem;
+                    opacity: 1;
                 }
 
                 &.main-menu-support {
                     i {
-                        margin-left: 0.25rem;
                         font-size: 0.75em;
+                        margin-left: 0.25rem;
                     }
                 }
             }
@@ -175,6 +177,7 @@ $height: 3rem;
             display: flex;
             height: 3rem;
             margin-left: auto;
+            text-transform: none;
 
             .avatar {
                 border-radius: 50%;
@@ -192,11 +195,11 @@ $height: 3rem;
 
             .main-menu-subnav-container .main-menu-subnav {
                 background: $white;
-                left: auto;
-                padding: 1rem 1rem 1rem 2rem;
-                right: 0;
                 border-left: 1px solid $gray-lighter;
                 border-right: 1px solid $gray-lighter;
+                left: auto;
+                padding: 1rem 1.5rem 1rem 2rem;
+                right: 0;
                 white-space: normal;
 
                 .main-menu-block {
@@ -264,7 +267,7 @@ $height: 3rem;
     .submenu {
         @include shadow-3();
 
-        background: $white;
+        background: $gray-lightest;
         height: 11.5rem;
         left: 0;
         opacity: 0;

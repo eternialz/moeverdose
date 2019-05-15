@@ -301,6 +301,7 @@ PLATFORMS
 DEPENDENCIES
   active_storage_validations
   autoprefixer-rails
+  bcrypt (~> 3.1.7)
   bootsnap (>= 1.1.0)
   bullet
   byebug

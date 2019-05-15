@@ -25,12 +25,12 @@
         transition: all 120ms ease-in-out;
 
         &:hover {
-            color: rgba($primary-color, 0.8);
+            color: rgba($base-color, 0.8);
             opacity: 1 !important;
         }
 
         &:focus {
-            background: $primary-color;
+            background: $base-color;
             color: $white;
             opacity: 1;
         }

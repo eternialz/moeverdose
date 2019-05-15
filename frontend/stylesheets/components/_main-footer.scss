@@ -1,17 +1,21 @@
 .main-footer {
-    background: $gray-darker;
-    color: $white;
+    @include shadow-2();
+
+    background: $true-white;
+    margin: 0 -3rem;
+    padding: 0 3rem;
+    color: $text-color-dark;
 
     .title {
         padding-bottom: 0.5rem;
-        border-bottom: 1px solid $gray-dark;
+        border-bottom: 1px solid $gray-lighter;
     }
 
     a {
         @include focusable();
 
         border-radius: $border-radius;
-        color: $gray-light;
+        color: $gray;
         margin: 0.1rem 0;
         padding: 0.1rem 0;
     }
@@ -21,6 +25,6 @@
     }
 
     a:hover {
-        color: $true-white;
+        color: $gray-darker;
     }
 }
