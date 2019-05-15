@@ -6,7 +6,7 @@
 
     .notifications-container {
         max-width: 100%;
-        padding: 1rem;
+        padding: 0 1rem 0.5rem;
         width: 25rem;
     }
 }
@@ -18,7 +18,7 @@
     border-radius: $border-radius;
     color: $white;
     font-weight: bold;
-    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
     overflow: hidden;
     padding: 0.66rem 0.66rem;
     position: relative;

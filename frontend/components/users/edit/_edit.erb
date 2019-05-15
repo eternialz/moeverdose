@@ -17,9 +17,9 @@
                 <div class="user-show-identity-section user-show-user">
                     <div class="user-show-avatar avatar">
                         <% if @user.avatar.attached? %>
-                            <img src="<%= url_for @user.avatar %>" width="120" height="120" />
+                            <img src="<%= url_for @user.avatar %>" data-target="user-edit.file" width="120" height="120" />
                         <% else %>
-                            <%= image_tag "/images/default-user.png", class: "avatar" %>
+                            <%= image_tag "/images/default-user.png", data: { target: "user-edit.file" }, class: "avatar" %>
                         <% end %>
                     </div>
                     <h6 class="user-show-name role hide-medium" data-role="<%= @user.role %>"><%= @user.name %></h6>
@@ -44,7 +44,7 @@
                 </h5>
                 <h6 class="subtitle">Biography</h6>
                 <div class="form-field margin margin-bottom">
-                    <%= f.text_area :biography, class: "form-textarea", placeholder: "Master of daruma otoshi" %>
+                    <%= f.text_area :biography, class: "form-textarea" %>
                 </div>
                 <h6 class="subtitle">Avatar (500kb max, 1:1)</h6>
                 <div class="avatar-upload margin margin-bottom">

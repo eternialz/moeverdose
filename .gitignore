@@ -21,7 +21,7 @@
 # Ignore Byebug command history file.
 .byebug_history
 
-#Ignore all temporary files create by vim
+# Ignore all temporary files create by vim
 *~
 .*~
 *.swp
@@ -39,5 +39,6 @@ config/master.key
 /public/packs-test
 /node_modules
 yarn-debug.log*
+yarn-error.log
 .yarn-integrity
 node_modules
