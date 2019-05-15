@@ -41,38 +41,52 @@
 
 */
 
+$height: 3rem;
+
 .main-menu {
     @include shadow-3();
 
-    background: $gray-darker;
-    border-bottom: 1px solid $primary-color;
-    color: $white;
+    background: $white;
+    border-top: 5px solid $gray-lighter;
     font-size: 1rem;
+    margin: 0 -3rem;
+    padding: 0 3rem;
     position: fixed;
-    width: 100%;
+    width: calc(100% + 6rem);
     z-index: $depth-3;
 
     .main-menu-link {
-        color: $gray-lighter;
+        @include focusable();
+
+        color: $gray-dark;
 
         &:hover {
-            color: $true-white;
+            color: $base-color;
         }
     }
 
     .main-menu-content {
         align-items: center;
         display: flex;
-        height: 3rem;
+        height: $height;
     }
 
     #main-menu-logo {
-        @include focusable();
-
-        border-radius: $border-radius;
+        align-items: center;
         color: $true-white;
+        display: flex;
+        height: $height;
+        text-transform: uppercase;
+
+        img {
+            margin: 0 0.5rem;
+            max-height: 1.3rem;
+        }
 
         h1 {
+            color: $base-color;
+            font-size: 1rem;
+            letter-spacing: 0.025rem;
             margin: 0;
         }
     }
@@ -84,20 +98,22 @@
             display: inline-block;
             position: relative;
 
-            .main-menu-link {
-                @include focusable();
-
+            & > .main-menu-link {
+                align-items: center;
                 border-radius: $border-radius;
-                display: inline-block;
-                margin: 0.25rem;
-                padding: 0.25rem;
+                display: flex;
+                height: 3rem;
+                margin: 0 0.25rem;
+                padding: 0 0.25rem;
+                text-transform: uppercase;
             }
 
             .main-menu-subnav {
+                border-radius: $border-radius;
                 height: 0;
-                left: -2.25rem;
+                left: -1.5rem;
                 opacity: 0;
-                padding: 1rem 2rem 0;
+                padding: 1rem 0;
                 pointer-events: none;
                 position: absolute;
                 top: 100%;
@@ -106,13 +122,15 @@
                 z-index: $depth-2;
             }
 
-            &:hover {
+            &:hover,
+            &:focus-within {
                 .main-menu-link {
-                    color: $true-white;
+                    color: $base-color;
                 }
 
                 .main-menu-subnav {
-                    height: auto;
+                    height: calc(11.5rem - 3px);
+                    box-shadow: 0 0 2rem -1rem $white;
                     opacity: 1;
                     pointer-events: all;
                 }
@@ -120,24 +138,33 @@
 
             .main-menu-subnav .main-menu-link {
                 border-radius: 0.15rem;
-                color: $gray-light;
+                color: $gray-dark;
                 display: block;
-                margin: 0.15rem 0.25rem;
-                padding: 0.15rem 0.5rem 0.15rem;
+                font-size: 0.9rem;
+                margin: 0 1rem;
+                position: relative;
+                padding: 0.15rem 0.5rem 0.15rem 1rem;
 
-                &:hover {
-                    background: $true-black;
-                    color: $true-white;
+                &::before {
+                    color: $base-color;
+                    opacity: 0;
+                    content: "\203A";
+                    font-weight: 900;
+                    left: 0.25rem;
+                    position: absolute;
+                    transition: opacity 70ms ease-in-out, left 70ms ease-in-out;
+                }
+
+                &:hover::before,
+                &:focus::before {
+                    opacity: 1;
+                    left: 0.35rem;
                 }
 
                 &.main-menu-support {
                     i {
                         margin-left: 0.25rem;
                         font-size: 0.75em;
-                    }
-
-                    &:hover {
-                        color: $primary-color;
                     }
                 }
             }
@@ -150,45 +177,47 @@
             margin-left: auto;
 
             .avatar {
-                @include focusable();
-
                 border-radius: 50%;
                 display: inline-block;
-                margin-left: 0.5rem;
+                margin: 0 0.5rem;
                 max-height: 2rem;
                 max-width: 2rem;
                 overflow: hidden;
+                transition: box-shadow 70ms ease-in-out;
+            }
 
-                img {
-                    height: 2rem;
-                    width: 2rem;
-                }
+            &:hover .avatar {
+                box-shadow: 0 0 0 2px $base-color;
             }
 
             .main-menu-subnav-container .main-menu-subnav {
+                background: $white;
                 left: auto;
+                padding: 1rem 1rem 1rem 2rem;
                 right: 0;
+                border-left: 1px solid $gray-lighter;
+                border-right: 1px solid $gray-lighter;
                 white-space: normal;
 
                 .main-menu-block {
                     display: flex;
-                    width: 22rem;
                     position: relative;
-                    right: -2.25rem;
+                    right: 0;
+                    width: 24rem;
                 }
 
                 .main-menu-login,
                 .main-menu-register {
-                    height: 13rem;
-                    font-size: 0.8rem;
-                    width: 12rem;
-                    padding: 0.5rem 1rem;
                     display: flex;
                     flex-direction: column;
+                    font-size: 0.8rem;
+                    height: 9.5rem;
+                    padding: 0 1rem;
+                    width: 12rem;
 
                     .button-primary {
-                        margin-top: auto;
                         margin-left: auto;
+                        margin-top: auto;
                     }
                 }
 
@@ -235,8 +264,8 @@
     .submenu {
         @include shadow-3();
 
-        background: $black;
-        height: 15rem;
+        background: $white;
+        height: 11.5rem;
         left: 0;
         opacity: 0;
         overflow: hidden;
@@ -245,10 +274,11 @@
         top: 100%;
         transition: opacity 100ms ease-in-out;
         width: 100%;
+    }
 
-        &.active {
-            border-bottom: 3px solid $primary-color;
-            opacity: 1;
-        }
+    &:focus-within .submenu,
+    .submenu.active {
+        border-bottom: 3px solid $base-color;
+        opacity: 1;
     }
 }

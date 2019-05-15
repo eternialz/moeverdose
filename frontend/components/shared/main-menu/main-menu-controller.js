@@ -6,6 +6,7 @@ class MainMenuController extends Controller {
     static targets = ['submenu'];
 
     open() {
+        if ('activeElement' in document) document.activeElement.blur();
         this.submenuTarget.classList.add('active');
     }
 

@@ -1,7 +1,10 @@
 <header class="main-menu" data-controller="main-menu">
     <div class="row">
         <div class="main-menu-content">
-            <a id="main-menu-logo" href="<%= root_path %>"><h1><%= site_name %></h1></a>
+            <a id="main-menu-logo" href="<%= root_path %>" tabindex="-1">
+                <%= image_tag '/images/logo-128.png', width: 31, height: 26 %>
+                <h1><%= site_name %></h1>
+            </a>
             <nav class="main-menu-nav hide-medium" data-action="mouseover->main-menu#open mouseout->main-menu#close">
                 <div class="main-menu-subnav-container">
                     <%= link_to 'Posts', posts_path, title: 'Posts', class: 'main-menu-link' %>
@@ -80,17 +83,17 @@
                         <% else %>
                             <div class="main-menu-block">
                                 <div class="main-menu-register">
-                                    <h5 class="title title-compact">Sign Up</h5>
+                                    <h6 class="title title-compact color-blue">Sign Up</h6>
                                     <p>With an account you can upload images, keep track of your favorites, blacklists tags and many more!</p>
-                                    <%= link_to new_user_registration_path, class: 'button-primary' do %>
+                                    <%= link_to new_user_registration_path, class: 'button-primary button-base' do %>
                                         Sign up <i class="fa fa-user-plus"></i>
                                     <% end %>
                                 </div>
                                 <div class="main-menu-login">
-                                    <h5 class="title title-compact">Log In</h5>
+                                    <h6 class="title title-compact color-blue">Log In</h6>
                                     <p>Connect using your email and password</p>
                                     <%= link_to "Forgot your password?", new_password_path(:user) %>
-                                    <%= link_to new_session_path(:user), class: "button-primary" do %>
+                                    <%= link_to new_session_path(:user), class: "button-primary button-base" do %>
                                         Login <i class="fa fa-sign-in-alt"></i>
                                     <% end %>
                                 </div>
