@@ -53,11 +53,6 @@ class PostsController < ApplicationController
             end
         end
 
-                @tags = Tag.popular.limit(20)
-        if user_signed_in?
-            @tags += current_user.favorites_tags
-        end
-
         results = TagLogic.differenciate_tags(@tags)
 
         @tags = []
