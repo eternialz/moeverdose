@@ -53,8 +53,6 @@ class PostsController < ApplicationController
             end
         end
 
-        results = TagLogic.differenciate_tags(@tags)
-
         @tags = []
         @characters = []
         @authors = []
