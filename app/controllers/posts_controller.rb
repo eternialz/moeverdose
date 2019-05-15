@@ -53,6 +53,13 @@ class PostsController < ApplicationController
             end
         end
 
+                @tags = Tag.popular.limit(20)
+        if user_signed_in?
+            @tags += current_user.favorites_tags
+        end
+
+        results = TagLogic.differenciate_tags(@tags)
+
         @tags = []
         @characters = []
         @authors = []
@@ -60,7 +67,7 @@ class PostsController < ApplicationController
         @posts.each do |post|
             results = TagLogic.differenciate_tags(post.tags)
             @tags += results[:tags]
-            @tags += results[:copyrights]
+            @copyrights += results[:copyrights]
             @characters += results[:characters]
             @authors += results[:authors]
         end
