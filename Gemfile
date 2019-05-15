@@ -1,16 +1,14 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.1'
+ruby '2.6.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.0'
+gem 'rails', '~> 6.0.0.rc1'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
@@ -25,7 +23,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use ActiveStorage variant
-gem 'mini_magick', '~> 4.8'
+gem 'image_processing', '~> 1.2'
 gem 'active_storage_validations'
 gem 'mime-types', require: 'mime/types/full'
 
@@ -33,7 +31,7 @@ gem 'mime-types', require: 'mime/types/full'
 # gem 'capistrano-rails', group: :development
 
 # Devise for user authentications
-gem "devise"
+gem "devise", github: 'plataformatec/devise'
 
 # Pagination plugin
 gem 'kaminari'
@@ -41,8 +39,7 @@ gem 'kaminari'
 # autoprefixer plugin for css/sass
 gem "autoprefixer-rails"
 
-# Font-awesome
-gem "font-awesome-rails"
+gem 'font-awesome-rails'
 
 # Httparty
 gem "httparty"
@@ -75,8 +72,6 @@ group :development do
     gem 'spring-watcher-listen', '~> 2.0.0'
     # Performance monitoring
     gem 'rack-mini-profiler'
-    gem 'stackprof'
-    gem 'flamegraph'
     gem 'bullet'
 end
 
@@ -84,8 +79,7 @@ group :test do
     # Gems for test
     gem 'factory_bot_rails'
     gem 'faker', github: 'stympy/faker'
-    gem 'minitest-rails', '>= 2.0'
-    gem 'database_cleaner'
+    gem 'minitest-rails', github: "blowmage/minitest-rails"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

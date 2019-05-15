@@ -128,7 +128,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
         sign_in @user
 
         tag = @post.tags.first
-        @user.update_attributes(blacklisted_tags: [tag])
+        @user.update(blacklisted_tags: [tag])
 
         get posts_path
         assert_response :success
@@ -147,7 +147,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
         sign_in @user
 
         black_tag = @post.tags.first
-        @user.update_attributes(blacklisted_tags: [black_tag])
+        @user.update(blacklisted_tags: [black_tag])
         tag = Tag.where.not(id: black_tag.id).last
         query = tag.names.first
         params = {

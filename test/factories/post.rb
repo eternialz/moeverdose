@@ -1,5 +1,3 @@
-require_relative '../factory_helpers'
-require 'digest/md5'
 FactoryBot.define do
     factory :post do
         sequence(:number, 1)

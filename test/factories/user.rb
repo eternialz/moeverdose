@@ -1,4 +1,3 @@
-require_relative '../factory_helpers'
 FactoryBot.define do
     factory :user do
         email {Faker::Internet.email}

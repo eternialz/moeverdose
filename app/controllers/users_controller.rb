@@ -102,7 +102,7 @@ class UsersController < ApplicationController
     end
 
     def update
-        @user.update_attributes(account_update_params)
+        @user.update(account_update_params)
         tags = params[:tags]
 
         favorites_tags = Tag.includes(:aliases).where(aliases: { name: tags[:favorites].split().uniq() }) # remove duplicates

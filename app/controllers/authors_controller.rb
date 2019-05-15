@@ -42,9 +42,9 @@ class AuthorsController < ApplicationController
 
         if @author.name != new_name
             existing_alias = @author.tag.aliases.where(name: new_name).first
-            main_alias.update_attributes(main: false)
+            main_alias.update(main: false)
             if existing_alias.present?
-                existing_alias.update_attributes(main: true)
+                existing_alias.update(main: true)
             else
                 Alias.create(name: new_name.downcase.tr(' ', '_'), tag: @author.tag, main: true)
             end
