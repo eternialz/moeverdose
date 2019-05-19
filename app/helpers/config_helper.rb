@@ -16,7 +16,7 @@ module ConfigHelper
         "https://twitter.com/moeverdose"
     end
 
-    def items_per_page
+    def items_per_page_list
         [8, 16, 24, 32]
     end
 

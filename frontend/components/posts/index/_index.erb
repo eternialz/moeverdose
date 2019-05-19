@@ -4,4 +4,4 @@
 
 <%= paginate @posts %>
 
-<%= component "shared/items-per-page" %>
+<%= component "shared/items-per-page", {total_pages: @posts.total_pages} %>

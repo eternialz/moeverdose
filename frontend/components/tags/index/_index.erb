@@ -11,5 +11,8 @@
             <span class="number"><%= t.posts_count %><span class="number-unit"> posts</span></span>
         <% end %>
     <% end %>
+
     <%= paginate @tags %>
+
+    <%= component "shared/items-per-page", {total_pages: @tags.total_pages} %>
 </div>

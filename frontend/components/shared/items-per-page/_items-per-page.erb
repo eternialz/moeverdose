@@ -1,10 +1,15 @@
-<form class="items-per-page form align-center">
-    <input type="hidden" name="query" value="<%= params[:query] %>"/> 
-    <% items_per_page.each do |per| %>
-        <% if params["items_per_page"] == per.to_s || (!params["items_per_page"] && (default_per_page == per)) %>
-            <button name="items_per_page" class="button-link item-per-page item-per-page-active" value="<%= per %>"><%= per %></button>
-        <% else %>
-            <button name="items_per_page" class="button-link item-per-page" value="<%= per %>"><%= per %></button>
-        <% end %> 
-    <% end %>
-</form>
+<% if total_pages ? total_pages >= 2 : false %>
+    <form class="items-per-page form align-center">
+        <input type="hidden" name="query" value="<%= params[:query] %>"/> 
+        <% (@items_per_page_list || items_per_page_list).each do |per| %>
+            <% if 
+                params["items_per_page"] == per.to_s ||
+                (!params["items_per_page"] && ((@default_per_page || default_per_page) == per))
+            %>
+                <button name="items_per_page" class="button-link item-per-page item-per-page-active" value="<%= per %>"><%= per %></button>
+            <% else %>
+                <button name="items_per_page" class="button-link item-per-page" value="<%= per %>"><%= per %></button>
+            <% end %> 
+        <% end %>
+    </form>
+<% end %>

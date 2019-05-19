@@ -5,12 +5,16 @@ class AuthorsController < ApplicationController
     before_action :authenticate_user!, only: [:update, :edit]
 
     def index
+        @default_per_page = 20
+        @items_per_page_list = [10, 20, 40]
+        @items_per_page = items_per_page()
+
         if params[:query]
             @authors = Kaminari.paginate_array(
                 Author.includes(:tag).all.where('name LIKE ?', "%#{params[:query]}%" ))
-                .page(params[:page]).per(20)
+                .page(params[:page]).per(@items_per_page)
         else
-            @authors = Kaminari.paginate_array(Author.includes(:tag).all.order(:name => 'asc')).page(params[:page]).per(20)
+            @authors = Kaminari.paginate_array(Author.includes(:tag).all.order(:name => 'asc')).page(params[:page]).per(@items_per_page)
         end
 
 

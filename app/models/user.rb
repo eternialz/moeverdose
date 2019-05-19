@@ -16,7 +16,7 @@ class User < ApplicationRecord
     # confirmation_at: Date => Self exp (see Devise doc)
     # confirmation_sent_at: Date => Self exp (see Devise doc)
     # unconfirmation_email: String => Self exp (see Devise doc)
-    # 
+    #
     # name: String => Username
     # biography: String => Self exp
     # website: String => User's website / blog
@@ -30,7 +30,7 @@ class User < ApplicationRecord
     # favorites_tags: String => User's favorite tags separated with a space
     # blacklisted_tags: String => User's blacklisted tags separated with a space
     # avatar: ActiveStorage::Attachment => Self exp
-    # 
+    #
     # timestamps => yes
     #
     # posts: Array<Post> => Posts uploaded by user
@@ -45,7 +45,7 @@ class User < ApplicationRecord
     # reported_posts: Array<Post> => All posts reported by the user
     #
     ####################################################################
-    
+
     devise :database_authenticatable, :registerable, :confirmable,
         :recoverable, :rememberable, :trackable, :validatable
     after_initialize :set_default_role, if: :new_record?

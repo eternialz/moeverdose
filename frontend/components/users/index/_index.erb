@@ -11,5 +11,8 @@
             <span class="number"><%= user.upload_count %><span class="number-unit"> posts</span></span>
         <% end %>
     <% end %>
+
     <%= paginate @users %>
+
+    <%= component "shared/items-per-page", {total_pages: @users.total_pages}  %>
 </div>

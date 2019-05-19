@@ -5,13 +5,16 @@ class UsersController < ApplicationController
     before_action :permitted_per_page, only: [:favorites, :uploads]
 
     def index
+        @default_per_page = 20
+        @items_per_page_list = [10, 20, 40]
+        @items_per_page = items_per_page()
 
         if params[:query]
             @users = Kaminari.paginate_array(
                 User.order('upload_count DESC').where('name LIKE ?', "%#{params[:query]}%" ))
-                .page(params[:page]).per(20)
+                .page(params[:page]).per(@items_per_page)
         else
-            @users = Kaminari.paginate_array(User.order('upload_count DESC')).page(params[:page]).per(20)
+            @users = Kaminari.paginate_array(User.order('upload_count DESC')).page(params[:page]).per(@items_per_page)
         end
 
         title("All Users")

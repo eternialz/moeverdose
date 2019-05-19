@@ -12,4 +12,6 @@
     <% end %>
 
     <%= paginate @authors %>
+
+    <%= component "shared/items-per-page", {total_pages: @authors.total_pages} %>
 </ul>
