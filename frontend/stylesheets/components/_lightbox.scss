@@ -5,13 +5,13 @@
         align-items: center;
         background-color: $gray-lighter;
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 8 8'%3E%3Cg fill='%23FFFFFF' fill-opacity='1'%3E%3Cpath fill-rule='evenodd' d='M0 0h4v4H0V0zm4 4h4v4H4V4z'/%3E%3C/g%3E%3C/svg%3E");
-        position: fixed;
         height: 0;
-        width: 100vw;
-        overflow-y: auto;
         opacity: 0;
-        z-index: $depth-4;
+        overflow-y: auto;
+        position: fixed;
         transition: opacity 180ms linear;
+        width: 100vw;
+        z-index: $depth-4;
 
         img {
             margin: auto;
@@ -20,9 +20,9 @@
         }
 
         &.active {
+            display: flex;
             height: 100vh;
             opacity: 1;
-            display: flex;
         }
     }
 }

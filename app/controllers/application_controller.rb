@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
     protect_from_forgery with: :exception
     prepend_view_path Rails.root.join("frontend")
+    before_action :items_per_page
 
     def home
         @news = New.all.order('created_at DESC').limit(2)
@@ -28,6 +29,14 @@ class ApplicationController < ActionController::Base
     def title(page_title)
         if page_title.to_s != ""
             @title = page_title.to_s + ' - ' + helpers.site_name
+        end
+    end
+
+    def items_per_page()
+        if params[:items_per_page]
+            return params["items_per_page"].to_i
+        else 
+            return 16
         end
     end
 

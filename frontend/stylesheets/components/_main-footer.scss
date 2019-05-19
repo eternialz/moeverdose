@@ -2,13 +2,13 @@
     @include shadow-2();
 
     background: $true-white;
+    color: $text-color-dark;
     margin: 0 -3rem;
     padding: 0 3rem;
-    color: $text-color-dark;
 
     .title {
-        padding-bottom: 0.5rem;
         border-bottom: 1px solid $gray-lighter;
+        padding-bottom: 0.5rem;
     }
 
     a {

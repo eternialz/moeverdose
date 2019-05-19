@@ -37,12 +37,12 @@
     }
 
     &::before {
-        position: absolute;
-        content: " ";
-        width: 3rem;
-        height: 2rem;
         bottom: 100%;
+        content: " ";
+        height: 2rem;
         left: -0.5rem;
+        position: absolute;
+        width: 3rem;
     }
 
     &:hover {

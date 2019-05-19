@@ -10,12 +10,14 @@
 // Components
 @import 'components/admin-menu';
 @import 'components/comment';
+@import 'components/items-per-page';
 @import 'components/lightbox';
 @import 'components/main-footer';
 @import 'components/main-menu';
 @import 'components/main-search';
 @import 'components/main-search.mobile';
 @import 'components/mobile-menu';
+@import 'components/news';
 @import 'components/notification';
 @import 'components/notification.mobile';
 @import 'components/parameters';
@@ -24,6 +26,7 @@
 @import 'components/post-list';
 @import 'components/post-new';
 @import 'components/post-show';
+@import 'components/search-form';
 @import 'components/turbolinks-progress-bar';
 @import 'components/user-activity';
 @import 'components/user-show';
@@ -52,6 +55,7 @@
 @import 'elements/key';
 @import 'elements/link';
 @import 'elements/list';
+@import 'elements/main-title';
 @import 'elements/number-unit';
 @import 'elements/pagination';
 @import 'elements/paragraph';

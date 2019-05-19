@@ -1,6 +1,7 @@
-<div class="main-search" data-controller="main-search">
-    <%= form_tag posts_path, class: "main-search-input-container", method: "GET" do |f| %>
-        <input type="text" autocomplete="off" name="query" value="<%= params[:query] %>" class="main-search-input" placeholder="Search" data-target="main-search.input" />
+<div class="main-search margin margin-top" data-controller="main-search">
+    <%= form_tag posts_path, class: "main-search-input-container", data: {target: "main-search.form" }, method: "GET" do |f| %>
+        <a class="main-search-restore" tabindex="-1" data-action="click->main-search#restore" data-target="main-search.restoreButton">Restore <i class="fa fa-history"></i></a>
+        <input type="text" autocomplete="off" name="query" value="<%= params[:query] %>" class="main-search-input" placeholder="Search" data-target="main-search.input" data-action="keydown->main-search#closeRestore keyup->main-search#closeRestore" />
         <button class="button-link" data-action="click->main-search#toggleTagsPanel">
             <span class="hide-small">Tags</span>
             <i data-target="main-search.tagButton" class="fa fa-chevron-down"></i>
@@ -10,7 +11,7 @@
     <div class="main-search-tags" data-target="main-search.tags">
         <div class="columns padding padding-horizontal">
             <div class="col col-3 col-12-small padding">
-                <h6 class="subtitle subtitle-important"><span class="color-pink"><i class="far fa-circle"></i></span> Content</h6>
+                <h6 class="subtitle subtitle-important"><span class="color-pink"><i class="fa fa-tag"></i></span> Content</h6>
                 <div class="tag-list">
                     <% @tags.each do |t| %>
                         <span class="tag tag-content" data-action="click->main-search#toggleTag"><%= t %></span>
@@ -18,7 +19,7 @@
                 </div>
             </div>
             <div class="col col-3 col-12-small padding">
-                <h6 class="subtitle subtitle-important"><span class="color-green"><i class="far fa-circle"></i></span> Character</h6>
+                <h6 class="subtitle subtitle-important"><span class="color-green"><i class="fa fa-users"></i></span> Character</h6>
                 <div class="tag-list">
                     <% @characters.each do |t| %>
                         <span class="tag tag-character" data-action="click->main-search#toggleTag"><%= t %></span>
@@ -34,7 +35,7 @@
                 </div>
             </div>
             <div class="col col-3 col-12-small padding">
-                <h6 class="subtitle subtitle-important"><span class="color-orange"><i class="far fa-circle"></i></span> Author</h6>
+                <h6 class="subtitle subtitle-important"><span class="color-orange"><i class="fa fa-pen-nib"></i></span> Author</h6>
                 <div class="tag-list">
                     <% @authors.each do |t| %>
                         <span class="tag tag-author" data-action="click->main-search#toggleTag"><%= t %></span>

@@ -29,10 +29,10 @@
 
             .user-show-item {
                 color: $gray;
-                line-height: 1;
-                text-align: center;
                 font-size: 0.8em;
+                line-height: 1;
                 margin-bottom: 0.2rem;
+                text-align: center;
             }
 
             .user-show-name {
@@ -59,25 +59,25 @@
         padding: 1rem;
         position: fixed;
         text-align: center;
+        transition: bottom 120ms ease-in-out;
         width: 100%;
         z-index: $depth-3;
-        transition: bottom 120ms ease-in-out;
 
         .user-show-alert-content {
             @include shadow-3();
 
-            display: inline-block;
-            padding: 0.5rem 0.5rem 0.5rem 1rem;
-            max-width: 100%;
-            color: $true-white;
-            font-weight: bold;
             background: $black;
             border-radius: $border-radius-2;
+            color: $true-white;
+            display: inline-block;
+            font-weight: bold;
+            max-width: 100%;
+            padding: 0.5rem 0.5rem 0.5rem 1rem;
         }
 
         .user-show-alert-reset {
-            margin-left: 3rem;
             color: $white;
+            margin-left: 3rem;
 
             &:hover {
                 color: rgba($white, 0.8);

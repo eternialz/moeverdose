@@ -14,7 +14,6 @@ class UsersController < ApplicationController
             @users = Kaminari.paginate_array(User.order('upload_count DESC')).page(params[:page]).per(20)
         end
 
-
         title("All Users")
         render component "users/index"
     end

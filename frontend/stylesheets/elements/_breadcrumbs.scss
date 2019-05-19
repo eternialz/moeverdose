@@ -1,8 +1,8 @@
 .breadcrumbs {
     background: rgba($black, 0.05);
     border-radius: $border-radius;
-    padding: 0.25rem 0.5rem;
     margin-bottom: 1rem;
+    padding: 0.25rem 0.5rem;
 
     a {
         @include focusable();

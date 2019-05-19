@@ -1,7 +1,10 @@
 
 <div class="home-about">
     <div class="padding align-center">
-        <h1 class="title"><%= site_name %></h1>
+        <h1 class="main-title">
+            <%= image_tag '/images/logo-128.png', width: 45, height: 39 %>
+            <%= site_name %>
+        </h1>
         <h6 class="subtitle"><%= random_message %></h6>
     </div>
     <div class="margin margin-bottom">
@@ -47,18 +50,18 @@
             <% if !@news.empty? %>
                 <% @news.each do |n| %>
                     <% if n.text.length > 200 %>
-                        <div class="card">
+                        <div class="news">
                             <h4 class="subtitle"><%= n.title %></h4>
                             <h6>
                                 <span><%= n.created_at.strftime("%Y/%m/%d") %></span>
                             </h6>
                             <p class="p-lead"><%= n.text[0..200] %>...</p>
-                            <%= link_to news_path(n), class: "button button-secondary" do %>
+                            <%= link_to news_path(n), class: "button-secondary button-base" do %>
                                 Read more
                             <% end %>
                         </div>
                     <% else %>
-                        <div class="card">
+                        <div class="news">
                             <h4 class="subtitle"><%= n.title %></h4>
                             <h6>
                                 <span><%= n.created_at.strftime("%Y/%m/%d") %></span>

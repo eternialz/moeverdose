@@ -1,10 +1,5 @@
 <div class="item-list">
-    <form class="form">
-        <div class="form-input-group">
-            <input type="text" name="query" class="form-input" placeholder="Search users" value="<%= params[:query] %>"/>
-            <button type="submit" class="button-icon">Search</button>
-        </div>
-    </form>
+    <%= component "shared/search-form" %>
     <% @users.each do |user| %>
         <%= link_to user_path(user.name), class: "item" do %>
             <div class="item-content">

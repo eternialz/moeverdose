@@ -19,8 +19,8 @@ body {
     overflow: hidden scroll;
 
     .view-content {
-        padding-top: 5rem;
         margin-bottom: 2rem;
+        padding-top: 5rem;
     }
 
     .view-full-width {
@@ -28,14 +28,14 @@ body {
         padding-top: calc(3rem + 5px);
 
         .view-full-width-content {
-            padding: 1rem;
             flex-grow: 1;
+            padding: 1rem;
         }
 
         .view-full-width-sidebar {
-            position: relative;
-            min-height: 10vh;
             display: flex;
+            min-height: 10vh;
+            position: relative;
         }
     }
 

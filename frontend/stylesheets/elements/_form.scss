@@ -16,8 +16,8 @@
 }
 
 .form-error {
-    display: none;
     color: $error-color;
+    display: none;
 }
 
 .form-textarea {
@@ -32,8 +32,8 @@
     appearance: none;
     background: $gray-lighter;
     background-image: none;
-    border-radius: $border-radius;
     border: 0;
+    border-radius: $border-radius;
     caret-color: $base-color;
     color: $black;
     display: block;
@@ -53,8 +53,8 @@
     }
 
     &.form-input-error {
-        caret-color: $error-color;
         box-shadow: 0 0 0 2px rgba($error-color, 0.8);
+        caret-color: $error-color;
 
         & + .form-error {
             display: block;
@@ -65,7 +65,6 @@
 .form-input-group {
     border-radius: $border-radius;
     display: flex;
-    overflow: hidden;
 
     .form-input,
     .form-textarea {
@@ -74,6 +73,14 @@
 
     * {
         border-radius: 0;
+    }
+
+    *:first-child {
+        border-radius: $border-radius 0 0 $border-radius;
+    }
+
+    *:last-child {
+        border-radius: 0 $border-radius $border-radius 0;
     }
 }
 
@@ -106,8 +113,8 @@
 }
 
 .form-checkbox {
-    margin: 0;
     font-weight: bold;
+    margin: 0;
 
     input {
         opacity: 0;
@@ -117,10 +124,10 @@
     }
 
     label {
+        border-radius: 2px;
         cursor: pointer;
         display: inline-block;
         padding: 0.5rem 0;
-        border-radius: 2px;
         transition: color 100ms ease-in-out, box-shadow 0.2s, color 0.2s;
 
         &::before {
@@ -135,8 +142,8 @@
         color: $base-color;
 
         &::before {
-            content: "\f14a";
             color: $base-color;
+            content: "\f14a";
         }
     }
 
@@ -155,8 +162,8 @@
 .form-select:-webkit-autofill,
 .form-select:-webkit-autofill:hover,
 .form-select:-webkit-autofill:focus {
-    -webkit-text-fill-color: $base-color;
     box-shadow: inset 0 0 0 10rem $gray-lighter;
+    -webkit-text-fill-color: $base-color;
     transition: background-color 5000s ease-in-out 0s;
 
     &:focus {

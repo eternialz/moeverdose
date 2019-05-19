@@ -11,9 +11,9 @@ h5,
 h6,
 .h6,
 .title {
-    margin: 0 0 1rem;
-    line-height: 1em;
     font-weight: bold;
+    line-height: 1em;
+    margin: 0 0 1rem;
 }
 
 @for $i from 1 through 7 {

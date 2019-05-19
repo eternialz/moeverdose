@@ -27,19 +27,13 @@ class PostsController < ApplicationController
     end
 
     def index
-        @permited_posts_per_page = ['8', '16', '24', '32']
-
-        unless params[:posts_per_page].nil?
-            @posts_per_page = params[:posts_per_page].to_i <= @permited_posts_per_page.last.to_i ? params[:posts_per_page] : '16'
-        else
-            @posts_per_page = '16'
-        end
+        @items_per_page = items_per_page()
 
         unless params[:query].blank?
             if user_signed_in?
-                @posts, ignored = PostLogic.query_with_blacklist(params[:query], current_user.blacklisted_tags, params[:page], @posts_per_page)
+                @posts, ignored = PostLogic.query_with_blacklist(params[:query], current_user.blacklisted_tags, params[:page], @items_per_page)
             else
-                @posts, ignored = PostLogic.query(params[:query], params[:page], @posts_per_page)
+                @posts, ignored = PostLogic.query(params[:query], params[:page], @items_per_page)
             end
 
             if ignored
@@ -47,9 +41,9 @@ class PostsController < ApplicationController
             end
         else
             if user_signed_in?
-                @posts = PostLogic.all_posts_with_blacklist(current_user.blacklisted_tags, params[:page], @posts_per_page)
+                @posts = PostLogic.all_posts_with_blacklist(current_user.blacklisted_tags, params[:page], @items_per_page)
             else
-                @posts = PostLogic.all_posts(params[:page], @posts_per_page)
+                @posts = PostLogic.all_posts(params[:page], @items_per_page)
             end
         end
 

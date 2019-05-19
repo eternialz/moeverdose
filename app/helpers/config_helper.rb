@@ -16,6 +16,14 @@ module ConfigHelper
         "https://twitter.com/moeverdose"
     end
 
+    def items_per_page
+        [8, 16, 24, 32]
+    end
+
+    def default_per_page
+        16
+    end
+
     # POSTS
     def self.image_dimensions
         [200, 200, 10000, 10000] # min width, min height, max width, max height
