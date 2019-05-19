@@ -147,11 +147,12 @@ class PostsController < ApplicationController
 
         unless params[:author_tag].blank?
             author = TagLogic.find_or_create_author(params[:author_tag], @post)
+            @post.author = author
+        else
+            @post.author = nil
         end
 
         if @post.save
-            author&.save
-
             TagLogic.change_counts(@post.tags, 1) # Increase new tags post count
 
             flash[:success] = "Post id #{@post.number} updated!"

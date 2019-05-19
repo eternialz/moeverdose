@@ -18,6 +18,9 @@
         <a class="button-secondary" href="<%= edit_tag_path(@tag) %>">Edit aliases<i class="fa fa-edit"></i></a>
     </div>
 </div>
+
 <%= component "shared/post-list" %>
 
 <%= paginate @posts %>
+
+<%= component "shared/items-per-page", {total_pages: @posts.total_pages} %>

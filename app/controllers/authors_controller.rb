@@ -23,7 +23,7 @@ class AuthorsController < ApplicationController
     end
 
     def show
-        @posts = Kaminari.paginate_array(Post.where(author: @author)).page(params[:page]).per(20)
+        @posts = Kaminari.paginate_array(Post.where(author: @author)).page(params[:page]).per(items_per_page())
 
         @tag = @author.tag
         @names = @tag.names
