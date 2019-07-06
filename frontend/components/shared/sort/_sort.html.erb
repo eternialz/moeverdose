@@ -1,0 +1,23 @@
+<div class="flex justify-content-center">
+    <%= form_tag request.path, class: "select", method: :get, data: {controller: "sort"} do %>
+        <a class="select-selected" tabindex="0">
+            <span data-target="sort.selected"><%= params[:sort_name] || "Sort items" %></span>
+            <i class="fas fa-chevron-down"></i>
+        </a>
+        <div class="select-options">
+            <% sort_options.each do |option| %>
+                <% option.each do |key, value| %>
+                    <button class="select-option" data-action="mousedown->sort#selected" data-sort="<%= key %>" data-direction="<%= value.keys.first %>"><%= value.values.first %></button>
+                <% end %>
+            <% end %>
+        </div>
+        <input data-target="sort.sort" type="hidden" />
+        <input name="sort_name" data-target="sort.sortName" type="hidden" value="<%= params[:sort_name] %>"/>
+        <% if params[:query] %>
+            <input name="query" type="hidden" value="<%= params[:query] %>"/>
+        <% end %>
+        <% if params[:items_per_page] %>
+            <input name="items_per_page" type="hidden" value="<%= params[:items_per_page] %>"/>
+        <% end %>
+    <% end %>
+</div>

@@ -176,8 +176,6 @@ GEM
     puma (3.12.1)
     raabro (1.1.6)
     rack (2.0.7)
-    rack-mini-profiler (1.0.2)
-      rack (>= 1.2.0)
     rack-proxy (0.6.5)
       rack
     rack-test (1.1.0)
@@ -301,7 +299,6 @@ PLATFORMS
 DEPENDENCIES
   active_storage_validations
   autoprefixer-rails
-  bcrypt (~> 3.1.7)
   bootsnap (>= 1.1.0)
   bullet
   byebug
@@ -320,7 +317,6 @@ DEPENDENCIES
   pg (>= 0.18, < 2.0)
   pry
   puma (~> 3.11)
-  rack-mini-profiler
   rails (~> 5.2.0)
   rb-readline
   rufus-scheduler
@@ -337,4 +333,4 @@ RUBY VERSION
    ruby 2.6.1p33
 
 BUNDLED WITH
-   1.17.2
+   1.17.3

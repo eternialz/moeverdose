@@ -87,12 +87,35 @@ class User < ApplicationRecord
     has_many :permissions
     accepts_nested_attributes_for :permissions
 
+    # Sorting
+    include Sortable
+
+    scope :alphabetical, -> (direction = "desc") { order("name #{direction}") }
+    scope :posts, -> (direction = "desc") { order("upload_count #{direction}") }
+    # scope :level,
+
+    def self.sort_scopes
+        [:alphabetical, :posts]
+    end
+
+    def self.sort_options
+        [
+            {alphabetical: {desc: "Alpabetical order"}},
+            {alphabetical: {asc: "Reverse alphabetical order"}},
+            {posts: {desc: "Most posts first"}},
+            {posts: {asc: "Least posts first"}},
+            # {level: {desc: " first"}},
+            # {level: {asc: "Least posts first"}},
+        ]
+    end
+
     # Prevent banned user authentications
     def active_for_authentication?
         super && !self.banned?
     end
 
-    def inactive_message # Custom error message for banned user
+    # Custom error message for banned user
+    def inactive_message
         !self.banned? ? super : :banned
     end
 

@@ -53,6 +53,26 @@ class Post < ApplicationRecord
 
     has_and_belongs_to_many :tags, class_name: "Tag", inverse_of: :posts
 
+    # Sorting
+    
+    include Sortable
+
+    #scope :comments, -> (direction = "desc") {  }
+    #scope :favorites, -> (direction = "desc") {  }
+    #scope :overdose, -> (direction = "desc") {  }
+    #scope :comments, -> (direction = "desc") {  }
+
+    def self.sort_scopes
+        [:created_at]
+    end
+
+    def self.sort_options
+        [
+            {created_at: {desc: "Oldest first"}},
+            {created_at: {asc: "Newest first"}},
+        ]
+    end
+
     def self.sizes
         return {
             thumbnail: "200x200"

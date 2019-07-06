@@ -10,10 +10,10 @@ class UsersController < ApplicationController
 
         if params[:query]
             @users = Kaminari.paginate_array(
-                User.order('upload_count DESC').where('name LIKE ?', "%#{params[:query]}%" ))
+                User.sort_by(set_sort_by()).where('name LIKE ?', "%#{params[:query]}%" ))
                 .page(params[:page]).per(@items_per_page)
         else
-            @users = Kaminari.paginate_array(User.order('upload_count DESC')).page(params[:page]).per(@items_per_page)
+            @users = Kaminari.paginate_array(User.sort_by(set_sort_by())).page(params[:page]).per(@items_per_page)
         end
 
         title("All Users")
@@ -137,6 +137,10 @@ class UsersController < ApplicationController
 
     def sign_up_params
         params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    end
+
+    def set_sort_by
+        params.slice(*User.sort_scopes) || [posts: :desc]
     end
 
     def account_update_params

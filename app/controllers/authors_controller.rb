@@ -11,10 +11,12 @@ class AuthorsController < ApplicationController
 
         if params[:query]
             @authors = Kaminari.paginate_array(
-                Author.includes(:tag).all.where('name LIKE ?', "%#{params[:query]}%" ))
+                Author.sort_by(set_sort_by()).includes(:tag).all.where('name LIKE ?', "%#{params[:query]}%" ))
                 .page(params[:page]).per(@items_per_page)
         else
-            @authors = Kaminari.paginate_array(Author.includes(:tag).all.order(:name => 'asc')).page(params[:page]).per(@items_per_page)
+            @authors = Kaminari.paginate_array(
+                Author.sort_by(set_sort_by()).includes(:tag).all)
+                .page(params[:page]).per(@items_per_page)
         end
 
 
@@ -23,7 +25,7 @@ class AuthorsController < ApplicationController
     end
 
     def show
-        @posts = Kaminari.paginate_array(Post.where(author: @author)).page(params[:page]).per(items_per_page())
+        @posts = Kaminari.paginate_array(Post.sort_by(set_post_sort_by()).where(author: @author)).page(params[:page]).per(items_per_page())
 
         @tag = @author.tag
         @names = @tag.names
@@ -76,6 +78,14 @@ class AuthorsController < ApplicationController
     private
     def set_author
         @author = Author.find(params[:id])
+    end
+
+    def set_sort_by
+        params.slice(*Author.sort_scopes) || [alphabetical: :desc]
+    end
+
+    def set_post_sort_by
+        params.slice(*Post.sort_scopes) || [created_at: :desc]
     end
 
     def author_params

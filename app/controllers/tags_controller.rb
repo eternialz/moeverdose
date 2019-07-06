@@ -9,10 +9,13 @@ class TagsController < ApplicationController
 
         if params[:query]
             @tags = Kaminari.paginate_array(
-                Tag.popular.joins(:aliases).where('aliases.name LIKE ?', "%#{params[:query]}%" ).uniq)
-                    .page(params[:page]).per(@items_per_page)
+                Tag.sort_by(set_sort_by())
+                .joins(:aliases).where("aliases.name LIKE ?", "%#{params[:query]}%").uniq
+            ).page(params[:page]).per(@items_per_page)
         else
-            @tags = Kaminari.paginate_array(Tag.popular).page(params[:page]).per(@items_per_page)
+            @tags = Kaminari.paginate_array(
+                Tag.sort_by(set_sort_by())
+            ).page(params[:page]).per(@items_per_page)
         end
 
         title("All Tags")
@@ -20,7 +23,7 @@ class TagsController < ApplicationController
     end
 
     def edit
-        @names = @tag.opt_names.map {|str| str.to_s}.join(' ')
+        @names = @tag.opt_names.map { |str| str.to_s }.join(" ")
 
         title("Edit tag " + @tag.name)
         render component "tags/edit"
@@ -31,13 +34,13 @@ class TagsController < ApplicationController
         names = params[:names].downcase.split(" ").uniq
 
         if names.any?
-            aliases = [@tag.main_alias.first]
-            names.each do |name|
-                # Get alias or create a new one
-                aliases.push(@tag.aliases.find_by(name: name) || Alias.new({name: name, tag_id: @tag.id}))
-            end
+        aliases = [@tag.main_alias.first]
+        names.each do |name|
+            # Get alias or create a new one
+            aliases.push(@tag.aliases.find_by(name: name) || Alias.new({ name: name, tag_id: @tag.id }))
+        end
 
-            @tag.aliases = aliases
+        @tag.aliases = aliases
         else
             flash.now[:error] = "You didn't provide any aliases."
         end
@@ -54,6 +57,10 @@ class TagsController < ApplicationController
     private
 
     def set_tag
-      @tag = Tag.includes(:aliases).find_by(id: params[:id])
+        @tag = Tag.includes(:aliases).find_by(id: params[:id])
+    end
+
+    def set_sort_by
+        params.slice(*Tag.sort_scopes) || [popular: :desc]
     end
 end

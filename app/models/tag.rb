@@ -12,10 +12,11 @@ class Tag < ApplicationRecord
     # author: Author => If tag is of type 'author', linked to author
     # posts: Array<Post> => All posts contening this tag
     ####################################################################
-    
+
     # Disable STI
     self.inheritance_column = :_type_disabled
 
+    # Relations
     has_many :aliases
     has_many :main_alias, -> { where(main: true) }, class_name: "Alias"
 
@@ -23,10 +24,24 @@ class Tag < ApplicationRecord
 
     has_one :author, class_name: "Author", inverse_of: :tag
 
-    scope :popular, -> {
-        order('posts_count DESC')
-    }
+    # Sorting 
+    include Sortable
 
+    scope :popular, -> (direction = "desc") { order("posts_count #{direction}") }
+    # scope :alphabetical, -> (direction = "desc") { includes(:aliases).order("aliases.name #{direction}") }
+
+    def self.sort_scopes
+        [:popular]
+    end
+
+    def self.sort_options
+        [
+            {popular: {desc: "Popular first"}},
+            {popular: {asc: "Unpopular first"}},
+        ]
+    end
+
+    # Tag types
     module Type
         def self.all
             ['content', 'character', 'author', 'copyright']
@@ -41,6 +56,7 @@ class Tag < ApplicationRecord
     include Tag::Type
     validates :type, inclusion: {in: Tag::Type.all}
 
+    # Methods
     def name
         self.main_alias.first&.name
     end

@@ -89,3 +89,13 @@
 .button-success {
     @include button-color($success-color);
 }
+
+.button-white {
+    @include button-color($true-white);
+
+    color: $text-color-dark;
+
+    &:hover {
+        color: $text-color-dark;
+    }
+}
