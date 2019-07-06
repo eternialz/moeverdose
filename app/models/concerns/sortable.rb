@@ -4,6 +4,12 @@ module Sortable
     module ClassMethods
         def sort_by(sorting_params)
             results = self.where(nil)
+            
+            self.sort_by_with_set(sorting_params, results)
+        end
+
+        def sort_by_with_set(sorting_params, set)
+            results = set
 
             # Apply sorting
             sorting_params.each do |key, value|

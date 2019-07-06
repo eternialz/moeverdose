@@ -67,7 +67,13 @@ class UsersController < ApplicationController
     end
 
     def favorites
-        @posts = Kaminari.paginate_array(@user.favorites).page(params[:page]).per(items_per_page())
+        @posts = Kaminari.paginate_array(
+            Post.sort_by_with_set(
+                set_post_sort_by(),
+                @user.favorites
+            )
+        ).page(params[:page]).per(items_per_page())
+
         @comments_counts = Comment.where(post: @posts).group(:post_id).count
 
         @breadcrumbs = [
@@ -85,7 +91,13 @@ class UsersController < ApplicationController
     end
 
     def uploads
-        @posts = Kaminari.paginate_array(@user.posts).page(params[:page]).per(items_per_page())
+        @posts = Kaminari.paginate_array(
+            Post.sort_by_with_set(
+                set_post_sort_by(),
+                @user.posts
+            )
+        ).page(params[:page]).per(items_per_page())
+
         @comments_counts = Comment.where(post: @posts).group(:post_id).count
 
         @breadcrumbs = [
@@ -141,6 +153,10 @@ class UsersController < ApplicationController
 
     def set_sort_by
         params.slice(*User.sort_scopes) || [posts: :desc]
+    end
+
+    def set_post_sort_by
+        params.slice(*Post.sort_scopes) || [created_at: :desc]
     end
 
     def account_update_params

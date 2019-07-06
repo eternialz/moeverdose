@@ -68,8 +68,8 @@ class Post < ApplicationRecord
 
     def self.sort_options
         [
-            {created_at: {desc: "Oldest first"}},
-            {created_at: {asc: "Newest first"}},
+            {created_at: {desc: "Uploaded last"}},
+            {created_at: {asc: "Uploaded first"}},
         ]
     end
 

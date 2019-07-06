@@ -22,7 +22,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby.git', :require => 'bcrypt'
 
 # Use ActiveStorage variant
 gem 'mini_magick', '~> 4.8'
@@ -37,9 +37,6 @@ gem "devise"
 
 # Pagination plugin
 gem 'kaminari'
-
-# autoprefixer plugin for css/sass
-gem "autoprefixer-rails"
 
 # Httparty
 gem "httparty"
@@ -57,6 +54,9 @@ group :development, :test do
 
     # Open mails in the browser
     gem "letter_opener"
+
+    # Performance monitoring
+    gem "rack-mini-profiler"
 
     # PRY
     gem "rb-readline"
