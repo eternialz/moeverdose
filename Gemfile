@@ -81,7 +81,6 @@ group :test do
     gem 'faker', github: 'stympy/faker'
     gem 'minitest-rails', '>= 2.0'
     gem 'database_cleaner'
-    gem 'coveralls', require: false
     gem 'codecov', :require => false
 end
 

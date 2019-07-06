@@ -1,8 +1,9 @@
-require 'coveralls'
-Coveralls.wear!
-
 require 'simplecov'
-SimpleCov.start
+SimpleCov.start do
+  add_group 'Models', 'app/models'
+  add_group 'Controllers', 'app/controllers'
+  add_group 'Views', 'app/views'
+end
 
 require 'codecov'
 SimpleCov.formatter = SimpleCov::Formatter::Codecov
