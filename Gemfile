@@ -81,6 +81,7 @@ group :test do
     gem 'faker', github: 'stympy/faker'
     gem 'minitest-rails', '>= 2.0'
     gem 'database_cleaner'
+    gem 'coveralls', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
