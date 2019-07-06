@@ -82,6 +82,7 @@ group :test do
     gem 'minitest-rails', '>= 2.0'
     gem 'database_cleaner'
     gem 'coveralls', require: false
+    gem 'codecov', :require => false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
