@@ -1,6 +1,7 @@
 .user-show {
     .user-show-header {
         display: flex;
+        overflow: hidden;
         padding: 0;
 
         .user-show-identity {
