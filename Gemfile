@@ -25,7 +25,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use ActiveStorage variant
-gem 'mini_magick', '~> 4.8'
+gem 'mini_magick', '~> 4.9', '>= 4.9.4'
 gem 'active_storage_validations'
 gem 'mime-types', require: 'mime/types/full'
 
