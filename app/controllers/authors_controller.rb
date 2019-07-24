@@ -54,15 +54,13 @@ class AuthorsController < ApplicationController
             end
         end
 
-        @saved_website = @author.website
         @author.assign_attributes(author_params)
 
-        if flash.now[:error] == nil && @author.save && @author.tag.save
-            flash.now[:success] = "The author page was updated!"
+        if @author.save && @author.tag.save
+            flash.now[:success] = "The author was updated!"
             redirect_to author_path(@author)
         else
             flash.now[:error] = "Modifications could not be saved! Please verify informations provided"
-            @website = @saved_website
             render component "authors/edit"
         end
     end
