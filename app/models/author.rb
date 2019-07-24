@@ -17,4 +17,6 @@ class Author < ApplicationRecord
     validates :tag, presence: true
     validates :name, presence: true
 
+    validates :website, allow_blank: true, format: { with: URI::DEFAULT_PARSER.make_regexp, message: 'You provided an invalid website URL.' }
+
 end

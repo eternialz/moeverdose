@@ -54,21 +54,15 @@ class AuthorsController < ApplicationController
             end
         end
 
+        @saved_website = @author.website
         @author.assign_attributes(author_params)
-
-        @author.website = params[:website]
-
-        unless @author.website =~ URI::DEFAULT_PARSER.make_regexp
-            flash.now[:error] = "Modifications could not be saved! Please verify website url provided"
-        end
 
         if flash.now[:error] == nil && @author.save && @author.tag.save
             flash.now[:success] = "The author page was updated!"
             redirect_to author_path(@author)
         else
             flash.now[:error] = "Modifications could not be saved! Please verify informations provided"
-
-            @website = @author.website
+            @website = @saved_website
             render component "authors/edit"
         end
     end
@@ -80,7 +74,7 @@ class AuthorsController < ApplicationController
 
     def author_params
         params.require(:author).permit(
-            :name, :biography
+            :name, :biography, :website
         )
     end
 end
