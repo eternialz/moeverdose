@@ -1,6 +1,6 @@
 <%= form_for @author, as: 'author', url: author_path(@author) do |f| %>
     <div class="zone">
-        <h4 class="title title-compact">Edit author "<%= @author.name %>"</h4>
+        <h4 class="title title-compact">Edit author "<%= @old_name ? @old_name : @author.name %>"</h4>
         <h6 class="subtitle">Informations:</h6>
         <div class="form-field">
             <label class="form-label">Name:</label>

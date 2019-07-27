@@ -17,7 +17,6 @@ class AuthorsController < ApplicationController
             @authors = Kaminari.paginate_array(Author.includes(:tag).all.order(:name => 'asc')).page(params[:page]).per(@items_per_page)
         end
 
-
         title("All Authors")
         render component "authors/index"
     end
@@ -41,22 +40,17 @@ class AuthorsController < ApplicationController
     end
 
     def update
-        new_name = params[:author][:name]
-        main_alias = Alias.where(tag: @author.tag, main: true).first
+        @old_name = @author.name
 
-        if @author.name != new_name
-            existing_alias = @author.tag.aliases.where(name: new_name).first
-            main_alias.update_attributes(main: false)
-            if existing_alias.present?
-                existing_alias.update_attributes(main: true)
-            else
-                Alias.create(name: new_name.downcase.tr(' ', '_'), tag: @author.tag, main: true)
-            end
-        end
+        main_alias = @author.tag.main_alias
+        new_alias = @author.tag.aliases.where(name: params[:author][:name]).first || Alias.new(name: params[:author][:name].downcase.tr(' ', '_'), tag: @author.tag, main: true)
+
+        new_alias.main, main_alias.main = true, false
 
         @author.assign_attributes(author_params)
 
-        if @author.save && @author.tag.save
+        if params[:author][:name].present? && main_alias.save && new_alias.save && @author.tag && @author.save
+            @author.tag.save
             flash.now[:success] = "The author was updated!"
             redirect_to author_path(@author)
         else
