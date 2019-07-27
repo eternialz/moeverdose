@@ -31,7 +31,7 @@ class TagsController < ApplicationController
         names = params[:names].downcase.split(" ").uniq
 
         if names.any?
-            aliases = [@tag.main_alias.first]
+            aliases = [@tag.main_alias]
             names.each do |name|
                 # Get alias or create a new one
                 aliases.push(@tag.aliases.find_by(name: name) || Alias.new({name: name, tag_id: @tag.id}))
