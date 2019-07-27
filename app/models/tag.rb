@@ -12,7 +12,7 @@ class Tag < ApplicationRecord
     # author: Author => If tag is of type 'author', linked to author
     # posts: Array<Post> => All posts contening this tag
     ####################################################################
-    
+
     # Disable STI
     self.inheritance_column = :_type_disabled
 
