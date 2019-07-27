@@ -1,6 +1,4 @@
-require 'delegate'
-
-class TagLogic < SimpleDelegator
+class TagService
     def self.find_or_create(name, type, post)
 
         type = type.to_sym

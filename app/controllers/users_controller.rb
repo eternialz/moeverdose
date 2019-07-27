@@ -5,7 +5,6 @@ class UsersController < ApplicationController
     before_action :permitted_per_page, only: [:favorites, :uploads]
 
     def index
-
         if params[:query]
             @users = Kaminari.paginate_array(
                 User.order('upload_count DESC').where('name LIKE ?', "%#{params[:query]}%" ))
@@ -124,7 +123,7 @@ class UsersController < ApplicationController
 
     private
     def set_user
-        @user = User.includes(favorites_tags: :aliases, blacklisted_tags: :aliases, permissions: :permissions_type).find_by(name: params[:id])
+        @user = User.left_outer_joins(favorites_tags: :aliases, blacklisted_tags: :aliases, permissions: :permissions_type).find_by(name: params[:id])
     end
 
     def check_user
