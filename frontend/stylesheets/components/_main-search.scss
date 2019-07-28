@@ -1,12 +1,12 @@
 .main-search {
-    @include shadow-3();
+    @include shadow-2();
 
-    background: $gray-darker;
+    background: $true-white;
     border-radius: $border-radius;
 
     .main-search-tags {
-        background: $black;
-        box-shadow: 0 -1px 0 $gray-dark;
+        background: $gray-lightest;
+        border-radius: 0 0 $border-radius $border-radius;
         height: 0;
         overflow: hidden;
 
@@ -19,7 +19,6 @@
         }
 
         .subtitle {
-            border-bottom: 1px solid $gray-dark;
             margin-bottom: 0.4rem;
             padding-bottom: 0.4rem;
 
@@ -32,24 +31,43 @@
 
     .main-search-input-container {
         display: flex;
+        margin-bottom: 0;
+        position: relative;
+
+        .main-search-restore {
+            cursor: pointer;
+            display: none;
+            font-size: 0.7rem;
+            font-weight: bold;
+            left: 0.8rem;
+            outline: none !important;
+            position: absolute;
+            text-transform: uppercase;
+            top: -1.35rem;
+            transition: opacity 100ms ease-in, transform 100ms ease-in;
+
+            &.disappear {
+                opacity: 0;
+                transform: translateY(1rem);
+            }
+
+            i {
+                margin-left: 0.2rem;
+            }
+        }
 
         .main-search-input {
             @include focusable();
 
+            background: $true-white;
             border-radius: $border-radius;
-            color: $true-white;
+            box-shadow: 11px 0 0 (-10px) $gray-light;
+            color: $black;
             display: flex;
             flex-grow: 1;
             flex-wrap: wrap;
-            min-height: 2.7rem;
-            padding: 0.8rem 0.8rem 0.5rem;
-
-            // Placeholder support for contenteditable
-            &:empty::before {
-                color: $gray;
-                content: attr(placeholder);
-                display: block;
-            }
+            height: 2.7rem;
+            padding: 0.5rem 0.8rem;
 
             br {
                 display: none;
@@ -70,19 +88,29 @@
         .button-link {
             @include focusable();
 
-            border: none;
+            align-items: center;
             border-radius: $border-radius;
-            color: $text-color-light;
+            color: $text-color-dark;
             cursor: pointer;
+            display: flex;
             font-weight: bold;
             letter-spacing: 0.05rem;
             line-height: 1;
             padding: 0 0.7rem;
             text-transform: uppercase;
+            transition: background 100ms ease-in-out;
 
             i {
                 margin-left: 0.5rem;
             }
+
+            &:hover {
+                background: rgba($gray, 0.1);
+            }
         }
+    }
+
+    &.main-search-restorable .main-search-input-container .main-search-restore {
+        display: inline-block;
     }
 }

@@ -106,7 +106,7 @@
                 color: $true-white;
                 font-weight: bold;
                 padding: 0.1rem 0.4rem;
-                transition: flex-basis 400ms linear;
+                transition: flex-basis 400ms ease-in-out;
 
                 &.overdose {
                     background: $pink;

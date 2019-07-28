@@ -1,0 +1,12 @@
+.search-form {
+    @include shadow-2();
+
+    border-radius: $border-radius;
+    display: block;
+    margin-bottom: 1rem;
+
+    .search-form-input {
+        background: $true-white;
+        padding: 0.8rem 0.6rem;
+    }
+}

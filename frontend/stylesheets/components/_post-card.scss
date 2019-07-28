@@ -1,11 +1,8 @@
 .post-card {
     color: $true-white;
-    font-weight: bold;
-    min-height: 10rem;
-    max-width: 100%;
-    overflow: hidden;
-    padding: 0.25rem;
     flex-basis: 20%;
+    font-weight: bold;
+    max-width: 100%;
 
     .fa {
         font-size: 0.8em;

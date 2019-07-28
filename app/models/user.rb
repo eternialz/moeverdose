@@ -16,7 +16,7 @@ class User < ApplicationRecord
     # confirmation_at: Date => Self exp (see Devise doc)
     # confirmation_sent_at: Date => Self exp (see Devise doc)
     # unconfirmation_email: String => Self exp (see Devise doc)
-    # 
+    #
     # name: String => Username
     # biography: String => Self exp
     # website: String => User's website / blog
@@ -28,7 +28,7 @@ class User < ApplicationRecord
     # banned: Boolean => Is the user banned
     # role: String => User's role. See User::Role. Default 'user'
     # avatar: ActiveStorage::Attachment => Self exp
-    # 
+    #
     # timestamps => yes
     #
     # posts: Array<Post> => Posts uploaded by user

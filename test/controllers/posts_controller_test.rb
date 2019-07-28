@@ -213,7 +213,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     test 'Can\'t create post unlogged' do
 
         assert_no_difference -> {Post.count} do
-            post posts_path(
+            post create_post_path(
                 post: {
                     "post_image" => "1"
                 }

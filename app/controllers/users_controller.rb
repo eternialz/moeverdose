@@ -2,17 +2,19 @@ class UsersController < ApplicationController
     before_action :authenticate_user!, only: [:edit, :update]
     before_action :set_user, except: [:index]
     before_action :check_user, only: [:edit, :update]
-    before_action :permitted_per_page, only: [:favorites, :uploads]
 
     def index
+        @default_per_page = 20
+        @items_per_page_list = [10, 20, 40]
+        @items_per_page = items_per_page()
+
         if params[:query]
             @users = Kaminari.paginate_array(
                 User.order('upload_count DESC').where('name LIKE ?', "%#{params[:query]}%" ))
-                .page(params[:page]).per(20)
+                .page(params[:page]).per(@items_per_page)
         else
-            @users = Kaminari.paginate_array(User.order('upload_count DESC')).page(params[:page]).per(20)
+            @users = Kaminari.paginate_array(User.order('upload_count DESC')).page(params[:page]).per(@items_per_page)
         end
-
 
         title("All Users")
         render component "users/index"
@@ -65,7 +67,7 @@ class UsersController < ApplicationController
     end
 
     def favorites
-        @posts = Kaminari.paginate_array(@user.favorites).page(params[:page]).per(@posts_per_page)
+        @posts = Kaminari.paginate_array(@user.favorites).page(params[:page]).per(items_per_page())
         @comments_counts = Comment.where(post: @posts).group(:post_id).count
 
         @breadcrumbs = [
@@ -83,7 +85,7 @@ class UsersController < ApplicationController
     end
 
     def uploads
-        @posts = Kaminari.paginate_array(@user.posts).page(params[:page]).per(@posts_per_page)
+        @posts = Kaminari.paginate_array(@user.posts).page(params[:page]).per(items_per_page())
         @comments_counts = Comment.where(post: @posts).group(:post_id).count
 
         @breadcrumbs = [
@@ -140,14 +142,6 @@ class UsersController < ApplicationController
         if current_user != @user
             flash[:error] = "The user you tried to edit isn't yourself"
             redirect_to edit_user_path(current_user.name)
-        end
-    end
-
-    def permitted_per_page
-        @permited_posts_per_page = ['2', '8', '16', '32', '64']
-
-        if !params[:posts_per_page].nil?
-            @posts_per_page = params[:posts_per_page]
         end
     end
 

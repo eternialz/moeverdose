@@ -3,12 +3,16 @@ class TagsController < ApplicationController
     before_action :authenticate_user!, except: [:index]
 
     def index
+        @default_per_page = 20
+        @items_per_page_list = [10, 20, 40]
+        @items_per_page = items_per_page()
+
         if params[:query]
             @tags = Kaminari.paginate_array(
                 Tag.popular.joins(:aliases).where('aliases.name LIKE ?', "%#{params[:query]}%" ).uniq)
-                    .page(params[:page]).per(20)
+                    .page(params[:page]).per(@items_per_page)
         else
-            @tags = Kaminari.paginate_array(Tag.popular).page(params[:page]).per(20)
+            @tags = Kaminari.paginate_array(Tag.popular).page(params[:page]).per(@items_per_page)
         end
 
         title("All Tags")
@@ -27,7 +31,7 @@ class TagsController < ApplicationController
         names = params[:names].downcase.split(" ").uniq
 
         if names.any?
-            aliases = [@tag.main_alias.first]
+            aliases = [@tag.main_alias]
             names.each do |name|
                 # Get alias or create a new one
                 aliases.push(@tag.aliases.find_by(name: name) || Alias.new({name: name, tag_id: @tag.id}))

@@ -3,116 +3,62 @@ import { Controller } from 'stimulus';
 
 @RegisterController
 class MainSearchController extends Controller {
-    static targets = ['tags', 'input', 'tagIcon'];
+    static targets = ['tags', 'input', 'tagButton', 'restoreButton', 'form'];
 
-    input(event) {
-        if (event.keyCode === 32 || event.key === ' ') {
-            // If key pressed is space
-            event.preventDefault();
-            event.target.innerHTML = this.processInput(event.target.innerHTML);
-        } else if (event.keyCode === 8 || event.key === 'Backspace') {
-            // If key pressed is backspace
-            this.removeLastTag(event.target.innerHTML, event);
-        } else if (event.keyCode === 13 || event.key === 'Enter') {
-            // If key pressed is enter
-            event.preventDefault();
-        } else if (event.key.length === 1 && !event.ctrlKey) {
-            event.preventDefault();
-            this.addCharacter(event.key);
-        }
-
-        this.moveCursorToEnd(event.target);
-    }
-
-    /**
-     * Replace string elements by tag, separated by spaces
-     * @param html
-     */
-    processInput(html) {
-        let elements = html
-            .replace(/\s+/g, ' ')
-            .split('&nbsp;')
-            .filter(s => s != '');
-
-        elements = elements.map(element => {
-            let value = element;
-
-            if (!/<.*>.*<\/.*>/.test(element)) {
-                value = '<span class="tag tag-blank" data-content="' + element.toLowerCase() + '"></span>';
-            }
-
-            return value;
-        });
-
-        return elements.join('&nbsp;') + '&nbsp;';
-    }
-
-    /**
-     * Remove last elements of query if it is a tag
-     * @param html
-     * @param event
-     */
-    removeLastTag(html, event) {
-        let elements = html
-            .replace(/\s+/g, ' ')
-            .split('&nbsp;')
-            .filter(s => s != '');
-
-        let last = elements[elements.length - 1];
-        if (/<.*>.*<\/.*>/.test(last)) {
-            event.preventDefault();
-            elements.pop();
-            event.target.innerHTML = elements.join('&nbsp;') + '&nbsp;';
+    // Set the input as restorable if there is a saved value from sessionStorage
+    connect() {
+        if (sessionStorage.getItem('tags') && !this.inputTarget.value) {
+            this.element.classList.add('main-search-restorable');
         }
     }
 
-    addCharacter(key) {
-        this.inputTarget.innerHTML += key;
-    }
-
-    moveCursorToEnd() {
-        // https://stackoverflow.com/questions/1125292/how-to-move-cursor-to-end-of-contenteditable-entity/3866442#3866442
-        var range, selection;
-        if (document.createRange) {
-            range = document.createRange();
-            range.selectNodeContents(this.inputTarget);
-            range.collapse(false);
-            selection = window.getSelection();
-            selection.removeAllRanges();
-            selection.addRange(range);
-        } else if (document.selection) {
-            range = document.body.createTextRange();
-            range.moveToElementText(this.inputTarget);
-            range.collapse(false);
-            range.select();
-        }
-    }
-
-    toggleTagsPanel() {
-        this.tagIconTarget.classList.toggle('fa-chevron-down');
-        this.tagIconTarget.classList.toggle('fa-chevron-up');
+    // Display tags dropdown panel when clicking tags button next to search input
+    toggleTagsPanel(event) {
+        event.preventDefault(); // Prevent submit of form
+        this.tagButtonTarget.classList.toggle('fa-chevron-down');
+        this.tagButtonTarget.classList.toggle('fa-chevron-up');
         this.tagsTarget.classList.toggle('active');
     }
 
+    // Click on a tag in the tag dropdown from the search bar
     toggleTag(event) {
-        this.addTag(event.target.innerHTML.toLowerCase());
+        let tag = event.target.innerHTML;
+        let query = this.inputTarget.value ? this.inputTarget.value.split(' ') : [];
+        let index = query.indexOf(tag);
+
+        if (index == -1) query.push(tag);
+        else query.splice(index, 1);
+
+        this.inputTarget.value = query.join(' ');
+        this.closeRestore();
     }
 
-    addTag(tag) {
-        this.inputTarget.innerHTML +=
-            '&nbsp;<span class="tag tag-blank" data-content="' + tag + '"></span>&nbsp;'.replace(/\./g, '');
-    }
-
-    paste(event) {
-        event.stopPropagation();
+    // Click on the search button
+    search(event) {
         event.preventDefault();
+        sessionStorage.setItem('tags', this.inputTarget.value);
+        this.formTarget.submit();
+    }
 
-        let data = (event.clipboardData || window.clipboardData).getData('Text');
+    // Restore stored value from sessionStorage
+    restore(event) {
+        event.preventDefault(); // Prevent submit of form
 
-        var tmp = document.createElement('div');
-        tmp.innerHTML = data.replace(/\s/g, '&nbsp;');
+        // Set restored value
+        this.inputTarget.value = sessionStorage.getItem('tags');
+        this.inputTarget.focus();
 
-        this.inputTarget.innerHTML += tmp.textContent || tmp.innerText || '';
-        this.inputTarget.innerHTML = this.processInput(this.inputTarget.innerHTML);
+        this.closeRestore();
+    }
+
+    // Make the restoration button disappear
+    closeRestore(event) {
+        // key pressed is enter, prevent opening/closing of tags panel and search instead
+        if (event && event.key === 'Enter') {
+            this.search(event);
+        }
+
+        // Make button disappear
+        this.restoreButtonTarget.classList.add('disappear');
     }
 }

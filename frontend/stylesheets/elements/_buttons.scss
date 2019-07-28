@@ -1,6 +1,6 @@
-.button-primary {
+.button-important {
     @include button-base();
-    @include button-color($pink);
+    @include button-color($base-color);
 
     color: $true-white;
 
@@ -40,11 +40,12 @@
 
     background: $primary-color;
     color: $true-white;
+    display: flex;
     padding: 0.45rem 0.4rem;
 
     i {
         margin: 0;
-        padding: 0 0.1rem;
+        padding: 0 0.4rem 0 0;
     }
 
     &:hover {
@@ -54,6 +55,8 @@
 }
 
 .button-link {
+    @include focusable();
+
     background: none;
     border: 0;
     cursor: pointer;
@@ -63,12 +66,16 @@
     @include button-color($discord-color);
 }
 
+.button-base {
+    @include button-color($base-color);
+}
+
 .button-github {
     @include button-color($github-color);
 }
 
-.button-base {
-    @include button-color($base-color);
+.button-primary {
+    @include button-color($primary-color);
 }
 
 .button-shortage {

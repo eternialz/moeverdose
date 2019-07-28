@@ -2,7 +2,8 @@ class PostsController < ApplicationController
 
     before_action :try_set_post, only: [:show]
     before_action :set_post, only: [:edit, :update, :dose, :favorite, :report, :report_update]
-    before_action :authenticate_user!, except: [:show, :index, :not_found, :random]
+    before_action :authenticate_user!, except: [:show, :index, :not_found, :random, :dose]
+    before_action :authenticate_user_xhr!, only: [:dose]
 
     def show
         results = TagService.differenciate_tags(@post.tags)
@@ -26,29 +27,23 @@ class PostsController < ApplicationController
     end
 
     def index
-        @permited_posts_per_page = ['8', '16', '24', '32']
-
-        unless params[:posts_per_page].nil?
-            @posts_per_page = params[:posts_per_page].to_i <= @permited_posts_per_page.last.to_i ? params[:posts_per_page] : '16'
-        else
-            @posts_per_page = '16'
-        end
+        @items_per_page = items_per_page()
 
         unless params[:query].blank?
             if user_signed_in?
-                @posts, ignored = PostService.query_with_blacklist(params[:query], current_user.blacklisted_tags, params[:page], @posts_per_page)
+                @posts, ignored = PostService.query_with_blacklist(params[:query], current_user.blacklisted_tags, params[:page], @items_per_page)
             else
-                @posts, ignored = PostService.query(params[:query], params[:page], @posts_per_page)
+                @posts, ignored = PostService.query(params[:query], params[:page], @items_per_page)
             end
 
             if ignored
-                flash.now[:info] = "One or more tags were ignored. Your query contains at least one tag which doesn't exist in our database."
+                flash.now[:notice] = "One or more tags were ignored. Your query contains at least one tag which doesn't exist in our database."
             end
         else
             if user_signed_in?
-                @posts = PostService.all_posts_with_blacklist(current_user.blacklisted_tags, params[:page], @posts_per_page)
+                @posts = PostService.all_posts_with_blacklist(current_user.blacklisted_tags, params[:page], @items_per_page)
             else
-                @posts = PostService.all_posts(params[:page], @posts_per_page)
+                @posts = PostService.all_posts(params[:page], @items_per_page)
             end
         end
 
@@ -59,7 +54,7 @@ class PostsController < ApplicationController
         @posts.each do |post|
             results = TagService.differenciate_tags(post.tags)
             @tags += results[:tags]
-            @tags += results[:copyrights]
+            @copyrights += results[:copyrights]
             @characters += results[:characters]
             @authors += results[:authors]
         end
@@ -96,7 +91,7 @@ class PostsController < ApplicationController
 
         @post.post_image.attach(post_params[:post_image])
 
-        @post.md5 = Digest::MD5.file(@post.post_image_path).hexdigest
+        @post.md5 = @post.post_image.checksum
 
         PostService.set_post_tags({tags: params[:tags], characters: params[:characters]}, @post)
 
@@ -107,9 +102,8 @@ class PostsController < ApplicationController
             @post.author = author
         end
 
-        unless params[:source].blank?
-            source = TagService.find_or_create(params[:source], :copyright, @post)
-            @post.source = params[:source]
+        unless @post.source.blank?
+            source = TagService.find_or_create(@post.source, :copyright, @post)
         end
 
         metadata = ActiveStorage::Analyzer::ImageAnalyzer.new(@post.post_image).metadata
@@ -126,7 +120,8 @@ class PostsController < ApplicationController
             redirect_to post_path(@post.number)
         else
             flash.now[:error] = "The post could not be created."
-            redirect_to new_post_path
+
+            render component "posts/new"
         end
     end
 
@@ -152,11 +147,12 @@ class PostsController < ApplicationController
 
         unless params[:author_tag].blank?
             author = TagService.find_or_create_author(params[:author_tag], @post)
+            @post.author = author
+        else
+            @post.author = nil
         end
 
         if @post.save
-            author&.save
-
             TagService.change_counts(@post.tags, 1) # Increase new tags post count
 
             flash[:success] = "Post id #{@post.number} updated!"
@@ -193,7 +189,7 @@ class PostsController < ApplicationController
         @post.report_user = current_user
         @post.save
 
-        flash[:info] = "Post reported"
+        flash[:notice] = "Post reported"
 
         redirect_to post_path(@post.number)
     end

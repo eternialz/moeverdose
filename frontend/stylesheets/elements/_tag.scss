@@ -2,18 +2,11 @@
     border-radius: $border-radius;
     display: inline-block;
     font-weight: bold;
-    padding: 0 0.2rem;
     margin-right: 0.2rem;
+    padding: 0 0.2rem;
 
     &.tag-blank {
-        background: rgba($base-color, 0.075);
-        box-shadow: inset 0 0 0 1px rgba($base-color, 1);
-        color: $base-color;
-        content: attr('data-content');
-
-        &::after {
-            content: attr(data-content);
-        }
+        @include tag-color($base-color);
     }
 
     &,

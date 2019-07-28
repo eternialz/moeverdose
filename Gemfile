@@ -41,9 +41,6 @@ gem 'kaminari'
 # autoprefixer plugin for css/sass
 gem "autoprefixer-rails"
 
-# Font-awesome
-gem "font-awesome-rails"
-
 # Httparty
 gem "httparty"
 
@@ -77,9 +74,7 @@ group :development do
     gem 'spring'
     gem 'spring-watcher-listen', '~> 2.0.0'
     # Performance monitoring
-    gem 'rack-mini-profiler'
-    gem 'stackprof'
-    gem 'flamegraph'
+    # gem 'rack-mini-profiler'
     gem 'bullet'
 end
 
@@ -88,6 +83,7 @@ group :test do
     gem 'factory_bot_rails'
     gem 'faker', github: 'stympy/faker'
     gem 'minitest-rails', '>= 2.0'
+    gem 'codecov', :require => false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

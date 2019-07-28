@@ -3,8 +3,8 @@
     <% @news.each do |new| %>
         <li>
             <span class="button_list">
-                <a href="<%= edit_admin_news_path(new)%>" class="btn btn-blue">Edit news<%= fa_icon "edit  "%></a>
-                <a href="<%= admin_news_path(new)%>" data-method="delete" class="btn btn-red">Delete news<%= fa_icon "exclamation"%></a>
+                <a href="<%= edit_admin_news_path(new)%>" class="btn btn-blue">Edit news<i class="fa fa-edit"></i></a>
+                <a href="<%= admin_news_path(new)%>" data-method="delete" class="btn btn-red">Delete news<i class="fa fa-exclamation"></i></a>
             </span>
             <h3>
                 <a href="<%= admin_news_path(new) %>"><%= new.title %></a>

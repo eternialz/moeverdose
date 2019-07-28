@@ -1,8 +1,20 @@
 .post-list {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 0.25rem 0;
-    margin-right: -0.25rem;
-    margin-left: -0.25rem;
-    justify-content: center;
+    display: grid;
+    grid-auto-rows: 1fr;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+    margin: 1rem 0;
+}
+
+.post-list::before {
+    content: '';
+    grid-column: 1 / 1;
+    grid-row: 1 / 1;
+    padding-bottom: 100%;
+    width: 0;
+}
+
+.post-list > *:first-child {
+    grid-column: 1 / 1;
+    grid-row: 1 / 1;
 }

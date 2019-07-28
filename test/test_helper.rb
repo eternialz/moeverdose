@@ -3,6 +3,16 @@ require_relative '../config/environment'
 require_relative './file_helper'
 require 'rails/test_help'
 require "minitest/pride"
+require 'simplecov'
+require 'codecov'
+
+SimpleCov.start do
+  add_group 'Models', 'app/models'
+  add_group 'Controllers', 'app/controllers'
+end
+
+SimpleCov.formatter = SimpleCov::Formatter::Codecov
+
 
 FactoryBot::SyntaxRunner.class_eval do
   include ActionDispatch::TestProcess

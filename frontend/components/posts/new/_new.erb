@@ -1,17 +1,24 @@
 
-<%= form_for @post, url: posts_path, html: {class: "zone post-new"} do |f| %>
+<%= form_for @post, url: create_post_path, html: {class: "zone post-new"} do |f| %>
+    <h4 class="subtitle margin margin-bottom">
+        Please, read and understand <a href="/wiki/rules">the rules</a> before posting anything.
+    </h4>
     <div class="post-new-upload" data-controller="post-new" class="col-6">
-        <h4 class="subtitle margin margin-bottom">
-            Please, read and understand <a href="/wiki/rules">the rules</a> before posting anything.
-        </h4>
         <%= f.file_field :post_image,
             required: "required",
             title: "File input",
-            "data-target": 'post-new.input',
-            "data-action": 'change->post-new#input'
+            data: {
+                target: 'post-new.input',
+                action: 'change->post-new#input'
+            }
         %>
+        <% @post.errors.each do |attr, msg| %>
+            <li><%= msg %></li>
+        <% end %>
+        <span class="post-new-md5" data-target="post-new.md5"></span>
+        <a class="post-id" href="" data-target="post-new.postLink"></a>
         <div class="post-new-dummy">
-            <label class="button-primary" for="post_post_image">Browse <i class="fa fa-folder-open"></i></label>
+            <label class="button-important" for="post_post_image">Browse <i class="fa fa-folder-open"></i></label>
             <span class="post-new-invalid">
                 No file selected
             </span>
@@ -24,14 +31,14 @@
     <div class="columns">
         <div class="col col-6 col-12-small padding">
             <div class="form">
-                <h5 class="title"><%= fa_icon "tag" %> Tags</h5>
+                <h5 class="title"><i class="fa fa-tag"></i> Tags</h5>
                 <div class="form-field">
                     <label class="form-label">Content</label>
-                    <textarea class="form-textarea" name="tags" id="tags" placeholder='Tags ("1girl glasses ...")' autocomplete="off"></textarea>
+                    <textarea class="form-textarea" name="tags" id="tags" placeholder='Tags ("1girl glasses ...")' autocomplete="off"><%= params[:tags] %></textarea>
                 </div>
                 <div class="form-field">
                     <label class="form-label">Character</label>
-                    <textarea class="form-textarea" name="characters" placeholder='Characters ("illyasviel_von_einzbern ...")' autocomplete="off"></textarea>
+                    <textarea class="form-textarea" name="characters" placeholder='Characters ("illyasviel_von_einzbern ...")' autocomplete="off"><%= params[:characters] %></textarea>
                 </div>
             </div>
         </div>
@@ -39,21 +46,21 @@
             <div class="form">
                 <h5 class="title"><i class="fa fa-info-circle"></i> Metadatas</h5>
                 <div class="form-field">
-                    <label class="form-label"><%= fa_icon "heading" %> Title</label>
-                    <input class="form-input" type="text" name="post[title]" placeholder='Title' autocomplete="off">
+                    <label class="form-label"><i class="fa fa-heading"></i> Title</label>
+                    <%= f.text_field :title, autocomplete: :off, class: "form-input", placeholder: "Title" %>
                 </div>
                 <div class="form-field">
-                    <label class="form-label"><%= fa_icon "user" %> Author</label>
-                    <input class="form-input" type="text" name="author" placeholder='Author' autocomplete="off"></textarea>
+                    <label class="form-label"><i class="fa fa-user"></i> Author</label>
+                    <%= f.text_field :author, name: :author, autocomplete: :off, class: "form-input", placeholder: "Author", value: params[:author] %>
                 </div>
                 <div class="form-field">
-                    <label class="form-label"><%= fa_icon "rss" %> Source</label>
-                    <input class="form-input" type="text" name="source" placeholder='Source' autocomplete="off"></textarea>
+                    <label class="form-label"><i class="fa fa-rss"></i> Source</label>
+                    <%= f.text_field :source, autocomplete: :off, class: "form-input", placeholder: "Source" %>
                 </div>
             </div>
         </div>
     </div>
     <div class="col-12" style="text-align:right;">
-        <button form="new_post" class="button-primary" type="submit">Upload <i class="fa fa-upload"></i></button>
+        <button form="new_post" class="button-important" type="submit">Upload <i class="fa fa-upload"></i></button>
     </div>
 <% end %>
