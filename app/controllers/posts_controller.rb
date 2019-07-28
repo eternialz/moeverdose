@@ -103,7 +103,7 @@ class PostsController < ApplicationController
         end
 
         unless @post.source.blank?
-            source = TagService.find_or_create(@post.source, :copyright, @post)
+            TagService.find_or_create(@post.source, :copyright, @post)
         end
 
         metadata = ActiveStorage::Analyzer::ImageAnalyzer.new(@post.post_image).metadata

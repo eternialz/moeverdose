@@ -36,7 +36,7 @@ class UserService
                         permissions_type: { only: [:name, :description] }
                     }
                 },
-            }   
+            }
         )
     end
 end

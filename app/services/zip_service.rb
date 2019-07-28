@@ -3,7 +3,7 @@ class ZipService
         require 'zip'
         json_file = Tempfile.new("#{json_name}.json")
         zip_file = Tempfile.new "#{zip_name}.zip"
-        begin 
+        begin
             json_file.write(json)
             json_file.close
             # Initialize the temp file as a zip file
