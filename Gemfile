@@ -39,14 +39,15 @@ gem 'kaminari'
 # autoprefixer plugin for css/sass
 gem "autoprefixer-rails"
 
-gem 'font-awesome-rails'
-
 # Httparty
 gem "httparty"
 
-#Twitter
+# Twitter
 gem "twitter"
 gem "rufus-scheduler"
+
+# Zip management
+gem 'rubyzip', '>= 1.0.0'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
@@ -55,7 +56,7 @@ group :development, :test do
     # Call 'byebug' anywhere in the code to stop execution and get a debugger console
     gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 
-    # Open mails in the browser 
+    # Open mails in the browser
     gem "letter_opener"
 
     # PRY
@@ -80,6 +81,7 @@ group :test do
     gem 'factory_bot_rails'
     gem 'faker', github: 'stympy/faker'
     gem 'minitest-rails', github: "blowmage/minitest-rails"
+    gem 'codecov', :require => false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

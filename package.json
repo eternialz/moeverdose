@@ -5,7 +5,10 @@
     "@fortawesome/fontawesome-free": "^5.7.1",
     "@rails/webpacker": "3.5",
     "normalize.css": "^8.0.1",
+    "rails-ujs": "^5.2.3",
     "stimulus": "^1.1.1",
+    "snyk": "^1.189.0",
+    "turbolinks": "^5.2.0",
     "webpack-merge": "^4.2.1"
   },
   "devDependencies": {
@@ -26,10 +29,13 @@
     "prettier": "^1.16.3",
     "stylelint": "^9.10.1",
     "stylelint-config-standard": "^18.2.0",
+    "stylelint-order": "^3.0.0",
     "webpack-dev-server": "2.11.2"
   },
   "scripts": {
-    "lint-staged": "$(yarn bin)/lint-staged"
+    "lint-staged": "$(yarn bin)/lint-staged",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "lint-staged": {
     "config/webpack/**/*.js": [
@@ -46,9 +52,18 @@
       "prettier --write",
       "stylelint --fix",
       "git add"
+    ],
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.css": [
+      "stylelint --fix",
+      "git add"
     ]
   },
   "pre-commit": [
     "lint-staged"
-  ]
+  ],
+  "snyk": true
 }

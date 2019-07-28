@@ -21,7 +21,7 @@
 
             <% if @current %>
                 <div class="user-show-identity-section hide-medium">
-                    <a class="button-secondary" href="<%= edit_user_path(@user.name) %>"><%= fa_icon "edit" %> edit profile</a>
+                    <a class="button-secondary" href="<%= edit_user_path(@user.name) %>"><i class="fa fa-edit"></i> edit profile</a>
                 </div>
             <% end %>
         </div>
@@ -44,7 +44,7 @@
             <div class="button-list button-list-right">
                 <% if @current %>
                     <div class="user-show-identity-section show-medium">
-                        <a class="button-secondary" href="<%= edit_user_path(@user.name) %>"><%= fa_icon "edit" %> edit profile</a>
+                        <a class="button-secondary" href="<%= edit_user_path(@user.name) %>"><i class="fa fa-edit"></i> edit profile</a>
                     </div>
                 <% end %>
                 <% unless @user.twitter.blank? %>
@@ -103,7 +103,7 @@
                         <h6 class="subtitle margin margin-vertical">
                             <span class="number"><%= @user.favorites.count %></span> Favorited Posts
                         </h6>
-                        <a class="button-secondary" href="<%= favorites_path(@user.name) %>">View Favorites <%= fa_icon "eye" %></a>
+                        <a class="button-secondary" href="<%= favorites_path(@user.name) %>">View Favorites <i class="fa fa-eye"></i></a>
                     <% else %>
                         <h6 class="subtitle">No favorites yet</h6>
                     <% end %>
@@ -113,7 +113,7 @@
                         <h6 class="subtitle margin margin-vertical">
                             <span class="number"><%= @user.upload_count %></span> Uploaded Posts
                         </h6>
-                        <a class="button-secondary" href="<%= uploads_path(@user.name) %>">View Uploads<%= fa_icon "eye" %></a>
+                        <a class="button-secondary" href="<%= uploads_path(@user.name) %>">View Uploads<i class="fa fa-eye"></i></a>
                     <% else %>
                         <h6 class="subtitle">No uploads yet</h6>
                     <% end %>

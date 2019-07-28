@@ -7,24 +7,22 @@ require 'rails/all'
 Bundler.require(*Rails.groups)
 
 module Moeverdose
-  class Application < Rails::Application
-    # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 6.0
+    class Application < Rails::Application
+        # Initialize configuration defaults for originally generated Rails version.
+        config.load_defaults 6.0
 
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration can go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded after loading
-    # the framework and any gems in your application.
-    config.generators do |g|
-        g.test_framework  false
-        g.stylesheets     false
-        g.javascripts     false
-        g.helper          false
-        g.channel         assets: false
+        # config/application.rb
+        config.generators do |g|
+            g.test_framework :minitest, spec: false, fixture: false
+            g.fixture_replacement :factory_bot
+            g.stylesheets     false
+            g.javascripts     false
+            g.helper          false
+            g.channel         assets: false
+        end
+        config.i18n.fallbacks = [I18n.default_locale]
+
+        # View path
+        config.paths["app/views"] = "frontend/views"
     end
-    config.i18n.fallbacks = [I18n.default_locale]
-
-    # View path
-    config.paths["app/views"] = "frontend/views"
-  end
 end

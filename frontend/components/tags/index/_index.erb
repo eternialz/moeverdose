@@ -1,10 +1,5 @@
 <div class="item-list">
-    <form class="form">
-        <div class="form-input-group">
-            <input type="text" name="query" class="form-input" placeholder="Search tags" value="<%= params[:query] %>"/>
-            <button type="submit" class="button-icon">Search</button>
-        </div>
-    </form>
+    <%= component "shared/search-form" %>
     <% @tags.each do |t| %>
         <%= link_to edit_tag_path(t), class: "item rm-padding-bottom" do %>
             <div class="item-content tag-list">
@@ -16,5 +11,8 @@
             <span class="number"><%= t.posts_count %><span class="number-unit"> posts</span></span>
         <% end %>
     <% end %>
+
     <%= paginate @tags %>
+
+    <%= component "shared/items-per-page", {total_pages: @tags.total_pages} %>
 </div>

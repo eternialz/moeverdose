@@ -7,9 +7,10 @@ Rails.application.routes.draw do
 
     # Posts
     get "/random" => "posts#random", as: :random
-    resources :posts do
+    resources :posts, except: :create do
         resources :comments
     end
+    post '/posts/new' => "posts#create", as: 'create_post'
     patch "/posts/:id/report" => "posts#report_update", as: 'report_post'
     get "/posts/:id/report" => "posts#report", as: 'edit_report_post'
     patch "/posts/:id/dose/:dose" => "posts#dose", as: 'post_dose'
@@ -45,6 +46,7 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :edit, :update, :index]
     get "/users/:id/favorites" => "users#favorites", as: 'favorites'
     get "/users/:id/uploads" => "users#uploads", as: 'uploads'
+    get "/users/:id/extract" => "users#extract", as: 'extract'
 
     resources :news, only: [:show]
 

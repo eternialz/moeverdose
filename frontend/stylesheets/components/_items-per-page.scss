@@ -1,0 +1,17 @@
+.items-per-page {
+    .item-per-page {
+        @include shadow-transition();
+
+        border-radius: $border-radius;
+        color: $gray;
+        font-weight: bold;
+
+        &:hover {
+            color: $gray-darker;
+        }
+
+        &.item-per-page-active {
+            color: $base-color;
+        }
+    }
+}

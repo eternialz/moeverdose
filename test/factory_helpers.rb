@@ -1,4 +1,4 @@
-require_relative 'test_helper'
+require_relative './file_helper'
 
 module FactoryHelpers
     def self.sample_file(name="sample.png")

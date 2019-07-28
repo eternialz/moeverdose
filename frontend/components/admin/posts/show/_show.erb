@@ -9,8 +9,8 @@
   </div>
 
   <div class="actions">
-    <a class="btn btn-pink" href="<%= edit_admin_post_path(@post) %>"><%= fa_icon "edit"%>Edit the Post</a>
-    <a class="btn btn-blue" href="<%= admin_post_unreport_path(@post) %>" data-method="patch"><%= fa_icon "check"%>Unreport this post</a>
-    <a class="btn btn-red" href="<%= admin_post_path(@post)%>" data-method="delete"><%= fa_icon "exclamation"%>Delete this Post</a>
+    <a class="btn btn-pink" href="<%= edit_admin_post_path(@post) %>"><i class="fa fa-edit"></i>Edit the Post</a>
+    <a class="btn btn-blue" href="<%= admin_post_unreport_path(@post) %>" data-method="patch"><i class="fa fa-check"></i>Unreport this post</a>
+    <a class="btn btn-red" href="<%= admin_post_path(@post)%>" data-method="delete"><i class="fa fa-exclamation"></i>Delete this Post</a>
   </div>
 </div>

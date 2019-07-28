@@ -17,17 +17,17 @@
             transition: box-shadow 20ms ease-in-out, background 20ms ease-in-out;
 
             .list-detailed-key {
-                font-weight: bold;
                 color: $gray;
+                font-weight: bold;
             }
 
             .list-detailed-value {
-                font-weight: bold;
                 flex-shrink: 1;
-                white-space: nowrap;
+                font-weight: bold;
+                margin-left: 1rem;
                 overflow: hidden;
                 text-overflow: ellipsis;
-                margin-left: 1rem;
+                white-space: nowrap;
             }
 
             &:hover {

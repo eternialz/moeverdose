@@ -1,5 +1,5 @@
 .zone {
-    @include shadow-3;
+    @include shadow-2();
 
     background: $true-white;
     border-radius: 0.25rem;

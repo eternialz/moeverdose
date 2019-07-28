@@ -9,7 +9,7 @@
                     <img src="/images/default-user.png" height="60" width="60"/>
                 <% end %>
             </a>
-            <a href="#comment_<%= index + 1 %>" class="comment-index">#<%= index + 1 %></a>
+            <a href="#comment_<%= index + 1 %>" data-turbolinks="false" class="comment-index">#<%= index + 1 %></a>
         </div>
         <div class="comment-content">
             <a href="<%= user_path(comment.user.name) %>">

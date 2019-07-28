@@ -1,5 +1,5 @@
 class Admin::PermissionsTypesController < Admin::BaseController
-    
+
     def index
         @permissions_types = PermissionsType.all
         render component 'admin/permissions_types/index'
