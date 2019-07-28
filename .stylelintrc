@@ -1,7 +1,15 @@
 {
-  "extends": "stylelint-config-standard",
-  "rules": {
-    "indentation": 4,
-    "at-rule-no-unknown": null,
-  }
+    "extends": "stylelint-config-standard",
+    "plugins": [
+        "stylelint-order",
+    ],
+    "rules": {
+        "indentation": 4,
+        "at-rule-no-unknown": null,
+        "order/order": [
+            "custom-properties",
+            "declarations"
+        ],
+        "order/properties-alphabetical-order": true,
+    }
 }

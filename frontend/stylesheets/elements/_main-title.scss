@@ -1,0 +1,11 @@
+.main-title {
+    align-items: center;
+    color: $base-color;
+    display: flex;
+    justify-content: center;
+    text-transform: uppercase;
+
+    img {
+        margin-right: 0.5rem;
+    }
+}

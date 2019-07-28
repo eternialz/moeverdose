@@ -4,6 +4,16 @@
     text-align: center;
     width: 20rem;
 
+    .disabled {
+        opacity: 0.5;
+        pointer-events: none;
+
+        a {
+            background: rgba($black, 0.05);
+            color: $gray;
+        }
+    }
+
     .page a,
     .page.current,
     .first a,
@@ -19,22 +29,17 @@
         font-weight: bold;
         margin: 0 0.1rem;
         padding: 0.3rem 0;
+        transition: color 70ms ease-in-out, box-shadow 70ms ease-in-out;
         width: 1.7rem;
+
+        &:hover {
+            color: $base-color;
+        }
     }
 
-    .page.current {
-        background: $primary-color;
+    span.page.current {
+        background: $base-color;
         color: $white;
         pointer-events: none;
-    }
-
-    .disabled {
-        opacity: 0.5;
-        pointer-events: none;
-
-        a {
-            background: rgba($black, 0.05);
-            color: $gray;
-        }
     }
 }

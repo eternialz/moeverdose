@@ -13,11 +13,14 @@
         <a href="<%= @website %>"><%= @website %></a>
     <% end %>
     <div class="button-list margin margin-top">
-        <a class="button-secondary" href="<%= posts_path(query: @tag.names[0]) %>">All Posts<%= fa_icon "eye" %></a>
-        <a class="button-secondary" href="<%= edit_author_path(@author) %>">Edit<%= fa_icon "edit" %></a>
-        <a class="button-secondary" href="<%= edit_tag_path(@tag) %>">Edit aliases<%= fa_icon "edit" %></a>
+        <a class="button-secondary" href="<%= posts_path(query: @tag.names[0]) %>">All Posts<i class="fa fa-eye"></i></a>
+        <a class="button-secondary" href="<%= edit_author_path(@author) %>">Edit<i class="fa fa-edit"></i></a>
+        <a class="button-secondary" href="<%= edit_tag_path(@tag) %>">Edit aliases<i class="fa fa-edit"></i></a>
     </div>
 </div>
+
 <%= component "shared/post-list" %>
 
 <%= paginate @posts %>
+
+<%= component "shared/items-per-page", {total_pages: @posts.total_pages} %>

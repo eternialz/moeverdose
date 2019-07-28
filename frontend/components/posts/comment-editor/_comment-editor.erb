@@ -1,5 +1,5 @@
-<div class="zone" data-controller="comment-editor">
-    <% if user_signed_in? %>
+<% if user_signed_in? %>
+    <div class="zone" data-controller="comment-editor">
         <%= form_tag post_comments_path(@post.number), id: "comment-form", class: "comment-form" do |comment| %>
             <h5 class="title title-compact color-base">
                 <%= component "/shared/anchor", {anchor: 'comment-editor'} do %>
@@ -11,11 +11,13 @@
                 <textarea class="form-textarea" data-target="comment-editor.input" data-action="input->comment-editor#input" name="comment[text]" placeholder="Write your message here "></textarea>
             </div>
             <div class="button-list button-list-right">
-                <button type="submit" form="comment-form" class="button-primary background-base">Send <i class="fa fa-comment-medical"></i></button>
+                <button type="submit" form="comment-form" class="button-important background-base">Send <i class="fa fa-comment-medical"></i></button>
             </div>
         <% end %>
-    <% else %>
+    </div>
+<% else %>
+    <div class="zone">
         <h5 class="title title-compact">Add a comment</h5>
         <p><strong><%= link_to "Sign up", new_user_registration_path %></strong> or <strong><%= link_to "log in", new_user_session_path %></strong> to post a comment.</p>
-    <% end %>
-</div>
+    </div>
+<% end %>

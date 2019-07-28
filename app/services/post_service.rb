@@ -1,6 +1,4 @@
-require 'delegate'
-
-class PostLogic < SimpleDelegator
+class PostService
     def self.set_id(new_post)
         last_post = Post.last
         if !last_post.nil?
@@ -14,7 +12,7 @@ class PostLogic < SimpleDelegator
         posts_tags_ids, ignored = posts_tags(query)
 
         return [Kaminari.paginate_array(Post.select(:tags_list)
-            .joins("LEFT OUTER JOIN(#{RawSqlLogic.get_tags_array}) as \"array_tags\" ON \"array_tags\".\"id\" = \"posts\".\"id\"")
+            .joins("LEFT OUTER JOIN(#{RawSqlService.get_tags_array}) as \"array_tags\" ON \"array_tags\".\"id\" = \"posts\".\"id\"")
             .where(report: false)
             .where("array_tags.tags_list @> cast(array[?] as bigint[])", posts_tags_ids)
             .eager_load(tags: [:aliases, :main_alias])
@@ -29,7 +27,7 @@ class PostLogic < SimpleDelegator
         blacklisted_posts_tags_ids = blacklist.map {|t| t.id}
 
         return [Kaminari.paginate_array(Post.select(:tags_list)
-            .joins("LEFT OUTER JOIN(#{RawSqlLogic.get_tags_array}) as \"array_tags\" ON \"array_tags\".\"id\" = \"posts\".\"id\"")
+            .joins("LEFT OUTER JOIN(#{RawSqlService.get_tags_array}) as \"array_tags\" ON \"array_tags\".\"id\" = \"posts\".\"id\"")
             .where(report: false)
             .where("array_tags.tags_list @> cast(array[?] as bigint[])", posts_tags_ids)
             .where.not("array_tags.tags_list && cast(array[?] as bigint[])", blacklisted_posts_tags_ids)
@@ -53,7 +51,7 @@ class PostLogic < SimpleDelegator
       blacklisted_posts_tags_ids = blacklist.map {|t| t.id}
 
       return Kaminari.paginate_array(Post.select(:tags_list)
-            .joins("LEFT OUTER JOIN(#{RawSqlLogic.get_tags_array}) as \"array_tags\" ON \"array_tags\".\"id\" = \"posts\".\"id\"")
+            .joins("LEFT OUTER JOIN(#{RawSqlService.get_tags_array}) as \"array_tags\" ON \"array_tags\".\"id\" = \"posts\".\"id\"")
             .where(report: false)
             .where.not("array_tags.tags_list && cast(array[?] as bigint[])", blacklisted_posts_tags_ids)
             .eager_load(tags: [:aliases, :main_alias])
@@ -72,12 +70,12 @@ class PostLogic < SimpleDelegator
     def self.set_post_tags(params, post)
         tags = params[:tags].downcase.split(" ")
         tags.each do |tag|
-            TagLogic.find_or_create(tag, :content, post)
+            TagService.find_or_create(tag, :content, post)
         end
 
         characters = params[:characters].downcase.split(" ")
         characters.each do |character|
-            TagLogic.find_or_create(character, :character, post)
+            TagService.find_or_create(character, :character, post)
         end
     end
 
@@ -88,7 +86,6 @@ class PostLogic < SimpleDelegator
 
     def self.set_post_user(post, user)
         post.user = user
-        user_logic = UserLogic.new(user)
-        user_logic.update_level
+        UserService.update_level(user)
     end
 end

@@ -9,7 +9,7 @@ class Permission < ApplicationRecord
     # user: User => On who can we make the processing
     # permissions_type: PermissionsType => What process can we use on this process
     ####################################################################
-    
+
     belongs_to :user
     belongs_to :permissions_type
 end

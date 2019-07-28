@@ -5,9 +5,11 @@
         }
 
         .post-new-dummy {
+            background: $gray-lighter;
+            border-radius: $border-radius;
             display: block;
             font-weight: bold;
-            padding: 1rem 0;
+            padding: 1rem;
             width: 100%;
 
             .post-new-valid {
@@ -26,6 +28,7 @@
                 display: block;
                 height: auto;
                 margin: auto;
+                margin-top: 1rem;
                 max-height: 20rem;
                 max-width: 100%;
                 width: auto;
