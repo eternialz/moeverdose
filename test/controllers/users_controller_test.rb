@@ -120,8 +120,9 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     end
 
     test 'delete' do
+        sign_in @user
         patch delete_user_path(@user.name)
-        assert_response :success
+        assert_redirected_to root_path
 
         @updated_user = User.find(@user.id)
         assert_not_equal @updated_user, @user
