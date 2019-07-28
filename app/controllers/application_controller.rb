@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
     def items_per_page()
         if params[:items_per_page]
             return params["items_per_page"].to_i
-        else 
+        else
             return @default_per_page || helpers.default_per_page
         end
     end

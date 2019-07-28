@@ -85,6 +85,15 @@ class User < ApplicationRecord
     has_many :permissions
     accepts_nested_attributes_for :permissions
 
+    # Reset flag for deletion on login
+    def after_database_authentication
+        super
+        if self.deleted_at
+            self.deleted_at = nil
+            self.save
+        end
+    end
+
     # Prevent banned user authentications
     def active_for_authentication?
         super && !self.banned?
