@@ -137,7 +137,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
         @user.after_database_authentication
 
         get edit_user_path(@user)
-        
+
         @updated_user = User.find(@user.id)
         assert_not @user.deleted_at
     end
