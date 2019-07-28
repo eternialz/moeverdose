@@ -135,9 +135,8 @@ class UsersController < ApplicationController
 
     def delete
         @user.deleted_at = DateTime.now.to_date
-
         
-        if @user.valid_password?(params[:user][:password])
+        if @user.valid_password?(params[:user][:password], true)
             if @user.save
                 flash[:success] = "Your account has been succesfully flagged for deletion."
                 sign_out @user
