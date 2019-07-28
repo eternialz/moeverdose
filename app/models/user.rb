@@ -25,10 +25,8 @@ class User < ApplicationRecord
     # upload_count: Integer => Number of posts uploaded by the user
     # exp: Integer => User's experience, used for levels
     # report: Boolean => Is the user reported
-    # banned: Boolean => Is the user reported
+    # banned: Boolean => Is the user banned
     # role: String => User's role. See User::Role. Default 'user'
-    # favorites_tags: String => User's favorite tags separated with a space
-    # blacklisted_tags: String => User's blacklisted tags separated with a space
     # avatar: ActiveStorage::Attachment => Self exp
     #
     # timestamps => yes

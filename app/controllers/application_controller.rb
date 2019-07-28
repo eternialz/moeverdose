@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
             @tags += current_user.favorites_tags
         end
 
-        results = TagLogic.differenciate_tags(@tags)
+        results = TagService.differenciate_tags(@tags)
 
         @tags = results[:tags]
         @characters = results[:characters]

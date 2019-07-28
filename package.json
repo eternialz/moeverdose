@@ -7,6 +7,7 @@
     "normalize.css": "^8.0.1",
     "rails-ujs": "^5.2.3",
     "stimulus": "^1.1.1",
+    "snyk": "^1.189.0",
     "turbolinks": "^5.2.0",
     "webpack-merge": "^4.2.1"
   },
@@ -32,7 +33,9 @@
     "webpack-dev-server": "2.11.2"
   },
   "scripts": {
-    "lint-staged": "$(yarn bin)/lint-staged"
+    "lint-staged": "$(yarn bin)/lint-staged",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "lint-staged": {
     "config/webpack/**/*.js": [
@@ -61,5 +64,6 @@
   },
   "pre-commit": [
     "lint-staged"
-  ]
+  ],
+  "snyk": true
 }

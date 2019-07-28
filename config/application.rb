@@ -13,7 +13,8 @@ module Moeverdose
 
         # config/application.rb
         config.generators do |g|
-            g.test_framework  false
+            g.test_framework :minitest, spec: false, fixture: false
+            g.fixture_replacement :factory_bot
             g.stylesheets     false
             g.javascripts     false
             g.helper          false
