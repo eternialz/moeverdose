@@ -1,3 +1,4 @@
+require 'simplecov'
 require 'codecov'
 
 SimpleCov.start 'rails' do
@@ -12,7 +13,6 @@ require_relative '../config/environment'
 require_relative './file_helper'
 require 'rails/test_help'
 require "minitest/pride"
-require 'simplecov'
 
 FactoryBot::SyntaxRunner.class_eval do
   include ActionDispatch::TestProcess
