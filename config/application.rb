@@ -20,6 +20,7 @@ module Moeverdose
             g.helper          false
             g.channel         assets: false
         end
+
         config.i18n.fallbacks = [I18n.default_locale]
 
         # View path

@@ -110,13 +110,32 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     end
 
     test 'favorites' do
-        get favorites_path(@user.name)
+        get user_favorites_path(@user.name)
         assert_response :success
     end
 
     test 'uploads' do
-        get uploads_path(@user.name)
+        get user_uploads_path(@user.name)
         assert_response :success
+    end
+
+    test 'delete' do
+        post delete_user_path(@user.name)
+        assert_response :success
+
+        @updated_user = User.find(@user.id)
+        assert_not_equal @updated_user, @user
+    end
+
+    test 'login disable flag for deletion' do
+        @user.deleted_at = DateTime.now.to_date
+        @user.save
+
+        sign_in @user
+        assert_response :success
+        
+        @updated_user = User.find(@user.id)
+        assert_not_equal @updated_user, @user
     end
 
     test 'all users' do

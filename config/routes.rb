@@ -43,9 +43,11 @@ Rails.application.routes.draw do
     devise_for :users, path: 'account', :controllers => { registrations: 'user_registrations' }
 
     resources :users, only: [:show, :edit, :update, :index]
-    get "/users/:id/favorites" => "users#favorites", as: 'favorites'
-    get "/users/:id/uploads" => "users#uploads", as: 'uploads'
-    get "/users/:id/extract" => "users#extract", as: 'extract'
+
+    get "/users/:id/favorites" => "users#favorites", as: 'user_favorites'
+    get "/users/:id/uploads" => "users#uploads", as: 'user_uploads'
+    get "/users/:id/extract" => "users#extract", as: 'extract_user'
+    patch "/users/:id/delete" => "users#delete", as: 'delete_user'
 
     resources :news, only: [:show]
 
