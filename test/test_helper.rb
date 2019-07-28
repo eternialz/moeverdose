@@ -6,7 +6,7 @@ require "minitest/pride"
 require 'simplecov'
 require 'codecov'
 
-SimpleCov.start do
+SimpleCov.start 'rails' do
   add_group 'Models', 'app/models'
   add_group 'Controllers', 'app/controllers'
 end
