@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-  - 2.6.1
+  - 2.6.3
 cache:
   bundler: true
   yarn: true
