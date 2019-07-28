@@ -44,6 +44,7 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :edit, :update, :index]
     get "/users/:id/favorites" => "users#favorites", as: 'favorites'
     get "/users/:id/uploads" => "users#uploads", as: 'uploads'
+    get "/users/:id/extract" => "users#extract", as: 'extract'
 
     resources :news, only: [:show]
 

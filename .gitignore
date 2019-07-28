@@ -28,6 +28,7 @@
 *.swo
 public/system/
 storage/
+.vscode/
 
 # Ignore environnement variables with secrets and tokens
 source.sh

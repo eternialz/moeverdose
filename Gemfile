@@ -47,9 +47,12 @@ gem "font-awesome-rails"
 # Httparty
 gem "httparty"
 
-#Twitter
+# Twitter
 gem "twitter"
 gem "rufus-scheduler"
+
+# Zip management
+gem 'rubyzip', '>= 1.0.0'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false

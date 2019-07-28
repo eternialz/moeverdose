@@ -121,6 +121,16 @@ class UsersController < ApplicationController
         end
     end
 
+    def extract
+        user_json = UserService.get_personal_infos(@user.name)
+        zip_file = ZipService.create_from_json(user_json, "user", "data")
+        respond_to do |format|
+            format.zip do
+                send_data(zip_file, type: 'application/zip', filename: 'data.zip')
+            end
+        end
+    end
+
     private
     def set_user
         @user = User.left_outer_joins(favorites_tags: :aliases, blacklisted_tags: :aliases, permissions: :permissions_type).find_by(name: params[:id])
