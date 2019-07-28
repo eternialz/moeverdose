@@ -308,11 +308,4 @@ class PostsController < ApplicationController
             :headers => { 'Content-Type' => 'application/json' }
         )
     end
-
-    def set_params
-        {
-            "content" => "tttt"
-        }
-    end
-
 end
