@@ -13,12 +13,14 @@ module Moeverdose
 
         # config/application.rb
         config.generators do |g|
-            g.test_framework  false
+            g.test_framework :minitest, spec: false, fixture: false
+            g.fixture_replacement :factory_bot
             g.stylesheets     false
             g.javascripts     false
             g.helper          false
             g.channel         assets: false
         end
+
         config.i18n.fallbacks = [I18n.default_locale]
 
         # View path

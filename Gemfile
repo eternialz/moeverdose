@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.1'
+ruby '2.6.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'
@@ -25,7 +25,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby.git', :require => 'bcrypt'
 
 # Use ActiveStorage variant
-gem 'mini_magick', '~> 4.8'
+gem 'mini_magick', '~> 4.9', '>= 4.9.4'
 gem 'active_storage_validations'
 gem 'mime-types', require: 'mime/types/full'
 
@@ -41,9 +41,12 @@ gem 'kaminari'
 # Httparty
 gem "httparty"
 
-#Twitter
+# Twitter
 gem "twitter"
 gem "rufus-scheduler"
+
+# Zip management
+gem 'rubyzip', '>= 1.0.0'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
@@ -80,7 +83,7 @@ group :test do
     gem 'factory_bot_rails'
     gem 'faker', github: 'stympy/faker'
     gem 'minitest-rails', '>= 2.0'
-    gem 'database_cleaner'
+    gem 'codecov', :require => false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

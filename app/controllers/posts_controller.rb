@@ -6,7 +6,7 @@ class PostsController < ApplicationController
     before_action :authenticate_user_xhr!, only: [:dose]
 
     def show
-        results = TagLogic.differenciate_tags(@post.tags)
+        results = TagService.differenciate_tags(@post.tags)
 
         @tags = results[:tags]
         @characters = results[:characters]
@@ -31,9 +31,9 @@ class PostsController < ApplicationController
 
         unless params[:query].blank?
             if user_signed_in?
-                @posts, ignored = PostLogic.query_with_blacklist(params[:query], current_user.blacklisted_tags, params[:page], @items_per_page)
+                @posts, ignored = PostService.query_with_blacklist(params[:query], current_user.blacklisted_tags, params[:page], @items_per_page)
             else
-                @posts, ignored = PostLogic.query(params[:query], params[:page], @items_per_page)
+                @posts, ignored = PostService.query(params[:query], params[:page], @items_per_page)
             end
 
             if ignored
@@ -41,9 +41,9 @@ class PostsController < ApplicationController
             end
         else
             if user_signed_in?
-                @posts = PostLogic.all_posts_with_blacklist(current_user.blacklisted_tags, params[:page], @items_per_page)
+                @posts = PostService.all_posts_with_blacklist(current_user.blacklisted_tags, params[:page], @items_per_page)
             else
-                @posts = PostLogic.all_posts(params[:page], @items_per_page)
+                @posts = PostService.all_posts(params[:page], @items_per_page)
             end
         end
 
@@ -52,7 +52,7 @@ class PostsController < ApplicationController
         @authors = []
         @copyrights = []
         @posts.each do |post|
-            results = TagLogic.differenciate_tags(post.tags)
+            results = TagService.differenciate_tags(post.tags)
             @tags += results[:tags]
             @copyrights += results[:copyrights]
             @characters += results[:characters]
@@ -87,23 +87,23 @@ class PostsController < ApplicationController
     def create
         @post = Post.new(post_params)
 
-        PostLogic.set_id(@post)
+        PostService.set_id(@post)
 
         @post.post_image.attach(post_params[:post_image])
 
         @post.md5 = @post.post_image.checksum
 
-        PostLogic.set_post_tags({tags: params[:tags], characters: params[:characters]}, @post)
+        PostService.set_post_tags({tags: params[:tags], characters: params[:characters]}, @post)
 
-        PostLogic.set_post_user(@post, current_user)
+        PostService.set_post_user(@post, current_user)
 
         unless params[:author].blank?
-            author = TagLogic.find_or_create_author(params[:author], @post)
+            author = TagService.find_or_create_author(params[:author], @post)
             @post.author = author
         end
 
         unless @post.source.blank?
-            source = TagLogic.find_or_create(@post.source, :copyright, @post)
+            TagService.find_or_create(@post.source, :copyright, @post)
         end
 
         metadata = ActiveStorage::Analyzer::ImageAnalyzer.new(@post.post_image).metadata
@@ -112,7 +112,7 @@ class PostsController < ApplicationController
         @post.height = metadata[:height];
 
         if @post.save
-            TagLogic.change_counts(@post.tags, 1)
+            TagService.change_counts(@post.tags, 1)
 
             flash[:success] = "Post #{@post.title} created!"
             notify("New post: " + post_url(id: @post.number))
@@ -126,7 +126,7 @@ class PostsController < ApplicationController
     end
 
     def edit
-        results = TagLogic.differenciate_tags(@post.tags)
+        results = TagService.differenciate_tags(@post.tags)
         @tags = results[:tags]
         @characters = results[:characters]
         @authors = results[:authors]
@@ -139,25 +139,25 @@ class PostsController < ApplicationController
         @post.assign_attributes(edit_post_params)
 
         @old_tags = Post.find_by(number: @post.number).tags
-        TagLogic.change_counts(@old_tags, -1)
+        TagService.change_counts(@old_tags, -1)
 
         @post.tags = []
 
-        PostLogic.set_post_tags({tags: params[:tags], characters: params[:characters]}, @post)
+        PostService.set_post_tags({tags: params[:tags], characters: params[:characters]}, @post)
 
         unless params[:author_tag].blank?
-            author = TagLogic.find_or_create_author(params[:author_tag], @post)
+            author = TagService.find_or_create_author(params[:author_tag], @post)
             @post.author = author
         else
             @post.author = nil
         end
 
         if @post.save
-            TagLogic.change_counts(@post.tags, 1) # Increase new tags post count
+            TagService.change_counts(@post.tags, 1) # Increase new tags post count
 
             flash[:success] = "Post id #{@post.number} updated!"
         else
-            TagLogic.change_counts(@old_tags, 1) # Revert tags post count
+            TagService.change_counts(@old_tags, 1) # Revert tags post count
 
             flash[:error] = "Modifications could not be saved! Please verify informations provided"
         end
@@ -308,11 +308,4 @@ class PostsController < ApplicationController
             :headers => { 'Content-Type' => 'application/json' }
         )
     end
-
-    def set_params
-        {
-            "content" => "tttt"
-        }
-    end
-
 end

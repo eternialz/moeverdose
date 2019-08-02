@@ -1,4 +1,3 @@
-
 Rails.configuration.after_initialize do
     if ENV["RAILS_ENV"] != "test"
         $s = Rufus::Scheduler.singleton
@@ -8,4 +7,3 @@ Rails.configuration.after_initialize do
         end
     end
 end
-

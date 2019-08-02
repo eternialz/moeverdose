@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
             @tags += current_user.favorites_tags
         end
 
-        results = TagLogic.differenciate_tags(@tags)
+        results = TagService.differenciate_tags(@tags)
 
         @tags = results[:tags]
         @characters = results[:characters]
@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
     def items_per_page()
         if params[:items_per_page]
             return params["items_per_page"].to_i
-        else 
+        else
             return @default_per_page || helpers.default_per_page
         end
     end

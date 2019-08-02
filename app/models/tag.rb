@@ -18,7 +18,7 @@ class Tag < ApplicationRecord
 
     # Relations
     has_many :aliases
-    has_many :main_alias, -> { where(main: true) }, class_name: "Alias"
+    has_one :main_alias, -> { where(main: true) }, class_name: "Alias"
 
     has_and_belongs_to_many :posts, class_name: "Post", inverse_of: :tags
 
@@ -58,7 +58,7 @@ class Tag < ApplicationRecord
 
     # Methods
     def name
-        self.main_alias.first&.name
+        self.main_alias.name
     end
 
     def names

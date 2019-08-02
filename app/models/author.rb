@@ -36,4 +36,6 @@ class Author < ApplicationRecord
             {posts: {asc: "Least posts first"}},
         ]
     end
+
+    validates :website, allow_blank: true, format: { with: URI::DEFAULT_PARSER.make_regexp, message: 'You provided an invalid website URL.' }
 end

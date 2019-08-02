@@ -1,9 +1,10 @@
 require 'test_helper'
 
-class UserLogicTest < ActiveSupport::TestCase
+class UserServiceTest < ActiveSupport::TestCase
 
     setup do
-        @user = UserLogic.new(create(:user))
+        FactoryBot.rewind_sequences
+        @user = create(:user)
         create(:level_final, rank: 1)
         @user.exp = 0
         @user.upload_count = 0
@@ -11,7 +12,7 @@ class UserLogicTest < ActiveSupport::TestCase
     end
 
     test 'update_level' do
-        @user.update_level
+        UserService.update_level(@user)
 
         assert_equal 1, @user.upload_count
         assert_equal 1, @user.exp

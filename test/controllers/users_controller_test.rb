@@ -5,7 +5,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     include ConfigHelper
 
     setup do
-        @user = create(:user)
+        @user = create(:user, password: "password")
         @user_secondary = create(:user)
         @user_banned = create(:user_banned)
     end
@@ -110,13 +110,36 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     end
 
     test 'favorites' do
-        get favorites_path(@user.name)
+        get user_favorites_path(@user.name)
         assert_response :success
     end
 
     test 'uploads' do
-        get uploads_path(@user.name)
+        get user_uploads_path(@user.name)
         assert_response :success
+    end
+
+    test 'delete' do
+        sign_in @user
+        patch delete_user_path(@user.name, user: { password: "password" } )
+        assert_redirected_to root_path
+
+        @updated_user = User.find(@user.id)
+        assert_not_equal @updated_user.deleted_at, @user.deleted_at
+        assert @updated_user.deleted_at
+    end
+
+    test 'login disable flag for deletion' do
+        @user.deleted_at = DateTime.now.to_date
+        @user.save
+
+        sign_in @user
+        @user.after_database_authentication
+
+        get edit_user_path(@user)
+
+        @updated_user = User.find(@user.id)
+        assert_not @user.deleted_at
     end
 
     test 'all users' do
