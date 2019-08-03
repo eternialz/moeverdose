@@ -6,7 +6,7 @@ class Post < ApplicationRecord
     # height: Integer => Image height
     # width: Integer => Image width
     # overdose: Integer => Number of overdose (like) for the post
-    # shortage: Integer => Number of shortage (dislike) for the post
+    # moe_shortage: Integer => Number of shortage (dislike) for the post
     # title: String => Self exp
     # source: String => Image origin (can be URL)
     # description: String => Description for the posts
@@ -55,8 +55,10 @@ class Post < ApplicationRecord
     include Sortable
 
     # scope :comments, -> (direction = "desc") { order("comment_count #{direction}") }
-    scope :overdose, ->(direction = 'desc') { order("overdose #{direction}") }
-    scope :shortage, ->(direction = 'desc') { order("shortage #{direction}") }
+
+    scope :created_at, ->(direction) { order("posts.created_at #{direction}") }
+    scope :overdose, ->(direction = 'desc') { order("posts.overdose #{direction}") }
+    scope :shortage, ->(direction = 'desc') { order("posts.moe_shortage #{direction}") }
 
     def self.sort_scopes
         [:created_at, :overdose, :shortage]
@@ -66,8 +68,7 @@ class Post < ApplicationRecord
         [
             { created_at: { desc: 'Uploaded last' } },
             { created_at: { asc: 'Uploaded first' } },
-            { favorites: { desc: 'Most favorited first' } },
-            { overdose: { asc: 'Most overdose first' } },
+            { overdose: { desc: 'Most overdose first' } },
             { shortage: { desc: 'Most shortage first' } }
         ]
     end

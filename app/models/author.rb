@@ -21,7 +21,7 @@ class Author < ApplicationRecord
     # Sorting
     include Sortable
 
-    scope :alphabetical, ->(direction = 'desc') { order("name #{direction}") }
+    scope :alphabetical, ->(direction = 'desc') { order("authors.name #{direction}") }
     scope :posts, ->(direction = 'desc') { includes(:tag).order("tags.posts_count #{direction}") }
 
     def self.sort_scopes

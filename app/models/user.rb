@@ -88,8 +88,8 @@ class User < ApplicationRecord
     # Sorting
     include Sortable
 
-    scope :alphabetical, ->(direction = 'desc') { order("name #{direction}") }
-    scope :posts, ->(direction = 'desc') { order("upload_count #{direction}") }
+    scope :alphabetical, ->(direction = 'desc') { order("users.name #{direction}") }
+    scope :posts, ->(direction = 'desc') { order("users.upload_count #{direction}") }
     scope :level, ->(direction = 'desc') { includes(:level).order("levels.rank #{direction}", "exp #{direction}") }
 
     def self.sort_scopes

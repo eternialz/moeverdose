@@ -27,7 +27,7 @@ class Tag < ApplicationRecord
     # Sorting
     include Sortable
 
-    scope :popular, ->(direction = 'desc') { order("posts_count #{direction}") }
+    scope :popular, ->(direction = 'desc') { order("tags.posts_count #{direction}") }
     # scope :alphabetical, -> (direction = "desc") { includes(:aliases).order("aliases.name #{direction}") }
 
     def self.sort_scopes
