@@ -25,10 +25,7 @@ Online soon.
 
 - Run moeverdose `docker-compose run --publish 3000:3000 -rm rails`
 
-- Set your environment vars in .env
-
-- Launch server
-  `foreman start`
+- Access as http://localhost:3000
 
 # Browser support
 

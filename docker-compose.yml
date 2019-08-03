@@ -12,6 +12,8 @@ services:
         YARN_VERSION: '1.13.0'
         BUNDLER_VERSION: '2.0.2'
     image: moeverdose-dev:1.0.0
+    env_file:
+    - .env
     tmpfs:
       - /tmp
 
