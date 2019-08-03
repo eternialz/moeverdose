@@ -8,10 +8,8 @@ Online soon.
 # Requirements
 
 - Rails 5.2
-- Ruby 2.5.3
-- PostGreSQL
-- ImageMagick
-- Foreman
+- Ruby 2.6.3
+- Docker
 
 # Initialisation
 
@@ -19,11 +17,13 @@ Online soon.
 
 - Install Requirements
 
-- Clone and install gems
-  `bundle install`
+- Create database `docker-compose run -rm runner rails db:create`
 
-- Create dev database
-  `rails db:create db:migrate db:seed`
+- Execute migrations `docker-compose run -rm runner rails db:migrate`
+
+- Seed database `docker-compose run -rm runner rails db:seed`
+
+- Run moeverdose `docker-compose run --publish 3000:3000 -rm rails`
 
 - Set your environment vars in .env
 
