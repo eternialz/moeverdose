@@ -14,7 +14,7 @@ class Admin::DashboardControllerTest < ActionDispatch::IntegrationTest
         assert_redirected_to new_user_session_path
     end
 
-    test "can't_access_when_not_admin"do
+    test "can't_access_when_not_admin" do
         sign_in @user
 
         get admin_dashboard_path
@@ -37,5 +37,4 @@ class Admin::DashboardControllerTest < ActionDispatch::IntegrationTest
 
         assert_response :success
     end
-
 end

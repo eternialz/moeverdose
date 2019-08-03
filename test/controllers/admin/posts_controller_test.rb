@@ -17,7 +17,7 @@ class Admin::PostsControllerTest < ActionDispatch::IntegrationTest
     test 'admin destroy post' do
         @post = create(:user_with_post).posts.first
 
-        assert_difference -> {Post.count}, -1 do
+        assert_difference -> { Post.count }, -1 do
             delete admin_post_path(@post), params: { method: :delete }
         end
 
@@ -34,5 +34,4 @@ class Admin::PostsControllerTest < ActionDispatch::IntegrationTest
 
         assert_redirected_to admin_posts_path
     end
-
 end

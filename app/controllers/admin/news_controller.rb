@@ -1,23 +1,22 @@
 class Admin::NewsController < Admin::BaseController
-
     before_action :set_new, except: [:index]
 
     def new
-        render component "admin/news/new"
+        render component 'admin/news/new'
     end
 
     def index
         @news = Kaminari.paginate_array(New.all.order('created_at DESC')).page(params[:page]).per(20)
 
-        render component "admin/news/index"
+        render component 'admin/news/index'
     end
 
     def show
-        render component "admin/news/show"
+        render component 'admin/news/show'
     end
 
     def edit
-        render component "admin/news/edit"
+        render component 'admin/news/edit'
     end
 
     def create
@@ -52,5 +51,4 @@ class Admin::NewsController < Admin::BaseController
     def new_params
         params.require(:news).permit(:title, :text)
     end
-
 end

@@ -5,39 +5,39 @@ class TagsController < ApplicationController
     def index
         @default_per_page = 20
         @items_per_page_list = [10, 20, 40]
-        @items_per_page = items_per_page()
+        @items_per_page = items_per_page
 
-        if params[:query]
-            @tags = Kaminari.paginate_array(
-                Tag.sort_by(set_sort_by())
-                .joins(:aliases).where("aliases.name LIKE ?", "%#{params[:query]}%").uniq
-            ).page(params[:page]).per(@items_per_page)
-        else
-            @tags = Kaminari.paginate_array(
-                Tag.sort_by(set_sort_by())
-            ).page(params[:page]).per(@items_per_page)
-        end
+        @tags = if params[:query]
+                    Kaminari.paginate_array(
+                        Tag.sort_by(set_sort_by)
+                        .joins(:aliases).where('aliases.name LIKE ?', "%#{params[:query]}%").uniq
+                    ).page(params[:page]).per(@items_per_page)
+                else
+                    Kaminari.paginate_array(
+                        Tag.sort_by(set_sort_by)
+                    ).page(params[:page]).per(@items_per_page)
+                end
 
-        title("All Tags")
-        render component "tags/index"
+        title('All Tags')
+        render component 'tags/index'
     end
 
     def edit
-        @names = @tag.opt_names.map { |str| str.to_s }.join(" ")
+        @names = @tag.opt_names.map(&:to_s).join(' ')
 
-        title("Edit tag " + @tag.name)
-        render component "tags/edit"
+        title('Edit tag ' + @tag.name)
+        render component 'tags/edit'
     end
 
     def update
         # Get new aliases array without duplicates
-        names = params[:names].downcase.split(" ").uniq
+        names = params[:names].downcase.split(' ').uniq
 
         if names.any?
             aliases = [@tag.main_alias]
             names.each do |name|
                 # Get alias or create a new one
-                aliases.push(@tag.aliases.find_by(name: name) || Alias.new({name: name, tag_id: @tag.id}))
+                aliases.push(@tag.aliases.find_by(name: name) || Alias.new(name: name, tag_id: @tag.id))
             end
 
             @tag.aliases = aliases
@@ -49,7 +49,7 @@ class TagsController < ApplicationController
             flash.now[:success] = "Modifications for #{@tag.names[0]} saved!"
             redirect_to tags_path
         else
-            flash.now[:error] ||= "The modifications you entered are invalid. Please verify the informations and try to save again."
+            flash.now[:error] ||= 'The modifications you entered are invalid. Please verify the informations and try to save again.'
             redirect_to edit_tag_path(@tag)
         end
     end

@@ -3,9 +3,9 @@ module Sortable
 
     module ClassMethods
         def sort_by(sorting_params)
-            results = self.where(nil)
-            
-            self.sort_by_with_set(sorting_params, results)
+            results = where(nil)
+
+            sort_by_with_set(sorting_params, results)
         end
 
         def sort_by_with_set(sorting_params, set)
@@ -13,7 +13,7 @@ module Sortable
 
             # Apply sorting
             sorting_params.each do |key, value|
-                results = results.public_send(key, value) if value.present? && ["asc", "desc"].include?(value) 
+                results = results.public_send(key, value) if value.present? && ['asc', 'desc'].include?(value)
             end
 
             results
@@ -25,6 +25,6 @@ module Sortable
     end
 
     included do
-        scope :created_at, -> (direction) { order("created_at #{direction}") }
+        scope :created_at, ->(direction) { order("created_at #{direction}") }
     end
 end

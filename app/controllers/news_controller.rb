@@ -6,18 +6,18 @@ class NewsController < ApplicationController
         @breadcrumbs = [
             {
                 name: helpers.site_name,
-                path: root_path,
+                path: root_path
             },
             {
-                name: "news",
-                path: root_path + "#news",
+                name: 'news',
+                path: root_path + '#news'
             },
             {
                 name: @new.title,
-                path: news_path(@new),
+                path: news_path(@new)
             }
         ]
 
-        render component "/shared/new"
+        render component '/shared/new'
     end
 end

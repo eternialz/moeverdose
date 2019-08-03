@@ -61,5 +61,4 @@ class Admin::UsersControllerTest < ActionDispatch::IntegrationTest
         assert_response :redirect
         assert_equal @response.headers['X-Xhr-Redirect-Url'], admin_users_path
     end
-
 end

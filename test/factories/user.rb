@@ -1,18 +1,18 @@
 require_relative '../factory_helpers'
 FactoryBot.define do
     factory :user do
-        email {Faker::Internet.email}
+        email { Faker::Internet.email }
         sequence(:name) do |n|
             "#{Faker::Movies::Hobbit.character}#{n}"
         end
-        password {"password"}
-        biography {"test"}
+        password { 'password' }
+        biography { 'test' }
         association :level, factory: :level
-        role {'user'}
-        confirmed_at {Time.zone.now}
+        role { 'user' }
+        confirmed_at { Time.zone.now }
 
         factory :admin, class: 'User' do
-            role {'administrator'}
+            role { 'administrator' }
         end
 
         factory :user_with_post, class: 'User' do
@@ -21,18 +21,16 @@ FactoryBot.define do
             end
 
             after(:create) do |user|
-                user.posts.each do |p|
-                    p.save
-                end
+                user.posts.each(&:save)
             end
         end
 
         factory :user_banned, class: 'User' do
-            banned {true}
+            banned { true }
         end
 
         factory :user_reported, class: 'User' do
-            report {true}
+            report { true }
         end
     end
 end
