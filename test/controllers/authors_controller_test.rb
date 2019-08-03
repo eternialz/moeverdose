@@ -59,7 +59,7 @@ class AuthorsControllerTest < ActionDispatch::IntegrationTest
         @updated_tag = @updated_author.tag
 
         assert_not_equal @updated_author.name, @author.name
-        assert_equal @updated_author.name.downcase.tr(' ', '_'), @updated_tag.name
+        assert_equal TagService.sanitize(@updated_author.name), @updated_tag.name
         assert_includes @updated_tag.names, old_name
     end
 
