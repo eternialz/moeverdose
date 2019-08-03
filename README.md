@@ -27,30 +27,15 @@ Online soon.
 
 - Access as http://localhost:3000
 
+### Testing
+
+- Execute migrations for test base `docker-compose run -rm runner rails db:migrate RAILS_ENV=test`
+
+- Run tests `docker-compose run -rm runner rails test`
+
 # Browser support
 
 Browser support is defined in [.browserlistrc](https://github.com/eternialz/moeverdose/blob/master/.browserlistrc)
-
-# PLANNED FEATURES
-
-- Duplicate finder with perceptual hashes instead of md5
-- Finish all helps pages
-  - Registration help section
-  - Editing posts help page
-- Better admin features
-  - Batch Delete
-  - Admin: stats
-  - Edit user role
-  - Search posts, users
-  - Administrable tags
-- Patreon
-  - Color change contrib
-  - Rôle discord
-  - Better comment length
-  - Custom banner
-  - Avatar GIF
-  - No Ads
-- Ad Sense
 
 # Contributing
 
