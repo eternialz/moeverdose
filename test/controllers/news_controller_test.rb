@@ -5,10 +5,10 @@ class NewsControllerTest < ActionDispatch::IntegrationTest
         @news = create(:new)
     end
 
-    test "Show news" do
+    test 'Show news' do
         get news_path(@news)
 
         assert_response :success
-        assert_select "title", @news.title + " - Moeverdose"
+        assert_select 'title', @news.title + ' - Moeverdose'
     end
 end
