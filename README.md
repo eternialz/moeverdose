@@ -19,7 +19,7 @@
 - Docker
 
     *or*
-
+    
 - Ruby 2.6.x
 
 - PostgreSQL 10+
@@ -28,6 +28,25 @@
 
 - ImageMagick
 
+## Features
+
+- Search posts by tags and type of content
+
+- Filter and sort posts
+
+- Favorited & blacklisted tags
+
+- Favorited posts
+
+- Author management
+
+- User profiles
+
+- User levels
+
+- Navigate using keyboard
+
+- GDPR Compliant
 
 ## Initialisation
 
@@ -71,7 +90,7 @@ For questions and support please use the [official discord server](https://disco
 
 ## Changelog
 
-Detailed changes for each release are documented in the release notes.
+Detailed changes for each release are added along with [each releases](https://github.com/eternialz/moeverdose/releases).
 
 ## Licence
 
