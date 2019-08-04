@@ -30,7 +30,7 @@
     "stylelint": "^9.10.1",
     "stylelint-config-standard": "^18.2.0",
     "stylelint-order": "^3.0.0",
-    "webpack-dev-server": "2.11.2"
+    "webpack-dev-server": "3.1.11"
   },
   "scripts": {
     "lint-staged": "$(yarn bin)/lint-staged",
