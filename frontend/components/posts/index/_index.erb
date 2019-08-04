@@ -4,4 +4,11 @@
 
 <%= paginate @posts %>
 
-<%= component "shared/items-per-page", {total_pages: @posts.total_pages} %>
+<%= component "shared/sort", {sort_options: Post.sort_options} %>
+
+<%= component "shared/items-per-page",
+    {
+        total_pages: @posts.total_pages,
+        keep_params: Post.sort_scopes
+    }
+%>

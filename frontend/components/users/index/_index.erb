@@ -14,5 +14,12 @@
 
     <%= paginate @users %>
 
-    <%= component "shared/items-per-page", {total_pages: @users.total_pages}  %>
+    <%= component "shared/sort", sort_options: User.sort_options %>
+
+    <%= component "shared/items-per-page",
+        {
+            total_pages: @users.total_pages,
+            keep_params: User.sort_scopes
+        }
+    %>
 </div>

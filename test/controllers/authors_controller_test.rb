@@ -42,7 +42,7 @@ class AuthorsControllerTest < ActionDispatch::IntegrationTest
         get edit_author_path(@author)
 
         assert_response :success
-        assert_select 'title', "Edit " + @author.name + "'s author page - Moeverdose"
+        assert_select 'title', 'Edit ' + @author.name + "'s author page - Moeverdose"
     end
 
     test 'Can\'t edit author unlogged' do
@@ -101,7 +101,7 @@ class AuthorsControllerTest < ActionDispatch::IntegrationTest
     test 'Can\'t update author unlogged' do
         author_params = {
             name: Faker::TvShows::FamilyGuy.character,
-            biography: Faker::TvShows::FamilyGuy.quote,
+            biography: Faker::TvShows::FamilyGuy.quote
         }
 
         patch author_path(

@@ -45,7 +45,7 @@ class User < ApplicationRecord
     ####################################################################
 
     devise :database_authenticatable, :registerable, :confirmable,
-        :recoverable, :rememberable, :trackable, :validatable
+           :recoverable, :rememberable, :trackable, :validatable
     after_initialize :set_default_role, if: :new_record?
 
     # Base properties
@@ -54,28 +54,28 @@ class User < ApplicationRecord
 
     # Avatar
     has_one_attached :avatar
-    validates :avatar, content_type: ["image/png", "image/jpeg"],
-        size: { less_than: 500.kilobytes }
+    validates :avatar, content_type: ['image/png', 'image/jpeg'],
+                       size: { less_than: 500.kilobytes }
 
     # Posts
-    has_many :posts, class_name: "Post", inverse_of: :user
+    has_many :posts, class_name: 'Post', inverse_of: :user
 
     # Stats
-    belongs_to :level, class_name: "Level", inverse_of: :users, default: -> {
-        Level.all.order("rank ASC").first
+    belongs_to :level, class_name: 'Level', inverse_of: :users, default: lambda {
+        Level.all.order('rank ASC').first
     }
 
     # Posts marked the user
-    has_and_belongs_to_many :favorites, class_name: "Post", inverse_of: nil, join_table: :favorites_posts_users
-    has_and_belongs_to_many :liked_posts, class_name: "Post", inverse_of: nil, join_table: :liked_posts_users
-    has_and_belongs_to_many :disliked_posts, class_name: "Post", inverse_of: nil, join_table: :disliked_posts_users
+    has_and_belongs_to_many :favorites, class_name: 'Post', inverse_of: nil, join_table: :favorites_posts_users
+    has_and_belongs_to_many :liked_posts, class_name: 'Post', inverse_of: nil, join_table: :liked_posts_users
+    has_and_belongs_to_many :disliked_posts, class_name: 'Post', inverse_of: nil, join_table: :disliked_posts_users
 
     # Tags marked by the user
-    has_and_belongs_to_many :favorites_tags, class_name: "Tag", inverse_of: nil, join_table: :favorites_tags_users
-    has_and_belongs_to_many :blacklisted_tags, class_name: "Tag", inverse_of: nil, join_table: :blacklisted_tags_users
+    has_and_belongs_to_many :favorites_tags, class_name: 'Tag', inverse_of: nil, join_table: :favorites_tags_users
+    has_and_belongs_to_many :blacklisted_tags, class_name: 'Tag', inverse_of: nil, join_table: :blacklisted_tags_users
 
     # Comments
-    has_many :comments, class_name: "Comment", inverse_of: :user
+    has_many :comments, class_name: 'Comment', inverse_of: :user
 
     # User security
     alias_attribute :report?, :report
@@ -85,30 +85,51 @@ class User < ApplicationRecord
     has_many :permissions
     accepts_nested_attributes_for :permissions
 
+    # Sorting
+    include Sortable
+
+    scope :alphabetical, ->(direction = 'desc') { order("users.name #{direction}") }
+    scope :posts, ->(direction = 'desc') { order("users.upload_count #{direction}") }
+    scope :level, ->(direction = 'desc') { includes(:level).order("levels.rank #{direction}", "exp #{direction}") }
+
+    def self.sort_scopes
+        [:alphabetical, :posts, :level]
+    end
+
+    def self.sort_options
+        [
+            { alphabetical: { desc: 'Alpabetical order' } },
+            { alphabetical: { asc: 'Reverse alphabetical order' } },
+            { posts: { desc: 'Most posts first' } },
+            { level: { desc: 'Highest level first' } }
+        ]
+    end
+
     # Reset flag for deletion on login
     def after_database_authentication
         super
-        if self.deleted_at
+        if deleted_at
             self.deleted_at = nil
-            self.save
+            save
         end
     end
 
     # Prevent banned user authentications
     def active_for_authentication?
-        super && !self.banned?
+        super && !banned?
     end
 
-    def inactive_message # Custom error message for banned user
-        !self.banned? ? super : :banned
+    # Custom error message for banned user
+    def inactive_message
+        !banned? ? super : :banned
     end
 
     def team?
-        ['administrator', 'moderator'].include? self.role
+        ['administrator', 'moderator'].include? role
     end
 
     # Reported posts
-    has_and_belongs_to_many :reported_posts, class_name: "Post", inverse_of: nil, join_table: :reported_posts_users
+    has_and_belongs_to_many :reported_posts, class_name: 'Post', inverse_of: nil, join_table: :reported_posts_users
 
     # Roles
 
@@ -117,16 +138,17 @@ class User < ApplicationRecord
             ['user', 'administrator', 'contributor', 'moderator', 'developper']
         end
 
-        self.all.each do |role|
+        all.each do |role|
             define_method("#{role}?") do
                 self.role == role
             end
         end
     end
     include User::Role
-    validates :role, inclusion: {in: User::Role.all}
+    validates :role, inclusion: { in: User::Role.all }
 
     private
+
     def set_default_role
         self.role ||= 'user'
     end

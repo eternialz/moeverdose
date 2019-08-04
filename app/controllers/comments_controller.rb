@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
         @comment = Comment.create(params.require(:comment).permit(:text))
         length = @comment.text.length
 
-        if length > 1 and length <= helpers.max_comment_length
+        if (length > 1) && (length <= helpers.max_comment_length)
             @comment.text = scan_comment(@comment.text) # This can add to the length, so validations are not used
 
             @comment.user = current_user
@@ -16,12 +16,12 @@ class CommentsController < ApplicationController
             @comment.post = @post
 
             if @post.save && @comment.save
-                flash[:success] = "Comment added."
+                flash[:success] = 'Comment added.'
             else
-                flash[:error] = "Comment invalid."
+                flash[:error] = 'Comment invalid.'
             end
         else
-            flash[:error] = "Comment invalid: please verify the length."
+            flash[:error] = 'Comment invalid: please verify the length.'
         end
 
         redirect_to post_path(@post.number)
@@ -41,10 +41,11 @@ class CommentsController < ApplicationController
         @post = Post.find_by(number: params[:post_id])
     end
 
-    def scan_comment(text) # scan for comments, posts, and users referenced in comments
+    def scan_comment(text)
+        # scan for comments, posts, and users referenced in comments
         text = scan_for_post(text)
         text = scan_for_user(text)
         text = scan_for_comment(text)
-        return scan_for_spoiler(text)
+        scan_for_spoiler(text)
     end
 end

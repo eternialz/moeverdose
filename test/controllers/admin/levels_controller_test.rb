@@ -33,7 +33,7 @@ class Admin::LevelsControllerTest < ActionDispatch::IntegrationTest
             }
         }
 
-        assert_difference -> {Level.count} do
+        assert_difference -> { Level.count } do
             post admin_levels_path, params: params
         end
 
@@ -50,10 +50,10 @@ class Admin::LevelsControllerTest < ActionDispatch::IntegrationTest
     test 'update' do
         params = {
             level: {
-                name: "banane"
+                name: 'banane'
             }
         }
-        assert_no_difference -> {Level.count} do
+        assert_no_difference -> { Level.count } do
             patch admin_level_path(@level), params: params
         end
 

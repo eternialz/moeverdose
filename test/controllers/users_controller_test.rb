@@ -5,7 +5,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     include ConfigHelper
 
     setup do
-        @user = create(:user, password: "password")
+        @user = create(:user, password: 'password')
         @user_secondary = create(:user)
         @user_banned = create(:user_banned)
     end
@@ -30,7 +30,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
         assert_response :success
         assert_select 'title', @user.name + ' profile - ' + site_name
-        assert_select '.user-show' do |element|
+        assert_select '.user-show' do
             assert_select 'a.button-secondary[href=?]', edit_user_path(@user.name)
         end
     end
@@ -40,7 +40,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
         get edit_user_path(@user.name)
 
         assert_response :success
-        assert_select "title", "Edit my profile - " + site_name
+        assert_select 'title', 'Edit my profile - ' + site_name
     end
 
     test 'Can\'t edit another user' do
@@ -64,8 +64,8 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
             @user.name,
             user: user_params(@user),
             tags: {
-                favorites: "",
-                blacklisted: ""
+                favorites: '',
+                blacklisted: ''
             }
         )
 
@@ -82,8 +82,8 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
             @user.name,
             user: user_params(@user),
             tags: {
-                favorites: "",
-                blacklisted: ""
+                favorites: '',
+                blacklisted: ''
             }
         )
 
@@ -98,8 +98,8 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
             @user.name,
             user: user_params(@user),
             tags: {
-                favorites: "",
-                blacklisted: ""
+                favorites: '',
+                blacklisted: ''
             }
         )
 
@@ -121,7 +121,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
     test 'delete' do
         sign_in @user
-        patch delete_user_path(@user.name, user: { password: "password" } )
+        patch delete_user_path(@user.name, user: { password: 'password' })
         assert_redirected_to root_path
 
         @updated_user = User.find(@user.id)
@@ -150,6 +150,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     end
 
     private
+
     def user_params(user)
         {
             email: Faker::Internet.email,
