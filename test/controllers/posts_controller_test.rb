@@ -93,7 +93,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     test 'Can\'t add favorite post unlogged' do
         patch post_favorite_path @post.number
 
-        assert_redirected_to new_user_session_path
+        assert_response 302
     end
 
     test 'dose - add overdose' do
@@ -249,6 +249,20 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
                 }
             )
         end
+
+        assert_redirected_to new_user_session_path
+    end
+
+    test 'Get edit post page' do
+        sign_in @user
+
+        get edit_post_path(@post)
+
+        assert_response :success
+    end
+
+    test 'Can\'t get edit post page unlogged' do
+        get edit_post_path(@post)
 
         assert_redirected_to new_user_session_path
     end

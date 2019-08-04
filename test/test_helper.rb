@@ -25,3 +25,7 @@ end
 class ActiveSupport::TestCase
     ActiveRecord::Migration.check_pending!
 end
+
+def assert_xhr_redirected_to(url)
+    assert_equal url, response.headers['X-Xhr-Redirect-Url']
+end

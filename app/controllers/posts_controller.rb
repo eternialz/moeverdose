@@ -1,8 +1,8 @@
 class PostsController < ApplicationController
     before_action :try_set_post, only: [:show]
     before_action :set_post, only: [:edit, :update, :dose, :favorite, :report, :report_update]
-    before_action :authenticate_user!, except: [:show, :index, :not_found, :random, :dose]
-    before_action :authenticate_user_xhr!, only: [:dose]
+    before_action :authenticate_user!, except: [:show, :index, :not_found, :random, :dose, :favorite]
+    before_action :authenticate_user_xhr!, only: [:dose, :favorite]
 
     def show
         results = TagService.differenciate_tags(@post.tags)
@@ -114,7 +114,7 @@ class PostsController < ApplicationController
         @characters = results[:characters]
         @authors = results[:authors]
 
-        title('Edit post: ' + @post.title)
+        title('Edit post ' + @post.number.to_s)
         render component 'posts/edit'
     end
 
@@ -180,43 +180,32 @@ class PostsController < ApplicationController
     end
 
     def favorite
-        if user_signed_in?
-            if current_user.favorites.exclude?(@post)
-                current_user.favorites << @post
-                render json: { message: 'Post added to favorites', type: 'success' }, status: 200
-            else
-                current_user.favorites.delete(@post)
-                render json: { message: 'Post removed from favorites', type: 'information' }, status: 200
-            end
+        if current_user.favorites.exclude?(@post)
+            current_user.favorites << @post
+            render json: { message: 'Post added to favorites', type: 'success' }, status: 200
         else
-            render json: { message: 'You need an account to add favorites', type: 'warning' }, status: 403
+            current_user.favorites.delete(@post)
+            render json: { message: 'Post removed from favorites', type: 'information' }, status: 200
         end
     end
 
     def dose
-        if user_signed_in?
-            @removed = false
+        @removed = false
 
-            params[:dose] == 'overdose' ? overdose : shortage
+        params[:dose] == 'overdose' ? overdose : shortage
 
-            if @post.save
-                render json: {
-                    message: params[:dose].capitalize + (@removed ? ' removed' : ' added'),
-                    type: @removed ? 'information' : 'success',
-                    overdose: @post.overdose,
-                    shortage: @post.moe_shortage
-                }, status: 200
-            else
-                render json: {
-                    message: 'An internal error occured.',
-                    type: 'error'
-                }, status: 500
-            end
+        if @post.save
+            render json: {
+                message: params[:dose].capitalize + (@removed ? ' removed' : ' added'),
+                type: @removed ? 'information' : 'success',
+                overdose: @post.overdose,
+                shortage: @post.moe_shortage
+            }, status: 200
         else
             render json: {
-                message: 'You need an account to add overdose and/or shortage',
-                type: 'warning'
-            }, status: 403
+                message: 'An internal error occured.',
+                type: 'error'
+            }, status: 500
         end
     end
 
