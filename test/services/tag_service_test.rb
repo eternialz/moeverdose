@@ -11,6 +11,6 @@ class TagServiceTest < ActiveSupport::TestCase
         assert_equal 'abc', TagService.sanitize('AbC')
         assert_equal 'abc', TagService.sanitize('a*b~c')
         assert_equal 'ab_c', TagService.sanitize('ab c')
-        assert_equal 'a_b_c', TagService.sanitize('a\nb    \nc   ')
+        assert_equal 'a_b_c', TagService.sanitize("a\nb    \nc   ")
     end
 end
