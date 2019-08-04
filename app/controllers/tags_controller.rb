@@ -31,7 +31,7 @@ class TagsController < ApplicationController
 
     def update
         # Get new aliases array without duplicates
-        names = params[:names].downcase.split(' ').uniq
+        names = params[:names].split(' ').map { |name| TagService.sanitize name }.uniq
 
         if names.any?
             aliases = [@tag.main_alias]
