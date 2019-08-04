@@ -68,13 +68,11 @@ class PostService
     end
 
     def self.set_post_tags(params, post)
-        tags = params[:tags].downcase.split(" ")
-        tags.each do |tag|
+        params[:tags].split(" ").each do |tag|
             TagService.find_or_create(tag, :content, post)
         end
 
-        characters = params[:characters].downcase.split(" ")
-        characters.each do |character|
+        params[:characters].split(" ").each do |character|
             TagService.find_or_create(character, :character, post)
         end
     end

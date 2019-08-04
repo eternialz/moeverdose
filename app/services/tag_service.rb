@@ -1,6 +1,7 @@
 class TagService
     def self.find_or_create(name, type, post)
 
+        name = sanitize(name)
         type = type.to_sym
 
         tag = Tag.includes(:aliases).where(aliases: {name: name}, type: type)
@@ -18,6 +19,10 @@ class TagService
             t.posts_count += num
             t.save
         end
+    end
+
+    def self.sanitize(tagName)
+        tagName.downcase.tr('*~', '').squish.sub(/\A_/, '').sub(/_\z/, '').tr(' ', '_')
     end
 
     def self.differenciate_tags(tags)
@@ -41,7 +46,7 @@ class TagService
     end
 
     def self.find_or_create_author(name, post)
-        name = name.downcase.tr(" ", "_")
+        name = sanitize(name)
         tag = Tag.includes(:aliases).where(aliases: {name: name}, type: :author)
         if tag.empty?
             tag = Tag.create(type: :author)

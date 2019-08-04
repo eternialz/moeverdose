@@ -43,7 +43,7 @@ class AuthorsController < ApplicationController
         @old_name = @author.name
 
         main_alias = @author.tag.main_alias
-        new_alias = @author.tag.aliases.where(name: params[:author][:name]).first || Alias.new(name: params[:author][:name].downcase.tr(' ', '_'), tag: @author.tag, main: true)
+        new_alias = @author.tag.aliases.where(name: params[:author][:name]).first || Alias.new(name: TagService.sanitize(params[:author][:name]), tag: @author.tag, main: true)
 
         new_alias.main, main_alias.main = true, false
 
