@@ -78,7 +78,7 @@
 
 ## Browser support
 
-Browser support is defined in [.browserlistrc](https://github.com/eternialz/moeverdose/blob/master/.browserlistrc)
+Browser support is defined in [.browserslistrc](https://github.com/eternialz/moeverdose/blob/master/.browserslistrc)
 
 ## Contributing
 
