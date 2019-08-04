@@ -1,6 +1,6 @@
 class TeamsController < ApplicationController
     def index
-        title("Team")
+        title('Team')
         @users = User.where(role: ['administrator', 'moderator', 'developper'])
         @breadcrumbs = [
             {
@@ -8,11 +8,11 @@ class TeamsController < ApplicationController
                 path: root_path
             },
             {
-                name: "Team",
-                path: "/teams"
+                name: 'Team',
+                path: '/teams'
             }
         ]
 
-        render component "team"
+        render component 'team'
     end
 end

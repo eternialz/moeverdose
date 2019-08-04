@@ -1,5 +1,4 @@
 class Admin::PermissionsTypesController < Admin::BaseController
-
     def index
         @permissions_types = PermissionsType.all
         render component 'admin/permissions_types/index'
@@ -13,10 +12,10 @@ class Admin::PermissionsTypesController < Admin::BaseController
     def create
         @permissions_type = PermissionsType.new(permissions_type_params)
         if @permissions_type.save
-            flash[:success] = "Processing created"
+            flash[:success] = 'Processing created'
             redirect_to admin_permissions_types_path
         else
-            flash[:error] = "An error occured"
+            flash[:error] = 'An error occured'
             redirect_to new_admin_permissions_types_path
         end
     end

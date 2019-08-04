@@ -14,5 +14,12 @@
 
     <%= paginate @tags %>
 
-    <%= component "shared/items-per-page", {total_pages: @tags.total_pages} %>
+    <%= component "shared/sort", {sort_options: Tag.sort_options} %>
+
+    <%= component "shared/items-per-page",
+        {
+            total_pages: @tags.total_pages,
+            keep_params: Tag.sort_scopes
+        }
+    %>
 </div>

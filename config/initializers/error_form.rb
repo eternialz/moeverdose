@@ -1,7 +1,7 @@
 # Error wrapper
 # https://stackoverflow.com/a/8380400
 
-ActionView::Base.field_error_proc = Proc.new do |html_tag, instance|
+ActionView::Base.field_error_proc = proc do |html_tag, _instance|
     class_attr_index = html_tag.index 'class="'
 
     if class_attr_index

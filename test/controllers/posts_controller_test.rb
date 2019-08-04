@@ -1,4 +1,4 @@
-require "test_helper"
+require 'test_helper'
 
 class PostsControllerTest < ActionDispatch::IntegrationTest
     include Devise::Test::IntegrationHelpers
@@ -13,10 +13,10 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
         assert_response :success
 
-        unless @post.title.blank?
-            assert_select 'title', @post.title + " - Moeverdose"
+        if @post.title.present?
+            assert_select 'title', @post.title + ' - Moeverdose'
         else
-            assert_select 'title', "Post - Moeverdose"
+            assert_select 'title', 'Post - Moeverdose'
         end
     end
 
@@ -26,7 +26,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
         sign_in @user
 
-        patch report_post_path @post.number, post: {report_reason: Faker::TvShows::HowIMetYourMother.catch_phrase}
+        patch report_post_path @post.number, post: { report_reason: Faker::TvShows::HowIMetYourMother.catch_phrase }
 
         @updated_post = Post.find(@post.id)
 
@@ -38,7 +38,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
         @post.report = false
         @post.save
 
-        patch report_post_path @post.number, post: {report_reason: Faker::TvShows::HowIMetYourMother.catch_phrase}
+        patch report_post_path @post.number, post: { report_reason: Faker::TvShows::HowIMetYourMother.catch_phrase }
 
         @updated_post = Post.find(@post.id)
 
@@ -67,7 +67,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     test 'dose - add overdose' do
         sign_in @user
 
-        patch post_dose_path @post.number, dose: "overdose"
+        patch post_dose_path @post.number, dose: 'overdose'
 
         @updated_post = Post.find(@post.id)
 
@@ -77,7 +77,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     test 'dose - add shortage' do
         sign_in @user
 
-        patch post_dose_path @post.number, dose: "shortage"
+        patch post_dose_path @post.number, dose: 'shortage'
 
         @updated_post = Post.find(@post.id)
 
@@ -177,45 +177,43 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     end
 
     test 'create post' do
-        post_count = Post.count
         sign_in @user
-=begin
-        file = "image.png"
 
-        content = sample_file(file).read
-        locale_file = Tempfile.new(["image", "png"])
-        locale_file.write content
-        locale_file.rewind
-
-        upload = ActionDispatch::Http::UploadedFile.new({
-            filename: file,
-            type: 'image/png',
-            tempfile: fixture_file_upload(sample_path, 'image/png'),
-            head: "Content-Disposition: form-data; name=\"post[post_image]\"; filename=\"image.png\"\r\nContent-Type: image/png\r\n"
-        })
-
-        binding.pry
-
-        post posts_path(
-            post: {
-                "post_image" => upload
-            }
-        )
-
-        locale_file.close
-
-        assert_equal Post.count, post_count + 1
-        assert_redirect_to post_path(post)
-=end
+        #         post_count = Post.count
+        #         file = "image.png"
+        #
+        #         content = sample_file(file).read
+        #         locale_file = Tempfile.new(["image", "png"])
+        #         locale_file.write content
+        #         locale_file.rewind
+        #
+        #         upload = ActionDispatch::Http::UploadedFile.new({
+        #             filename: file,
+        #             type: 'image/png',
+        #             tempfile: fixture_file_upload(sample_path, 'image/png'),
+        #             head: "Content-Disposition: form-data; name=\"post[post_image]\"; filename=\"image.png\"\r\nContent-Type: image/png\r\n"
+        #         })
+        #
+        #         binding.pry
+        #
+        #         post posts_path(
+        #             post: {
+        #                 "post_image" => upload
+        #             }
+        #         )
+        #
+        #         locale_file.close
+        #
+        #         assert_equal Post.count, post_count + 1
+        #         assert_redirect_to post_path(post)
         assert true
     end
 
     test 'Can\'t create post unlogged' do
-
-        assert_no_difference -> {Post.count} do
+        assert_no_difference -> { Post.count } do
             post create_post_path(
                 post: {
-                    "post_image" => "1"
+                    'post_image' => '1'
                 }
             )
         end
@@ -235,9 +233,9 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
         patch post_path(
             @post.number,
             post: post_params,
-            tags: "",
-            characters: "",
-            author_tag: ""
+            tags: '',
+            characters: '',
+            author_tag: ''
         )
 
         @updated_post = Post.find(@post.id)

@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class UserServiceTest < ActiveSupport::TestCase
-
     setup do
         FactoryBot.rewind_sequences
         @user = create(:user)

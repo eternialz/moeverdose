@@ -5,7 +5,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     include Devise::Test::IntegrationHelpers
     include ConfigHelper
 
-    test "Create Comment" do
+    test 'Create Comment' do
         user = create(:user_with_post)
         sign_in user
 
@@ -13,7 +13,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
 
         comment_count = Comment.count
 
-        post post_comments_path(post.number, comment: {text: Faker::Movies::Hobbit.quote[0..max_comment_length]})
+        post post_comments_path(post.number, comment: { text: Faker::Movies::Hobbit.quote[0..max_comment_length] })
 
         assert_equal comment_count + 1, Comment.count
         assert_redirected_to post_path(post.number)
@@ -26,13 +26,13 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
 
         comment_count = Comment.count
 
-        post post_comments_path(post.number, comment: {text: Faker::Movies::Hobbit.quote[0..max_comment_length]})
+        post post_comments_path(post.number, comment: { text: Faker::Movies::Hobbit.quote[0..max_comment_length] })
 
         assert_equal Comment.count, comment_count
         assert_redirected_to new_user_session_path
     end
 
-    test "Report Comment" do
+    test 'Report Comment' do
         comment = create(:comment)
         user = create(:user)
 

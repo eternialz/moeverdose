@@ -1,4 +1,4 @@
-require "test_helper"
+require 'test_helper'
 
 class TagsControllerTest < ActionDispatch::IntegrationTest
     include Devise::Test::IntegrationHelpers
@@ -36,31 +36,29 @@ class TagsControllerTest < ActionDispatch::IntegrationTest
         assert_response :success
         assert_select 'title', "Edit tag #{@tag_content.names.first} - Moeverdose"
     end
-=begin
-    test 'update_with_unique_names' do
-
-        params = {
-            names: "banane malotru kawaii"
-        }
-
-        assert_difference -> {@tag_character.names.count}, 3 do
-            patch tag_path(@tag_character), params: params
-            @tag_character.reload
-        end
-
-        assert_redirected_to tags_path
-    end
-
-    test 'update_with_non_unique_names' do
-        params = {
-            names: "malotru kawaii banane malotru banane malotru kawaii"
-        }
-        assert_difference -> {@tag_character.names.count}, 3 do
-            patch tag_path(@tag_character), params: params
-            @tag_character.reload
-        end
-
-        assert_redirected_to tags_path
-    end
-=end
+    #     test 'update_with_unique_names' do
+    #
+    #         params = {
+    #             names: "banane malotru kawaii"
+    #         }
+    #
+    #         assert_difference -> {@tag_character.names.count}, 3 do
+    #             patch tag_path(@tag_character), params: params
+    #             @tag_character.reload
+    #         end
+    #
+    #         assert_redirected_to tags_path
+    #     end
+    #
+    #     test 'update_with_non_unique_names' do
+    #         params = {
+    #             names: "malotru kawaii banane malotru banane malotru kawaii"
+    #         }
+    #         assert_difference -> {@tag_character.names.count}, 3 do
+    #             patch tag_path(@tag_character), params: params
+    #             @tag_character.reload
+    #         end
+    #
+    #         assert_redirected_to tags_path
+    #     end
 end

@@ -4,15 +4,13 @@ class Admin::UsersController < Admin::BaseController
     def index
         @users = Kaminari.paginate_array(User.order('created_at DESC')).page(params[:page]).per(20)
 
-        if params[:report]
-            @users = @users.where(report: params[:report])
-        end
+        @users = @users.where(report: params[:report]) if params[:report]
 
-        render component "admin/users/index"
+        render component 'admin/users/index'
     end
 
     def edit
-        render component "admin/users/edit"
+        render component 'admin/users/edit'
     end
 
     def update
@@ -31,21 +29,20 @@ class Admin::UsersController < Admin::BaseController
         if @user.banned?
             @user.banned = false
             @user.save
-            flash[:success] = "User unbanned."
+            flash[:success] = 'User unbanned.'
+        elsif @user.role == 'user'
+            @user.banned = true
+            @user.save
+            flash[:success] = 'User banned.'
         else
-            if @user.role == 'user'
-                @user.banned = true
-                @user.save
-                flash[:success] = "User banned."
-            else
-                flash[:error] = "The user isn't a regular user; change the role to user before banning."
-            end
+            flash[:error] = "The user isn't a regular user; change the role to user before banning."
         end
 
         xhr_redirect_to admin_users_path
     end
 
     private
+
     def set_user
         @user = User.find(params[:id])
     end

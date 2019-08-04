@@ -12,31 +12,29 @@ class UserService
 
     def self.get_personal_infos(name)
         user = User.includes({ favorites_tags: :aliases }, { blacklisted_tags: :aliases },
-                { permissions: :permissions_type }, :comments, :favorites, :liked_posts, :disliked_posts
-                ).find_by(name: name)
+                             { permissions: :permissions_type }, :comments, :favorites, :liked_posts, :disliked_posts).find_by(name: name)
         user.to_json(only: [
-                :email, :current_sign_in_ip, :last_sign_in_ip, :name, :biography,
-                :website, :twitter, :facebook, :upload_count, :exp
-            ], include: {
-                comments: { only: :text },
-                favorites: { only: :id },
-                liked_posts: { only: :id },
-                disliked_posts: { only: :id },
-                favorites_tags: {
-                    only: :id,
-                    include: { aliases: { only: :name }}
-                },
-                blacklisted_tags: {
-                    only: :id,
-                    include: { aliases: { only: :name }}
-                },
-                permissions: {
-                    only: :consent,
-                    include: {
-                        permissions_type: { only: [:name, :description] }
-                    }
-                },
-            }
-        )
+                         :email, :current_sign_in_ip, :last_sign_in_ip, :name, :biography,
+                         :website, :twitter, :facebook, :upload_count, :exp
+                     ], include: {
+                         comments: { only: :text },
+                         favorites: { only: :id },
+                         liked_posts: { only: :id },
+                         disliked_posts: { only: :id },
+                         favorites_tags: {
+                             only: :id,
+                             include: { aliases: { only: :name } }
+                         },
+                         blacklisted_tags: {
+                             only: :id,
+                             include: { aliases: { only: :name } }
+                         },
+                         permissions: {
+                             only: :consent,
+                             include: {
+                                 permissions_type: { only: [:name, :description] }
+                             }
+                         }
+                     })
     end
 end

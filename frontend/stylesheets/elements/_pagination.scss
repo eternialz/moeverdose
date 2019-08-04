@@ -21,6 +21,7 @@
     .next a,
     .last a {
         @include shadow-control-1();
+        @include focusable();
 
         background: $true-white;
         border-radius: $border-radius;

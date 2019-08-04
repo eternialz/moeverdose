@@ -1,0 +1,69 @@
+.select {
+    position: relative;
+
+    .select-options {
+        @include shadow-2();
+
+        background: $true-white;
+        border-radius: $border-radius;
+        left: 0;
+        min-width: 100%;
+        opacity: 0;
+        overflow: hidden;
+        pointer-events: none;
+        position: absolute;
+        top: calc(100% + 0.4rem);
+        transition: opacity 70ms ease-in-out;
+
+        .select-option {
+            background: $true-white;
+            color: $text-color-dark;
+            cursor: pointer;
+            display: block;
+            font-weight: bold;
+            padding: 0.5rem 0.8rem;
+            text-align: left;
+            text-transform: capitalize;
+            transition: color 70ms ease-in-out, background-color 70ms ease-in-out;
+            white-space: nowrap;
+            width: 100%;
+
+            &:hover {
+                background: $white;
+                color: $base-color;
+            }
+
+            &:nth-child(n+2) {
+                border-top: 1px solid $gray-lighter;
+            }
+        }
+    }
+
+    .select-selected {
+        @include shadow-control-1();
+        @include focusable();
+
+        background: $true-white;
+        border-radius: $border-radius;
+        color: $text-color-dark;
+        cursor: pointer;
+        display: inline-block;
+        font-weight: bold;
+        padding: 0.5rem 0.8rem;
+        text-transform: capitalize;
+        transition: color 70ms ease-in-out, box-shadow 70ms ease-in-out;
+
+        &:hover {
+            color: $base-color;
+        }
+
+        i {
+            margin-left: 0.4rem;
+        }
+
+        &:focus + .select-options {
+            opacity: 1;
+            pointer-events: all;
+        }
+    }
+}
