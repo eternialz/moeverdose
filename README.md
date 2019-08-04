@@ -17,11 +17,11 @@ Online soon.
 
 - Install Requirements
 
-- Create database `docker-compose run -rm runner rails db:create`
+- Create database `docker-compose run --rm runner rails db:create`
 
-- Execute migrations `docker-compose run -rm runner rails db:migrate`
+- Execute migrations `docker-compose run --rm runner rails db:migrate`
 
-- Seed database `docker-compose run -rm runner rails db:seed`
+- Seed database `docker-compose run --rm runner rails db:seed`
 
 - Run moeverdose `docker-compose run --publish 3000:3000 -rm rails`
 
@@ -29,9 +29,9 @@ Online soon.
 
 ### Testing
 
-- Execute migrations for test base `docker-compose run -rm runner rails db:migrate RAILS_ENV=test`
+- Execute migrations for test base `docker-compose run --rm runner rails db:migrate RAILS_ENV=test`
 
-- Run tests `docker-compose run -rm runner rails test`
+- Run tests `docker-compose run --rm runner rails test`
 
 # Browser support
 
