@@ -163,6 +163,8 @@ class PostsController < ApplicationController
     end
 
     def report
+        title "Report post"
+
         render component 'posts/report'
     end
 

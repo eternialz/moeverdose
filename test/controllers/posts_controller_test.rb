@@ -46,6 +46,22 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
         assert_redirected_to new_user_session_path
     end
 
+    test 'Show edit report post' do
+        sign_in @user
+
+        get edit_report_post_path(@post)
+
+        assert_response :success
+
+        assert_select 'title', 'Report post - Moeverdose'
+    end
+
+    test 'Can\'t show edit report post unlogged' do
+        get edit_report_post_path(@post)
+
+        assert_redirected_to new_user_session_path
+    end
+
     test 'favorite post' do
         sign_in @user
         fav_count = @user.favorites.count
@@ -55,6 +71,22 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
         @updated_user = User.find(@user.id)
 
         assert_not_equal fav_count, @updated_user.favorites.count
+        assert_response :success
+    end
+
+    test 'Remove favorite post' do
+        sign_in @user
+
+        @user.favorites << @post
+        @user.save
+
+        fav_count = @user.favorites.count
+
+        patch post_favorite_path @post.number
+
+        @updated_user = User.find(@user.id)
+
+        assert_equal fav_count - 1, @updated_user.favorites.count
         assert_response :success
     end
 
