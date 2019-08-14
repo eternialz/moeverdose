@@ -114,7 +114,7 @@ class PostsController < ApplicationController
         @characters = results[:characters]
         @authors = results[:authors]
 
-        title('Edit post: ' + @post.title)
+        title('Edit post ' + @post.number.to_s)
         render component 'posts/edit'
     end
 

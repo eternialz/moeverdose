@@ -62,6 +62,22 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
         assert_redirected_to new_user_session_path
     end
 
+    test 'Show edit report post' do
+        sign_in @user
+
+        get edit_report_post_path(@post)
+
+        assert_response :success
+
+        assert_select 'title', 'Report post - Moeverdose'
+    end
+
+    test 'Can\'t show edit report post unlogged' do
+        get edit_report_post_path(@post)
+
+        assert_redirected_to new_user_session_path
+    end
+
     test 'favorite post' do
         sign_in @user
         fav_count = @user.favorites.count
@@ -94,6 +110,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
         patch post_favorite_path @post.number
 
         assert_xhr_redirected_to new_user_session_path
+        assert_response 302
     end
 
     test 'dose - add overdose' do
@@ -123,6 +140,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
         assert_equal @post.moe_shortage, @updated_post.moe_shortage
         assert_xhr_redirected_to new_user_session_path
+        assert_response 302
     end
 
     test 'all_posts_index' do
@@ -251,6 +269,20 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
                 }
             )
         end
+
+        assert_redirected_to new_user_session_path
+    end
+
+    test 'Get edit post page' do
+        sign_in @user
+
+        get edit_post_path(@post)
+
+        assert_response :success
+    end
+
+    test 'Can\'t get edit post page unlogged' do
+        get edit_post_path(@post)
 
         assert_redirected_to new_user_session_path
     end
