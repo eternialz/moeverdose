@@ -8,7 +8,7 @@ class TagsControllerTest < ActionDispatch::IntegrationTest
         @tag_character = create(:tag_character)
         @tag_author = create(:tag_author)
 
-        11.times do 
+        11.times do
             create(:tag_content)
         end
 

@@ -28,11 +28,9 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
         comment_count = Comment.count
 
         text = Faker::Movies::Hobbit.quote
-        until text.length > max_comment_length do
-            text += Faker::Movies::Hobbit.quote
-        end
+        text += Faker::Movies::Hobbit.quote until text.length > max_comment_length
 
-        post post_comments_path(post.number, comment: {text: text})
+        post post_comments_path(post.number, comment: { text: text })
 
         assert_equal comment_count, Comment.count
         assert_redirected_to post_path(post.number)

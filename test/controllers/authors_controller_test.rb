@@ -64,7 +64,7 @@ class AuthorsControllerTest < ActionDispatch::IntegrationTest
 
         patch author_path(
             @author,
-            author: author_params,
+            author: author_params
         )
 
         @updated_author = Author.find(@author.id)
@@ -79,7 +79,7 @@ class AuthorsControllerTest < ActionDispatch::IntegrationTest
         sign_in @user
 
         author_params = {
-            name: "",
+            name: '',
             biography: Faker::TvShows::FamilyGuy.quote + @author.name,
             website: Faker::Internet.url
         }
@@ -88,7 +88,7 @@ class AuthorsControllerTest < ActionDispatch::IntegrationTest
 
         patch author_path(
             @author,
-            author: author_params,
+            author: author_params
         )
 
         @updated_author = Author.find(@author.id)
