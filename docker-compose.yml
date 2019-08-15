@@ -39,6 +39,9 @@ services:
       - HISTFILE=/app/log/.bash_history
       - PSQL_HISTFILE=/app/log/.psql_history
       - EDITOR=vi
+      - DATABASE_HOST=postgres
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=
     depends_on:
       - postgres
 
