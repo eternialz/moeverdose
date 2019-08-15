@@ -268,10 +268,6 @@ class PostsController < ApplicationController
         params.slice(*Post.sort_scopes) || [created_at: :desc]
     end
 
-    def set_user
-        @user = User.includes(blacklisted_tags: :aliases).find(current_user.id)
-    end
-
     def notify(text)
         @url = ENV['DISCORD_WEBHOOK_POSTS_URL']
 
