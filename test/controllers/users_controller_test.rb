@@ -8,6 +8,8 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
         @user = create(:user, password: 'password')
         @user_secondary = create(:user)
         @user_banned = create(:user_banned)
+
+        4.times { create(:permissions_type) }
     end
 
     test 'show user' do
@@ -146,6 +148,21 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
         get users_path
 
         assert_response :success
+        assert_select 'title', 'All Users - ' + site_name
+    end
+
+    test 'all users wth query' do
+        10.times do
+            create(:user)
+        end
+
+        get users_path(query: @user.name)
+        users = @controller.instance_variable_get(:@users)
+
+        assert_response :success
+        users.each do |user|
+            assert user.name.include? @user.name
+        end
         assert_select 'title', 'All Users - ' + site_name
     end
 
