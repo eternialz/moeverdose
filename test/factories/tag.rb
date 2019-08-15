@@ -26,4 +26,12 @@ FactoryBot.define do
             tag.aliases << create(:alias)
         end
     end
+
+    factory :tag_copyright, class: 'Tag' do
+        type { 'copyright' }
+        after(:build) do |tag|
+            tag.aliases << create(:main_alias)
+            tag.aliases << create(:alias)
+        end
+    end
 end

@@ -3,6 +3,7 @@ require 'test_helper'
 class UserServiceTest < ActiveSupport::TestCase
     setup do
         FactoryBot.rewind_sequences
+        Level.destroy_all
         @user = create(:user)
         create(:level_final, rank: 1)
         @user.exp = 0

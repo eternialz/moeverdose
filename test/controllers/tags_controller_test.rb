@@ -7,6 +7,11 @@ class TagsControllerTest < ActionDispatch::IntegrationTest
         @tag_content = create(:tag_content)
         @tag_character = create(:tag_character)
         @tag_author = create(:tag_author)
+
+        11.times do
+            create(:tag_content)
+        end
+
         user = create(:user)
         sign_in user
     end
@@ -30,12 +35,26 @@ class TagsControllerTest < ActionDispatch::IntegrationTest
         assert_not @tags.empty?
     end
 
+    test 'index_with_items_per_page' do
+        params = {
+            items_per_page: 10
+        }
+
+        get tags_path, params: params
+        @tags = @controller.instance_variable_get(:@tags)
+
+        assert_response :success
+        assert_not @tags.empty?
+        assert @tags.size <= 10
+    end
+
     test 'edit' do
         get edit_tag_path(@tag_content)
 
         assert_response :success
         assert_select 'title', "Edit tag #{@tag_content.names.first} - Moeverdose"
     end
+
     #     test 'update_with_unique_names' do
     #
     #         params = {

@@ -1,7 +1,7 @@
 <div class="zone">
     <div class="tag-list">
-        <span class="tag tag-author"><%= @tag.name %></span>
-        <% @names.each do |n| %>
+        <span class="tag tag-author"><%= @author.tag.name %></span>
+        <% @author.tag.names.each do |n| %>
             <span class="tag tag-alias"><%= n %></span>
         <% end %>
     </div>
@@ -10,12 +10,12 @@
     <p class="p-lead margin margin-bottom"><%= @author.biography.blank? ? "none" : @author.biography %></p>
     <% unless @website.blank? %>
         <h6 class="subtitle">Website</h6>
-        <a href="<%= @website %>"><%= @website %></a>
+        <a href="<%= @author.website %>"><%= @author.website %></a>
     <% end %>
     <div class="button-list margin margin-top">
-        <a class="button-secondary" href="<%= posts_path(query: @tag.names[0]) %>">All Posts<i class="fa fa-eye"></i></a>
+        <a class="button-secondary" href="<%= posts_path(query: @author.tag.names[0]) %>">All Posts<i class="fa fa-eye"></i></a>
         <a class="button-secondary" href="<%= edit_author_path(@author) %>">Edit<i class="fa fa-edit"></i></a>
-        <a class="button-secondary" href="<%= edit_tag_path(@tag) %>">Edit aliases<i class="fa fa-edit"></i></a>
+        <a class="button-secondary" href="<%= edit_tag_path(@author.tag) %>">Edit aliases<i class="fa fa-edit"></i></a>
     </div>
 </div>
 

@@ -31,7 +31,7 @@ class TagsController < ApplicationController
 
     def update
         # Get new aliases array without duplicates
-        names = params[:names].downcase.split(' ').uniq
+        names = params[:names].split(' ').map { |name| TagService.sanitize name }.uniq
 
         if names.any?
             aliases = [@tag.main_alias]
@@ -49,7 +49,7 @@ class TagsController < ApplicationController
             flash.now[:success] = "Modifications for #{@tag.names[0]} saved!"
             redirect_to tags_path
         else
-            flash.now[:error] ||= 'The modifications you entered are invalid. Please verify the informations and try to save again.'
+            flash.now[:error] ||= 'The modifications you entered are invalid. Please verify and try again.'
             redirect_to edit_tag_path(@tag)
         end
     end

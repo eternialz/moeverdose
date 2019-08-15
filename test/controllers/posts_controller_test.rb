@@ -20,6 +20,22 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
         end
     end
 
+    test 'Show report post' do
+        sign_in @user
+
+        get edit_report_post_path(@post)
+
+        assert_response :success
+
+        assert_select 'title', 'Report post - Moeverdose'
+    end
+
+    test 'Can\'t show report post unlogged' do
+        get edit_report_post_path(@post)
+
+        assert_redirected_to new_user_session_path
+    end
+
     test 'report post' do
         @post.report = false
         @post.save
@@ -46,6 +62,22 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
         assert_redirected_to new_user_session_path
     end
 
+    test 'Show edit report post' do
+        sign_in @user
+
+        get edit_report_post_path(@post)
+
+        assert_response :success
+
+        assert_select 'title', 'Report post - Moeverdose'
+    end
+
+    test 'Can\'t show edit report post unlogged' do
+        get edit_report_post_path(@post)
+
+        assert_redirected_to new_user_session_path
+    end
+
     test 'favorite post' do
         sign_in @user
         fav_count = @user.favorites.count
@@ -58,10 +90,27 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
         assert_response :success
     end
 
+    test 'Remove favorite post' do
+        sign_in @user
+
+        @user.favorites << @post
+        @user.save
+
+        fav_count = @user.favorites.count
+
+        patch post_favorite_path @post.number
+
+        @updated_user = User.find(@user.id)
+
+        assert_equal fav_count - 1, @updated_user.favorites.count
+        assert_response :success
+    end
+
     test 'Can\'t add favorite post unlogged' do
         patch post_favorite_path @post.number
 
-        assert_redirected_to new_user_session_path
+        assert_xhr_redirected_to new_user_session_path
+        assert_response 302
     end
 
     test 'dose - add overdose' do
@@ -85,11 +134,13 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     end
 
     test 'Can\'t add shortage/overdose unlogged' do
-        post_dose_path @post, ['shortage', 'overdose']
+        patch post_dose_path @post, ['shortage', 'overdose']
 
         @updated_post = Post.find(@post.id)
 
         assert_equal @post.moe_shortage, @updated_post.moe_shortage
+        assert_xhr_redirected_to new_user_session_path
+        assert_response 302
     end
 
     test 'all_posts_index' do
@@ -179,33 +230,35 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     test 'create post' do
         sign_in @user
 
-        #         post_count = Post.count
-        #         file = "image.png"
+        # post_count = Post.count
+        # file = "image.png"
         #
-        #         content = sample_file(file).read
-        #         locale_file = Tempfile.new(["image", "png"])
-        #         locale_file.write content
-        #         locale_file.rewind
+        # content = sample_file(file).read
+        # locale_file = Tempfile.new(["image", "png"])
+        # locale_file.write content
+        # locale_file.rewind
         #
-        #         upload = ActionDispatch::Http::UploadedFile.new({
-        #             filename: file,
-        #             type: 'image/png',
-        #             tempfile: fixture_file_upload(sample_path, 'image/png'),
-        #             head: "Content-Disposition: form-data; name=\"post[post_image]\"; filename=\"image.png\"\r\nContent-Type: image/png\r\n"
-        #         })
+        # upload = ActionDispatch::Http::UploadedFile.new({
+        #     filename: file,
+        #     type: 'image/png',
+        #     tempfile: fixture_file_upload(sample_path, 'image/png'),
+        #     head: "Content-Disposition: form-data; name=\"post[post_image]\"; filename=\"image.png\"\r\n
+        #            Content-Type: image/png\r\n"
+        # })
         #
-        #         binding.pry
+        # binding.pry
         #
-        #         post posts_path(
-        #             post: {
-        #                 "post_image" => upload
-        #             }
-        #         )
+        # post posts_path(
+        #     post: {
+        #         "post_image" => upload
+        #     }
+        # )
         #
-        #         locale_file.close
+        # locale_file.close
         #
-        #         assert_equal Post.count, post_count + 1
-        #         assert_redirect_to post_path(post)
+        # assert_equal Post.count, post_count + 1
+        # assert_redirect_to post_path(post)
+
         assert true
     end
 
@@ -217,6 +270,20 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
                 }
             )
         end
+
+        assert_redirected_to new_user_session_path
+    end
+
+    test 'Get edit post page' do
+        sign_in @user
+
+        get edit_post_path(@post)
+
+        assert_response :success
+    end
+
+    test 'Can\'t get edit post page unlogged' do
+        get edit_post_path(@post)
 
         assert_redirected_to new_user_session_path
     end

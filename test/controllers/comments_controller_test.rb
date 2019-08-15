@@ -19,6 +19,23 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
         assert_redirected_to post_path(post.number)
     end
 
+    test "Can't create Comment longer than the max autorised" do
+        user = create(:user_with_post)
+        sign_in user
+
+        post = user.posts.first
+
+        comment_count = Comment.count
+
+        text = Faker::Movies::Hobbit.quote
+        text += Faker::Movies::Hobbit.quote until text.length > max_comment_length
+
+        post post_comments_path(post.number, comment: { text: text })
+
+        assert_equal comment_count, Comment.count
+        assert_redirected_to post_path(post.number)
+    end
+
     test "Can't Create Comment Unlogged" do
         user = create(:user_with_post)
 

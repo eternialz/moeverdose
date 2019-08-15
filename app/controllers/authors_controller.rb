@@ -2,13 +2,10 @@ class AuthorsController < ApplicationController
     require 'uri'
 
     before_action :set_author, except: [:index]
+    before_action :set_index_defaults, only: [:index]
     before_action :authenticate_user!, only: [:update, :edit]
 
     def index
-        @default_per_page = 20
-        @items_per_page_list = [10, 20, 40]
-        @items_per_page = items_per_page
-
         @authors = if params[:query]
                        Kaminari.paginate_array(
                            Author.sort_by(set_sort_by).includes(:tag).all.where('name LIKE ?', "%#{params[:query]}%")
@@ -24,7 +21,9 @@ class AuthorsController < ApplicationController
     end
 
     def show
-        @posts = Kaminari.paginate_array(Post.sort_by(set_post_sort_by).where(author: @author)).page(params[:page]).per(items_per_page)
+        @posts = Kaminari.paginate_array(
+            Post.sort_by(set_post_sort_by).where(author: @author)
+        ).page(params[:page]).per(items_per_page)
 
         @tag = @author.tag
         @names = @tag.names
@@ -35,8 +34,6 @@ class AuthorsController < ApplicationController
     end
 
     def edit
-        @website = @author.website
-
         title('Edit ' + @author.name + "'s author page")
         render component 'authors/edit'
     end
@@ -45,7 +42,12 @@ class AuthorsController < ApplicationController
         @old_name = @author.name
 
         main_alias = @author.tag.main_alias
-        new_alias = @author.tag.aliases.where(name: params[:author][:name]).first || Alias.new(name: params[:author][:name].downcase.tr(' ', '_'), tag: @author.tag, main: true)
+        new_alias = @author.tag.aliases.where(name: params[:author][:name]).first
+        new_alias ||= Alias.new(
+            name: TagService.sanitize(params[:author][:name]),
+            tag: @author.tag,
+            main: true
+        )
 
         new_alias.main = true
         main_alias.main = false
@@ -66,6 +68,12 @@ class AuthorsController < ApplicationController
 
     def set_author
         @author = Author.find(params[:id])
+    end
+
+    def set_index_defaults
+        @default_per_page = 20
+        @items_per_page_list = [10, 20, 40]
+        @items_per_page = items_per_page
     end
 
     def set_sort_by
