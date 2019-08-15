@@ -73,7 +73,6 @@ class PostService
     end
 
     def self.set_post_tags(params, post)
-
         params[:tags].split(' ').each do |tag|
             TagService.find_or_create(tag, :content, post)
         end

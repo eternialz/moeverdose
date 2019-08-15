@@ -1,6 +1,6 @@
 FactoryBot.define do
     factory :alias do
-        name { TagService.sanitize(Faker::Games::Pokemon.name) }
+        name { TagService.sanitize(Faker::Games::Pokemon.name) 
         main { false }
     end
 

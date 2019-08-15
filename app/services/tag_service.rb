@@ -1,7 +1,6 @@
 class TagService
     def self.find_or_create(name, type, post)
         name = sanitize(name)
-
         type = type.to_sym
 
         tag = Tag.includes(:aliases).where(aliases: { name: name }, type: type)
@@ -48,6 +47,7 @@ class TagService
     def self.find_or_create_author(name, post)
         sanitized_name = sanitize(name)
         tag = Tag.includes(:aliases).where(aliases: { name: sanitized_name }, type: :author)
+
         if tag.empty?
             tag = Tag.create(type: :author)
             Alias.create(tag_id: tag.id, name: sanitized_name, main: true)

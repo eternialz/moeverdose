@@ -164,7 +164,6 @@ class PostsController < ApplicationController
 
     def report
         title('Report post')
-
         render component 'posts/report'
     end
 

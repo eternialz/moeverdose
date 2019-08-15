@@ -25,6 +25,10 @@ class AuthorsController < ApplicationController
             Post.sort_by(set_post_sort_by).where(author: @author)
         ).page(params[:page]).per(items_per_page)
 
+        @tag = @author.tag
+        @names = @tag.names
+        @website = @author.website
+
         title(@author.name + "'s author page")
         render component 'authors/show'
     end

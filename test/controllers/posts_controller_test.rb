@@ -258,6 +258,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
         #
         # assert_equal Post.count, post_count + 1
         # assert_redirect_to post_path(post)
+
         assert true
     end
 
