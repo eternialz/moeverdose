@@ -36,7 +36,7 @@ class TagsControllerTest < ActionDispatch::IntegrationTest
 
     test 'index_with_items_per_page' do
         params = {
-            items_per_page: 10
+            items_per_page: 8
         }
 
         get tags_path, params: params
@@ -44,7 +44,7 @@ class TagsControllerTest < ActionDispatch::IntegrationTest
 
         assert_response :success
         assert_not @tags.empty?
-        assert @tags.size <= 10
+        assert @tags.size <= 8
     end
 
     test 'edit' do

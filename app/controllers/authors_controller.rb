@@ -2,7 +2,7 @@ class AuthorsController < ApplicationController
     require 'uri'
 
     before_action :set_author, except: [:index]
-    before_action :set_index_defaults, only: [:index]
+    before_action :set_default_index_values, only: [:index]
     before_action :authenticate_user!, only: [:update, :edit]
 
     def index
@@ -70,18 +70,12 @@ class AuthorsController < ApplicationController
         @author = Author.find(params[:id])
     end
 
-    def set_index_defaults
-        @default_per_page = 20
-        @items_per_page_list = [10, 20, 40]
-        @items_per_page = items_per_page
-    end
-
     def set_sort_by
-        params.slice(*Author.sort_scopes) || [alphabetical: :desc]
+        params.permit(Author.sort_scopes).with_defaults(alphabetical: 'desc')
     end
 
     def set_post_sort_by
-        params.slice(*Post.sort_scopes) || [created_at: :desc]
+        params.permit(Post.sort_scopes).with_defaults(created_at: 'desc')
     end
 
     def author_params

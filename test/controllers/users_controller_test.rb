@@ -9,6 +9,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
         @user_secondary = create(:user)
         @user_banned = create(:user_banned)
 
+        10.times { create(:user) }
         4.times { create(:permissions_type) }
     end
 
@@ -151,7 +152,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
         assert_select 'title', 'All Users - ' + site_name
     end
 
-    test 'all users wth query' do
+    test 'all users with query' do
         10.times do
             create(:user)
         end
@@ -164,6 +165,17 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
             assert user.name.include? @user.name
         end
         assert_select 'title', 'All Users - ' + site_name
+    end
+
+    test 'all users with sorting' do
+        params = { alphabetical: :desc }
+
+        get users_path, params: params
+        @users = @controller.instance_variable_get(:@users)
+
+        assert_response :success
+        assert_not @users.empty?
+        assert(@users.each_cons(2).all? { |a, b| (a.name <=> b.name) >= 0 })
     end
 
     private

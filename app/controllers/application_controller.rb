@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
     end
 
     def items_per_page
-        if params[:items_per_page]
+        if params[:items_per_page] && @items_per_page_list.max >= params['items_per_page'].to_i
             params['items_per_page'].to_i
         else
             @default_per_page || helpers.default_per_page
@@ -55,5 +55,17 @@ class ApplicationController < ActionController::Base
             flash[:warning] = 'You need to sign in or sign up before continuing.'
             xhr_redirect_to(new_user_session_path)
         end
+    end
+
+    def set_default_index_values
+        @default_per_page = helpers.default_per_page
+        @items_per_page_list = helpers.items_per_page_list
+        @items_per_page = items_per_page
+    end
+
+    def set_custom_index_values(default_per_page, items_per_page_list)
+        @default_per_page = default_per_page
+        @items_per_page_list = items_per_page_list
+        @items_per_page = items_per_page
     end
 end
