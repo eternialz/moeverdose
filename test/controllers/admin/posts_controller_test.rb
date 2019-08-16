@@ -14,6 +14,16 @@ class Admin::PostsControllerTest < ActionDispatch::IntegrationTest
         assert_response :success
     end
 
+    test 'admin show post' do
+        get admin_post_path(@post)
+        assert_response :success
+    end
+
+    test 'admin edit post' do
+        get edit_admin_post_path(@post)
+        assert_response :success
+    end
+
     test 'admin destroy post' do
         @post = create(:user_with_post).posts.first
 
@@ -33,5 +43,27 @@ class Admin::PostsControllerTest < ActionDispatch::IntegrationTest
         assert @post.report_reason.blank?
 
         assert_redirected_to admin_posts_path
+    end
+
+    test 'admin update post' do
+        @post.tags = []
+        @post.save
+
+        params = {
+            post: {
+                title: '1',
+                source: '2',
+                report: true,
+            }
+        }
+
+        patch admin_post_path(@post), params: params
+
+        @updated_post = Post.find(@post.id)
+
+        assert_equal @updated_post.title, params[:post][:title]
+        assert_equal @updated_post.source, params[:post][:source]
+        assert_equal @updated_post.report, params[:post][:report]
+        assert_redirected_to admin_post_path(@post)
     end
 end
