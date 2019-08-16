@@ -6,7 +6,6 @@ class Admin::DashboardControllerTest < ActionDispatch::IntegrationTest
     setup do
         @user = create(:user)
         @admin = create(:admin)
-        @request.env['devise.mapping'] = Devise.mappings[:user]
     end
 
     test "can't_access_when_not_logged" do

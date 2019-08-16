@@ -5,10 +5,6 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     include Devise::Test::IntegrationHelpers
     include ConfigHelper
 
-    setup do
-        @request.env['devise.mapping'] = Devise.mappings[:user]
-    end
-
     test 'Create Comment' do
         user = create(:user_with_post)
         sign_in user

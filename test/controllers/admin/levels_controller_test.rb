@@ -5,7 +5,6 @@ class Admin::LevelsControllerTest < ActionDispatch::IntegrationTest
 
     setup do
         @admin = create(:admin)
-        @request.env['devise.mapping'] = Devise.mappings[:user]
         sign_in @admin
         @level = create(:level_final)
     end

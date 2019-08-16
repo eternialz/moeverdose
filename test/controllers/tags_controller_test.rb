@@ -7,7 +7,6 @@ class TagsControllerTest < ActionDispatch::IntegrationTest
         @tag_content = create(:tag_content)
         @tag_character = create(:tag_character)
         @tag_author = create(:tag_author)
-        @request.env['devise.mapping'] = Devise.mappings[:user]
 
         11.times do
             create(:tag_content)
