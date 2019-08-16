@@ -6,6 +6,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     setup do
         @user = create(:user_with_post)
         @post = @user.posts.first
+        @request.env['devise.mapping'] = Devise.mappings[:user]
     end
 
     test 'show post' do

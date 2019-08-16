@@ -6,6 +6,7 @@ module Admin
 
         setup do
             @admin = create(:admin)
+            @request.env['devise.mapping'] = Devise.mappings[:user]
             sign_in @admin
             @comment = create(:comment_reported)
         end

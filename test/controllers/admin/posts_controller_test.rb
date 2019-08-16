@@ -5,6 +5,7 @@ class Admin::PostsControllerTest < ActionDispatch::IntegrationTest
 
     setup do
         @admin = create(:admin)
+        @request.env['devise.mapping'] = Devise.mappings[:user]
         sign_in @admin
         @post = create(:user_with_post).posts.first
     end

@@ -8,6 +8,7 @@ class AuthorsControllerTest < ActionDispatch::IntegrationTest
         @author = create(:author)
         @user = create(:user_with_post)
         @post = @user.posts.first
+        @request.env['devise.mapping'] = Devise.mappings[:user]
     end
 
     test 'author index' do

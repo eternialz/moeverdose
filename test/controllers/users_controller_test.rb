@@ -8,6 +8,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
         @user = create(:user, password: 'password')
         @user_secondary = create(:user)
         @user_banned = create(:user_banned)
+        @request.env['devise.mapping'] = Devise.mappings[:user]
 
         10.times { create(:user) }
         4.times { create(:permissions_type) }
