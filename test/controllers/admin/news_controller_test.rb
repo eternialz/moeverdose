@@ -14,6 +14,11 @@ class Admin::NewsControllerTest < ActionDispatch::IntegrationTest
         assert_response :success
     end
 
+    test 'admin show news' do
+        get admin_news_path(@new)
+        assert_response :success
+    end
+
     test 'admin new new' do
         get new_admin_news_path
         assert_response :success

@@ -58,6 +58,27 @@ services:
     ports:
       - '3000:3000'
 
+  test:
+    <<: *backend
+    command: bundle exec rails t
+    environment:
+      - NODE_ENV=development
+      - RAILS_ENV=${RAILS_ENV:-development}
+      - REDIS_URL=redis://redis:6379/
+      - DATABASE_URL=postgres://postgres:postgres@postgres:5432
+      - BOOTSNAP_CACHE_DIR=/bundle/bootsnap
+      - WEBPACKER_DEV_SERVER_HOST=webpacker
+      - WEB_CONCURRENCY=1
+      - HISTFILE=/app/log/.bash_history
+      - PSQL_HISTFILE=/app/log/.psql_history
+      - EDITOR=vi
+      - DATABASE_HOST=postgres
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=
+      - DISABLE_SPRING=1
+    depends_on:
+      - postgres
+
   postgres:
     image: postgres:11.1
     volumes:

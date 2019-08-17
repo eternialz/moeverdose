@@ -45,10 +45,6 @@ module ConfigHelper
         image_dimensions[3]
     end
 
-    def self.thumb_size
-        '200x200'
-    end
-
     # COMMENTS
     def max_comment_length
         500

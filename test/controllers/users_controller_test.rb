@@ -1,3 +1,4 @@
+require 'test_helper'
 require 'config_helper'
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
