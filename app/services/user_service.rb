@@ -11,8 +11,16 @@ class UserService
     end
 
     def self.get_personal_infos(name)
-        user = User.includes({ favorites_tags: :aliases }, { blacklisted_tags: :aliases },
-                             { permissions: :permissions_type }, :comments, :favorites, :liked_posts, :disliked_posts).find_by(name: name)
+        user = User.includes(
+            { favorites_tags: :aliases },
+            { blacklisted_tags: :aliases },
+            { permissions: :permissions_type },
+            :comments,
+            :favorites,
+            :liked_posts,
+            :disliked_posts
+        ).find_by(name: name)
+
         user.to_json(only: [
                          :email, :current_sign_in_ip, :last_sign_in_ip, :name, :biography,
                          :website, :twitter, :facebook, :upload_count, :exp
