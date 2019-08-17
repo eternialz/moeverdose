@@ -53,7 +53,7 @@ class Admin::PostsControllerTest < ActionDispatch::IntegrationTest
             post: {
                 title: '1',
                 source: '2',
-                report: true,
+                report: true
             }
         }
 

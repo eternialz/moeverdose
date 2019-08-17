@@ -377,7 +377,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
         post_params = {
             title: Faker::Games::Fallout.character + @post.title, # Adding current informations to force a different one
             source: Faker::Games::Fallout.faction + @post.source,
-            description: Faker::Games::Fallout.quote + @post.description,
+            description: Faker::Games::Fallout.quote + @post.description
         }
 
         patch post_path(

@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
     before_action :authenticate_user!, only: [:edit, :update, :delete]
     before_action :set_user, except: [:index]
-    before_action :check_user, only: [:edit, :update, :delete]
+    before_action :check_user, only: [:edit, :update, :delete, :extract]
     before_action(only: [:index]) { set_default_index_values }
 
     def index
@@ -106,7 +106,7 @@ class UsersController < ApplicationController
         @user.update_attributes(account_update_params)
         tags = params[:tags]
 
-        favorites_tags = Tag.includes(:aliases).where(aliases: { name: tags[:favorites].split.uniq }) # remove duplicates
+        favorites_tags = Tag.includes(:aliases).where(aliases: { name: tags[:favorites].split.uniq })
         blacklisted_tags = Tag.includes(:aliases).where(aliases: { name: tags[:blacklisted].split.uniq })
 
         @user.favorites_tags = favorites_tags
@@ -153,7 +153,11 @@ class UsersController < ApplicationController
     private
 
     def set_user
-        @user = User.left_outer_joins(favorites_tags: :aliases, blacklisted_tags: :aliases, permissions: :permissions_type).find_by(name: params[:id])
+        @user = User.left_outer_joins(
+            favorites_tags: :aliases,
+            blacklisted_tags: :aliases,
+            permissions: :permissions_type
+        ).find_by(name: params[:id])
     end
 
     def check_user

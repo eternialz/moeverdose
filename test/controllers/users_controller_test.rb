@@ -179,6 +179,23 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
         assert(@users.each_cons(2).all? { |a, b| (a.name <=> b.name) >= 0 })
     end
 
+    test 'extract current user info' do
+        sign_in @user
+
+        get extract_user_path(@user.name), params: { format: :zip }
+
+        assert_response :success
+        assert_equal 'application/zip', response.content_type
+    end
+
+    test 'can\'t extract another user info' do
+        sign_in @user_secondary
+
+        get extract_user_path(@user.name), params: { format: :zip }
+
+        assert_redirected_to edit_user_path(@user_secondary.name)
+    end
+
     private
 
     def user_params(user)
