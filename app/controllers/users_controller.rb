@@ -167,10 +167,6 @@ class UsersController < ApplicationController
         end
     end
 
-    def sign_up_params
-        params.require(:user).permit(:name, :email, :password, :password_confirmation)
-    end
-
     def set_sort_by
         params.permit(User.sort_scopes).with_defaults(posts: 'desc')
     end

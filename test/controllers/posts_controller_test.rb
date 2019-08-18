@@ -367,7 +367,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
         assert_redirected_to post_path(@post.number)
     end
 
-    test 'update post with new author' do
+    test 'update post with new author and tags' do
         sign_in @user
 
         post_params = sample_post_params
@@ -375,8 +375,8 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
         patch post_path(
             @post.number,
             post: post_params,
-            tags: '',
-            characters: '',
+            tags: SecureRandom.hex,
+            characters: SecureRandom.hex,
             author_tag: Faker::Games::Fallout.character + @post.number.to_s
         )
 
