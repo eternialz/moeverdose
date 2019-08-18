@@ -27,18 +27,6 @@ module ParserConcern
         text
     end
 
-    def scan_for_comment(text)
-        comments = text.scan(/\$[0-9]+/) # matches $number
-
-        comments.each do |comment|
-            link = '<span>$</span>' + link_to(comment[1..-1], '#comment_' + comment[1..-1])
-
-            text.sub! comment, link
-        end
-
-        text
-    end
-
     def scan_for_spoiler(text)
         spoilers = text.scan(%r{\[spoiler\].+?\[/spoiler\]}) # matches $number
 

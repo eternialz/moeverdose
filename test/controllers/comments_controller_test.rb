@@ -5,9 +5,12 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     include Devise::Test::IntegrationHelpers
     include ConfigHelper
 
+    setup do
+        @user = create(:user_with_post)
+    end
+
     test 'Create Comment' do
-        user = create(:user_with_post)
-        sign_in user
+        sign_in @user
 
         post = user.posts.first
 
@@ -19,9 +22,47 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
         assert_redirected_to post_path(post.number)
     end
 
+    test 'Create comment with post link' do
+        sign_in @user
+
+        post = user.posts.first
+
+        comment_count = Comment.count
+
+        post post_comments_path(post.number, comment: { text: "You should check ##{post.number} too!" })
+
+        assert_equal comment_count + 1, Comment.count
+        assert_redirected_to post_path(post.number)
+    end
+
+    test 'Create comment with user link' do
+        sign_in @user
+
+        post = user.posts.first
+
+        comment_count = Comment.count
+
+        post post_comments_path(post.number, comment: { text: "You should check @#{@user.name}'s profile." })
+
+        assert_equal comment_count + 1, Comment.count
+        assert_redirected_to post_path(post.number)
+    end
+
+    test 'Create comment with spoiler' do
+        sign_in @user
+
+        post = user.posts.first
+
+        comment_count = Comment.count
+
+        post post_comments_path(post.number, comment: { text: '[spoiler]They die at the end.[/spoiler]' })
+
+        assert_equal comment_count + 1, Comment.count
+        assert_redirected_to post_path(post.number)
+    end
+
     test "Can't create Comment longer than the max autorised" do
-        user = create(:user_with_post)
-        sign_in user
+        sign_in @user
 
         post = user.posts.first
 
@@ -37,9 +78,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     end
 
     test "Can't Create Comment Unlogged" do
-        user = create(:user_with_post)
-
-        post = user.posts.first
+        post = @user.posts.first
 
         comment_count = Comment.count
 
@@ -51,11 +90,10 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
 
     test 'Report Comment' do
         comment = create(:comment)
-        user = create(:user)
 
         post = comment.post
 
-        sign_in user
+        sign_in @user
 
         patch comment_report_path(post.number, comment)
 
