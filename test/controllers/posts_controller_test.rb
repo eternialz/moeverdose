@@ -349,11 +349,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     test 'update post' do
         sign_in @user
 
-        post_params = {
-            title: Faker::Games::Fallout.character + @post.title, # Adding current informations to force a different one
-            source: Faker::Games::Fallout.faction + @post.source,
-            description: Faker::Games::Fallout.quote + @post.description
-        }
+        post_params = sample_post_params
 
         patch post_path(
             @post.number,
@@ -374,11 +370,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     test 'update post with new author' do
         sign_in @user
 
-        post_params = {
-            title: Faker::Games::Fallout.character + @post.title, # Adding current informations to force a different one
-            source: Faker::Games::Fallout.faction + @post.source,
-            description: Faker::Games::Fallout.quote + @post.description
-        }
+        post_params = sample_post_params
 
         patch post_path(
             @post.number,
@@ -405,5 +397,15 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     test 'random post' do
         get random_path
         assert_response 302
+    end
+
+    private
+
+    def sample_post_params
+        {
+            title: Faker::Games::Fallout.character + @post.title, # Adding current informations to force a different one
+            source: Faker::Games::Fallout.faction + @post.source,
+            description: Faker::Games::Fallout.quote + @post.description
+        }
     end
 end

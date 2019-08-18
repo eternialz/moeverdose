@@ -75,8 +75,6 @@ class PostsController < ApplicationController
 
         PostService.assign_id(@post)
 
-        @post.post_image.attach(post_params[:post_image])
-
         @post.md5 = @post.post_image.checksum
 
         PostService.set_post_tags({ tags: params[:tags], characters: params[:characters] }, @post)
