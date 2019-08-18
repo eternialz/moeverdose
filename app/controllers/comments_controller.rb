@@ -42,10 +42,9 @@ class CommentsController < ApplicationController
     end
 
     def scan_comment(text)
-        # scan for comments, posts, and users referenced in comments
+        # scan for posts, users and spoilers referenced in comments
         text = scan_for_post(text)
         text = scan_for_user(text)
-        text = scan_for_comment(text)
         scan_for_spoiler(text)
     end
 end
