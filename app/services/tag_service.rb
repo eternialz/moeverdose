@@ -44,23 +44,18 @@ class TagService
         { tags: tag, characters: character, authors: author, copyrights: copyright }
     end
 
-    def self.find_or_create_author(name, post)
+    def self.find_or_create_author(name, post = nil)
         sanitized_name = sanitize(name)
-        tag = Tag.includes(:aliases).where(aliases: { name: sanitized_name }, type: :author)
+        author = Author.where(name: sanitized_name).first
 
-        if tag.empty?
+        if author.blank?
             tag = Tag.create(type: :author)
             Alias.create(tag_id: tag.id, name: sanitized_name, main: true)
+
             author = Author.new(name: name, tag: tag)
-        else
-            begin
-                author = Author.find_by(name: name)
-            rescue StandardError
-                author = Author.new(name: name, tag: tag)
-            end
         end
 
-        post.tags << tag
+        post.tags << author.tag if post
         author
     end
 end
