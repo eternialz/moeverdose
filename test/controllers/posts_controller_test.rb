@@ -20,6 +20,18 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
         end
     end
 
+    test 'show post favorited by user' do
+        @user.favorites << @post
+        sign_in @user
+
+        get post_path(@post.number)
+
+        favorited = @controller.instance_variable_get(:@favorited)
+
+        assert_response :success
+        assert favorited
+    end
+
     test 'Show report post' do
         sign_in @user
 
@@ -123,6 +135,29 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
         assert_not_equal @post.overdose, @updated_post.overdose
     end
 
+    test 'dose - remove overdose' do
+        @user.liked_posts << @post
+        sign_in @user
+
+        patch post_dose_path @post.number, dose: 'overdose'
+
+        @updated_post = Post.find(@post.id)
+
+        assert_equal @post.overdose - 1, @updated_post.overdose
+    end
+
+    test 'dose - add overdose while shortage added' do
+        @user.disliked_posts << @post
+        sign_in @user
+
+        patch post_dose_path @post.number, dose: 'overdose'
+
+        @updated_post = Post.find(@post.id)
+
+        assert_equal @post.overdose + 1, @updated_post.overdose
+        assert_equal @post.moe_shortage - 1, @updated_post.moe_shortage
+    end
+
     test 'dose - add shortage' do
         sign_in @user
 
@@ -131,6 +166,29 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
         @updated_post = Post.find(@post.id)
 
         assert_not_equal @post.moe_shortage, @updated_post.moe_shortage
+    end
+
+    test 'dose - remove shortage' do
+        @user.disliked_posts << @post
+        sign_in @user
+
+        patch post_dose_path @post.number, dose: 'shortage'
+
+        @updated_post = Post.find(@post.id)
+
+        assert_equal @post.moe_shortage - 1, @updated_post.moe_shortage
+    end
+
+    test 'dose - add shortage while overdose added' do
+        @user.liked_posts << @post
+        sign_in @user
+
+        patch post_dose_path @post.number, dose: 'shortage'
+
+        @updated_post = Post.find(@post.id)
+
+        assert_equal @post.moe_shortage + 1, @updated_post.moe_shortage
+        assert_equal @post.overdose - 1, @updated_post.overdose
     end
 
     test 'Can\'t add shortage/overdose unlogged' do
@@ -291,11 +349,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     test 'update post' do
         sign_in @user
 
-        post_params = {
-            title: Faker::Games::Fallout.character + @post.title, # Adding current informations to force a different one
-            source: Faker::Games::Fallout.faction + @post.source,
-            description: Faker::Games::Fallout.quote + @post.description
-        }
+        post_params = sample_post_params
 
         patch post_path(
             @post.number,
@@ -313,6 +367,28 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
         assert_redirected_to post_path(@post.number)
     end
 
+    test 'update post with new author and tags' do
+        sign_in @user
+
+        post_params = sample_post_params
+
+        patch post_path(
+            @post.number,
+            post: post_params,
+            tags: SecureRandom.hex,
+            characters: SecureRandom.hex,
+            author_tag: Faker::Games::Fallout.character + @post.number.to_s
+        )
+
+        @updated_post = Post.find(@post.id)
+
+        assert_not_equal @updated_post.title, @post.title
+        assert_not_equal @updated_post.source, @post.source
+        assert_not_equal @updated_post.description, @post.description
+        assert_not_equal @updated_post.author, @post.author
+        assert_redirected_to post_path(@post.number)
+    end
+
     test 'post not found' do
         get post_path(-1)
         assert_response 404
@@ -321,5 +397,15 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     test 'random post' do
         get random_path
         assert_response 302
+    end
+
+    private
+
+    def sample_post_params
+        {
+            title: Faker::Games::Fallout.character + @post.title, # Adding current informations to force a different one
+            source: Faker::Games::Fallout.faction + @post.source,
+            description: Faker::Games::Fallout.quote + @post.description
+        }
     end
 end

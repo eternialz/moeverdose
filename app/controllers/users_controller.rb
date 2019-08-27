@@ -1,13 +1,10 @@
 class UsersController < ApplicationController
     before_action :authenticate_user!, only: [:edit, :update, :delete]
     before_action :set_user, except: [:index]
-    before_action :check_user, only: [:edit, :update, :delete]
+    before_action :check_user, only: [:edit, :update, :delete, :extract]
+    before_action(only: [:index]) { set_default_index_values }
 
     def index
-        @default_per_page = 20
-        @items_per_page_list = [10, 20, 40]
-        @items_per_page = items_per_page
-
         @users = if params[:query]
                      Kaminari.paginate_array(
                          User.sort_by(set_sort_by).where('name LIKE ?', "%#{params[:query]}%")
@@ -109,7 +106,7 @@ class UsersController < ApplicationController
         @user.update_attributes(account_update_params)
         tags = params[:tags]
 
-        favorites_tags = Tag.includes(:aliases).where(aliases: { name: tags[:favorites].split.uniq }) # remove duplicates
+        favorites_tags = Tag.includes(:aliases).where(aliases: { name: tags[:favorites].split.uniq })
         blacklisted_tags = Tag.includes(:aliases).where(aliases: { name: tags[:blacklisted].split.uniq })
 
         @user.favorites_tags = favorites_tags
@@ -156,7 +153,11 @@ class UsersController < ApplicationController
     private
 
     def set_user
-        @user = User.left_outer_joins(favorites_tags: :aliases, blacklisted_tags: :aliases, permissions: :permissions_type).find_by(name: params[:id])
+        @user = User.left_outer_joins(
+            favorites_tags: :aliases,
+            blacklisted_tags: :aliases,
+            permissions: :permissions_type
+        ).find_by(name: params[:id])
     end
 
     def check_user
@@ -166,16 +167,12 @@ class UsersController < ApplicationController
         end
     end
 
-    def sign_up_params
-        params.require(:user).permit(:name, :email, :password, :password_confirmation)
-    end
-
     def set_sort_by
-        params.slice(*User.sort_scopes) || [posts: :desc]
+        params.permit(User.sort_scopes).with_defaults(posts: 'desc')
     end
 
     def set_post_sort_by
-        params.slice(*Post.sort_scopes) || [created_at: :desc]
+        params.permit(Post.sort_scopes).with_defaults(created_at: 'desc')
     end
 
     def account_update_params

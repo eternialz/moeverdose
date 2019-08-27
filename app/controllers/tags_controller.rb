@@ -1,12 +1,9 @@
 class TagsController < ApplicationController
     before_action :set_tag, except: [:index]
     before_action :authenticate_user!, except: [:index]
+    before_action -> { set_custom_index_values(8, [8, 32]) }, only: [:index]
 
     def index
-        @default_per_page = 20
-        @items_per_page_list = [10, 20, 40]
-        @items_per_page = items_per_page
-
         @tags = if params[:query]
                     Kaminari.paginate_array(
                         Tag.sort_by(set_sort_by)
@@ -33,23 +30,19 @@ class TagsController < ApplicationController
         # Get new aliases array without duplicates
         names = params[:names].split(' ').map { |name| TagService.sanitize name }.uniq
 
-        if names.any?
-            aliases = [@tag.main_alias]
-            names.each do |name|
-                # Get alias or create a new one
-                aliases.push(@tag.aliases.find_by(name: name) || Alias.new(name: name, tag_id: @tag.id))
-            end
-
-            @tag.aliases = aliases
-        else
-            flash.now[:error] = "You didn't provide any aliases."
+        aliases = [@tag.main_alias]
+        names.each do |name|
+            # Get alias or create a new one
+            aliases.push(@tag.aliases.find_by(name: name) || Alias.new(name: name, tag_id: @tag.id))
         end
 
-        if !flash.now[:error] && @tag.save
+        @tag.aliases = aliases
+
+        if @tag.save
             flash.now[:success] = "Modifications for #{@tag.names[0]} saved!"
             redirect_to tags_path
         else
-            flash.now[:error] ||= 'The modifications you entered are invalid. Please verify and try again.'
+            flash[:error] = 'The modifications you entered are invalid. Please verify and try again.'
             redirect_to edit_tag_path(@tag)
         end
     end
@@ -61,6 +54,6 @@ class TagsController < ApplicationController
     end
 
     def set_sort_by
-        params.slice(*Tag.sort_scopes) || [popular: :desc]
+        params.permit(Tag.sort_scopes).with_defaults(popular: 'desc')
     end
 end

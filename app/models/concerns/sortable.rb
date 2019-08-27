@@ -2,18 +2,18 @@ module Sortable
     extend ActiveSupport::Concern
 
     module ClassMethods
-        def sort_by(sorting_params)
+        def sort_by(sorting_param)
             results = where(nil)
 
-            sort_by_with_set(sorting_params, results)
+            sort_by_with_set(sorting_param, results)
         end
 
-        def sort_by_with_set(sorting_params, set)
+        def sort_by_with_set(sorting_param, set)
             results = set
 
             # Apply sorting
-            sorting_params.each do |key, value|
-                results = results.public_send(key, value) if value.present? && ['asc', 'desc'].include?(value)
+            sorting_param.each do |key, value|
+                results = results.public_send(key, value) if ['asc', 'desc'].include?(value)
             end
 
             results

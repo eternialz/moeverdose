@@ -27,6 +27,11 @@ Layout/IndentationWidth:
     Enabled: true
     Width: 4
 
+Layout/EndOfLine:
+    Description: 'Use Unix-style line endings.'
+    Enabled: true
+    EnforcedStyle: lf
+
 Bundler/OrderedGems:
     Enabled: false
 

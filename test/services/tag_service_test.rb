@@ -33,18 +33,15 @@ class TagServiceTest < ActiveSupport::TestCase
         assert_equal @tag_count + 1, Tag.count
     end
 
-    # See https://github.com/eternialz/moeverdose/issues/45
-    # test 'Find existing author and tag' do
-    #     @tag_count = Tag.count
-    #     @author_count = Author.count
+    test 'Find existing author and tag' do
+        @tag_count = Tag.count
+        @author_count = Author.count
+        @found_author = TagService.find_or_create_author(@author.name)
+        assert_equal @author, @found_author
 
-    #     @found_author = TagService.find_or_create_author(@author.name, Post.new)
-
-    #     assert_equal @author, @found_author
-
-    #     assert_equal @tag_count, Tag.count
-    #     assert_equal @author_count, Author.count
-    # end
+        assert_equal @tag_count, Tag.count
+        assert_equal @author_count, Author.count
+    end
 
     test 'Create non existing author and tag' do
         @tag_count = Tag.count

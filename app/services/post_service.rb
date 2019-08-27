@@ -4,7 +4,7 @@ class PostService
         if !last_post.nil?
             new_post.number = last_post.number + 1
         else
-            return 1
+            new_post.number = 1
         end
     end
 

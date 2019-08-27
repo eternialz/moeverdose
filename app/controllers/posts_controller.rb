@@ -3,6 +3,7 @@ class PostsController < ApplicationController
     before_action :set_post, only: [:edit, :update, :dose, :favorite, :report, :report_update]
     before_action :authenticate_user!, except: [:show, :index, :not_found, :random, :dose, :favorite]
     before_action :authenticate_user_xhr!, only: [:dose, :favorite]
+    before_action :set_default_index_values, only: [:index]
 
     def show
         results = TagService.differenciate_tags(@post.tags)
@@ -73,8 +74,6 @@ class PostsController < ApplicationController
         @post = Post.new(post_params)
 
         PostService.assign_id(@post)
-
-        @post.post_image.attach(post_params[:post_image])
 
         @post.md5 = @post.post_image.checksum
 
@@ -265,11 +264,7 @@ class PostsController < ApplicationController
     end
 
     def set_sort_by
-        params.slice(*Post.sort_scopes) || [created_at: :desc]
-    end
-
-    def set_user
-        @user = User.includes(blacklisted_tags: :aliases).find(current_user.id)
+        params.permit(Post.sort_scopes).with_defaults(created_at: 'desc')
     end
 
     def notify(text)

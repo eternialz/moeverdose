@@ -1,3 +1,4 @@
+require 'test_helper'
 require 'config_helper'
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
@@ -8,6 +9,9 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
         @user = create(:user, password: 'password')
         @user_secondary = create(:user)
         @user_banned = create(:user_banned)
+
+        10.times { create(:user) }
+        4.times { create(:permissions_type) }
     end
 
     test 'show user' do
@@ -147,6 +151,49 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
         assert_response :success
         assert_select 'title', 'All Users - ' + site_name
+    end
+
+    test 'all users with query' do
+        10.times do
+            create(:user)
+        end
+
+        get users_path(query: @user.name)
+        users = @controller.instance_variable_get(:@users)
+
+        assert_response :success
+        users.each do |user|
+            assert user.name.include? @user.name
+        end
+        assert_select 'title', 'All Users - ' + site_name
+    end
+
+    test 'all users with sorting' do
+        params = { alphabetical: :desc }
+
+        get users_path, params: params
+        @users = @controller.instance_variable_get(:@users)
+
+        assert_response :success
+        assert_not @users.empty?
+        assert(@users.each_cons(2).all? { |a, b| (a.name <=> b.name) >= 0 })
+    end
+
+    test 'extract current user info' do
+        sign_in @user
+
+        get extract_user_path(@user.name), params: { format: :zip }
+
+        assert_response :success
+        assert_equal 'application/zip', response.content_type
+    end
+
+    test 'can\'t extract another user info' do
+        sign_in @user_secondary
+
+        get extract_user_path(@user.name), params: { format: :zip }
+
+        assert_redirected_to edit_user_path(@user_secondary.name)
     end
 
     private

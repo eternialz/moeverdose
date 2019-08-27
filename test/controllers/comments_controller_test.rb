@@ -5,25 +5,70 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     include Devise::Test::IntegrationHelpers
     include ConfigHelper
 
+    setup do
+        @user = create(:user_with_post)
+    end
+
     test 'Create Comment' do
-        user = create(:user_with_post)
-        sign_in user
+        sign_in @user
 
-        post = user.posts.first
+        post = @user.posts.first
 
-        comment_count = Comment.count
+        assert_difference -> { Comment.count }, 1 do
+            post post_comments_path(post.number, comment: { text: Faker::Movies::Hobbit.quote[0..max_comment_length] })
+        end
+        assert_redirected_to post_path(post.number)
+    end
 
-        post post_comments_path(post.number, comment: { text: Faker::Movies::Hobbit.quote[0..max_comment_length] })
+    test 'Create comment with post link' do
+        sign_in @user
 
-        assert_equal comment_count + 1, Comment.count
+        post = @user.posts.first
+
+        assert_difference -> { Comment.count }, 1 do
+            post post_comments_path(post.number, comment: { text: "You should check ##{post.number} too!" })
+        end
+
+        updated_post = Post.find(post.id)
+
+        assert updated_post.comments.last.text.include? post_path(id: updated_post.number)
+        assert_redirected_to post_path(post.number)
+    end
+
+    test 'Create comment with user link' do
+        sign_in @user
+
+        post = @user.posts.first
+
+        assert_difference -> { Comment.count }, 1 do
+            post post_comments_path(post.number, comment: { text: "You should check @#{@user.name}'s profile." })
+        end
+
+        updated_post = Post.find(post.id)
+
+        assert updated_post.comments.last.text.include? user_path(id: @user.name)
+        assert_redirected_to post_path(post.number)
+    end
+
+    test 'Create comment with spoiler' do
+        sign_in @user
+
+        post = @user.posts.first
+
+        assert_difference -> { Comment.count }, 1 do
+            post post_comments_path(post.number, comment: { text: '[spoiler]They die at the end.[/spoiler]' })
+        end
+
+        updated_post = Post.find(post.id)
+
+        assert updated_post.comments.last.text.include? '<input type="checkbox">'
         assert_redirected_to post_path(post.number)
     end
 
     test "Can't create Comment longer than the max autorised" do
-        user = create(:user_with_post)
-        sign_in user
+        sign_in @user
 
-        post = user.posts.first
+        post = @user.posts.first
 
         comment_count = Comment.count
 
@@ -37,9 +82,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
     end
 
     test "Can't Create Comment Unlogged" do
-        user = create(:user_with_post)
-
-        post = user.posts.first
+        post = @user.posts.first
 
         comment_count = Comment.count
 
@@ -51,11 +94,10 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
 
     test 'Report Comment' do
         comment = create(:comment)
-        user = create(:user)
 
         post = comment.post
 
-        sign_in user
+        sign_in @user
 
         patch comment_report_path(post.number, comment)
 
