@@ -4,6 +4,7 @@ html {
     font-family: 'Lato', Arial Grande, Tahoma, Helvetica, Arial, sans-serif;
     font-size: $default-font-size;
     line-height: $default-line-height;
+    overflow-x: hidden;
     text-rendering: optimizeLegibility;
 }
 
