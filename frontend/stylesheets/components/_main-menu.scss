@@ -122,7 +122,20 @@ $height: 3rem;
                 z-index: $depth-2;
             }
 
-            &:hover,
+            &:hover {
+                .main-menu-link {
+                    color: $base-color;
+                }
+
+                .main-menu-subnav {
+                    height: calc(11.5rem - 3px);
+                    opacity: 1;
+                    padding: 1rem 0;
+                    pointer-events: all;
+                    transition: opacity 100ms ease-in-out, height 0 linear;
+                }
+            }
+
             &:focus-within {
                 .main-menu-link {
                     color: $base-color;
@@ -279,8 +292,12 @@ $height: 3rem;
         width: 100%;
     }
 
-    &:focus-within .submenu,
     .submenu.active {
+        border-bottom: 3px solid $base-color;
+        opacity: 1;
+    }
+
+    &:focus-within .submenu {
         border-bottom: 3px solid $base-color;
         opacity: 1;
     }
