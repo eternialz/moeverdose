@@ -48,6 +48,7 @@ class Post < ApplicationRecord
     belongs_to :author, class_name: 'Author', inverse_of: :posts, optional: true
 
     has_many :comments, class_name: 'Comment', inverse_of: :post
+    has_many :claims, class_name: 'Claim', inverse_of: :post
 
     has_and_belongs_to_many :tags, class_name: 'Tag', inverse_of: :posts
 

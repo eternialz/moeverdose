@@ -1,0 +1,36 @@
+<div class="article">
+    <%= form_for @claim, url: claims_path, method: :post do |f| %>
+        <h2 class="title">Submit a takedown notice</h5>
+        <h5 class="title">Before submiting a takedown notice</h5>
+        <p>If you want your content to be removed from <%= site_name %> because the rightful author weren't given credit for it, you can change the attributed author of a post.</p>
+        <p>This will create a new author profile and you will be able to edit informations such as the author biography and website(s) link(s).</p>
+        <p>If the author was correctly attributed but the informations about him/her were wrong, you can also edit them.</p>
+
+        <h5>About the process</h5>
+        <ol class="step-list">
+            <li class="step-list-step">You submit a takedown for a post using the unique identifier attributed to it.</li>
+            <li class="step-list-step">The post is hidden from the public and no one can view it.</li>
+            <li class="step-list-step">To prevent abuse of this system, the post uploader is notified and can dismiss or accept your takedown notice.</li>
+            <li class="step-list-step">If the uploader accept it, the post is definitly deleted.</li>
+            <li class="step-list-step">If the uploader dismiss your request, the post is shown again and you have two options:</li>
+            <ol>
+                <li class="step-list-step">You can submit a takedown notice indefinitly for the same post.</li>
+                <li class="step-list-step">You can contact us directly (using discord for exemple), prove your identity using means available to the rightfull owner or representative, and we will delete the posts directly.</li>
+            </ol>
+        </ol>
+
+        <div class="alert alert-info">
+            Please take in account that an exception to copyright may apply on your content (fair use, faire dealing, ...) before you submit your claim.
+            <%= site_name %> team can appreciate the fair usage of a post and dismiss your claims.
+            If you think the decision made was wrong, please contact us.
+        </div>
+        <div class="alert alert-danger">
+            Do not make false claims. Abusing this system can result in supension of your account and legal consequences.
+        </div>
+        <blockquote class="actions">
+            <p>I understand that lying about my rights can and will get me punished.</p>
+            <p>I am the rightful owner or representative of the content I claim.</p>
+            <button class="btn btn-green" type="submit">Submit</button>
+        </blockquote>
+    <% end %>
+</div>

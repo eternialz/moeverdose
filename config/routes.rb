@@ -40,6 +40,7 @@ Rails.application.routes.draw do
         resources :permissions_types, controller: 'permissions_types', except: [:edit, :update, :show]
     end
 
+    # Users
     devise_for :users, path: 'account', controllers: { registrations: 'user_registrations' }
 
     resources :users, only: [:show, :edit, :update, :index]
@@ -49,10 +50,16 @@ Rails.application.routes.draw do
     get '/users/:id/extract' => 'users#extract', as: 'extract_user'
     patch '/users/:id/delete' => 'users#delete', as: 'delete_user'
 
+    # News
     resources :news, only: [:show]
 
+    # Team
     resources :teams, controller: 'teams', only: [:index]
 
+    # Claims
+    resources :claims, controller: 'claims', only: [:index, :show, :create, :new, :destroy]
+
+    # Errors
     match '/404', to: 'errors#not_found', via: :all
     match '/500', to: 'errors#internal_server_error', via: :all
 

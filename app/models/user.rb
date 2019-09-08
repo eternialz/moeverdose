@@ -76,6 +76,7 @@ class User < ApplicationRecord
 
     # Comments
     has_many :comments, class_name: 'Comment', inverse_of: :user
+    has_many :claims, class_name: 'Claim', inverse_of: :user
 
     # User security
     alias_attribute :report?, :report
