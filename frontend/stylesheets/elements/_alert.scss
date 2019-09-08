@@ -1,0 +1,9 @@
+.alert {
+    --alert-color: #{$pink};
+
+    background: rgba($pink, 0.2);
+    border: 1px solid var(--alert-color);
+    border-radius: $border-radius;
+    margin: 0.5rem 0;
+    padding: 1rem;
+}

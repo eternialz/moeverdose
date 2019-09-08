@@ -1,0 +1,13 @@
+.checkbox {
+    input {
+        display: none;
+
+        &::before {
+            content: ""
+        }
+
+        &:active::before {
+            content: ""
+        }
+    }
+}

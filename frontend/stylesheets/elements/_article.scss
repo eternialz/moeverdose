@@ -1,7 +1,18 @@
 .article {
-    background: $white;
+    @include shadow-1;
+
+    background: $true-white;
+    border-radius: $border-radius;
     margin: 1rem auto;
-    max-width: 60rem;
-    padding: 1rem;
+    max-width: 50rem;
     width: 100%;
+
+    .article-part {
+        border-top: 1px solid $gray-lighter;
+        padding: 2rem;
+
+        &:nth-child(1) {
+            border-top: none;
+        }
+    }
 }
