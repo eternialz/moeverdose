@@ -5,7 +5,7 @@ class UserServiceTest < ActiveSupport::TestCase
     setup do
         FactoryBot.rewind_sequences
         @user = create(:user)
-        create(:level_final, rank: 1)
+        create(:level_final)
         @user.exp = 0
         @user.upload_count = 0
         @user.save

@@ -13,9 +13,6 @@
 
     <%= paginate @authors %>
 
-<<<<<<< HEAD
-    <%= component "shared/items-per-page", {total_pages: @authors.total_pages} %>
-=======
     <%= component "shared/sort", {sort_options: Author.sort_options} %>
 
     <%= component "shared/items-per-page",
@@ -24,5 +21,4 @@
             keep_params: Author.sort_scopes
         }
     %>
->>>>>>> develop
 </ul>

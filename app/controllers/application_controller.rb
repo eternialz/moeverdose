@@ -60,12 +60,6 @@ class ApplicationController < ActionController::Base
 
     def authenticate_user_xhr!
         unless user_signed_in?
-<<<<<<< HEAD
-            flash[:warning] = "You need to sign in or sign up before continuing."
-            xhr_redirect_to(new_user_session_path)
-        end
-    end
-=======
             flash[:warning] = 'You need to sign in or sign up before continuing.'
             xhr_redirect_to(new_user_session_path)
         end
@@ -82,5 +76,4 @@ class ApplicationController < ActionController::Base
         @items_per_page_list = items_per_page_list
         @items_per_page = items_per_page
     end
->>>>>>> develop
 end

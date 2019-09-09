@@ -58,11 +58,7 @@ class Tag < ApplicationRecord
 
     # Methods
     def name
-<<<<<<< HEAD
-        self.main_alias.name
-=======
         main_alias.name
->>>>>>> develop
     end
 
     def names

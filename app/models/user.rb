@@ -40,6 +40,8 @@ class User < ApplicationRecord
     # blacklisted_tags: Array<Tag> => User's blacklisted tags
     # comments: Array<Comment> => Self exp
     # permissions: Array<Permission> => User's authorization for personnal data processing
+    # reports: Array<Report> => Reports send by the user
+    # warnings: Array<Report> => Reports the user received
     # reported_posts: Array<Post> => All posts reported by the user
     #
     ####################################################################
@@ -128,6 +130,9 @@ class User < ApplicationRecord
         ['administrator', 'moderator'].include? role
     end
 
+    has_many :warnings, as: :reportable
+    # Reports he made
+    has_many :reports
     # Reported posts
     has_and_belongs_to_many :reported_posts, class_name: 'Post', inverse_of: nil, join_table: :reported_posts_users
 

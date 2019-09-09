@@ -10,7 +10,7 @@ Rails.application.configure do
     # test suite. You never need to work with it otherwise. Remember that
     # your test database is "scratch space" for the test suite and is wiped
     # and recreated between test runs. Don't rely on the data there!
-    config.cache_classes = true
+    config.cache_classes = false
 
     # Do not eager load code on boot. This avoids loading your whole application
     # just for the purpose of running a single test. If you are using a tool that
@@ -47,11 +47,6 @@ Rails.application.configure do
     # Print deprecation notices to the stderr.
     config.active_support.deprecation = :stderr
 
-<<<<<<< HEAD
-  # Raises error for missing translations.
-  # config.action_view.raise_on_missing_translations = true
-=======
     # Raises error for missing translations
     # config.action_view.raise_on_missing_translations = true
->>>>>>> develop
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_28_171808) do
+ActiveRecord::Schema.define(version: 2019_09_09_094529) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -162,6 +162,17 @@ ActiveRecord::Schema.define(version: 2019_07_28_171808) do
     t.bigint "post_id", null: false
   end
 
+  create_table "reports", force: :cascade do |t|
+    t.text "reason"
+    t.string "reportable_type"
+    t.bigint "reportable_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
+    t.index ["reportable_type", "reportable_id"], name: "index_reports_on_reportable_type_and_reportable_id"
+    t.index ["user_id"], name: "index_reports_on_user_id"
+  end
+
   create_table "tags", force: :cascade do |t|
     t.string "type"
     t.integer "posts_count", default: 0
@@ -204,4 +215,26 @@ ActiveRecord::Schema.define(version: 2019_07_28_171808) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "aliases", "tags"
+  add_foreign_key "authors", "tags"
+  add_foreign_key "blacklisted_tags_users", "tags"
+  add_foreign_key "blacklisted_tags_users", "users"
+  add_foreign_key "comments", "posts"
+  add_foreign_key "comments", "users"
+  add_foreign_key "disliked_posts_users", "posts"
+  add_foreign_key "disliked_posts_users", "users"
+  add_foreign_key "favorites_posts_users", "posts"
+  add_foreign_key "favorites_posts_users", "users"
+  add_foreign_key "favorites_tags_users", "tags"
+  add_foreign_key "favorites_tags_users", "users"
+  add_foreign_key "liked_posts_users", "posts"
+  add_foreign_key "liked_posts_users", "users"
+  add_foreign_key "permissions", "permissions_types"
+  add_foreign_key "permissions", "users"
+  add_foreign_key "posts", "authors"
+  add_foreign_key "posts", "users"
+  add_foreign_key "posts_tags", "posts"
+  add_foreign_key "posts_tags", "tags"
+  add_foreign_key "reports", "users"
+  add_foreign_key "users", "levels"
 end

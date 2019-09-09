@@ -1,25 +1,6 @@
 class UsersController < ApplicationController
     before_action :authenticate_user!, only: [:edit, :update, :delete]
     before_action :set_user, except: [:index]
-<<<<<<< HEAD
-    before_action :check_user, only: [:edit, :update]
-
-    def index
-        @default_per_page = 20
-        @items_per_page_list = [10, 20, 40]
-        @items_per_page = items_per_page()
-
-        if params[:query]
-            @users = Kaminari.paginate_array(
-                User.order('upload_count DESC').where('name LIKE ?', "%#{params[:query]}%" ))
-                .page(params[:page]).per(@items_per_page)
-        else
-            @users = Kaminari.paginate_array(User.order('upload_count DESC')).page(params[:page]).per(@items_per_page)
-        end
-
-        title("All Users")
-        render component "users/index"
-=======
     before_action :check_user, only: [:edit, :update, :delete, :extract]
     before_action(only: [:index]) { set_default_index_values }
 
@@ -35,7 +16,6 @@ class UsersController < ApplicationController
 
         title('All Users')
         render component 'users/index'
->>>>>>> develop
     end
 
     def show
@@ -75,9 +55,6 @@ class UsersController < ApplicationController
     end
 
     def favorites
-<<<<<<< HEAD
-        @posts = Kaminari.paginate_array(@user.favorites).page(params[:page]).per(items_per_page())
-=======
         @posts = Kaminari.paginate_array(
             Post.sort_by_with_set(
                 set_post_sort_by,
@@ -85,7 +62,6 @@ class UsersController < ApplicationController
             )
         ).page(params[:page]).per(items_per_page)
 
->>>>>>> develop
         @comments_counts = Comment.where(post: @posts).group(:post_id).count
 
         @breadcrumbs = [

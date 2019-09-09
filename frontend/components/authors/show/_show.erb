@@ -13,15 +13,9 @@
         <a href="<%= @author.website %>"><%= @author.website %></a>
     <% end %>
     <div class="button-list margin margin-top">
-<<<<<<< HEAD
-        <a class="button-secondary" href="<%= posts_path(query: @tag.names[0]) %>">All Posts<i class="fa fa-eye"></i></a>
-        <a class="button-secondary" href="<%= edit_author_path(@author) %>">Edit<i class="fa fa-edit"></i></a>
-        <a class="button-secondary" href="<%= edit_tag_path(@tag) %>">Edit aliases<i class="fa fa-edit"></i></a>
-=======
         <a class="button-secondary" href="<%= posts_path(query: @author.tag.names[0]) %>">All Posts<i class="fa fa-eye"></i></a>
         <a class="button-secondary" href="<%= edit_author_path(@author) %>">Edit<i class="fa fa-edit"></i></a>
         <a class="button-secondary" href="<%= edit_tag_path(@author.tag) %>">Edit aliases<i class="fa fa-edit"></i></a>
->>>>>>> develop
     </div>
 </div>
 
@@ -29,9 +23,6 @@
 
 <%= paginate @posts %>
 
-<<<<<<< HEAD
-<%= component "shared/items-per-page", {total_pages: @posts.total_pages} %>
-=======
 <%= component "shared/sort", sort_options: Post.sort_options %>
 
 <%= component "shared/items-per-page",
@@ -41,4 +32,3 @@
     }
 %>
 
->>>>>>> develop

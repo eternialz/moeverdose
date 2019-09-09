@@ -19,6 +19,7 @@ class Post < ApplicationRecord
     # author: Author : Post's image's author
     # comments: Array<Comment> => All posts comments
     # report_user: User => User who reported the post
+    # reportable: Array<Report> => Reports on the posts
     # tags: Array<Tag> => Tags linked to posts
     # user: User => User who posted the image
     #
@@ -43,6 +44,7 @@ class Post < ApplicationRecord
 
     validate :image_dimensions, on: :create
 
+    has_many :reports, as: :reportable
     belongs_to :report_user, class_name: 'User', inverse_of: nil, optional: true
     belongs_to :user, class_name: 'User', inverse_of: :posts, touch: true
     belongs_to :author, class_name: 'Author', inverse_of: :posts, optional: true
