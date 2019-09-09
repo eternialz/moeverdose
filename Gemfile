@@ -1,10 +1,11 @@
 source 'https://rubygems.org'
+
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.0.0.rc1'
+gem 'rails', '~> 6.0.0'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
@@ -20,7 +21,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby.git', require: 'bcrypt'
 
 # Use ActiveStorage variant
 gem 'image_processing', '~> 1.2'
@@ -36,15 +37,12 @@ gem "devise", github: 'plataformatec/devise'
 # Pagination plugin
 gem 'kaminari'
 
-# autoprefixer plugin for css/sass
-gem "autoprefixer-rails"
-
 # Httparty
-gem "httparty"
+gem 'httparty'
 
 # Twitter
-gem "twitter"
-gem "rufus-scheduler"
+gem 'twitter'
+gem 'rufus-scheduler'
 
 # Zip management
 gem 'rubyzip', '>= 1.0.0'
@@ -57,11 +55,11 @@ group :development, :test do
     gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 
     # Open mails in the browser
-    gem "letter_opener"
+    gem 'letter_opener'
 
     # PRY
-    gem "rb-readline"
-    gem "pry"
+    gem 'rb-readline'
+    gem 'pry'
 end
 
 group :development do
@@ -74,6 +72,8 @@ group :development do
     # Performance monitoring
     gem 'rack-mini-profiler'
     gem 'bullet'
+    # Ruby linter
+    gem 'rubocop', require: false
 end
 
 group :test do
@@ -81,7 +81,7 @@ group :test do
     gem 'factory_bot_rails'
     gem 'faker', github: 'stympy/faker'
     gem 'minitest-rails', github: "blowmage/minitest-rails"
-    gem 'codecov', :require => false
+    gem 'codecov', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

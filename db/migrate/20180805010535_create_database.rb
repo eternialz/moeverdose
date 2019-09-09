@@ -29,7 +29,7 @@ class CreateDatabase < ActiveRecord::Migration[5.2]
             t.string :color, default: '#1AB'
             t.timestamps
         end
-        add_reference :users, :level, {to_table: :levels}
+        add_reference :users, :level, to_table: :levels
 
         create_table :posts do |t|
             t.string :md5
@@ -44,8 +44,8 @@ class CreateDatabase < ActiveRecord::Migration[5.2]
             t.text :report_reason
             t.timestamps
         end
-        add_reference :posts, :user, {to_table: :users}
-        add_reference :posts, :report_user, {to_table: :users}
+        add_reference :posts, :user, to_table: :users
+        add_reference :posts, :report_user, to_table: :users
 
         create_table :aliases do |t|
             t.string :name
@@ -58,7 +58,7 @@ class CreateDatabase < ActiveRecord::Migration[5.2]
             t.timestamps
         end
 
-        add_reference :aliases, :tag, {to_table: :tags}
+        add_reference :aliases, :tag, to_table: :tags
         create_join_table :posts, :tags
 
         create_table :comments do |t|
@@ -68,9 +68,9 @@ class CreateDatabase < ActiveRecord::Migration[5.2]
             t.timestamps
         end
 
-        add_reference :comments, :user, {to_table: :users}
-        add_reference :comments, :report_user, {to_table: :users}
-        add_reference :comments, :post, {to_table: :posts}
+        add_reference :comments, :user, to_table: :users
+        add_reference :comments, :report_user, to_table: :users
+        add_reference :comments, :post, to_table: :posts
 
         create_table :authors do |t|
             t.string :name
@@ -79,8 +79,8 @@ class CreateDatabase < ActiveRecord::Migration[5.2]
             t.timestamps
         end
 
-        add_reference :authors, :tag, {to_table: :tags}
-        add_reference :posts, :author, {to_table: :authors}
+        add_reference :authors, :tag, to_table: :tags
+        add_reference :posts, :author, to_table: :authors
 
         create_join_table :users, :posts, table_name: :favorites_posts_users
         add_index :favorites_posts_users, [:user_id, :post_id]
@@ -94,6 +94,5 @@ class CreateDatabase < ActiveRecord::Migration[5.2]
         add_index :favorites_tags_users, [:user_id, :tag_id]
         create_join_table :users, :tags, table_name: :blacklisted_tags_users
         add_index :blacklisted_tags_users, [:user_id, :tag_id]
-
     end
 end

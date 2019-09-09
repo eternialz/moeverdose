@@ -9,7 +9,7 @@
             <% end%>
         <% end %>
     <% else %>
-        <a class="mobile-menu-avatar"><%= image_tag "/images/default-user.png" %></i></a>
+        <a class="mobile-menu-avatar"><%= image_tag "/images/default-user.png" %></a>
     <% end %>
     <div class="mobile-menu-content" data-target="mobile-menu.menu">
         <div class="mobile-menu-subnav-container">
@@ -59,8 +59,8 @@
                 <% if user_signed_in? %>
                     <%= link_to "profile", user_path(current_user.name), title: 'Profile', class: 'mobile-menu-link' %>
                     <%= link_to "options", edit_user_path(current_user.name), title: 'Options', class: 'mobile-menu-link'  %>
-                    <%= link_to 'favorites', favorites_path(current_user.name), title: 'Favorites', class: 'mobile-menu-link'  %>
-                    <%= link_to 'uploads', uploads_path(current_user.name), title: 'Uploads', class: 'mobile-menu-link' %>
+                    <%= link_to 'favorites', user_favorites_path(current_user.name), title: 'Favorites', class: 'mobile-menu-link'  %>
+                    <%= link_to 'uploads', user_uploads_path(current_user.name), title: 'Uploads', class: 'mobile-menu-link' %>
                     <%= form_for current_user, url: destroy_user_session_path, method: "DELETE" do %>
                         <button type="submit" title="Logout" class="mobile-menu-link button-link">logout</button>
                     <% end %>

@@ -1,19 +1,27 @@
 module ConfigHelper
     # GENERAL
     def site_name
-        "Moeverdose"
+        'Moeverdose'
     end
 
     def chat_url
-        "https://discordapp.com/invite/xfCpyJY"
+        'https://discordapp.com/invite/xfCpyJY'
     end
 
     def source_url
-        "https://github.com/eternialz/moeverdose"
+        'https://github.com/eternialz/moeverdose'
     end
 
     def twitter_url
-        "https://twitter.com/moeverdose"
+        'https://twitter.com/moeverdose'
+    end
+
+    def items_per_page_list
+        [8, 16, 24, 32]
+    end
+
+    def default_per_page
+        16
     end
 
     def items_per_page_list
@@ -26,7 +34,7 @@ module ConfigHelper
 
     # POSTS
     def self.image_dimensions
-        [200, 200, 10000, 10000] # min width, min height, max width, max height
+        [200, 200, 10_000, 10_000] # min width, min height, max width, max height
     end
 
     def self.min_img_width
@@ -43,10 +51,6 @@ module ConfigHelper
 
     def self.max_img_height
         image_dimensions[3]
-    end
-
-    def self.thumb_size
-        "200x200"
     end
 
     # COMMENTS

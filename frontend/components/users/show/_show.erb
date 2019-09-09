@@ -103,7 +103,7 @@
                         <h6 class="subtitle margin margin-vertical">
                             <span class="number"><%= @user.favorites.count %></span> Favorited Posts
                         </h6>
-                        <a class="button-secondary" href="<%= favorites_path(@user.name) %>">View Favorites <i class="fa fa-eye"></i></a>
+                        <a class="button-secondary" href="<%= user_favorites_path(@user.name) %>">View Favorites <i class="fa fa-eye"></i></a>
                     <% else %>
                         <h6 class="subtitle">No favorites yet</h6>
                     <% end %>
@@ -113,7 +113,7 @@
                         <h6 class="subtitle margin margin-vertical">
                             <span class="number"><%= @user.upload_count %></span> Uploaded Posts
                         </h6>
-                        <a class="button-secondary" href="<%= uploads_path(@user.name) %>">View Uploads<i class="fa fa-eye"></i></a>
+                        <a class="button-secondary" href="<%= user_uploads_path(@user.name) %>">View Uploads<i class="fa fa-eye"></i></a>
                     <% else %>
                         <h6 class="subtitle">No uploads yet</h6>
                     <% end %>

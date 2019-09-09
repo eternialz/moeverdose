@@ -1,3 +1,4 @@
+require 'test_helper'
 require 'config_helper'
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
@@ -5,9 +6,12 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     include ConfigHelper
 
     setup do
-        @user = create(:user)
+        @user = create(:user, password: 'password')
         @user_secondary = create(:user)
         @user_banned = create(:user_banned)
+
+        10.times { create(:user) }
+        4.times { create(:permissions_type) }
     end
 
     test 'show user' do
@@ -30,7 +34,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
         assert_response :success
         assert_select 'title', @user.name + ' profile - ' + site_name
-        assert_select '.user-show' do |element|
+        assert_select '.user-show' do
             assert_select 'a.button-secondary[href=?]', edit_user_path(@user.name)
         end
     end
@@ -40,7 +44,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
         get edit_user_path(@user.name)
 
         assert_response :success
-        assert_select "title", "Edit my profile - " + site_name
+        assert_select 'title', 'Edit my profile - ' + site_name
     end
 
     test 'Can\'t edit another user' do
@@ -64,8 +68,8 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
             @user.name,
             user: user_params(@user),
             tags: {
-                favorites: "",
-                blacklisted: ""
+                favorites: '',
+                blacklisted: ''
             }
         )
 
@@ -82,8 +86,8 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
             @user.name,
             user: user_params(@user),
             tags: {
-                favorites: "",
-                blacklisted: ""
+                favorites: '',
+                blacklisted: ''
             }
         )
 
@@ -98,8 +102,8 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
             @user.name,
             user: user_params(@user),
             tags: {
-                favorites: "",
-                blacklisted: ""
+                favorites: '',
+                blacklisted: ''
             }
         )
 
@@ -110,13 +114,36 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     end
 
     test 'favorites' do
-        get favorites_path(@user.name)
+        get user_favorites_path(@user.name)
         assert_response :success
     end
 
     test 'uploads' do
-        get uploads_path(@user.name)
+        get user_uploads_path(@user.name)
         assert_response :success
+    end
+
+    test 'delete' do
+        sign_in @user
+        patch delete_user_path(@user.name, user: { password: 'password' })
+        assert_redirected_to root_path
+
+        @updated_user = User.find(@user.id)
+        assert_not_equal @updated_user.deleted_at, @user.deleted_at
+        assert @updated_user.deleted_at
+    end
+
+    test 'login disable flag for deletion' do
+        @user.deleted_at = DateTime.now.to_date
+        @user.save
+
+        sign_in @user
+        @user.after_database_authentication
+
+        get edit_user_path(@user)
+
+        @updated_user = User.find(@user.id)
+        assert_not @user.deleted_at
     end
 
     test 'all users' do
@@ -126,7 +153,51 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
         assert_select 'title', 'All Users - ' + site_name
     end
 
+    test 'all users with query' do
+        10.times do
+            create(:user)
+        end
+
+        get users_path(query: @user.name)
+        users = @controller.instance_variable_get(:@users)
+
+        assert_response :success
+        users.each do |user|
+            assert user.name.include? @user.name
+        end
+        assert_select 'title', 'All Users - ' + site_name
+    end
+
+    test 'all users with sorting' do
+        params = { alphabetical: :desc }
+
+        get users_path, params: params
+        @users = @controller.instance_variable_get(:@users)
+
+        assert_response :success
+        assert_not @users.empty?
+        assert(@users.each_cons(2).all? { |a, b| (a.name <=> b.name) >= 0 })
+    end
+
+    test 'extract current user info' do
+        sign_in @user
+
+        get extract_user_path(@user.name), params: { format: :zip }
+
+        assert_response :success
+        assert_equal 'application/zip', response.content_type
+    end
+
+    test 'can\'t extract another user info' do
+        sign_in @user_secondary
+
+        get extract_user_path(@user.name), params: { format: :zip }
+
+        assert_redirected_to edit_user_path(@user_secondary.name)
+    end
+
     private
+
     def user_params(user)
         {
             email: Faker::Internet.email,

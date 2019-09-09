@@ -32,7 +32,7 @@ before_script:
 
 script:
   - RAILS_ENV=test bundle exec spring rails db:migrate
-  - RAILS_ENV=test bundle exec spring rake
+  - RAILS_ENV=test bundle exec rake
 
 after_success:
   - wget https://raw.githubusercontent.com/eternialz/travis-ci-discord-webhook/master/send.sh

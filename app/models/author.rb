@@ -11,12 +11,31 @@ class Author < ApplicationRecord
     # tag: Tag => Tag linked to the author
     ####################################################################
 
-    belongs_to :tag, class_name: "Tag", inverse_of: :author
-    has_many :posts, class_name: "Post", inverse_of: :author
+    # Relations
+    belongs_to :tag, class_name: 'Tag', inverse_of: :author
+    has_many :posts, class_name: 'Post', inverse_of: :author
 
     validates :tag, presence: true
     validates :name, presence: true
 
-    validates :website, allow_blank: true, format: { with: URI::DEFAULT_PARSER.make_regexp, message: 'You provided an invalid website URL.' }
+    # Sorting
+    include Sortable
 
+    scope :alphabetical, ->(direction = 'desc') { order("authors.name #{direction}") }
+    scope :posts, ->(direction = 'desc') { includes(:tag).order("tags.posts_count #{direction}") }
+
+    def self.sort_scopes
+        [:alphabetical, :posts]
+    end
+
+    def self.sort_options
+        [
+            { alphabetical: { desc: 'Alpabetical order' } },
+            { alphabetical: { asc: 'Reverse alphabetical order' } },
+            { posts: { desc: 'Most posts first' } },
+            { posts: { asc: 'Least posts first' } }
+        ]
+    end
+
+    validates :website, allow_blank: true, format: { with: URI::DEFAULT_PARSER.make_regexp, message: 'You provided an invalid website URL.' }
 end

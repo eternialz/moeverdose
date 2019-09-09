@@ -16,7 +16,7 @@ module Admin
         end
 
         test 'destroy' do
-            assert_difference -> {Comment.count}, -1 do
+            assert_difference -> { Comment.count }, -1 do
                 delete admin_comment_path(@comment)
             end
             assert_redirected_to admin_comments_path
@@ -31,8 +31,6 @@ module Admin
             assert @comment.report_user.blank?
 
             assert_redirected_to admin_comments_path
-
         end
-
     end
 end

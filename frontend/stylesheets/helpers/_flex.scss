@@ -1,6 +1,10 @@
 .flex {
     display: flex;
 
+    &.justify-content-center {
+        justify-content: center;
+    }
+
     .flex-auto {
         flex-basis: auto;
     }

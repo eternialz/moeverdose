@@ -14,6 +14,11 @@ class Admin::NewsControllerTest < ActionDispatch::IntegrationTest
         assert_response :success
     end
 
+    test 'admin show news' do
+        get admin_news_path(@new)
+        assert_response :success
+    end
+
     test 'admin new new' do
         get new_admin_news_path
         assert_response :success
@@ -27,12 +32,12 @@ class Admin::NewsControllerTest < ActionDispatch::IntegrationTest
     test 'admin create new' do
         params = {
             news: {
-                title: "1",
-                text: "2"
+                title: '1',
+                text: '2'
             }
         }
 
-        assert_difference -> {New.count} do
+        assert_difference -> { New.count } do
             post admin_news_index_path, params: params
         end
 
@@ -46,11 +51,11 @@ class Admin::NewsControllerTest < ActionDispatch::IntegrationTest
     test 'admin update new' do
         params = {
             news: {
-                title: "3"
+                title: '3'
             }
         }
 
-        assert_no_difference -> {New.count} do
+        assert_no_difference -> { New.count } do
             patch admin_news_path(@new), params: params
         end
 
@@ -63,7 +68,7 @@ class Admin::NewsControllerTest < ActionDispatch::IntegrationTest
 
     test 'admin destroy new' do
         @new = create(:new)
-        assert_difference -> {New.count}, -1 do
+        assert_difference -> { New.count }, -1 do
             delete admin_news_path @new, params: { method: :delete }
         end
 

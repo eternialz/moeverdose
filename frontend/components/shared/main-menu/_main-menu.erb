@@ -74,8 +74,8 @@
                             <div class="main-menu-account-links">
                                 <%= link_to "Profile", user_path(current_user.name), title: 'Profile', class: 'main-menu-link' %>
                                 <%= link_to "Options", edit_user_path(current_user.name), title: 'Options', class: 'main-menu-link'  %>
-                                <%= link_to 'Favorites', favorites_path(current_user.name), title: 'Favorites', class: 'main-menu-link'  %>
-                                <%= link_to 'Uploads', uploads_path(current_user.name), title: 'Uploads', class: 'main-menu-link' %>
+                                <%= link_to 'Favorites', user_favorites_path(current_user.name), title: 'Favorites', class: 'main-menu-link'  %>
+                                <%= link_to 'Uploads', user_uploads_path(current_user.name), title: 'Uploads', class: 'main-menu-link' %>
                                 <%= form_for current_user, url: destroy_user_session_path, method: "DELETE" do %>
                                     <button type="submit" title="Logout" class="main-menu-link button-link">Logout</button>
                                 <% end %>

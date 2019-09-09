@@ -9,9 +9,9 @@ class Alias < ApplicationRecord
     #
     # tag: Tag => Self exp
     ####################################################################
-    validates :name, uniqueness: {scope: :tag_id}
+    validates :name, uniqueness: { scope: :tag_id }
     validates :name, presence: true
-    validates :main, uniqueness: {scope: :tag_id}, if: :main
+    validates :main, uniqueness: { scope: :tag_id }, if: :main
 
     belongs_to :tag, optional: true
 end

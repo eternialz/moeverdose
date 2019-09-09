@@ -1,4 +1,4 @@
-require "test_helper"
+require 'test_helper'
 
 class PostsControllerTest < ActionDispatch::IntegrationTest
     include Devise::Test::IntegrationHelpers
@@ -13,11 +13,39 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
         assert_response :success
 
-        unless @post.title.blank?
-            assert_select 'title', @post.title + " - Moeverdose"
+        if @post.title.present?
+            assert_select 'title', @post.title + ' - Moeverdose'
         else
-            assert_select 'title', "Post - Moeverdose"
+            assert_select 'title', 'Post - Moeverdose'
         end
+    end
+
+    test 'show post favorited by user' do
+        @user.favorites << @post
+        sign_in @user
+
+        get post_path(@post.number)
+
+        favorited = @controller.instance_variable_get(:@favorited)
+
+        assert_response :success
+        assert favorited
+    end
+
+    test 'Show report post' do
+        sign_in @user
+
+        get edit_report_post_path(@post)
+
+        assert_response :success
+
+        assert_select 'title', 'Report post - Moeverdose'
+    end
+
+    test 'Can\'t show report post unlogged' do
+        get edit_report_post_path(@post)
+
+        assert_redirected_to new_user_session_path
     end
 
     test 'report post' do
@@ -26,7 +54,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
         sign_in @user
 
-        patch report_post_path @post.number, post: {report_reason: Faker::TvShows::HowIMetYourMother.catch_phrase}
+        patch report_post_path @post.number, post: { report_reason: Faker::TvShows::HowIMetYourMother.catch_phrase }
 
         @updated_post = Post.find(@post.id)
 
@@ -38,11 +66,27 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
         @post.report = false
         @post.save
 
-        patch report_post_path @post.number, post: {report_reason: Faker::TvShows::HowIMetYourMother.catch_phrase}
+        patch report_post_path @post.number, post: { report_reason: Faker::TvShows::HowIMetYourMother.catch_phrase }
 
         @updated_post = Post.find(@post.id)
 
         assert_not @updated_post.report?
+        assert_redirected_to new_user_session_path
+    end
+
+    test 'Show edit report post' do
+        sign_in @user
+
+        get edit_report_post_path(@post)
+
+        assert_response :success
+
+        assert_select 'title', 'Report post - Moeverdose'
+    end
+
+    test 'Can\'t show edit report post unlogged' do
+        get edit_report_post_path(@post)
+
         assert_redirected_to new_user_session_path
     end
 
@@ -58,38 +102,103 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
         assert_response :success
     end
 
+    test 'Remove favorite post' do
+        sign_in @user
+
+        @user.favorites << @post
+        @user.save
+
+        fav_count = @user.favorites.count
+
+        patch post_favorite_path @post.number
+
+        @updated_user = User.find(@user.id)
+
+        assert_equal fav_count - 1, @updated_user.favorites.count
+        assert_response :success
+    end
+
     test 'Can\'t add favorite post unlogged' do
         patch post_favorite_path @post.number
 
-        assert_redirected_to new_user_session_path
+        assert_xhr_redirected_to new_user_session_path
+        assert_response 302
     end
 
     test 'dose - add overdose' do
         sign_in @user
 
-        patch post_dose_path @post.number, dose: "overdose"
+        patch post_dose_path @post.number, dose: 'overdose'
 
         @updated_post = Post.find(@post.id)
 
         assert_not_equal @post.overdose, @updated_post.overdose
     end
 
+    test 'dose - remove overdose' do
+        @user.liked_posts << @post
+        sign_in @user
+
+        patch post_dose_path @post.number, dose: 'overdose'
+
+        @updated_post = Post.find(@post.id)
+
+        assert_equal @post.overdose - 1, @updated_post.overdose
+    end
+
+    test 'dose - add overdose while shortage added' do
+        @user.disliked_posts << @post
+        sign_in @user
+
+        patch post_dose_path @post.number, dose: 'overdose'
+
+        @updated_post = Post.find(@post.id)
+
+        assert_equal @post.overdose + 1, @updated_post.overdose
+        assert_equal @post.moe_shortage - 1, @updated_post.moe_shortage
+    end
+
     test 'dose - add shortage' do
         sign_in @user
 
-        patch post_dose_path @post.number, dose: "shortage"
+        patch post_dose_path @post.number, dose: 'shortage'
 
         @updated_post = Post.find(@post.id)
 
         assert_not_equal @post.moe_shortage, @updated_post.moe_shortage
     end
 
+    test 'dose - remove shortage' do
+        @user.disliked_posts << @post
+        sign_in @user
+
+        patch post_dose_path @post.number, dose: 'shortage'
+
+        @updated_post = Post.find(@post.id)
+
+        assert_equal @post.moe_shortage - 1, @updated_post.moe_shortage
+    end
+
+    test 'dose - add shortage while overdose added' do
+        @user.liked_posts << @post
+        sign_in @user
+
+        patch post_dose_path @post.number, dose: 'shortage'
+
+        @updated_post = Post.find(@post.id)
+
+        assert_equal @post.moe_shortage + 1, @updated_post.moe_shortage
+        assert_equal @post.overdose - 1, @updated_post.overdose
+    end
+
     test 'Can\'t add shortage/overdose unlogged' do
-        post_dose_path @post, ['shortage', 'overdose']
+        patch post_dose_path @post, ['shortage', 'overdose']
 
         @updated_post = Post.find(@post.id)
 
         assert_equal @post.moe_shortage, @updated_post.moe_shortage
+        assert_xhr_redirected_to new_user_session_path
+        assert_response 302
     end
 
     test 'all_posts_index' do
@@ -177,45 +286,45 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     end
 
     test 'create post' do
-        post_count = Post.count
         sign_in @user
-=begin
-        file = "image.png"
 
-        content = sample_file(file).read
-        locale_file = Tempfile.new(["image", "png"])
-        locale_file.write content
-        locale_file.rewind
+        # post_count = Post.count
+        # file = "image.png"
+        #
+        # content = sample_file(file).read
+        # locale_file = Tempfile.new(["image", "png"])
+        # locale_file.write content
+        # locale_file.rewind
+        #
+        # upload = ActionDispatch::Http::UploadedFile.new({
+        #     filename: file,
+        #     type: 'image/png',
+        #     tempfile: fixture_file_upload(sample_path, 'image/png'),
+        #     head: "Content-Disposition: form-data; name=\"post[post_image]\"; filename=\"image.png\"\r\n
+        #            Content-Type: image/png\r\n"
+        # })
+        #
+        # binding.pry
+        #
+        # post posts_path(
+        #     post: {
+        #         "post_image" => upload
+        #     }
+        # )
+        #
+        # locale_file.close
+        #
+        # assert_equal Post.count, post_count + 1
+        # assert_redirect_to post_path(post)
 
-        upload = ActionDispatch::Http::UploadedFile.new({
-            filename: file,
-            type: 'image/png',
-            tempfile: fixture_file_upload(sample_path, 'image/png'),
-            head: "Content-Disposition: form-data; name=\"post[post_image]\"; filename=\"image.png\"\r\nContent-Type: image/png\r\n"
-        })
-
-        binding.pry
-
-        post posts_path(
-            post: {
-                "post_image" => upload
-            }
-        )
-
-        locale_file.close
-
-        assert_equal Post.count, post_count + 1
-        assert_redirect_to post_path(post)
-=end
         assert true
     end
 
     test 'Can\'t create post unlogged' do
-
-        assert_no_difference -> {Post.count} do
+        assert_no_difference -> { Post.count } do
             post create_post_path(
                 post: {
-                    "post_image" => "1"
+                    'post_image' => '1'
                 }
             )
         end
@@ -223,21 +332,31 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
         assert_redirected_to new_user_session_path
     end
 
+    test 'Get edit post page' do
+        sign_in @user
+
+        get edit_post_path(@post)
+
+        assert_response :success
+    end
+
+    test 'Can\'t get edit post page unlogged' do
+        get edit_post_path(@post)
+
+        assert_redirected_to new_user_session_path
+    end
+
     test 'update post' do
         sign_in @user
 
-        post_params = {
-            title: Faker::Games::Fallout.character + @post.title, # Adding current informations to force a different one
-            source: Faker::Games::Fallout.faction + @post.source,
-            description: Faker::Games::Fallout.quote + @post.description
-        }
+        post_params = sample_post_params
 
         patch post_path(
             @post.number,
             post: post_params,
-            tags: "",
-            characters: "",
-            author_tag: ""
+            tags: '',
+            characters: '',
+            author_tag: ''
         )
 
         @updated_post = Post.find(@post.id)
@@ -245,6 +364,28 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
         assert_not_equal @updated_post.title, @post.title
         assert_not_equal @updated_post.source, @post.source
         assert_not_equal @updated_post.description, @post.description
+        assert_redirected_to post_path(@post.number)
+    end
+
+    test 'update post with new author and tags' do
+        sign_in @user
+
+        post_params = sample_post_params
+
+        patch post_path(
+            @post.number,
+            post: post_params,
+            tags: SecureRandom.hex,
+            characters: SecureRandom.hex,
+            author_tag: Faker::Games::Fallout.character + @post.number.to_s
+        )
+
+        @updated_post = Post.find(@post.id)
+
+        assert_not_equal @updated_post.title, @post.title
+        assert_not_equal @updated_post.source, @post.source
+        assert_not_equal @updated_post.description, @post.description
+        assert_not_equal @updated_post.author, @post.author
         assert_redirected_to post_path(@post.number)
     end
 
@@ -256,5 +397,15 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     test 'random post' do
         get random_path
         assert_response 302
+    end
+
+    private
+
+    def sample_post_params
+        {
+            title: Faker::Games::Fallout.character + @post.title, # Adding current informations to force a different one
+            source: Faker::Games::Fallout.faction + @post.source,
+            description: Faker::Games::Fallout.quote + @post.description
+        }
     end
 end

@@ -16,45 +16,61 @@ class Tag < ApplicationRecord
     # Disable STI
     self.inheritance_column = :_type_disabled
 
+    # Relations
     has_many :aliases
-    has_one :main_alias, -> { where(main: true) }, class_name: "Alias"
+    has_one :main_alias, -> { where(main: true) }, class_name: 'Alias'
 
-    has_and_belongs_to_many :posts, class_name: "Post", inverse_of: :tags
+    has_and_belongs_to_many :posts, class_name: 'Post', inverse_of: :tags
 
-    has_one :author, class_name: "Author", inverse_of: :tag
+    has_one :author, class_name: 'Author', inverse_of: :tag
 
-    scope :popular, -> {
-        order('posts_count DESC')
-    }
+    # Sorting
+    include Sortable
 
+    scope :popular, ->(direction = 'desc') { order("tags.posts_count #{direction}") }
+    # scope :alphabetical, -> (direction = "desc") { includes(:aliases).order("aliases.name #{direction}") }
+
+    def self.sort_scopes
+        [:popular]
+    end
+
+    def self.sort_options
+        [
+            { popular: { desc: 'Popular first' } },
+            { popular: { asc: 'Unpopular first' } }
+        ]
+    end
+
+    # Tag types
     module Type
         def self.all
             ['content', 'character', 'author', 'copyright']
         end
 
-        self.all.each do |type|
+        all.each do |type|
             define_method("#{type}?") do
                 self.type == type
             end
         end
     end
     include Tag::Type
-    validates :type, inclusion: {in: Tag::Type.all}
+    validates :type, inclusion: { in: Tag::Type.all }
 
+    # Methods
     def name
+<<<<<<< HEAD
         self.main_alias.name
+=======
+        main_alias.name
+>>>>>>> develop
     end
 
     def names
-        self.aliases.map do |a|
-          a.name
-        end
+        aliases.map(&:name)
     end
 
     def opt_names
         # Optionnal names (alias.main = false)
-        self.aliases.where(main: false).map do |a|
-            a.name
-        end
+        aliases.where(main: false).map(&:name)
     end
 end

@@ -12,7 +12,7 @@ module ParserConcern
             text.sub! post, link
         end
 
-        return text
+        text
     end
 
     def scan_for_user(text)
@@ -24,23 +24,11 @@ module ParserConcern
             text.sub! user, link
         end
 
-        return text
-    end
-
-    def scan_for_comment(text)
-        comments = text.scan(/\$[0-9]+/) # matches $number
-
-        comments.each do |comment|
-            link = '<span>$</span>' + link_to(comment[1..-1], '#comment_' + comment[1..-1])
-
-            text.sub! comment, link
-        end
-
-        return text
+        text
     end
 
     def scan_for_spoiler(text)
-        spoilers = text.scan(/\[spoiler\].+?\[\/spoiler\]/) # matches $number
+        spoilers = text.scan(%r{\[spoiler\].+?\[/spoiler\]}) # matches $number
 
         spoilers.each do |spoiler|
             spoil = '<label class="spoiler-toggle" title="Click to display">Spoiler<input type="checkbox"><span class="spoiler">' + spoiler[9..-11] + '</span></label>'
@@ -48,6 +36,6 @@ module ParserConcern
             text.sub! spoiler, spoil
         end
 
-        return text
+        text
     end
 end
