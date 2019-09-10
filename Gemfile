@@ -33,7 +33,7 @@ gem 'mime-types', require: 'mime/types/full'
 # gem 'capistrano-rails', group: :development
 
 # Devise for user authentications
-gem "devise", ">= 4.6.2"
+gem "devise", ">= 4.7.1"
 
 # Pagination plugin
 gem 'kaminari', '>= 1.1.1'
