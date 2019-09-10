@@ -25,6 +25,7 @@ gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby.git', require: 'bcry
 
 # Use ActiveStorage variant
 gem 'image_processing', '~> 1.2'
+gem 'mini_magick'
 gem 'active_storage_validations'
 gem 'mime-types', require: 'mime/types/full'
 

@@ -337,6 +337,7 @@ DEPENDENCIES
   letter_opener
   listen (>= 3.0.5, < 3.2)
   mime-types
+  mini_magick
   minitest-rails!
   pg (>= 0.18, < 2.0)
   pry

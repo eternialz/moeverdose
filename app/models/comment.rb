@@ -3,13 +3,10 @@ class Comment < ApplicationRecord
     # PROPERTIES: TYPE => PURPOSE
     # ----------------------------
     # text: String => Comment's content
-    # report: Boolean => true: comment reported
-    # report_reason: String => Why is the comment reported
     #
     # timestamps => yes
     #
     # post: Post => Post on which the comment is posted
-    # report_user: User => User who reported the comment
     # reports: Array<Report> => Reports on the comments
     # user: User => User who posted the comment
     ####################################################################
@@ -18,5 +15,8 @@ class Comment < ApplicationRecord
     has_many :reports, as: :reportable
     belongs_to :post, class_name: 'Post', inverse_of: :comments, touch: true
 
-    alias_attribute :report?, :report
+    def report
+        reports.count >= ConfigHelper.report_limit
+    end
+    alias_method :report?, :report
 end
