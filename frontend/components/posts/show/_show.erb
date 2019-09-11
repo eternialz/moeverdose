@@ -56,7 +56,7 @@
             <a class="button-secondary button-icon-left" target="_blank" href="https://www.google.fr/searchbyimage?site=search&image_url=<%= url_for(@post.post_image) %>"><i class="fab fa-google"></i>Search</a>
             <% if user_signed_in? %>
                 <a class="button-secondary button-icon-left" href="<%= edit_post_path(@post.number) %>"><i class="fa fa-edit"></i> Edit</a>
-                <a class="button-secondary button-icon-left" href="<%= edit_report_post_path(@post.number) %>"><i class="fa fa-times"></i> Report</a>
+                <a class="button-secondary button-icon-left" href="<%= new_report_post_path(@post.number) %>"><i class="fa fa-times"></i> Report</a>
             <% end %>
         </div>
 

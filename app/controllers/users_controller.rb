@@ -150,6 +150,29 @@ class UsersController < ApplicationController
         end
     end
 
+    def report
+        if (current_user && current_user != @user && !@user.team?)
+            title('Report user')
+            render component 'users/report'
+        else
+            flash[:error] = 'You should be connected to report someone'
+            redirect_to root_path
+        end
+    end
+
+    def report_update
+        report = Report.new
+        report.reason = params[:report][:reason]
+        report.user = current_user
+        report.reportable = @user
+        report.save
+        @user.reports << report
+        @user.save
+
+        flash[:notice] = 'User reported'
+        redirect_to user_path(@user.name)
+    end
+
     private
 
     def set_user

@@ -1,4 +1,4 @@
-class Report < ApplocationRecord
+class Report < ApplicationRecord
     ####################################################################
     # PROPERTIES: TYPE => PURPOSE
     # ----------------------------

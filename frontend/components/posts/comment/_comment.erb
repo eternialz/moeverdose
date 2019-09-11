@@ -21,12 +21,8 @@
             </a>
             <p class="comment-text"><%= comment.text %></p>
             <div class="comment-links">
-                <%= form_for Report.new, as: "report", url: comment_report_path(@post.number, comment), method: :patch, html: {class: "zone report_form field_area", id: 'report_post'} do |report| %>
-                    <h4 class="title color-red"><i class="fa fa-exclamation-circle"></i> Report comment</h4>
-                    <%= report.text_area :reason, class: "form-textarea", placeholder: "Reason" %>
-                    <div class="button-list button-list-right">
-                        <button type="submit" form="report_post" class="button-important background-red" type="submit">Report <i class="fa fa-exclamation"></i></button>
-                    </div>
+                <% if user_signed_in? %>
+                    <a class="button-secondary button-icon-left" href="<%= new_comment_report_path(@post.number, comment.id) %>"><i class="fa fa-times"></i> Report</a>
                 <% end %>
             </div>
         </div>

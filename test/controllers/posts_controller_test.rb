@@ -35,7 +35,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     test 'Show report post' do
         sign_in @user
 
-        get edit_report_post_path(@post)
+        get new_report_post_path(@post)
 
         assert_response :success
 
@@ -43,7 +43,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     end
 
     test 'Can\'t show report post unlogged' do
-        get edit_report_post_path(@post)
+        get new_report_post_path(@post)
 
         assert_redirected_to new_user_session_path
     end
@@ -77,7 +77,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     test 'Show edit report post' do
         sign_in @user
 
-        get edit_report_post_path(@post)
+        get new_report_post_path(@post)
 
         assert_response :success
 
@@ -85,7 +85,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     end
 
     test 'Can\'t show edit report post unlogged' do
-        get edit_report_post_path(@post)
+        get new_report_post_path(@post)
 
         assert_redirected_to new_user_session_path
     end

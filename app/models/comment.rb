@@ -16,7 +16,7 @@ class Comment < ApplicationRecord
     belongs_to :post, class_name: 'Post', inverse_of: :comments, touch: true
 
     def report
-        reports.count >= ConfigHelper.report_limit
+        reports.size >= ConfigHelper.report_limit
     end
     alias_method :report?, :report
 end

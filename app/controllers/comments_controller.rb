@@ -28,10 +28,27 @@ class CommentsController < ApplicationController
     end
 
     def report
+        if (current_user && current_user != user)
+            @comment = Comment.find(params[:comment_id])
+            title('Report comment')
+            render component 'posts/comment/report'
+        else
+            flash[:error] = 'You should be connected to report a comment'
+            redirect_to root_path
+        end
+    end
+
+    def report_update
         @comment = Comment.find(params[:comment_id])
-        @comment.report = true
-        @comment.report_user = current_user
+        report = Report.new
+        report.reason = params[:report][:reason]
+        report.user = current_user
+        report.reportable = @comment
+        report.save
+        @comment.reports << report
         @comment.save
+
+        flash[:notice] = 'Comment reported'
         redirect_to post_path(@post.number)
     end
 

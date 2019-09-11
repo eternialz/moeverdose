@@ -81,7 +81,7 @@ class User < ApplicationRecord
 
     # User security
     def report
-        reports.count >= ConfigHelper.report_limit
+        warnings.size >= ConfigHelper.report_limit
     end
     alias_method :report?, :report
     alias_attribute :banned?, :banned

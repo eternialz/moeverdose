@@ -157,13 +157,19 @@ class PostsController < ApplicationController
     end
 
     def report
-        title('Report post')
-        render component 'posts/report'
+        if (current_user && current_user != user)
+            title('Report post')
+            render component 'posts/report'
+        else
+            flash[:error] = 'You should be connected to report a post'
+            redirect_to root_path
+        end
     end
 
     def report_update
         report = Report.new params.require(:reason).permit(:reason)
         report.user = current_user
+        report.reportable = @post
         report.save
         @post.reports << report
         @post.save
@@ -236,12 +242,12 @@ class PostsController < ApplicationController
     end
 
     def set_post
-        @post = Post.find_by(number: params[:id]).includes(:reports) if params[:id]
+        @post = Post.eager_load(:comments, :tags, :reports).with_attached_post_image.find_by(number: params[:id]) if params[:id]
     end
 
     def try_set_post
         if params[:id]
-            @post = Post.includes(:comments, :tags, :reports).find_by(number: params[:id])
+            @post = Post.eager_load(:comments, :tags, :reports).with_attached_post_image.find_by(number: params[:id])
 
             not_found unless @post
         end

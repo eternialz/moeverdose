@@ -58,7 +58,7 @@ class Post < ApplicationRecord
     scope :shortage, ->(direction = 'desc') { order("posts.moe_shortage #{direction}") }
 
     def report
-        reports.count >= ConfigHelper.report_limit
+        reports.size >= ConfigHelper.report_limit
     end
 
     def self.sort_scopes
