@@ -49,24 +49,28 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     end
 
     test 'report post' do
-        @post.report = false
+        @post.reports = []
         @post.save
 
         sign_in @user
 
-        patch report_post_path @post.number, post: { report_reason: Faker::TvShows::HowIMetYourMother.catch_phrase }
+        post report_post_path @post.number, params: { 
+            report: {
+                reason: Faker::TvShows::HowIMetYourMother.catch_phrase
+            }
+        }
 
         @updated_post = Post.find(@post.id)
 
-        assert @updated_post.report?
+        assert_equal @updated_post.reports.size, 1
         assert_redirected_to post_path(@post.number)
     end
 
     test 'Can\'t report post unlogged' do
-        @post.report = false
+        @post.reports = []
         @post.save
 
-        patch report_post_path @post.number, post: { report_reason: Faker::TvShows::HowIMetYourMother.catch_phrase }
+        post report_post_path @post.number, post: { report_reason: Faker::TvShows::HowIMetYourMother.catch_phrase }
 
         @updated_post = Post.find(@post.id)
 

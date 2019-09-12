@@ -31,16 +31,11 @@ class Admin::UsersControllerTest < ActionDispatch::IntegrationTest
         assert_redirected_to admin_users_path
     end
 
-    test 'update_report' do
+    test 'unreport' do
         user = create(:user_reported)
-        params = {
-            user: {
-                report: false
-            }
-        }
-        patch admin_user_path(user), params: params
+        post admin_user_unreport_path(user)
         user.reload
-        assert_not user.report
+        assert_equal user.reports, []
         assert_redirected_to admin_users_path
     end
 

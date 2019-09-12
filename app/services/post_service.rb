@@ -27,43 +27,43 @@ class PostService
     def self.query(query)
         posts_tags_ids = posts_tags(query)
 
-        Post.select(:tags_list)
+        posts = Post.select(:tags_list)
             .joins("LEFT OUTER JOIN(#{RawSqlService.tags_array}) as \"array_tags\" ON \"array_tags\".\"id\" = \"posts\".\"id\"")
-            .where(report: false)
             .where('array_tags.tags_list @> cast(array[?] as bigint[])', posts_tags_ids)
-            .eager_load(tags: [:aliases, :main_alias])
+            .eager_load(tags: [:aliases, :main_alias], reports: [:user])
             .with_attached_post_image
+        safe_posts posts
     end
 
     def self.query_with_blacklist(query, blacklist)
         posts_tags_ids = posts_tags(query)
         blacklisted_posts_tags_ids = blacklist.map(&:id)
 
-        Post.select(:tags_list)
+        posts = Post.select(:tags_list)
             .joins("LEFT OUTER JOIN(#{RawSqlService.tags_array}) as \"array_tags\" ON \"array_tags\".\"id\" = \"posts\".\"id\"")
-            .where(report: false)
             .where('array_tags.tags_list @> cast(array[?] as bigint[])', posts_tags_ids)
             .where.not('array_tags.tags_list && cast(array[?] as bigint[])', blacklisted_posts_tags_ids)
-            .eager_load(tags: [:aliases, :main_alias])
+            .eager_load(tags: [:aliases, :main_alias], reports: [:user])
             .with_attached_post_image
+        safe_posts posts
     end
 
     def self.all_posts
-        Post
-            .where(report: false)
-            .eager_load(tags: [:aliases, :main_alias])
+        posts = Post
+            .eager_load(tags: [:aliases, :main_alias], reports: [:user])
             .with_attached_post_image
+        safe_posts posts
     end
 
     def self.all_posts_with_blacklist(blacklist)
         blacklisted_posts_tags_ids = blacklist.map(&:id)
 
-        Post.select(:tags_list)
+        posts = Post.select(:tags_list)
             .joins("LEFT OUTER JOIN(#{RawSqlService.tags_array}) as \"array_tags\" ON \"array_tags\".\"id\" = \"posts\".\"id\"")
-            .where(report: false)
             .where.not('array_tags.tags_list && cast(array[?] as bigint[])', blacklisted_posts_tags_ids)
-            .eager_load(tags: [:aliases, :main_alias])
+            .eager_load(tags: [:aliases, :main_alias], reports: [:user])
             .with_attached_post_image
+        safe_posts posts
     end
 
     def self.posts_tags(query)
@@ -85,5 +85,11 @@ class PostService
     def self.set_post_user(post, user)
         post.user = user
         UserService.update_level(user)
+    end
+
+    private
+
+    def self.safe_posts(posts)
+        posts.where(Post.joins(:reports).group('posts.id').having('count(reports) > ?', ConfigHelper.report_limit))
     end
 end

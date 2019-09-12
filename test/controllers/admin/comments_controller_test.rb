@@ -26,9 +26,7 @@ module Admin
             patch admin_comment_unreport_path(@comment)
             @comment.reload
 
-            assert_not @comment.report
-            assert @comment.report_user.nil?
-            assert @comment.report_user.blank?
+            assert_equal @comment.reports, []
 
             assert_redirected_to admin_comments_path
         end

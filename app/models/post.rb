@@ -16,7 +16,7 @@ class Post < ApplicationRecord
     #
     # author: Author : Post's image's author
     # comments: Array<Comment> => All posts comments
-    # reportable: Array<Report> => Reports on the posts
+    # reports: Array<Report> => Reports on the posts
     # tags: Array<Tag> => Tags linked to posts
     # user: User => User who posted the image
     #
@@ -60,6 +60,7 @@ class Post < ApplicationRecord
     def report
         reports.size >= ConfigHelper.report_limit
     end
+    alias_method :report?, :report
 
     def self.sort_scopes
         [:created_at, :overdose, :shortage]

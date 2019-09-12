@@ -38,9 +38,7 @@ class Admin::PostsControllerTest < ActionDispatch::IntegrationTest
         patch admin_post_unreport_path(@post)
         @post.reload
 
-        assert_not @post.report
-        assert @post.report_user.nil?
-        assert @post.report_reason.blank?
+        assert_equal @post.reports, []
 
         assert_redirected_to admin_posts_path
     end
@@ -53,7 +51,6 @@ class Admin::PostsControllerTest < ActionDispatch::IntegrationTest
             post: {
                 title: '1',
                 source: '2',
-                report: true
             }
         }
 
@@ -63,7 +60,6 @@ class Admin::PostsControllerTest < ActionDispatch::IntegrationTest
 
         assert_equal @updated_post.title, params[:post][:title]
         assert_equal @updated_post.source, params[:post][:source]
-        assert_equal @updated_post.report, params[:post][:report]
         assert_redirected_to admin_post_path(@post)
     end
 end

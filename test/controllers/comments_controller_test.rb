@@ -94,14 +94,18 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
 
     test 'Report Comment' do
         comment = create(:comment)
-
         post = comment.post
-
         sign_in @user
 
-        patch comment_report_path(post.number, comment)
+        params = {
+            report: {
+                reason: Faker::Books::Lovecraft.sentence
+            }
+        }
 
-        assert Comment.find(comment.id).report?
+        post comment_report_path(post.number, comment), params: params
+
+        assert_equal Comment.find(comment.id).reports.size, 1
 
         assert_redirected_to post_path(post.number)
     end
@@ -112,7 +116,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
 
         post = comment.post
 
-        patch comment_report_path(post.number, comment)
+        post comment_report_path(post.number, comment)
 
         assert_not Comment.find(comment.id).report?
         assert_redirected_to new_user_session_path
