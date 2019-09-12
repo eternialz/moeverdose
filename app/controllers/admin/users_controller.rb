@@ -2,11 +2,16 @@ class Admin::UsersController < Admin::BaseController
     before_action :set_user, except: [:index]
 
     def index
-        @users = Kaminari.paginate_array(User.order('created_at DESC')).page(params[:page]).per(20)
-
-        @users = @users.where(report: params[:report]) if params[:report]
-
+        @reports = Report.includes(reportable: [:post, :user]).where(reportable_type: 'User')
+        @users = Kaminari.paginate_array(@reports.map do |r|
+            r.reportable
+        end.uniq).page(params[:page]).per(20)
         render component 'admin/users/index'
+    end
+
+    def show
+        @reports = Report.eager_load(:user).where(reportable: @user)
+        render component 'admin/users/show'
     end
 
     def edit
@@ -23,6 +28,16 @@ class Admin::UsersController < Admin::BaseController
         else
             redirect_to edit_admin_users_path(@user)
         end
+    end
+
+    def unreport
+        @user.reports.destroy_all
+        if @user.save
+            flash[:notice] = 'User unreported'
+        else
+            flash[:error] = 'An error occured'
+        end
+        redirect_to admin_users_path
     end
 
     def ban
