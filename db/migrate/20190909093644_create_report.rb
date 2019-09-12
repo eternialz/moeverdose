@@ -8,6 +8,6 @@ class CreateReport < ActiveRecord::Migration[6.0]
         end
 
         add_reference :reports, :user, to_table: :users
-        add_foreign_key :reports, :users, column: :user_id
+        add_foreign_key :reports, :users, column: :user_id, on_delete: :nullify
     end
 end

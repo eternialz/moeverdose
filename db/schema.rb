@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_09_094529) do
+ActiveRecord::Schema.define(version: 2019_09_12_113849) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,15 +61,11 @@ ActiveRecord::Schema.define(version: 2019_09_09_094529) do
 
   create_table "comments", force: :cascade do |t|
     t.text "text"
-    t.boolean "report", default: false
-    t.text "report_reason"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
-    t.bigint "report_user_id"
     t.bigint "post_id"
     t.index ["post_id"], name: "index_comments_on_post_id"
-    t.index ["report_user_id"], name: "index_comments_on_report_user_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
@@ -140,15 +136,11 @@ ActiveRecord::Schema.define(version: 2019_09_09_094529) do
     t.string "title"
     t.string "source"
     t.text "description"
-    t.boolean "report", default: false
-    t.text "report_reason"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
-    t.bigint "report_user_id"
     t.bigint "author_id"
     t.index ["author_id"], name: "index_posts_on_author_id"
-    t.index ["report_user_id"], name: "index_posts_on_report_user_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -204,7 +196,6 @@ ActiveRecord::Schema.define(version: 2019_09_09_094529) do
     t.string "facebook"
     t.integer "upload_count", default: 0
     t.integer "exp", default: 0
-    t.boolean "report"
     t.boolean "banned"
     t.string "role"
     t.bigint "level_id"
@@ -215,11 +206,11 @@ ActiveRecord::Schema.define(version: 2019_09_09_094529) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "aliases", "tags"
-  add_foreign_key "authors", "tags"
+  add_foreign_key "aliases", "tags", on_delete: :cascade
+  add_foreign_key "authors", "tags", on_delete: :nullify
   add_foreign_key "blacklisted_tags_users", "tags", on_delete: :cascade
   add_foreign_key "blacklisted_tags_users", "users", on_delete: :cascade
-  add_foreign_key "comments", "posts"
+  add_foreign_key "comments", "posts", on_delete: :nullify
   add_foreign_key "comments", "users", on_delete: :nullify
   add_foreign_key "disliked_posts_users", "posts", on_delete: :cascade
   add_foreign_key "disliked_posts_users", "users", on_delete: :cascade
@@ -231,10 +222,10 @@ ActiveRecord::Schema.define(version: 2019_09_09_094529) do
   add_foreign_key "liked_posts_users", "users", on_delete: :cascade
   add_foreign_key "permissions", "permissions_types", on_delete: :cascade
   add_foreign_key "permissions", "users", on_delete: :cascade
-  add_foreign_key "posts", "authors"
-  add_foreign_key "posts", "users"
+  add_foreign_key "posts", "authors", on_delete: :nullify
+  add_foreign_key "posts", "users", on_delete: :nullify
   add_foreign_key "posts_tags", "posts", on_delete: :cascade
   add_foreign_key "posts_tags", "tags", on_delete: :cascade
-  add_foreign_key "reports", "users"
-  add_foreign_key "users", "levels"
+  add_foreign_key "reports", "users", on_delete: :nullify
+  add_foreign_key "users", "levels", on_delete: :nullify
 end
