@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-    before_action :authenticate_user!, only: [:edit, :update, :delete]
+    before_action :authenticate_user!, only: [:edit, :update, :delete, :claims]
     before_action :set_user, except: [:index]
-    before_action :check_user, only: [:edit, :update, :delete, :extract]
+    before_action :check_user, only: [:edit, :update, :delete, :extract, :claims]
     before_action(only: [:index]) { set_default_index_values }
 
     def index
@@ -76,6 +76,18 @@ class UsersController < ApplicationController
         ]
 
         render component 'users/favorites'
+    end
+
+    def claims
+        @emitted_claims = Kaminari.paginate_array(
+            Claim.where(user: current_user)
+        ).page(params[:page]).per(@items_per_page)
+
+        @received_claims = Kaminari.paginate_array(
+            Claim.joins(:post).where(posts: { user: current_user })
+        ).page(params[:page]).per(@items_per_page)
+
+        render component 'users/claims'
     end
 
     def uploads

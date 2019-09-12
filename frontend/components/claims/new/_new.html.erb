@@ -74,17 +74,19 @@
             </div>
             <%= form_with url: claims_path, method: :post, class: "form" do %>
                 <div class="actions">
-                    <label class="display-block"><%= check_box_tag :accept_conditions %> I understand that lying about my rights can and will get me punished.</label>
                     <div class="form-field">
-                        <label><%= check_box_tag :certify_ownership %> I am the copyright owner or rightful representative of the content I claim.</label>
+                        <label class="checkbox"><%= check_box_tag :accept_conditions %><span></span> I understand that lying about my rights can and will get me punished.</label>
+                    </div>
+                    <div class="form-field">
+                        <label class="checkbox"><%= check_box_tag :certify_ownership %><span></span> I am the copyright owner or rightful representative of the content I claim.</label>
                     </div>
                     <div class="form-field">
                         <label class="form-label" for="number"><i class="fa fa-hashtag"></i> Post ID</label>
-                        <%= number_field_tag :number, nil, class: "form-input" %>
+                        <%= number_field_tag :post_number, nil, class: "form-input" %>
                     </div>
                     <div class="align-right">
                         <button class="button-important button-white margin margin-top" type="reset">Reset</button>
-                        <button class="button-important button-error margin margin-top" type="submit">Submit</button>
+                        <%= button_to "Submit claim", data: {confirm: "Are you sure you want to submit this claim?"} %>
                     </div>
                 </div>
             <% end %>

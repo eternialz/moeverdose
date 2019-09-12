@@ -3,8 +3,8 @@ class Claim < ApplicationRecord
     # PROPERTIES: TYPE => PURPOSE
     # ----------------------------
     # post: Post => claimed post
+    # user: User => User who made the claim
     # closed : Boolean => if the claim was closed or not
-    # 
     ####################################################################
 
     belongs_to :post, class_name: 'Post', inverse_of: :claims

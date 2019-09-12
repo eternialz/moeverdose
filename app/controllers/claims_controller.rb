@@ -1,8 +1,8 @@
 class ClaimsController < ApplicationController
     before_action :authenticate_user!, except: [:new]
     before_action :set_default_index_values, only: [:index]
-    before_action :set_post, only: [:claim]
-    before_action :set_claim, only: [:show, :unclaim]
+    before_action :set_post, only: [:create]
+    before_action :set_claim, only: [:show, :destroy]
 
     def show
         render component 'claims/show'
@@ -13,22 +13,21 @@ class ClaimsController < ApplicationController
         render component 'claims/new'
     end
 
-    def index
-        @claims = Kaminari.paginate_array(
-            Claim.joins(:post).where(posts: { user: current_user })
-        ).page(params[:page]).per(@items_per_page)
-        render component 'claims/index'
-    end
-
     def create
-        @post.hidden = true
-        claim = Claim.create(claimer: current_user, post: @post)
+        # @post.hidden = true
+        claim = Claim.create(user: current_user, post: @post)
 
-        ClaimMailer.claimed(claim).deliver_later
-        flash[:success] = 'Claim successfully created.'
+        if claim.save
+            ClaimMailer.claimed(claim).deliver_later
+            flash[:success] = 'Claim successfully created.'
+            redirect_to user_claims_path
+        else
+            flash[:error] = 'An error occured when creating your claim, please verify the informations you provided'
+            redirect_to new_claim_path
+        end
     end
 
-    def destroy
+    def close
         @claim.closed = true
         @claim.post.hidden = false
         @claim.save
@@ -40,7 +39,7 @@ class ClaimsController < ApplicationController
     private
 
     def set_post
-        @post = Post.find_by(number: [:id])
+        @post = Post.find_by(number: params[:post_number])
     end
 
     def set_claim

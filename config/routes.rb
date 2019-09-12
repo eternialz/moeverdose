@@ -47,6 +47,7 @@ Rails.application.routes.draw do
 
     get '/users/:id/favorites' => 'users#favorites', as: 'user_favorites'
     get '/users/:id/uploads' => 'users#uploads', as: 'user_uploads'
+    get '/users/:id/claims' => 'users#claims', as: 'user_claims'
     get '/users/:id/extract' => 'users#extract', as: 'extract_user'
     patch '/users/:id/delete' => 'users#delete', as: 'delete_user'
 
@@ -57,7 +58,8 @@ Rails.application.routes.draw do
     resources :teams, controller: 'teams', only: [:index]
 
     # Claims
-    resources :claims, controller: 'claims', only: [:index, :show, :create, :new, :destroy]
+    resources :claims, controller: 'claims', only: [:show, :create, :new]
+    patch 'claims/:id' => 'claims#close', as: 'close_claim'
 
     # Errors
     match '/404', to: 'errors#not_found', via: :all
