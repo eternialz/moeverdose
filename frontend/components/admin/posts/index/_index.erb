@@ -20,14 +20,10 @@
                 </div>
                 <div class="flex-grow padding padding-left">
                     <p>Uploaded by: <a href="<%= user_path(post.user.name) %>"><%= post.user.name %></a></p>
-                    <p>Reported by: <a href="<%= user_path(post.report_user.name) %>"><%= post.report_user.name %></a></p>
-                    <p>Reason: <%= post.report_reason[0..250] %></p>
                 </div>
             </div>
             <div class="button-list margin margin-top margin-sm">
-                <a class="button-important background-blue" href="<%= edit_admin_post_path(post) %>">Edit<i class="fa fa-edit"></i></a>
-                <a class="button-important background-green" href="<%= admin_post_unreport_path(post) %>" data-method="patch">Unreport <i class="fa fa-check"></i></a>
-                <a class="button-important background-red" href="<%= admin_post_path(post)%>" data-method="delete">Delete<i class="fa fa-exclamation"></i></a>
+                <a class="button-important" href="<%= admin_post_path(post) %>">Detail<i class="fa fa-eye"></i></a>
             </div>
         </div>
     <% end %>

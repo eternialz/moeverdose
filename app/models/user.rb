@@ -129,10 +129,6 @@ class User < ApplicationRecord
         !banned? ? super : :banned
     end
 
-    def team?
-        ['administrator', 'moderator'].include? role
-    end
-
     has_many :warnings, as: :reportable
     # Reports he made
     has_many :reports
@@ -143,7 +139,11 @@ class User < ApplicationRecord
 
     module Role
         def self.all
-            ['user', 'administrator', 'contributor', 'moderator', 'developper']
+            ['user', 'administrator', 'contributor', 'moderator']
+        end
+
+        def self.team
+            ['administrator', 'moderator']
         end
 
         all.each do |role|
@@ -154,6 +154,10 @@ class User < ApplicationRecord
     end
     include User::Role
     validates :role, inclusion: { in: User::Role.all }
+
+    def team?
+        User::Role.team.include? role
+    end
 
     private
 

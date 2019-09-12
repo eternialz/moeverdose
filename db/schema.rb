@@ -217,24 +217,24 @@ ActiveRecord::Schema.define(version: 2019_09_09_094529) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "aliases", "tags"
   add_foreign_key "authors", "tags"
-  add_foreign_key "blacklisted_tags_users", "tags"
-  add_foreign_key "blacklisted_tags_users", "users"
+  add_foreign_key "blacklisted_tags_users", "tags", on_delete: :cascade
+  add_foreign_key "blacklisted_tags_users", "users", on_delete: :cascade
   add_foreign_key "comments", "posts"
-  add_foreign_key "comments", "users"
-  add_foreign_key "disliked_posts_users", "posts"
-  add_foreign_key "disliked_posts_users", "users"
-  add_foreign_key "favorites_posts_users", "posts"
-  add_foreign_key "favorites_posts_users", "users"
-  add_foreign_key "favorites_tags_users", "tags"
-  add_foreign_key "favorites_tags_users", "users"
-  add_foreign_key "liked_posts_users", "posts"
-  add_foreign_key "liked_posts_users", "users"
-  add_foreign_key "permissions", "permissions_types"
-  add_foreign_key "permissions", "users"
+  add_foreign_key "comments", "users", on_delete: :nullify
+  add_foreign_key "disliked_posts_users", "posts", on_delete: :cascade
+  add_foreign_key "disliked_posts_users", "users", on_delete: :cascade
+  add_foreign_key "favorites_posts_users", "posts", on_delete: :cascade
+  add_foreign_key "favorites_posts_users", "users", on_delete: :cascade
+  add_foreign_key "favorites_tags_users", "tags", on_delete: :cascade
+  add_foreign_key "favorites_tags_users", "users", on_delete: :cascade
+  add_foreign_key "liked_posts_users", "posts", on_delete: :cascade
+  add_foreign_key "liked_posts_users", "users", on_delete: :cascade
+  add_foreign_key "permissions", "permissions_types", on_delete: :cascade
+  add_foreign_key "permissions", "users", on_delete: :cascade
   add_foreign_key "posts", "authors"
   add_foreign_key "posts", "users"
-  add_foreign_key "posts_tags", "posts"
-  add_foreign_key "posts_tags", "tags"
+  add_foreign_key "posts_tags", "posts", on_delete: :cascade
+  add_foreign_key "posts_tags", "tags", on_delete: :cascade
   add_foreign_key "reports", "users"
   add_foreign_key "users", "levels"
 end

@@ -28,7 +28,7 @@ class CommentsController < ApplicationController
     end
 
     def report
-        if (current_user && current_user != user)
+        if (current_user)
             @comment = Comment.find(params[:comment_id])
             title('Report comment')
             render component 'posts/comment/report'

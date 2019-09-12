@@ -1,0 +1,21 @@
+<h2> Reports of Comment </h2>
+<p>List of all reports</p>
+
+<p>
+    <h5>Original Comment</h5>
+    <%= @comment.text%> <br/>
+    <span><a href="<%= user_path(@comment.user.name) %>"><%= @comment.user.name %></a></span>
+    <span class="button_list">
+        <a href="<%= admin_comment_unreport_path(@comment) %>" class="btn btn-blue"><i class="fa fa-check-circle"></i>Unreport comment</a>
+        <a href="<%= admin_comment_path(@comment) %>" data-method="delete" class="btn btn-blue"><i class="fa fa-trash"></i>Delete comment</a>
+    </span>
+</p>
+<ul class="admin_list comments">
+    <% @reports&.each do |report| %>
+        <li>
+            <span class="text"><%= report.reason %></span>
+            <br />
+            <span><a href="<%= user_path(report.user.name) %>"><%= report.user.name %></a></span>
+        </li>
+    <% end %>
+</ul>

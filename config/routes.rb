@@ -37,7 +37,7 @@ Rails.application.routes.draw do
         resources :posts, controller: 'posts', except: [:new, :create]
         patch '/posts/:id/unreport' => 'posts#unreport', as: 'post_unreport'
         resources :levels, controller: 'levels', except: [:destroy, :show]
-        resources :comments, controller: 'comments', only: [:index, :destroy]
+        resources :comments, controller: 'comments', only: [:index, :destroy, :show]
         patch '/comments/:id/unreport' => 'comments#unreport', as: 'comment_unreport'
         resources :permissions_types, controller: 'permissions_types', except: [:edit, :update, :show]
     end

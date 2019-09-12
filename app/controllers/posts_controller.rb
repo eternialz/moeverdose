@@ -157,7 +157,7 @@ class PostsController < ApplicationController
     end
 
     def report
-        if (current_user && current_user != user)
+        if (current_user)
             title('Report post')
             render component 'posts/report'
         else
@@ -167,7 +167,7 @@ class PostsController < ApplicationController
     end
 
     def report_update
-        report = Report.new params.require(:reason).permit(:reason)
+        report = Report.new params.require(:report).permit(:reason)
         report.user = current_user
         report.reportable = @post
         report.save
