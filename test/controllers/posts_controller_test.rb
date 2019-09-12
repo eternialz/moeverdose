@@ -54,11 +54,13 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
         sign_in @user
 
-        post report_post_path @post.number, params: { 
-            report: {
-                reason: Faker::TvShows::HowIMetYourMother.catch_phrase
+        assert_difference -> { Report.count } do
+            post report_post_path @post.number, params: { 
+                report: {
+                    reason: Faker::TvShows::HowIMetYourMother.catch_phrase
+                }
             }
-        }
+        end
 
         @updated_post = Post.find(@post.id)
 

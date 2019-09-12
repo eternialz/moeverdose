@@ -33,9 +33,11 @@ class Admin::UsersControllerTest < ActionDispatch::IntegrationTest
 
     test 'unreport' do
         user = create(:user_reported)
-        post admin_user_unreport_path(user)
+        assert_difference -> { Report.count }, -1 do
+            patch admin_user_unreport_path(user)
+        end
         user.reload
-        assert_equal user.reports, []
+        assert_equal user.warnings, []
         assert_redirected_to admin_users_path
     end
 

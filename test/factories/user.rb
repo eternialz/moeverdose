@@ -31,8 +31,7 @@ FactoryBot.define do
         factory :user_reported, class: 'User' do
             after(:build) do |user|
                 report = build(:report)
-                user.reports << report
-                report.reportable = user
+                user.warnings << report
             end
         end
     end

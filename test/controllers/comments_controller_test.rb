@@ -92,6 +92,23 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
         assert_redirected_to new_user_session_path
     end
 
+    test 'Access Report Page' do
+        comment = create(:comment)
+        post = comment.post
+        sign_in @user
+
+        get new_comment_report_path(post.number, comment)
+        assert_response :success
+    end
+
+    test 'Do Not Access Report Page Unlogged' do
+        comment = create(:comment)
+        post = comment.post
+
+        get new_comment_report_path(post.number, comment)
+        assert_redirected_to new_user_session_path
+    end
+
     test 'Report Comment' do
         comment = create(:comment)
         post = comment.post
@@ -102,8 +119,10 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
                 reason: Faker::Books::Lovecraft.sentence
             }
         }
-
-        post comment_report_path(post.number, comment), params: params
+        
+        assert_difference -> { Report.count }, 1 do
+            post comment_report_path(post.number, comment), params: params
+        end
 
         assert_equal Comment.find(comment.id).reports.size, 1
 
@@ -114,11 +133,17 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
         comment = create(:comment)
         create(:user)
 
+        params = {
+            report: {
+                reason: Faker::Books::Lovecraft.sentence
+            }
+        }
+
         post = comment.post
 
-        post comment_report_path(post.number, comment)
+        post comment_report_path(post.number, comment), params: params
 
-        assert_not Comment.find(comment.id).report?
+        assert_equal Comment.find(comment.id).reports, []
         assert_redirected_to new_user_session_path
     end
 end

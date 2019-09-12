@@ -2,7 +2,7 @@ class Admin::UsersController < Admin::BaseController
     before_action :set_user, except: [:index]
 
     def index
-        @reports = Report.includes(reportable: [:post, :user]).where(reportable_type: 'User')
+        @reports = Report.includes(:reportable).where(reportable_type: 'User')
         @users = Kaminari.paginate_array(@reports.map do |r|
             r.reportable
         end.uniq).page(params[:page]).per(20)
@@ -31,7 +31,7 @@ class Admin::UsersController < Admin::BaseController
     end
 
     def unreport
-        @user.reports.destroy_all
+        @user.warnings.destroy_all
         if @user.save
             flash[:notice] = 'User unreported'
         else

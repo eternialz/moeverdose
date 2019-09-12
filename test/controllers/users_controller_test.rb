@@ -8,6 +8,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     setup do
         @user = create(:user, password: 'password')
         @user_secondary = create(:user)
+        @admin = create(:admin)
         @user_banned = create(:user_banned)
 
         10.times { create(:user) }
@@ -194,6 +195,73 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
         get extract_user_path(@user.name), params: { format: :zip }
 
         assert_redirected_to edit_user_path(@user_secondary.name)
+    end
+
+    test 'access report user page' do
+        sign_in @user_secondary
+
+        get new_user_report_path(@user.name)
+
+        assert_response :success
+    end
+
+    test 'can not access report user page unlogged' do
+        get new_user_report_path(@user.name)
+
+        assert_redirected_to root_path
+    end
+
+    test 'can not access report user page of a team member' do
+        sign_in @user
+
+        get new_user_report_path(@admin.name)
+
+        assert_redirected_to root_path
+    end
+
+    test 'report user' do
+        sign_in @user_secondary
+
+        params = {
+            report: {
+                reason: Faker::Books::Lovecraft.sentence
+            }
+        }
+        assert_difference -> { Report.count }, 1 do
+            post user_report_path(@user.name), params: params
+        end
+
+        assert_redirected_to user_path(@user.name)
+    end
+
+    test 'can not report user unlogged' do
+        params = {
+            report: {
+                reason: Faker::Books::Lovecraft.sentence
+            }
+        }
+        
+        assert_no_difference -> { Report.count } do
+            post user_report_path(@user.name), params: params
+        end
+
+        assert_redirected_to root_path
+    end
+
+    test 'can not report team member' do
+        sign_in @user
+
+        params = {
+            report: {
+                reason: Faker::Books::Lovecraft.sentence
+            }
+        }
+
+        assert_no_difference -> { Report.count } do
+            post user_report_path(@admin.name), params: params
+        end
+
+        assert_redirected_to root_path
     end
 
     private

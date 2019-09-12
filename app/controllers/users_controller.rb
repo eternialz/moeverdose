@@ -161,16 +161,21 @@ class UsersController < ApplicationController
     end
 
     def report_update
-        report = Report.new
-        report.reason = params[:report][:reason]
-        report.user = current_user
-        report.reportable = @user
-        report.save
-        @user.reports << report
-        @user.save
+        if (current_user && current_user != @user && !@user.team?)
+            report = Report.new
+            report.reason = params[:report][:reason]
+            report.user = current_user
+            report.reportable = @user
+            report.save
+            @user.warnings << report
+            @user.save
 
-        flash[:notice] = 'User reported'
-        redirect_to user_path(@user.name)
+            flash[:notice] = 'User reported'
+            redirect_to user_path(@user.name)
+        else
+            flash[:error] = 'You should be connected to report someone'
+            redirect_to root_path
+        end
     end
 
     private

@@ -39,14 +39,6 @@ class ApplicationController < ActionController::Base
         end
     end
 
-    def items_per_page()
-        if params[:items_per_page]
-            return params["items_per_page"].to_i
-        else 
-            return @default_per_page || helpers.default_per_page
-        end
-    end
-
     def component(component_path)
         path_array = component_path.downcase.split('/')
         name = path_array.pop

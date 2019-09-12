@@ -5,7 +5,7 @@
     <h5>User</h5>
     <span><a href="<%= user_path(@user.name) %>"><%= @user.name %></a></span> <br>
     <span class="button_list">
-        <a href="<%= admin_user_unreport_path(@user) %>" class="btn btn-blue" data-method="post"><i class="fa fa-check-circle"></i>Unreport User</a>
+        <a href="<%= admin_user_unreport_path(@user) %>" class="btn btn-blue" data-method="patch"><i class="fa fa-check-circle"></i>Unreport User</a>
         <% if @user.banned? %>
             <a class="btn btn-green" href="<%= admin_user_ban_path(@user)%>" data-confirm="Unban user <%= @user.name %>?" data-method="patch"><i class="fa fa-exclamation"></i>unban</a>
         <% else %>

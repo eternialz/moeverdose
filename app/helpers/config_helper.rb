@@ -24,14 +24,6 @@ module ConfigHelper
         16
     end
 
-    def items_per_page_list
-        [8, 16, 24, 32]
-    end
-
-    def default_per_page
-        16
-    end
-
     # POSTS
     def self.image_dimensions
         [200, 200, 10_000, 10_000] # min width, min height, max width, max height

@@ -129,11 +129,9 @@ class User < ApplicationRecord
         !banned? ? super : :banned
     end
 
-    has_many :warnings, as: :reportable
+    has_many :warnings, as: :reportable, class_name: 'Report'
     # Reports he made
     has_many :reports
-    # Reported posts
-    has_and_belongs_to_many :reported_posts, class_name: 'Post', inverse_of: nil, join_table: :reported_posts_users
 
     # Roles
 

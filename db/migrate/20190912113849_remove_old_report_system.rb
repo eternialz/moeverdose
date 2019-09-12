@@ -7,5 +7,7 @@ class RemoveOldReportSystem < ActiveRecord::Migration[6.0]
         remove_column :comments, :report_user_id, :bigint
         remove_column :posts, :report_reason, :text
         remove_column :posts, :report_user_id, :bigint
+
+        drop_table 'reported_posts_users'
     end
 end

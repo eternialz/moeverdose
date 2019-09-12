@@ -32,7 +32,7 @@ Rails.application.routes.draw do
 
         get 'stats' => 'dashboard#stats', as: 'stats'
         resources :users, controller: 'users', except: [:new, :create, :destroy]
-        post '/users/:id/unreport' => 'users#unreport', as: 'user_unreport'
+        patch '/users/:id/unreport' => 'users#unreport', as: 'user_unreport'
         patch 'ban_user/:id', controller: 'users', action: :ban, as: 'user_ban'
         resources :news, controller: 'news'
         resources :posts, controller: 'posts', except: [:new, :create]
