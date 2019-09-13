@@ -1,5 +1,5 @@
 AllCops:
-    Exclude: 
+    Exclude:
         - 'db/**/*.rb'
         - 'node_modules/**/*'
         - 'config/initializers/**/*.rb'
