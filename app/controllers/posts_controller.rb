@@ -93,8 +93,6 @@ class PostsController < ApplicationController
         @post.width = image.width
         @post.height = image.height
 
-        binding.pry
-
         if @post.save
             TagService.change_counts(@post.tags, 1)
 
