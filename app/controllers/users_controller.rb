@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    before_action :authenticate_user!, only: [:edit, :update, :delete]
+    before_action :authenticate_user!, only: [:edit, :update, :delete, :report, :report_update]
     before_action :set_user, except: [:index]
     before_action :check_user, only: [:edit, :update, :delete, :extract]
     before_action(only: [:index]) { set_default_index_values }
@@ -103,7 +103,7 @@ class UsersController < ApplicationController
     end
 
     def update
-        @user.update_attributes(account_update_params)
+        @user.update(account_update_params)
         tags = params[:tags]
 
         favorites_tags = Tag.includes(:aliases).where(aliases: { name: tags[:favorites].split.uniq })
@@ -148,6 +148,34 @@ class UsersController < ApplicationController
             @user.errors.add(:password, "provided doesn't match.")
             render component 'users/edit'
         end
+    end
+
+    def report
+        if current_user != @user && !@user.team?
+            title('Report user')
+            render component 'users/report'
+        else
+            flash[:error] = 'You cannot report this user'
+            redirect_to user_path(@user.name)
+        end
+    end
+
+    def report_update
+        if current_user && current_user != @user && !@user.team?
+            report = Report.new
+            report.reason = params[:report][:reason]
+            report.user = current_user
+            report.reportable = @user
+            report.save
+            @user.warnings << report
+            @user.save
+
+            flash[:notice] = 'User reported'
+        else
+            flash[:error] = 'You cannot report this user'
+        end
+
+        redirect_to user_path(@user.name)
     end
 
     private

@@ -3,10 +3,8 @@ require 'test_helper'
 class UserServiceTest < ActiveSupport::TestCase
     setup do
         FactoryBot.rewind_sequences
-        Level.destroy_all
         @user = create(:user)
-        create(:level, rank: 1)
-        create(:level_final, rank: 2)
+        create(:level_final)
         @user.exp = 0
         @user.upload_count = 0
         @user.save

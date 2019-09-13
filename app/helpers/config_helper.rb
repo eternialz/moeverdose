@@ -49,4 +49,9 @@ module ConfigHelper
     def max_comment_length
         500
     end
+
+    # REPORT
+    def self.report_limit
+        10
+    end
 end

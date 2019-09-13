@@ -2,12 +2,12 @@
 
 http://moeverdose.moe | https://twitter.com/moeverdose
 
-A taggable image board made from scratch with Rails 5 and PostGreSQL.
+A taggable image board made from scratch with Rails 6 and PostGreSQL.
 Online soon.
 
 # Requirements
 
-- Rails 5.2
+- Rails 6.0
 - Ruby 2.6.3
 - Docker
 
@@ -15,7 +15,7 @@ Online soon.
 
 ### Dev
 
-- Install Requirements
+- Install Requirements `docker-compose run --rm runner bundle install && yarn install`
 
 - Create database `docker-compose run --rm runner rails db:create`
 
@@ -23,7 +23,7 @@ Online soon.
 
 - Seed database `docker-compose run --rm runner rails db:seed`
 
-- Run moeverdose `docker-compose run --publish 3000:3000 -rm rails`
+- Run moeverdose `docker-compose run --publish 3000:3000 --rm rails`
 
 - Access as http://localhost:3000
 

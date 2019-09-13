@@ -1,7 +1,7 @@
 class TeamsController < ApplicationController
     def index
         title('Team')
-        @users = User.where(role: ['administrator', 'moderator', 'developper'])
+        @users = User.where(role: User::Role.team)
         @breadcrumbs = [
             {
                 name: helpers.site_name,

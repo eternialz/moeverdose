@@ -7,6 +7,9 @@ class Admin::PostsControllerTest < ActionDispatch::IntegrationTest
         @admin = create(:admin)
         sign_in @admin
         @post = create(:user_with_post).posts.first
+        report = build(:report)
+        report.reportable = @post
+        report.save
     end
 
     test 'admin index post' do
@@ -25,22 +28,22 @@ class Admin::PostsControllerTest < ActionDispatch::IntegrationTest
     end
 
     test 'admin destroy post' do
-        @post = create(:user_with_post).posts.first
-
         assert_difference -> { Post.count }, -1 do
-            delete admin_post_path(@post), params: { method: :delete }
+            assert_difference -> { Report.count }, -1 do
+                delete admin_post_path(@post), params: { method: :delete }
+            end
         end
 
         assert_redirected_to admin_posts_path
     end
 
     test 'admin unreport post' do
-        patch admin_post_unreport_path(@post)
+        assert_difference -> { Report.count }, -1 do
+            patch admin_post_unreport_path(@post)
+        end
         @post.reload
 
-        assert_not @post.report
-        assert @post.report_user.nil?
-        assert @post.report_reason.blank?
+        assert_equal @post.reports, []
 
         assert_redirected_to admin_posts_path
     end
@@ -52,8 +55,7 @@ class Admin::PostsControllerTest < ActionDispatch::IntegrationTest
         params = {
             post: {
                 title: '1',
-                source: '2',
-                report: true
+                source: '2'
             }
         }
 
@@ -63,7 +65,6 @@ class Admin::PostsControllerTest < ActionDispatch::IntegrationTest
 
         assert_equal @updated_post.title, params[:post][:title]
         assert_equal @updated_post.source, params[:post][:source]
-        assert_equal @updated_post.report, params[:post][:report]
         assert_redirected_to admin_post_path(@post)
     end
 end

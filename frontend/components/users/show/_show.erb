@@ -24,6 +24,11 @@
                     <a class="button-secondary" href="<%= edit_user_path(@user.name) %>"><i class="fa fa-edit"></i> edit profile</a>
                 </div>
             <% end %>
+            <% if current_user && !@user.team? && @user != current_user %>
+                <div class="user-show-identity-section hide-medium">
+                    <a class="button-important" href="<%= new_user_report_path(@user.name) %>"><i class="fa fa-edit"></i> Report User</a>
+                </div>
+            <% end %>
         </div>
         <div class="user-show-informations padding">
             <h5 class="title title-compact">

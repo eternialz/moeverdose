@@ -4,13 +4,23 @@
       <h2><%= @post.title %></h2>
     </div>
     <div class="post">
-      <%= image_tag @post.post_image %>
+      <%= image_tag @post.post_image_thumbnail %>
     </div>
   </div>
 
+  <ul class="admin_list comments">
+      <% @reports&.each do |report| %>
+          <li>
+              <span class="text"><%= report.reason %></span>
+              <br />
+              <span><a href="<%= user_path(report.user.name) %>"><%= report.user.name %></a></span>
+          </li>
+      <% end %>
+  </ul>
+
   <div class="actions">
-    <a class="btn btn-pink" href="<%= edit_admin_post_path(@post) %>"><i class="fa fa-edit"></i>Edit the Post</a>
-    <a class="btn btn-blue" href="<%= admin_post_unreport_path(@post) %>" data-method="patch"><i class="fa fa-check"></i>Unreport this post</a>
-    <a class="btn btn-red" href="<%= admin_post_path(@post)%>" data-method="delete"><i class="fa fa-exclamation"></i>Delete this Post</a>
+    <a class="button-important" href="<%= edit_admin_post_path(@post) %>"><i class="fa fa-edit"></i>Edit the Post</a>
+    <a class="button-important button-success" href="<%= admin_post_unreport_path(@post) %>" data-method="patch"><i class="fa fa-check"></i>Unreport this post</a>
+    <a class="button-important button-error" href="<%= admin_post_path(@post)%>" data-method="delete"><i class="fa fa-exclamation"></i>Delete this Post</a>
   </div>
 </div>

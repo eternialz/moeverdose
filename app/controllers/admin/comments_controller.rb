@@ -2,22 +2,25 @@ module Admin
     class CommentsController < Admin::BaseController
         before_action :set_comment, except: [:index]
 
-        layout 'admin'
-
         def index
-            @comments = Kaminari.paginate_array(Comment.where(report: true)).page(params[:page]).per(20)
+            @reports = Report.includes(reportable: [:post, :user]).where(reportable_type: 'Comment')
+            @comments = Kaminari.paginate_array(@reports.map(&:reportable).uniq).page(params[:page]).per(20)
             render component 'admin/comments/index'
         end
 
+        def show
+            @reports = Report.eager_load(:user).where(reportable_type: 'Comment', reportable_id: @comment.id)
+            render component 'admin/comments/show'
+        end
+
         def destroy
+            @comment.reports.destroy_all
             @comment.destroy
             redirect_to admin_comments_path
         end
 
         def unreport
-            @comment.report = false
-            @comment.report_user = nil
-            @comment.report_reason = ''
+            @comment.reports.destroy_all
             if @comment.save
                 flash[:notice] = 'Comment unreported'
             else
@@ -29,7 +32,7 @@ module Admin
         protected
 
         def set_comment
-            @comment = Comment.find(params[:id])
+            @comment = Comment.eager_load(:reports).find(params[:id])
         end
     end
 end

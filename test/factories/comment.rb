@@ -5,9 +5,9 @@ FactoryBot.define do
         text { Faker::Movies::Hobbit.quote[0..200] }
 
         factory :comment_reported, class: 'Comment' do
-            report { true }
-            report_user { user }
-            report_reason { Faker::Games::LeagueOfLegends.quote }
+            after(:build) do |comment|
+                comment.reports << build(:report)
+            end
         end
 
         before(:create) do |comment|
