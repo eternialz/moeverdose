@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    before_action :authenticate_user!, only: [:edit, :update, :delete]
+    before_action :authenticate_user!, only: [:edit, :update, :delete, :report, :report_update]
     before_action :set_user, except: [:index]
     before_action :check_user, only: [:edit, :update, :delete, :extract]
     before_action(only: [:index]) { set_default_index_values }
@@ -151,12 +151,12 @@ class UsersController < ApplicationController
     end
 
     def report
-        if current_user && current_user != @user && !@user.team?
+        if current_user != @user && !@user.team?
             title('Report user')
             render component 'users/report'
         else
-            flash[:error] = 'You should be connected to report someone'
-            redirect_to root_path
+            flash[:error] = 'You cannot report this user'
+            redirect_to user_path(@user.name)
         end
     end
 
@@ -171,11 +171,11 @@ class UsersController < ApplicationController
             @user.save
 
             flash[:notice] = 'User reported'
-            redirect_to user_path(@user.name)
         else
-            flash[:error] = 'You should be connected to report someone'
-            redirect_to root_path
+            flash[:error] = 'You cannot report this user'
         end
+
+        redirect_to user_path(@user.name)
     end
 
     private

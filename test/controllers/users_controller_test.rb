@@ -208,7 +208,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     test 'can not access report user page unlogged' do
         get new_user_report_path(@user.name)
 
-        assert_redirected_to root_path
+        assert_redirected_to new_user_session_path
     end
 
     test 'can not access report user page of a team member' do
@@ -216,7 +216,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
         get new_user_report_path(@admin.name)
 
-        assert_redirected_to root_path
+        assert_redirected_to user_path(@admin.name)
     end
 
     test 'report user' do
@@ -245,7 +245,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
             post user_report_path(@user.name), params: params
         end
 
-        assert_redirected_to root_path
+        assert_redirected_to new_user_session_path
     end
 
     test 'can not report team member' do
@@ -261,7 +261,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
             post user_report_path(@admin.name), params: params
         end
 
-        assert_redirected_to root_path
+        assert_redirected_to user_path(@admin.name)
     end
 
     private

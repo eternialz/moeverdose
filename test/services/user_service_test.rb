@@ -18,4 +18,14 @@ class UserServiceTest < ActiveSupport::TestCase
         assert_equal 0, @user.level.rank
         assert @user.persisted?
     end
+
+    test 'update_level_with_level_increase' do
+        @user.exp = @user.level.max_exp
+
+        assert_difference -> { @user.level.rank }, 1 do
+            UserService.update_level(@user)
+        end
+
+        assert @user.persisted?
+    end
 end
