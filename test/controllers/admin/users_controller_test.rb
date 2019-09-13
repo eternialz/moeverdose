@@ -52,8 +52,7 @@ class Admin::UsersControllerTest < ActionDispatch::IntegrationTest
         patch admin_user_ban_path(user)
         user.reload
         assert user.banned
-        assert_response :redirect
-        assert_equal @response.headers['X-Xhr-Redirect-Url'], admin_users_path
+        assert_xhr_redirected_to admin_users_path
     end
 
     test 'do not ban staff' do
@@ -61,8 +60,7 @@ class Admin::UsersControllerTest < ActionDispatch::IntegrationTest
         patch admin_user_ban_path(user)
         user.reload
         assert_not user.banned
-        assert_response :redirect
-        assert_equal @response.headers['X-Xhr-Redirect-Url'], admin_users_path
+        assert_xhr_redirected_to admin_users_path
     end
 
     test 'unban' do
@@ -70,7 +68,6 @@ class Admin::UsersControllerTest < ActionDispatch::IntegrationTest
         patch admin_user_ban_path(user)
         user.reload
         assert_not user.banned
-        assert_response :redirect
-        assert_equal @response.headers['X-Xhr-Redirect-Url'], admin_users_path
+        assert_xhr_redirected_to admin_users_path
     end
 end
