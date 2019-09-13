@@ -1,11 +1,11 @@
 class PostService
     def self.assign_id(new_post)
         last_post = Post.last
-        new_post.number = if !last_post.nil?
-                              last_post.number + 1
-                          else
-                              1
-                          end
+        if !last_post.nil?
+            new_post.number = last_post.number + 1
+        else
+            new_post.number = 1
+        end
     end
 
     def self.search_posts(query, blacklist)
@@ -28,10 +28,10 @@ class PostService
         posts_tags_ids = posts_tags(query)
 
         posts = Post.select(:tags_list)
-                    .joins(`LEFT OUTER JOIN(#{RawSqlService.tags_array}) as "array_tags" ON "array_tags"."id" = "posts"."id"`)
-                    .where('array_tags.tags_list @> cast(array[?] as bigint[])', posts_tags_ids)
-                    .eager_load(tags: [:aliases, :main_alias], reports: [:user])
-                    .with_attached_post_image
+            .joins("LEFT OUTER JOIN(#{RawSqlService.tags_array}) as \"array_tags\" ON \"array_tags\".\"id\" = \"posts\".\"id\"")
+            .where('array_tags.tags_list @> cast(array[?] as bigint[])', posts_tags_ids)
+            .eager_load(tags: [:aliases, :main_alias], reports: [:user])
+            .with_attached_post_image
         safe_posts posts
     end
 
@@ -40,18 +40,18 @@ class PostService
         blacklisted_posts_tags_ids = blacklist.map(&:id)
 
         posts = Post.select(:tags_list)
-                    .joins(`LEFT OUTER JOIN(#{RawSqlService.tags_array}) as "array_tags" ON "array_tags"."id" = "posts"."id"`)
-                    .where('array_tags.tags_list @> cast(array[?] as bigint[])', posts_tags_ids)
-                    .where.not('array_tags.tags_list && cast(array[?] as bigint[])', blacklisted_posts_tags_ids)
-                    .eager_load(tags: [:aliases, :main_alias], reports: [:user])
-                    .with_attached_post_image
+            .joins("LEFT OUTER JOIN(#{RawSqlService.tags_array}) as \"array_tags\" ON \"array_tags\".\"id\" = \"posts\".\"id\"")
+            .where('array_tags.tags_list @> cast(array[?] as bigint[])', posts_tags_ids)
+            .where.not('array_tags.tags_list && cast(array[?] as bigint[])', blacklisted_posts_tags_ids)
+            .eager_load(tags: [:aliases, :main_alias], reports: [:user])
+            .with_attached_post_image
         safe_posts posts
     end
 
     def self.all_posts
         posts = Post
-                .eager_load(tags: [:aliases, :main_alias], reports: [:user])
-                .with_attached_post_image
+            .eager_load(tags: [:aliases, :main_alias], reports: [:user])
+            .with_attached_post_image
         safe_posts posts
     end
 
@@ -59,10 +59,10 @@ class PostService
         blacklisted_posts_tags_ids = blacklist.map(&:id)
 
         posts = Post.select(:tags_list)
-                    .joins(`LEFT OUTER JOIN(#{RawSqlService.tags_array}) as "array_tags" ON "array_tags"."id" = "posts"."id"`)
-                    .where.not('array_tags.tags_list && cast(array[?] as bigint[])', blacklisted_posts_tags_ids)
-                    .eager_load(tags: [:aliases, :main_alias], reports: [:user])
-                    .with_attached_post_image
+            .joins("LEFT OUTER JOIN(#{RawSqlService.tags_array}) as \"array_tags\" ON \"array_tags\".\"id\" = \"posts\".\"id\"")
+            .where.not('array_tags.tags_list && cast(array[?] as bigint[])', blacklisted_posts_tags_ids)
+            .eager_load(tags: [:aliases, :main_alias], reports: [:user])
+            .with_attached_post_image
         safe_posts posts
     end
 
@@ -86,6 +86,8 @@ class PostService
         post.user = user
         UserService.update_level(user)
     end
+
+    private
 
     def self.safe_posts(posts)
         posts.where(Post.joins(:reports)
