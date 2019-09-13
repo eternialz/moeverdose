@@ -122,8 +122,7 @@ $height: 3rem;
                 z-index: $depth-2;
             }
 
-            &:hover,
-            &:focus-within {
+            &:hover {
                 .main-menu-link {
                     color: $base-color;
                 }

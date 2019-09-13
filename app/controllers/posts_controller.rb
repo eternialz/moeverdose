@@ -164,13 +164,8 @@ class PostsController < ApplicationController
     end
 
     def report
-        if current_user
-            title('Report post')
-            render component 'posts/report'
-        else
-            flash[:error] = 'You should be connected to report a post'
-            redirect_to root_path
-        end
+        title('Report post')
+        render component 'posts/report'
     end
 
     def report_update
