@@ -18,5 +18,5 @@ class Comment < ApplicationRecord
     def report
         reports.size >= ConfigHelper.report_limit
     end
-    alias_method :report?, :report
+    alias report? report
 end

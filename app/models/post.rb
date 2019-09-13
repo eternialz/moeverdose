@@ -36,7 +36,10 @@ class Post < ApplicationRecord
     validates :post_image, attached: true,
                            content_type: { in: Post.image_types },
                            size: { less_than_or_equal_to: 50.megabytes },
-                           dimension: { min: ConfigHelper.min_img_width..ConfigHelper.min_img_height, max: ConfigHelper.max_img_width..ConfigHelper.max_img_height }
+                           dimension: {
+                               min: ConfigHelper.min_img_width..ConfigHelper.min_img_height,
+                               max: ConfigHelper.max_img_width..ConfigHelper.max_img_height
+                           }
 
     validates :md5, uniqueness: { message: 'The file already exists (MD5 already exists in our base)' }, presence: true
 
@@ -60,7 +63,7 @@ class Post < ApplicationRecord
     def report
         reports.size >= ConfigHelper.report_limit
     end
-    alias_method :report?, :report
+    alias report? report
 
     def self.sort_scopes
         [:created_at, :overdose, :shortage]
@@ -94,6 +97,4 @@ class Post < ApplicationRecord
     def post_image_path
         ActiveStorage::Blob.service.send(:path_for, post_image.key)
     end
-
-    private
 end

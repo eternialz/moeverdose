@@ -55,7 +55,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
         sign_in @user
 
         assert_difference -> { Report.count } do
-            post report_post_path @post.number, params: { 
+            post report_post_path @post.number, params: {
                 report: {
                     reason: Faker::TvShows::HowIMetYourMother.catch_phrase
                 }

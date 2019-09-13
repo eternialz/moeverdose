@@ -83,7 +83,7 @@ class User < ApplicationRecord
     def report
         warnings.size >= ConfigHelper.report_limit
     end
-    alias_method :report?, :report
+    alias report? report
     alias_attribute :banned?, :banned
 
     # GDPR

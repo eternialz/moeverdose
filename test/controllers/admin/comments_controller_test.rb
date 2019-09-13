@@ -15,7 +15,7 @@ module Admin
             assert_response :success
         end
 
-        test 'show' do 
+        test 'show' do
             get admin_comment_path(@comment)
             assert_response :success
         end

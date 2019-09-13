@@ -3,9 +3,7 @@ class Admin::UsersController < Admin::BaseController
 
     def index
         @reports = Report.includes(:reportable).where(reportable_type: 'User')
-        @users = Kaminari.paginate_array(@reports.map do |r|
-            r.reportable
-        end.uniq).page(params[:page]).per(20)
+        @users = Kaminari.paginate_array(@reports.map(&:reportable).uniq).page(params[:page]).per(20)
         render component 'admin/users/index'
     end
 

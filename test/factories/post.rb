@@ -15,7 +15,7 @@ FactoryBot.define do
             post.tags << create(:tag_character)
             post.tags << create(:tag_author)
         end
-        
+
         factory :post_reported do
             after(:build) do |post|
                 post.reports << build(:report)

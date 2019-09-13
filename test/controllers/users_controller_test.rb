@@ -240,7 +240,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
                 reason: Faker::Books::Lovecraft.sentence
             }
         }
-        
+
         assert_no_difference -> { Report.count } do
             post user_report_path(@user.name), params: params
         end

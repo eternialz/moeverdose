@@ -4,4 +4,3 @@ FactoryBot.define do
         user { build(:user_with_post) }
     end
 end
-

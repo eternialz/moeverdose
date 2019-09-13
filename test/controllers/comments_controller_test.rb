@@ -119,7 +119,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
                 reason: Faker::Books::Lovecraft.sentence
             }
         }
-        
+
         assert_difference -> { Report.count }, 1 do
             post comment_report_path(post.number, comment), params: params
         end

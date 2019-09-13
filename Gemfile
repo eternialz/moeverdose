@@ -33,7 +33,7 @@ gem 'mime-types', require: 'mime/types/full'
 # gem 'capistrano-rails', group: :development
 
 # Devise for user authentications
-gem "devise", github: 'plataformatec/devise'
+gem 'devise', github: 'plataformatec/devise'
 
 # Pagination plugin
 gem 'kaminari'
@@ -81,7 +81,7 @@ group :test do
     # Gems for test
     gem 'factory_bot_rails'
     gem 'faker', github: 'stympy/faker'
-    gem 'minitest-rails', github: "blowmage/minitest-rails"
+    gem 'minitest-rails', github: 'blowmage/minitest-rails'
     gem 'codecov', require: false
 end
 

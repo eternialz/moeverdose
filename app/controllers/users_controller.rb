@@ -151,7 +151,7 @@ class UsersController < ApplicationController
     end
 
     def report
-        if (current_user && current_user != @user && !@user.team?)
+        if current_user && current_user != @user && !@user.team?
             title('Report user')
             render component 'users/report'
         else
@@ -161,7 +161,7 @@ class UsersController < ApplicationController
     end
 
     def report_update
-        if (current_user && current_user != @user && !@user.team?)
+        if current_user && current_user != @user && !@user.team?
             report = Report.new
             report.reason = params[:report][:reason]
             report.user = current_user

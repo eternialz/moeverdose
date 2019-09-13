@@ -157,7 +157,7 @@ class PostsController < ApplicationController
     end
 
     def report
-        if (current_user)
+        if current_user
             title('Report post')
             render component 'posts/report'
         else
