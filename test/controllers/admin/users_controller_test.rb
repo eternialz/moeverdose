@@ -4,12 +4,18 @@ class Admin::UsersControllerTest < ActionDispatch::IntegrationTest
     include Devise::Test::IntegrationHelpers
 
     setup do
+        @user = create(:user)
         @admin = create(:admin)
         sign_in @admin
     end
 
     test 'index' do
         get admin_users_path
+        assert_response :success
+    end
+
+    test 'show' do
+        get admin_user_path(@user)
         assert_response :success
     end
 
@@ -46,6 +52,15 @@ class Admin::UsersControllerTest < ActionDispatch::IntegrationTest
         patch admin_user_ban_path(user)
         user.reload
         assert user.banned
+        assert_response :redirect
+        assert_equal @response.headers['X-Xhr-Redirect-Url'], admin_users_path
+    end
+
+    test 'do not ban staff' do
+        user = create(:admin)
+        patch admin_user_ban_path(user)
+        user.reload
+        assert_not user.banned
         assert_response :redirect
         assert_equal @response.headers['X-Xhr-Redirect-Url'], admin_users_path
     end
