@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+    # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
     get 'home/show'
 
     # Homepage
@@ -10,8 +11,8 @@ Rails.application.routes.draw do
         resources :comments
     end
     post '/posts/new' => 'posts#create', as: 'create_post'
-    patch '/posts/:id/report' => 'posts#report_update', as: 'report_post'
-    get '/posts/:id/report' => 'posts#report', as: 'edit_report_post'
+    post '/posts/:id/report' => 'posts#report_update', as: 'report_post'
+    get '/posts/:id/report' => 'posts#report', as: 'new_report_post'
     patch '/posts/:id/dose/:dose' => 'posts#dose', as: 'post_dose'
     patch '/posts/:id/favorite' => 'posts#favorite', as: 'post_favorite'
 
@@ -22,20 +23,22 @@ Rails.application.routes.draw do
     resources :tags
 
     # Comments
-    patch '/posts/:post_id/comments/:comment_id/report' => 'comments#report', as: 'comment_report'
+    get '/posts/:post_id/comments/:comment_id/report' => 'comments#report', as: 'new_comment_report'
+    post '/posts/:post_id/comments/:comment_id/report' => 'comments#report_update', as: 'comment_report'
 
     # Admin Section
     namespace :admin do
         root 'dashboard#index', as: 'dashboard'
 
         get 'stats' => 'dashboard#stats', as: 'stats'
-        resources :users, controller: 'users', except: [:new, :create, :show]
+        resources :users, controller: 'users', except: [:new, :create, :destroy]
+        patch '/users/:id/unreport' => 'users#unreport', as: 'user_unreport'
         patch 'ban_user/:id', controller: 'users', action: :ban, as: 'user_ban'
         resources :news, controller: 'news'
         resources :posts, controller: 'posts', except: [:new, :create]
         patch '/posts/:id/unreport' => 'posts#unreport', as: 'post_unreport'
         resources :levels, controller: 'levels', except: [:destroy, :show]
-        resources :comments, controller: 'comments', only: [:index, :destroy]
+        resources :comments, controller: 'comments', only: [:index, :destroy, :show]
         patch '/comments/:id/unreport' => 'comments#unreport', as: 'comment_unreport'
         resources :permissions_types, controller: 'permissions_types', except: [:edit, :update, :show]
     end
@@ -50,6 +53,8 @@ Rails.application.routes.draw do
     get '/users/:id/claims' => 'users#claims', as: 'user_claims'
     get '/users/:id/extract' => 'users#extract', as: 'extract_user'
     patch '/users/:id/delete' => 'users#delete', as: 'delete_user'
+    get '/users/:id/report' => 'users#report', as: 'new_user_report'
+    post '/users/:id/report' => 'users#report_update', as: 'user_report'
 
     # News
     resources :news, only: [:show]

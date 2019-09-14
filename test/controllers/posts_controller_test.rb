@@ -35,7 +35,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     test 'Show report post' do
         sign_in @user
 
-        get edit_report_post_path(@post)
+        get new_report_post_path(@post)
 
         assert_response :success
 
@@ -43,30 +43,36 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     end
 
     test 'Can\'t show report post unlogged' do
-        get edit_report_post_path(@post)
+        get new_report_post_path(@post)
 
         assert_redirected_to new_user_session_path
     end
 
     test 'report post' do
-        @post.report = false
+        @post.reports = []
         @post.save
 
         sign_in @user
 
-        patch report_post_path @post.number, post: { report_reason: Faker::TvShows::HowIMetYourMother.catch_phrase }
+        assert_difference -> { Report.count } do
+            post report_post_path @post.number, params: {
+                report: {
+                    reason: Faker::TvShows::HowIMetYourMother.catch_phrase
+                }
+            }
+        end
 
         @updated_post = Post.find(@post.id)
 
-        assert @updated_post.report?
+        assert_equal @updated_post.reports.size, 1
         assert_redirected_to post_path(@post.number)
     end
 
     test 'Can\'t report post unlogged' do
-        @post.report = false
+        @post.reports = []
         @post.save
 
-        patch report_post_path @post.number, post: { report_reason: Faker::TvShows::HowIMetYourMother.catch_phrase }
+        post report_post_path @post.number, post: { report_reason: Faker::TvShows::HowIMetYourMother.catch_phrase }
 
         @updated_post = Post.find(@post.id)
 
@@ -77,7 +83,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     test 'Show edit report post' do
         sign_in @user
 
-        get edit_report_post_path(@post)
+        get new_report_post_path(@post)
 
         assert_response :success
 
@@ -85,7 +91,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     end
 
     test 'Can\'t show edit report post unlogged' do
-        get edit_report_post_path(@post)
+        get new_report_post_path(@post)
 
         assert_redirected_to new_user_session_path
     end
@@ -237,7 +243,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
         sign_in @user
 
         tag = @post.tags.first
-        @user.update_attributes(blacklisted_tags: [tag])
+        @user.update(blacklisted_tags: [tag])
 
         get posts_path
         assert_response :success
@@ -256,7 +262,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
         sign_in @user
 
         black_tag = @post.tags.first
-        @user.update_attributes(blacklisted_tags: [black_tag])
+        @user.update(blacklisted_tags: [black_tag])
         tag = Tag.where.not(id: black_tag.id).last
         query = tag.names.first
         params = {

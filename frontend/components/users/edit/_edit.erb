@@ -129,6 +129,20 @@
             Download export <i class="fa fa-download"></i>
         </a>
     </div>
+
+    <div class="zone">
+        <h5 class="title title-compact color-red">
+            <%= component "/shared/anchor", {anchor: "danger"} do %>
+                <i class="fa fa-exclamation-triangle"></i> Danger zone
+            <% end %>
+        </h5>
+        <h6 class="subtitle">
+            Delete account
+        </h6>
+        <button class="button-important button-error margin margin-top">Delete account<i class="fa fa-times"></i></button>
+        <p>After clicking on the button and confirming your password, the <strong>redemption period</strong> of <strong>30 days</strong> will start.<br />
+        Until the end of that period, you will be able to export your data and/or <strong>cancel the deletion</strong>.</p>
+    </div>
 <% end %>
 
 <div class="zone">

@@ -88,10 +88,10 @@ class PostsController < ApplicationController
 
         TagService.find_or_create(@post.source, :copyright, @post) unless @post.source.blank?
 
-        metadata = ActiveStorage::Analyzer::ImageAnalyzer.new(@post.post_image).metadata
-
-        @post.width = metadata[:width]
-        @post.height = metadata[:height]
+        file = params[:post][:post_image]
+        image = MiniMagick::Image.new(file.path)
+        @post.width = image.width
+        @post.height = image.height
 
         if @post.save
             TagService.change_counts(@post.tags, 1)
@@ -167,9 +167,11 @@ class PostsController < ApplicationController
     end
 
     def report_update
-        @post.assign_attributes(params.require(:post).permit(:report_reason))
-        @post.report = true
-        @post.report_user = current_user
+        report = Report.new params.require(:report).permit(:reason)
+        report.user = current_user
+        report.reportable = @post
+        report.save
+        @post.reports << report
         @post.save
 
         flash[:notice] = 'Post reported'
@@ -240,12 +242,12 @@ class PostsController < ApplicationController
     end
 
     def set_post
-        @post = Post.find_by(number: params[:id]) if params[:id]
+        @post = Post.eager_load(:comments, :tags, :reports).with_attached_post_image.find_by(number: params[:id]) if params[:id]
     end
 
     def try_set_post
         if params[:id]
-            @post = Post.includes(:comments, :tags).find_by(number: params[:id])
+            @post = Post.eager_load(:comments, :tags, :reports).with_attached_post_image.find_by(number: params[:id])
 
             not_found unless @post
         end

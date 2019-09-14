@@ -21,7 +21,9 @@
             </a>
             <p class="comment-text"><%= comment.text %></p>
             <div class="comment-links">
-                <%= link_to "report", comment_report_path(@post.number, comment), class:"report", method: :patch %>
+                <% if user_signed_in? %>
+                    <a class="button-secondary button-icon-left" href="<%= new_comment_report_path(@post.number, comment.id) %>"><i class="fa fa-times"></i> Report</a>
+                <% end %>
             </div>
         </div>
     </div>

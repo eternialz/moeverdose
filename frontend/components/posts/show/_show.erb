@@ -38,10 +38,9 @@
         <div class="post-show-image <%= @post.report ? "post-show-image-reported" : "" %>" data-action="click->post-show#showLightbox" data-target="post-show.image">
             <%= image_tag @post.post_image %>
         </div>
-        <% if @post.report %>
+        <% if @post.report? %>
             <div class="post-show-reported" data-target="post-show.report">
-                <p>This post has been reported by <%= link_to @post.report_user.name, user_path(id: @post.report_user.name) %> (<%= @post.report_user.role %>) for the following reason(s):</p>
-                <p class="p-lead"><%= @post.report_reason %></p>
+                <p> This post has been reported multiple times</p>
                 <button for="report_form_input" data-action="click->post-show#showReport" class="button-important background-red">Show post <i class="fa fa-exclamation"></i></button>
             </div>
         <% end %>
@@ -57,7 +56,7 @@
             <a class="button-secondary button-icon-left" target="_blank" href="https://www.google.fr/searchbyimage?site=search&image_url=<%= url_for(@post.post_image) %>"><i class="fab fa-google"></i>Search</a>
             <% if user_signed_in? %>
                 <a class="button-secondary button-icon-left" href="<%= edit_post_path(@post.number) %>"><i class="fa fa-edit"></i> Edit</a>
-                <a class="button-secondary button-icon-left" href="<%= edit_report_post_path(@post.number) %>"><i class="fa fa-times"></i> Report</a>
+                <a class="button-secondary button-icon-left" href="<%= new_report_post_path(@post.number) %>"><i class="fa fa-times"></i> Report</a>
             <% end %>
         </div>
 

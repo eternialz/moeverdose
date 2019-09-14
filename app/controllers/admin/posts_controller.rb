@@ -2,12 +2,14 @@ class Admin::PostsController < Admin::BaseController
     before_action :set_post, except: [:index]
 
     def index
-        @posts = Kaminari.paginate_array(Post.where(report: true).order('created_at DESC')).page(params[:page]).per(20)
+        @reports = Report.includes(reportable: [:user]).where(reportable_type: 'Post')
+        @posts = Kaminari.paginate_array(@reports.map(&:reportable).uniq).page(params[:page]).per(20)
 
         render component 'admin/posts/index'
     end
 
     def show
+        @reports = Report.includes(reportable: [:user]).where(reportable: @post)
         render component 'admin/posts/show'
     end
 
@@ -25,14 +27,15 @@ class Admin::PostsController < Admin::BaseController
     end
 
     def destroy
+        @post.post_image.purge
+        @post.reports.destroy_all
+        @post.comments.destroy_all
         @post.destroy
         redirect_to admin_posts_path
     end
 
     def unreport
-        @post.report = false
-        @post.report_user = nil
-        @post.report_reason = ''
+        @post.reports.destroy_all
         if @post.save
             flash[:notice] = 'The post has been unreported'
             redirect_to admin_posts_path

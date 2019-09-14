@@ -2,15 +2,15 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to create the application database on another
-# system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainable approach (the more migrations
-# you'll amass, the slower it'll run and the greater likelihood for issues).
+# This file is the source Rails uses to define your schema when running `rails
+# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_07_175539) do
+ActiveRecord::Schema.define(version: 2019_09_12_113849) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,15 +71,11 @@ ActiveRecord::Schema.define(version: 2019_09_07_175539) do
 
   create_table "comments", force: :cascade do |t|
     t.text "text"
-    t.boolean "report", default: false
-    t.text "report_reason"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
-    t.bigint "report_user_id"
     t.bigint "post_id"
     t.index ["post_id"], name: "index_comments_on_post_id"
-    t.index ["report_user_id"], name: "index_comments_on_report_user_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
@@ -150,15 +146,11 @@ ActiveRecord::Schema.define(version: 2019_09_07_175539) do
     t.string "title"
     t.string "source"
     t.text "description"
-    t.boolean "report", default: false
-    t.text "report_reason"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
-    t.bigint "report_user_id"
     t.bigint "author_id"
     t.index ["author_id"], name: "index_posts_on_author_id"
-    t.index ["report_user_id"], name: "index_posts_on_report_user_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -167,9 +159,15 @@ ActiveRecord::Schema.define(version: 2019_09_07_175539) do
     t.bigint "tag_id", null: false
   end
 
-  create_table "reported_posts_users", id: false, force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "post_id", null: false
+  create_table "reports", force: :cascade do |t|
+    t.text "reason"
+    t.string "reportable_type"
+    t.bigint "reportable_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
+    t.index ["reportable_type", "reportable_id"], name: "index_reports_on_reportable_type_and_reportable_id"
+    t.index ["user_id"], name: "index_reports_on_user_id"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -203,7 +201,6 @@ ActiveRecord::Schema.define(version: 2019_09_07_175539) do
     t.string "facebook"
     t.integer "upload_count", default: 0
     t.integer "exp", default: 0
-    t.boolean "report"
     t.boolean "banned"
     t.string "role"
     t.bigint "level_id"
@@ -213,4 +210,27 @@ ActiveRecord::Schema.define(version: 2019_09_07_175539) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "aliases", "tags", on_delete: :cascade
+  add_foreign_key "authors", "tags", on_delete: :nullify
+  add_foreign_key "blacklisted_tags_users", "tags", on_delete: :cascade
+  add_foreign_key "blacklisted_tags_users", "users", on_delete: :cascade
+  add_foreign_key "comments", "posts", on_delete: :nullify
+  add_foreign_key "comments", "users", on_delete: :nullify
+  add_foreign_key "disliked_posts_users", "posts", on_delete: :cascade
+  add_foreign_key "disliked_posts_users", "users", on_delete: :cascade
+  add_foreign_key "favorites_posts_users", "posts", on_delete: :cascade
+  add_foreign_key "favorites_posts_users", "users", on_delete: :cascade
+  add_foreign_key "favorites_tags_users", "tags", on_delete: :cascade
+  add_foreign_key "favorites_tags_users", "users", on_delete: :cascade
+  add_foreign_key "liked_posts_users", "posts", on_delete: :cascade
+  add_foreign_key "liked_posts_users", "users", on_delete: :cascade
+  add_foreign_key "permissions", "permissions_types", on_delete: :cascade
+  add_foreign_key "permissions", "users", on_delete: :cascade
+  add_foreign_key "posts", "authors", on_delete: :nullify
+  add_foreign_key "posts", "users", on_delete: :nullify
+  add_foreign_key "posts_tags", "posts", on_delete: :cascade
+  add_foreign_key "posts_tags", "tags", on_delete: :cascade
+  add_foreign_key "reports", "users", on_delete: :nullify
+  add_foreign_key "users", "levels", on_delete: :nullify
 end

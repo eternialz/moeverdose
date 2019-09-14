@@ -40,6 +40,8 @@ class User < ApplicationRecord
     # blacklisted_tags: Array<Tag> => User's blacklisted tags
     # comments: Array<Comment> => Self exp
     # permissions: Array<Permission> => User's authorization for personnal data processing
+    # reports: Array<Report> => Reports send by the user
+    # warnings: Array<Report> => Reports the user received
     # reported_posts: Array<Post> => All posts reported by the user
     #
     ####################################################################
@@ -79,7 +81,10 @@ class User < ApplicationRecord
     has_many :claims, class_name: 'Claim', inverse_of: :user
 
     # User security
-    alias_attribute :report?, :report
+    def report
+        warnings.size >= ConfigHelper.report_limit
+    end
+    alias report? report
     alias_attribute :banned?, :banned
 
     # GDPR
@@ -125,18 +130,19 @@ class User < ApplicationRecord
         !banned? ? super : :banned
     end
 
-    def team?
-        ['administrator', 'moderator'].include? role
-    end
-
-    # Reported posts
-    has_and_belongs_to_many :reported_posts, class_name: 'Post', inverse_of: nil, join_table: :reported_posts_users
+    has_many :warnings, as: :reportable, class_name: 'Report'
+    # Reports he made
+    has_many :reports
 
     # Roles
 
     module Role
         def self.all
-            ['user', 'administrator', 'contributor', 'moderator', 'developper']
+            ['user', 'administrator', 'contributor', 'moderator']
+        end
+
+        def self.team
+            ['administrator', 'moderator']
         end
 
         all.each do |role|
@@ -147,6 +153,10 @@ class User < ApplicationRecord
     end
     include User::Role
     validates :role, inclusion: { in: User::Role.all }
+
+    def team?
+        User::Role.team.include? role
+    end
 
     private
 

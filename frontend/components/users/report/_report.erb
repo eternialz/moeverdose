@@ -1,5 +1,5 @@
-<%= form_for Report.new, as: "report", url: report_post_path(@post.number), html: {class: "zone report_form field_area", id: 'report_post'} do |report| %>
-    <h4 class="title color-red"><i class="fa fa-exclamation-circle"></i> Report post</h4>
+<%= form_for Report.new, as: "report", url: user_report_path(@user.name), html: {class: "zone report_form field_area", id: 'report_post'} do |report| %>
+    <h4 class="title color-red"><i class="fa fa-exclamation-circle"></i> Report <%= @user.name %></h4>
     <%= report.text_area :reason, class: "form-textarea", placeholder: "Reason" %>
     <div class="button-list button-list-right">
         <button type="submit" form="report_post" class="button-important background-red" type="submit">Report <i class="fa fa-exclamation"></i></button>

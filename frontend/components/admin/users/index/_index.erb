@@ -11,6 +11,7 @@
                 <% else %>
                     <a class="btn btn-red" href="<%= admin_user_ban_path(user)%>" data-confirm="Ban user <%= user.name %>?"  data-method="patch"><i class="fa fa-exclamation"></i>ban</a>
                 <% end %>
+                <a href="<%= admin_user_path(user) %>"class="btn btn-yellow"><i class="fa fa-eye"></i>Detail</a>
             </span>
             <% if user.avatar.attached? %>
                 <img class="avatar" src='<%= url_for user.avatar %>'>

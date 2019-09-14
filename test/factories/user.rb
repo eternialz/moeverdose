@@ -1,4 +1,3 @@
-require_relative '../factory_helpers'
 FactoryBot.define do
     factory :user do
         email { Faker::Internet.email }
@@ -30,7 +29,10 @@ FactoryBot.define do
         end
 
         factory :user_reported, class: 'User' do
-            report { true }
+            after(:build) do |user|
+                report = build(:report)
+                user.warnings << report
+            end
         end
     end
 end

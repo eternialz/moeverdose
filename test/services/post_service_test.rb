@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class UserServiceTest < ActiveSupport::TestCase
+class PostServiceTest < ActiveSupport::TestCase
     setup do
         @last_post = create(:user_with_post).posts.first
     end
