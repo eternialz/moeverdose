@@ -1,10 +1,10 @@
-<p align="center"><img width="100" src="https://github.com/eternialz/moeverdose/blob/master/public/images/logo-128.png?raw=true" alt="Moeverdose logo"></p>
+<p align="center"><img width="100" src="https://github.com/eternialz/moeverdose/blob/develop/public/images/logo-128.png?raw=true" alt="Moeverdose logo"></p>
 
 <h1 align="center">MOEVERDOSE</h1>
 <p align="center">A taggable image board made from scratch with Rails 5 and PostGreSQL.</p>
 <p align="center">
-    <a href="https://travis-ci.org/eternialz/moeverdose"><img src="https://travis-ci.org/eternialz/moeverdose.svg?branch=master" alt="Build Status"></a>
-    <a href="https://codecov.io/gh/eternialz/moeverdose"><img src="https://codecov.io/gh/eternialz/moeverdose/branch/master/graph/badge.svg" alt="Coverage Status"></a>
+    <a href="https://travis-ci.org/eternialz/moeverdose"><img src="https://travis-ci.org/eternialz/moeverdose.svg?branch=develop" alt="Build Status"></a>
+    <a href="https://codecov.io/gh/eternialz/moeverdose"><img src="https://codecov.io/gh/eternialz/moeverdose/branch/develop/graph/badge.svg" alt="Coverage Status"></a>
     <a href="https://www.codefactor.io/repository/github/eternialz/moeverdose/"><img src="https://www.codefactor.io/repository/github/eternialz/moeverdose/badge" alt="Code quality"></a>
     <a href="https://discordapp.com/invite/xfCpyJY"><img src="https://discordapp.com/api/guilds/163371003366342657/widget.png?style=shield" alt="Dev chat"></a>
     <a href="https://opensource.org/licenses/MPL-2.0"><img src="https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg" alt="Licence MPL 2.0"></a>
@@ -82,7 +82,7 @@ Browser support is defined in [.browserslistrc](https://github.com/eternialz/moe
 
 ## Contributing
 
-See [Contributing guidelines](https://github.com/eternialz/moeverdose/blob/master/CONTRIBUTING.md).
+See [Contributing guidelines](https://github.com/eternialz/moeverdose/blob/develop/.github/CONTRIBUTING.md).
 
 ## Questions
 
