@@ -86,6 +86,10 @@
     @include button-color($error-color);
 }
 
+.button-warning {
+    @include button-color($warning-color);
+}
+
 .button-success {
     @include button-color($success-color);
 }

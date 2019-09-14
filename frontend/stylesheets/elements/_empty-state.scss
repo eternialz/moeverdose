@@ -1,0 +1,12 @@
+.empty-state {
+    align-items: center;
+    background: $gray-lightest;
+    border-radius: $border-radius;
+    color: $gray;
+    display: flex;
+    font-size: 1.2rem;
+    font-weight: bold;
+    height: 5rem;
+    justify-content: center;
+    padding: 3rem;
+}

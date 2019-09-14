@@ -35,12 +35,19 @@
     </div>
 
     <div class="post-show-content">
-        <div class="post-show-image <%= @post.report ? "post-show-image-reported" : "" %>" data-action="click->post-show#showLightbox" data-target="post-show.image">
-            <%= image_tag @post.post_image %>
-        </div>
-        <% if @post.report? %>
-            <div class="post-show-reported" data-target="post-show.report">
-                <p> This post has been reported multiple times</p>
+        <% unless @post.hide_post? %>
+            <div class="post-show-image <%= @post.report ? "post-show-image-reported" : "" %>" data-action="click->post-show#showLightbox" data-target="post-show.image">
+                <%= image_tag @post.post_image %>
+            </div>
+        <% end %>
+        <% if @post.hide_post? %>
+            <div class="post-show-overlay" data-target="post-show.report">
+                <p>This post is subject to a takedown notice.</p>
+                <p>It may appear again if the uploader or plaintiff dismiss the claim.</p>
+            </div>
+        <% elsif @post.report? %>
+            <div class="post-show-overlay" data-target="post-show.report">
+                <p>This post has been reported multiple times</p>
                 <button for="report_form_input" data-action="click->post-show#showReport" class="button-important background-red">Show post <i class="fa fa-exclamation"></i></button>
             </div>
         <% end %>

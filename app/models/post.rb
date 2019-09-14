@@ -66,6 +66,11 @@ class Post < ApplicationRecord
     end
     alias report? report
 
+    def hide_post
+        claims.any?(&:hide_post?)
+    end
+    alias hide_post? hide_post
+
     def self.sort_scopes
         [:created_at, :overdose, :shortage]
     end

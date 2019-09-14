@@ -1,46 +1,104 @@
-<h2 class="title">Received takedown notices</h2>
-<div class="item-list margin margin-2 margin-bottom">
-    <% if @received_claims.each do |c| %>
-        <%= link_to claim_path(c), class: 'item' do %>
-            <div class="item-content">
-                Post id: <%= c.post.number %>
+<div class="zone">
+    <h2 class="title title-compact">Received takedown notices</h2>
+    <h5 class="subtitle">Posts shown here are currently hidden. Click on the post id to view post image.</h5> 
+    <div class="action-table">
+        <header>
+            <div class="action-table-header-part">
+                Post ID
             </div>
-            <div class="item-content align-right claim-status-<%= c.status %>">
-                <%= c.status %>
+            <div class="action-table-header-part">
+                Status
+            </div>
+            <div class="action-table-header-part align-right">
+                Actions
+            </div>
+        </header>
+        <% if @received_claims.each do |c| %>
+            <div class="action-table-item">
+                <%= link_to claim_path(c), class: "action-table-item-part" do %>
+                    <strong><%= c.post.number %></strong>
+                <% end %>
+                <div class="action-table-item-part button-list button-list-right">
+                    <%= 
+                        button_to "Dismiss",
+                        change_claim_status_path(c, params: {status: :dismissed}),
+                        method: :patch,
+                        class: "button-important button-warning",
+                        data: {confirm: "Are you sure you want to dismiss this claim ? Legal issues can ensue from it."}
+                    %>
+                    <%= 
+                        button_to "Accept",
+                        change_claim_status_path(c, params: {status: :accepted}),
+                        method: :patch,
+                        class: "button-important button-success",
+                        data: {confirm: "Are you sure you want to accept this takedown notice ? The post will continue to be hidden."}
+                    %>
+                </div>
+            </div>
+        <% end.empty? %>
+            <div class="empty-state">
+                You have no posts that are subject to an open tokedown notice
             </div>
         <% end %>
-    <% end.empty? %>
-        You have no posts that are subject to an open tokedown notice
-    <% end %>
 
-    <%= paginate @received_claims %>
-
-    <%= component "shared/items-per-page",
-        {
-            total_pages: @received_claims.total_pages,
-            keep_params: []
-        }
-    %>
+        <footer>
+            <%= paginate @received_claims %>
+        </footer>
+    </div>
 </div>
 
-<h2 class="title">Emitted takedown notices</h2>
-<div class="item-list">
-    <% if @emitted_claims.each do |c| %>
-        <%= link_to claim_path(c), class: "item" do %>
-            <div class="item-content">
-                <%= c.post.number %>
+<div class="zone">
+    <h2 class="title title-compact">Sent takedown notices</h2>
+    <h5 class="subtitle">You have sent a takedown notice for each of these posts. Click on the post id to view post image</h5>
+    <div class="action-table">
+        <header>
+            <div class="action-table-header-part">
+                Post ID
+            </div>
+            <div class="action-table-header-part">
+                Status
+            </div>
+            <div class="action-table-header-part align-right">
+                Actions
+            </div>
+        </header>
+        <% if @emitted_claims.each do |c| %>
+            <div class="action-table-item">
+                <%= link_to claim_path(c), class: "action-table-item-part" do %>
+                    <strong><%= c.post.number %></strong>
+                <% end %>
+                <% if c.open? %>
+                    <div class="action-table-item-part color-green">
+                        <strong data-tooltip="The post is hidden."><%= c.status.upcase %></strong>
+                    </div>
+                <% elsif c.hide_post? %>
+                    <div class="action-table-item-part color-green">
+                        <strong data-tooltip="The post will be kept hidden."><%= c.status.upcase %></strong>
+                    </div>
+                <% else %>
+                    <div class="action-table-item-part color-red">
+                        <strong data-tooltip="The post will be displayed again."><%= c.status.upcase %></strong>
+                    </div>
+                <% end %>
+                <div class="action-table-item-part button-list button-list-right">
+                    <% if c.open? %>
+                        <%=
+                            button_to "Cancel",
+                            change_claim_status_path(c, params: { status: :canceled }),
+                            method: :patch,
+                            class: "button-important button-warning",
+                            data: { confirm: "Are you sure you want to cancel this claim ?" }
+                        %>
+                    <% end %>
+                </div>
+            </div>
+        <% end.empty? %>
+            <div class="empty-state">
+                You have not sent any takedown notices
             </div>
         <% end %>
-    <% end.empty? %>
-        You have not emitted any takedown notices
-    <% end %>
-
-    <%= paginate @emitted_claims %>
-
-    <%= component "shared/items-per-page",
-        {
-            total_pages: @emitted_claims.total_pages,
-            keep_params: []
-        }
-    %>
+        <footer>
+            <%= paginate @emitted_claims %>
+        </footer>
+    </div>
 </div>

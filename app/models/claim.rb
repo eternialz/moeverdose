@@ -15,7 +15,7 @@ class Claim < ApplicationRecord
 
     module Status
         def self.all
-            ['open', 'closed', 'accepted', 'proved']
+            ['open', 'accepted', 'proved', 'dismissed', 'canceled']
         end
 
         def self.hide_post
@@ -24,7 +24,7 @@ class Claim < ApplicationRecord
 
         all.each do |status|
             define_method("#{status}?") do
-                self.status == role
+                self.status == status
             end
         end
     end
@@ -32,6 +32,6 @@ class Claim < ApplicationRecord
     validates :status, inclusion: { in: Claim::Status.all }
 
     def hide_post?
-        Claim::Status.hide.include? status
+        Claim::Status.hide_post.include? status
     end
 end

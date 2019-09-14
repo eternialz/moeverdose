@@ -80,11 +80,11 @@ class UsersController < ApplicationController
 
     def claims
         @emitted_claims = Kaminari.paginate_array(
-            Claim.where(user: current_user)
+            Claim.where(user: current_user).order(created_at: :desc)
         ).page(params[:page]).per(@items_per_page)
 
         @received_claims = Kaminari.paginate_array(
-            Claim.where(status: :open).joins(:post).where(posts: { user: current_user })
+            Claim.where(status: :open).joins(:post).where(posts: { user: current_user }).order(created_at: :desc)
         ).page(params[:page]).per(@items_per_page)
 
         render component 'users/claims'

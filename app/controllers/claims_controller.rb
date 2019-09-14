@@ -1,8 +1,8 @@
 class ClaimsController < ApplicationController
     before_action :authenticate_user!, except: [:new]
-    before_action :set_default_index_values, only: [:index]
     before_action :set_post, only: [:create]
-    before_action :set_claim, only: [:show, :destroy]
+    before_action :set_claim, only: [:show, :change_status]
+    before_action :verify_user, except: [:new, :create]
 
     def show
         render component 'claims/show'
@@ -14,7 +14,7 @@ class ClaimsController < ApplicationController
     end
 
     def create
-        claim = Claim.where(post: @post, user: current_user, status: Claim::Status.hide_post)
+        claim = Claim.where(post: @post, user: current_user, status: Claim::Status.hide_post).first
         if claim
             flash[:error] = 'You already claimed this post and it is currently hidden.'
         else
@@ -31,13 +31,13 @@ class ClaimsController < ApplicationController
         end
     end
 
-    def close
-        @claim.closed = true
-        @claim.post.hidden = false
+    def change_status
+        @claim.status = params.require(:status)
         @claim.save
 
-        ClaimMailer.unclaimed(claim).deliver_later
-        flash[:success] = 'Claim successfully removed.'
+        ClaimMailer.unclaimed(@claim).deliver_later
+        flash[:success] = 'Claim state successfully changed.'
+        redirect_to user_claims_path(current_user.name)
     end
 
     private
@@ -48,5 +48,9 @@ class ClaimsController < ApplicationController
 
     def set_claim
         @claim = Claim.find(params[:id])
+    end
+
+    def verify_user
+        [@claim.user, @claim.post.user].include? current_user
     end
 end
