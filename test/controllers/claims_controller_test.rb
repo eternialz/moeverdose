@@ -49,7 +49,11 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
         post = Post.first
         Claim.create(post: post, user: @copyright_owner, status: [:open, :accepted].sample)
 
+        assert ['open', 'accepted'].include? Claim.first.status
+
         patch cancel_claim_path(Claim.first)
+
+        assert_equal Claim.first.status, 'canceled'
 
         assert_redirected_to user_claims_path(@copyright_owner.name)
     end
@@ -58,6 +62,14 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
         sign_in @user
         post = @user.posts.first
         Claim.create(post: post, user: @copyright_owner, status: :open)
+
+        assert_equal Claim.first.status, "open"
+
+        patch decide_claim_status_path(Claim.first, params: { status: [:dismissed, :accepted].sample })
+
+        assert ['dismissed', 'accepted'].include? Claim.first.status
+
+        assert_redirected_to user_claims_path(@user.name)
     end
 
     test "User can't dismiss/accept a closed claim" do
@@ -66,7 +78,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
         Claim.create(post: post, user: @copyright_owner, status: [:accepted, :canceled, :dismissed].sample)
     end
 
-    test "User who isn't the uploader or claimer can't display the claim in question" do
+    test "User who isn't the uploader or claimer can't display the claim" do
         sign_in @unrelated_user
         post = @user.posts.first
         Claim.create(post: post, user: @copyright_owner, status: Claim::Status.all.sample)
@@ -74,5 +86,15 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
         get claim_path(Claim.first)
 
         assert_redirected_to user_claims_path(@unrelated_user.name)
+    end
+
+    test 'User who is either the uploader or the claimer can display the claim' do
+        sign_in [@user, @copyright_owner].sample
+        post = @user.posts.first
+        Claim.create(post: post, user: @copyright_owner, status: Claim::Status.all.sample)
+
+        get claim_path(Claim.first)
+
+        assert_response :success
     end
 end
