@@ -14,7 +14,7 @@ gem 'puma', '~> 3.11'
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
-gem 'webpacker', '~> 3.5'
+gem 'webpacker', '~> 3.6', '>= 3.6.0'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
@@ -26,7 +26,7 @@ gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby.git', require: 'bcry
 # Use ActiveStorage variant
 gem 'image_processing', '~> 1.2'
 gem 'mini_magick'
-gem 'active_storage_validations'
+gem 'active_storage_validations', '>= 0.7.1'
 gem 'mime-types', require: 'mime/types/full'
 
 # Use Capistrano for deployment
@@ -36,7 +36,7 @@ gem 'mime-types', require: 'mime/types/full'
 gem 'devise', github: 'plataformatec/devise'
 
 # Pagination plugin
-gem 'kaminari'
+gem 'kaminari', '>= 1.1.1'
 
 # Httparty
 gem 'httparty'
@@ -65,7 +65,7 @@ end
 
 group :development do
     # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-    gem 'web-console', '>= 3.3.0'
+    gem 'web-console', '>= 3.7.0'
     gem 'listen', '>= 3.0.5', '< 3.2'
     # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
     gem 'spring'
@@ -79,7 +79,7 @@ end
 
 group :test do
     # Gems for test
-    gem 'factory_bot_rails'
+    gem 'factory_bot_rails', '>= 5.0.2'
     gem 'faker', github: 'stympy/faker'
     gem 'minitest-rails', github: 'blowmage/minitest-rails'
     gem 'codecov', require: false
