@@ -63,7 +63,7 @@ class CommentsControllerTest < ActionDispatch::IntegrationTest
         post = @user.posts.first
         Claim.create(post: post, user: @copyright_owner, status: :open)
 
-        assert_equal Claim.first.status, "open"
+        assert_equal Claim.first.status, 'open'
 
         patch decide_claim_status_path(Claim.first, params: { status: [:dismissed, :accepted].sample })
 
