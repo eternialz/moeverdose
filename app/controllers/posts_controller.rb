@@ -88,6 +88,11 @@ class PostsController < ApplicationController
 
         TagService.find_or_create(@post.source, :copyright, @post) unless @post.source.blank?
 
+        file = params[:post][:post_image]
+        image = MiniMagick::Image.new(file.path)
+        @post.width = image.width
+        @post.height = image.height
+
         if @post.save
             TagService.change_counts(@post.tags, 1)
 
