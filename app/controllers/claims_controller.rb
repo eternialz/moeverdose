@@ -14,15 +14,19 @@ class ClaimsController < ApplicationController
     end
 
     def create
-        # @post.hidden = true
-        claim = Claim.create(user: current_user, post: @post)
+        claim = Claim.where(post: @post, user: current_user, status: Claim::Status.hide_post)
+        if claim
+            flash[:error] = 'You already claimed this post and it is currently hidden.'
+        else
+            claim = Claim.create(user: current_user, post: @post, status: :open)
+        end
 
-        if claim.save
+        if !flash[:error] && claim.save
             ClaimMailer.claimed(claim).deliver_later
             flash[:success] = 'Claim successfully created.'
-            redirect_to user_claims_path
+            redirect_to user_claims_path(current_user.name)
         else
-            flash[:error] = 'An error occured when creating your claim, please verify the informations you provided'
+            flash[:error] ||= 'An error occured when creating your claim, please verify the informations you provided'
             redirect_to new_claim_path
         end
     end

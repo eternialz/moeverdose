@@ -1,7 +1,7 @@
 class AddClaims < ActiveRecord::Migration[5.2]
     def change
         create_table :claims do |t|
-            t.boolean :closed
+            t.string :status
 
             t.timestamps
         end

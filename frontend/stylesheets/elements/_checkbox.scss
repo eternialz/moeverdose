@@ -13,10 +13,16 @@
         & + *::before {
             content: "\f0c8";
             font-family: "Font Awesome 5 Free", sans-serif;
+            transition: color 100ms ease-in-out;
         }
 
         &:checked + *::before {
+            color: $base-color;
             content: "\f14a";
+        }
+
+        &:invalid ~ .required-message {
+            display: block;
         }
     }
 }

@@ -20,11 +20,11 @@
             <li class="step-list-step">Submit a takedown for a post using the <strong>unique identifier</strong> attributed to it.</li>
             <li class="step-list-step">The post is immediatly hidden from the public and no one can view it. The name you filled in your takedown notice is displayed instead.</li>
             <li class="step-list-step">To prevent abuse of this system, the post uploader is notified and can then dismiss or accept your takedown notice.</li>
-            <li class="step-list-step">If the uploader accepts it, the post is deleted permanently.</li>
-            <li class="step-list-step">If the uploader dismisses your request, the post is shown again and you are notified. You can choose between two different options:</li>
+            <li class="step-list-step">If the uploader accepts it, the post stay hidden.</li>
+            <li class="step-list-step">If the uploader dismisses your request, the post is shown again and you are notified through mail. You can choose between two different options:</li>
             <ol class="step-list">
                 <li class="step-list-step">You can submit a takedown notice indefinitely for the same post.</li>
-                <li class="step-list-step">You can contact us directly (using Discord for exemple) and prove your identity using means available only to the copyright owner or its representative for the post to be deleted directly.</li>
+                <li class="step-list-step">You can contact us directly (using Discord for exemple) and prove your identity (using means available only to the copyright owner or its representative) for the post to stay hidden.</li>
             </ol>
         </ol>
     </div>
@@ -50,6 +50,10 @@
                 <li>If your work is already protected using a third party service, you can use it.</li>
             </ul>
         </blockquote>
+        <h5 class="subtitle">In the case where we both prove our identity (official account hack, etc.), what happen ?</h5>
+        <blockquote>
+             In that case, to protect us and our members, we will hide the post indefinitely and ask you to resort to available legal means.
+        </blockquote>
         <h5 class="subtitle">Can I prevent all my works from being posted here?</h5>
         <blockquote>
             For the moment, it is impossible but we are planning to design a system were an author tag is impossible to use to upload a post.
@@ -64,29 +68,37 @@
             If trying to make a claim to get your content removed doesn't work, you can contact us through Discord.
             To do this, you don't need a Discord account and you can <a href="https://discord.gg/xfCpyJY">join our server</a> as a guest.
         </blockquote>
+        <h5 class="subtitle">Why do you keep the post hidden even though i want it deleted from your database ?</h5>
+        <blockquote>
+            We keep the post hidden because <strong>it prevent our member from uploading the same file again</strong>.
+            We compute the hash of each uploaded post using md5 and compare it to existing posts. If it already exists in our databse we refuse the upload.
+            Deleting the posts image means we lose it's md5 informations.
+        </blockquote>
     </div>
     <div class="article-part">
         <h2 class="title">Submit a takedown notice</h2>
         <% if signed_in? %>
             <div class="alert alert-danger">
                 Do not make false claims. Abusing this system can result in supension of your account and legal consequences.
-                All your claims can be canceled if you wrongly claim one or more works.
+                <strong>All your takedown notices will be canceled</strong> if you wrongly claim one or more works.
             </div>
-            <%= form_with url: claims_path, method: :post, class: "form" do %>
+            <%= form_with url: claims_path, local: :true, method: :post, class: "form" do |f| %>
                 <div class="actions">
-                    <div class="form-field">
-                        <label class="checkbox"><%= check_box_tag :accept_conditions %><span></span> I understand that lying about my rights can and will get me punished.</label>
+                    <div class="form-field form-checkbox">
+                        <%= f.check_box :accept_conditions, required: :true %>
+                        <%= f.label "I understand that lying about my rights can and will get me punished.", for: :accept_conditions, class: "form-checkbox", "aria-role": "checkbox"%>
                     </div>
-                    <div class="form-field">
-                        <label class="checkbox"><%= check_box_tag :certify_ownership %><span></span> I am the copyright owner or rightful representative of the content I claim.</label>
+                    <div class="form-field form-checkbox">
+                        <%= f.check_box :certify_ownership, required: :true %>
+                        <%= f.label "I am the copyright owner or rightful representative of the content I claim.", for: :certify_ownership, class: "form-checkbox", "aria-role": "checkbox"%>
                     </div>
                     <div class="form-field">
                         <label class="form-label" for="number"><i class="fa fa-hashtag"></i> Post ID</label>
-                        <%= number_field_tag :post_number, nil, class: "form-input" %>
+                        <%= f.number_field :post_number, class: "form-input", required: :true %>
                     </div>
                     <div class="align-right">
                         <button class="button-important button-white margin margin-top" type="reset">Reset</button>
-                        <%= button_to "Submit claim", data: {confirm: "Are you sure you want to submit this claim?"} %>
+                        <%= f.submit "Submit claim", class: "button-important button-error margin margin-top", data: {confirm: "Are you sure you want to submit this claim?"} %>
                     </div>
                 </div>
             <% end %>

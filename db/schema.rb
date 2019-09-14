@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 2019_09_07_175539) do
   end
 
   create_table "claims", force: :cascade do |t|
-    t.boolean "closed"
+    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "post_id"
