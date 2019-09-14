@@ -202,7 +202,7 @@ class UsersController < ApplicationController
 
     def check_user
         if current_user != @user
-            flash[:error] = "The user you tried to edit isn't yourself"
+            flash[:error] = "You can't access another's profile options."
             redirect_to edit_user_path(current_user.name)
         end
     end

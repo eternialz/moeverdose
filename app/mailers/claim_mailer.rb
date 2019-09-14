@@ -8,7 +8,7 @@ class ClaimMailer < ApplicationMailer
 
     def unclaimed(claim)
         mail(
-            to: claim.post.user.email,
+            to: claim.user.email,
             subject: "Your claim on post #{claim.post.number} was refused"
         )
     end

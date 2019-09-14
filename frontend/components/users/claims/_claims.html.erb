@@ -1,6 +1,6 @@
 <div class="zone">
     <h2 class="title title-compact">Received takedown notices</h2>
-    <h5 class="subtitle">Posts shown here are currently hidden. Click on the post id to view post image.</h5> 
+    <h6 class="subtitle">Posts shown here are currently hidden from the public.</h6> 
     <div class="action-table">
         <header>
             <div class="action-table-header-part">
@@ -15,23 +15,28 @@
         </header>
         <% if @received_claims.each do |c| %>
             <div class="action-table-item">
-                <%= link_to claim_path(c), class: "action-table-item-part" do %>
+                <div class="action-table-item-part">
                     <strong><%= c.post.number %></strong>
-                <% end %>
+                </div>
                 <div class="action-table-item-part button-list button-list-right">
-                    <%= 
+                    <%=
                         button_to "Dismiss",
-                        change_claim_status_path(c, params: {status: :dismissed}),
+                        decide_claim_status_path(c, params: {status: :dismissed}),
                         method: :patch,
                         class: "button-important button-warning",
                         data: {confirm: "Are you sure you want to dismiss this claim ? Legal issues can ensue from it."}
                     %>
-                    <%= 
+                    <%=
                         button_to "Accept",
-                        change_claim_status_path(c, params: {status: :accepted}),
+                        decide_claim_status_path(c, params: {status: :accepted}),
                         method: :patch,
                         class: "button-important button-success",
                         data: {confirm: "Are you sure you want to accept this takedown notice ? The post will continue to be hidden."}
+                    %>
+                    <%=
+                        link_to "Show post",
+                        claim_path(c),
+                        class: "button-important button-base"
                     %>
                 </div>
             </div>
@@ -49,7 +54,6 @@
 
 <div class="zone">
     <h2 class="title title-compact">Sent takedown notices</h2>
-    <h5 class="subtitle">You have sent a takedown notice for each of these posts. Click on the post id to view post image</h5>
     <div class="action-table">
         <header>
             <div class="action-table-header-part">
@@ -64,9 +68,9 @@
         </header>
         <% if @emitted_claims.each do |c| %>
             <div class="action-table-item">
-                <%= link_to claim_path(c), class: "action-table-item-part" do %>
+                <div class="action-table-item-part">
                     <strong><%= c.post.number %></strong>
-                <% end %>
+                </div>
                 <% if c.open? %>
                     <div class="action-table-item-part color-green">
                         <strong data-tooltip="The post is hidden."><%= c.status.upcase %></strong>
@@ -81,15 +85,20 @@
                     </div>
                 <% end %>
                 <div class="action-table-item-part button-list button-list-right">
-                    <% if c.open? %>
+                    <% if c.hide_post? %>
                         <%=
                             button_to "Cancel",
-                            change_claim_status_path(c, params: { status: :canceled }),
+                            cancel_claim_path(c),
                             method: :patch,
                             class: "button-important button-warning",
                             data: { confirm: "Are you sure you want to cancel this claim ?" }
                         %>
                     <% end %>
+                    <%=
+                        link_to "Show post",
+                        claim_path(c),
+                        class: "button-important button-base"
+                    %>
                 </div>
             </div>
         <% end.empty? %>

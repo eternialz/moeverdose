@@ -15,11 +15,11 @@ class Claim < ApplicationRecord
 
     module Status
         def self.all
-            ['open', 'accepted', 'proved', 'dismissed', 'canceled']
+            ['open', 'accepted', 'dismissed', 'canceled']
         end
 
         def self.hide_post
-            ['open', 'accepted', 'proved']
+            ['open', 'accepted']
         end
 
         all.each do |status|

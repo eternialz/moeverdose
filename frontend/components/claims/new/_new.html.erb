@@ -30,7 +30,7 @@
     </div>
     <div class="article-part">
         <h2 class="title">FAQ</h2>
-        <h5 class="subtitle">What is the post unique identifier and how to find it ?</h5>
+        <h5 class="subtitle">What is the post unique identifier and how to find it?</h5>
         <blockquote>
             To make your claim, you need to find the infringing post unique identifier or ID. It correspond to the number displayed in the url of each post.
             For exemple, a post at the url "/posts/564" will have the ID of 564. It can also be found in the "Informations" section, under each post page.
@@ -50,7 +50,7 @@
                 <li>If your work is already protected using a third party service, you can use it.</li>
             </ul>
         </blockquote>
-        <h5 class="subtitle">In the case where we both prove our identity (official account hack, etc.), what happen ?</h5>
+        <h5 class="subtitle">In the case where we both prove our identity (official account hack, etc.), what happen?</h5>
         <blockquote>
              In that case, to protect us and our members, we will hide the post indefinitely and ask you to resort to available legal means.
         </blockquote>
@@ -62,17 +62,29 @@
         <h5 class="subtitle">Can I retract my claim?</h5>
         <blockquote>
             Using your profile, you can view all the claims you made. You can delete each claim individually and it will instantly make the post available again.
+            <% if user_signed_in? %>
+                You can cancel your claims at <%= link_to "this page", user_claims_path(current_user.name) %>.
+            <% end %>
         </blockquote>
-        <h5 class="subtitle">How can I contact your team ?</h5>
+        <h5 class="subtitle">How can I contact your team?</h5>
         <blockquote>
             If trying to make a claim to get your content removed doesn't work, you can contact us through Discord.
             To do this, you don't need a Discord account and you can <a href="https://discord.gg/xfCpyJY">join our server</a> as a guest.
         </blockquote>
-        <h5 class="subtitle">Why do you keep the post hidden even though i want it deleted from your database ?</h5>
+        <h5 class="subtitle">Why do you keep the post hidden even though i want it deleted from your database?</h5>
         <blockquote>
             We keep the post hidden because <strong>it prevent our member from uploading the same file again</strong>.
             We compute the hash of each uploaded post using md5 and compare it to existing posts. If it already exists in our databse we refuse the upload.
             Deleting the posts image means we lose it's md5 informations.
+        </blockquote>
+        <h5 class="subtitle">What are the different takedown statuses?</h5>
+        <blockquote>
+            <ul class="list">
+                <li><strong>OPEN</strong>: The status just after submitting the takedown notice. The post image is hidden but the uploader can dismiss the claim.</li>
+                <li><strong>ACCEPTED</strong>: After the uploader accepted the takedown. The post image is hidden.</li>
+                <li><strong>DISMISSED</strong>: After the uploader dismissed the takedown. The post image is shown again but you can make a claim again.</li>
+                <li><strong>CANCELED</strong>: After you or an administrator canceled your takedown notice from your user profile.</li>
+            </ul>
         </blockquote>
     </div>
     <div class="article-part">

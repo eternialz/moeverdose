@@ -64,7 +64,8 @@ Rails.application.routes.draw do
 
     # Claims
     resources :claims, controller: 'claims', only: [:show, :create, :new]
-    patch 'claims/:id' => 'claims#change_status', as: 'change_claim_status'
+    patch 'claims/:id/decide' => 'claims#decide_status', as: 'decide_claim_status'
+    patch 'claims/:id/cancel' => 'claims#cancel', as: 'cancel_claim'
 
     # Errors
     match '/404', to: 'errors#not_found', via: :all

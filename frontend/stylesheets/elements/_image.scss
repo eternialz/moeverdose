@@ -1,4 +1,16 @@
-img,
-.image {
+img {
     max-width: 100%;
+}
+
+.image {
+    display: flex;
+    justify-content: center;
+
+    img {
+        float: left;
+    }
+
+    &.image-rounded img {
+        border-radius: $border-radius;
+    }
 }
