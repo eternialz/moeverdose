@@ -72,6 +72,6 @@ class ClaimsController < ApplicationController
     end
 
     def verify_user
-        [@claim.user, @claim.post.user].include? current_user
+        redirect_to user_claims_path(current_user.name) unless [@claim.user, @claim.post.user].include? current_user
     end
 end
