@@ -17,8 +17,33 @@
                 <li><span class="list-detailed-key">MD5:</span><span class="list-detailed-value"><%= @claim.post.number %></span></li>
             </ul>
             <p class="align-center">Only the claimer and the uploader can see this page</p>
-            <div class="button-list button-list-right margin margin-top">
+            <div class="button-list button-list-vertical margin margin-top">
                 <%= link_to "Show public page", post_path(@claim.post.number), class: "button-important button-base" %>
+                <% if @claim.open? && current_user == @claim.post.user %>
+                    <%=
+                        button_to "Dismiss",
+                        decide_claim_status_path(@claim, params: {status: :dismissed}),
+                        method: :patch,
+                        class: "button-important button-warning",
+                        data: {confirm: "Are you sure you want to dismiss this claim ? Legal issues can ensue from it."}
+                    %>
+                    <%=
+                        button_to "Accept",
+                        decide_claim_status_path(@claim, params: {status: :accepted}),
+                        method: :patch,
+                        class: "button-important button-success",
+                        data: {confirm: "Are you sure you want to accept this takedown notice ? The post will continue to be hidden."}
+                    %>
+                <% end %>
+                <% if @claim.hide_post? && current_user == @claim.user %>
+                    <%=
+                        button_to "Cancel Takedown",
+                        cancel_claim_path(@claim),
+                        method: :patch,
+                        class: "button-important button-warning",
+                        data: { confirm: "Are you sure you want to cancel this claim ?" }
+                    %>
+                <% end %>
             </div>
         </div>
     </div>

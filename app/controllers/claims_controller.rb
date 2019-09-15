@@ -18,7 +18,7 @@ class ClaimsController < ApplicationController
         if claim
             flash[:error] = 'You already claimed this post and it is currently hidden.'
         else
-            claim = Claim.create(user: current_user, post: @post, status: :open)
+            claim = Claim.new(user: current_user, post: @post, status: :open)
         end
 
         if !flash[:error] && claim.save

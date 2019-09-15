@@ -92,11 +92,9 @@ class Post < ApplicationRecord
 
     def post_image_thumbnail
         post_image.variant(
-            combine_options: {
-                resize: "#{Post.sizes[:thumbnail]}^",
-                extent: Post.sizes[:thumbnail],
-                gravity: 'center'
-            }
+            gravity: 'center',
+            resize: "#{Post.sizes[:thumbnail]}^",
+            extent: Post.sizes[:thumbnail]
         ).processed
     end
 

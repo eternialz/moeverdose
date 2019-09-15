@@ -17,4 +17,17 @@
     &.button-list-right {
         justify-content: flex-end;
     }
+
+    &.button-list-vertical {
+        flex-direction: column;
+
+        & > *,
+        .button-important,
+        .button-secondary {
+            align-items: stretch;
+            flex: 1;
+            text-align: center;
+            width: 100%;
+        }
+    }
 }
