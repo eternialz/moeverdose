@@ -138,7 +138,7 @@ class UsersController < ApplicationController
 
         if @user.valid_password?(params[:user][:password])
             if @user.save
-                flash[:success] = 'Your account has been succesfully flagged for deletion.'
+                flash[:success] = 'Your account has been successfully flagged for deletion.'
                 sign_out @user
                 redirect_to root_path
             else
