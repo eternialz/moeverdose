@@ -16,7 +16,7 @@
                 display: none;
             }
 
-            .button-primary {
+            .button-important {
                 margin-right: 0.5rem;
             }
         }
@@ -35,7 +35,7 @@
             }
         }
 
-        input:valid + .post-new-dummy {
+        input:valid ~ .post-new-dummy {
             .post-new-valid {
                 display: inline;
             }
