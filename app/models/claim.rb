@@ -14,6 +14,12 @@ class Claim < ApplicationRecord
     validates_presence_of :user
 
     module Status
+        ################################################################
+        # open: unresolved claim -> post is hidden
+        # accepted: uploader accepted claim -> post is hidden
+        # dismissed: uploader refused claim -> post is shown again
+        # canceled: claimer canceled the claim from an open or acepted state -> post is shown again
+        ################################################################
         def self.all
             ['open', 'accepted', 'dismissed', 'canceled']
         end

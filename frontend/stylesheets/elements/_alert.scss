@@ -1,9 +1,30 @@
 .alert {
-    --alert-color: #{$pink};
+    --alert-color: #{$base-color};
+    --alert-background-color:  #{rgba($base-color, 0.2)};
 
-    background: rgba($pink, 0.2);
+    background: var(--alert-background-color);
     border: 1px solid var(--alert-color);
     border-radius: $border-radius;
     margin: 0.5rem 0;
     padding: 1rem;
+
+    &.alert-info {
+        --alert-color: #{$info-color};
+        --alert-background-color: #{rgba($info-color, 0.2)};
+    }
+
+    &.alert-success {
+        --alert-color: #{$success-color};
+        --alert-background-color: #{rgba($success-color, 0.2)};
+    }
+
+    &.alert-warning {
+        --alert-color: #{$warning-color};
+        --alert-background-color: #{rgba($warning-color, 0.2)};
+    }
+
+    &.alert-error {
+        --alert-color: #{$error-color};
+        --alert-background-color: #{rgba($error-color, 0.2)};
+    }
 }
