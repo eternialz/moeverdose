@@ -1,27 +1,3 @@
-// <div class="tabs">
-//     <div class="tabs-menu">
-//         <label class="tabs-label" for="tab-1">Claim authorship</label>
-//         <label class="tabs-label" for="tab-2">Submit a takedown notice</label>
-//     </div>
-//     <input type="radio" name="tab-1" />
-//     <div class="tabs-content">
-//         <p>To claim authorship, you first need to <strong><%= link_to "create an account", new_user_registration_path %></strong>.</p>
-//         <p>Once logged in: follow these steps:</p>
-//         <ol class="step-list">
-//             <li>Go to the post you want to change.</li>
-//             <li>Click on "edit post" under the post image.</li>
-//             <li>Change the author name and submit the form.</li>
-//             <li>The author has now been changed but you may want to fill in your author informations:</li>
-//             <ol>
-//                 <li>Click on your name that appear on the author field of the post</li>
-//                 <li>Click on "edit author"</li>
-//                 <li>Change your biography, aliases (multiple names), and website link.</li>
-//                 <li>Submit the form and your informations will now be displayed along with each image posts under your name.</li>
-//             </ol>
-//         </ol>
-//         <div class="alert alert-info">Keep in mind that your name and aliases are converted to tags.</div>
-//     </div>
-
 .tabs {
     display: flex;
     flex-wrap: wrap;
@@ -29,8 +5,8 @@
     max-width: 100%;
 
     .tabs-label {
-        border-radius: $border-radius $border-radius 0 0;
         border: 1px solid $gray-light;
+        border-radius: $border-radius $border-radius 0 0;
         cursor: pointer;
         font-size: 0.9rem;
         font-weight: bold;
@@ -45,9 +21,9 @@
 
     .tabs-content {
         background: $white;
+        border: 1px solid $gray-light;
         border-radius: $border-radius;
         border-top-left-radius: 0;
-        border: 1px solid $gray-light;
         display: none;
         padding: 0.8rem 1.3rem;
         width: 100%;
@@ -55,19 +31,19 @@
 
     @media (min-width: $small) {
         .tabs-label {
-            width: auto;
             border-bottom: none;
             margin: 0 0.2rem 0 0;
+            width: auto;
         }
-        
-        .tabs-content  {
+
+        .tabs-content {
             order: 1;
         }
     }
 
     & > input[type="radio"] {
         display: none;
-        
+
         &:checked + .tabs-label {
             background: $white;
             color: $base-color;

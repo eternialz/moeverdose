@@ -1,6 +1,6 @@
 .alert {
     --alert-color: #{$base-color};
-    --alert-background-color:  #{rgba($base-color, 0.2)};
+    --alert-background-color: #{rgba($base-color, 0.2)};
 
     background: var(--alert-background-color);
     border: 1px solid var(--alert-color);
