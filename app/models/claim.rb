@@ -11,7 +11,6 @@ class Claim < ApplicationRecord
     validates_presence_of :post
 
     belongs_to :user, class_name: 'User', inverse_of: :claims
-    validates_presence_of :user
 
     module Status
         ################################################################

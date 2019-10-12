@@ -3,8 +3,10 @@ class AddForeignKeyConstaints < ActiveRecord::Migration[6.0]
         add_foreign_key :users, :levels, column: :level_id, on_delete: :nullify
         add_foreign_key :posts, :users, column: :user_id, on_delete: :nullify
         add_foreign_key :aliases, :tags, column: :tag_id, on_delete: :cascade
-        add_foreign_key :comments, :users, column: :user_id, on_delete: :nullify
-        add_foreign_key :comments, :posts, column: :post_id, on_delete: :nullify
+        add_foreign_key :comments, :users, column: :user_id, on_delete: :cascade
+        add_foreign_key :comments, :posts, column: :post_id, on_delete: :cascade
+        add_foreign_key :claims, :users, column: :user_id, on_delete: :nullify
+        add_foreign_key :claims, :posts, column: :post_id, on_delete: :cascade
         add_foreign_key :authors, :tags, column: :tag_id, on_delete: :nullify
         add_foreign_key :posts, :authors, column: :author_id, on_delete: :nullify
         add_foreign_key :permissions, :users, column: :user_id, on_delete: :cascade

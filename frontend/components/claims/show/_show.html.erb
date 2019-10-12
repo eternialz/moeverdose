@@ -12,7 +12,15 @@
                 <li><span class="list-detailed-key">Uploaded:</span><span class="list-detailed-value"><%= @claim.post.post_image.created_at.to_time.strftime('%B %e at %l:%M %p') %></span></li>
                 <li><span class="list-detailed-key">Uploader:</span><span class="list-detailed-value"><%= link_to @claim.post.user.name, user_path(@claim.post.user.name) %></span></li>
                 <li><span class="list-detailed-key">Claimed:</span><span class="list-detailed-value"><%= @claim.created_at.to_time.strftime('%B %e at %l:%M %p') %></span></li>
-                <li><span class="list-detailed-key">Claimer:</span><span class="list-detailed-value"><%= link_to @claim.user.name, user_path(@claim.user.name) %></span></li>
+                <li>
+                    <span class="list-detailed-key">Claimer:</span><span class="list-detailed-value">
+                        <% if @claim.user %>
+                            <%= link_to @claim.user.name, user_path(@claim.user.name) %>
+                        <% else %>
+                            Deleted User
+                        <% end %>
+                    </span>
+                </li>
                 <li><span class="list-detailed-key">Claim status:</span><span class="list-detailed-value"><%= @claim.status.upcase %></span></li>
                 <li><span class="list-detailed-key">MD5:</span><span class="list-detailed-value"><%= @claim.post.number %></span></li>
             </ul>

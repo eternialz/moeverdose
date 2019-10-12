@@ -215,8 +215,10 @@ ActiveRecord::Schema.define(version: 2019_09_12_113849) do
   add_foreign_key "authors", "tags", on_delete: :nullify
   add_foreign_key "blacklisted_tags_users", "tags", on_delete: :cascade
   add_foreign_key "blacklisted_tags_users", "users", on_delete: :cascade
-  add_foreign_key "comments", "posts", on_delete: :nullify
-  add_foreign_key "comments", "users", on_delete: :nullify
+  add_foreign_key "claims", "posts", on_delete: :cascade
+  add_foreign_key "claims", "users", on_delete: :nullify
+  add_foreign_key "comments", "posts", on_delete: :cascade
+  add_foreign_key "comments", "users", on_delete: :cascade
   add_foreign_key "disliked_posts_users", "posts", on_delete: :cascade
   add_foreign_key "disliked_posts_users", "users", on_delete: :cascade
   add_foreign_key "favorites_posts_users", "posts", on_delete: :cascade

@@ -35,7 +35,7 @@ class ClaimsController < ApplicationController
         redirect_to user_claims_path(current_user.name) if current_user != @claim.post.user
 
         change_claim_status(status_params) if @claim.open? && ['dismissed', 'accepted'].include?(status_params)
-        ClaimMailer.unclaimed(@claim).deliver_later if @claim.dismissed?
+        ClaimMailer.unclaimed(@claim).deliver_later if @claim.dismissed? && @claim.user
 
         redirect_to user_claims_path(current_user.name)
     end
