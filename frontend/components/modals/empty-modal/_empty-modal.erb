@@ -1,0 +1,8 @@
+<div class="modal" data-controller="modal" id="modal-<%= modal %>">
+    <div class="modal-overlay">
+        <div class="modal-container">
+            <span class="modal-close" data-action="click->modal#close"><i class="fa fa-times"></i></span>
+            <%= yield %>
+        </div>
+    </div>
+</div>

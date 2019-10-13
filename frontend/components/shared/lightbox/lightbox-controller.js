@@ -5,6 +5,6 @@ import { LightboxService } from '../../../services/lightbox-service';
 @RegisterController
 class LightboxController extends Controller {
     closeLightbox() {
-        LightboxService.display();
+        LightboxService.toggle();
     }
 }

@@ -4,10 +4,11 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.7.1",
     "@rails/webpacker": "3.5",
+    "hotkeys-js": "^3.7.2",
     "normalize.css": "^8.0.1",
     "rails-ujs": "^5.2.3",
-    "stimulus": "^1.1.1",
     "snyk": "^1.189.0",
+    "stimulus": "^1.1.1",
     "turbolinks": "^5.2.0",
     "webpack-merge": "^4.2.1"
   },

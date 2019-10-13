@@ -1,0 +1,7 @@
+<%= component '/modals/default-modal', {modal: 'keyboard-help'} do %>
+    <%= component '/shared/keyboard-help' %>
+<% end %>
+
+<%= component '/modals/empty-modal', {modal: 'global-search'} do %>
+    <%= component '/shared/main-search', {show_tags: false} %>
+<% end %>

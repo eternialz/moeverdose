@@ -18,7 +18,7 @@
     <%= image_tag @post.post_image %>
 <% end %>
 
-<%= component 'shared/main-search' %>
+<%= component 'shared/main-search', {show_tags: true} %>
 
 <div class="post-show" data-controller="post-show">
     <div class="zone margin margin-top padding padding-sm post-show-navigation">

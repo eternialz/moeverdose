@@ -17,7 +17,6 @@ html {
 body {
     color: $text-color-dark;
     font-size: $body-font-size;
-    overflow: hidden scroll;
 
     .view-content {
         margin-bottom: 2rem;
@@ -42,9 +41,5 @@ body {
 
     &.disable-scroll {
         overflow: hidden;
-
-        & > *:not(.lightbox) {
-            opacity: 0 !important;
-        }
     }
 }
