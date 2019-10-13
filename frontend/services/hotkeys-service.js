@@ -1,7 +1,8 @@
 import { RouteService } from './route-service';
-import hotkeys from 'hotkeys-js';
 import { ModalService } from './modal-service';
 import { LightboxService } from './lightbox-service';
+import { application } from '../packs/application';
+import hotkeys from 'hotkeys-js';
 
 export const HotkeysService = {
     scopes: { post: 'h,t,r,esc,left,right,f,o,s,e,l,c', global: 'h,t,r,esc' },
@@ -55,17 +56,23 @@ export const HotkeysService = {
 
     // Toggle favorite
     f: function() {
-        console.log('f');
+        let showElement = document.querySelector('[data-controller="post-show"]');
+        let showController = application.getControllerForElementAndIdentifier(showElement, 'post-show');
+        showController.addFavorite();
     },
 
     // Toggle overdose
     o: function() {
-        console.log('o');
+        let scoreElement = document.querySelector('[data-controller="post-score"]');
+        let scoreController = application.getControllerForElementAndIdentifier(scoreElement, 'post-score');
+        scoreController.overdose();
     },
 
     // Toggle shortage
     s: function() {
-        console.log('s');
+        let scoreElement = document.querySelector('[data-controller="post-score"]');
+        let scoreController = application.getControllerForElementAndIdentifier(scoreElement, 'post-score');
+        scoreController.shortage();
     },
 
     // Edit post
