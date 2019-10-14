@@ -36,9 +36,13 @@
 
 // Elements
 @import 'elements/action';
+@import 'elements/action-table';
+@import 'elements/alert';
 @import 'elements/anchor';
 @import 'elements/anchor.mobile';
+@import 'elements/article';
 @import 'elements/avatar';
+@import 'elements/blockquote';
 @import 'elements/breadcrumbs';
 @import 'elements/browser';
 @import 'elements/button-list';
@@ -47,6 +51,7 @@
 @import 'elements/comment';
 @import 'elements/cookie-banner';
 @import 'elements/document';
+@import 'elements/empty-state';
 @import 'elements/form';
 @import 'elements/grid';
 @import 'elements/grid.mobile';
@@ -63,7 +68,9 @@
 @import 'elements/progress-bar';
 @import 'elements/role';
 @import 'elements/spoiler';
+@import 'elements/step-list';
 @import 'elements/subtitle';
+@import 'elements/tabs';
 @import 'elements/tag';
 @import 'elements/tag-list';
 @import 'elements/title';
@@ -75,6 +82,7 @@
 // Helpers
 @import 'helpers/align';
 @import 'helpers/color';
+@import 'helpers/display';
 @import 'helpers/flex';
 @import 'helpers/float';
 @import 'helpers/hidden';

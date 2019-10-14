@@ -48,6 +48,7 @@ class Post < ApplicationRecord
     belongs_to :author, class_name: 'Author', inverse_of: :posts, optional: true
 
     has_many :comments, class_name: 'Comment', inverse_of: :post
+    has_many :claims, class_name: 'Claim', inverse_of: :post
 
     has_and_belongs_to_many :tags, class_name: 'Tag', inverse_of: :posts
 
@@ -64,6 +65,11 @@ class Post < ApplicationRecord
         reports.size >= ConfigHelper.report_limit
     end
     alias report? report
+
+    def hide_post
+        claims.any?(&:hide_post?)
+    end
+    alias hide_post? hide_post
 
     def self.sort_scopes
         [:created_at, :overdose, :shortage]
@@ -86,11 +92,9 @@ class Post < ApplicationRecord
 
     def post_image_thumbnail
         post_image.variant(
-            combine_options: {
-                resize: "#{Post.sizes[:thumbnail]}^",
-                extent: Post.sizes[:thumbnail],
-                gravity: 'center'
-            }
+            gravity: 'center',
+            resize: "#{Post.sizes[:thumbnail]}^",
+            extent: Post.sizes[:thumbnail]
         ).processed
     end
 

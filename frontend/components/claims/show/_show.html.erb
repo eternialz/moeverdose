@@ -1,0 +1,58 @@
+<div class="zone">
+    <div class="columns">
+        <div class="col-8 col-12-small padding padding-left">
+            <div class="image image-rounded">
+                <%= image_tag @claim.post.post_image %>
+            </div>
+        </div>
+        <div class="col-4 col-12-small padding">
+            <h5 class='title'>Informations</h5>
+            <ul class="list list-detailed">
+                <li><span class="list-detailed-key">Id:</span><span class="list-detailed-value"><%= @claim.post.number %></span></li>
+                <li><span class="list-detailed-key">Uploaded:</span><span class="list-detailed-value"><%= @claim.post.post_image.created_at.to_time.strftime('%B %e at %l:%M %p') %></span></li>
+                <li><span class="list-detailed-key">Uploader:</span><span class="list-detailed-value"><%= link_to @claim.post.user.name, user_path(@claim.post.user.name) %></span></li>
+                <li><span class="list-detailed-key">Claimed:</span><span class="list-detailed-value"><%= @claim.created_at.to_time.strftime('%B %e at %l:%M %p') %></span></li>
+                <li>
+                    <span class="list-detailed-key">Claimer:</span><span class="list-detailed-value">
+                        <% if @claim.user %>
+                            <%= link_to @claim.user.name, user_path(@claim.user.name) %>
+                        <% else %>
+                            Deleted User
+                        <% end %>
+                    </span>
+                </li>
+                <li><span class="list-detailed-key">Claim status:</span><span class="list-detailed-value"><%= @claim.status.upcase %></span></li>
+                <li><span class="list-detailed-key">MD5:</span><span class="list-detailed-value"><%= @claim.post.number %></span></li>
+            </ul>
+            <p class="align-center">Only the claimer and the uploader can see this page</p>
+            <div class="button-list button-list-vertical margin margin-top">
+                <%= link_to "Show public page", post_path(@claim.post.number), class: "button-important button-base" %>
+                <% if @claim.open? && current_user == @claim.post.user %>
+                    <%=
+                        button_to "Dismiss",
+                        decide_claim_status_path(@claim, params: {status: :dismissed}),
+                        method: :patch,
+                        class: "button-important button-warning",
+                        data: {confirm: "Are you sure you want to dismiss this claim ? Legal issues can ensue from it."}
+                    %>
+                    <%=
+                        button_to "Accept",
+                        decide_claim_status_path(@claim, params: {status: :accepted}),
+                        method: :patch,
+                        class: "button-important button-success",
+                        data: {confirm: "Are you sure you want to accept this takedown notice ? The post will continue to be hidden."}
+                    %>
+                <% end %>
+                <% if @claim.hide_post? && current_user == @claim.user %>
+                    <%=
+                        button_to "Cancel Takedown",
+                        cancel_claim_path(@claim),
+                        method: :patch,
+                        class: "button-important button-warning",
+                        data: { confirm: "Are you sure you want to cancel this claim ?" }
+                    %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>

@@ -124,6 +124,12 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
         assert_response :success
     end
 
+    test 'claims' do
+        sign_in @user
+        get user_claims_path(@user.name)
+        assert_response :success
+    end
+
     test 'delete' do
         sign_in @user
         patch delete_user_path(@user.name, user: { password: 'password' })

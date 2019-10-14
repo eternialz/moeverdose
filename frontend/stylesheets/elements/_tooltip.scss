@@ -1,0 +1,27 @@
+$width: 14rem;
+
+[data-tooltip] {
+    position: relative;
+
+    &::after {
+        background: $gray-dark;
+        border-radius: $border-radius;
+        bottom: calc(100% + 0.3rem);
+        color: $white;
+        content: attr(data-tooltip);
+        display: inline-block;
+        font-weight: bold;
+        left: calc(50% - #{$width / 2});
+        opacity: 0;
+        padding: 0.3rem 0.5rem;
+        pointer-events: none;
+        position: absolute;
+        text-align: center;
+        transition: opacity 100ms ease-in-out;
+        width: $width;
+    }
+
+    &:hover::after {
+        opacity: 0.9;
+    }
+}

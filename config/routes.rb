@@ -43,21 +43,31 @@ Rails.application.routes.draw do
         resources :permissions_types, controller: 'permissions_types', except: [:edit, :update, :show]
     end
 
+    # Users
     devise_for :users, path: 'account', controllers: { registrations: 'user_registrations' }
 
     resources :users, only: [:show, :edit, :update, :index]
 
     get '/users/:id/favorites' => 'users#favorites', as: 'user_favorites'
     get '/users/:id/uploads' => 'users#uploads', as: 'user_uploads'
+    get '/users/:id/claims' => 'users#claims', as: 'user_claims'
     get '/users/:id/extract' => 'users#extract', as: 'extract_user'
     patch '/users/:id/delete' => 'users#delete', as: 'delete_user'
     get '/users/:id/report' => 'users#report', as: 'new_user_report'
     post '/users/:id/report' => 'users#report_update', as: 'user_report'
 
+    # News
     resources :news, only: [:show]
 
+    # Team
     resources :teams, controller: 'teams', only: [:index]
 
+    # Claims
+    resources :claims, controller: 'claims', only: [:show, :create, :new]
+    patch 'claims/:id/decide' => 'claims#decide_status', as: 'decide_claim_status'
+    patch 'claims/:id/cancel' => 'claims#cancel', as: 'cancel_claim'
+
+    # Errors
     match '/404', to: 'errors#not_found', via: :all
     match '/500', to: 'errors#internal_server_error', via: :all
 

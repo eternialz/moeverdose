@@ -117,17 +117,19 @@
     margin: 0;
 
     input {
+        left: 19px;
         opacity: 0;
+        overflow: hidden;
         pointer-events: none;
-        position: fixed;
-        top: -100vh;
+        position: relative;
+        width: 1px;
     }
 
     label {
         border-radius: 2px;
         cursor: pointer;
         display: inline-block;
-        padding: 0.5rem 0;
+        padding: 0.35rem 0.5rem;
         transition: color 100ms ease-in-out, box-shadow 0.2s, color 0.2s;
 
         &::before {

@@ -79,6 +79,9 @@ class User < ApplicationRecord
     # Comments
     has_many :comments, class_name: 'Comment', inverse_of: :user
 
+    # Claims he made
+    has_many :claims, class_name: 'Claim', inverse_of: :user
+
     # User security
     def report
         warnings.size >= ConfigHelper.report_limit

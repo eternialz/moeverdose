@@ -13,6 +13,9 @@ Style/SymbolArray:
 Style/WordArray:
     Enabled: false
 
+Style/EmptyMethod:
+    Enabled: false
+
 Style/FrozenStringLiteralComment:
     Enabled: false
 

@@ -1,0 +1,147 @@
+<div class="article">
+    <div class="article-part">
+        <h2 class="title">Before submitting a takedown notice</h2>
+        <p>
+            If you want your content to be removed from <%= site_name %> because the copyright author weren't given credit for it,
+            you can instead change the attributed author of a post. This will create a new author profile.
+            You will be able to edit informations such as the author biography and website link(s).
+            If the author was correctly attributed but the informations about him/her were wrong, you can also edit them.
+        </p>
+
+        <div class="alert alert-warning">
+            Please take in account that an <strong>exception to copyright</strong> may apply on your content (fair use, fair dealing, ...) before you submit your claim.
+            <%= site_name %> team can appreciate the fair usage of a post and dismiss your takedown notices.
+            If you think our decision was wrong, please contact us.
+        </div>
+    </div>
+    <div class="article-part">
+        <h2 class="title">About the process</h2>
+        <ol class="step-list">
+            <li class="step-list-step">Submit a takedown for a post using the <strong>unique identifier</strong> attributed to it.</li>
+            <li class="step-list-step">The post is immediatly hidden from the public and no one can view it. The name you filled in your takedown notice is displayed instead.</li>
+            <li class="step-list-step">To prevent abuse of this system, the post uploader is notified and can then dismiss or accept your takedown notice.</li>
+            <li class="step-list-step">If the uploader accepts it, the post stay hidden.</li>
+            <li class="step-list-step">If the uploader dismisses your request, the post is shown again and you are notified through mail. You can choose between two different options:</li>
+            <ol class="step-list">
+                <li class="step-list-step">You can submit a takedown notice indefinitely for the same post.</li>
+                <li class="step-list-step">You can contact us directly (using Discord for exemple) and prove your identity (using means available only to the copyright owner or its representative) for the post to stay hidden.</li>
+            </ol>
+        </ol>
+    </div>
+    <div class="article-part">
+        <h2 class="title">FAQ</h2>
+        <h5 class="subtitle">What is the post unique identifier and how to find it?</h5>
+        <blockquote>
+            To make a takedown notice, you need to find the infringing post unique identifier or ID. It correspond to the number displayed in the url of each post.
+            For exemple, a post at the url "/posts/564" will have the ID of 564. It can also be found in the "Informations" section, under each post page.
+        </blockquote>
+        <h5 class="subtitle">Why can the uploader dismiss my takedown notice?</h5>
+        <blockquote>
+            As features like these are often abused on different websites by third party who are neither the uploader,
+            nor the author or its representative, we let our users decide what the best solution is.
+            This status quo lasts until either of the parties involved prove their identity by contacting us through our Discord server or if the conflict is resolved through legal means.
+        </blockquote>
+        <h5 class="subtitle">How do I prove my identity?</h5>
+        <blockquote>
+            There are many ways to do this:
+            <ul class="step-list">
+                <li>Submit physical originals of the work.</li>
+                <li>Use your official profiles on different social networks like Twitter to contact us directly.</li>
+                <li>If your work is already protected using a third party service, you can use it.</li>
+            </ul>
+        </blockquote>
+        <h5 class="subtitle">In the case where we both prove our identity (official account hack, etc.), what happen?</h5>
+        <blockquote>
+             In that case, to protect us and our members, we will hide the post indefinitely and ask you to resort to available legal means.
+        </blockquote>
+        <h5 class="subtitle">Can I prevent all my works from being posted here?</h5>
+        <blockquote>
+            For the moment, it is impossible but we are planning to design a system were an author tag is impossible to use to upload a post.
+            This will prevent user from posting under your name after you have signaled it to us but it won't prevent user from miscrediting it.
+        </blockquote>
+        <h5 class="subtitle">Can I retract a tekdown notice?</h5>
+        <blockquote>
+            Using your profile, you can manage the takedown notice you made. You can cancel each ones individually and it will instantly make the post available again.
+            <% if user_signed_in? %>
+                You can cancel takedown notices at <%= link_to "this page", user_claims_path(current_user.name) %>.
+            <% end %>
+            Cancellable statuses are "Accepted" and "Open".
+        </blockquote>
+        <h5 class="subtitle">How can I contact your team?</h5>
+        <blockquote>
+            If trying to takedown a post to get your content removed doesn't work, you can contact us through Discord.
+            To do this, you don't need a Discord account and you can <a href="https://discord.gg/xfCpyJY">join our server</a> as a guest.
+        </blockquote>
+        <h5 class="subtitle">Why do you keep the post hidden even though i want it deleted from your database?</h5>
+        <blockquote>
+            We keep the post hidden because <strong>it prevent our member from uploading the same file again</strong>.
+            We compute the hash of each uploaded post using md5 and compare it to existing posts. If it already exists in our databse we refuse the upload.
+            Deleting the posts image means we lose it's md5 informations and history.
+        </blockquote>
+        <h5 class="subtitle">What are the different takedown statuses?</h5>
+        <blockquote>
+            <ul class="list">
+                <li><strong>OPEN</strong>: The status just after submitting the takedown notice. The post image is hidden but the uploader can dismiss the claim.</li>
+                <li><strong>ACCEPTED</strong>: After the uploader accepted the takedown. The post image is hidden.</li>
+                <li><strong>DISMISSED</strong>: After the uploader dismissed the takedown. The post image is shown again but you can make a claim again.</li>
+                <li><strong>CANCELED</strong>: After you or an administrator canceled your takedown notice from your user profile.</li>
+            </ul>
+        </blockquote>
+    </div>
+    <div class="article-part">
+        <div class="tabs">
+            <input type="radio" id="tab-1" name="tabs" checked />
+            <label class="tabs-label" for="tab-1">Claim authorship</label>
+            <div class="tabs-content">
+                <p>To claim authorship, you first need to <strong><%= link_to "create an account", new_user_registration_path %></strong>.</p>
+                <p>Once logged in, follow these steps:</p>
+                <ol class="step-list">
+                    <li>Go to the post page you want to change.</li>
+                    <li>Click on <strong>"Edit"</strong> under the post image.</li>
+                    <li>Fill in the author field and submit the form.</li>
+                    <li>The author has now been changed, but you may want to fill in your informations:</li>
+                    <ol>
+                        <li>Click on your name that now appear on the author field of the post</li>
+                        <li>Click on <strong>"Edit"</strong></li>
+                        <li>Change your biography, aliases (multiple names), and website link.</li>
+                        <li>Submit the form and your informations will now be displayed along with each image posts under your name.</li>
+                    </ol>
+                </ol>
+                <div class="alert alert-info">Keep in mind that your name and aliases are converted to tags. Spaces are replaced by underscores, and some special characters may be removed.</div>
+            </div>
+            <input type="radio" id="tab-2" name="tabs" />
+            <label class="tabs-label" for="tab-2">Submit a takedown notice</label>
+            <div class="tabs-content">
+                <% if signed_in? %>
+                    <div class="alert alert-error">
+                        Do not make false claims. Abusing this system can result in supension of your account and legal consequences.
+                        <strong>All your takedown notices will be canceled</strong> if you wrongly claim one or more works.
+                    </div>
+                    <%= form_with url: claims_path, local: :true, method: :post, class: "form" do |f| %>
+                        <div class="actions">
+                            <div class="form-field form-checkbox">
+                                <%= f.check_box :accept_conditions, required: :true %>
+                                <%= f.label "I understand that lying about my rights can and will get me punished.", for: :accept_conditions, class: "form-checkbox", "aria-role": "checkbox"%>
+                            </div>
+                            <div class="form-field form-checkbox">
+                                <%= f.check_box :certify_ownership, required: :true %>
+                                <%= f.label "I am the copyright owner or rightful representative of the content I claim.", for: :certify_ownership, class: "form-checkbox", "aria-role": "checkbox"%>
+                            </div>
+                            <div class="form-field">
+                                <label class="form-label" for="number"><i class="fa fa-hashtag"></i> Post ID</label>
+                                <%= f.number_field :post_number, class: "form-input", required: :true %>
+                            </div>
+                            <div class="align-right">
+                                <button class="button-important button-white margin margin-top" type="reset">Reset</button>
+                                <%= f.submit "Submit claim", class: "button-important button-error margin margin-top", data: {confirm: "Are you sure you want to submit this claim?"} %>
+                            </div>
+                        </div>
+                    <% end %>
+                <% else %>
+                    <p>You need to <strong><%= link_to "create an account", new_user_registration_path %></strong> to submit a takedown notice.</p>
+                    <p>It is necessary for us to confirm your email address to notify you of the status of your claim.</p>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>

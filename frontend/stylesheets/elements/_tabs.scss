@@ -1,0 +1,56 @@
+.tabs {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1rem 0;
+    max-width: 100%;
+
+    .tabs-label {
+        border: 1px solid $gray-light;
+        border-radius: $border-radius $border-radius 0 0;
+        cursor: pointer;
+        font-size: 0.9rem;
+        font-weight: bold;
+        margin-top: 0.4rem;
+        padding: 0.8rem 1.3rem;
+        position: relative;
+        top: 1px;
+        transition: background 170ms, color 170ms;
+        width: 100%;
+        z-index: 1;
+    }
+
+    .tabs-content {
+        background: $white;
+        border: 1px solid $gray-light;
+        border-radius: $border-radius;
+        border-top-left-radius: 0;
+        display: none;
+        padding: 0.8rem 1.3rem;
+        width: 100%;
+    }
+
+    @media (min-width: $small) {
+        .tabs-label {
+            border-bottom: none;
+            margin: 0 0.2rem 0 0;
+            width: auto;
+        }
+
+        .tabs-content {
+            order: 1;
+        }
+    }
+
+    & > input[type="radio"] {
+        display: none;
+
+        &:checked + .tabs-label {
+            background: $white;
+            color: $base-color;
+        }
+
+        &:checked + .tabs-label + .tabs-content {
+            display: block;
+        }
+    }
+}

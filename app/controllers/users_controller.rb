@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-    before_action :authenticate_user!, only: [:edit, :update, :delete, :report, :report_update]
+    before_action :authenticate_user!, only: [:edit, :update, :delete, :report, :report_update, :claims]
     before_action :set_user, except: [:index]
-    before_action :check_user, only: [:edit, :update, :delete, :extract]
+    before_action :check_user, only: [:edit, :update, :delete, :extract, :claims]
     before_action(only: [:index]) { set_default_index_values }
 
     def index
@@ -76,6 +76,18 @@ class UsersController < ApplicationController
         ]
 
         render component 'users/favorites'
+    end
+
+    def claims
+        @emitted_claims = Kaminari.paginate_array(
+            Claim.where(user: current_user).order(created_at: :desc)
+        ).page(params[:page]).per(@items_per_page)
+
+        @received_claims = Kaminari.paginate_array(
+            Claim.where(status: :open).joins(:post).where(posts: { user: current_user }).order(created_at: :desc)
+        ).page(params[:page]).per(@items_per_page)
+
+        render component 'users/claims'
     end
 
     def uploads
@@ -190,7 +202,7 @@ class UsersController < ApplicationController
 
     def check_user
         if current_user != @user
-            flash[:error] = "The user you tried to edit isn't yourself"
+            flash[:error] = "You can't access another's profile options."
             redirect_to edit_user_path(current_user.name)
         end
     end
