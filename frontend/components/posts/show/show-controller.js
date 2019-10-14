@@ -25,6 +25,6 @@ class PostShowController extends Controller {
     }
 
     showLightbox() {
-        LightboxService.display();
+        LightboxService.toggle();
     }
 }

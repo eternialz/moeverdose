@@ -22,4 +22,7 @@ export const RouteService = {
 
         return params;
     },
+    currentRouteMatch: function(regexp) {
+        return window.location.pathname.match(regexp);
+    },
 };
